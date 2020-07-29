@@ -1,3 +1,5 @@
+# noqa: D100
+
 from .._internals import IterableConstants
 from .vessel import Vessel
 
@@ -5,33 +7,42 @@ from .vessel import Vessel
 def _pit_col(name: str) -> str:
     return f'{name}_point_in_time'
 
+_data_types = {}
+def _category(name: str):
+    _data_types[name] = 'category'
+    return name
 
 class Column(metaclass=IterableConstants):
+    """Contains constants for Historical Tonnage List data frame column names."""
     NAME = 'name'
-    VESSEL_CLASS = 'vessel_class'
-    ICE_CLASS = 'ice_class'
+    VESSEL_CLASS = _category('vessel_class')
+    ICE_CLASS = _category('ice_class')
     YEAR_BUILT = 'year_built'
     DEADWEIGHT = 'deadweight'
     LENGTH_OVERALL = 'length_overall'
     BREADTH_EXTREME = 'breadth_extreme'
-    MARKET_DEPLOYMENT = _pit_col('market_deployment')
-    PUSH_TYPE = _pit_col('push_type')
-    OPEN_PORT = _pit_col('open_port')
+    MARKET_DEPLOYMENT = _category(_pit_col('market_deployment'))
+    PUSH_TYPE = _category(_pit_col('push_type'))
+    OPEN_PORT = _category(_pit_col('open_port'))
     OPEN_DATE = _pit_col('open_date')
-    OPERATIONAL_STATUS = _pit_col('operational_status')
-    COMMERCIAL_OPERATOR = _pit_col('commercial_operator')
-    COMMERCIAL_STATUS = _pit_col('commercial_status')
+    OPERATIONAL_STATUS = _category(_pit_col('operational_status'))
+    COMMERCIAL_OPERATOR = _category(_pit_col('commercial_operator'))
+    COMMERCIAL_STATUS = _category(_pit_col('commercial_status'))
     ETA = _pit_col('eta')
     LAST_FIXED = _pit_col('last_fixed')
     LATEST_AIS = _pit_col('latest_ais')
-    SUBCLASS = 'subclass'
-    OPEN_PREDICTION_ACCURACY = _pit_col('open_prediction_accuracy')
-    OPEN_COUNTRY = _pit_col('open_country')
-    OPEN_NARROW_AREA = _pit_col('open_narrow_area')
-    OPEN_WIDE_AREA = _pit_col('open_wide_area')
+    SUBCLASS = _category('subclass')
+    OPEN_PREDICTION_ACCURACY = _category(_pit_col('open_prediction_accuracy'))
+    OPEN_COUNTRY = _category(_pit_col('open_country'))
+    OPEN_NARROW_AREA = _category(_pit_col('open_narrow_area'))
+    OPEN_WIDE_AREA = _category(_pit_col('open_wide_area'))
+    AVAILABILITY_PORT_TYPE = _category(_pit_col('availability_port_type'))
+    AVAILABILITY_DATE_TYPE = _category(_pit_col('availability_date_type'))
+    LIQUID_CAPACITY = 'liquid_capacity'
+    FIXTURE_TYPE = _category(_pit_col('fixture_type'))
 
     @staticmethod
-    def create_row(vessel: Vessel) -> list:
+    def _create_row(vessel: Vessel) -> list:
         return [
             vessel.name,
             vessel.vessel_class,
@@ -54,5 +65,13 @@ class Column(metaclass=IterableConstants):
             vessel.open_prediction_accuracy,
             vessel.open_country,
             vessel.open_narrow_area,
-            vessel.open_wide_area
+            vessel.open_wide_area,
+            vessel.availability_port_type,
+            vessel.availability_date_type,
+            vessel.liquid_capacity,
+            vessel.fixture_type
         ]
+
+    @staticmethod
+    def _get_data_types() -> dict:
+        return _data_types

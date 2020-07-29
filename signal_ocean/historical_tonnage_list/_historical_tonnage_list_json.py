@@ -1,12 +1,10 @@
-from datetime import datetime, timezone
-from typing import List, Union
-
-from dateutil import parser
+from typing import List
 
 from .historical_tonnage_list import HistoricalTonnageList
 from .tonnage_list import TonnageList
 from .vessel import Vessel
-from .open_area import OpenArea
+from .area import Area
+from .._internals import parse_datetime
 
 
 def parse(json) -> HistoricalTonnageList:
@@ -16,17 +14,6 @@ def parse(json) -> HistoricalTonnageList:
     return HistoricalTonnageList(
         (_to_tonnage_list(tl, static_vessel_data) for tl in tonnage_lists)
     )
-
-
-def _parse_datetime(value: str) -> Union[datetime, None]:
-    if not value:
-        return None
-    try:
-        result = parser.isoparse(value)
-    except (TypeError, ValueError):
-        return None
-
-    return result.replace(tzinfo=timezone.utc)
 
 
 def _to_vessel(pit_vessel_data: dict, static_vessel_data: List[dict]) -> Vessel:
@@ -50,27 +37,31 @@ def _to_vessel(pit_vessel_data: dict, static_vessel_data: List[dict]) -> Vessel:
         pit_vessel_data.get('marketDeployment'),
         pit_vessel_data.get('pushType'),
         pit_vessel_data.get('openPort'),
-        _parse_datetime(pit_vessel_data.get('openDate')),
+        parse_datetime(pit_vessel_data.get('openDate')),
         pit_vessel_data.get('operationalStatus'),
         pit_vessel_data.get('commercialOperator'),
         pit_vessel_data.get('commercialStatus'),
-        _parse_datetime(pit_vessel_data.get('eta')),
+        parse_datetime(pit_vessel_data.get('eta')),
         pit_vessel_data.get('lastFixed'),
-        _parse_datetime(pit_vessel_data.get('latestAis')),
+        parse_datetime(pit_vessel_data.get('latestAis')),
         data_for_imo.get('subclass'),
         data_for_imo.get('willingToSwitchSubclass'),
         pit_vessel_data.get('openPredictionAccuracy'),
         tuple(
-            OpenArea(a.get('name'), a.get('locationTaxonomy'))
+            Area(a.get('name'), a.get('locationTaxonomy'))
             for a in pit_vessel_data.get('openAreas', [])
-        )
+        ),
+        pit_vessel_data.get('availabilityPortType'),
+        pit_vessel_data.get('availabilityDateType'),
+        data_for_imo.get('liquidCapacity'),
+        pit_vessel_data.get('fixtureType')
     )
 
 
 def _to_tonnage_list(
         tonnage_list_json: dict,
         static_vessel_data: List[dict]) -> TonnageList:
-    date = _parse_datetime(tonnage_list_json['date'])
+    date = parse_datetime(tonnage_list_json['date'])
     vessels = tuple(
         _to_vessel(pit_vessel_data, static_vessel_data) for pit_vessel_data in
         tonnage_list_json.get('pointInTimeVesselData', [])

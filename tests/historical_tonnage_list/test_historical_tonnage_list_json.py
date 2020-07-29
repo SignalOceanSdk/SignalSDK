@@ -236,26 +236,3 @@ def test_tolerates_unkown_values():
     assert vessel.operational_status == 'unknown os'
     assert vessel.commercial_status == 'unknown cs'
     assert vessel.subclass == 'unknown sc'
-
-
-@pytest.mark.parametrize(
-    'date',
-    [
-        '2020-05-28T00:00:00Z',
-        '2020-05-28T00:00:00'
-    ])
-def test_treats_all_timestamps_as_UTC(date):
-    htl = _historical_tonnage_list_json.parse(
-        {
-            'tonnageLists': [
-                {
-                    'date': date,
-                    'pointInTimeVesselData': []
-                }
-            ]
-        }
-    )
-
-    assert htl[0].date == datetime(
-        year=2020, month=5, day=28, hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc
-    )

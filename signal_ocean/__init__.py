@@ -1,3 +1,17 @@
+"""The top-level Signal SDK package.
+
+Contains classes common across all submodules and used across APIs.
+
+Classes:
+    Connection: Facilitates authenticated communication with Signal APIs. 
+    Port: A maritime facility where vessels can dock.
+    PortAPI: An API used to fetch port data.
+    PortFilter: A filter that used to find specific ports.
+    VesselClass: A group of vessels of similar characteristics.
+    VesselClassAPI: An API used to fetch available vessel classes.
+    VesselClassFilter: A filter used to find specific vessel classes.
+"""
+
 from .connection import Connection
 from .port import Port
 from .port_api import PortAPI

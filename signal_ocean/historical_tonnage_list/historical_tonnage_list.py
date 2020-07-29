@@ -1,3 +1,5 @@
+# noqa: D100
+
 from typing import Iterable, Sequence
 
 import pandas as pd
@@ -8,24 +10,40 @@ from .index_level import IndexLevel
 
 
 class HistoricalTonnageList(Sequence):
+    """Represents a Historical Tonnage List.
+    
+    A Historical Tonnage List contains a Tonnage List for every day between a
+    start and end date specified when querying for the Historical Tonnage List.
+    """
+
     def __init__(self, tonnage_lists: Iterable[TonnageList]):
-        self.tonnage_lists = list(tonnage_lists)
+        """Initializes the Historical Tonnage List.
+        
+        Args:
+            tonnage_lists: Tonnage Lists contained within the Historical
+                Tonnage List.
+        """
+        self.__tonnage_lists = tuple(tonnage_lists)
 
-    def __getitem__(self, index):
-        return self.tonnage_lists.__getitem__(index)
+    def __getitem__(self, index):   # noqa: D105
+        return self.__tonnage_lists.__getitem__(index)
 
-    def __len__(self):
-        return self.tonnage_lists.__len__()
+    def __len__(self):  # noqa: D105
+        return self.__tonnage_lists.__len__()
+
+    def __repr__(self): # noqa: D105
+        return f'{self.__class__.__name__}(tonnage_lists={self.__tonnage_lists!r})'
 
     def to_data_frame(self) -> pd.DataFrame:
+        """Converts the Historical Tonnage List to a pandas data frame."""
         index_tuples = []
         data = []
-        for tonnage_list in self.tonnage_lists:
+        for tonnage_list in self.__tonnage_lists:
             for vessel in tonnage_list.vessels:
                 index_tuples.append(
                         (tonnage_list.date.date(), vessel.imo)
                 )
-                data.append(Column.create_row(vessel))
+                data.append(Column._create_row(vessel))
 
         data_frame = pd.DataFrame(
             data,
@@ -36,17 +54,4 @@ class HistoricalTonnageList(Sequence):
             columns=list(Column)
         )
 
-        return data_frame.astype({
-            Column.VESSEL_CLASS: 'category',
-            Column.ICE_CLASS: 'category',
-            Column.MARKET_DEPLOYMENT: 'category',
-            Column.PUSH_TYPE: 'category',
-            Column.OPEN_PORT: 'category',
-            Column.OPERATIONAL_STATUS: 'category',
-            Column.COMMERCIAL_STATUS: 'category',
-            Column.SUBCLASS: 'category',
-            Column.OPEN_PREDICTION_ACCURACY: 'category',
-            Column.OPEN_COUNTRY: 'category',
-            Column.OPEN_NARROW_AREA: 'category',
-            Column.OPEN_WIDE_AREA: 'category'
-        })
+        return data_frame.astype(Column._get_data_types())

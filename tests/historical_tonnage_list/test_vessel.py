@@ -1,6 +1,6 @@
 import pytest
 
-from signal_ocean.historical_tonnage_list import OpenArea, LocationTaxonomy
+from signal_ocean.historical_tonnage_list import Area, LocationTaxonomy
 from .create_vessel import create_vessel
 
 
@@ -14,21 +14,21 @@ def test_initializes_open_areas_to_empty_tuple_if_None():
     'areas, expected_country',
     [
         ([], None),
-        ([OpenArea('country', LocationTaxonomy.COUNTRY)], 'country'),
+        ([Area('country', LocationTaxonomy.COUNTRY)], 'country'),
         (
                 [
-                    OpenArea('port', LocationTaxonomy.PORT),
-                    OpenArea('narrow', LocationTaxonomy.NARROW_AREA),
-                    OpenArea('wide', LocationTaxonomy.WIDE_AREA)
+                    Area('port', LocationTaxonomy.PORT),
+                    Area('narrow', LocationTaxonomy.NARROW_AREA),
+                    Area('wide', LocationTaxonomy.WIDE_AREA)
                 ],
                 None
         ),
         (
                 [
-                    OpenArea('port', LocationTaxonomy.PORT),
-                    OpenArea('narrow', LocationTaxonomy.NARROW_AREA),
-                    OpenArea('wide', LocationTaxonomy.WIDE_AREA),
-                    OpenArea('country', LocationTaxonomy.COUNTRY)
+                    Area('port', LocationTaxonomy.PORT),
+                    Area('narrow', LocationTaxonomy.NARROW_AREA),
+                    Area('wide', LocationTaxonomy.WIDE_AREA),
+                    Area('country', LocationTaxonomy.COUNTRY)
                 ],
                 'country'
         ),
@@ -44,21 +44,21 @@ def test_determines_open_country_by_location_taxonomy(areas, expected_country):
     'areas, expected_area',
     [
         ([], None),
-        ([OpenArea('narrow', LocationTaxonomy.NARROW_AREA)], 'narrow'),
+        ([Area('narrow', LocationTaxonomy.NARROW_AREA)], 'narrow'),
         (
                 [
-                    OpenArea('port', LocationTaxonomy.PORT),
-                    OpenArea('country', LocationTaxonomy.COUNTRY),
-                    OpenArea('wide', LocationTaxonomy.WIDE_AREA)
+                    Area('port', LocationTaxonomy.PORT),
+                    Area('country', LocationTaxonomy.COUNTRY),
+                    Area('wide', LocationTaxonomy.WIDE_AREA)
                 ],
                 None
         ),
         (
                 [
-                    OpenArea('port', LocationTaxonomy.PORT),
-                    OpenArea('narrow', LocationTaxonomy.NARROW_AREA),
-                    OpenArea('wide', LocationTaxonomy.WIDE_AREA),
-                    OpenArea('country', LocationTaxonomy.COUNTRY)
+                    Area('port', LocationTaxonomy.PORT),
+                    Area('narrow', LocationTaxonomy.NARROW_AREA),
+                    Area('wide', LocationTaxonomy.WIDE_AREA),
+                    Area('country', LocationTaxonomy.COUNTRY)
                 ],
                 'narrow'
         ),
@@ -74,21 +74,21 @@ def test_determines_open_narrow_area_by_location_taxonomy(areas, expected_area):
     'areas, expected_area',
     [
         ([], None),
-        ([OpenArea('wide', LocationTaxonomy.WIDE_AREA)], 'wide'),
+        ([Area('wide', LocationTaxonomy.WIDE_AREA)], 'wide'),
         (
                 [
-                    OpenArea('port', LocationTaxonomy.PORT),
-                    OpenArea('country', LocationTaxonomy.COUNTRY),
-                    OpenArea('narrow', LocationTaxonomy.NARROW_AREA)
+                    Area('port', LocationTaxonomy.PORT),
+                    Area('country', LocationTaxonomy.COUNTRY),
+                    Area('narrow', LocationTaxonomy.NARROW_AREA)
                 ],
                 None
         ),
         (
                 [
-                    OpenArea('port', LocationTaxonomy.PORT),
-                    OpenArea('narrow', LocationTaxonomy.NARROW_AREA),
-                    OpenArea('wide', LocationTaxonomy.WIDE_AREA),
-                    OpenArea('country', LocationTaxonomy.COUNTRY)
+                    Area('port', LocationTaxonomy.PORT),
+                    Area('narrow', LocationTaxonomy.NARROW_AREA),
+                    Area('wide', LocationTaxonomy.WIDE_AREA),
+                    Area('country', LocationTaxonomy.COUNTRY)
                 ],
                 'wide'
         ),

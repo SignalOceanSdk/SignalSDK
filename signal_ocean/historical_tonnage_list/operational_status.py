@@ -1,7 +1,10 @@
+# noqa: D100
+
 from .._internals import IterableConstants
 
 
 class OperationalStatus(metaclass=IterableConstants):
+    """Contains constants for available operational statuses."""
     BALLAST_FIXED = "Ballast Fixed"
     REPAIRS = "Repairs"
     WAITING_TO_LOAD = "Waiting to Load"

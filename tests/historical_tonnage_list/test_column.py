@@ -27,14 +27,18 @@ def test_can_list_all_column_names():
         'open_prediction_accuracy_point_in_time',
         'open_country_point_in_time',
         'open_narrow_area_point_in_time',
-        'open_wide_area_point_in_time'
+        'open_wide_area_point_in_time',
+        'availability_port_type_point_in_time',
+        'availability_date_type_point_in_time',
+        'liquid_capacity',
+        'fixture_type_point_in_time'
     ]
 
 
 def test_places_vessel_data_in_correct_columns():
     vessel = create_vessel()
 
-    row = Column.create_row(vessel)
+    row = Column._create_row(vessel)
 
     assert row == [
         vessel.name,
@@ -58,5 +62,30 @@ def test_places_vessel_data_in_correct_columns():
         vessel.open_prediction_accuracy,
         vessel.open_country,
         vessel.open_narrow_area,
-        vessel.open_wide_area
+        vessel.open_wide_area,
+        vessel.availability_port_type,
+        vessel.availability_date_type,
+        vessel.liquid_capacity,
+        vessel.fixture_type
     ]
+
+
+def test_has_overrides_for_column_data_types():
+    assert Column._get_data_types() == {
+        'vessel_class': 'category',
+        'ice_class': 'category',
+        'market_deployment_point_in_time': 'category',
+        'push_type_point_in_time': 'category',
+        'open_port_point_in_time': 'category',
+        'operational_status_point_in_time': 'category',
+        'commercial_operator_point_in_time': 'category',
+        'commercial_status_point_in_time': 'category',
+        'subclass': 'category',
+        'open_prediction_accuracy_point_in_time': 'category',
+        'open_country_point_in_time': 'category',
+        'open_narrow_area_point_in_time': 'category',
+        'open_wide_area_point_in_time': 'category',
+        'availability_port_type_point_in_time': 'category',
+        'availability_date_type_point_in_time': 'category',
+        'fixture_type_point_in_time': 'category'
+    }

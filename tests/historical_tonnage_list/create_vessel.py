@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 
-from signal_ocean.historical_tonnage_list import Vessel, OpenArea, LocationTaxonomy, \
+from signal_ocean.historical_tonnage_list import Vessel, Area, LocationTaxonomy, \
     MarketDeployment, PushType, CommercialStatus, VesselSubclass
 
 
@@ -27,10 +27,14 @@ def create_vessel(
         willing_to_switch_subclass=True,
         open_prediction_accuracy=LocationTaxonomy.PORT,
         open_areas=(
-            OpenArea('country', LocationTaxonomy.COUNTRY),
-            OpenArea('narrow', LocationTaxonomy.NARROW_AREA),
-            OpenArea('wide', LocationTaxonomy.WIDE_AREA)
-        )) -> Vessel:
+            Area('country', LocationTaxonomy.COUNTRY),
+            Area('narrow', LocationTaxonomy.NARROW_AREA),
+            Area('wide', LocationTaxonomy.WIDE_AREA)
+        ),
+        availability_port_type='Prediction',
+        availability_date_type='Prediction',
+        liquid_capacity=50000,
+        fixture_type='Manual') -> Vessel:
     return Vessel(
         imo,
         name,
@@ -53,5 +57,9 @@ def create_vessel(
         subclass,
         willing_to_switch_subclass,
         open_prediction_accuracy,
-        open_areas
+        open_areas,
+        availability_port_type,
+        availability_date_type,
+        liquid_capacity,
+        fixture_type
     )

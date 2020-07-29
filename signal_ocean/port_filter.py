@@ -1,3 +1,5 @@
+# noqa: D100
+
 from dataclasses import dataclass
 from typing import Iterable
 
@@ -7,6 +9,13 @@ from ._internals import contains_caseless
 
 @dataclass(eq=False)
 class PortFilter:
+    """A filter used to find specific ports.
+    
+    Attributes:
+        name_like: Used to find ports by name. When specified, ports whose names
+            partially match (contain) the attribute's value will be returned.
+            Matching is case-insensitive.
+    """
     name_like: str = None
 
     def _apply(self, ports: Iterable[Port]) -> Iterable[Port]:
