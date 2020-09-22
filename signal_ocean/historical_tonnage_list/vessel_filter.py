@@ -1,11 +1,10 @@
 # noqa: D100
 
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
-from typing import List, Iterable, Optional
+from typing import List, Optional, cast
 
-from .vessel import Vessel
 from .vessel_subclass import VesselSubclass
+from .._internals import QueryString
 
 
 @dataclass(eq=False)
@@ -54,27 +53,38 @@ class VesselFilter:
         last_cargo_types: Return vessels with the specified last
             cargo type IDs.
     """
-    push_types: Optional[List[str]] = field(default_factory=list)
-    market_deployments: Optional[List[str]] = field(default_factory=list)
-    commercial_statuses: Optional[List[str]] = field(default_factory=list)
+
+    push_types: Optional[List[str]] = cast(
+        List[str], field(default_factory=list)
+    )
+    market_deployments: Optional[List[str]] = cast(
+        List[str], field(default_factory=list)
+    )
+    commercial_statuses: Optional[List[str]] = cast(
+        List[str], field(default_factory=list)
+    )
     vessel_subclass: Optional[str] = VesselSubclass.ALL
     add_willing_to_switch_subclass: Optional[bool] = False
     latest_ais_since: Optional[int] = None
-    operational_statuses: Optional[List[str]] = field(default_factory=list)
+    operational_statuses: Optional[List[str]] = cast(
+        List[str], field(default_factory=list)
+    )
     min_liquid_capacity: Optional[int] = None
     max_liquid_capacity: Optional[int] = None
-    fixture_types: Optional[List[str]] = field(default_factory=list)
+    fixture_types: Optional[List[str]] = cast(
+        List[str], field(default_factory=list)
+    )
 
-    def _to_query_string(self) -> dict:
+    def _to_query_string(self) -> QueryString:
         return {
-            'pushType': self.push_types,
-            'commercialStatus': self.commercial_statuses,
-            'latestAisSince': self.latest_ais_since,
-            'vesselSubclass': self.vessel_subclass,
-            'addWillingToSwitchSubclass': self.add_willing_to_switch_subclass,
-            'marketDeployment': self.market_deployments,
-            'operationalStatus': self.operational_statuses,
-            'minLiquidCapacity': self.min_liquid_capacity,
-            'maxLiquidCapacity': self.max_liquid_capacity,
-            'fixtureType': self.fixture_types
+            "pushType": self.push_types,
+            "commercialStatus": self.commercial_statuses,
+            "latestAisSince": self.latest_ais_since,
+            "vesselSubclass": self.vessel_subclass,
+            "addWillingToSwitchSubclass": self.add_willing_to_switch_subclass,
+            "marketDeployment": self.market_deployments,
+            "operationalStatus": self.operational_statuses,
+            "minLiquidCapacity": self.min_liquid_capacity,
+            "maxLiquidCapacity": self.max_liquid_capacity,
+            "fixtureType": self.fixture_types,
         }

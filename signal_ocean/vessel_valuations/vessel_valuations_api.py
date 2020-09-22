@@ -1,17 +1,16 @@
 # noqa: D100
 
 from decimal import Decimal
-from urllib.parse import urljoin
-from typing import Optional, Callable, TypeVar
+from typing import Optional, Callable, TypeVar, Tuple
 
 import requests
 
-from .models import ValuationSummary, ValuationHistory
+from .models import Valuation
 from . import _valuation_json
 from ..connection import Connection
 from .._internals import as_decimal
 
-TValuation = TypeVar('TValuation')
+TValuation = TypeVar("TValuation")
 
 
 class VesselValuationsAPI:
@@ -26,59 +25,58 @@ class VesselValuationsAPI:
         """
         self.__connection = connection or Connection()
 
-    def get_latest_valuation(self, imo: int) -> Optional[Decimal]:
-        """Retrieves the latest valuation (in $M) for a specific vessel.
-                
+    def get_latest_valuation_price(self, imo: int) -> Optional[Decimal]:
+        """Retrieves the latest valuation price (in $M) for a specific vessel.
+
         Args:
             imo: The IMO number of the vessel.
 
         Returns:
-            A Decimal representing the valuation value or None if a vessel
+            A Decimal representing the valuation price or None if a vessel
             with the given IMO number does not exist or has no valuation.
         """
         return self.__get(
-            f'valuations/SnPValuation/lastvaluation/{imo}',
-            lambda response: as_decimal(response.text)
+            f"valuations/SnPValuation/lastvaluation/{imo}",
+            lambda response: as_decimal(response.text),
         )
 
-    def get_latest_valuation_summary(self, imo: int) -> Optional[ValuationSummary]:
-        """Retrieves the latest valuation summary for a specific vessel.
-                
+    def get_latest_valuation(self, imo: int) -> Optional[Valuation]:
+        """Retrieves the latest valuation for a specific vessel.
+
         Args:
             imo: The IMO number of the vessel.
 
         Returns:
-            An instance of ValuationSummary or None if a vessel with
-            the given IMO number does not exist or has no valuation.
+            A valuation or None if a vessel with the given IMO number does not
+            exist or has no valuation.
         """
         return self.__get(
-            f'valuations/SnPValuation/lastvaluation/shortdetails/{imo}',
-            lambda response: _valuation_json.parse_summary(response.json())
+            f"valuations/SnPValuation/lastvaluation/shortdetails/{imo}",
+            lambda response: _valuation_json.parse_valuation(response.json()),
         )
 
-    def get_valuation_history(self, imo: int) -> Optional[ValuationHistory]:
-        """Retrieves all valuation summaries for a specific vessel.
-                
+    def get_valuations(self, imo: int) -> Optional[Tuple[Valuation, ...]]:
+        """Retrieves all valuations for a specific vessel.
+
         Args:
             imo: The IMO number of the vessel.
 
         Returns:
-            An instance of ValuationHistory or None if a vessel with
-            the given IMO number does not exist or has no valuation.
+            A tuple of valuations or None if a vessel with the given IMO number
+            does not exist.
         """
         return self.__get(
-            f'valuations/SnPValuation/allvaluations/shortdetails/{imo}',
-            lambda response: _valuation_json.parse_valuation_history(response.json())
+            f"valuations/SnPValuation/allvaluations/shortdetails/{imo}",
+            lambda response: _valuation_json.parse_valuations(response.json()),
         )
 
     def __get(
-            self,
-            relative_url: str,
-            parse_response: Callable[[requests.Response], TValuation]) -> Optional[TValuation]:
-        url = urljoin(self.__connection._api_host, relative_url)
-
-        response = requests.get(url, headers=self.__connection._headers)
-        if (response.status_code == requests.codes.not_found):
+        self,
+        relative_url: str,
+        parse_response: Callable[[requests.Response], TValuation],
+    ) -> Optional[TValuation]:
+        response = self.__connection._make_get_request(relative_url)
+        if response.status_code == requests.codes.not_found:
             return None
 
         response.raise_for_status()

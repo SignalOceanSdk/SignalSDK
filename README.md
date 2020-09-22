@@ -1,4 +1,4 @@
-The Signal Ocean SDK combines the power of Python and [Signal Ocean's APIs](https://signalprodapims.developer.azure-api.net/) to give you access to a variety of shipping data available in [The Signal Ocean Platform](https://www.signalocean.com/platform).
+The Signal Ocean SDK combines the power of Python and [Signal Ocean's APIs](https://apis.signalocean.com/) to give you access to a variety of shipping data available in [The Signal Ocean Platform](https://www.signalocean.com/platform).
 
 # Installation
 
@@ -15,7 +15,8 @@ For more information refer to [pandas documentation](https://pandas.pydata.org/p
 
 # Getting Started
 
-To use the SDK, you need to create an account in our [API Portal](https://signalprodapims.developer.azure-api.net/) and subscribe to an API. Once you have a subscription key, put it inside an environment variable called `SIGNAL_OCEAN_API_KEY`.
+To use the SDK, you need to create an account in our [API Portal](https://apis.signalocean.com/) and subscribe to an API. You can find your subscription key under your profile [API Portal profile](https://apis.signalocean.com/profile).
+Once you have a subscription key, put it inside an environment variable called `SIGNAL_OCEAN_API_KEY` or use it in the `Connection` object and pass it around the various APIs.
 
 Now you're ready to fetch some data:
 ```

@@ -1,9 +1,6 @@
 # noqa: D100
 
-from typing import List, Optional
-from urllib.parse import urljoin
-
-import requests
+from typing import Tuple, Optional
 
 from .connection import Connection
 from .vessel_class import VesselClass
@@ -23,8 +20,8 @@ class VesselClassAPI:
         self.__connection = connection or Connection()
 
     def get_vessel_classes(
-            self,
-            class_filter: Optional[VesselClassFilter] = None) -> List[VesselClass]:
+        self, class_filter: Optional[VesselClassFilter] = None
+    ) -> Tuple[VesselClass, ...]:
         """Retrieves available vessel classes.
 
         Args:
@@ -32,17 +29,14 @@ class VesselClassAPI:
                 specified, returns all available vessel classes.
 
         Returns:
-            A list of available vessel classes that match the filter.
+            A tuple of available vessel classes that match the filter.
         """
-        url = urljoin(
-            self.__connection._api_host,
-            'htl-api/historical-tonnage-list/vessel-classes'
+        response = self.__connection._make_get_request(
+            "htl-api/historical-tonnage-list/vessel-classes"
         )
-
-        response = requests.get(url, headers=self.__connection._headers)
         response.raise_for_status()
 
         classes = (VesselClass(**c) for c in response.json())
         class_filter = class_filter or VesselClassFilter()
 
-        return list(class_filter._apply(classes))
+        return tuple(class_filter._apply(classes))

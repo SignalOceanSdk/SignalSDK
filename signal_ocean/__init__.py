@@ -3,7 +3,7 @@
 Contains classes common across all submodules and used across APIs.
 
 Classes:
-    Connection: Facilitates authenticated communication with Signal APIs. 
+    Connection: Facilitates authenticated communication with Signal APIs.
     Port: A maritime facility where vessels can dock.
     PortAPI: An API used to fetch port data.
     PortFilter: A filter that used to find specific ports.
@@ -19,3 +19,13 @@ from .port_filter import PortFilter
 from .vessel_class import VesselClass
 from .vessel_class_api import VesselClassAPI
 from .vessel_class_filter import VesselClassFilter
+
+__all__ = [
+    "Connection",
+    "Port",
+    "PortAPI",
+    "PortFilter",
+    "VesselClass",
+    "VesselClassAPI",
+    "VesselClassFilter",
+]

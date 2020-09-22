@@ -1,9 +1,6 @@
 # noqa: D100
 
-from typing import List, Optional
-from urllib.parse import urljoin
-
-import requests
+from typing import Tuple, Optional
 
 from .connection import Connection
 from .port import Port
@@ -22,26 +19,24 @@ class PortAPI:
         """
         self.__connection = connection or Connection()
 
-    def get_ports(self, port_filter: Optional[PortFilter] = None) -> List[Port]:
+    def get_ports(
+        self, port_filter: Optional[PortFilter] = None
+    ) -> Tuple[Port, ...]:
         """Retrieves available ports.
 
         Args:
-            port_filter: A filter used to find specific ports. If not specified,
-            returns all available ports.
+            port_filter: A filter used to find specific ports. If not
+            specified, returns all available ports.
 
         Returns:
-            A list of available ports that match the filter.
+            A tuple of available ports that match the filter.
         """
-        url = urljoin(
-            self.__connection._api_host,
-            'htl-api/historical-tonnage-list/ports'
+        response = self.__connection._make_get_request(
+            "htl-api/historical-tonnage-list/ports"
         )
-
-        response = requests.get(url, headers=self.__connection._headers)
         response.raise_for_status()
 
         ports = (Port(**p) for p in response.json())
         port_filter = port_filter or PortFilter()
 
-        return list(port_filter._apply(ports))
-
+        return tuple(port_filter._apply(ports))

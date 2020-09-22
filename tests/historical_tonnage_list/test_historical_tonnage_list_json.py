@@ -30,7 +30,6 @@ def test_handles_missing_static_vessel_data():
                             'commercialOperator': 'Commercial Operator',
                             'commercialStatus': 'Available',
                             'eta': '2019-07-15T00:00:00Z',
-                            'lastFixed': 1,
                             'latestAis': '2019-06-13T00:00:00Z'
                         }
                     ]
@@ -58,7 +57,6 @@ def test_handles_missing_static_vessel_data():
     assert vessel.commercial_status == CommercialStatus.AVAILABLE
     assert vessel.eta == datetime(
         year=2019, month=7, day=15, tzinfo=timezone.utc)
-    assert vessel.last_fixed == 1
     assert vessel.latest_ais == datetime(
         year=2019, month=6, day=13, tzinfo=timezone.utc)
     assert vessel.name is None
@@ -112,7 +110,6 @@ def test_combines_static_and_point_in_time_vessel_data():
                             'commercialOperator': 'Commercial Operator',
                             'commercialStatus': 'Available',
                             'eta': '2019-07-15T00:00:00Z',
-                            'lastFixed': 1,
                             'latestAis': '2019-06-13T00:00:00Z'
                         }
                     ]
@@ -146,7 +143,6 @@ def test_combines_static_and_point_in_time_vessel_data():
     assert vessel.commercial_status == CommercialStatus.AVAILABLE
     assert vessel.eta == datetime(
         year=2019, month=7, day=15, tzinfo=timezone.utc)
-    assert vessel.last_fixed == 1
     assert vessel.latest_ais == datetime(
         year=2019, month=6, day=13, tzinfo=timezone.utc)
     assert vessel.name == 'Vessel Name'
@@ -191,7 +187,6 @@ def test_handles_missing_values():
     assert vessel.commercial_operator is None
     assert vessel.commercial_status is None
     assert vessel.eta is None
-    assert vessel.last_fixed is None
     assert vessel.latest_ais is None
     assert vessel.name is None
     assert vessel.vessel_class is None

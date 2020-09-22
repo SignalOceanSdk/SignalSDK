@@ -7,7 +7,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='signal-ocean',
-    version='1.0.0b4',
+    version='1.0.0b5',
     description='Access Signal Ocean Platform data using Python.',
     long_description=long_description,
     long_description_content_type='text/markdown',

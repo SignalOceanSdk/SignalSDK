@@ -1,13 +1,10 @@
 # noqa: D100
 
 from datetime import date, time
-from urllib.parse import urljoin
 from typing import Optional
 
-import requests
-
 from .. import Connection, Port, VesselClass
-from .._internals import format_iso_date
+from .._internals import format_iso_date, QueryString
 from .historical_tonnage_list import HistoricalTonnageList
 from .vessel_filter import VesselFilter
 from . import _historical_tonnage_list_json
@@ -17,8 +14,8 @@ class HistoricalTonnageListAPI:
     """Represents Signal's Historical Tonnage List API."""
 
     def __init__(self, connection: Optional[Connection] = None):
-        """Initializes Historical Tonnage List API.
-        
+        """Initializes HistoricalTonnageListAPI.
+
         Args:
             connection: API connection configuration. If not provided, the
                 default connection method is used.
@@ -26,19 +23,20 @@ class HistoricalTonnageListAPI:
         self.__connection = connection or Connection()
 
     def get_historical_tonnage_list(
-            self,
-            loading_port: Port,
-            vessel_class: VesselClass,
-            laycan_end_in_days: Optional[int] = None,
-            start_date: Optional[date] = None,
-            end_date: Optional[date] = None,
-            time: Optional[time] = None,
-            vessel_filter: Optional[VesselFilter] = None) -> HistoricalTonnageList:
+        self,
+        loading_port: Port,
+        vessel_class: VesselClass,
+        laycan_end_in_days: Optional[int] = None,
+        start_date: Optional[date] = None,
+        end_date: Optional[date] = None,
+        time: Optional[time] = None,
+        vessel_filter: Optional[VesselFilter] = None,
+    ) -> HistoricalTonnageList:
         """Retrieves a Historical Tonnage List.
 
         If no input dates are provided, the last 10 days will be fetched
         (including today).
-        
+
         To get a tonnage list for a specific day, set both date parameters to
         the desired date.
 
@@ -51,33 +49,27 @@ class HistoricalTonnageListAPI:
             end_date: The date of the latest tonnage list in the response.
             time: Specifies the time of day for which the state of the tonnage
                 lists will be retrieved.
-            vessel_filter: A filter defining which vessels should be included in
-                the response.
+            vessel_filter: A filter defining which vessels should be included
+                in the response.
 
         Returns:
             Given a time-range, returns a Historical Tonnage List containing a
             Tonnage List for every day between the start and end dates, at the
             requested time of day.
         """
-        url = urljoin(
-            self.__connection._api_host,
-            'htl-api/historical-tonnage-list/'
-        )
-        query_string = {
-            'loadingPort': loading_port.id,
-            'vesselClass': vessel_class.id,
-            'laycanEndInDays': laycan_end_in_days,
-            'startDate': format_iso_date(start_date),
-            'endDate': format_iso_date(end_date),
-            'time': time.strftime('%H:%M') if time else None,
-            **(vessel_filter._to_query_string() if vessel_filter else {})
+        query_string: QueryString = {
+            "loadingPort": loading_port.id,
+            "vesselClass": vessel_class.id,
+            "laycanEndInDays": laycan_end_in_days,
+            "startDate": format_iso_date(start_date),
+            "endDate": format_iso_date(end_date),
+            "time": time.strftime("%H:%M") if time else None,
+            **(vessel_filter._to_query_string() if vessel_filter else {}),
         }
 
-        response = requests.get(
-            url,
-            params=query_string,
-            headers=self.__connection._headers
+        response = self.__connection._make_get_request(
+            "htl-api/historical-tonnage-list/", query_string
         )
-        response.raise_for_status()
 
+        response.raise_for_status()
         return _historical_tonnage_list_json.parse(response.json())

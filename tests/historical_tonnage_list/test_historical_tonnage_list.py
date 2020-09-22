@@ -66,7 +66,6 @@ def test_contains_vessel_data_when_converted_to_data_frame():
     assert df[Column.DEADWEIGHT].to_list() == [v.deadweight]
     assert df[Column.ETA].to_list() == [v.eta]
     assert df[Column.ICE_CLASS].to_list() == [v.ice_class]
-    assert df[Column.LAST_FIXED].to_list() == [v.last_fixed]
     assert df[Column.LATEST_AIS].to_list() == [v.latest_ais]
     assert df[Column.LENGTH_OVERALL].to_list() == [v.length_overall]
     assert df[Column.MARKET_DEPLOYMENT].to_list() == [v.market_deployment]

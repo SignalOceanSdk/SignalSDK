@@ -35,25 +35,22 @@ class Vessel:
         commercial_status: Commercial status of the vessel. See the
             CommercialStatus class for available values.
         eta: Estimated time of arrival.
-        last_fixed: Number of voyages since a reported fixture existed for the vessel.
         latest_ais: Timestamp of the vessel's latest AIS information.
         subclass: The vessel's subclass. See the VesselSubclass class for
             available values.
-        willing_to_switch_subclass: Is the vessel willing to switch its subclass.
+        willing_to_switch_subclass: Is the vessel willing to switch its
+            subclass.
         open_prediction_accuracy: How accurate is the open prediction.
             See the LocationTaxonomy class for available values.
         open_areas: A hierarchical collection of areas the vessel opens at.
         availability_port_type: Availability port type.
         availability_date_type: Availability date type.
-        liquid_capacity: The amount of liquid the vessel can carry, measured
-            in cubic meters.
-        fixture_type: The vessel's fixture type. See the FixtureType class for
-            available values.
     """
+
     imo: int
     name: str
     vessel_class: str
-    ice_class: str
+    ice_class: Optional[str]
     year_built: int
     deadweight: int
     length_overall: float
@@ -61,25 +58,22 @@ class Vessel:
     market_deployment: str
     push_type: str
     open_port: str
-    open_date: datetime
+    open_date: Optional[datetime]
     operational_status: str
     commercial_operator: str
     commercial_status: str
-    eta: datetime
-    last_fixed: int
-    latest_ais: datetime
+    eta: Optional[datetime]
+    latest_ais: Optional[datetime]
     subclass: str
     willing_to_switch_subclass: bool
     open_prediction_accuracy: str
     open_areas: Tuple[Area, ...]
     availability_port_type: str
     availability_date_type: str
-    liquid_capacity: int
-    fixture_type: str
 
-    def __post_init__(self):    # noqa: D105
+    def __post_init__(self) -> None:  # noqa: D105
         if self.open_areas is None:
-            object.__setattr__(self, 'open_areas', tuple())
+            object.__setattr__(self, "open_areas", tuple())
 
     @property
     def open_country(self) -> Optional[str]:

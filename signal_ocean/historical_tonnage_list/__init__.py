@@ -5,7 +5,8 @@ Classes:
     HistoricalTonnageList: Result of a Historical Tonnage List query.
     TonnageList: A singular tonnage list in HistoricalTonnageList.
     Vessel: A vessel contained in a TonnageList.
-    VesselFilter: Used for filtering vessels in Historical Tonnage List queries.
+    VesselFilter: Used for filtering vessels in Historical Tonnage List
+        queries.
     PushType: Contains constants for available push types.
     MarketDeployment: Contains constants for available market deployments.
     CommercialStatus: Contains constants for available commercial statuses.
@@ -33,3 +34,21 @@ from .column import Column
 from .index_level import IndexLevel
 from .operational_status import OperationalStatus
 from .fixture_type import FixtureType
+
+__all__ = [
+    "HistoricalTonnageListAPI",
+    "HistoricalTonnageList",
+    "TonnageList",
+    "Vessel",
+    "VesselFilter",
+    "PushType",
+    "MarketDeployment",
+    "CommercialStatus",
+    "VesselSubclass",
+    "LocationTaxonomy",
+    "Area",
+    "Column",
+    "IndexLevel",
+    "OperationalStatus",
+    "FixtureType",
+]

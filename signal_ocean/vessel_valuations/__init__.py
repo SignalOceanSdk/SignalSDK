@@ -2,9 +2,10 @@
 
 Classes:
     VesselValuationsAPI: Represents Signal's Vessel Valuations API.
-    ValuationSummary: A short summary of a specific vessel's valuation.
-    ValuationHistory: A history of valuations for a specific vessel.
+    Valuation: Valuation for a specific vessel.
 """
 
 from .vessel_valuations_api import VesselValuationsAPI
-from .models import ValuationHistory, ValuationSummary
+from .models import Valuation
+
+__all__ = ["VesselValuationsAPI", "Valuation"]

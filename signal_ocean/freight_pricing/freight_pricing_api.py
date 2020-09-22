@@ -1,23 +1,21 @@
 # noqa: D100
 
 from datetime import date
-from urllib.parse import urljoin
-
-import requests
+from typing import Tuple, Optional
 
 from .. import Connection, Port
 from .._internals import format_iso_date
 from .vessel_type import VesselType
 from .vessel_subclass import VesselSubclass
-from .freight_pricing import FreightPricing
+from .models import FreightPricing
 from . import _freight_pricing_json
 
 
 class FreightPricingAPI:
     """Represents Signal's Freight Pricing API."""
 
-    def __init__(self, connection: Connection = None):
-        """Freight Pricing API.
+    def __init__(self, connection: Optional[Connection] = None):
+        """Initializes FreightPricingAPI.
 
         Args:
             connection: API connection configuration. If not provided, the
@@ -31,7 +29,7 @@ class FreightPricingAPI:
             load_port: Port,
             discharge_port: Port,
             date: date,
-            vessel_subclass: VesselSubclass) -> FreightPricing:
+            vessel_subclass: VesselSubclass) -> Tuple[FreightPricing, ...]:
         """Retrieves freight prices for moving commodities between two ports.
 
         Args:
@@ -42,12 +40,8 @@ class FreightPricingAPI:
             vessel_subclass: The vessel's subclass.
 
         Returns:
-            A collection of freight pricing items, one per vessel class.
+            A tuple of freight pricings, one per vessel class.
         """
-        url = urljoin(
-            self.__connection._api_host,
-            'freight-pricing/FreightPricing'
-        )
         query_string = {
             'vesselType': vessel_type.value,
             'loadPortId': load_port.id,
@@ -55,10 +49,9 @@ class FreightPricingAPI:
             'date': format_iso_date(date),
             'vesselSubclass': vessel_subclass.value
         }
-        response = requests.get(
-            url,
-            params=query_string,
-            headers=self.__connection._headers
+        response = self.__connection._make_get_request(
+            'freight-pricing/FreightPricing',
+            query_string
         )
         response.raise_for_status()
 

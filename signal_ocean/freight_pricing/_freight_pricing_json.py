@@ -1,21 +1,18 @@
-from typing import List
+from typing import Iterable, Tuple, cast, Mapping, Any
 from decimal import Decimal
 
-from .freight_pricing import FreightPricing, FreightPricingItem
+from .models import FreightPricing
 from .._internals import as_decimal
 
 
-def parse(json: List[dict]) -> FreightPricing:
+def parse(json: Iterable[Mapping[str, Any]]) -> Tuple[FreightPricing, ...]:
+    return tuple(parse_freight_pricing_item(i) for i in json)
+
+
+def parse_freight_pricing_item(json: Mapping[str, Any]) -> FreightPricing:
     return FreightPricing(
-        parse_freight_pricing_item(i) for i in json
+        cast(str, json.get("vesselClass")),
+        cast(Decimal, as_decimal(cast(float, json.get("cargoQuantity")))),
+        cast(Decimal, as_decimal(cast(float, json.get("rate")))),
+        cast(Decimal, as_decimal(cast(float, json.get("totalFreight")))),
     )
-
-
-def parse_freight_pricing_item(json: dict) -> FreightPricingItem:
-    return FreightPricingItem(
-        json.get('vesselClass'),
-        as_decimal(json.get('cargoQuantity')),
-        as_decimal(json.get('rate')),
-        as_decimal(json.get('totalFreight'))
-    )
-

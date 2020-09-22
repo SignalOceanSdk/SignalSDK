@@ -1,19 +1,18 @@
-from typing import List
+from datetime import datetime
+from typing import Iterable, Tuple, cast, Dict, Any
 
-from .models import ValuationSummary, ValuationHistory
+from .models import Valuation
 from .._internals import parse_datetime, as_decimal
 
 
-def parse_valuation_history(json: List[dict]) -> ValuationHistory:
-    return ValuationHistory(
-        parse_summary(s) for s in json
-    )
+def parse_valuations(json: Iterable[Dict[str, Any]]) -> Tuple[Valuation, ...]:
+    return tuple(parse_valuation(s) for s in json)
 
 
-def parse_summary(json: dict) -> ValuationSummary:
-    return ValuationSummary(
-        json.get('imo'),
-        parse_datetime(json.get('valueFrom')),
-        as_decimal(json.get('valuationPrice')),
-        parse_datetime(json.get('updatedDate'))
+def parse_valuation(json: Dict[str, Any]) -> Valuation:
+    return Valuation(
+        cast(int, json.get("imo")),
+        cast(datetime, parse_datetime(json.get("valueFrom"))),
+        as_decimal(json.get("valuationPrice")),
+        cast(datetime, parse_datetime(json.get("updatedDate"))),
     )
