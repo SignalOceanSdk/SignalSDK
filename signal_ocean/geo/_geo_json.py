@@ -23,7 +23,6 @@ def parse_port(json: Mapping[str, Any]) -> Port:
         cast(str, json.get("name")),
         cast(Decimal, as_decimal(cast(float, json.get("latitude")))),
         cast(Decimal, as_decimal(cast(float, json.get("longitude")))),
-        cast(str, json.get("source")),
     )
 
 

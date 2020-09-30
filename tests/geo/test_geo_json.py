@@ -29,8 +29,7 @@ def test_parses_ports_correctly():
         "areaId": 3,
         "name": "port",
         "latitude": 45.6789,
-        "longitude": 56.789,
-        "source": "source",
+        "longitude": 56.789
     }
 
     port = _geo_json.parse_port(port_json)
@@ -42,7 +41,6 @@ def test_parses_ports_correctly():
     assert port.name == "port"
     assert port.latitude == Decimal("45.6789")
     assert port.longitude == Decimal("56.789")
-    assert port.source == "source"
 
 
 def test_parses_areas_correctly():

@@ -14,3 +14,4 @@ class OperationalStatus(metaclass=IterableConstants):
     DISCHARGING = "Discharging"
     ACTIVE_STORAGE = "Active Storage"
     BALLAST_UNFIXED = "Ballast Unfixed"
+    BALLAST_FIXED_IMPLIED = "Ballast Fixed (implied)"

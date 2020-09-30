@@ -38,7 +38,6 @@ class Port:
         name: Name of the port.
         latitude: Latitude of the port.
         longitude: Longitude of the port.
-        source: The source of information about the port.
     """
 
     id: int
@@ -47,7 +46,6 @@ class Port:
     name: str
     latitude: Decimal
     longitude: Decimal
-    source: str
 
 
 @dataclass(frozen=True)

@@ -9,3 +9,4 @@ class CommercialStatus(metaclass=IterableConstants):
     FAILED = 'Failed'
     CANCELLED = 'Cancelled'
     AVAILABLE = 'Available'
+    POTENTIALLY_FIXED = 'Potentially Fixed'

@@ -13,5 +13,6 @@ def test_can_list_available_statuses():
         'Waiting to Discharge',
         'Discharging',
         'Active Storage',
-        'Ballast Unfixed'
+        'Ballast Unfixed',
+        'Ballast Fixed (implied)'
     ]
