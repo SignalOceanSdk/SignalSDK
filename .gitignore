@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 
 /docs/examples/jupyter/htl.xlsx
+.idea/
