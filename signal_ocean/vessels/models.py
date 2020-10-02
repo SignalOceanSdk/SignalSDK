@@ -5,29 +5,29 @@ from typing import Optional
 
 @dataclass(frozen=True)
 class VesselClass:
-    """Detailed characteristics of each vessel class, including its defining
-        measurement and the range that corresponds to this vessel class.
+    """Vessel class characteristics.
+
+    Detailed characteristics of each vessel class, including its defining
+    measurement and the range that corresponds to this vessel class.
 
     Attributes:
-        id: The vessel class id e.g. 81 (refers to Panamax), 86 (Aframax),
-            85 (Suezmax).
-        name: The vessel class e.g. Panamax, Aframax, Suezmax.
+        id: The vessel class id e.g. 81 (refers to Panamax), 86 (Aframax), 85
+            (Suezmax).
         vessel_type_id: Numeric ID corresponding to the different values of the
-            VesselType field. 1 -> Tanker, 3 -> Dry, 4 -> Containers,
-            5 -> LNG (Liquified Natural Gas), 6-> LPG (Liquified Petroleum
-            Gas).
-        vessel_type: Description of the type of the vessel, based on the
-            carried cargo. Main categories are Tankers, Dry (bulk carriers),
-            Containers, LNG and LPG.
+            VesselType field.  1-> Tanker, 3-> Dry, 4 -> Containers, 5
+            ->LNG(Liquified Natural gas) , 6-> LPG(Liquified Petroleum Gas).
         from_size: The minimum value that corresponds to this vessel class
             (Deadweight/TEU/CubicSize).
         to_size: The maximum value that corresponds to this vessel class
             (Deadweight/TEU/CubicSize).
+        name: The vessel class e.g. Panamax, Aframax, Suezmax.
+        vessel_type: Description of the type of the vessel, based on the
+            carried cargo. Main categories are Tankers, Dry (bulk carriers),
+            Containers, LNG and LPG.
         defining_size: The attribute(DeadWeight, TEU, CubicSize) that defines
             the size of the vesselClass.
-        size: The units of the DefiningSize attribute.
-            DeadWeight-> kt(kilotons), TEU-> TEU,
-            CubicSize-> cbm(cubic meters).
+        size: The units of the DefiningSize attribute.  DeadWeight->
+            kt(kilotons), TEU-> TEU, CubicSize-> cbm(cubic meters).
     """
 
     id: int
@@ -64,47 +64,17 @@ class Vessel:
         imo: A seven-digits number that uniquely identifies a ship and does not
             change when the ship's owner, country of registry or name of the
             vessel changes.
-        vessel_name: The current vessel name corresponding to that IMO.
-        call_sign: Alphanumeric code that uniquely identifies a vessel and is
-            used for radio communication with land based operators or stations
-            and between the vessels.
         vessel_type_id: Numeric ID corresponding to the different values of the
             VesselType field.  1 -> Tanker, 3 -> Dry, 4 -> Containers, 5 ->
             LNG(Liquified Natural gas), 6 -> LPG(Liquified Petroleum Gas).
-        vessel_type: Description of the type of the vessel, based on the
-            carried cargo.  Main categories are Tankers, Dry (bulk carriers),
-            Containers, LNG and LPG.
         built_for_trade_id: Numeric ID corresponding to the different values of
             the BuiltForTrade field.  1 -> Crude, 2 -> Product, 3 -> Chemical.
-        built_for_trade: Additional attribute to specify a Tanker vessel with
-            finer granularity.  This classification is derived by the vessel
-            characteristics only. It indicates the initial cargo the vessel was
-            designed for, here called "trade". For example, an LR2 is a vessel
-            of VesselClass Aframax and BuiltForTrade Clean.
         trade_id: Numeric ID that takes the same values as the BuiltForTradeID
             field.  1 -> Crude, 2 -> Product, 3 -> Chemical.
-        trade: Time-dependent version of the attribute BuiltForTrade. It is
-            specified by the last cargo carried by the vessel at the time of
-            query. For example, an LR2 with fueloil as last cargo has
-            BuiltForTrade = Crude and Trade = Product.
         vessel_class_id: Numeric ID corresponding to the different vessel
             classes of a certain vessel type.
-        vessel_class: Name of the vessel class the vessel belongs to.
-            Assignment of a vessel to a certain VesselClass is based on the
-            VesselType and the value of its Deadweight (if Tanker or Dry), its
-            LiquidCap (if LNG/LPG) or its TEU (if Containers).  For example, an
-            Aframax is a Tanker vessel with Deadweight within the range 82kt -
-            125kt, while a Capesize is a Dry vessel with Deadweight within the
-            range 120kt-220kt. LR2 are defined as Aframax, as only Deadweight
-            is used to define vessel classes.
-        flag_code: ISO 3166-1 alpha-2 code representing the vessel's country of
-            registration.
-        flag: The country where the vessel has been registered and whose law is
-            subject to.
         commercial_operator_id: Numeric ID corresponding to the maritime
             company that manages the vessel commercially.
-        commercial_operator: Name of the maritime company that manages the
-            vessel commercially.
         deadweight: Numeric, measured in tonnes [t], often shortened as DWT,
             denotes the total carrying capacity of the vessel including cargo,
             ballast water, stores, provisions, crew and so on.
@@ -134,6 +104,49 @@ class Vessel:
             distance between the moulded base line and the top of the beams of
             the uppermost continuous deck.
         year_built: Numeric, year format, the year the vessel was built.
+        geared: Boolean, denotes whether the vessel has cranes installed for
+            handling its cargo or not.
+        clean_dirty_willing: Boolean, indicates whether a tanker vessel is
+            ‘willing’ to compete in the market complementary to the one shown
+            in Trade. For example an LR willing dirty will have Trade=Product
+            and CleanDirtyWilling=true.
+        main_engine_manufacturer_id: Numeric ID corresponding to the different
+            values of the MainEngine field.  1-> MAN B&W, 2-> Wartsila, 3->
+            Mitsubishi.
+        classification_register_id: The id of the classification register.
+            Default value: -2.
+        updated_date: Date, format YYYY-MM-DD HH:MM:SS, corresponding to the
+            latest update.
+        vessel_name: The current vessel name corresponding to that IMO.
+        call_sign: Alphanumeric code that uniquely identifies a vessel and is
+            used for radio communication with land based operators or stations
+            and between the vessels.
+        vessel_type: Description of the type of the vessel, based on the
+            carried cargo.  Main categories are Tankers, Dry (bulk carriers),
+            Containers, LNG and LPG.
+        built_for_trade: Additional attribute to specify a Tanker vessel with
+            finer granularity.  This classification is derived by the vessel
+            characteristics only. It indicates the initial cargo the vessel was
+            designed for, here called "trade". For example, an LR2 is a vessel
+            of VesselClass Aframax and BuiltForTrade Clean.
+        trade: Time-dependent version of the attribute BuiltForTrade. It is
+            specified by the last cargo carried by the vessel at the time of
+            query. For example, an LR2 with fueloil as last cargo has
+            BuiltForTrade = Crude and Trade = Product.
+        vessel_class: Name of the vessel class the vessel belongs to.
+            Assignment of a vessel to a certain VesselClass is based on the
+            VesselType and the value of its Deadweight (if Tanker or Dry), its
+            LiquidCap (if LNG/LPG) or its TEU (if Containers).  For example, an
+            Aframax is a Tanker vessel with Deadweight within the range 82kt -
+            125kt, while a Capesize is a Dry vessel with Deadweight within the
+            range 120kt-220kt. LR2 are defined as Aframax, as only Deadweight
+            is used to define vessel classes.
+        flag_code: ISO 3166-1 alpha-2 code representing the vessel's country of
+            registration.
+        flag: The country where the vessel has been registered and whose law is
+            subject to.
+        commercial_operator: Name of the maritime company that manages the
+            vessel commercially.
         built_country_code: Two letters code representing the country where the
             vessel was built.
         built_country_name: String, the name of the country where the vessel
@@ -157,12 +170,10 @@ class Vessel:
         reefers: Numeric, denotes the capacity of the vessel measured in
             refrigerated twenty-foot equivalent units (TEU), i.e., the maximum
             number of refrigerated containers that could be carried.
-        geared: Boolean, denotes whether the vessel has cranes installed for
-            handling its cargo or not.
         panama_canal_net_tonnage: Numeric, measured in register tons,
             volumetric measure derived by the NRT (NetRatedTonnage) and
-            modified for Panama Canal purposes. Often used to compute
-            tonnage-based fees.
+            modified for Panama Canal purposes. Often used to compute tonnage-
+            based fees.
         cubic_size: Numeric, measured in cubic meters [cbm] denotes the
             carrying capacity of Gas vessels (LNG, LPG). For tankers it is the
             volume of cargo tanks.
@@ -172,23 +183,14 @@ class Vessel:
             Tonnes Per Centimeter, denotes the cargo in metric tonnes (10^3 kg)
             needed to further increase the vessel's salt water draught by one
             centimeter.
-        clean_dirty_willing: Boolean, indicates whether a tanker vessel is
-            ‘willing’ to compete in the market complementary to the one shown
-            in Trade. For example an LR willing dirty will have Trade=Product
-            and CleanDirtyWilling=true.
         lightship_tonnes: The weight of the vessels without any cargo or
             bunkers. It is an important parameter to estimate the scrap value
             of the vessel as it represents the amount of steel that can be
             recycled.
         main_engine_manufacturer: String denoting the brand of the vessel's
             main engine.
-        main_engine_manufacturer_id: Numeric ID corresponding to the different
-            values of the MainEngine field.  1-> MAN B&W, 2-> Wartsila, 3->
-            Mitsubishi.
         delivery_date: Date, with format YYYY-MM-DD, indicates when the vessel
             was delivered to the owner and commenced its first voyage.
-        classification_register_id: The id of the classification register.
-            Default value: -2.
         classification_register: The name of the organization that issued the
             vessel's classification certificate. Default value: Not set.
         number_of_holds: Numeric, the number of separate enclosed spaces within
@@ -197,8 +199,6 @@ class Vessel:
             like bulk grain, which can flow into every corner.
         bale_capacity: This is the space available for solid cargo. Bale space
             is usually about 7–10% less than grain space.
-        updated_date: Date, format YYYY-MM-DD HH:MM:SS, corresponding to the
-            latest update.
     """
 
     imo: int

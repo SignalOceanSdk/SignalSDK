@@ -5,10 +5,12 @@ from typing import Optional, List
 
 @dataclass(frozen=True)
 class Company:
-    """Contains all details of a company
+    """Contains all details of a company.
 
     Attributes:
         id: Numeric unique ID identifying a maritime company.
+        updated_date: Date, format YYYY-MM-DD HH:MM:SS, corresponding to the
+            latest update.
         company_name: String, official name of the maritime company.
         website: String, website of the company.
         fleet_list: String, link to the fleet list of the company if it has
@@ -39,8 +41,6 @@ class Company:
         children_companies_ids: ID(s) of all companies acting as children of
             the initial company. Please note that a company can either have
             parent or children. We do not support two degrees relationships.
-        updated_date: Date, format YYYY-MM-DD HH:MM:SS, corresponding to the
-            latest update.
     """
 
     id: int
