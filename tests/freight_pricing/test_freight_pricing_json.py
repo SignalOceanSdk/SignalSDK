@@ -1,51 +1,60 @@
-from decimal import Decimal
+from decimal import Decimal, getcontext
 
-from signal_ocean.freight_pricing import _freight_pricing_json
+from signal_ocean.freight_pricing import _freight_pricing_json, Costs, Totals
 
 
 def test_parses_response_correctly():
     response = [
         {
-            'vesselClass': 'Suezmax',
-            'cargoQuantity': 130000,
-            'rate': 24.390015,
-            'totalFreight': 3170701.950000
+            "vesselClass": "Suezmax",
+            "cargoQuantity": 130000,
+            "costs": {
+                "freightRate": 5.330548,
+                "freightCost": 1439247.960000,
+                "canal": 0.0,
+                "demurrage": 59000,
+            },
+            "transportationCost": {
+                "totalCost": 1498247.960000,
+                "totalCostPerTon": 5.54906651,
+            },
         },
         {
-            'vesselClass': 'Aframax',
-            'cargoQuantity': 80000,
-            'rate': 34.0176525,
-            'totalFreight': 2721412.2000000
-        }
+            "vesselClass": "Aframax",
+            "cargoQuantity": 80000,
+            "costs": {
+                "freightRate": 8.9608350,
+                "freightCost": 1209712.7250000,
+                "canal": 20.30,
+            },
+            "transportationCost": {
+                "totalCost": 1249712.7250000,
+                "totalCostPerTon": 9.257131,
+            },
+        },
     ]
 
     result = _freight_pricing_json.parse(response)
 
+    print(getcontext())
+
     assert len(result) == 2
     first, second = result
 
-    assert first.vessel_class == 'Suezmax'
-    assert first.cargo_quantity == Decimal('130000')
-    assert first.rate == Decimal('24.390015')
-    assert first.total_freight == Decimal('3170701.950000')
+    assert first.vessel_class == "Suezmax"
+    assert first.cargo_quantity == Decimal("130000")
+    assert first.costs == Costs(
+        Decimal("5.330548"), Decimal("1439247.960000"), Decimal("0.0"), 59000
+    )
+    assert first.totals == Totals(
+        Decimal("1498247.960000"), Decimal("5.54906651")
+    )
 
-    assert second.vessel_class == 'Aframax'
-    assert second.cargo_quantity == Decimal('80000')
-    assert second.rate == Decimal('34.0176525')
-    assert second.total_freight == Decimal('2721412.2000000')
-
-
-def test_handles_missing_properties_on_freight_pricing_items():
-    item_json = {
-        'vesselClass': None,
-        'cargoQuantity': None,
-        'rate': None,
-        'totalFreight': None
-    }
-
-    item = _freight_pricing_json.parse_freight_pricing_item(item_json)
-
-    assert item.vessel_class is None
-    assert item.cargo_quantity is None
-    assert item.rate is None
-    assert item.total_freight is None
+    assert second.vessel_class == "Aframax"
+    assert second.cargo_quantity == Decimal("80000")
+    assert second.costs == Costs(
+        Decimal("8.9608350"), Decimal("1209712.7250000"), Decimal("20.30"), None
+    )
+    assert second.totals == Totals(
+        Decimal("1249712.7250000"), Decimal("9.257131")
+    )

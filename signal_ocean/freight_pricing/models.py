@@ -2,6 +2,39 @@
 
 from dataclasses import dataclass
 from decimal import Decimal
+from typing import Optional
+
+
+@dataclass(frozen=True)
+class Totals:
+    """Total costs of moving freight.
+
+    Attributes:
+        total_cost: Total transportation cost in $. A sum of freight, canal,
+            and demurrage costs.
+        total_cost_per_ton: Total cost per ton in $.
+    """
+
+    total_cost: Decimal
+    total_cost_per_ton: Decimal
+
+
+@dataclass(frozen=True)
+class Costs:
+    """Individual costs of moving freight.
+
+    Attributes:
+        freight_rate: Cost of freight in $ per ton.
+        freight_cost: Cost of transporting the given quentity between the
+            selected load and discharge port in $.
+        canal: Cost of passing through canals in $.
+        demurrage: Cost of demurrage in $.
+    """
+
+    freight_rate: Decimal
+    freight_cost: Decimal
+    canal: Decimal
+    demurrage: Optional[int]
 
 
 @dataclass(frozen=True)
@@ -12,11 +45,11 @@ class FreightPricing:
         vessel_class: The vessel class the pricing applies to.
         cargo_quantity: Cargo quantity for the selected load and discharge
             ports.
-        rate: Cost of freight in dollars per ton.
-        total_freight: Total cost of transporting the given quantity.
+        costs: Individual costs of moving freight.
+        totals: Total costs of moving freight.
     """
 
     vessel_class: str
     cargo_quantity: Decimal
-    rate: Decimal
-    total_freight: Decimal
+    costs: Costs
+    totals: Totals

@@ -1,5 +1,5 @@
 from datetime import date, datetime, timezone
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from typing import Union, Optional, Mapping, Iterable, Iterator
 
 from dateutil import parser
@@ -30,7 +30,10 @@ def format_iso_date(value: Optional[date]) -> Optional[str]:
 
 
 def as_decimal(value: Optional[Union[float, str]]) -> Optional[Decimal]:
-    return Decimal(str(value)) if value else None
+    try:
+        return Decimal(str(value)) if value is not None else None
+    except (InvalidOperation):
+        return None
 
 
 def parse_datetime(value: Optional[str]) -> Optional[datetime]:
