@@ -1,4 +1,4 @@
-from decimal import Decimal, getcontext
+from decimal import Decimal
 
 from signal_ocean.freight_pricing import _freight_pricing_json, Costs, Totals
 
@@ -35,8 +35,6 @@ def test_parses_response_correctly():
     ]
 
     result = _freight_pricing_json.parse(response)
-
-    print(getcontext())
 
     assert len(result) == 2
     first, second = result
