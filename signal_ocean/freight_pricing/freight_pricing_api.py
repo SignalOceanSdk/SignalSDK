@@ -56,12 +56,12 @@ class FreightPricingAPI:
             'date': format_iso_date(date)
         }
         
-        vesselClassIds = []
-        for v_c in vessel_class:
-            vesselClassIds.append(v_c.id)
-
-        query_string['vesselClassId'] = vesselClassIds
-
+        if len(vessel_class) != 0:
+            vesselClassIds = []
+            for v_c in vessel_class:
+                vesselClassIds.append(v_c.id)
+            query_string['vesselClassId'] = vesselClassIds
+            
         if vessel_subclass != None:
             query_string['vesselSubclass'] = vessel_subclass.value
 
