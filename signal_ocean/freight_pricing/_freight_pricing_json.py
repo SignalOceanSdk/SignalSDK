@@ -24,8 +24,7 @@ def parse_costs(json: JsonObject) -> Costs:
     return Costs(
         cast(Decimal, as_decimal(json.get("freightRate"))),
         cast(Decimal, as_decimal(json.get("freightCost"))),
-        cast(Decimal, as_decimal(json.get("canal"))),
-        cast(Optional[int], json.get("demurrage")),
+        cast(Decimal, as_decimal(json.get("canal")))
     )
 
 
