@@ -16,7 +16,7 @@ def parse_freight_pricing_item(json: JsonObject) -> FreightPricing:
         cast(str, json.get("vesselClass")),
         cast(Decimal, as_decimal(cast(float, json.get("cargoQuantity")))),
         parse_costs(cast(JsonObject, json.get("costs"))),
-        parse_totals(cast(JsonObject, json.get("transportationCost"))),
+        parse_totals(cast(JsonObject, json.get("totals"))),
     )
 
 

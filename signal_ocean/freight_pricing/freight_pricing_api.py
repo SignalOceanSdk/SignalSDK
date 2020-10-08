@@ -34,7 +34,8 @@ class FreightPricingAPI:
             load_port: Port,
             discharge_port: Port,
             date: date,
-            vessel_subclass: VesselSubclass) -> Tuple[FreightPricing, ...]:
+            vessel_subclass: Optional[VesselSubclass] = None,
+            *vessel_class: VesselClass) -> Tuple[FreightPricing, ...]:
         """Retrieves freight prices for moving commodities between two ports.
 
         Args:
@@ -42,7 +43,8 @@ class FreightPricingAPI:
             load_port: Port where the commodity is loaded.
             discharge_port: Port where the commodity is discharged.
             date: Date at which the freight price is requested.
-            vessel_subclass: The vessel's subclass.
+            vessel_subclass: The vessel's subclass. This is an optional parameter.
+            vessel_class: The vessel's class. You can set multiple vessel classes.
 
         Returns:
             A tuple of freight pricings, one per vessel class.
@@ -51,15 +53,23 @@ class FreightPricingAPI:
             'vesselType': vessel_type.id,
             'loadPortId': load_port.id,
             'dischargePortId': discharge_port.id,
-            'date': format_iso_date(date),
-            'vesselSubclass': vessel_subclass.value
+            'date': format_iso_date(date)
         }
+        
+        vesselClassIds = []
+        for v_c in vessel_class:
+            vesselClassIds.append(v_c.id)
+
+        query_string['vesselClassId'] = vesselClassIds
+
+        if vessel_subclass != None:
+            query_string['vesselSubclass'] = vessel_subclass.value
+
         response = self.__connection._make_get_request(
             'freight-pricing-api/freight-pricing',
             query_string
         )
         response.raise_for_status()
-
         return _freight_pricing_json.parse(response.json())
 
     def get_ports(
