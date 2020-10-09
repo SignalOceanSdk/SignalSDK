@@ -1,4 +1,4 @@
-from typing import Iterable, Tuple, cast, Mapping, Any, Optional
+from typing import Iterable, Tuple, cast, Mapping, Any
 from decimal import Decimal
 
 from .models import FreightPricing, Costs, Totals

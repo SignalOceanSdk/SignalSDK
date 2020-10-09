@@ -14,7 +14,7 @@ def test_parses_response_correctly():
                 "canal": 0.0,
                 "demurrage": 59000,
             },
-            "transportationCost": {
+            "totals": {
                 "totalCost": 1498247.960000,
                 "totalCostPerTon": 5.54906651,
             },
@@ -27,7 +27,7 @@ def test_parses_response_correctly():
                 "freightCost": 1209712.7250000,
                 "canal": 20.30,
             },
-            "transportationCost": {
+            "totals": {
                 "totalCost": 1249712.7250000,
                 "totalCostPerTon": 9.257131,
             },
@@ -42,7 +42,7 @@ def test_parses_response_correctly():
     assert first.vessel_class == "Suezmax"
     assert first.cargo_quantity == Decimal("130000")
     assert first.costs == Costs(
-        Decimal("5.330548"), Decimal("1439247.960000"), Decimal("0.0"), 59000
+        Decimal("5.330548"), Decimal("1439247.960000"), Decimal("0.0")
     )
     assert first.totals == Totals(
         Decimal("1498247.960000"), Decimal("5.54906651")
@@ -51,7 +51,7 @@ def test_parses_response_correctly():
     assert second.vessel_class == "Aframax"
     assert second.cargo_quantity == Decimal("80000")
     assert second.costs == Costs(
-        Decimal("8.9608350"), Decimal("1209712.7250000"), Decimal("20.30"), None
+        Decimal("8.9608350"), Decimal("1209712.7250000"), Decimal("20.30")
     )
     assert second.totals == Totals(
         Decimal("1249712.7250000"), Decimal("9.257131")

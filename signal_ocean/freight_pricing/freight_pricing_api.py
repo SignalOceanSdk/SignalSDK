@@ -35,30 +35,37 @@ class FreightPricingAPI:
             discharge_port: Port,
             date: date,
             vessel_subclass: Optional[VesselSubclass] = None,
-            vessel_classes: Optional[Tuple[VesselClass, ...]] = None) -> Tuple[FreightPricing, ...]:
+            vessel_classes: Optional[Tuple[VesselClass, ...]] = None
+            ) -> Tuple[FreightPricing, ...]:
         """Retrieves freight prices for moving commodities between two ports.
 
         Args:
             vessel_type: The type of vessel to calculate the prices for.
             load_port: Port where the commodity is loaded.
-            discharge_port: Port where the commodity is discharged.
+            discharge_port: Port where the commodity is discha
+            rged.
             date: Date at which the freight price is requested.
-            vessel_subclass: The vessel's subclass. This is an optional parameter.
-            vessel_class: The vessel's class. You can set multiple vessel classes.
+            vessel_subclass: The vessel's subclass. This is an optional
+             parameter.
+            vessel_class: The vessel's class. You can set multiple vessel
+             classes.
 
         Returns:
             A tuple of freight pricings, one per vessel class.
         """
-        query_string : Dict[str, Any] = {
+        query_string: Dict[str, Any] = {
             'vesselType': vessel_type.id,
             'loadPortId': load_port.id,
             'dischargePortId': discharge_port.id,
             'date': format_iso_date(date)
         }
-        
+
         if vessel_classes is not None:
-            query_string['vesselClassId'] = [vc.id for vc in vessel_classes if len(vessel_classes) != 0]
-            
+            query_string['vesselClassId'] = [
+                vc.id for vc in vessel_classes
+                if len(vessel_classes) != 0
+                ]
+
         if vessel_subclass is not None:
             query_string['vesselSubclass'] = vessel_subclass.value
 
