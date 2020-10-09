@@ -1,7 +1,7 @@
 # noqa: D100
 
 from datetime import date
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Dict, Any
 
 from .. import Connection
 from .._internals import format_iso_date
@@ -49,7 +49,7 @@ class FreightPricingAPI:
         Returns:
             A tuple of freight pricings, one per vessel class.
         """
-        query_string = {
+        query_string : Dict[str, Any] = {
             'vesselType': vessel_type.id,
             'loadPortId': load_port.id,
             'dischargePortId': discharge_port.id,
