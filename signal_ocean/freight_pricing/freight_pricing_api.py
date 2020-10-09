@@ -58,7 +58,7 @@ class FreightPricingAPI:
         
         query_string['vesselClassId'] = [vc.id for vc in vessel_classes if len(vessel_classes) != 0]
             
-        if vessel_subclass != None:
+        if vessel_subclass is not None:
             query_string['vesselSubclass'] = vessel_subclass.value
 
         response = self.__connection._make_get_request(
