@@ -1,6 +1,6 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Union, Type, List, Optional
+from typing import Union, Type, List, Optional, Any
 
 import pytest
 
@@ -119,6 +119,44 @@ def test_parse_model_extra_attributes_are_ignored():
     parsed = parsing_helpers.parse_model(data, TestModel)
     assert isinstance(parsed, TestModel)
     assert parsed == TestModel(model_id=1, model_name='model1')
+
+
+def test_parse_model_default():
+    @dataclass(frozen=True)
+    class TestModel:
+        model_id: int
+        model_name: str = 'a'
+
+    data = {'ModelID': 1}
+
+    parsed = parsing_helpers.parse_model(data, TestModel)
+    assert isinstance(parsed, TestModel)
+    assert parsed == TestModel(model_id=1, model_name='a')
+
+
+def test_parse_model_default_factory():
+    @dataclass(frozen=True)
+    class TestModel:
+        model_id: int
+        model_lists: List = field(default_factory=list)
+
+    data = {'ModelID': 1}
+
+    parsed = parsing_helpers.parse_model(data, TestModel)
+    assert isinstance(parsed, TestModel)
+    assert parsed == TestModel(model_id=1, model_lists=[])
+
+
+def test_parse_model_missing_attribute_raises_type_error():
+    @dataclass(frozen=True)
+    class TestModel:
+        model_id: int
+        model_lists: Any
+
+    data = {'ModelID': 1}
+
+    with pytest.raises(TypeError):
+        parsing_helpers.parse_model(data, TestModel)
 
 
 def test_parse_model_rename_key_extra_attribute_ignored():

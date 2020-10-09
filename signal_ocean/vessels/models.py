@@ -1,3 +1,4 @@
+"""Models instantiated by the vessels api."""
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
@@ -58,7 +59,7 @@ class VesselType:
 
 @dataclass(frozen=True)
 class Vessel:
-    """Contains all details of a vessel
+    """Contains all details of a vessel.
 
     Attributes:
         imo: A seven-digits number that uniquely identifies a ship and does not

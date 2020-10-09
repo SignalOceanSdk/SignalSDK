@@ -1,3 +1,4 @@
+"""The companies api."""
 from typing import Optional, Tuple
 from urllib.parse import urljoin
 

@@ -1,7 +1,8 @@
+"""Helper functions to instantiate model classes."""
 import dataclasses
 import re
 from datetime import datetime
-from typing import Union, Type, TypeVar, Any, Optional, Dict
+from typing import Union, Type, TypeVar, Any, Optional, Dict, List
 
 TModel = TypeVar("TModel")
 
@@ -18,7 +19,7 @@ def _to_snake_case(s: str) -> str:
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s).lower()
 
 
-def _parse_class(value: Union[str, int, float, bool, None], cls: Type) \
+def _parse_class(value: Any, cls: Type[Any]) \
         -> Union[str, int, float, bool, None, datetime]:
     """Parses a value to match the type of a provided class.
 
@@ -56,8 +57,8 @@ def _parse_class(value: Union[str, int, float, bool, None], cls: Type) \
     raise NotImplementedError(f'Cannot parse value {value} as {cls}')
 
 
-def _parse_field(value: Union[str, int, float, bool, None], field_type: Type) \
-        -> Union[str, int, float, bool, None, datetime, list]:
+def _parse_field(value: Any, field_type: Type[Any]) \
+        -> Union[str, int, float, bool, None, datetime, List[Any]]:
     """Parses a value to match the type of a provided type.
 
     Identifies whether the provided type is a Union of different types or a
@@ -89,7 +90,7 @@ def _parse_field(value: Union[str, int, float, bool, None], field_type: Type) \
 
     if field_type_origin is list:
         list_field_type = getattr(field_type, '__args__', [])[0]
-        if isinstance(list_field_type, TypeVar):
+        if type(list_field_type) is TypeVar:
             return list(value)
         return [_parse_field(v, list_field_type) for v in value]
 
@@ -97,7 +98,7 @@ def _parse_field(value: Union[str, int, float, bool, None], field_type: Type) \
 
 
 def parse_model(data: Dict[str, Any], cls: Type[TModel],
-                rename_keys: Optional[Dict] = None) -> TModel:
+                rename_keys: Optional[Dict[str, str]] = None) -> TModel:
     """Instantiates an object of the provided class cls for a provided mapping.
 
     Instantiates an object of a class specifying a model for the provided
@@ -130,14 +131,29 @@ def parse_model(data: Dict[str, Any], cls: Type[TModel],
             if k in data:
                 data[r] = data.pop(k)
 
-    fields = set(f.name for f in dataclasses.fields(cls))
+    field_names = set(f.name for f in dataclasses.fields(cls))
     field_types = {f.name: f.type for f in dataclasses.fields(cls)}
 
     parsed_data = {}
     for key, value in data.items():
         key = _to_snake_case(key)
-        if key in fields:
+        if key in field_names:
             field_type = field_types[key]
             parsed_data[key] = _parse_field(value, field_type)
 
-    return cls(**parsed_data)
+    args = []
+    for f in dataclasses.fields(cls):
+        if f.name in parsed_data:
+            a = parsed_data[f.name]
+        elif f.default is not dataclasses.MISSING:
+            a = f.default
+        else:
+            fc = getattr(f, 'default_factory')
+            if fc is not dataclasses.MISSING:
+                a = fc()
+            else:
+                raise TypeError(f'Cannot initialize class {cls}. '
+                                f'Missing required parameter {f.name}')
+        args.append(a)
+
+    return cls(*args)

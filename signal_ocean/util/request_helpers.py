@@ -1,3 +1,4 @@
+"""Helper functions to retrieve data from APIs."""
 from typing import TypeVar, Tuple, Type, Optional, Dict
 
 import requests
@@ -10,8 +11,9 @@ TModel = TypeVar("TModel")
 
 
 def get_single(connection: Connection, relative_url: str, cls: Type[TModel],
-               rename_keys: Optional[Dict[str, str]] = None) -> TModel:
-    """ Get a single object from the API.
+               rename_keys: Optional[Dict[str, str]] = None) \
+        -> Optional[TModel]:
+    """Get a single object from the API.
 
     Make a get request to the specified URL and return an object of the
     provided class instantiated with the retrieved data. If the API responds
@@ -45,7 +47,7 @@ def get_single(connection: Connection, relative_url: str, cls: Type[TModel],
 def get_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
                  rename_keys: Optional[Dict[str, str]] = None) \
         -> Tuple[TModel, ...]:
-    """ Get a multiple objects from the API.
+    """Get a multiple objects from the API.
 
     Make a get request to the specified URL to retrieve a sequence of results
     and return a list of objects of the provided class instantiated with the
