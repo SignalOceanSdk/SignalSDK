@@ -35,7 +35,7 @@ class FreightPricingAPI:
             discharge_port: Port,
             date: date,
             vessel_subclass: Optional[VesselSubclass] = None,
-            *vessel_class: VesselClass) -> Tuple[FreightPricing, ...]:
+            vessel_classes: Optional[Tuple[VesselClass, ...]] = None) -> Tuple[FreightPricing, ...]:
         """Retrieves freight prices for moving commodities between two ports.
 
         Args:
@@ -56,11 +56,8 @@ class FreightPricingAPI:
             'date': format_iso_date(date)
         }
         
-        if len(vessel_class) != 0:
-            vesselClassIds = []
-            for v_c in vessel_class:
-                vesselClassIds.append(v_c.id)
-            query_string['vesselClassId'] = vesselClassIds
+        if len(vessel_classes) != 0:
+            query_string['vesselClassId'] = [vc.id for vc in vessel_classes if len(vessel_classes) != 0]
             
         if vessel_subclass != None:
             query_string['vesselSubclass'] = vessel_subclass.value
