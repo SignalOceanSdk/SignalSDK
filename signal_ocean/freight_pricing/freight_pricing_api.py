@@ -62,9 +62,7 @@ class FreightPricingAPI:
 
         if vessel_classes is not None:
             query_string['vesselClassId'] = [
-                vc.id for vc in vessel_classes
-                if len(vessel_classes) != 0
-                ]
+                vc.id for vc in vessel_classes]
 
         if vessel_subclass is not None:
             query_string['vesselSubclass'] = vessel_subclass.value
