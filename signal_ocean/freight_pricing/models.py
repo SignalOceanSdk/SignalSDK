@@ -2,7 +2,6 @@
 
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import Optional
 
 
 @dataclass(frozen=True)
@@ -28,13 +27,11 @@ class Costs:
         freight_cost: Cost of transporting the given quentity between the
             selected load and discharge port in $.
         canal: Cost of passing through canals in $.
-        demurrage: Cost of demurrage in $.
     """
 
     freight_rate: Decimal
     freight_cost: Decimal
     canal: Decimal
-    demurrage: Optional[int]
 
 
 @dataclass(frozen=True)
