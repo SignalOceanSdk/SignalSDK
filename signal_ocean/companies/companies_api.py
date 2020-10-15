@@ -38,9 +38,9 @@ class CompaniesAPI:
         """Retrieves all available companies.
 
         Args:
-                name: String to filter and return only companies the name
-                    of which contains the provided string. If None, all
-                    companies are returned.
+            name: String to filter and return only companies the name
+                of which contains the provided string. If None, all
+                companies are returned.
 
         Returns:
             A tuple of all available companies.

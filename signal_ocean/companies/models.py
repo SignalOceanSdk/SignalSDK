@@ -1,7 +1,7 @@
 """Models instantiated by the companies api."""
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, Tuple
 
 
 @dataclass(frozen=True)
@@ -49,11 +49,11 @@ class Company:
     company_name: Optional[str] = None
     website: Optional[str] = None
     fleet_list: Optional[str] = None
-    synonyms: Optional[List[str]] = None
-    charterer_vessel_types: Optional[List[str]] = None
-    commercial_operator_vessel_types: Optional[List[str]] = None
-    geo_asset_owner_vessel_types: Optional[List[str]] = None
-    broker_vessel_types: Optional[List[str]] = None
-    port_agent_vessel_types: Optional[List[str]] = None
+    synonyms: Optional[Tuple[str, ...]] = None
+    charterer_vessel_types: Optional[Tuple[str, ...]] = None
+    commercial_operator_vessel_types: Optional[Tuple[str, ...]] = None
+    geo_asset_owner_vessel_types: Optional[Tuple[str, ...]] = None
+    broker_vessel_types: Optional[Tuple[str, ...]] = None
+    port_agent_vessel_types: Optional[Tuple[str, ...]] = None
     parent_company_id: Optional[int] = None
-    children_companies_ids: Optional[List[int]] = None
+    children_companies_ids: Optional[Tuple[int, ...]] = None

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Tuple
 from unittest.mock import MagicMock
 from urllib.parse import urljoin
@@ -84,11 +84,13 @@ __mock_vessel_1 = Vessel(imo=1, vessel_name='Signal 1', call_sign='AAA',
                          main_engine_manufacturer='MAN B&W',
                          main_engine_manufacturer_id=1,
                          delivery_date=datetime.fromisoformat(
-                             '2009-05-26T00:00:00'),
+                             '2009-05-26T00:00:00').replace(
+                             tzinfo=timezone.utc),
                          classification_register_id=2,
                          classification_register='Bureau of Shipping',
                          updated_date=datetime.fromisoformat(
-                             '2020-08-18T20:35:07'))
+                             '2020-08-18T20:35:07.377').replace(
+                             tzinfo=timezone.utc))
 
 __mock_vessel_response_2 = {'IMO': 2, 'VesselName': 'Signal 2',
                             'CallSign': 'BBB', 'VesselTypeID': 1,
@@ -118,7 +120,7 @@ __mock_vessel_response_2 = {'IMO': 2, 'VesselName': 'Signal 2',
                             'DeliveryDate': '2005-02-18T00:00:00',
                             'ClassificationRegisterID': 73,
                             'ClassificationRegister': "Register",
-                            'UpdatedDate': '2020-08-18T13:10:21.93'}
+                            'UpdatedDate': '2020-08-18T13:10:21.930'}
 
 __mock_vessel_2 = Vessel(imo=2, vessel_name='Signal 2', call_sign='BBB',
                          vessel_type_id=1, vessel_type='Tanker',
@@ -141,17 +143,20 @@ __mock_vessel_2 = Vessel(imo=2, vessel_name='Signal 2', call_sign='BBB',
                          geared=False,
                          cubic_size=339180,
                          scrubbers_date=datetime.fromisoformat(
-                             '2020-04-19T11:57:00'),
+                             '2020-04-19T11:57:00').replace(
+                             tzinfo=timezone.utc),
                          summer_tpc=180.79, clean_dirty_willing=False,
                          lightship_tonnes=44262,
                          main_engine_manufacturer='BW',
                          main_engine_manufacturer_id=1,
                          delivery_date=datetime.fromisoformat(
-                             '2005-02-18T00:00:00'),
+                             '2005-02-18T00:00:00').replace(
+                             tzinfo=timezone.utc),
                          classification_register_id=73,
                          classification_register="Register",
                          updated_date=datetime.fromisoformat(
-                             '2020-08-18T13:10:21'))
+                             '2020-08-18T13:10:21.930').replace(
+                             tzinfo=timezone.utc))
 
 __mock_vessels_response = (__mock_vessel_response_1, __mock_vessel_response_2)
 

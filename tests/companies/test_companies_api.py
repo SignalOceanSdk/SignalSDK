@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Tuple
 from unittest.mock import MagicMock
 from urllib.parse import urljoin
@@ -12,14 +12,15 @@ __mock_company_response = {'ID': 1926, 'CompanyName': 'Signal Maritime',
                            'Website': 'http://signalmaritime.com/',
                            'FleetList': 'http://signalmaritime.com/',
                            'CommercialOperatorVesselTypes': ['Tanker', 'Dry'],
-                           'UpdatedDate': '2016-12-23T17:55:50.58'}
+                           'UpdatedDate': '2016-12-23T17:55:50'}
 
 __mock_company = Company(id=1926, company_name='Signal Maritime',
                          website='http://signalmaritime.com/',
                          fleet_list='http://signalmaritime.com/',
-                         commercial_operator_vessel_types=['Tanker', 'Dry'],
+                         commercial_operator_vessel_types=('Tanker', 'Dry'),
                          updated_date=datetime.fromisoformat(
-                             '2016-12-23T17:55:50'))
+                             '2016-12-23T17:55:50').replace(
+                             tzinfo=timezone.utc))
 
 __mock_company_response_2 = {'ID': 1, 'CompanyName': 'Signal Ocean',
                              'Website': 'http://signalocean.com/',
@@ -30,12 +31,13 @@ __mock_company_response_2 = {'ID': 1, 'CompanyName': 'Signal Ocean',
 __mock_company_2 = Company(id=1, company_name='Signal Ocean',
                            website='http://signalocean.com/',
                            fleet_list='http://signalocean.com/',
-                           commercial_operator_vessel_types=[],
+                           commercial_operator_vessel_types=(),
                            updated_date=datetime.fromisoformat(
-                               '2020-09-01T01:01:01'))
+                               '2020-09-01T01:01:01').replace(
+                             tzinfo=timezone.utc))
 
-__mock_companies_response = [__mock_company_response,
-                             __mock_company_response_2]
+__mock_companies_response = (__mock_company_response,
+                             __mock_company_response_2)
 
 
 def create_companies_api(response: requests.Response) \

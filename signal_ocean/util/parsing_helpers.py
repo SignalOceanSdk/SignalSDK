@@ -2,9 +2,12 @@
 import dataclasses
 import re
 from datetime import datetime
-from typing import Union, Type, TypeVar, Any, Optional, Dict, List
+from typing import Union, Type, TypeVar, Any, Optional, Dict, List, Tuple
+
+from signal_ocean._internals import parse_datetime
 
 TModel = TypeVar("TModel")
+ParsableClass = Union[str, int, float, bool, None, datetime]
 
 
 def _to_snake_case(s: str) -> str:
@@ -19,7 +22,7 @@ def _to_snake_case(s: str) -> str:
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s).lower()
 
 
-def _parse_class(value: Any, cls: Type[Any]) \
+def _parse_class(value: ParsableClass, cls: Type[ParsableClass]) \
         -> Union[str, int, float, bool, None, datetime]:
     """Parses a value to match the type of a provided class.
 
@@ -45,20 +48,21 @@ def _parse_class(value: Any, cls: Type[Any]) \
         return None
     if cls is bool:
         return bool(value)
-    if cls is int:
+    if cls is int and (isinstance(value, int) or isinstance(value, str)):
         return int(value)
-    if cls is float:
+    if cls is float and (isinstance(value, float) or isinstance(value, int)
+                         or isinstance(value, str)):
         return float(value)
     if cls is str:
         return str(value)
-    if cls is datetime:
-        return datetime.fromisoformat(value[:19])
+    if cls is datetime and isinstance(value, str):
+        return parse_datetime(value)
 
     raise NotImplementedError(f'Cannot parse value {value} as {cls}')
 
 
 def _parse_field(value: Any, field_type: Type[Any]) \
-        -> Union[str, int, float, bool, None, datetime, List[Any]]:
+        -> Union[ParsableClass, List[Any], Tuple[Any, ...]]:
     """Parses a value to match the type of a provided type.
 
     Identifies whether the provided type is a Union of different types or a
@@ -93,6 +97,12 @@ def _parse_field(value: Any, field_type: Type[Any]) \
         if type(list_field_type) is TypeVar:
             return list(value)
         return [_parse_field(v, list_field_type) for v in value]
+
+    if field_type_origin is tuple:
+        tuple_field_types = getattr(field_type, '__args__', [])
+        if not tuple_field_types:
+            return tuple(value)
+        return tuple(_parse_field(v, tuple_field_types[0]) for v in value)
 
     return _parse_class(value, field_type)
 
