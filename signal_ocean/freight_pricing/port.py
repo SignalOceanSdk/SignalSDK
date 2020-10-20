@@ -4,12 +4,12 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True, eq=False)
-class VesselType:
-    """Type of vessel used for transport.
+class Port:
+    """A maritime facility where vessels can dock.
 
     Attributes:
-        id: The vessel type ID.
-        name: The vessel type name.
+        id: The ID of the port.
+        name: The name of the port.
     """
     id: int
     name: str
