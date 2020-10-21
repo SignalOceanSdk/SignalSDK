@@ -7,10 +7,16 @@ def test_handles_None():
     assert as_decimal(None) is None
 
 
-def test_parses_strings():
-    dec = as_decimal('12.345')
+def test_handles_empty_strings():
+    assert as_decimal("") is None
 
-    assert dec == Decimal('12.345')
+
+def test_parses_strings():
+    assert as_decimal("12.345") == Decimal("12.345")
+
+
+def test_handles_0():
+    assert as_decimal(0.0) == Decimal("0.0")
 
 
 def test_converts_floats_to_decimals_exactly():
@@ -20,4 +26,4 @@ def test_converts_floats_to_decimals_exactly():
     assert dec != Decimal(24.390015)
 
     # will be precisely 24.390015
-    assert dec == Decimal('24.390015')
+    assert dec == Decimal("24.390015")
