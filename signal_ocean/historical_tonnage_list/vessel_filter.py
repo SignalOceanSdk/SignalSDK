@@ -73,7 +73,7 @@ class VesselFilter:
         max_breadth_extreme: Return vessels with the specified
             maximum breadth extreme.
         openAreas: Return vessels with the specified open area ids.
-        openCountries: Return vessels with the specified open 
+        openCountries: Return vessels with the specified open
             country ids.
     """
 
@@ -114,13 +114,12 @@ class VesselFilter:
     max_length_overall: Optional[int] = None
     min_breadth_extreme: Optional[int] = None
     max_breadth_extreme: Optional[int] = None
-    openAreaIds: Optional[List[int]] = cast(
+    open_area_ids: Optional[List[int]] = cast(
         List[int], field(default_factory=list)
     )
-    openCountryIds: Optional[List[int]] = cast(
+    open_country_ids: Optional[List[int]] = cast(
         List[int], field(default_factory=list)
     )
-
 
     def _to_query_string(self) -> QueryString:
         return {
@@ -145,6 +144,6 @@ class VesselFilter:
             "lengthOverallMax": self.max_length_overall,
             "breadthExtremeMin": self.min_breadth_extreme,
             "breadthExtremeMax": self.max_breadth_extreme,
-            "openArea": self.openAreaIds,
-            "openCountry": self.openCountryIds
+            "openArea": self.open_area_ids,
+            "openCountry": self.open_country_ids
         }
