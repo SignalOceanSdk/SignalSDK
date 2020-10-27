@@ -52,6 +52,29 @@ class VesselFilter:
             the values of this attribute.
         last_cargo_types: Return vessels with the specified last
             cargo type IDs.
+        past_port_visits: Return vessels with the specified past
+            port visits.
+        open_port_ids: Return vessels with the specified open
+            port ids.
+        canakkale_cancelling: Return vessels with the specified
+            Canakkale cancelling date.
+        open_date: Return vessels with the specified open date.
+        ice_classes: Return vessels with the specified ice classes.
+        min_cranes_ton_capacity: Return vessels with the specified
+            minimum cranes ton capacity.
+        max_cranes_ton_capacity: Return vessels with the specified
+            maximum cranes ton capacity.
+        min_length_overall: Return vessels with the specified
+            minimum length overall.
+        max_length_overall: Return vessels with the specified
+            maximum length overall.
+        min_breadth_extreme: Return vessels with the specified
+            minimum breadth extreme.
+        max_breadth_extreme: Return vessels with the specified
+            maximum breadth extreme.
+        openAreas: Return vessels with the specified open area ids.
+        openCountries: Return vessels with the specified open 
+            country ids.
     """
 
     push_types: Optional[List[str]] = cast(
@@ -74,6 +97,30 @@ class VesselFilter:
     fixture_types: Optional[List[str]] = cast(
         List[str], field(default_factory=list)
     )
+    past_port_visits: Optional[List[int]] = cast(
+        List[int], field(default_factory=list)
+    )
+    open_port_ids: Optional[List[int]] = cast(
+        List[int], field(default_factory=list)
+    )
+    canakkale_cancelling: Optional[str] = None
+    open_date: Optional[str] = None
+    ice_classes: Optional[List[str]] = cast(
+        List[str], field(default_factory=list)
+    )
+    min_cranes_ton_capacity: Optional[int] = None
+    max_cranes_ton_capacity: Optional[int] = None
+    min_length_overall: Optional[int] = None
+    max_length_overall: Optional[int] = None
+    min_breadth_extreme: Optional[int] = None
+    max_breadth_extreme: Optional[int] = None
+    openAreaIds: Optional[List[int]] = cast(
+        List[int], field(default_factory=list)
+    )
+    openCountryIds: Optional[List[int]] = cast(
+        List[int], field(default_factory=list)
+    )
+
 
     def _to_query_string(self) -> QueryString:
         return {
@@ -87,4 +134,17 @@ class VesselFilter:
             "minLiquidCapacity": self.min_liquid_capacity,
             "maxLiquidCapacity": self.max_liquid_capacity,
             "fixtureType": self.fixture_types,
+            "pastPortVisit": self.past_port_visits,
+            "openPortId": self.open_port_ids,
+            "canakkaleCancelling": self.canakkale_cancelling,
+            "openDate": self.open_date,
+            "iceClass": self.ice_classes,
+            "cranesTonCapacityMin": self.min_cranes_ton_capacity,
+            "cranesTonCapacityMax": self.max_cranes_ton_capacity,
+            "lengthOverallMin": self.min_length_overall,
+            "lengthOverallMax": self.max_length_overall,
+            "breadthExtremeMin": self.min_breadth_extreme,
+            "breadthExtremeMax": self.max_breadth_extreme,
+            "openArea": self.openAreaIds,
+            "openCountry": self.openCountryIds
         }
