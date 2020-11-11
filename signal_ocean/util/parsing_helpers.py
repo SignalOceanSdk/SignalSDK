@@ -2,11 +2,12 @@
 import dataclasses
 import re
 from datetime import datetime
-from typing import Union, Type, TypeVar, Any, Optional, Dict, List, Tuple
+from typing import Union, Type, TypeVar, Any, Optional, Dict, Iterable, cast
 
 from signal_ocean._internals import parse_datetime
 
 TModel = TypeVar("TModel")
+NoneType = type(None)
 ParsableClass = Union[str, int, float, bool, None, datetime]
 
 
@@ -22,8 +23,8 @@ def _to_snake_case(s: str) -> str:
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s).lower()
 
 
-def _parse_class(value: ParsableClass, cls: Type[ParsableClass]) \
-        -> Union[str, int, float, bool, None, datetime]:
+def _parse_class(value: Any, cls: Type[ParsableClass]) \
+        -> ParsableClass:
     """Parses a value to match the type of a provided class.
 
     Args:
@@ -37,78 +38,38 @@ def _parse_class(value: ParsableClass, cls: Type[ParsableClass]) \
     Raises:
         TypeError: Cannot parse the value as the provided class.
         ValueError: Cannot parse the value as the provided class.
-        NotImplementedError: The provided class is not supported.
     """
-    none_type = type(None)
-    if value is None and cls is not none_type:
+    if value is None and cls is not NoneType:
         raise TypeError(f'Cannot parse None as {cls}')
-    if cls is none_type:
+
+    if cls is NoneType:
         if value is not None:
             raise TypeError(f'Cannot parse {value} as NoneType')
         return None
+
     if cls is bool:
         return bool(value)
-    if cls is int and (isinstance(value, int) or isinstance(value, str)):
+
+    if cls is int:
         return int(value)
-    if cls is float and (isinstance(value, float) or isinstance(value, int)
-                         or isinstance(value, str)):
+
+    if cls is float:
         return float(value)
+
     if cls is str:
         return str(value)
-    if cls is datetime and isinstance(value, str):
-        return parse_datetime(value)
 
-    raise NotImplementedError(f'Cannot parse value {value} as {cls}')
+    if cls is datetime:
+        return value if isinstance(value, datetime) \
+            else parse_datetime(value)
 
-
-def _parse_field(value: Any, field_type: Type[Any]) \
-        -> Union[ParsableClass, List[Any], Tuple[Any, ...]]:
-    """Parses a value to match the type of a provided type.
-
-    Identifies whether the provided type is a Union of different types or a
-    specific type and tries to parse the value and create an object of one of
-    the requested types.
-
-    Args:
-        value: The value to parse, can be str, int, float, bool or None.
-        field_type: The type to parse the value to. Types of str, int, float,
-            bool, NoneType and datetime, or Union of
-            these types is supported.
-
-    Returns:
-        The parsed object for the given value and type.
-
-    Raises:
-        TypeError: Cannot parse the value as the provided class.
-        NotImplementedError: The provided type is not supported.
-    """
-    field_type_origin = getattr(field_type, '__origin__', None)
-
-    if field_type_origin is Union:
-        for cls in getattr(field_type, '__args__', []):
-            try:
-                return _parse_field(value, cls)
-            except (TypeError, ValueError):
-                pass
-        raise ValueError(f'Cannot parse value {value} as {field_type}')
-
-    if field_type_origin is list:
-        list_field_type = getattr(field_type, '__args__', [])[0]
-        if type(list_field_type) is TypeVar:
-            return list(value)
-        return [_parse_field(v, list_field_type) for v in value]
-
-    if field_type_origin is tuple:
-        tuple_field_types = getattr(field_type, '__args__', [])
-        if not tuple_field_types:
-            return tuple(value)
-        return tuple(_parse_field(v, tuple_field_types[0]) for v in value)
-
-    return _parse_class(value, field_type)
+    raise TypeError(f'Cannot parse value {value} as {cls}')
 
 
-def parse_model(data: Dict[str, Any], cls: Type[TModel],
-                rename_keys: Optional[Dict[str, str]] = None) -> TModel:
+def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
+                cls: Union[Type[TModel], Type[Any]],
+                rename_keys: Optional[Dict[str, str]] = None) \
+        -> Union[TModel, Any]:
     """Instantiates an object of the provided class cls for a provided mapping.
 
     Instantiates an object of a class specifying a model for the provided
@@ -136,34 +97,64 @@ def parse_model(data: Dict[str, Any], cls: Type[TModel],
             appropriate type.
         NotImplementedError: The type of a class attribute is not supported.
     """
-    if rename_keys:
-        for k, r, in rename_keys.items():
-            if k in data:
-                data[r] = data.pop(k)
+    if cls is not NoneType and dataclasses.is_dataclass(cls) \
+            and isinstance(data, dict):
+        if rename_keys:
+            for k, r, in rename_keys.items():
+                if k in data:
+                    data[r] = data.pop(k)
 
-    field_names = set(f.name for f in dataclasses.fields(cls))
-    field_types = {f.name: f.type for f in dataclasses.fields(cls)}
+        field_names = set(f.name for f in dataclasses.fields(cls))
+        field_types = {f.name: f.type for f in dataclasses.fields(cls)}
 
-    parsed_data = {}
-    for key, value in data.items():
-        key = _to_snake_case(key)
-        if key in field_names:
-            field_type = field_types[key]
-            parsed_data[key] = _parse_field(value, field_type)
+        parsed_data: Dict[str, Any] = {}
+        for key, value in data.items():
+            key = _to_snake_case(key)
+            if key in field_names:
+                field_type = field_types[key]
+                parsed_data[key] = parse_model(value, field_type)
 
-    args = []
-    for f in dataclasses.fields(cls):
-        if f.name in parsed_data:
-            a = parsed_data[f.name]
-        elif f.default is not dataclasses.MISSING:
-            a = f.default
-        else:
-            fc = getattr(f, 'default_factory')
-            if fc is not dataclasses.MISSING:
-                a = fc()
+        args = []
+        for f in dataclasses.fields(cls):
+            if f.name in parsed_data:
+                a = parsed_data[f.name]
+            elif f.default is not dataclasses.MISSING:
+                a = f.default
             else:
-                raise TypeError(f'Cannot initialize class {cls}. '
-                                f'Missing required parameter {f.name}')
-        args.append(a)
+                fc = getattr(f, 'default_factory')
+                if fc is not dataclasses.MISSING:
+                    a = fc()
+                else:
+                    raise TypeError(f'Cannot initialize class {cls}. '
+                                    f'Missing required parameter {f.name}')
+            args.append(a)
 
-    return cls(*args)
+        return cls(*args)
+
+    field_type_origin = getattr(cls, '__origin__', None)
+
+    if field_type_origin is Union:
+        for candidate_cls in getattr(cls, '__args__', []):
+            try:
+                return parse_model(data, candidate_cls)
+            except (TypeError, ValueError):
+                pass
+        raise ValueError(f'Cannot parse value {data} as {cls}')
+
+    if field_type_origin is list and isinstance(data, Iterable):
+        list_field_type = getattr(cls, '__args__', [])[0]
+        if type(list_field_type) is TypeVar:
+            return list(data)
+        return [parse_model(v, list_field_type) for v in data]
+
+    if field_type_origin is tuple and isinstance(data, Iterable):
+        tuple_field_types = getattr(cls, '__args__', [])
+        if not tuple_field_types:
+            return tuple(data)
+        return tuple(parse_model(v, tuple_field_types[0]) for v in data)
+
+    parsable_classes = tuple(getattr(ParsableClass, '__args__', []))
+    if cls in parsable_classes:
+        return _parse_class(data, cast(Type[ParsableClass], cls))
+
+    raise NotImplementedError(f'Cannot parse data {data} as {cls}.')
