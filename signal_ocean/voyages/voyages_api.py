@@ -14,12 +14,12 @@ NextRequestToken = str
 
 
 class VoyagesAPI:
-    """Represents Signal's Vessels API."""
+    """Represents Signal's Voyages API."""
 
     relative_url = "voyages-api/v2/"
 
     def __init__(self, connection: Optional[Connection] = None):
-        """Initializes VesselsAPI.
+        """Initializes VoyagesAPI.
 
         Args:
             connection: API connection configuration. If not provided, the
@@ -40,11 +40,11 @@ class VoyagesAPI:
             imo: Return only voyages for the provided vessel IMO. If None
                 voyages for all vessels are returned.
             vessel_class_id: Return only voyages for the provided vessel class.
-                If None voyages for all vessels are returned. If imo is
-                specified and vessel_class_id is ignored.
+                If None, voyages for all vessels are returned. If imo is
+                specified vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
-                If None voyages for all vessels are returned. If either imo or
-                vessel_class_id is specified vessel_type_id is ignored.
+                If None, voyages for all vessels are returned. If either imo
+                or vessel_class_id is specified vessel_type_id is ignored.
             date_from: Return voyages after provided date. If imo is specified
                 date_from is treated as None.
             nested: Boolean controlling whether information associated with

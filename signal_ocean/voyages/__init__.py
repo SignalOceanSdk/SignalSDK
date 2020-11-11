@@ -2,7 +2,7 @@
 
 Classes:
     VoyagesAPI: Represents Signal's Voyages API.
-    Voyage: Represents a Voyages of a vessel.
+    Voyage: Represents a Voyage of a vessel.
     VoyageEvent: Represents an Event associated with a Voyage.
     VoyageEventDetail: Represents details about a VoyageEvent.
     VoyageGeo: Represents a geo asset object associated with a voyage.

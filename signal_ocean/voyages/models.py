@@ -100,10 +100,11 @@ class VoyageEvent:
         event_type: String. It can take values "Stop", "Portcall" or
             "VoyageStart".
         event_horizon: String. It can take "Historical", "Current" or "Future"
-            values, depending on whether the event is in the past (ArrivalDate
+            values, depending on whether the event is in the past with
+            reference point the latest AIS point of the vessel (ArrivalDate
             and SailingDate both in the past), is current (ArrivalDate in the
-            past and SailingDate in the future) or future (both ArrivalDate and
-            SailingDate in the future).
+            past and SailingDate in the future) or future (both ArrivalDate
+            and SailingDate in the future).
         purpose: String. It will be "Stop" if EventType="Stop" and "Start" if
             EventType="VoyageStart". If the event is a portcall, that is an
             operational stop, this field specifies the type of operation, like
