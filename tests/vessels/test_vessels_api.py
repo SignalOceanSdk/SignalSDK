@@ -184,7 +184,8 @@ def test_requests_vessel_by_id():
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessel(imo=__mock_vessel_1.imo)
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, f'vessels/{__mock_vessel_1.imo}'))
+        urljoin(VesselsAPI.relative_url, f'vessels/{__mock_vessel_1.imo}'),
+        query_string=None)
 
 
 def test_returns_vessel_by_id():
@@ -201,7 +202,8 @@ def test_requests_vessel_classes():
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessel_classes()
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, 'vesselClasses'))
+        urljoin(VesselsAPI.relative_url, 'vesselClasses'),
+        query_string=None)
 
 
 def test_response_vessel_classes():
@@ -218,7 +220,8 @@ def test_requests_vessel_types():
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessel_types()
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, 'vesselTypes'))
+        urljoin(VesselsAPI.relative_url, 'vesselTypes'),
+        query_string=None)
 
 
 def test_response_vessel_types():
@@ -235,7 +238,8 @@ def test_requests_vessels():
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessels()
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, 'vessels/all'))
+        urljoin(VesselsAPI.relative_url, 'vessels/all'),
+        query_string=None)
 
 
 def test_response_vessels():
@@ -252,4 +256,5 @@ def test_requests_search_vessels():
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessels('signal')
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, 'vessels/searchByName/signal'))
+        urljoin(VesselsAPI.relative_url, 'vessels/searchByName/signal'),
+        query_string=None)

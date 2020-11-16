@@ -41,7 +41,7 @@ def test_parse_class(value: Union[str, int, float, bool, None],
 
 @pytest.mark.parametrize("value, cls, expected_error",
                          [(None, str, TypeError),
-                          ([], list, NotImplementedError),
+                          ([], list, TypeError),
                           ('Abc', int, ValueError)])
 def test_parse_class_raises_error(value: Union[str, int, float, bool, None],
                                   cls: Type,
@@ -64,25 +64,26 @@ def test_parse_class_raises_error(value: Union[str, int, float, bool, None],
                           (['1', '2'], Union[List[int], None], [1, 2]),
                           (['1', '2'], Union[List, None], ['1', '2']),
                           (['1', '2'], Optional[Tuple[str, ...]], ('1', '2'))])
-def test_parse_field(value: Union[str, int, float, bool, None],
+def test_parse_model_field(value: Union[str, int, float, bool, None],
                      field_type: Type,
                      expected: Union[str, int, float, bool, None, datetime,
                                      List[int], List[str], Tuple[int, ...],
                                      Tuple[str, ...]]) \
         -> None:
-    transformed = parsing_helpers._parse_field(value, field_type)
+    transformed = parsing_helpers.parse_model(value, field_type)
     assert type(transformed) == type(expected)
     assert transformed == expected
 
 
 @pytest.mark.parametrize("value, field_type, expected_error",
                          [(['a', 'b'], List[int], ValueError),
-                          (['a', 'b'], Optional[List[int]], ValueError)])
-def test_parse_field_raises_error(value: Union[str, int, float, bool, None],
+                          (['a', 'b'], Optional[List[int]], ValueError),
+                          (1, Type[Any], NotImplementedError)])
+def test_parse_model_field_raises_error(value: Union[str, int, float, bool, None],
                                   field_type: Type,
                                   expected_error: Type[BaseException]) -> None:
     with pytest.raises(expected_error):
-        parsing_helpers._parse_field(value, field_type)
+        parsing_helpers.parse_model(value, field_type)
 
 
 def test_parse_model():
@@ -106,6 +107,23 @@ def test_parse_model():
                                touched_by='signal',
                                created_date=datetime(2010, 1, 1, 1, 0, 0,
                                                      tzinfo=timezone.utc))
+
+
+def test_parse_nested_model():
+    @dataclass(frozen=True)
+    class TestNestedModel:
+        model_id: int
+
+    @dataclass(frozen=True)
+    class TestModel:
+        model_id: int
+        nested_model: TestNestedModel
+
+    data = {'ModelID': 1, 'nested_model': {'ModelID': 3}}
+
+    parsed = parsing_helpers.parse_model(data, TestModel)
+    assert isinstance(parsed, TestModel)
+    assert parsed == TestModel(model_id=1, nested_model=TestNestedModel(3))
 
 
 def test_parse_model_rename_key():
