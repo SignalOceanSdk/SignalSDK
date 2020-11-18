@@ -1,7 +1,7 @@
 from datetime import timedelta
 
 from signal_ocean.historical_tonnage_list import VesselFilter
-
+from datetime import date
 
 def test_converts_to_query_string():
     vessel_filter = VesselFilter(
@@ -17,8 +17,8 @@ def test_converts_to_query_string():
         fixture_types=['ft1', 'ft2'],
         past_port_visits=[3300],
         open_port_ids=[3300],
-        canakkale_cancelling='2020-10-10',
-        open_date='2020-10-10',
+        canakkale_cancelling=date(2020,10,10),
+        open_date=date(2020,10,10),
         ice_classes=['1A'],
         min_cranes_ton_capacity=10,
         max_cranes_ton_capacity=20,

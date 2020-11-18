@@ -1,10 +1,11 @@
 # noqa: D100
 
+from datetime import date
 from dataclasses import dataclass, field
 from typing import List, Optional, cast
 
 from .vessel_subclass import VesselSubclass
-from .._internals import QueryString
+from .._internals import QueryString, format_iso_date
 
 
 @dataclass(eq=False)
@@ -103,8 +104,8 @@ class VesselFilter:
     open_port_ids: Optional[List[int]] = cast(
         List[int], field(default_factory=list)
     )
-    canakkale_cancelling: Optional[str] = None
-    open_date: Optional[str] = None
+    canakkale_cancelling: Optional[date] = None
+    open_date: Optional[date] = None
     ice_classes: Optional[List[str]] = cast(
         List[str], field(default_factory=list)
     )
@@ -135,8 +136,8 @@ class VesselFilter:
             "fixtureType": self.fixture_types,
             "pastPortVisit": self.past_port_visits,
             "openPortId": self.open_port_ids,
-            "canakkaleCancelling": self.canakkale_cancelling,
-            "openDate": self.open_date,
+            "canakkaleCancelling": format_iso_date(self.canakkale_cancelling),
+            "openDate": format_iso_date(self.open_date),
             "iceClass": self.ice_classes,
             "cranesTonCapacityMin": self.min_cranes_ton_capacity,
             "cranesTonCapacityMax": self.max_cranes_ton_capacity,
