@@ -47,7 +47,7 @@ def test_get_single_requests_object_by_id():
     relative_url = 'model/single/1'
     connection, mocked_make_request = create_mock_connection(__test_response_1)
     _ = get_single(connection, relative_url, DummyModel)
-    mocked_make_request.assert_called_with(relative_url)
+    mocked_make_request.assert_called_with(relative_url, query_string=None)
 
 
 def test_get_single_returns_object_by_id():
@@ -62,7 +62,7 @@ def test_get_multiple_requests():
     relative_url = 'model/all'
     connection, mocked_make_request = create_mock_connection(__test_responses)
     _ = get_multiple(connection, relative_url, DummyModel)
-    mocked_make_request.assert_called_with(relative_url)
+    mocked_make_request.assert_called_with(relative_url, query_string=None)
 
 
 def test_get_single_returns():

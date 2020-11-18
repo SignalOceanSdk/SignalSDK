@@ -63,7 +63,7 @@ def test_requests_company_by_id():
     api, mocked_make_request = create_companies_api(response)
     _ = api.get_company(company_id=__mock_company.id)
     url = urljoin(CompaniesAPI.relative_url, f'companies/{__mock_company.id}')
-    mocked_make_request.assert_called_with(url)
+    mocked_make_request.assert_called_with(url, query_string=None)
 
 
 def test_returns_company_by_id():
@@ -80,7 +80,7 @@ def test_requests_all_companies():
     api, mocked_make_request = create_companies_api(response)
     _ = api.get_companies()
     mocked_make_request.assert_called_with(
-        urljoin(CompaniesAPI.relative_url, 'companies/all'))
+        urljoin(CompaniesAPI.relative_url, 'companies/all'), query_string=None)
 
 
 def test_response_all_companies():
@@ -97,4 +97,5 @@ def test_requests_search_companies():
     api, mocked_make_request = create_companies_api(response)
     _ = api.get_companies('signal')
     mocked_make_request.assert_called_with(
-        urljoin(CompaniesAPI.relative_url, 'companies/searchByName/signal'))
+        urljoin(CompaniesAPI.relative_url, 'companies/searchByName/signal'),
+        query_string=None)
