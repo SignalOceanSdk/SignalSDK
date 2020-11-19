@@ -1,6 +1,8 @@
 # Tutorials
 
-Here you will find examples for each one of our APIs.
+Here you will find examples for each one of our APIs. There are also Jupyter Notebooks 
+you can run, inside our [docs](https://github.com/SignalOceanSdk/SignalSDK/tree/master/docs/examples/jupyter) in the 
+[Signal Ocean SDK repository](https://github.com/SignalOceanSdk/SignalSDK/).
 
 ## Freight Pricing
 

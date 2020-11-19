@@ -2,6 +2,23 @@
 
 The Signal Ocean SDK combines the power of Python and [Signal Ocean's APIs](https://signalprodapims.developer.azure-api.net/) to give you access to a variety of shipping data available in [The Signal Ocean Platform](https://www.signalocean.com/platform).
 
+
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)  
+
+[The Signal Ocean SDK GitHub reposity](https://github.com/SignalOceanSdk/SignalSDK/):  
+[![GitHub forks](https://img.shields.io/github/forks/signaloceansdk/signalsdk.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/SignalOceanSdk/SignalSDK/network/)
+[![GitHub stars](https://img.shields.io/github/stars/signaloceansdk/signalsdk.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/SignalOceanSDk/SignalSDK/stargazers/)
+[![GitHub contributors](https://img.shields.io/github/contributors/signaloceansdk/signalsdk.svg)](https://GitHub.com/SignalOceanSDk/SignalSDK/contributors/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SignalOceanSdk/SignalSDK/graphs/commit-activity)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/SignalOceanSdk/SignalSDK/blob/master/LICENSE)  
+
+[The Signal Ocean PyPi](https://pypi.org/project/signal-ocean/):  
+[![PyPI status](https://img.shields.io/pypi/status/signal-ocean.svg)](https://pypi.org/project/signal-ocean/)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
+[![PyPI download total](https://img.shields.io/pypi/dm/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
+[![PyPI license](https://img.shields.io/pypi/l/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
+
 ## Installation
 
 Install the SDK with pip:
