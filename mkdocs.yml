@@ -1,0 +1,19 @@
+site_name: Signal SDK
+theme:
+  name: material
+  favicon: img/favicondark.ico
+  logo: img/favicondark.ico
+nav:
+    - 'index.md'
+    - 'tutorials.md'
+    - 'historical_tonnage_list.md'
+    - 'vessels.md'
+    - 'voyages.md'
+    - 'valuations.md'
+    - 'companies.md'
+    - 'distances.md'
+extra_css:
+  - css/site.css
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
