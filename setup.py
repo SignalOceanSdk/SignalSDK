@@ -14,7 +14,7 @@ setup(
     author='Signal Ocean Developers',
     author_email='signaloceandevelopers@thesignalgroup.com',
     license='Apache 2.0',
-    url='https://signalprodapims.developer.azure-api.net/',
+    url='https://apis.signalocean.com/',
     packages=find_packages(exclude=['tests', 'tests.*']),
     python_requires='>=3.7',
     install_requires=[
