@@ -5,7 +5,7 @@ The Signal Ocean SDK combines the power of Python and [Signal Ocean's APIs](http
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)  
 
-[The Signal Ocean SDK GitHub reposity](https://github.com/SignalOceanSdk/SignalSDK/):  
+[The Signal Ocean SDK GitHub repository](https://github.com/SignalOceanSdk/SignalSDK/):  
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SignalOceanSdk/SignalSDK/graphs/commit-activity)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/SignalOceanSdk/SignalSDK/blob/master/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/signaloceansdk/signalsdk.svg)](https://GitHub.com/SignalOceanSDk/SignalSDK/contributors/)
