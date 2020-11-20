@@ -1,19 +1,34 @@
 site_name: Signal SDK
+repo_url: https://github.com/SignalOceanSdk/SignalSDK
+edit_uri: ""
 theme:
   name: material
   favicon: img/favicondark.ico
   logo: img/favicondark.ico
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
 nav:
     - 'index.md'
     - 'tutorials.md'
-    - 'historical_tonnage_list.md'
-    - 'vessels.md'
-    - 'voyages.md'
-    - 'valuations.md'
-    - 'companies.md'
-    - 'distances.md'
+    - APIs:
+      - 'historical_tonnage_list.md'
+      - 'vessels.md'
+      - 'voyages.md'
+      - 'valuations.md'
+      - 'companies.md'
+      - 'distances.md'
 extra_css:
   - css/site.css
 markdown_extensions:
+  - abbr
+  - admonition
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+  

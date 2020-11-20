@@ -6,23 +6,21 @@ The Signal Ocean SDK combines the power of Python and [Signal Ocean's APIs](http
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)  
 
 [The Signal Ocean SDK GitHub reposity](https://github.com/SignalOceanSdk/SignalSDK/):  
-[![GitHub forks](https://img.shields.io/github/forks/signaloceansdk/signalsdk.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/SignalOceanSdk/SignalSDK/network/)
-[![GitHub stars](https://img.shields.io/github/stars/signaloceansdk/signalsdk.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/SignalOceanSDk/SignalSDK/stargazers/)
-[![GitHub contributors](https://img.shields.io/github/contributors/signaloceansdk/signalsdk.svg)](https://GitHub.com/SignalOceanSDk/SignalSDK/contributors/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SignalOceanSdk/SignalSDK/graphs/commit-activity)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/SignalOceanSdk/SignalSDK/blob/master/LICENSE)  
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/SignalOceanSdk/SignalSDK/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/signaloceansdk/signalsdk.svg)](https://GitHub.com/SignalOceanSDk/SignalSDK/contributors/)
 
 [The Signal Ocean PyPi](https://pypi.org/project/signal-ocean/):  
 [![PyPI status](https://img.shields.io/pypi/status/signal-ocean.svg)](https://pypi.org/project/signal-ocean/)
+[![PyPI license](https://img.shields.io/pypi/l/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 [![PyPI download total](https://img.shields.io/pypi/dm/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
-[![PyPI license](https://img.shields.io/pypi/l/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
 ## Installation
 
 Install the SDK with pip:
-```
+```py
 pip install signal-ocean
 ```
 
@@ -37,7 +35,7 @@ For more information refer to [pandas documentation](https://pandas.pydata.org/p
 To use the SDK, you need to create an account in our [API Portal](https://signalprodapims.developer.azure-api.net/) and subscribe to an API. Once you have a subscription key, put it inside an environment variable called `SIGNAL_OCEAN_API_KEY`.
 
 Now you're ready to fetch some data:
-```
+```py
 from signal_ocean import PortAPI
 
 port_api = PortAPI()
@@ -47,7 +45,7 @@ print(ports)
 ```
 
 If you don't want to use environment variables, want to use different keys for different APIs, or if you want to override the environment variables, you can configure your `Connection` when creating the API class:
-```
+```py
 from signal_ocean import VesselClassAPI, Connection
 
 vessel_class_api = VesselClassAPI(Connection(api_key='YOUR KEY GOES HERE'))
