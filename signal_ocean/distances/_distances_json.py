@@ -30,7 +30,7 @@ def parse_route_response(json: JsonObject) -> RouteResponse:
         tuple(
             cast(Decimal, as_decimal(bbox))
             for bbox in json.get("bBox", [])
-        ),
+        ) if json.get("bBox", []) else None,
     )
 
 

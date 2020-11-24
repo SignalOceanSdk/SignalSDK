@@ -24,7 +24,7 @@ def test_requests_point_to_point_with_params():
         longitude_from=55.6,
         longitude_to=78.8)
 
-    excected_endpoint = "/api/v1/Distance/PointToPoint"
+    excected_endpoint = "/distances-api/api/v1/Distance/PointToPoint"
     excected_endpoint += f"?vesselclass={86}"
     excected_endpoint += f"&loadingcondition={1}"
     excected_endpoint += f"&latitudefrom={42.5}"
@@ -46,7 +46,7 @@ def test_requests_point_to_point_route_with_params():
         longitude_from=55.6,
         longitude_to=78.8)
 
-    excected_endpoint = "/api/v1/Distance/PointToPoint/Route"
+    excected_endpoint = "/distances-api/api/v1/Distance/PointToPoint/Route"
     excected_endpoint += f"?vesselclass={86}"
     excected_endpoint += f"&loadingcondition={1}"
     excected_endpoint += f"&latitudefrom={42.5}"
@@ -67,7 +67,7 @@ def test_requests_point_to_port_with_params():
         longitude=32.5,
         port_id=3812)
 
-    excected_endpoint = "/api/v1/Distance/PointToPort"
+    excected_endpoint = "/distances-api/api/v1/Distance/PointToPort"
     excected_endpoint += f"?vesselclass={86}"
     excected_endpoint += f"&loadingcondition={1}"
     excected_endpoint += f"&latitude={42.5}"
@@ -87,7 +87,7 @@ def test_requests_point_to_port_route_with_params():
         longitude=32.5,
         port_id=3812)
 
-    excected_endpoint = "/api/v1/Distance/PointToPort/Route"
+    excected_endpoint = "/distances-api/api/v1/Distance/PointToPort/Route"
     excected_endpoint += f"?vesselclass={86}"
     excected_endpoint += f"&loadingcondition={1}"
     excected_endpoint += f"&latitude={42.5}"
@@ -106,7 +106,7 @@ def test_requests_port_to_port_with_params():
         port_id_from=3763,
         port_id_to=3812)
 
-    excected_endpoint = "/api/v1/Distance/PortToPort"
+    excected_endpoint = "/distances-api/api/v1/Distance/PortToPort"
     excected_endpoint += f"?vesselclass={86}"
     excected_endpoint += f"&loadingcondition={1}"
     excected_endpoint += f"&portIdFrom={3763}"
@@ -125,7 +125,7 @@ def test_requests_port_to_port_route_with_params():
         port_id_from=3763,
         port_id_to=3812)
 
-    excected_endpoint = "/api/v1/Distance/PortToPort/Route"
+    excected_endpoint = "/distances-api/api/v1/Distance/PortToPort/Route"
     excected_endpoint += f"?vesselclass={86}"
     excected_endpoint += f"&loadingcondition={1}"
     excected_endpoint += f"&portIdFrom={3763}"

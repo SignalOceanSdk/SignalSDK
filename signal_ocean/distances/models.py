@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import Tuple
+from typing import Tuple, Optional
 
 
 @dataclass(frozen=True)
@@ -98,4 +98,4 @@ class RouteResponse:
     seca_distance: Decimal
     alternative_paths: Tuple[AlternativePath, ...]
     is_empty: bool
-    bbox: Tuple[Decimal, ...]
+    bbox: Optional[Tuple[Decimal, ...]]

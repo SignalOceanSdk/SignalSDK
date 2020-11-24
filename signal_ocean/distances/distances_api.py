@@ -40,7 +40,7 @@ class DistancesAPI:
             A tuple of available vessel classes that match the filter.
         """
         response = self.__connection._make_get_request(
-            "api/v1/vessel-classes"
+            "/distances-api/api/v1/VesselClasses"
         )
         response.raise_for_status()
 
@@ -62,7 +62,7 @@ class DistancesAPI:
             A tuple of available ports that match the filter.
         """
         response = self.__connection._make_get_request(
-            "api/v1/ports"
+            "/distances-api/api/v1/ports"
         )
         response.raise_for_status()
 
@@ -80,7 +80,7 @@ class DistancesAPI:
             A tuple of available loading conditions.
         """
         response = self.__connection._make_get_request(
-            "api/v1/LoadingConditions"
+            "distances-api/api/v1/LoadingConditions"
         )
         response.raise_for_status()
 
@@ -116,7 +116,7 @@ class DistancesAPI:
             A Decimal representing the distance in NM between two points.
         """
 
-        endpoint = "/api/v1/Distance/PointToPoint"
+        endpoint = "/distances-api/api/v1/Distance/PointToPoint"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitudefrom={latitude_from}"
@@ -158,7 +158,7 @@ class DistancesAPI:
                 and a port.
         """
 
-        endpoint = "/api/v1/Distance/PointToPort"
+        endpoint = "/distances-api/api/v1/Distance/PointToPort"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitude={latitude}"
@@ -195,7 +195,7 @@ class DistancesAPI:
             A Decimal representing the distance in NM between two ports.
         """
 
-        endpoint = "/api/v1/Distance/PortToPort"
+        endpoint = "/distances-api/api/v1/Distance/PortToPort"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&portIdFrom={port_id_from}"
@@ -237,7 +237,7 @@ class DistancesAPI:
             A Route between two points with distance in NM.
         """
 
-        endpoint = "/api/v1/Distance/PointToPoint/Route"
+        endpoint = "/distances-api/api/v1/Distance/PointToPoint/Route"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitudefrom={latitude_from}"
@@ -278,7 +278,7 @@ class DistancesAPI:
             A Route between a point and a port with distance in NM.
         """
 
-        endpoint = "/api/v1/Distance/PointToPort/Route"
+        endpoint = "/distances-api/api/v1/Distance/PointToPort/Route"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitude={latitude}"
@@ -315,7 +315,7 @@ class DistancesAPI:
             A Route between two ports with distance in NM.
         """
 
-        endpoint = "/api/v1/Distance/PortToPort/Route"
+        endpoint = "/distances-api/api/v1/Distance/PortToPort/Route"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&portIdFrom={port_id_from}"
