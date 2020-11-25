@@ -20,7 +20,7 @@ class Point:
 
 @dataclass(frozen=True)
 class PointsOnRoute:
-    """A point and extra properties needed for a route
+    """A point and extra properties needed for a route.
 
     Attributes:
         is_hra: The latitude of the point.
@@ -49,7 +49,7 @@ class PointsOnRoute:
 
 @dataclass(frozen=True)
 class AlternativePath:
-    """An alternative path for the route
+    """An alternative path for the route.
 
     Attributes:
         calculated_route: List of coordinates between start and end point.
@@ -70,7 +70,7 @@ class AlternativePath:
 
 @dataclass(frozen=True)
 class RouteResponse:
-    """A route between two points
+    """A route between two points.
 
     Attributes:
         id: The id of the route response.

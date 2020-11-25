@@ -88,14 +88,15 @@ class DistancesAPI:
 
         return tuple(loadingconditions)
 
-    def get_point_to_point_distance(self,
-                                    vessel_class_id: int,
-                                    loading_condition_id: int,
-                                    latitude_from: Decimal,
-                                    latitude_to: Decimal,
-                                    longitude_from: Decimal,
-                                    longitude_to: Decimal
-                                    ) -> Optional[Decimal]:
+    def get_point_to_point_distance(
+        self,
+        vessel_class_id: int,
+        loading_condition_id: int,
+        latitude_from: Decimal,
+        latitude_to: Decimal,
+        longitude_from: Decimal,
+        longitude_to: Decimal
+    ) -> Optional[Decimal]:
         """Retrieves the distance from one point to another.
 
         Args:
@@ -115,7 +116,6 @@ class DistancesAPI:
         Returns:
             A Decimal representing the distance in NM between two points.
         """
-
         endpoint = "/distances-api/api/v1/Distance/PointToPoint"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
@@ -132,13 +132,14 @@ class DistancesAPI:
 
         return as_decimal(response.json())
 
-    def get_point_to_port_distance(self,
-                                   vessel_class_id: int,
-                                   loading_condition_id: int,
-                                   latitude: Decimal,
-                                   longitude: Decimal,
-                                   port_id: int
-                                   ) -> Optional[Decimal]:
+    def get_point_to_port_distance(
+        self,
+        vessel_class_id: int,
+        loading_condition_id: int,
+        latitude: Decimal,
+        longitude: Decimal,
+        port_id: int
+    ) -> Optional[Decimal]:
         """Retrieves the distance from one point to another.
 
         Args:
@@ -157,7 +158,6 @@ class DistancesAPI:
             A Decimal representing the distance in NM between a point
                 and a port.
         """
-
         endpoint = "/distances-api/api/v1/Distance/PointToPort"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
@@ -173,12 +173,13 @@ class DistancesAPI:
 
         return as_decimal(response.json())
 
-    def get_port_to_port_distance(self,
-                                  vessel_class_id: int,
-                                  loading_condition_id: int,
-                                  port_id_from: int,
-                                  port_id_to: int
-                                  ) -> Optional[Decimal]:
+    def get_port_to_port_distance(
+        self,
+        vessel_class_id: int,
+        loading_condition_id: int,
+        port_id_from: int,
+        port_id_to: int
+    ) -> Optional[Decimal]:
         """Retrieves the distance from one point to another.
 
         Args:
@@ -194,7 +195,6 @@ class DistancesAPI:
         Returns:
             A Decimal representing the distance in NM between two ports.
         """
-
         endpoint = "/distances-api/api/v1/Distance/PortToPort"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
@@ -209,14 +209,15 @@ class DistancesAPI:
 
         return as_decimal(response.json())
 
-    def get_point_to_point_route(self,
-                                 vessel_class_id: int,
-                                 loading_condition_id: int,
-                                 latitude_from: Decimal,
-                                 latitude_to: Decimal,
-                                 longitude_from: Decimal,
-                                 longitude_to: Decimal
-                                 ) -> Optional[RouteResponse]:
+    def get_point_to_point_route(
+        self,
+        vessel_class_id: int,
+        loading_condition_id: int,
+        latitude_from: Decimal,
+        latitude_to: Decimal,
+        longitude_from: Decimal,
+        longitude_to: Decimal
+    ) -> Optional[RouteResponse]:
         """Retrieves the route from one point to another.
 
         Args:
@@ -236,7 +237,6 @@ class DistancesAPI:
         Returns:
             A Route between two points with distance in NM.
         """
-
         endpoint = "/distances-api/api/v1/Distance/PointToPoint/Route"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
@@ -253,13 +253,14 @@ class DistancesAPI:
 
         return _distances_json.parse_route_response(response.json())
 
-    def get_point_to_port_route(self,
-                                vessel_class_id: int,
-                                loading_condition_id: int,
-                                latitude: Decimal,
-                                longitude: Decimal,
-                                port_id: int
-                                ) -> Optional[RouteResponse]:
+    def get_point_to_port_route(
+        self,
+        vessel_class_id: int,
+        loading_condition_id: int,
+        latitude: Decimal,
+        longitude: Decimal,
+        port_id: int
+    ) -> Optional[RouteResponse]:
         """Retrieves the route from one point to another.
 
         Args:
@@ -277,7 +278,6 @@ class DistancesAPI:
         Returns:
             A Route between a point and a port with distance in NM.
         """
-
         endpoint = "/distances-api/api/v1/Distance/PointToPort/Route"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
@@ -293,12 +293,13 @@ class DistancesAPI:
 
         return _distances_json.parse_route_response(response.json())
 
-    def get_port_to_port_route(self,
-                               vessel_class_id: int,
-                               loading_condition_id: int,
-                               port_id_from: int,
-                               port_id_to: int
-                               ) -> Optional[RouteResponse]:
+    def get_port_to_port_route(
+        self,
+        vessel_class_id: int,
+        loading_condition_id: int,
+        port_id_from: int,
+        port_id_to: int
+    ) -> Optional[RouteResponse]:
         """Retrieves the route from one point to another.
 
         Args:
@@ -314,7 +315,6 @@ class DistancesAPI:
         Returns:
             A Route between two ports with distance in NM.
         """
-
         endpoint = "/distances-api/api/v1/Distance/PortToPort/Route"
         endpoint += f"?vesselclass={vessel_class_id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
