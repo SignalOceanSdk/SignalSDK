@@ -22,7 +22,8 @@ class PortExpensesAPI:
         self.__connection = connection or Connection()
 
     def get_port_expenses(
-        self, imo: int, port_id: int, group_id: int = 1) -> Optional[PortExpenses]:
+        self, imo: int, port_id: int, group_id: int = 1
+    ) -> Optional[PortExpenses]:
         """Retrieves port expenses.
 
         Args:
@@ -45,7 +46,8 @@ class PortExpensesAPI:
         )
         response.raise_for_status()
         response_json = response.json()
-        return_object = parse_port_expenses(response_json) if response_json else None
+        return_object = parse_port_expenses(response_json) \
+            if response_json else None
 
         return return_object
 
@@ -95,6 +97,7 @@ class PortExpensesAPI:
         )
         response.raise_for_status()
         response_json = {"TotalCost": response.json()}
-        return_object = parse_canal_expenses(response_json) if response_json else None
+        return_object = parse_canal_expenses(response_json) \
+            if response_json else None
 
         return return_object
