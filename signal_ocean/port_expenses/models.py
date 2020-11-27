@@ -6,8 +6,7 @@ from typing import List
 
 @dataclass(frozen=True)
 class PortExpenses:
-    """The fees that shipping operators and their customers pay to port
-    authorities for the use of the port's facilities and services.
+    """The fees for port's facilities and services.
 
     Attributes:
         port_id
@@ -62,8 +61,7 @@ class PortExpenses:
 
 @dataclass(frozen=True)
 class CanalExpenses:
-    """The fees that shipping operators and their customers pay to canal
-    authorities for the use of the canal's facilities and services.
+    """The fees for canal's facilities and services.
 
     Attributes:
         total_cost: The total cost for the use of the canal
