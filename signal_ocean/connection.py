@@ -1,5 +1,6 @@
 # noqa: D100
 
+import json
 import os
 from typing import Optional, Dict
 from urllib.parse import urljoin
@@ -60,5 +61,16 @@ class Connection:
         return requests.get(
             url,
             params=query_string,  # type: ignore
+            headers=self.__get_headers(),
+        )
+
+    def _make_post_request(
+        self, relative_url: str, query_string: Optional[QueryString] = None
+    ) -> requests.Response:
+        url = urljoin(self.__get_api_host(), relative_url)
+
+        return requests.post(
+            url,
+            data=json.dumps(query_string),
             headers=self.__get_headers(),
         )
