@@ -22,7 +22,7 @@ class PortExpensesAPI:
         self.__connection = connection or Connection()
 
     def get_port_expenses(
-        self, imo: int, port_id: int, group_id: int = 1) -> PortExpenses:
+        self, imo: int, port_id: int, group_id: int = 1) -> Optional[PortExpenses]:
         """Retrieves port expenses.
 
         Args:
@@ -54,7 +54,7 @@ class PortExpensesAPI:
             discharge_port_id: int, ballast_speed: float, laden_speed: float,
             operation_status: int, formula_calculation_date: datetime,
             open_date: datetime, load_sail_date: datetime,
-            cargo_type: Optional[str] = None) -> CanalExpenses:
+            cargo_type: Optional[str] = None) -> Optional[CanalExpenses]:
         """Retrieves canal expenses.
 
         Args:
