@@ -15,6 +15,7 @@ Classes:
 from .connection import Connection
 from .port import Port
 from .port_api import PortAPI
+from .port_expenses import PortExpensesAPI
 from .port_filter import PortFilter
 from .vessel_class import VesselClass
 from .vessel_class_api import VesselClassAPI
@@ -24,6 +25,7 @@ __all__ = [
     "Connection",
     "Port",
     "PortAPI",
+    "PortExpensesAPI",
     "PortFilter",
     "VesselClass",
     "VesselClassAPI",
