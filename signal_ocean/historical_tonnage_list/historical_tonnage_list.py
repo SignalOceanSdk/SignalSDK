@@ -48,7 +48,6 @@ class HistoricalTonnageList(Sequence[TonnageList]):
 
     def to_data_frame(self) -> pd.DataFrame:
         """Converts the Historical Tonnage List to a pandas data frame."""
-
         index_tuples = []
         data = []
         for tonnage_list in self.__tonnage_lists:
