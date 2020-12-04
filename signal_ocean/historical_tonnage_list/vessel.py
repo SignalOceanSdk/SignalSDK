@@ -10,9 +10,11 @@ from .location_taxonomy import LocationTaxonomy
 
 @dataclass(frozen=True, eq=False)
 class Vessel:
-    """Represents a vessel in a historical tonnage list.
+    """Class to hold information regarding a vessel that participates in a tonnage list.
 
-    Contains both static and point-in-time vessel data.
+    Contains both static vessel and point-in-time vessel data. All point in time data
+    are annotated with the name _point_in_time when converted to data_frame, see column
+    class for details
 
     Attributes:
         imo: The vessel's IMO number.
@@ -23,28 +25,41 @@ class Vessel:
         deadweight: The vessel's deadweight.
         length_overall: The vessel's length overall.
         breadth_extreme: The vessel's breadth extreme.
-        market_deployment: Market deployment of the vessel. See the
-            MarketDeployment class for available values.
-        push_type: Push type of the vessel. See the PushType class for
-            available values.
-        open_port: The vessel's open port name.
-        open_date: The vessel's open date.
-        operational_status: Operational status of the vessel. See the
-            OperationalStatus class for available values.
+        market_deployment: Market deployment of the vessel.
+             Point in time property.
+             See the MarketDeployment class for available values.
+        push_type: Push type of the vessel.
+            Point in time property.
+            See the PushType class for available values.
+        open_port: The vessel's open port name. 
+            Point in time property.
+        open_date: The vessel's open date. 
+            Point in time property.
+        operational_status: Operational status of the vessel.
+            Point in time property. 
+            See the OperationalStatus class for available values.
         commercial_operator: The vessel's commercial operator.
-        commercial_status: Commercial status of the vessel. See the
-            CommercialStatus class for available values.
-        eta: Estimated time of arrival.
-        latest_ais: Timestamp of the vessel's latest AIS information.
-        subclass: The vessel's subclass. See the VesselSubclass class for
-            available values.
-        willing_to_switch_subclass: Is the vessel willing to switch its
-            subclass.
-        open_prediction_accuracy: How accurate is the open prediction.
+            Point in time property. 
+        commercial_status: Commercial status of the vessel.  
+            Point in time property.
+            See the CommercialStatus class for available values.
+        eta: Estimated time of arrival.  
+            Point in time property.
+        latest_ais: Timestamp of the vessel's latest AIS information. 
+            Point in time property.
+        subclass: The vessel's subclass. 
+            See the VesselSubclass class for available values.  
+        willing_to_switch_subclass: Is the vessel willing to switch its subclass.
+        open_prediction_accuracy: How accurate is the open prediction. 
+            Point in time property. i.e: if a source is specifying the port then prediction is given at port level.
             See the LocationTaxonomy class for available values.
-        open_areas: A hierarchical collection of areas the vessel opens at.
-        availability_port_type: Availability port type.
-        availability_date_type: Availability date type.
+        open_areas: A hierarchical collection of areas the vessel opens at used to filtering. 
+            Point in time property. 
+            i.e: if a vessel opens in Rotterdam you get as open areas "openAreas":[{"id":24758,"label":"Continent","taxonomy":4},{"id":25016,"label":"UK Continent","taxonomy":5},{"id":25025,"label":"Mediterranean / UK Continent","taxonomy":6},{"id":25028,"label":"West","taxonomy":7},{"id":173,"label":"Netherlands","taxonomy":3}]       
+        availability_port_type: If it says source it means that there is hard evidence for the specific prediction of Port, if it says prediction it means the system is predicting based on the algorithm.
+            Point in time property.
+        availability_date_type: If it says source it means that there is hard evidence for the specific prediction of the Open date , if it says prediction it means the system is predicting based on the algorithm.
+            Point in time property.
     """
 
     imo: int

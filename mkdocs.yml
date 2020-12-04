@@ -11,14 +11,25 @@ theme:
     - navigation.instant
 nav:
     - 'index.md'
-    - 'tutorials.md'
-    - APIs:
+    - APIs Documentation:
       - 'historical_tonnage_list.md'
-      - 'vessels.md'
       - 'voyages.md'
-      - 'valuations.md'
+      - 'vessels.md'
       - 'companies.md'
-      - 'distances.md'
+    - Tutorials:
+      - Historical Tonnage List:
+        - 'examples\jupyter\HTL API\Analysis_over_all_vessels.ipynb'
+        - 'examples\jupyter\HTL API\QuickStart_HTL_API.ipynb'
+        - 'examples\jupyter\HTL API\Historical Tonnage List API.ipynb'
+        - 'examples\jupyter\HTL API\Vessel_OnSubs_PerDay.ipynb'
+        - 'examples\jupyter\HTL API\Vessels open at Fos over time.ipynb'
+      - Voyages:
+        - 'examples\jupyter\VoyagesAPI\VoyagesAPI-UseCases.ipynb'
+        - 'examples\jupyter\VoyagesAPI\VoyagesAPI.ipynb'
+      - Companies:
+        - 'examples\jupyter\CompaniesAPI\CompaniesAPI.ipynb'
+      - Vessels:        
+        - 'examples\jupyter\VesselsAPI\VesselsAPI.ipynb'
 extra_css:
   - css/site.css
 markdown_extensions:
@@ -31,4 +42,8 @@ markdown_extensions:
   - pymdownx.superfences
   - toc:
       permalink: true
+plugins:
+  - mkdocs-jupyter
+  - search
+  - mkdocstrings
   

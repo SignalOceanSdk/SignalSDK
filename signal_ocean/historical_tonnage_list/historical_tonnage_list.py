@@ -10,10 +10,11 @@ from .index_level import IndexLevel
 
 
 class HistoricalTonnageList(Sequence[TonnageList]):
-    """Represents a Historical Tonnage List.
+    """The class that represents a Historical Tonnage List.
 
-    A Historical Tonnage List contains a Tonnage List for every day between a
-    start and end date specified when querying for the Historical Tonnage List.
+    A Historical Tonnage List consists from an collection of Tonnage Lists
+    one for every day between the start and end date specified 
+    when querying the Historica Tonnage List API.
     """
 
     def __init__(self, tonnage_lists: Iterable[TonnageList]):
@@ -46,7 +47,7 @@ class HistoricalTonnageList(Sequence[TonnageList]):
         return f"{class_name}(tonnage_lists={self.__tonnage_lists!r})"
 
     def to_data_frame(self) -> pd.DataFrame:
-        """Converts the Historical Tonnage List to a pandas data frame."""
+        """Converts the Historical Tonnage List class to a pandas data frame."""
         index_tuples = []
         data = []
         for tonnage_list in self.__tonnage_lists:
