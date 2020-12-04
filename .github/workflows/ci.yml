@@ -18,5 +18,6 @@ jobs:
           pip install mkdocstrings      
           pip install mkdocs-jupyter
           pip install requests
+          pip install signal-ocean
       - name: Deploy docs
         run: mkdocs gh-deploy --force
