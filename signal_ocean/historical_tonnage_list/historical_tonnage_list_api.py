@@ -11,8 +11,7 @@ from . import _historical_tonnage_list_json
 
 
 class HistoricalTonnageListAPI:
-    """Handles communications with  Signal's Historical Tonnage List API.
-    """
+    """Handles communications with  Signal's Historical Tonnage List API."""
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes HistoricalTonnageListAPI.
