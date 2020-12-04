@@ -15,7 +15,6 @@ nav:
       - 'historical_tonnage_list.md'
       - 'voyages.md'
       - 'vessels.md'
-      - 'companies.md'
     - Tutorials:
       - Historical Tonnage List:
         - 'examples\jupyter\HTL API\Analysis_over_all_vessels.ipynb'
