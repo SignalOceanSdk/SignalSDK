@@ -1,0 +1,23 @@
+name: ci
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Install dependencies
+        run: |
+          pip install mkdocs            
+          pip install mkdocs-material   
+          pip install mkdocstrings      
+          pip install mkdocs-jupyter
+          pip install requests
+          pip install signal-ocean
+      - name: Deploy docs
+        run: mkdocs gh-deploy --force

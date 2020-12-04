@@ -1,0 +1,49 @@
+site_name: Signal SDK
+repo_url: https://github.com/SignalOceanSdk/SignalSDK
+edit_uri: ""
+theme:
+  name: material
+  favicon: img/favicondark.ico
+  logo: img/favicondark.ico
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+nav:
+    - 'index.md'
+    - APIs Documentation:
+      - 'historical_tonnage_list.md'
+      - 'voyages.md'
+      - 'vessels.md'
+      - 'companies.md'
+    - Tutorials:
+      - Historical Tonnage List:
+        - 'examples/jupyter/HTL API/Analysis_over_all_vessels.ipynb'
+        - 'examples/jupyter/HTL API/QuickStart_HTL_API.ipynb'
+        - 'examples/jupyter/HTL API/Historical Tonnage List API.ipynb'
+        - 'examples/jupyter/HTL API/Vessel_OnSubs_PerDay.ipynb'
+        - 'examples/jupyter/HTL API/Vessels open at Fos over time.ipynb'
+      - Voyages:
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
+      - Companies:
+        - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
+      - Vessels:        
+        - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
+extra_css:
+  - css/site.css
+markdown_extensions:
+  - abbr
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+plugins:
+  - mkdocs-jupyter
+  - search
+  - mkdocstrings
+  
