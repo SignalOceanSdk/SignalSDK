@@ -13,7 +13,7 @@ class HistoricalTonnageList(Sequence[TonnageList]):
     """The class that represents a Historical Tonnage List.
 
     A Historical Tonnage List consists from an collection of Tonnage Lists
-    one for every day between the start and end date specified 
+    one for every day between the start and end date specified
     when querying the Historica Tonnage List API.
     """
 
@@ -47,7 +47,7 @@ class HistoricalTonnageList(Sequence[TonnageList]):
         return f"{class_name}(tonnage_lists={self.__tonnage_lists!r})"
 
     def to_data_frame(self) -> pd.DataFrame:
-        """Converts the Historical Tonnage List class to 
+        """Converts the Historical Tonnage List class to
             a pandas data frame."""
         index_tuples = []
         data = []

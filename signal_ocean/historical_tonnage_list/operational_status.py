@@ -15,7 +15,7 @@ class OperationalStatus(metaclass=IterableConstants):
     '''
     WAITING_TO_LOAD = "Waiting to Load"
     '''
-    Vessel is waiting to load 
+    Vessel is waiting to load
     '''
     LOADING = "Loading"
     '''
@@ -35,9 +35,9 @@ class OperationalStatus(metaclass=IterableConstants):
     '''
     ACTIVE_STORAGE = "Active Storage"
     '''
-    Vessel is in active storage. 
-    This means it acts as storage for a 
-    short term (compared to storage vessels). 
+    Vessel is in active storage.
+    This means it acts as storage for a
+    short term (compared to storage vessels).
     '''
     BALLAST_UNFIXED = "Ballast Unfixed"
     '''

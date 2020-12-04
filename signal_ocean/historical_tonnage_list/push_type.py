@@ -11,10 +11,10 @@ class PushType(metaclass=IterableConstants):
     '''
     PUSHED_POSS = 'Pushed POSS'
     '''
-    Actively pushed in the market with notification Poss (Possibly) 
-    meaning that this is a broker projection 
+    Actively pushed in the market with notification Poss (Possibly)
+    meaning that this is a broker projection
     '''
     PUSHED = 'Pushed'
     '''
-    Actively pushed in the market through Tonnage lists or Positions lists 
+    Actively pushed in the market through Tonnage lists or Positions lists
     '''

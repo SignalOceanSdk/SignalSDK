@@ -13,13 +13,13 @@ class VesselSubclass(metaclass=IterableConstants):
     '''
     DIRTY = 'Dirty'
     '''
-    Refers to all the vessels that they classify 
+    Refers to all the vessels that they classify
         to the dirty types of oil cargo.
     Applicable only for Tankers.
     '''
     CLEAN = 'Clean'
     '''
-    Refers to all the vessels that they classify 
+    Refers to all the vessels that they classify
         to the clean types of oil cargo.
     Applicable only for Tankers.
     '''

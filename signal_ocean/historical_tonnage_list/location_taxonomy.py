@@ -9,15 +9,15 @@ class LocationTaxonomy(metaclass=IterableConstants):
     PORT = 'Port'
     """
     Location Taxonomy Port.
-    """  
+    """
     COUNTRY = 'Country'
     """
     Location Taxonomy Country.
-    """  
+    """
     NARROW_AREA = 'Narrow Area'
     """
     Location Taxonomy Narrow Area.
-    """ 
+    """
     WIDE_AREA = 'Wide Area'
     """
     Location Taxonomy Wide Area.

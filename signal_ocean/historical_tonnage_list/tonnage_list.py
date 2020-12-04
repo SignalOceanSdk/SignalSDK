@@ -13,7 +13,7 @@ class TonnageList:
 
     Attributes:
         date: The date and time at which the tonnage list was captured.
-        vessels: Vessels present in the tonnage list at the point in time 
+        vessels: Vessels present in the tonnage list at the point in time
         and their availability information. for more details see Vessel class.
     """
     date: datetime
