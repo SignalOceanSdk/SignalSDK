@@ -2,7 +2,7 @@ name: ci
 on:
   push:
     branches:
-      - feature/PT-3741-GitHub-docs
+      - master
 jobs:
   deploy:
     runs-on: ubuntu-latest
