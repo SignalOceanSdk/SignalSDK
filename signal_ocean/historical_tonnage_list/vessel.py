@@ -10,8 +10,7 @@ from .location_taxonomy import LocationTaxonomy
 
 @dataclass(frozen=True, eq=False)
 class Vessel:
-    """Class to hold information regarding a vessel
-        that participates in a tonnage list.
+    """Holds information for a vessel that participates in a tonnage list.
 
     Contains both static vessel and point-in-time vessel data.
     All point in time data are annotated with the name _point_in_time
