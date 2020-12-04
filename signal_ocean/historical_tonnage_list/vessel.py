@@ -10,11 +10,12 @@ from .location_taxonomy import LocationTaxonomy
 
 @dataclass(frozen=True, eq=False)
 class Vessel:
-    """Class to hold information regarding a vessel that participates in a tonnage list.
+    """Class to hold information regarding a vessel 
+        that participates in a tonnage list.
 
-    Contains both static vessel and point-in-time vessel data. All point in time data
-    are annotated with the name _point_in_time when converted to data_frame, see column
-    class for details
+    Contains both static vessel and point-in-time vessel data.
+    All point in time data are annotated with the name _point_in_time 
+    when converted to data_frame, see column class for details
 
     Attributes:
         imo: The vessel's IMO number.
@@ -49,16 +50,28 @@ class Vessel:
             Point in time property.
         subclass: The vessel's subclass. 
             See the VesselSubclass class for available values.  
-        willing_to_switch_subclass: Is the vessel willing to switch its subclass.
+        willing_to_switch_subclass: Is the vessel willing
+            to switch its subclass.
         open_prediction_accuracy: How accurate is the open prediction. 
-            Point in time property. i.e: if a source is specifying the port then prediction is given at port level.
+            Point in time property. i.e: if a source is specifying the port 
+            then prediction is given at port level.
             See the LocationTaxonomy class for available values.
-        open_areas: A hierarchical collection of areas the vessel opens at used to filtering. 
+        open_areas: A hierarchical collection of areas the vessel opens 
+            at used to filtering. 
             Point in time property. 
-            i.e: if a vessel opens in Rotterdam you get as open areas "openAreas":[{"id":24758,"label":"Continent","taxonomy":4},{"id":25016,"label":"UK Continent","taxonomy":5},{"id":25025,"label":"Mediterranean / UK Continent","taxonomy":6},{"id":25028,"label":"West","taxonomy":7},{"id":173,"label":"Netherlands","taxonomy":3}]       
-        availability_port_type: If it says source it means that there is hard evidence for the specific prediction of Port, if it says prediction it means the system is predicting based on the algorithm.
+            i.e: if a vessel opens in Rotterdam you get as open areas
+            "openAreas":[{"id":24758,"label":"Continent","taxonomy":4},
+            {"id":25016,"label":"UK Continent","taxonomy":5},
+            {"id":25025,"label":"Mediterranean / UK Continent","taxonomy":6},
+            {"id":25028,"label":"West","taxonomy":7},
+            {"id":173,"label":"Netherlands","taxonomy":3}]       
+        availability_port_type: If it says source it means that there is 
+            hard evidence for the specific prediction of Port, 
+            if it says prediction it means the system is predicting based on the algorithm.
             Point in time property.
-        availability_date_type: If it says source it means that there is hard evidence for the specific prediction of the Open date , if it says prediction it means the system is predicting based on the algorithm.
+        availability_date_type: If it says source it means that there is hard evidence for 
+            the specific prediction of the Open date,
+            if it says prediction it means the system is predicting based on the algorithm.
             Point in time property.
     """
 

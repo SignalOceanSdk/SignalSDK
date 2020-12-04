@@ -23,5 +23,6 @@ class CommercialStatus(metaclass=IterableConstants):
     """ 
     POTENTIALLY_FIXED = 'Poss Fixed'
     """
-    Systems assumes the vessel is fixed for her new voyage based on AIS information
+    Systems assumes the vessel is fixed for her new voyage based 
+        on AIS information
     """ 

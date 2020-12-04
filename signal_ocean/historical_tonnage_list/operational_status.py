@@ -36,7 +36,8 @@ class OperationalStatus(metaclass=IterableConstants):
     ACTIVE_STORAGE = "Active Storage"
     '''
     Vessel is in active storage. 
-    This means it acts as storage for a short term (compared to storage vessels). 
+    This means it acts as storage for a 
+    short term (compared to storage vessels). 
     '''
     BALLAST_UNFIXED = "Ballast Unfixed"
     '''

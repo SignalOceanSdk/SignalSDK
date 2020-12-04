@@ -9,7 +9,8 @@ Classes:
     
     Vessel: A vessel contained in a TonnageList.
     
-    VesselFilter: Used for filtering vessels in Historical Tonnage List queries.
+    VesselFilter: Used for filtering vessels in Historical Tonnage List 
+        queries.
     
     PushType: Contains constants for available push types.
     

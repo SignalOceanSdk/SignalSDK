@@ -48,8 +48,9 @@ class HistoricalTonnageListAPI:
                 after the end date.
             start_date: The date of the earliest tonnage list in the response.
             end_date: The date of the latest tonnage list in the response.
-            time: Specifies the UTC time of day for which the state of the tonnage
-                lists will be retrieved it can get the values 00, 06, 12, 18.
+            time: Specifies the UTC time of day for which the state of
+                the tonnage lists will be retrieved.
+                It can get the values 00, 06, 12, 18.
             vessel_filter: A filter defining which vessels should be included
                 in the response see Vessel Filter class for more details.
 
