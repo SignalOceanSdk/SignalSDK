@@ -12,9 +12,10 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
-      - run: pip install mkdocs            
-      - run: pip install mkdocs-material   
-      - run: pip install mkdocstrings      
-      - run: pip install mkdocs-jupyter
+        run: |
+          pip install mkdocs            
+          pip install mkdocs-material   
+          pip install mkdocstrings      
+          pip install mkdocs-jupyter
       - name: Deploy docs
-      - run: mkdocs gh-deploy --force
+        run: mkdocs gh-deploy --force
