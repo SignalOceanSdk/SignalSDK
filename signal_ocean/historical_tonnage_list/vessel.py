@@ -67,11 +67,14 @@ class Vessel:
             {"id":173,"label":"Netherlands","taxonomy":3}]       
         availability_port_type: If it says source it means that there is 
             hard evidence for the specific prediction of Port, 
-            if it says prediction it means the system is predicting based on the algorithm.
+            if it says prediction it means the system is predicting 
+            based on the algorithm.
             Point in time property.
-        availability_date_type: If it says source it means that there is hard evidence for 
+        availability_date_type: If it says source it means that there is 
+            hard evidence for 
             the specific prediction of the Open date,
-            if it says prediction it means the system is predicting based on the algorithm.
+            if it says prediction it means the system is 
+            predicting based on the algorithm.
             Point in time property.
     """
 
