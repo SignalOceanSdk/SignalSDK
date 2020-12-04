@@ -15,16 +15,6 @@ nav:
       - 'historical_tonnage_list.md'
       - 'voyages.md'
       - 'vessels.md'
-    - Tutorials:
-      - Historical Tonnage List:
-        - 'examples\jupyter\HTL API\Analysis_over_all_vessels.ipynb'
-        - 'examples\jupyter\HTL API\QuickStart_HTL_API.ipynb'
-        - 'examples\jupyter\HTL API\Historical Tonnage List API.ipynb'
-        - 'examples\jupyter\HTL API\Vessel_OnSubs_PerDay.ipynb'
-        - 'examples\jupyter\HTL API\Vessels open at Fos over time.ipynb'
-      - Voyages:
-        - 'examples\jupyter\VoyagesAPI\VoyagesAPI-UseCases.ipynb'
-        - 'examples\jupyter\VoyagesAPI\VoyagesAPI.ipynb'
 extra_css:
   - css/site.css
 markdown_extensions:
