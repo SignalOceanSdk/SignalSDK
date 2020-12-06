@@ -3,6 +3,15 @@ from signal_ocean import Connection
 from typing import Tuple
 import requests
 from signal_ocean.distances import DistancesAPI, RouteResponse, AlternativePath, PointsOnRoute, Point
+from signal_ocean.distances import Port, VesselClass, LoadingCondition
+
+
+def create_port(port_id=1, name='port name') -> Port:
+    return Port(port_id, name)
+
+
+def create_vessel_class(vessel_id=1, name='vessel class name') -> VesselClass:
+    return VesselClass(vessel_id, name)
 
 
 def create_distances_api(response: requests.Response) -> Tuple[DistancesAPI, Connection]:
@@ -16,9 +25,10 @@ def test_requests_point_to_point_with_params():
     response = MagicMock()
 
     api, connection = create_distances_api(response)
+    vessel_class = create_vessel_class(86)
 
-    api.get_point_to_point_distance(vessel_class_id=86,
-        loading_condition_id=1,
+    api.get_point_to_point_distance(vessel_class=vessel_class,
+        loading_condition_id=LoadingCondition.LADEN,
         latitude_from=42.5,
         latitude_to=32.5,
         longitude_from=55.6,
@@ -38,9 +48,10 @@ def test_requests_point_to_point_route_with_params():
     response = MagicMock()
 
     api, connection = create_distances_api(response)
+    vessel_class = create_vessel_class(86)
 
-    api.get_point_to_point_route(vessel_class_id=86,
-        loading_condition_id=1,
+    api.get_point_to_point_route(vessel_class=vessel_class,
+        loading_condition_id= LoadingCondition.LADEN,
         latitude_from=42.5,
         latitude_to=32.5,
         longitude_from=55.6,
@@ -60,12 +71,14 @@ def test_requests_point_to_port_with_params():
     response = MagicMock()
 
     api, connection = create_distances_api(response)
+    vessel_class = create_vessel_class(86)
+    port_to = create_port(3812)
 
-    api.get_point_to_port_distance(vessel_class_id=86,
-        loading_condition_id=1,
+    api.get_point_to_port_distance(vessel_class=vessel_class,
+        loading_condition_id=LoadingCondition.LADEN,
         latitude=42.5,
         longitude=32.5,
-        port_id=3812)
+        port=port_to)
 
     excected_endpoint = "/distances-api/api/v1/Distance/PointToPort"
     excected_endpoint += f"?vesselclass={86}"
@@ -80,12 +93,14 @@ def test_requests_point_to_port_route_with_params():
     response = MagicMock()
 
     api, connection = create_distances_api(response)
+    vessel_class = create_vessel_class(86)
+    port_to = create_port(3812)
 
-    api.get_point_to_port_route(vessel_class_id=86,
-        loading_condition_id=1,
+    api.get_point_to_port_route(vessel_class=vessel_class,
+        loading_condition_id=LoadingCondition.LADEN,
         latitude=42.5,
         longitude=32.5,
-        port_id=3812)
+        port=port_to)
 
     excected_endpoint = "/distances-api/api/v1/Distance/PointToPort/Route"
     excected_endpoint += f"?vesselclass={86}"
@@ -100,11 +115,14 @@ def test_requests_port_to_port_with_params():
     response = MagicMock()
 
     api, connection = create_distances_api(response)
+    vessel_class = create_vessel_class(86)
+    port_from = create_port(3763)
+    port_to = create_port(3812)
 
-    api.get_port_to_port_distance(vessel_class_id=86,
-        loading_condition_id=1,
-        port_id_from=3763,
-        port_id_to=3812)
+    api.get_port_to_port_distance(vessel_class=vessel_class,
+        loading_condition_id=LoadingCondition.LADEN,
+        port_from=port_from,
+        port_to=port_to)
 
     excected_endpoint = "/distances-api/api/v1/Distance/PortToPort"
     excected_endpoint += f"?vesselclass={86}"
@@ -119,11 +137,15 @@ def test_requests_port_to_port_route_with_params():
     response = MagicMock()
 
     api, connection = create_distances_api(response)
+    vessel_class = create_vessel_class(86)
+    port_from = create_port(3763)
+    port_to = create_port(3812)
 
-    api.get_port_to_port_route(vessel_class_id=86,
-        loading_condition_id=1,
-        port_id_from=3763,
-        port_id_to=3812)
+
+    api.get_port_to_port_route(vessel_class=vessel_class,
+        loading_condition_id=LoadingCondition.LADEN,
+        port_from=port_from,
+        port_to=port_to)
 
     excected_endpoint = "/distances-api/api/v1/Distance/PortToPort/Route"
     excected_endpoint += f"?vesselclass={86}"

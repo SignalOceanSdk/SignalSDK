@@ -90,7 +90,7 @@ class DistancesAPI:
 
     def get_point_to_point_distance(
         self,
-        vessel_class_id: int,
+        vessel_class: VesselClass,
         loading_condition_id: int,
         latitude_from: Decimal,
         latitude_to: Decimal,
@@ -100,10 +100,11 @@ class DistancesAPI:
         """Retrieves the distance from one point to another.
 
         Args:
-            vessel_class_id: Vessel class for which the distance will be
+            vessel_class: Vessel class for which the distance will be
                 calculated.
-            loading_condition_id: Loading condition for which the distance
-                will be calculated.
+            loading_condition_id: Loading condition of the vessels
+                for which the distance will be calculated.
+                Options available: Laden and Ballast.
             latitude_from: The starting point latitude for the distance
                 route calculation.
             latitude_to: The ending point latitude for the distance route
@@ -117,7 +118,7 @@ class DistancesAPI:
             A Decimal representing the distance in NM between two points.
         """
         endpoint = "/distances-api/api/v1/Distance/PointToPoint"
-        endpoint += f"?vesselclass={vessel_class_id}"
+        endpoint += f"?vesselclass={vessel_class.id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitudefrom={latitude_from}"
         endpoint += f"&latitudeto={latitude_to}"
@@ -134,24 +135,25 @@ class DistancesAPI:
 
     def get_point_to_port_distance(
         self,
-        vessel_class_id: int,
+        vessel_class: VesselClass,
         loading_condition_id: int,
         latitude: Decimal,
         longitude: Decimal,
-        port_id: int
+        port: Port
     ) -> Optional[Decimal]:
         """Retrieves the distance from one point to another.
 
         Args:
-            vessel_class_id: Vessel class for which the distance will be
+            vessel_class: Vessel class for which the distance will be
                 calculated.
-            loading_condition_id: Loading condition for which the distance
-                will be calculated.
+            loading_condition_id: Loading condition of the vessels
+                for which the distance will be calculated.
+                Options available: Laden and Ballast.
             latitude: The starting point latitude for the distance
                 route calculation.
             longitude_from: The starting point longitude for the distance
                 route calculation.
-            port_id: The ending port for the distance
+            port: The target port for the distance
                 route calculation.
 
         Returns:
@@ -159,11 +161,11 @@ class DistancesAPI:
                 and a port.
         """
         endpoint = "/distances-api/api/v1/Distance/PointToPort"
-        endpoint += f"?vesselclass={vessel_class_id}"
+        endpoint += f"?vesselclass={vessel_class.id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitude={latitude}"
         endpoint += f"&longitude={longitude}"
-        endpoint += f"&portid={port_id}"
+        endpoint += f"&portid={port.id}"
 
         response = self.__connection._make_get_request(
             endpoint
@@ -175,31 +177,32 @@ class DistancesAPI:
 
     def get_port_to_port_distance(
         self,
-        vessel_class_id: int,
+        vessel_class: VesselClass,
         loading_condition_id: int,
-        port_id_from: int,
-        port_id_to: int
+        port_from: Port,
+        port_to: Port
     ) -> Optional[Decimal]:
         """Retrieves the distance from one point to another.
 
         Args:
-            vessel_class_id: Vessel class for which the distance will be
+            vessel_class: Vessel class for which the distance will be
                 calculated.
-            loading_condition_id: Loading condition for which the distance
-                will be calculated.
-            port_id_from: The starting port for the distance
+            loading_condition_id: Loading condition of the vessels
+                for which the distance will be calculated.
+                Options available: Laden and Ballast.
+            port_from: The starting port for the distance
                 route calculation.
-            port_id_to: The ending port for the distance
+            port_to: The ending port for the distance
                 route calculation.
 
         Returns:
             A Decimal representing the distance in NM between two ports.
         """
         endpoint = "/distances-api/api/v1/Distance/PortToPort"
-        endpoint += f"?vesselclass={vessel_class_id}"
+        endpoint += f"?vesselclass={vessel_class.id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
-        endpoint += f"&portIdFrom={port_id_from}"
-        endpoint += f"&portIdTo={port_id_to}"
+        endpoint += f"&portIdFrom={port_from.id}"
+        endpoint += f"&portIdTo={port_to.id}"
 
         response = self.__connection._make_get_request(
             endpoint
@@ -211,7 +214,7 @@ class DistancesAPI:
 
     def get_point_to_point_route(
         self,
-        vessel_class_id: int,
+        vessel_class: VesselClass,
         loading_condition_id: int,
         latitude_from: Decimal,
         latitude_to: Decimal,
@@ -221,10 +224,11 @@ class DistancesAPI:
         """Retrieves the route from one point to another.
 
         Args:
-            vessel_class_id: Vessel class for which the distance will be
+            vessel_class: Vessel class for which the distance will be
                 calculated.
-            loading_condition_id: Loading condition for which the distance
-                will be calculated.
+            loading_condition_id: Loading condition of the vessels
+                for which the distance will be calculated.
+                Options available: Laden and Ballast.
             latitude_from: The starting point latitude for the distance
                 route calculation.
             latitude_to: The ending point latitude for the distance route
@@ -238,7 +242,7 @@ class DistancesAPI:
             A Route between two points with distance in NM.
         """
         endpoint = "/distances-api/api/v1/Distance/PointToPoint/Route"
-        endpoint += f"?vesselclass={vessel_class_id}"
+        endpoint += f"?vesselclass={vessel_class.id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitudefrom={latitude_from}"
         endpoint += f"&latitudeto={latitude_to}"
@@ -255,35 +259,36 @@ class DistancesAPI:
 
     def get_point_to_port_route(
         self,
-        vessel_class_id: int,
+        vessel_class: VesselClass,
         loading_condition_id: int,
         latitude: Decimal,
         longitude: Decimal,
-        port_id: int
+        port: Port
     ) -> Optional[RouteResponse]:
         """Retrieves the route from one point to another.
 
         Args:
-            vessel_class_id: Vessel class for which the distance will be
+            vessel_class: Vessel class for which the distance will be
                 calculated.
-            loading_condition_id: Loading condition for which the distance
-                will be calculated.
+            loading_condition_id: Loading condition of the vessels
+                for which the distance will be calculated.
+                Options available: Laden and Ballast.
             latitude: The starting point latitude for the distance
                 route calculation.
             longitude_from: The starting point longitude for the distance
                 route calculation.
-            port_id: The ending port for the distance
+            port: The ending port for the distance
                 route calculation.
 
         Returns:
             A Route between a point and a port with distance in NM.
         """
         endpoint = "/distances-api/api/v1/Distance/PointToPort/Route"
-        endpoint += f"?vesselclass={vessel_class_id}"
+        endpoint += f"?vesselclass={vessel_class.id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
         endpoint += f"&latitude={latitude}"
         endpoint += f"&longitude={longitude}"
-        endpoint += f"&portid={port_id}"
+        endpoint += f"&portid={port.id}"
 
         response = self.__connection._make_get_request(
             endpoint
@@ -295,31 +300,32 @@ class DistancesAPI:
 
     def get_port_to_port_route(
         self,
-        vessel_class_id: int,
+        vessel_class: VesselClass,
         loading_condition_id: int,
-        port_id_from: int,
-        port_id_to: int
+        port_from: Port,
+        port_to: Port
     ) -> Optional[RouteResponse]:
         """Retrieves the route from one point to another.
 
         Args:
-            vessel_class_id: Vessel class for which the distance will be
+            vessel_class: Vessel class for which the distance will be
                 calculated.
-            loading_condition_id: Loading condition for which the distance
-                will be calculated.
-            port_id_from: The starting port for the distance
+            loading_condition_id: Loading condition of the vessels
+                for which the distance will be calculated.
+                Options available: Laden and Ballast.
+            port_from: The starting port for the distance
                 route calculation.
-            port_id_to: The ending port for the distance
+            port_to: The ending port for the distance
                 route calculation.
 
         Returns:
             A Route between two ports with distance in NM.
         """
         endpoint = "/distances-api/api/v1/Distance/PortToPort/Route"
-        endpoint += f"?vesselclass={vessel_class_id}"
+        endpoint += f"?vesselclass={vessel_class.id}"
         endpoint += f"&loadingcondition={loading_condition_id}"
-        endpoint += f"&portIdFrom={port_id_from}"
-        endpoint += f"&portIdTo={port_id_to}"
+        endpoint += f"&portIdFrom={port_from.id}"
+        endpoint += f"&portIdTo={port_to.id}"
 
         response = self.__connection._make_get_request(
             endpoint

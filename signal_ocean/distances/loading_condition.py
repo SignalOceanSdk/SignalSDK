@@ -1,15 +1,15 @@
 # noqa: D100
 
-from dataclasses import dataclass
+from .._internals import IterableConstants
 
 
-@dataclass(frozen=True, eq=False)
-class LoadingCondition:
-    """The states of a vessel carrying cargo.
-
-    Attributes:
-        id: The loading condition ID.
-        name: The loading condition name.
-    """
-    id: int
-    name: str
+class LoadingCondition(metaclass=IterableConstants):
+    """Contains constants for available loading conditions."""
+    LADEN = 1
+    '''
+    Vessel is loaded.
+    '''
+    BALLAST = 2
+    '''
+    Vessel is free of cargo
+    '''

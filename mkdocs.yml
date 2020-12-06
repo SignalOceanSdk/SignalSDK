@@ -16,6 +16,7 @@ nav:
       - 'voyages.md'
       - 'vessels.md'
       - 'companies.md'
+      - 'distances.md'
     - Tutorials:
       - Historical Tonnage List:
         - 'examples/jupyter/HTL API/Analysis_over_all_vessels.ipynb'
@@ -28,8 +29,10 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
       - Companies:
         - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
-      - Vessels:        
+      - Vessels:
         - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
+      - Distances:
+        - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
 extra_css:
   - css/site.css
 markdown_extensions:
@@ -46,4 +49,3 @@ plugins:
   - mkdocs-jupyter
   - search
   - mkdocstrings
-  
