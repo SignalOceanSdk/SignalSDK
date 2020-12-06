@@ -8,7 +8,6 @@ from .port import Port
 from .port_filter import PortFilter
 from .vessel_class import VesselClass
 from .vessel_class_filter import VesselClassFilter
-from .loading_condition import LoadingCondition
 from decimal import Decimal
 from . import _distances_json
 from .._internals import as_decimal
@@ -70,23 +69,6 @@ class DistancesAPI:
         port_filter = port_filter or PortFilter()
 
         return tuple(port_filter._apply(ports))
-
-    def get_loading_conditions(
-        self
-    ) -> Tuple[LoadingCondition, ...]:
-        """Retrieves available loading conditions.
-
-        Returns:
-            A tuple of available loading conditions.
-        """
-        response = self.__connection._make_get_request(
-            "distances-api/api/v1/LoadingConditions"
-        )
-        response.raise_for_status()
-
-        loadingconditions = (LoadingCondition(**p) for p in response.json())
-
-        return tuple(loadingconditions)
 
     def get_point_to_point_distance(
         self,
