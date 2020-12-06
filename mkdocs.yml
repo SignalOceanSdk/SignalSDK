@@ -33,6 +33,7 @@ nav:
         - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
       - Distances:
         - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
+        - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
 extra_css:
   - css/site.css
 markdown_extensions:
