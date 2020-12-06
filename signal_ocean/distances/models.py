@@ -85,7 +85,7 @@ class RouteResponse:
             considered.
         alternative_paths: List of alternative paths between the two points.
         is_empty: If the response is empty.
-        bbox:
+        bbox: The bounding box of the route.
     """
 
     id: int
