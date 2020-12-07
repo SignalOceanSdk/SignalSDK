@@ -11,7 +11,7 @@ from . import _historical_tonnage_list_json
 
 
 class HistoricalTonnageListAPI:
-    """Represents Signal's Historical Tonnage List API."""
+    """Handles communications with  Signal's Historical Tonnage List API."""
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes HistoricalTonnageListAPI.
@@ -42,15 +42,16 @@ class HistoricalTonnageListAPI:
 
         Args:
             loading_port: The loading port from which ETA will be calculated.
-            vessel_class: The class of vessels to return.
+            vessel_class: The vessel class to calculate the tonnage lists.
             laycan_end_in_days: The maximum ETA expressed as a number of days
                 after the end date.
             start_date: The date of the earliest tonnage list in the response.
             end_date: The date of the latest tonnage list in the response.
-            time: Specifies the time of day for which the state of the tonnage
-                lists will be retrieved.
+            time: Specifies the UTC time of day for which the state of
+                the tonnage lists will be retrieved.
+                It can get the values 00, 06, 12, 18.
             vessel_filter: A filter defining which vessels should be included
-                in the response.
+                in the response see Vessel Filter class for more details.
 
         Returns:
             Given a time-range, returns a Historical Tonnage List containing a
