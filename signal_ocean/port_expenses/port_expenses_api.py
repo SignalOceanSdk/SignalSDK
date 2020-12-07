@@ -1,7 +1,7 @@
 # noqa: D100
 
 from datetime import datetime
-from typing import Optional, List
+from typing import cast, Optional, List
 
 from .. import Connection
 from .._internals import QueryString
@@ -23,13 +23,16 @@ class PortExpensesAPI:
 
     def get_port_expenses(
         self, imo: int, port_id: int, group_id: int = 1,
-            vessel_type_id: int = None,
-            estimated_time_of_berth: datetime = None,
-            estimated_time_of_sail: datetime = None,
-            operation: int = None, italian_anchorage_dues: int = None,
-            cargo_type: str = None, operation_status: int = None,
-            utc_date: datetime = None, historical_tce: bool = None,
-            estimation_status: int = None
+            vessel_type_id: Optional[int] = None,
+            estimated_time_of_berth: Optional[datetime] = None,
+            estimated_time_of_sail: Optional[datetime] = None,
+            operation: Optional[int] = None,
+            italian_anchorage_dues: Optional[int] = None,
+            cargo_type: Optional[str] = None,
+            operation_status: Optional[int] = None,
+            utc_date: Optional[datetime] = None,
+            historical_tce: Optional[bool] = None,
+            estimation_status: Optional[int] = None
     ) -> Optional[PortExpenses]:
         """Retrieves port expenses.
 
@@ -222,8 +225,8 @@ class PortExpensesAPI:
         return return_object
 
     def get_required_formula_parameters(
-        self, port_id: int, vessel_type_id: int = None,
-            calculation_date: datetime = None
+        self, port_id: int, vessel_type_id: Optional[int] = None,
+            calculation_date: Optional[datetime] = None
     ) -> List[str]:
         """Retrieves required formula parameters.
 
@@ -250,4 +253,4 @@ class PortExpensesAPI:
         response.raise_for_status()
         response_json = response.json()
 
-        return response_json
+        return cast(List[str], response_json)
