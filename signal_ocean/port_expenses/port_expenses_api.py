@@ -1,7 +1,7 @@
 # noqa: D100
 
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 from .. import Connection
 from .._internals import QueryString
@@ -22,7 +22,14 @@ class PortExpensesAPI:
         self.__connection = connection or Connection()
 
     def get_port_expenses(
-        self, imo: int, port_id: int, group_id: int = 1
+        self, imo: int, port_id: int, group_id: int = 1,
+            vessel_type_id: int = None,
+            estimated_time_of_berth: datetime = None,
+            estimated_time_of_sail: datetime = None,
+            operation: int = None, italian_anchorage_dues: int = None,
+            cargo_type: str = None, operation_status: int = None,
+            utc_date: datetime = None, historical_tce: bool = None,
+            estimation_status: int = None
     ) -> Optional[PortExpenses]:
         """Retrieves port expenses.
 
@@ -30,6 +37,16 @@ class PortExpensesAPI:
             imo: The vessel's IMO number.
             port_id: ID of the port to retrieve the expenses for.
             group_id: Group ID.
+            vessel_type_id: Vessel type ID.
+            estimated_time_of_berth: Estimated time of berth.
+            estimated_time_of_sail: Estimated time of sail.
+            operation: Operation type.
+            italian_anchorage_dues: Italian anchorage dues.
+            cargo_type: Cargo type.
+            operation_status: Operation status.
+            utc_date: UTC date.
+            historical_tce: Flag for Historical TCE.
+            estimation_status: Estimation status.
 
         Returns:
             The port expenses or None if a port with given ID does not exist or
@@ -40,6 +57,30 @@ class PortExpensesAPI:
             "portId": '{}'.format(port_id),
             "groupId": '{}'.format(group_id)
         }
+
+        if vessel_type_id is not None:
+            query_string["vesselTypeId"] = '{}'.format(vessel_type_id)
+        if estimated_time_of_berth is not None:
+            query_string["estimatedTimeOfBerth"] = \
+                estimated_time_of_berth.isoformat()
+        if estimated_time_of_sail is not None:
+            query_string["estimatedTimeOfSail"] = \
+                estimated_time_of_sail.isoformat()
+        if operation is not None:
+            query_string["operation"] = '{}'.format(operation)
+        if italian_anchorage_dues is not None:
+            query_string["italianAnchorageDues"] = \
+                '{}'.format(italian_anchorage_dues)
+        if cargo_type is not None:
+            query_string["cargoType"] = '{}'.format(cargo_type)
+        if operation_status is not None:
+            query_string["operationStatus"] = '{}'.format(operation_status)
+        if utc_date is not None:
+            query_string["utcDate"] = utc_date.isoformat()
+        if historical_tce is not None:
+            query_string["historicalTce"] = '{}'.format(historical_tce)
+        if estimation_status is not None:
+            query_string["estimationStatus"] = '{}'.format(estimation_status)
 
         response = self.__connection._make_post_request(
             "port-expenses/api/v1/Port", query_string
@@ -60,18 +101,18 @@ class PortExpensesAPI:
         """Retrieves canal expenses.
 
         Args:
-            canal
-            imo
-            open_port_id
-            load_port_id
-            discharge_port_id
-            ballast_speed
-            laden_speed
-            operation_status
-            formula_calculation_date
-            open_date
-            load_sail_date
-            cargo_type
+            canal: ID of the canal to retrieve the expenses for.
+            imo: The vessel's IMO number.
+            open_port_id: Open port ID.
+            load_port_id: Load port ID.
+            discharge_port_id: Discharge port ID.
+            ballast_speed: Ballast speed.
+            laden_speed: Laden speed.
+            operation_status: Operation status.
+            formula_calculation_date: Formula calculation date
+            open_date: Open date.
+            load_sail_date: Load sail date.
+            cargo_type: Cargo type.
 
         Returns:
             The canal expenses or None if expenses can be provided for the
@@ -110,13 +151,13 @@ class PortExpensesAPI:
         """Retrieves model vessel port expenses.
 
         Args:
-            port_id
-            vessel_type_id
-            formula_calculation_date
-            vessel_class_id
-            operation_status
-            historical_tce
-            estimation_status
+            port_id: ID of the port to retrieve the expenses for.
+            vessel_type_id: Vessel type ID.
+            formula_calculation_date: Formula calculation date.
+            vessel_class_id: Vessel class ID.
+            operation_status: Operation status.
+            historical_tce: Flag for historical TCE.
+            estimation_status: Estimation status.
 
         Returns:
             The port expenses for model vessel or None if a port with given ID
@@ -150,12 +191,12 @@ class PortExpensesAPI:
         """Retrieves model vessel canal expenses.
 
         Args:
-            canal
-            open_port_id
-            load_port_id
-            discharge_port_id
-            operation_status
-            formula_calculation_date
+            canal: ID of the canal to retrieve the expenses for.
+            open_port_id: Open port ID.
+            load_port_id: Load port ID.
+            discharge_port_id: Discharge port ID.
+            operation_status: Operation status.
+            formula_calculation_date: Formula calculation date.
 
         Returns:
             The canal expenses for model vessel or None if expenses can be
@@ -179,3 +220,34 @@ class PortExpensesAPI:
             if response_json else None
 
         return return_object
+
+    def get_required_formula_parameters(
+        self, port_id: int, vessel_type_id: int = None,
+            calculation_date: datetime = None
+    ) -> List[str]:
+        """Retrieves required formula parameters.
+
+        Args:
+            port_id: ID of the port to retrieve the expenses for.
+            vessel_type_id: Vessel type ID.
+            calculation_date: Calculation date.
+
+        Returns:
+            List of required port expenses formula calculation parameters.
+        """
+        query_string: QueryString = {
+            "portId": '{}'.format(port_id)
+        }
+
+        if vessel_type_id is not None:
+            query_string["vesselTypeId"] = '{}'.format(vessel_type_id)
+        if calculation_date is not None:
+            query_string["calculationDate"] = calculation_date.isoformat()
+
+        response = self.__connection._make_post_request(
+            "port-expenses/api/v1/RequiredFormulaParameters", query_string
+        )
+        response.raise_for_status()
+        response_json = response.json()
+
+        return response_json

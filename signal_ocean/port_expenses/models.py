@@ -9,29 +9,29 @@ class PortExpenses:
     """The fees for port's facilities and services.
 
     Attributes:
-        port_id
-        port_canal
-        towage
-        berth
-        port_dues
-        lighthouse
-        mooring
-        pilotage
-        quay
-        anchorage
-        agency_fees
-        other
-        suez_dues
-        total_cost
-        miscellaneous_dues
-        is_estimated
-        canal_dues
-        berth_dues
-        lighthouse_dues
-        mooring_unmooring
-        quay_dues
-        anchorage_dues
-        port_agents
+        port_id: Port ID
+        port_canal: Port Canal
+        towage: Towage
+        berth: Berth
+        port_dues: Port dues
+        lighthouse: Lighthouse
+        mooring: Mooring
+        pilotage: Pilotage
+        quay: Quay
+        anchorage: Anchorage
+        agency_fees: Agency fees
+        other: Other
+        suez_dues: Suez dues
+        total_cost: Total cost
+        miscellaneous_dues: Mischellaneous dues
+        is_estimated: Flag for estimation
+        canal_dues: Canal dues
+        berth_dues: Berth dues
+        lighthouse_dues: Lighthouse dues
+        mooring_unmooring: Mooring-unmooring
+        quay_dues: Quay dues
+        anchorage_dues: Anchorage dues
+        port_agents: Port agents
     """
 
     port_id: int

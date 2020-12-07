@@ -29,6 +29,59 @@ def test_get_port_expenses(imo, port_id):
     )
 
 
+@pytest.mark.parametrize('imo, port_id, group_id, vessel_type_id, '
+                         'estimated_time_of_berth, estimated_time_of_sail, '
+                         'operation, italian_anchorage_dues, cargo_type, '
+                         'operation_status, utc_date, historical_tce, '
+                         'estimation_status', [
+    (9867621, 3153, 1, 3, datetime(2020, 2, 27, 17, 48, 11),
+     datetime(2020, 2, 27, 17, 48, 11), 1, 1, "test", 1,
+     datetime(2020, 2, 27, 17, 48, 11), True, 1)
+])
+def test_get_port_expenses_with_optional_params(imo, port_id, group_id,
+                                                vessel_type_id,
+                                                estimated_time_of_berth,
+                                                estimated_time_of_sail,
+                                                operation,
+                                                italian_anchorage_dues,
+                                                cargo_type, operation_status,
+                                                utc_date, historical_tce,
+                                                estimation_status):
+    connection = MagicMock()
+    api = PortExpensesAPI(connection)
+
+    pe_object = api.get_port_expenses(imo, port_id, group_id,
+                                      vessel_type_id,
+                                      estimated_time_of_berth,
+                                      estimated_time_of_sail,
+                                      operation,
+                                      italian_anchorage_dues,
+                                      cargo_type, operation_status,
+                                      utc_date, historical_tce,
+                                      estimation_status)
+
+    assert type(pe_object) is PortExpenses
+
+    connection._make_post_request.assert_called_with(
+        "port-expenses/api/v1/Port",
+        {
+            "imo": '{}'.format(imo),
+            "portId": '{}'.format(port_id),
+            "groupId": "1",
+            "vesselTypeId": '{}'.format(vessel_type_id),
+            "estimatedTimeOfBerth": estimated_time_of_berth.isoformat(),
+            "estimatedTimeOfSail": estimated_time_of_sail.isoformat(),
+            "operation": '{}'.format(operation),
+            "italianAnchorageDues": '{}'.format(italian_anchorage_dues),
+            "cargoType": '{}'.format(cargo_type),
+            "operationStatus": '{}'.format(operation_status),
+            "utcDate": utc_date.isoformat(),
+            "historicalTce": '{}'.format(historical_tce),
+            "estimationStatus": '{}'.format(estimation_status)
+        },
+    )
+
+
 @pytest.mark.parametrize('canal, imo, open_port_id, load_port_id, '
                          'discharge_port_id, ballast_speed, laden_speed, '
                          'operation_status, formula_calculation_date, '
@@ -133,4 +186,30 @@ def test_get_canal_model_vessel_expenses(canal, open_port_id, load_port_id,
             "operationStatus": '{}'.format(operation_status),
             "formulaCalculationDate": formula_calculation_date.isoformat()
         },
+    )
+
+
+@pytest.mark.parametrize('port_id, vessel_type_id, calculation_date', [
+    (3153, None, None), (3153, 3, None),
+    (3153, 3, datetime(2020, 2, 27, 17, 48, 11))
+])
+def test_get_required_formula_parameters(port_id, vessel_type_id,
+                                         calculation_date):
+    connection = MagicMock()
+    api = PortExpensesAPI(connection)
+
+    api.get_required_formula_parameters(port_id, vessel_type_id,
+                                        calculation_date)
+
+    query_params = {
+        "portId": '{}'.format(port_id)
+    }
+    if vessel_type_id is not None:
+        query_params["vesselTypeId"] = '{}'.format(vessel_type_id)
+    if calculation_date is not None:
+        query_params["calculationDate"] = calculation_date.isoformat()
+
+    connection._make_post_request.assert_called_with(
+        "port-expenses/api/v1/RequiredFormulaParameters",
+        query_params,
     )
