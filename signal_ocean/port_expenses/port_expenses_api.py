@@ -55,46 +55,37 @@ class PortExpensesAPI:
             The port expenses or None if a port with given ID does not exist or
             a vessel with the given IMO number does not exist.
         """
-        query_string: QueryString = {
+        query_dict = {
             "imo": '{}'.format(imo),
             "portId": '{}'.format(port_id),
             "groupId": '{}'.format(group_id)
         }
 
         if vessel_type_id is not None:
-            casted_value = cast(int, vessel_type_id)
-            query_string["vesselTypeId"] = '{}'.format(casted_value)
+            query_dict["vesselTypeId"] = '{}'.format(vessel_type_id)
         if estimated_time_of_berth is not None:
-            casted_value = cast(datetime, estimated_time_of_berth)
-            query_string["estimatedTimeOfBerth"] = \
-                casted_value.isoformat()
+            query_dict["estimatedTimeOfBerth"] = \
+                estimated_time_of_berth.isoformat()
         if estimated_time_of_sail is not None:
-            casted_value = cast(datetime, estimated_time_of_sail)
-            query_string["estimatedTimeOfSail"] = \
-                casted_value.isoformat()
+            query_dict["estimatedTimeOfSail"] = \
+                estimated_time_of_sail.isoformat()
         if operation is not None:
-            casted_value = cast(int, operation)
-            query_string["operation"] = '{}'.format(casted_value)
+            query_dict["operation"] = '{}'.format(operation)
         if italian_anchorage_dues is not None:
-            casted_value = cast(int, italian_anchorage_dues)
-            query_string["italianAnchorageDues"] = \
-                '{}'.format(casted_value)
+            query_dict["italianAnchorageDues"] = \
+                '{}'.format(italian_anchorage_dues)
         if cargo_type is not None:
-            casted_value = cast(str, cargo_type)
-            query_string["cargoType"] = '{}'.format(casted_value)
+            query_dict["cargoType"] = '{}'.format(cargo_type)
         if operation_status is not None:
-            casted_value = cast(int, operation_status)
-            query_string["operationStatus"] = '{}'.format(casted_value)
+            query_dict["operationStatus"] = '{}'.format(operation_status)
         if utc_date is not None:
-            casted_value = cast(datetime, utc_date)
-            query_string["utcDate"] = casted_value.isoformat()
+            query_dict["utcDate"] = utc_date.isoformat()
         if historical_tce is not None:
-            casted_value = cast(bool, historical_tce)
-            query_string["historicalTce"] = '{}'.format(casted_value)
+            query_dict["historicalTce"] = '{}'.format(historical_tce)
         if estimation_status is not None:
-            casted_value = cast(int, estimation_status)
-            query_string["estimationStatus"] = '{}'.format(casted_value)
+            query_dict["estimationStatus"] = '{}'.format(estimation_status)
 
+        query_string: QueryString = query_dict
         response = self.__connection._make_post_request(
             "port-expenses/api/v1/Port", query_string
         )
@@ -248,15 +239,16 @@ class PortExpensesAPI:
         Returns:
             List of required port expenses formula calculation parameters.
         """
-        query_string: QueryString = {
+        query_dict = {
             "portId": '{}'.format(port_id)
         }
 
         if vessel_type_id is not None:
-            query_string["vesselTypeId"] = '{}'.format(vessel_type_id)
+            query_dict["vesselTypeId"] = '{}'.format(vessel_type_id)
         if calculation_date is not None:
-            query_string["calculationDate"] = calculation_date.isoformat()
+            query_dict["calculationDate"] = calculation_date.isoformat()
 
+        query_string: QueryString = query_dict
         response = self.__connection._make_post_request(
             "port-expenses/api/v1/RequiredFormulaParameters", query_string
         )
