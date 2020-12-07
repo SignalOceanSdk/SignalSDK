@@ -62,28 +62,38 @@ class PortExpensesAPI:
         }
 
         if vessel_type_id is not None:
-            query_string["vesselTypeId"] = '{}'.format(vessel_type_id)
+            casted_value = cast(int, vessel_type_id)
+            query_string["vesselTypeId"] = '{}'.format(casted_value)
         if estimated_time_of_berth is not None:
+            casted_value = cast(datetime, estimated_time_of_berth)
             query_string["estimatedTimeOfBerth"] = \
-                estimated_time_of_berth.isoformat()
+                casted_value.isoformat()
         if estimated_time_of_sail is not None:
+            casted_value = cast(datetime, estimated_time_of_sail)
             query_string["estimatedTimeOfSail"] = \
-                estimated_time_of_sail.isoformat()
+                casted_value.isoformat()
         if operation is not None:
-            query_string["operation"] = '{}'.format(operation)
+            casted_value = cast(int, operation)
+            query_string["operation"] = '{}'.format(casted_value)
         if italian_anchorage_dues is not None:
+            casted_value = cast(int, italian_anchorage_dues)
             query_string["italianAnchorageDues"] = \
-                '{}'.format(italian_anchorage_dues)
+                '{}'.format(casted_value)
         if cargo_type is not None:
-            query_string["cargoType"] = '{}'.format(cargo_type)
+            casted_value = cast(str, cargo_type)
+            query_string["cargoType"] = '{}'.format(casted_value)
         if operation_status is not None:
-            query_string["operationStatus"] = '{}'.format(operation_status)
+            casted_value = cast(int, operation_status)
+            query_string["operationStatus"] = '{}'.format(casted_value)
         if utc_date is not None:
-            query_string["utcDate"] = utc_date.isoformat()
+            casted_value = cast(datetime, utc_date)
+            query_string["utcDate"] = casted_value.isoformat()
         if historical_tce is not None:
-            query_string["historicalTce"] = '{}'.format(historical_tce)
+            casted_value = cast(bool, historical_tce)
+            query_string["historicalTce"] = '{}'.format(casted_value)
         if estimation_status is not None:
-            query_string["estimationStatus"] = '{}'.format(estimation_status)
+            casted_value = cast(int, estimation_status)
+            query_string["estimationStatus"] = '{}'.format(casted_value)
 
         response = self.__connection._make_post_request(
             "port-expenses/api/v1/Port", query_string
