@@ -5,6 +5,8 @@ from typing import cast, Optional, List
 
 from .. import Connection
 from .._internals import QueryString
+from .enums import Operation, OperationStatus, Canal, \
+    EstimationStatus, ItalianAnchorageDues
 from .models import PortExpenses, CanalExpenses
 from ._port_expenses_json import parse_port_expenses, parse_canal_expenses
 
@@ -26,13 +28,13 @@ class PortExpensesAPI:
             vessel_type_id: Optional[int] = None,
             estimated_time_of_berth: Optional[datetime] = None,
             estimated_time_of_sail: Optional[datetime] = None,
-            operation: Optional[int] = None,
-            italian_anchorage_dues: Optional[int] = None,
+            operation: Optional[Operation] = None,
+            italian_anchorage_dues: Optional[ItalianAnchorageDues] = None,
             cargo_type: Optional[str] = None,
-            operation_status: Optional[int] = None,
+            operation_status: Optional[OperationStatus] = None,
             utc_date: Optional[datetime] = None,
             historical_tce: Optional[bool] = None,
-            estimation_status: Optional[int] = None
+            estimation_status: Optional[EstimationStatus] = None
     ) -> Optional[PortExpenses]:
         """Retrieves port expenses.
 
@@ -70,20 +72,21 @@ class PortExpensesAPI:
             query_dict["estimatedTimeOfSail"] = \
                 estimated_time_of_sail.isoformat()
         if operation is not None:
-            query_dict["operation"] = '{}'.format(operation)
+            query_dict["operation"] = '{}'.format(operation.value)
         if italian_anchorage_dues is not None:
             query_dict["italianAnchorageDues"] = \
-                '{}'.format(italian_anchorage_dues)
+                '{}'.format(italian_anchorage_dues.value)
         if cargo_type is not None:
             query_dict["cargoType"] = '{}'.format(cargo_type)
         if operation_status is not None:
-            query_dict["operationStatus"] = '{}'.format(operation_status)
+            query_dict["operationStatus"] = '{}'.format(operation_status.value)
         if utc_date is not None:
             query_dict["utcDate"] = utc_date.isoformat()
         if historical_tce is not None:
             query_dict["historicalTce"] = '{}'.format(historical_tce)
         if estimation_status is not None:
-            query_dict["estimationStatus"] = '{}'.format(estimation_status)
+            query_dict["estimationStatus"] = \
+                '{}'.format(estimation_status.value)
 
         query_string: QueryString = query_dict
         response = self.__connection._make_post_request(
@@ -97,11 +100,12 @@ class PortExpensesAPI:
         return return_object
 
     def get_canal_expenses(
-        self, canal: int, imo: int, open_port_id: int, load_port_id: int,
+        self, canal: Canal, imo: int, open_port_id: int, load_port_id: int,
             discharge_port_id: int, ballast_speed: float, laden_speed: float,
-            operation_status: int, formula_calculation_date: datetime,
-            open_date: datetime, load_sail_date: datetime,
-            cargo_type: Optional[str] = None) -> Optional[CanalExpenses]:
+            operation_status: OperationStatus,
+            formula_calculation_date: datetime, open_date: datetime,
+            load_sail_date: datetime, cargo_type: Optional[str] = None
+    ) -> Optional[CanalExpenses]:
         """Retrieves canal expenses.
 
         Args:
@@ -123,14 +127,14 @@ class PortExpensesAPI:
             given parameters.
         """
         query_string: QueryString = {
-            "canal": '{}'.format(canal),
+            "canal": '{}'.format(canal.value),
             "imo": '{}'.format(imo),
             "openPortId": '{}'.format(open_port_id),
             "loadPortId": '{}'.format(load_port_id),
             "dischargePortId": '{}'.format(discharge_port_id),
             "ballastSpeed": '{}'.format(ballast_speed),
             "ladenSpeed": '{}'.format(laden_speed),
-            "operationStatus": '{}'.format(operation_status),
+            "operationStatus": '{}'.format(operation_status.value),
             "formulaCalculationDate": formula_calculation_date.isoformat(),
             "openDate": open_date.isoformat(),
             "loadSailDate": load_sail_date.isoformat(),
@@ -150,8 +154,10 @@ class PortExpensesAPI:
     def get_port_model_vessel_expenses(
         self, port_id: int, vessel_type_id: int,
             formula_calculation_date: datetime, vessel_class_id: int = 0,
-            operation_status: int = 0, historical_tce: bool = False,
-            estimation_status: int = 0) -> Optional[PortExpenses]:
+            operation_status: OperationStatus = OperationStatus.BALLAST,
+            historical_tce: bool = False,
+            estimation_status: EstimationStatus =
+            EstimationStatus.PRIORITY_TO_FORMULAS) -> Optional[PortExpenses]:
         """Retrieves model vessel port expenses.
 
         Args:
@@ -173,9 +179,9 @@ class PortExpensesAPI:
             "vesselTypeId": '{}'.format(vessel_type_id),
             "formulaCalculationDate": formula_calculation_date.isoformat(),
             "vesselClassId": '{}'.format(vessel_class_id),
-            "operationStatus": '{}'.format(operation_status),
+            "operationStatus": '{}'.format(operation_status.value),
             "historicalTce": '{}'.format(historical_tce),
-            "estimationStatus": '{}'.format(estimation_status)
+            "estimationStatus": '{}'.format(estimation_status.value)
         }
 
         response = self.__connection._make_post_request(
@@ -189,8 +195,8 @@ class PortExpensesAPI:
         return return_object
 
     def get_canal_model_vessel_expenses(
-        self, canal: int, open_port_id: int, load_port_id: int,
-            discharge_port_id: int, operation_status: int,
+        self, canal: Canal, open_port_id: int, load_port_id: int,
+            discharge_port_id: int, operation_status: OperationStatus,
             formula_calculation_date: datetime) -> Optional[CanalExpenses]:
         """Retrieves model vessel canal expenses.
 
@@ -207,11 +213,11 @@ class PortExpensesAPI:
             provided for the given parameters.
         """
         query_string: QueryString = {
-            "canal": '{}'.format(canal),
+            "canal": '{}'.format(canal.value),
             "openPortId": '{}'.format(open_port_id),
             "loadPortId": '{}'.format(load_port_id),
             "dischargePortId": '{}'.format(discharge_port_id),
-            "operationStatus": '{}'.format(operation_status),
+            "operationStatus": '{}'.format(operation_status.value),
             "formulaCalculationDate": formula_calculation_date.isoformat()
         }
 
