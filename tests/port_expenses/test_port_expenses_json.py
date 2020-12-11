@@ -1,6 +1,6 @@
 import pytest
 
-from signal_ocean.port_expenses import PortExpenses, CanalExpenses
+from signal_ocean.port_expenses import PortExpenses
 from signal_ocean.port_expenses import _port_expenses_json
 
 
