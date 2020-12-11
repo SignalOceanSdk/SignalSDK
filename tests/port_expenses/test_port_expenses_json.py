@@ -74,7 +74,7 @@ def test_parse_port_expenses(port_id, port_canal, towage, berth, port_dues,
 @pytest.mark.parametrize('total_cost', [
     (264324.5555392)    #Placeholder in case parameters increase
 ])
-def test_parse_port_expenses(total_cost):
+def test_parse_canal_expenses(total_cost):
     canal_expenses_json = {
         "TotalCost": total_cost,
     }
