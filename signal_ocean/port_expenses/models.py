@@ -57,14 +57,3 @@ class PortExpenses:
     quay_dues: int
     anchorage_dues: int
     port_agents: List[int]
-
-
-@dataclass(frozen=True)
-class CanalExpenses:
-    """The fees for canal's facilities and services.
-
-    Attributes:
-        total_cost: The total cost for the use of the canal
-    """
-
-    total_cost: int

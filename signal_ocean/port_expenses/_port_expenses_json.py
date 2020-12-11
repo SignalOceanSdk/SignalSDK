@@ -1,6 +1,6 @@
 from typing import cast, Mapping, Any, List
 
-from .models import PortExpenses, CanalExpenses
+from .models import PortExpenses
 
 
 def parse_port_expenses(json: Mapping[str, Any]) -> PortExpenses:
@@ -28,10 +28,4 @@ def parse_port_expenses(json: Mapping[str, Any]) -> PortExpenses:
         cast(int, json.get("QuayDues")),
         cast(int, json.get("AnchorageDues")),
         cast(List[int], json.get("PortAgents")),
-    )
-
-
-def parse_canal_expenses(json: Mapping[str, Any]) -> CanalExpenses:
-    return CanalExpenses(
-        cast(int, json.get("TotalCost"))
     )

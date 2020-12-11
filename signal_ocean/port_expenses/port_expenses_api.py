@@ -5,10 +5,10 @@ from typing import cast, Optional, List
 
 from .. import Connection
 from .._internals import QueryString
-from .enums import Operation, OperationStatus, Canal, \
-    EstimationStatus, ItalianAnchorageDues
-from .models import PortExpenses, CanalExpenses
-from ._port_expenses_json import parse_port_expenses, parse_canal_expenses
+from .enums import Operation, OperationStatus, EstimationStatus,\
+    ItalianAnchorageDues
+from .models import PortExpenses
+from ._port_expenses_json import parse_port_expenses
 
 
 class PortExpensesAPI:
@@ -99,58 +99,6 @@ class PortExpensesAPI:
 
         return return_object
 
-    def get_canal_expenses(
-        self, canal: Canal, imo: int, open_port_id: int, load_port_id: int,
-            discharge_port_id: int, ballast_speed: float, laden_speed: float,
-            operation_status: OperationStatus,
-            formula_calculation_date: datetime, open_date: datetime,
-            load_sail_date: datetime, cargo_type: Optional[str] = None
-    ) -> Optional[CanalExpenses]:
-        """Retrieves canal expenses.
-
-        Args:
-            canal: ID of the canal to retrieve the expenses for.
-            imo: The vessel's IMO number.
-            open_port_id: Open port ID.
-            load_port_id: Load port ID.
-            discharge_port_id: Discharge port ID.
-            ballast_speed: Ballast speed.
-            laden_speed: Laden speed.
-            operation_status: Operation status.
-            formula_calculation_date: Formula calculation date
-            open_date: Open date.
-            load_sail_date: Load sail date.
-            cargo_type: Cargo type.
-
-        Returns:
-            The canal expenses or None if expenses can be provided for the
-            given parameters.
-        """
-        query_string: QueryString = {
-            "canal": '{}'.format(canal.value),
-            "imo": '{}'.format(imo),
-            "openPortId": '{}'.format(open_port_id),
-            "loadPortId": '{}'.format(load_port_id),
-            "dischargePortId": '{}'.format(discharge_port_id),
-            "ballastSpeed": '{}'.format(ballast_speed),
-            "ladenSpeed": '{}'.format(laden_speed),
-            "operationStatus": '{}'.format(operation_status.value),
-            "formulaCalculationDate": formula_calculation_date.isoformat(),
-            "openDate": open_date.isoformat(),
-            "loadSailDate": load_sail_date.isoformat(),
-            "cargoType": cargo_type
-        }
-
-        response = self.__connection._make_post_request(
-            "port-expenses/api/v1/Canal", query_string
-        )
-        response.raise_for_status()
-        response_json = {"TotalCost": response.json()}
-        return_object = parse_canal_expenses(response_json) \
-            if response_json else None
-
-        return return_object
-
     def get_port_model_vessel_expenses(
         self, port_id: int, vessel_type_id: int,
             formula_calculation_date: datetime, vessel_class_id: int = 0,
@@ -190,43 +138,6 @@ class PortExpensesAPI:
         response.raise_for_status()
         response_json = response.json()
         return_object = parse_port_expenses(response_json) \
-            if response_json else None
-
-        return return_object
-
-    def get_canal_model_vessel_expenses(
-        self, canal: Canal, open_port_id: int, load_port_id: int,
-            discharge_port_id: int, operation_status: OperationStatus,
-            formula_calculation_date: datetime) -> Optional[CanalExpenses]:
-        """Retrieves model vessel canal expenses.
-
-        Args:
-            canal: ID of the canal to retrieve the expenses for.
-            open_port_id: Open port ID.
-            load_port_id: Load port ID.
-            discharge_port_id: Discharge port ID.
-            operation_status: Operation status.
-            formula_calculation_date: Formula calculation date.
-
-        Returns:
-            The canal expenses for model vessel or None if expenses can be
-            provided for the given parameters.
-        """
-        query_string: QueryString = {
-            "canal": '{}'.format(canal.value),
-            "openPortId": '{}'.format(open_port_id),
-            "loadPortId": '{}'.format(load_port_id),
-            "dischargePortId": '{}'.format(discharge_port_id),
-            "operationStatus": '{}'.format(operation_status.value),
-            "formulaCalculationDate": formula_calculation_date.isoformat()
-        }
-
-        response = self.__connection._make_post_request(
-            "port-expenses/api/v1/CanalModelVessel", query_string
-        )
-        response.raise_for_status()
-        response_json = {"TotalCost": response.json()}
-        return_object = parse_canal_expenses(response_json) \
             if response_json else None
 
         return return_object

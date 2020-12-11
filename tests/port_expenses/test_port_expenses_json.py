@@ -69,17 +69,3 @@ def test_parse_port_expenses(port_id, port_canal, towage, berth, port_dues,
     assert pe_object.quay_dues == quay_dues
     assert pe_object.anchorage_dues == anchorage_dues
     assert pe_object.port_agents == port_agents
-
-
-@pytest.mark.parametrize('total_cost', [
-    (264324.5555392)    #Placeholder in case parameters increase
-])
-def test_parse_canal_expenses(total_cost):
-    canal_expenses_json = {
-        "TotalCost": total_cost,
-    }
-
-    ce_object = _port_expenses_json.parse_canal_expenses(canal_expenses_json)
-
-    assert type(ce_object) is CanalExpenses
-    assert ce_object.total_cost == total_cost

@@ -31,14 +31,3 @@ class EstimationStatus(Enum):
     PRIORITY_TO_FORMULAS = 0
     PRIORITY_TO_ESTIMATES = 1
     NO_ESTIMATES = 2
-
-
-@unique
-class Canal(Enum):
-    """An enumeration of all possible canals."""
-    NONE = 0
-    SUEZ = 1
-    TURKISH = 2
-    PANAMA = 3
-    BALTIC = 4
-    TORRES = 5
