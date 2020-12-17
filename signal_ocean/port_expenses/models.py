@@ -57,3 +57,32 @@ class PortExpenses:
     quay_dues: int
     anchorage_dues: int
     port_agents: List[int]
+
+
+@dataclass(frozen=True)
+class Port:
+    """A maritime facility where vessels can dock.
+
+    Attributes:
+        id: ID of the port.
+        name: Name of the port.
+    """
+
+    id: int
+    name: str
+
+
+@dataclass(frozen=True)
+class VesselType:
+    """A vessel type.
+
+    Attributes:
+        id: The vessel type id, e.g. 1 -> Tanker, 3 -> Dry, 4 -> Containers,
+            5 -> LNG (Liquified Natural gas),
+            6-> LPG (Liquified Petroleum Gas).
+        name: The vessel type name, e.g. Tanker, Dry, Containers,
+            LNG (Liquified Natural gas), LPG (Liquified Petroleum Gas).
+    """
+
+    id: int
+    name: str

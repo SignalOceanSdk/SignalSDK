@@ -9,12 +9,17 @@ Classes:
         dues.
     PortExpenses: The fees that shipping operators and their customers pay to
         port authorities for the use of the port's facilities and services.
+    Port: A maritime facility where vessels can dock.
+    VesselType: A vessel type.
+    PortFilter: A filter used to find specific ports.
 """
 
 from .enums import Operation, OperationStatus, EstimationStatus, \
     ItalianAnchorageDues
-from .models import PortExpenses
+from .models import PortExpenses, Port, VesselType
 from .port_expenses_api import PortExpensesAPI
+from .port_filter import PortFilter
 
 __all__ = ["Operation", "OperationStatus", "EstimationStatus",
-           "ItalianAnchorageDues", "PortExpenses", "PortExpensesAPI"]
+           "ItalianAnchorageDues", "PortExpenses", "PortExpensesAPI",
+           "PortFilter", "Port", "VesselType"]

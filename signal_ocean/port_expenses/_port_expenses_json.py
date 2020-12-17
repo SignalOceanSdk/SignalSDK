@@ -1,6 +1,6 @@
-from typing import cast, Mapping, Any, List
+from typing import cast, Mapping, Any, List, Tuple
 
-from .models import PortExpenses
+from .models import PortExpenses, Port
 
 
 def parse_port_expenses(json: Mapping[str, Any]) -> PortExpenses:
@@ -29,3 +29,16 @@ def parse_port_expenses(json: Mapping[str, Any]) -> PortExpenses:
         cast(int, json.get("AnchorageDues")),
         cast(List[int], json.get("PortAgents")),
     )
+
+
+def parse_ports(json: Mapping[str, Any]) -> Tuple[Port, ...]:
+    ports: List[Port] = []
+    json_ports = json.get("Ports")
+    if json_ports is not None and isinstance(json_ports, list):
+        for port_json in json_ports:
+            port = Port(
+                cast(int, port_json.get("PortId")),
+                cast(str, port_json.get("PortName")),
+            )
+            ports.append(port)
+    return tuple(ports)

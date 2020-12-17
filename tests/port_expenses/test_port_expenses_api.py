@@ -5,7 +5,9 @@ from unittest.mock import MagicMock
 import pytest
 
 from signal_ocean.port_expenses import PortExpensesAPI, PortExpenses, \
-    Operation, OperationStatus, ItalianAnchorageDues, EstimationStatus
+    Operation, OperationStatus, ItalianAnchorageDues, EstimationStatus, \
+    VesselType, PortFilter
+from signal_ocean.port_expenses.enums import VesselTypeEnum
 
 
 @pytest.mark.parametrize('imo, port_id', [
@@ -138,3 +140,23 @@ def test_get_required_formula_parameters(port_id, vessel_type_id,
         "port-expenses/api/v1/RequiredFormulaParameters",
         query_params,
     )
+
+
+def test_get_vessel_types():
+    connection = MagicMock()
+    api = PortExpensesAPI(connection)
+
+    vessel_types = api.get_vessel_types()
+
+    assert vessel_types == tuple(
+        VesselType(vessel_type.value, vessel_type.name)
+                             for vessel_type in VesselTypeEnum)
+
+
+def test_get_ports():
+    connection = MagicMock()
+    api = PortExpensesAPI(connection)
+
+    api.get_ports(PortFilter(name_like='test'))
+
+    assert connection._make_get_request.call_count == len(VesselTypeEnum)

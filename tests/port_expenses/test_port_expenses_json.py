@@ -1,6 +1,6 @@
 import pytest
 
-from signal_ocean.port_expenses import PortExpenses
+from signal_ocean.port_expenses import PortExpenses, Port
 from signal_ocean.port_expenses import _port_expenses_json
 
 
@@ -69,3 +69,20 @@ def test_parse_port_expenses(port_id, port_canal, towage, berth, port_dues,
     assert pe_object.quay_dues == quay_dues
     assert pe_object.anchorage_dues == anchorage_dues
     assert pe_object.port_agents == port_agents
+
+
+@pytest.mark.parametrize('ports', [
+    ([{"id": 1, "name": "test1"}, {"id": 2, "name": "test2"},
+      {"id": 3, "name": "test3"}])
+])
+def test_parse_ports(ports):
+    ports_json = {
+        "Ports": [{"PortId": p["id"], "PortName": p["name"]} for p in ports]
+    }
+
+    ports_object = _port_expenses_json.parse_ports(ports_json)
+
+    for i, port in enumerate(ports_object):
+        assert type(port) is Port
+        assert port.id == ports[i]["id"]
+        assert port.name == ports[i]["name"]

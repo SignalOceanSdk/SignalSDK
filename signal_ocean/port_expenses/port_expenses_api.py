@@ -1,14 +1,15 @@
 # noqa: D100
 
 from datetime import datetime
-from typing import cast, Optional, List
+from typing import cast, Optional, List, Tuple
 
 from .. import Connection
 from .._internals import QueryString
 from .enums import Operation, OperationStatus, EstimationStatus,\
-    ItalianAnchorageDues
-from .models import PortExpenses
-from ._port_expenses_json import parse_port_expenses
+    ItalianAnchorageDues, VesselTypeEnum
+from .models import PortExpenses, Port, VesselType
+from .port_filter import PortFilter
+from ._port_expenses_json import parse_port_expenses, parse_ports
 
 
 class PortExpensesAPI:
@@ -173,3 +174,45 @@ class PortExpensesAPI:
         response_json = response.json()
 
         return cast(List[str], response_json)
+
+    def get_vessel_types(self) -> Tuple[VesselType, ...]:
+        """Retrieves all available vessel types.
+
+        Returns:
+            A tuple of all available vessel types.
+        """
+        vessel_types = tuple(VesselType(vessel_type.value, vessel_type.name)
+                             for vessel_type in VesselTypeEnum)
+        return vessel_types
+
+    def get_ports(
+        self, port_filter: Optional[PortFilter] = None
+    ) -> Tuple[Port, ...]:
+        """Retrieves available ports.
+
+        Args:
+            port_filter: A filter used to find specific ports. If not
+                specified, returns all available ports.
+
+        Returns:
+            A tuple of available ports that match the filter.
+        """
+        query_dict = {
+            "date": datetime.now().isoformat()
+        }
+
+        query_string: QueryString = query_dict
+
+        available_ports: List[Port] = []
+        for vessel_type in VesselTypeEnum:
+            response = self.__connection._make_get_request(
+                f"port-expenses/api/v1/AvailablePorts/{vessel_type.value}",
+                query_string
+            )
+            response.raise_for_status()
+            response_json = response.json()
+            available_ports += parse_ports(response_json)
+
+        port_filter = port_filter or PortFilter()
+
+        return tuple(port_filter._apply(available_ports))
