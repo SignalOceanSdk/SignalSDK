@@ -18,6 +18,7 @@ nav:
       - 'companies.md'
       - 'distances.md'
       - 'port_expenses.md'
+      - 'market_rates.md'
     - Tutorials:
       - Historical Tonnage List:
         - 'examples/jupyter/HTL API/Analysis_over_all_vessels.ipynb'
@@ -37,6 +38,8 @@ nav:
         - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
       - Port Expenses:
         - 'examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb'
+      - Market Rates:
+        - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
 extra_css:
   - css/site.css
 markdown_extensions:
