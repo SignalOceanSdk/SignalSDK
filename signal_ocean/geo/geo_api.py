@@ -6,6 +6,7 @@ import requests
 
 from .. import Connection
 from .models import Country, Port, Area
+from .port_filter import PortFilter
 from . import _geo_json
 
 TModel = TypeVar("TModel")
@@ -64,13 +65,22 @@ class GeoAPI:
             f"geo/countries/{country_id}", _geo_json.parse_country
         )
 
-    def get_ports(self) -> Tuple[Port, ...]:
-        """Retrieves all available ports.
+    def get_ports(
+        self, port_filter: Optional[PortFilter] = None
+    ) -> Tuple[Port, ...]:
+        """Retrieves available ports.
+
+        Args:
+            port_filter: A filter used to find specific ports. If not
+                specified, returns all available ports.
 
         Returns:
-            A tuple of all available ports.
+            A tuple of available ports that match the filter.
         """
-        return self.__get_multiple("geo/ports", _geo_json.parse_port)
+        ports = self.__get_multiple("geo/ports", _geo_json.parse_port)
+        port_filter = port_filter or PortFilter()
+
+        return tuple(port_filter._apply(ports))
 
     def get_port(self, port_id: int) -> Optional[Port]:
         """Retrieves a port by its ID.
