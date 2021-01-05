@@ -44,7 +44,7 @@ class MarketRatesAPI:
             given criteria.
         """
         query_dict = {
-            "start_date": start_date.isoformat()
+            "start_date": start_date.date()
         }
 
         if route_id is not None:
