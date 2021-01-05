@@ -1,6 +1,6 @@
 # noqa: D100
 
-from datetime import datetime
+from datetime import date
 from typing import Optional, Tuple, cast
 
 from .. import Connection
@@ -23,9 +23,9 @@ class MarketRatesAPI:
         self.__connection = connection or Connection()
 
     def get_market_rates(
-        self, start_date: datetime, route_id: Optional[str] = None,
+        self, start_date: date, route_id: Optional[str] = None,
             vessel_class_id: Optional[int] = None,
-            end_date: Optional[datetime] = None,
+            end_date: Optional[date] = None,
             is_clean: Optional[bool] = None
     ) -> Tuple[MarketRate, ...]:
         """Provides market rates for given day/period and route/vessel class.
@@ -44,7 +44,7 @@ class MarketRatesAPI:
             given criteria.
         """
         query_dict = {
-            "start_date": start_date.date()
+            "start_date": start_date.isoformat()
         }
 
         if route_id is not None:
