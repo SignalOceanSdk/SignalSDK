@@ -51,6 +51,7 @@ class VesselClass:
         vessel_type_id: The vessel type id, e.g. 6
         from_size: Minimum size
         to_size: Maximum size
+        name: The vessel class name
         vessel_type: The vessel type name, e.g. LPG
         defining_size: Size type, e.g. CubicSize
         size: The vessel size, e.g. cbm

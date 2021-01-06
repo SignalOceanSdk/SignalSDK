@@ -29,15 +29,25 @@ def test_get_market_rates(start_date, route_id, vessel_class_id, end_date,
     assert isinstance(mr_object, tuple)
     assert all([isinstance(mr, MarketRate) for mr in mr_object])
 
+    query_dict = {
+        "start_date": start_date.isoformat()
+    }
+
+    if route_id:
+        query_dict["route_id"] = '{}'.format(route_id)
+
+    if vessel_class_id:
+        query_dict["vessel_class_id"] = '{}'.format(vessel_class_id)
+
+    if end_date:
+        query_dict["end_date"] = end_date.isoformat()
+
+    if is_clean:
+        query_dict["is_clean"] = '{}'.format(is_clean)
+
     connection._make_get_request.assert_called_with(
-        "market-rates/api/v1/market_rates",
-        {
-            "start_date": start_date.isoformat(),
-            "route_id": '{}'.format(route_id),
-            "vessel_class_id": '{}'.format(vessel_class_id),
-            "end_date": end_date.isoformat(),
-            "is_clean": is_clean.isoformat()
-        }
+        "market-rates/api/market_rates",
+        query_dict
     )
 
 
@@ -55,11 +65,11 @@ def test_get_routes(vessel_class_id):
 
     if vessel_class_id:
         connection._make_get_request.assert_called_with(
-            f"market-rates/api/v1/routes/{vessel_class_id}"
+            f"market-rates/api/routes/{vessel_class_id}"
         )
     else:
         connection._make_get_request.assert_called_with(
-            "market-rates/api/v1/routes"
+            "market-rates/api/routes"
         )
 
 
@@ -72,6 +82,6 @@ def test_get_vessel_classes():
     assert vessel_classes == tuple(
         VesselClass(vessel_class["id"], vessel_class["vessel_type_id"],
                     vessel_class["from_size"], vessel_class["to_size"],
-                    vessel_class["vessel_type"], vessel_class["defining_size"],
-                    vessel_class["size"])
+                    vessel_class["name"], vessel_class["vessel_type"],
+                    vessel_class["defining_size"], vessel_class["size"])
         for vessel_class in VESSEL_CLASSES)
