@@ -108,7 +108,7 @@ VESSEL_CLASSES = [
         "defining_size": 'DeadWeight', "size": 'kt'
     },
     {
-        "id":88, "vessel_type_id": 1, "from_size": 42000, "to_size": 59999,
+        "id": 88, "vessel_type_id": 1, "from_size": 42000, "to_size": 59999,
         "name": 'MR2', "vessel_type": 'Tanker',
         "defining_size": 'DeadWeight', "size": 'kt'
     },
