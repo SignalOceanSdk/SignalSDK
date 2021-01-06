@@ -69,8 +69,7 @@ class MarketRatesAPI:
     def get_routes(
         self, vessel_class_id: Optional[int] = None
     ) -> Tuple[Route, ...]:
-        """Fetches all routes or the ones matching the vessel class ID if
-        vessel class ID is specified.
+        """Fetches all routes or the ones matching the vessel class ID.
 
         Args:
             vessel_class_id: Vessel class ID.
