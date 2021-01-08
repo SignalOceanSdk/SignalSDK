@@ -25,8 +25,7 @@ class MarketRatesAPI:
     def get_market_rates(
         self, start_date: date, route_id: Optional[str] = None,
             vessel_class_id: Optional[int] = None,
-            end_date: Optional[date] = None,
-            is_clean: Optional[bool] = None
+            end_date: Optional[date] = None
     ) -> Tuple[MarketRate, ...]:
         """Provides market rates for given day/period and route/vessel class.
 
@@ -37,22 +36,20 @@ class MarketRatesAPI:
             vessel_class_id: Vessel class ID.
             end_date: Combined with start_date will produce result market rates
             for all consecutive days from start to end date.
-            is_clean: Returns Dirty or Clean rates. By default False.
 
         Returns:
             The market rates or None if there are no market rates matching the
             given criteria.
         """
         query_dict = {
-            "start_date": start_date.isoformat()
+            "start_date": start_date.isoformat(),
+            "is_clean": "False"
         }
 
         if route_id is not None:
             query_dict["route_id"] = '{}'.format(route_id)
         if vessel_class_id is not None:
             query_dict["vessel_class_id"] = '{}'.format(vessel_class_id)
-        if is_clean is not None:
-            query_dict["is_clean"] = '{}'.format(is_clean)
         if end_date is not None:
             query_dict["end_date"] = end_date.isoformat()
 

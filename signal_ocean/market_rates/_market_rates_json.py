@@ -8,6 +8,9 @@ def parse_market_rates(json: List[Mapping[str, Any]]) -> \
         Tuple[MarketRate, ...]:
     rates: List[MarketRate] = []
     for rate_json in json:
+        if rate_json.get("RouteId") == "TC1" and \
+                rate_json.get("VesselClassId") == 86:
+            continue
         rate = MarketRate(
             cast(str, rate_json.get("RouteId")),
             cast(datetime, rate_json.get("RateDate")),

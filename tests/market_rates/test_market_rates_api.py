@@ -9,28 +9,28 @@ from signal_ocean.market_rates import MarketRatesAPI, MarketRate, \
 from signal_ocean.market_rates.vessel_classes import VESSEL_CLASSES
 
 
-@pytest.mark.parametrize('start_date, route_id, vessel_class_id, end_date, '
-                         'is_clean', [
-                             (datetime(2020, 2, 27), "R54", None, None, None),
-                             (datetime(2020, 2, 27), None, 77, None, None),
+@pytest.mark.parametrize('start_date, route_id, vessel_class_id, end_date, ',
+                         [
+                             (datetime(2020, 2, 27), "R54", None, None),
+                             (datetime(2020, 2, 27), None, 77, None),
                              (datetime(2020, 2, 27), "R54", 77,
-                              datetime(2020, 2, 28), None),
+                              datetime(2020, 2, 28)),
                              (datetime(2020, 2, 27), "R54", 77,
-                              datetime(2020, 2, 28), True)
+                              datetime(2020, 2, 28))
                          ])
-def test_get_market_rates(start_date, route_id, vessel_class_id, end_date,
-                          is_clean):
+def test_get_market_rates(start_date, route_id, vessel_class_id, end_date):
     connection = MagicMock()
     api = MarketRatesAPI(connection)
 
     mr_object = api.get_market_rates(start_date, route_id, vessel_class_id,
-                                     end_date, is_clean)
+                                     end_date)
 
     assert isinstance(mr_object, tuple)
     assert all([isinstance(mr, MarketRate) for mr in mr_object])
 
     query_dict = {
-        "start_date": start_date.isoformat()
+        "start_date": start_date.isoformat(),
+        "is_clean": "False"
     }
 
     if route_id:
@@ -41,9 +41,6 @@ def test_get_market_rates(start_date, route_id, vessel_class_id, end_date,
 
     if end_date:
         query_dict["end_date"] = end_date.isoformat()
-
-    if is_clean:
-        query_dict["is_clean"] = '{}'.format(is_clean)
 
     connection._make_get_request.assert_called_with(
         "market-rates/api/market_rates",

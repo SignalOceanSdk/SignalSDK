@@ -26,9 +26,9 @@ def test_parse_market_rates(rates):
 
 @pytest.mark.parametrize('routes', [
     ([{"route_id": "R1", "description": "Afra - Med", "unit": "WS",
-       "vessel_class_id": 86, "is_clean": False},
+       "vessel_class_id": 86},
       {"route_id": "R10", "description": "Afra - Indo_OZ", "unit": "WS",
-       "vessel_class_id": 86, "is_clean": False}
+       "vessel_class_id": 86}
       ])
 ])
 def test_parse_routes(routes):
@@ -41,4 +41,3 @@ def test_parse_routes(routes):
         assert r.description == route["description"]
         assert r.unit == route["unit"]
         assert r.vessel_class_id == route["vessel_class_id"]
-        assert r.is_clean == route["is_clean"]
