@@ -28,6 +28,7 @@ nav:
       - Voyages:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
       - Companies:
         - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
       - Vessels:
