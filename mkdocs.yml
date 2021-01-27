@@ -36,6 +36,7 @@ nav:
       - Distances:
         - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
         - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
+        - 'examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb'
       - Port Expenses:
         - 'examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb'
       - Market Rates:

@@ -2,12 +2,12 @@
 
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Dict
 
 
 @dataclass(frozen=True)
 class Point:
-    """A point in latitude and longitude.
+    """A point on the surface of Earth.
 
     Attributes:
         lat: The latitude of the point.
@@ -23,8 +23,8 @@ class PointsOnRoute:
     """A point and extra properties needed for a route.
 
     Attributes:
-        is_hra: The latitude of the point.
-        is_seca: The longitude of the point.
+        is_hra: Is the point in a high-risk area.
+        is_seca: Is the point in a Sulfur Emission Control Area.
         distance: The distance between the two points.
         distance_to_enter:
         heading: The point on route heading.
@@ -99,3 +99,40 @@ class RouteResponse:
     alternative_paths: Tuple[AlternativePath, ...]
     is_empty: bool
     bbox: Optional[Tuple[Decimal, ...]]
+
+
+@dataclass(frozen=True)
+class RouteRestrictions:
+    """Restrictions that can be placed upon a route.
+
+    Attributes:
+        is_suez_open: Determines whether or not to route through the Suez
+            Canal.
+        is_panama_open: Determines whether or not to route through the Panama
+            Canal.
+        is_messina_open: Determines whether or not to route through the Strait
+            of Messina.
+        is_oresund_open: Determines whether or not to route through the Øresund
+            Strait.
+        is_suez_open_only_northbound: Determines whether or not to route
+            through the Suez Canal only when northbound.
+        is_piracy_considered: Determines whether or not to route through areas
+            where a piracy threat exists.
+    """
+
+    is_suez_open: Optional[bool] = None
+    is_panama_open: Optional[bool] = None
+    is_messina_open: Optional[bool] = None
+    is_oresund_open: Optional[bool] = None
+    is_suez_open_only_northbound: Optional[bool] = None
+    is_piracy_considered: Optional[bool] = None
+
+    def _to_query_string(self) -> Dict[str, Optional[bool]]:
+        return {
+            "IsSuezOpen": self.is_suez_open,
+            "IsPanamaOpen": self.is_panama_open,
+            "IsPiracyConsidered": self.is_piracy_considered,
+            "IsMessinaOpen": self.is_messina_open,
+            "IsOresundOpen": self.is_oresund_open,
+            "IsSuezOpenOnlyNorthbound": self.is_suez_open_only_northbound,
+        }
