@@ -19,7 +19,13 @@ from .vessel_class_filter import VesselClassFilter
 from .port import Port
 from .port_filter import PortFilter
 from .loading_condition import LoadingCondition
-from .models import RouteResponse, AlternativePath, PointsOnRoute, Point
+from .models import (
+    RouteResponse,
+    AlternativePath,
+    PointsOnRoute,
+    Point,
+    RouteRestrictions,
+)
 
 __all__ = [
     "DistancesAPI",
@@ -31,5 +37,6 @@ __all__ = [
     "RouteResponse",
     "AlternativePath",
     "PointsOnRoute",
-    "Point"
+    "Point",
+    "RouteRestrictions",
 ]
