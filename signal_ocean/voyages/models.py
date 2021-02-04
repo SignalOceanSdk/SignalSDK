@@ -310,7 +310,8 @@ class Voyage:
             To (latest day of cancellation) across all fixtures.
         fixture_status_id: Numeric ID corresponding to the different values of
             the FixtureStatus field.   0-> OnSubs, 1-> FullyFixed, 2 -> Failed,
-            3 ->Cancelled , 3-> Available, -2 -> NotSet, -1 -> Unknown.
+            3 -> Cancelled , 4-> Available, 5-> PossFixed,
+            -2 -> NotSet, -1 -> Unknown.
         fixture_status: String denoting the commercial status of a fixture if
             explicitly mentioned, like ffxd for fully fixed or subs for on
             subs.
@@ -322,6 +323,8 @@ class Voyage:
         fixture_is_hold: Boolean. Value is true if "Hold" is explicitly
             reported in at least one of the fixtures relative to the specific
             voyage.
+        is_implied_by_ais: Boolean. This will be true if the voyage is implied
+            from AIS.
     """
     imo: int
     voyage_number: int
@@ -360,6 +363,7 @@ class Voyage:
     fixture_date: Optional[datetime] = None
     fixture_is_coa: Optional[bool] = None
     fixture_is_hold: Optional[bool] = None
+    is_implied_by_ais: Optional[bool] = None
 
 
 @dataclass(frozen=True)
