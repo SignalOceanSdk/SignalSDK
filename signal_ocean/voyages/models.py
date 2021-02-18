@@ -109,7 +109,7 @@ class VoyageEvent:
             EventType="VoyageStart". If the event is a portcall, that is an
             operational stop, this field specifies the type of operation, like
             "Load", "Discharge" or "Dry dock".
-        event_date: Date, format YYYY-MM-DD HH:MM:SS. The timestamp of the 
+        event_date: Date, format YYYY-MM-DD HH:MM:SS. The timestamp of the
             specific event, for instantaneous events e.g. VoyageStart
         arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The beginning of the
             specific event. The arrival date of an event is calculated based on
@@ -271,8 +271,8 @@ class Voyage:
             previous voyage (if existing) or the first received AIS (for a new
             building). Voyages are consecutive and with no breaks in between,
             therefore a vessel is always in a voyage.
-        first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The time 
-            of arrival for the first load in the voyage. Indicates the 
+        first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The time
+            of arrival for the first load in the voyage. Indicates the
             transition from Ballast to Laden.
         end_date: Date, format YYYY-MM-DD HH:MM:SS. The end of the specific
             voyage. The end of a voyage is set as the sailing date (or
