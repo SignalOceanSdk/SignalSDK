@@ -331,6 +331,9 @@ class Voyage:
             voyage.
         is_implied_by_ais: Boolean. This will be true if the voyage is implied
             from AIS.
+        has_manual_entries: Boolean.
+        ballast_distance: Numeric.
+        laden_distance: Numeric.
     """
     imo: int
     voyage_number: int
@@ -371,6 +374,9 @@ class Voyage:
     fixture_is_coa: Optional[bool] = None
     fixture_is_hold: Optional[bool] = None
     is_implied_by_ais: Optional[bool] = None
+    has_manual_entries: Optional[bool] = None
+    ballast_distance: Optional[float] = None
+    laden_distance: Optional[float] = None
 
 
 @dataclass(frozen=True)
