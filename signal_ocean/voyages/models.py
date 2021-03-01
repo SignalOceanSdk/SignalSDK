@@ -331,9 +331,16 @@ class Voyage:
             voyage.
         is_implied_by_ais: Boolean. This will be true if the voyage is implied
             from AIS.
-        has_manual_entries: Boolean.
-        ballast_distance: Numeric.
-        laden_distance: Numeric.
+        has_manual_entries: Boolean. True if the fused matched fixture on a
+            voyage contains at least one (partial or full) fixture input by a 
+            user. It indicates that there is additional information input by a
+            user in addition to what received through market reports only.
+        ballast_distance: Numeric. Distance in nautical miles between the last
+            discharge port and the first load port. It is computed based on
+            past AIS data
+        laden_distance: Numeric. Distance in nautical miles between the first
+            load port and the last discharge port. It is computed based on past
+            AIS data
     """
     imo: int
     voyage_number: int
