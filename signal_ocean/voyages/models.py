@@ -332,7 +332,7 @@ class Voyage:
         is_implied_by_ais: Boolean. This will be true if the voyage is implied
             from AIS.
         has_manual_entries: Boolean. True if the fused matched fixture on a
-            voyage contains at least one (partial or full) fixture input by a 
+            voyage contains at least one (partial or full) fixture input by a
             user. It indicates that there is additional information input by a
             user in addition to what received through market reports only.
         ballast_distance: Numeric. Distance in nautical miles between the last
