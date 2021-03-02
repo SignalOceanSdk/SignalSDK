@@ -118,6 +118,8 @@ class RouteRestrictions:
             through the Suez Canal only when northbound.
         is_piracy_considered: Determines whether or not to route through areas
             where a piracy threat exists.
+        minimize_seca: Determines whether or not to minimize distance travelled
+            through SECA areas.
     """
 
     is_suez_open: Optional[bool] = None
@@ -126,6 +128,7 @@ class RouteRestrictions:
     is_oresund_open: Optional[bool] = None
     is_suez_open_only_northbound: Optional[bool] = None
     is_piracy_considered: Optional[bool] = None
+    minimize_seca: Optional[bool] = None
 
     def _to_query_string(self) -> Dict[str, Optional[bool]]:
         return {
@@ -135,4 +138,5 @@ class RouteRestrictions:
             "IsMessinaOpen": self.is_messina_open,
             "IsOresundOpen": self.is_oresund_open,
             "IsSuezOpenOnlyNorthbound": self.is_suez_open_only_northbound,
+            "MinimizeSeca": self.minimize_seca,
         }
