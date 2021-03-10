@@ -1,19 +1,18 @@
 from datetime import datetime
-from typing import Iterable, cast, Mapping, Any
+from typing import Iterable, cast, Mapping, Any, Tuple
 
-from .historical_tonnage_list import HistoricalTonnageList
 from .tonnage_list import TonnageList
 from .vessel import Vessel
 from .area import Area
 from .._internals import parse_datetime
 
 
-def parse(json: Mapping[str, Any]) -> HistoricalTonnageList:
+def parse_tonnage_lists(json: Mapping[str, Any]) -> Tuple[TonnageList, ...]:
     static_vessel_data = json.get("staticVesselData", [])
     tonnage_lists = json.get("tonnageLists", [])
 
-    return HistoricalTonnageList(
-        (to_tonnage_list(tl, static_vessel_data) for tl in tonnage_lists)
+    return tuple(
+        to_tonnage_list(tl, static_vessel_data) for tl in tonnage_lists
     )
 
 
@@ -52,7 +51,7 @@ def to_vessel(
             for a in pit_vessel_data.get("openAreas", [])
         ),
         cast(str, pit_vessel_data.get("availabilityPortType")),
-        cast(str, pit_vessel_data.get("availabilityDateType"))
+        cast(str, pit_vessel_data.get("availabilityDateType")),
     )
 
 

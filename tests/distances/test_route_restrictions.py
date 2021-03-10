@@ -9,6 +9,7 @@ DEFAULT_QUERY_STRING = {
     "IsOresundOpen": None,
     "IsSuezOpenOnlyNorthbound": None,
     "IsPiracyConsidered": None,
+    "MinimizeSeca": None,
 }
 
 
