@@ -11,12 +11,5 @@ if [ -z "$apikey" ];
 fi
 
 echo "$filename";
-
-sed -i 's/subscription_key = \\"\\"/subscription_key = \\"'$apikey'\\"/' docs/examples/jupyter/*/"$filename";
-sed -i "s/subscription_key = ''/subscription_key = '$apikey'/" docs/examples/jupyter/*/"$filename";
-sed -i "s/signal_ocean_api_key = ''/signal_ocean_api_key = '$apikey'/" docs/examples/jupyter/*/"$filename";
-sed -i "s/signal_ocean_api_key = 'NotValid'/signal_ocean_api_key = '$apikey'/" docs/examples/jupyter/*/"$filename";
-sed -i "s/signal_ocean_api_key = 'Not Valid'/signal_ocean_api_key = '$apikey'/" docs/examples/jupyter/*/"$filename";
-
 ~/.local/bin/jupyter nbconvert --execute --clear-output docs/examples/jupyter/*/"$filename"; 
 done
