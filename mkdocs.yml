@@ -11,34 +11,41 @@ theme:
     - navigation.instant
 nav:
     - 'index.md'
-    - APIs Documentation:
+    - Historical Tonnage List:
       - 'historical_tonnage_list.md'
-      - 'voyages.md'
-      - 'vessels.md'
-      - 'companies.md'
-      - 'distances.md'
-      - 'port_expenses.md'
-    - Tutorials:
-      - Historical Tonnage List:
+      - Examples:
         - 'examples/jupyter/HTL API/Analysis_over_all_vessels.ipynb'
         - 'examples/jupyter/HTL API/QuickStart_HTL_API.ipynb'
         - 'examples/jupyter/HTL API/Historical Tonnage List API.ipynb'
         - 'examples/jupyter/HTL API/Vessel_OnSubs_PerDay.ipynb'
         - 'examples/jupyter/HTL API/Vessels open at Fos over time.ipynb'
-      - Voyages:
+        - 'examples/jupyter/HTL API/Persist HTL query data in SQLite.ipynb'
+    - Voyages:
+      - 'voyages.md'
+      - Examples:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
-      - Companies:
-        - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
-      - Vessels:
+    - Vessels:
+      - 'vessels.md'
+      - Examples:
         - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
-      - Distances:
+    - Companies:
+      - 'companies.md'
+      - Examples:
+        - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
+    - Distances:
+      - 'distances.md'
+      - Examples:
         - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
         - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
         - 'examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb'
-      - Port Expenses:
+    - Port Expenses:
+      - 'port_expenses.md'
+      - Examples:
         - 'examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb'
+    - Release notes:
+      - 'releases/Version 1.0.1.b6.md'
 extra_css:
   - css/site.css
 markdown_extensions:

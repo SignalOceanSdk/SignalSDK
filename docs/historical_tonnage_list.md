@@ -1,4 +1,4 @@
-# Historical Tonnage List
+# Package Documentation
 
 ::: signal_ocean.historical_tonnage_list
     handler: python
