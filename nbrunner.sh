@@ -8,5 +8,5 @@ if [ -z "${SIGNAL_OCEAN_API_KEY}" ];
 fi
 
 echo "$filename";
-~/.local/bin/jupyter nbconvert --execute --clear-output docs/examples/jupyter/*/"$filename"; 
+jupyter nbconvert --execute --clear-output docs/examples/jupyter/*/"$filename"; 
 done
