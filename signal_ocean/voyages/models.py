@@ -109,6 +109,8 @@ class VoyageEvent:
             EventType="VoyageStart". If the event is a portcall, that is an
             operational stop, this field specifies the type of operation, like
             "Load", "Discharge" or "Dry dock".
+        event_date: Date, format YYYY-MM-DD HH:MM:SS. The timestamp of the
+            specific event, for instantaneous events e.g. VoyageStart
         arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The beginning of the
             specific event. The arrival date of an event is calculated based on
             the first AIS point within the event. In the case of missing AIS
@@ -194,6 +196,7 @@ class VoyageEvent:
     event_type: Optional[str] = None
     event_horizon: Optional[str] = None
     purpose: Optional[str] = None
+    event_date: Optional[datetime] = None
     arrival_date: Optional[datetime] = None
     sailing_date: Optional[datetime] = None
     latitude: Optional[float] = None
@@ -268,6 +271,9 @@ class Voyage:
             previous voyage (if existing) or the first received AIS (for a new
             building). Voyages are consecutive and with no breaks in between,
             therefore a vessel is always in a voyage.
+        first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The time
+            of arrival for the first load in the voyage. Indicates the
+            transition from Ballast to Laden.
         end_date: Date, format YYYY-MM-DD HH:MM:SS. The end of the specific
             voyage. The end of a voyage is set as the sailing date (or
             completion date) from the port where the vessel discharged for the
@@ -310,7 +316,8 @@ class Voyage:
             To (latest day of cancellation) across all fixtures.
         fixture_status_id: Numeric ID corresponding to the different values of
             the FixtureStatus field.   0-> OnSubs, 1-> FullyFixed, 2 -> Failed,
-            3 ->Cancelled , 3-> Available, -2 -> NotSet, -1 -> Unknown.
+            3 -> Cancelled , 4-> Available, 5-> PossFixed,
+            -2 -> NotSet, -1 -> Unknown.
         fixture_status: String denoting the commercial status of a fixture if
             explicitly mentioned, like ffxd for fully fixed or subs for on
             subs.
@@ -322,6 +329,20 @@ class Voyage:
         fixture_is_hold: Boolean. Value is true if "Hold" is explicitly
             reported in at least one of the fixtures relative to the specific
             voyage.
+        is_implied_by_ais: Boolean. This will be true if the voyage is implied
+            from AIS.
+        has_manual_entries: Boolean. True if the fused matched fixture on a
+            voyage contains at least one (partial or full) fixture input by a
+            user. It indicates that there is additional information input by a
+            user in addition to what received through market reports only.
+        ballast_distance: Numeric. Travelled distance in nautical miles between
+            the last discharge port of the previous voyage and the first load
+            port of the current voyage. It is computed based on AIS data.
+            It includes the whole period between the two port calls and non
+            operational stops as well. Accuracy depends on AIS coverage.
+        laden_distance: Numeric. Travelled distance in nautical miles between
+            the first load port and the last discharge port of the same voyage.
+            It is computed based on AIS data. Accuracy depends on AIS coverage.
     """
     imo: int
     voyage_number: int
@@ -340,6 +361,7 @@ class Voyage:
     vessel_status: Optional[str] = None
     commercial_operator: Optional[str] = None
     start_date: Optional[datetime] = None
+    first_load_arrival_date: Optional[datetime] = None
     end_date: Optional[datetime] = None
     charterer_id: Optional[int] = None
     charterer: Optional[str] = None
@@ -360,6 +382,10 @@ class Voyage:
     fixture_date: Optional[datetime] = None
     fixture_is_coa: Optional[bool] = None
     fixture_is_hold: Optional[bool] = None
+    is_implied_by_ais: Optional[bool] = None
+    has_manual_entries: Optional[bool] = None
+    ballast_distance: Optional[float] = None
+    laden_distance: Optional[float] = None
 
 
 @dataclass(frozen=True)
