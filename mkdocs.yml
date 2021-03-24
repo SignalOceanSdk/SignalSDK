@@ -44,6 +44,10 @@ nav:
       - 'port_expenses.md'
       - Examples:
         - 'examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb'
+    - Market Rates:
+      - 'market_rates.md'
+      - Examples:
+        - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
     - Release notes:
       - 'releases/Version 1.0.1.b6.md'
 extra_css:
