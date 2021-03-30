@@ -49,6 +49,7 @@ nav:
       - Examples:
         - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
     - Release notes:
+      - 'releases/Version 1.0.2.md'
       - 'releases/Version 1.0.1.b6.md'
 extra_css:
   - css/site.css
