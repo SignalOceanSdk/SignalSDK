@@ -1,0 +1,4582 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../img/favicondark.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Package Documentation - Signal SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../css/site.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#package-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Signal SDK" class="md-header__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Signal SDK
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Package Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Signal SDK" class="md-nav__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    Signal SDK
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to the Signal SDK
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Historical Tonnage List
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Historical Tonnage List" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Historical Tonnage List
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Package Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Package Documentation
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list" class="md-nav__link">
+    signal_ocean.historical_tonnage_list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.area" class="md-nav__link">
+    area
+  </a>
+  
+    <nav class="md-nav" aria-label="area">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.area.Area" class="md-nav__link">
+    Area
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status" class="md-nav__link">
+    commercial_status
+  </a>
+  
+    <nav class="md-nav" aria-label="commercial_status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus" class="md-nav__link">
+    CommercialStatus
+  </a>
+  
+    <nav class="md-nav" aria-label="CommercialStatus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.AVAILABLE" class="md-nav__link">
+    AVAILABLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.CANCELLED" class="md-nav__link">
+    CANCELLED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.FAILED" class="md-nav__link">
+    FAILED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.ON_SUBS" class="md-nav__link">
+    ON_SUBS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.POTENTIALLY_FIXED" class="md-nav__link">
+    POTENTIALLY_FIXED
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list" class="md-nav__link">
+    historical_tonnage_list
+  </a>
+  
+    <nav class="md-nav" aria-label="historical_tonnage_list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList" class="md-nav__link">
+    HistoricalTonnageList
+  </a>
+  
+    <nav class="md-nav" aria-label="HistoricalTonnageList">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.to_data_frame" class="md-nav__link">
+    to_data_frame()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api" class="md-nav__link">
+    historical_tonnage_list_api
+  </a>
+  
+    <nav class="md-nav" aria-label="historical_tonnage_list_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI" class="md-nav__link">
+    HistoricalTonnageListAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="HistoricalTonnageListAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.get_historical_tonnage_list" class="md-nav__link">
+    get_historical_tonnage_list()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy" class="md-nav__link">
+    location_taxonomy
+  </a>
+  
+    <nav class="md-nav" aria-label="location_taxonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy" class="md-nav__link">
+    LocationTaxonomy
+  </a>
+  
+    <nav class="md-nav" aria-label="LocationTaxonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.COUNTRY" class="md-nav__link">
+    COUNTRY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.NARROW_AREA" class="md-nav__link">
+    NARROW_AREA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.PORT" class="md-nav__link">
+    PORT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.WIDE_AREA" class="md-nav__link">
+    WIDE_AREA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment" class="md-nav__link">
+    market_deployment
+  </a>
+  
+    <nav class="md-nav" aria-label="market_deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment" class="md-nav__link">
+    MarketDeployment
+  </a>
+  
+    <nav class="md-nav" aria-label="MarketDeployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.CONTRACT" class="md-nav__link">
+    CONTRACT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.PROGRAM" class="md-nav__link">
+    PROGRAM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.RELET" class="md-nav__link">
+    RELET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.SPOT" class="md-nav__link">
+    SPOT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status" class="md-nav__link">
+    operational_status
+  </a>
+  
+    <nav class="md-nav" aria-label="operational_status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus" class="md-nav__link">
+    OperationalStatus
+  </a>
+  
+    <nav class="md-nav" aria-label="OperationalStatus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.ACTIVE_STORAGE" class="md-nav__link">
+    ACTIVE_STORAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED" class="md-nav__link">
+    BALLAST_FIXED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED_IMPLIED" class="md-nav__link">
+    BALLAST_FIXED_IMPLIED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_UNFIXED" class="md-nav__link">
+    BALLAST_UNFIXED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.DISCHARGING" class="md-nav__link">
+    DISCHARGING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LADEN" class="md-nav__link">
+    LADEN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LOADING" class="md-nav__link">
+    LOADING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.REPAIRS" class="md-nav__link">
+    REPAIRS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_DISCHARGE" class="md-nav__link">
+    WAITING_TO_DISCHARGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_LOAD" class="md-nav__link">
+    WAITING_TO_LOAD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type" class="md-nav__link">
+    push_type
+  </a>
+  
+    <nav class="md-nav" aria-label="push_type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType" class="md-nav__link">
+    PushType
+  </a>
+  
+    <nav class="md-nav" aria-label="PushType">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType.NOT_PUSHED" class="md-nav__link">
+    NOT_PUSHED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED" class="md-nav__link">
+    PUSHED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED_POSS" class="md-nav__link">
+    PUSHED_POSS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.tonnage_list" class="md-nav__link">
+    tonnage_list
+  </a>
+  
+    <nav class="md-nav" aria-label="tonnage_list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.tonnage_list.TonnageList" class="md-nav__link">
+    TonnageList
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel" class="md-nav__link">
+    vessel
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel" class="md-nav__link">
+    Vessel
+  </a>
+  
+    <nav class="md-nav" aria-label="Vessel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_country" class="md-nav__link">
+    open_country
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_narrow_area" class="md-nav__link">
+    open_narrow_area
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_wide_area" class="md-nav__link">
+    open_wide_area
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_filter" class="md-nav__link">
+    vessel_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_filter.VesselFilter" class="md-nav__link">
+    VesselFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass" class="md-nav__link">
+    vessel_subclass
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_subclass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass" class="md-nav__link">
+    VesselSubclass
+  </a>
+  
+    <nav class="md-nav" aria-label="VesselSubclass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.ALL" class="md-nav__link">
+    ALL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.CLEAN" class="md-nav__link">
+    CLEAN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.DIRTY" class="md-nav__link">
+    DIRTY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Analysis_over_all_vessels/" class="md-nav__link">
+        Analysis over all vessels
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/QuickStart_HTL_API/" class="md-nav__link">
+        QuickStart HTL API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Historical%20Tonnage%20List%20API/" class="md-nav__link">
+        Historical Tonnage List API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessel_OnSubs_PerDay/" class="md-nav__link">
+        Vessel OnSubs PerDay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessels%20open%20at%20Fos%20over%20time/" class="md-nav__link">
+        Vessels open at Fos over time
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Persist%20HTL%20query%20data%20in%20SQLite/" class="md-nav__link">
+        Persist HTL query data in SQLite
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Voyages
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Voyages" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Voyages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voyages/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases/" class="md-nav__link">
+        VoyagesAPI UseCases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI/" class="md-nav__link">
+        VoyagesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike/" class="md-nav__link">
+        VoyagesAPI VoyagesDataLike
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Vessels
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Vessels" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Vessels
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vessels/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VesselsAPI/VesselsAPI/" class="md-nav__link">
+        VesselsAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Companies
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Companies" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Companies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../companies/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/CompaniesAPI/CompaniesAPI/" class="md-nav__link">
+        CompaniesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Distances
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distances" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Distances
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distances/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/QuickStartDistancesAPI/" class="md-nav__link">
+        QuickStartDistancesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/DistancesWithRouteExample/" class="md-nav__link">
+        DistancesWithRouteExample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/AlternativeRoutes/" class="md-nav__link">
+        AlternativeRoutes
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Port Expenses
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Port Expenses" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Port Expenses
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../port_expenses/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/PortExpensesAPI/PortExpensesAPI/" class="md-nav__link">
+        PortExpensesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Market Rates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Market Rates" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Market Rates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../market_rates/" class="md-nav__link">
+        Market Rates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/MarketRatesAPI/MarketRatesAPI/" class="md-nav__link">
+        MarketRatesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Release notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Release notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Release notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.2/" class="md-nav__link">
+        v1.0.2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.1.b6/" class="md-nav__link">
+        v1.0.1b6
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list" class="md-nav__link">
+    signal_ocean.historical_tonnage_list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.area" class="md-nav__link">
+    area
+  </a>
+  
+    <nav class="md-nav" aria-label="area">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.area.Area" class="md-nav__link">
+    Area
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status" class="md-nav__link">
+    commercial_status
+  </a>
+  
+    <nav class="md-nav" aria-label="commercial_status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus" class="md-nav__link">
+    CommercialStatus
+  </a>
+  
+    <nav class="md-nav" aria-label="CommercialStatus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.AVAILABLE" class="md-nav__link">
+    AVAILABLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.CANCELLED" class="md-nav__link">
+    CANCELLED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.FAILED" class="md-nav__link">
+    FAILED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.ON_SUBS" class="md-nav__link">
+    ON_SUBS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.POTENTIALLY_FIXED" class="md-nav__link">
+    POTENTIALLY_FIXED
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list" class="md-nav__link">
+    historical_tonnage_list
+  </a>
+  
+    <nav class="md-nav" aria-label="historical_tonnage_list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList" class="md-nav__link">
+    HistoricalTonnageList
+  </a>
+  
+    <nav class="md-nav" aria-label="HistoricalTonnageList">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.to_data_frame" class="md-nav__link">
+    to_data_frame()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api" class="md-nav__link">
+    historical_tonnage_list_api
+  </a>
+  
+    <nav class="md-nav" aria-label="historical_tonnage_list_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI" class="md-nav__link">
+    HistoricalTonnageListAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="HistoricalTonnageListAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.get_historical_tonnage_list" class="md-nav__link">
+    get_historical_tonnage_list()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy" class="md-nav__link">
+    location_taxonomy
+  </a>
+  
+    <nav class="md-nav" aria-label="location_taxonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy" class="md-nav__link">
+    LocationTaxonomy
+  </a>
+  
+    <nav class="md-nav" aria-label="LocationTaxonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.COUNTRY" class="md-nav__link">
+    COUNTRY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.NARROW_AREA" class="md-nav__link">
+    NARROW_AREA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.PORT" class="md-nav__link">
+    PORT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.WIDE_AREA" class="md-nav__link">
+    WIDE_AREA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment" class="md-nav__link">
+    market_deployment
+  </a>
+  
+    <nav class="md-nav" aria-label="market_deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment" class="md-nav__link">
+    MarketDeployment
+  </a>
+  
+    <nav class="md-nav" aria-label="MarketDeployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.CONTRACT" class="md-nav__link">
+    CONTRACT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.PROGRAM" class="md-nav__link">
+    PROGRAM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.RELET" class="md-nav__link">
+    RELET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.SPOT" class="md-nav__link">
+    SPOT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status" class="md-nav__link">
+    operational_status
+  </a>
+  
+    <nav class="md-nav" aria-label="operational_status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus" class="md-nav__link">
+    OperationalStatus
+  </a>
+  
+    <nav class="md-nav" aria-label="OperationalStatus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.ACTIVE_STORAGE" class="md-nav__link">
+    ACTIVE_STORAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED" class="md-nav__link">
+    BALLAST_FIXED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED_IMPLIED" class="md-nav__link">
+    BALLAST_FIXED_IMPLIED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_UNFIXED" class="md-nav__link">
+    BALLAST_UNFIXED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.DISCHARGING" class="md-nav__link">
+    DISCHARGING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LADEN" class="md-nav__link">
+    LADEN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LOADING" class="md-nav__link">
+    LOADING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.REPAIRS" class="md-nav__link">
+    REPAIRS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_DISCHARGE" class="md-nav__link">
+    WAITING_TO_DISCHARGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_LOAD" class="md-nav__link">
+    WAITING_TO_LOAD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type" class="md-nav__link">
+    push_type
+  </a>
+  
+    <nav class="md-nav" aria-label="push_type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType" class="md-nav__link">
+    PushType
+  </a>
+  
+    <nav class="md-nav" aria-label="PushType">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType.NOT_PUSHED" class="md-nav__link">
+    NOT_PUSHED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED" class="md-nav__link">
+    PUSHED
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED_POSS" class="md-nav__link">
+    PUSHED_POSS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.tonnage_list" class="md-nav__link">
+    tonnage_list
+  </a>
+  
+    <nav class="md-nav" aria-label="tonnage_list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.tonnage_list.TonnageList" class="md-nav__link">
+    TonnageList
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel" class="md-nav__link">
+    vessel
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel" class="md-nav__link">
+    Vessel
+  </a>
+  
+    <nav class="md-nav" aria-label="Vessel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_country" class="md-nav__link">
+    open_country
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_narrow_area" class="md-nav__link">
+    open_narrow_area
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_wide_area" class="md-nav__link">
+    open_wide_area
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_filter" class="md-nav__link">
+    vessel_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_filter.VesselFilter" class="md-nav__link">
+    VesselFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass" class="md-nav__link">
+    vessel_subclass
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_subclass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass" class="md-nav__link">
+    VesselSubclass
+  </a>
+  
+    <nav class="md-nav" aria-label="VesselSubclass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.ALL" class="md-nav__link">
+    ALL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.CLEAN" class="md-nav__link">
+    CLEAN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.DIRTY" class="md-nav__link">
+    DIRTY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="package-documentation">Package Documentation<a class="headerlink" href="#package-documentation" title="Permanent link">&para;</a></h1>
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="signal_ocean.historical_tonnage_list"></a>
+    <div class="doc doc-contents first">
+
+      <p>Historical Tonnage List API Package.</p>
+<div class="admonition classes">
+<p class="admonition-title">Classes</p>
+<p>HistoricalTonnageListAPI: Represents Signal's Historical Tonnage List API.</p>
+<p>HistoricalTonnageList: Result of a Historical Tonnage List query.</p>
+<p>TonnageList: A singular tonnage list in HistoricalTonnageList.</p>
+<p>Vessel: A vessel contained in a TonnageList.</p>
+<p>VesselFilter: Used for filtering vessels in queries.</p>
+<p>PushType: Contains constants for available push types.</p>
+<p>MarketDeployment: Contains constants for available market deployments.</p>
+<p>CommercialStatus: Contains constants for available commercial statuses.</p>
+<p>VesseSubclass: Contains constants for available vessel subclasses.</p>
+<p>LocationTaxonomy: Contains constants for available location taxonomies.</p>
+<p>Area: A geographical area.</p>
+<p>Column: Contains constants for available data frame column names.</p>
+<p>IndexLevel: Contains constants for available data frame index levels.</p>
+<p>OperationalStatus: Contains constants for available operational statuses.</p>
+<p>FixtureType: Contains constants for available fixture types.</p>
+</div>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.area" class="doc doc-heading">
+        <code>area</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.area" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.area.Area" class="doc doc-heading">
+        <code>Area</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.area.Area" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A geographical area.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>The area name.</p></td>
+      </tr>
+      <tr>
+        <td><code>location_taxonomy</code></td>
+        <td><code>str</code></td>
+        <td><p>The area's location taxonomy. See the
+LocationTaxonomy class for available values.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.commercial_status" class="doc doc-heading">
+        <code>commercial_status</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.commercial_status" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus" class="doc doc-heading">
+        <code>CommercialStatus</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains constants for available commercial statuses.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.AVAILABLE" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">AVAILABLE</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.AVAILABLE" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is available for a new voyage after her open date.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.CANCELLED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">CANCELLED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.CANCELLED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Last fixture cancelled for this Vessel.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.FAILED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">FAILED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.FAILED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Last fixture failed for this Vessel.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.ON_SUBS" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ON_SUBS</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.ON_SUBS" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is On Subs for a new Fixture.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.POTENTIALLY_FIXED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">POTENTIALLY_FIXED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.commercial_status.CommercialStatus.POTENTIALLY_FIXED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Systems assumes the vessel is fixed for her new voyage based
+    on AIS information</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.historical_tonnage_list" class="doc doc-heading">
+        <code>historical_tonnage_list</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList" class="doc doc-heading">
+        <code>HistoricalTonnageList</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>The class that represents a Historical Tonnage List.</p>
+<p>A Historical Tonnage List consists from an collection of Tonnage Lists
+one for every day between the start and end date specified
+when querying the Historica Tonnage List API.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonnage_lists</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes the Historical Tonnage List.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>tonnage_lists</code></td>
+        <td><code>Iterable[signal_ocean.historical_tonnage_list.tonnage_list.TonnageList]</code></td>
+        <td><p>Tonnage Lists contained within the Historical
+Tonnage List.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/historical_tonnage_list/historical_tonnage_list.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonnage_lists</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">TonnageList</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes the Historical Tonnage List.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tonnage_lists: Tonnage Lists contained within the Historical</span>
+<span class="sd">            Tonnage List.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__tonnage_lists</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tonnage_lists</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.to_data_frame" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">to_data_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list.HistoricalTonnageList.to_data_frame" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Converts the Historical Tonnage List to a pandas data frame.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/historical_tonnage_list/historical_tonnage_list.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_data_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Converts the Historical Tonnage List to a pandas data frame.&quot;&quot;&quot;</span>
+    <span class="n">index_tuples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tonnage_list</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tonnage_lists</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">vessel</span> <span class="ow">in</span> <span class="n">tonnage_list</span><span class="o">.</span><span class="n">vessels</span><span class="p">:</span>
+            <span class="n">index_tuples</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tonnage_list</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">imo</span><span class="p">))</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Column</span><span class="o">.</span><span class="n">_create_row</span><span class="p">(</span><span class="n">vessel</span><span class="p">))</span>
+
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+            <span class="n">index_tuples</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="n">IndexLevel</span><span class="o">.</span><span class="n">DATE</span><span class="p">,</span> <span class="n">IndexLevel</span><span class="o">.</span><span class="n">IMO</span><span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Column</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_frame</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">Column</span><span class="o">.</span><span class="n">_get_data_types</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.historical_tonnage_list_api" class="doc doc-heading">
+        <code>historical_tonnage_list_api</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI" class="doc doc-heading">
+        <code>HistoricalTonnageListAPI</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Handles communications with  Signal's Historical Tonnage List API.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes HistoricalTonnageListAPI.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>connection</code></td>
+        <td><code>Optional[signal_ocean.connection.Connection]</code></td>
+        <td><p>API connection configuration. If not provided, the
+default connection method is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/historical_tonnage_list/historical_tonnage_list_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Connection</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes HistoricalTonnageListAPI.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        connection: API connection configuration. If not provided, the</span>
+<span class="sd">            default connection method is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="ow">or</span> <span class="n">Connection</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.get_historical_tonnage_list" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_historical_tonnage_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loading_port</span><span class="p">,</span> <span class="n">vessel_class</span><span class="p">,</span> <span class="n">laycan_end_in_days</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.historical_tonnage_list_api.HistoricalTonnageListAPI.get_historical_tonnage_list" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves a Historical Tonnage List.</p>
+<p>If no input dates are provided, the last 10 days will be fetched
+(including today).</p>
+<p>To get a tonnage list for a specific day, set both date parameters to
+the desired date.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>loading_port</code></td>
+        <td><code>Port</code></td>
+        <td><p>The loading port from which ETA will be calculated.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>VesselClass</code></td>
+        <td><p>The vessel class to calculate the tonnage lists.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>laycan_end_in_days</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>The maximum ETA expressed as a number of days
+after the end date.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>start_date</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>The date of the earliest tonnage list in the response.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>end_date</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>The date of the latest tonnage list in the response.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>time</code></td>
+        <td><code>Optional[datetime.time]</code></td>
+        <td><p>Specifies the UTC time of day for which the state of
+the tonnage lists will be retrieved.
+It can get the values 00, 06, 12, 18.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_filter</code></td>
+        <td><code>Optional[signal_ocean.historical_tonnage_list.vessel_filter.VesselFilter]</code></td>
+        <td><p>A filter defining which vessels should be included
+in the response see Vessel Filter class for more details.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HistoricalTonnageList</code></td>
+      <td><p>Given a time-range, returns a Historical Tonnage List containing a
+Tonnage List for every day between the start and end dates, at the
+requested time of day.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/historical_tonnage_list/historical_tonnage_list_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_historical_tonnage_list</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">loading_port</span><span class="p">:</span> <span class="n">Port</span><span class="p">,</span>
+    <span class="n">vessel_class</span><span class="p">:</span> <span class="n">VesselClass</span><span class="p">,</span>
+    <span class="n">laycan_end_in_days</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">vessel_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">VesselFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HistoricalTonnageList</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves a Historical Tonnage List.</span>
+
+<span class="sd">    If no input dates are provided, the last 10 days will be fetched</span>
+<span class="sd">    (including today).</span>
+
+<span class="sd">    To get a tonnage list for a specific day, set both date parameters to</span>
+<span class="sd">    the desired date.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        loading_port: The loading port from which ETA will be calculated.</span>
+<span class="sd">        vessel_class: The vessel class to calculate the tonnage lists.</span>
+<span class="sd">        laycan_end_in_days: The maximum ETA expressed as a number of days</span>
+<span class="sd">            after the end date.</span>
+<span class="sd">        start_date: The date of the earliest tonnage list in the response.</span>
+<span class="sd">        end_date: The date of the latest tonnage list in the response.</span>
+<span class="sd">        time: Specifies the UTC time of day for which the state of</span>
+<span class="sd">            the tonnage lists will be retrieved.</span>
+<span class="sd">            It can get the values 00, 06, 12, 18.</span>
+<span class="sd">        vessel_filter: A filter defining which vessels should be included</span>
+<span class="sd">            in the response see Vessel Filter class for more details.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Given a time-range, returns a Historical Tonnage List containing a</span>
+<span class="sd">        Tonnage List for every day between the start and end dates, at the</span>
+<span class="sd">        requested time of day.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">all_tonnage_lists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TonnageList</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">date_ranges</span> <span class="o">=</span> <span class="n">_DateRange</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+        <span class="n">HistoricalTonnageListAPI</span><span class="o">.</span><span class="n">__MAX_DATE_RANGE_DAYS</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">date_range</span> <span class="ow">in</span> <span class="n">date_ranges</span><span class="p">:</span>
+        <span class="n">tonnage_lists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_htl_chunk</span><span class="p">(</span>
+            <span class="n">loading_port</span><span class="p">,</span>
+            <span class="n">vessel_class</span><span class="p">,</span>
+            <span class="n">date_range</span><span class="p">,</span>
+            <span class="n">laycan_end_in_days</span><span class="p">,</span>
+            <span class="n">time</span><span class="p">,</span>
+            <span class="n">vessel_filter</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">all_tonnage_lists</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tonnage_lists</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">HistoricalTonnageList</span><span class="p">(</span><span class="n">all_tonnage_lists</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.location_taxonomy" class="doc doc-heading">
+        <code>location_taxonomy</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.location_taxonomy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy" class="doc doc-heading">
+        <code>LocationTaxonomy</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains constants for available location taxonomies.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.COUNTRY" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">COUNTRY</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.COUNTRY" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Location Taxonomy Country.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.NARROW_AREA" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">NARROW_AREA</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.NARROW_AREA" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Location Taxonomy Narrow Area.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.PORT" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">PORT</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.PORT" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Location Taxonomy Port.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.WIDE_AREA" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">WIDE_AREA</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.location_taxonomy.LocationTaxonomy.WIDE_AREA" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Location Taxonomy Wide Area.</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.market_deployment" class="doc doc-heading">
+        <code>market_deployment</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.market_deployment" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment" class="doc doc-heading">
+        <code>MarketDeployment</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains constants for available market deployments.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.CONTRACT" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">CONTRACT</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.CONTRACT" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessels controlled by commercial operators that do not participate
+in the spot market and are typically
+doing system cargoes with repetitive trading patterns.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.PROGRAM" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">PROGRAM</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.PROGRAM" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessels controlled by charterers like
+that do not participate in the spot market and
+are either not advertised through Tonnage lists or
+Tonnage lists report the fact that they are program</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.RELET" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">RELET</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.RELET" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessels controlled by charterers that participate in the spot market
+and are advertised through Tonnage lists and get reported fixtures</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.SPOT" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">SPOT</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.market_deployment.MarketDeployment.SPOT" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessels controlled by commercial operators that participate in the
+spot market and are advertised through Tonnage lists and
+get reported fixtures</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.operational_status" class="doc doc-heading">
+        <code>operational_status</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus" class="doc doc-heading">
+        <code>OperationalStatus</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains constants for available operational statuses.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.ACTIVE_STORAGE" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ACTIVE_STORAGE</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.ACTIVE_STORAGE" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is in active storage.
+This means it acts as storage for a
+short term (compared to storage vessels).</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">BALLAST_FIXED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is currently empty of cargo but fixed forward</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED_IMPLIED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">BALLAST_FIXED_IMPLIED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_FIXED_IMPLIED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is currently free of cargo and her AIS destination implies a fixture</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_UNFIXED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">BALLAST_UNFIXED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.BALLAST_UNFIXED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is currently free of cargo and not fixed (prompt)</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.DISCHARGING" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">DISCHARGING</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.DISCHARGING" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is discharging, i.e. it has entered a Jetty or is performing STS</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LADEN" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">LADEN</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LADEN" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vesel has loaded</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LOADING" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">LOADING</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.LOADING" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is loading, i.e. it has entered a Jetty or is performing STS</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.REPAIRS" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">REPAIRS</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.REPAIRS" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is undergoing repairs or Drydock.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_DISCHARGE" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">WAITING_TO_DISCHARGE</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_DISCHARGE" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is waiting to Discharge</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_LOAD" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">WAITING_TO_LOAD</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.operational_status.OperationalStatus.WAITING_TO_LOAD" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is waiting to load</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.push_type" class="doc doc-heading">
+        <code>push_type</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.push_type" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.push_type.PushType" class="doc doc-heading">
+        <code>PushType</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.push_type.PushType" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains constants for available push types.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.push_type.PushType.NOT_PUSHED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">NOT_PUSHED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.push_type.PushType.NOT_PUSHED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>vessels not pushed anymore</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">PUSHED</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Actively pushed in the market through Tonnage lists or Positions lists</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED_POSS" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">PUSHED_POSS</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.push_type.PushType.PUSHED_POSS" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Actively pushed in the market with notification Poss (Possibly)
+meaning that this is a broker projection</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.tonnage_list" class="doc doc-heading">
+        <code>tonnage_list</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.tonnage_list" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.tonnage_list.TonnageList" class="doc doc-heading">
+        <code>TonnageList</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.tonnage_list.TonnageList" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A tonnage list as it occurred at a certain point in time.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>date</code></td>
+        <td><code>datetime</code></td>
+        <td><p>The date and time at which the tonnage list was captured.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessels</code></td>
+        <td><code>Tuple[signal_ocean.historical_tonnage_list.vessel.Vessel, ...]</code></td>
+        <td><p>Vessels present in the tonnage list at the point in time</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.vessel" class="doc doc-heading">
+        <code>vessel</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.vessel" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.vessel.Vessel" class="doc doc-heading">
+        <code>Vessel</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.vessel.Vessel" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Holds information for a vessel that participates in a tonnage list.</p>
+<p>Contains both static vessel and point-in-time vessel data.
+All point in time data are annotated with the name _point_in_time
+when converted to data_frame, see column class for details</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>imo</code></td>
+        <td><code>int</code></td>
+        <td><p>The vessel's IMO number.</p></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>The vessel's name.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>str</code></td>
+        <td><p>The vessel's class name.</p></td>
+      </tr>
+      <tr>
+        <td><code>ice_class</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>The vessel's ice class.</p></td>
+      </tr>
+      <tr>
+        <td><code>year_built</code></td>
+        <td><code>int</code></td>
+        <td><p>The year the vessel has been built.</p></td>
+      </tr>
+      <tr>
+        <td><code>deadweight</code></td>
+        <td><code>int</code></td>
+        <td><p>The vessel's deadweight.</p></td>
+      </tr>
+      <tr>
+        <td><code>length_overall</code></td>
+        <td><code>float</code></td>
+        <td><p>The vessel's length overall.</p></td>
+      </tr>
+      <tr>
+        <td><code>breadth_extreme</code></td>
+        <td><code>int</code></td>
+        <td><p>The vessel's breadth extreme.</p></td>
+      </tr>
+      <tr>
+        <td><code>market_deployment</code></td>
+        <td><code>str</code></td>
+        <td><p>Market deployment of the vessel.
+ Point in time property.
+ See the MarketDeployment class for available values.</p></td>
+      </tr>
+      <tr>
+        <td><code>push_type</code></td>
+        <td><code>str</code></td>
+        <td><p>Push type of the vessel.
+Point in time property.
+See the PushType class for available values.</p></td>
+      </tr>
+      <tr>
+        <td><code>open_port</code></td>
+        <td><code>str</code></td>
+        <td><p>The vessel's open port name.
+Point in time property.</p></td>
+      </tr>
+      <tr>
+        <td><code>open_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>The vessel's open date.
+Point in time property.</p></td>
+      </tr>
+      <tr>
+        <td><code>operational_status</code></td>
+        <td><code>str</code></td>
+        <td><p>Operational status of the vessel.
+Point in time property.
+See the OperationalStatus class for available values.</p></td>
+      </tr>
+      <tr>
+        <td><code>commercial_operator</code></td>
+        <td><code>str</code></td>
+        <td><p>The vessel's commercial operator.
+Point in time property.</p></td>
+      </tr>
+      <tr>
+        <td><code>commercial_status</code></td>
+        <td><code>str</code></td>
+        <td><p>Commercial status of the vessel.
+Point in time property.
+See the CommercialStatus class for available values.</p></td>
+      </tr>
+      <tr>
+        <td><code>eta</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Estimated time of arrival.
+Point in time property.</p></td>
+      </tr>
+      <tr>
+        <td><code>latest_ais</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Timestamp of the vessel's latest AIS information.
+Point in time property.</p></td>
+      </tr>
+      <tr>
+        <td><code>subclass</code></td>
+        <td><code>str</code></td>
+        <td><p>The vessel's subclass.
+See the VesselSubclass class for available values.</p></td>
+      </tr>
+      <tr>
+        <td><code>willing_to_switch_subclass</code></td>
+        <td><code>bool</code></td>
+        <td><p>Is the vessel willing
+to switch its subclass.</p></td>
+      </tr>
+      <tr>
+        <td><code>open_prediction_accuracy</code></td>
+        <td><code>str</code></td>
+        <td><p>How accurate is the open prediction.
+Point in time property. i.e: if a source is specifying the port
+then prediction is given at port level.
+See the LocationTaxonomy class for available values.</p></td>
+      </tr>
+      <tr>
+        <td><code>open_areas</code></td>
+        <td><code>Tuple[signal_ocean.historical_tonnage_list.area.Area, ...]</code></td>
+        <td><p>A hierarchical collection of areas the vessel opens
+at used to filtering.
+Point in time property.
+i.e: if a vessel opens in Rotterdam you get as open areas
+"openAreas":[{"id":24758,"label":"Continent","taxonomy":4},
+{"id":25016,"label":"UK Continent","taxonomy":5},
+{"id":25025,"label":"Mediterranean / UK Continent","taxonomy":6},
+{"id":25028,"label":"West","taxonomy":7},
+{"id":173,"label":"Netherlands","taxonomy":3}]</p></td>
+      </tr>
+      <tr>
+        <td><code>availability_port_type</code></td>
+        <td><code>str</code></td>
+        <td><p>If it says source it means that there is
+hard evidence for the specific prediction of Port,
+if it says prediction it means the system is predicting
+based on the algorithm.
+Point in time property.</p></td>
+      </tr>
+      <tr>
+        <td><code>availability_date_type</code></td>
+        <td><code>str</code></td>
+        <td><p>If it says source it means that there is
+hard evidence for
+the specific prediction of the Open date,
+if it says prediction it means the system is
+predicting based on the algorithm.
+Point in time property.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.vessel.Vessel.open_country" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">open_country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-property"><code>property</code></small>
+      <small class="doc doc-property doc-property-readonly"><code>readonly</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_country" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Returns the vessel's open country name.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[str]</code></td>
+      <td><p>The name of the open country or None if an area with
+LocationTaxonomy.COUNTRY was not present.</p></td>
+    </tr>
+  </tbody>
+</table>    </div>
+
+  </div>
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.vessel.Vessel.open_narrow_area" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">open_narrow_area</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-property"><code>property</code></small>
+      <small class="doc doc-property doc-property-readonly"><code>readonly</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_narrow_area" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Returns the vessel's open narrow area name.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[str]</code></td>
+      <td><p>The name of the open narrow area or None if an area with
+LocationTaxonomy.NARROW_AREA was not present.</p></td>
+    </tr>
+  </tbody>
+</table>    </div>
+
+  </div>
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.vessel.Vessel.open_wide_area" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">open_wide_area</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-property"><code>property</code></small>
+      <small class="doc doc-property doc-property-readonly"><code>readonly</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.vessel.Vessel.open_wide_area" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Returns the vessel's open wide area name.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[str]</code></td>
+      <td><p>The name of the open wide area or None if an area with
+LocationTaxonomy.WIDE_AREA was not present.</p></td>
+    </tr>
+  </tbody>
+</table>    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.vessel_filter" class="doc doc-heading">
+        <code>vessel_filter</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.vessel_filter" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.vessel_filter.VesselFilter" class="doc doc-heading">
+        <code>VesselFilter</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.historical_tonnage_list.vessel_filter.VesselFilter" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Enables vessel filtering in a Historical Tonnage List query.</p>
+<p>All attributes in this class are optional, i.e. no filtering will be
+performed on attributes whose value is None.</p>
+<p>Attributes that accept a list of values are used to perform an <em>OR</em>
+comparison. In other words, when a non-empty list of values is used,
+the Historical Tonnage List will contain vessels that match on <strong>any</strong>
+of the specified values. Using an empty list will result in no filtering
+at all.</p>
+<p>VesselFilter is mutable in order to allow making adjustments to
+existing instances if query results are unsatisfactory.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>push_types</code></td>
+        <td><code>Optional[List[str]]</code></td>
+        <td><p>Return vessels with the specified push types.
+Use constants defined in the PushType class for the values of
+this attribute.</p></td>
+      </tr>
+      <tr>
+        <td><code>market_deployments</code></td>
+        <td><code>Optional[List[str]]</code></td>
+        <td><p>Return vessels with the specified market
+deployment types. Use constants defined in the MarketDeployment
+class for the values of this attribute.</p></td>
+      </tr>
+      <tr>
+        <td><code>commercial_statuses</code></td>
+        <td><code>Optional[List[str]]</code></td>
+        <td><p>Return vessels with the specified
+commercial statuses. Use constants defined in the CommercialStatus
+class for the values of this attribute.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_subclass</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Return vessels of the specified subclass.
+Use constants defined in the VesselSubclass class for the values
+of this attribute.</p></td>
+      </tr>
+      <tr>
+        <td><code>add_willing_to_switch_subclass</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>When True, returns vessels
+that do not match the subclass but are willing to switch to it.</p></td>
+      </tr>
+      <tr>
+        <td><code>latest_ais_since</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>The maximum age, in days, of the vessel's
+AIS information at the time the tonnage list was captured.</p></td>
+      </tr>
+      <tr>
+        <td><code>operational_statuses</code></td>
+        <td><code>Optional[List[str]]</code></td>
+        <td><p>Return vessels with the specified
+operational statuses. Use constants defined in the
+OperationalStatus class for the values of this attribute.</p></td>
+      </tr>
+      <tr>
+        <td><code>min_liquid_capacity</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>The minimum liquid capacity, in cubic
+meters, the vessel should be able to hold.</p></td>
+      </tr>
+      <tr>
+        <td><code>max_liquid_capacity</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>The maximum liquid capacity, in cubic
+meters, the vessel should be able to hold.</p></td>
+      </tr>
+      <tr>
+        <td><code>fixture_types</code></td>
+        <td><code>Optional[List[str]]</code></td>
+        <td><p>Return vessels with the specified
+fixture types. Use constants defined in the FixtureType class for
+the values of this attribute.</p></td>
+      </tr>
+      <tr>
+        <td><code>last_cargo_types</code></td>
+        <td><code></code></td>
+        <td><p>Return vessels with the specified last
+cargo type IDs.</p></td>
+      </tr>
+      <tr>
+        <td><code>past_port_visits</code></td>
+        <td><code>Optional[List[int]]</code></td>
+        <td><p>Return vessels with the specified past
+port visits.</p></td>
+      </tr>
+      <tr>
+        <td><code>open_port_ids</code></td>
+        <td><code>Optional[List[int]]</code></td>
+        <td><p>Return vessels with the specified open
+port ids.</p></td>
+      </tr>
+      <tr>
+        <td><code>canakkale_cancelling</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>Return vessels with the specified
+Canakkale cancelling date.</p></td>
+      </tr>
+      <tr>
+        <td><code>open_date</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>Return vessels with the specified open date.</p></td>
+      </tr>
+      <tr>
+        <td><code>ice_classes</code></td>
+        <td><code>Optional[List[str]]</code></td>
+        <td><p>Return vessels with the specified ice classes.</p></td>
+      </tr>
+      <tr>
+        <td><code>min_cranes_ton_capacity</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return vessels with the specified
+minimum cranes ton capacity.</p></td>
+      </tr>
+      <tr>
+        <td><code>max_cranes_ton_capacity</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return vessels with the specified
+maximum cranes ton capacity.</p></td>
+      </tr>
+      <tr>
+        <td><code>min_length_overall</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return vessels with the specified
+minimum length overall.</p></td>
+      </tr>
+      <tr>
+        <td><code>max_length_overall</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return vessels with the specified
+maximum length overall.</p></td>
+      </tr>
+      <tr>
+        <td><code>min_breadth_extreme</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return vessels with the specified
+minimum breadth extreme.</p></td>
+      </tr>
+      <tr>
+        <td><code>max_breadth_extreme</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return vessels with the specified
+maximum breadth extreme.</p></td>
+      </tr>
+      <tr>
+        <td><code>openAreas</code></td>
+        <td><code></code></td>
+        <td><p>Return vessels with the specified open area ids.</p></td>
+      </tr>
+      <tr>
+        <td><code>openCountries</code></td>
+        <td><code></code></td>
+        <td><p>Return vessels with the specified open
+country ids.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.historical_tonnage_list.vessel_subclass" class="doc doc-heading">
+        <code>vessel_subclass</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.vessel_subclass" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass" class="doc doc-heading">
+        <code>VesselSubclass</code>
+
+
+
+<a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains constants for available vessel subclasses.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.ALL" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ALL</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.ALL" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Refers to all the vessels without any classification regarding
+the cargo type that they are carrying.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.CLEAN" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">CLEAN</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.CLEAN" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Refers to all the vessels that they classify
+    to the clean types of oil cargo.
+Applicable only for Tankers.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.DIRTY" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">DIRTY</span></code>
+
+
+<a href="#signal_ocean.historical_tonnage_list.vessel_subclass.VesselSubclass.DIRTY" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Refers to all the vessels that they classify
+    to the dirty types of oil cargo.
+Applicable only for Tankers.</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Welcome to the Signal SDK
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../examples/jupyter/HTL%20API/Analysis_over_all_vessels/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Analysis over all vessels
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>

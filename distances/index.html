@@ -1,0 +1,3853 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../img/favicondark.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Package Documentation - Signal SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../css/site.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#package-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Signal SDK" class="md-header__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Signal SDK
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Package Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Signal SDK" class="md-nav__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    Signal SDK
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to the Signal SDK
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Historical Tonnage List
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Historical Tonnage List" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Historical Tonnage List
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../historical_tonnage_list/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Analysis_over_all_vessels/" class="md-nav__link">
+        Analysis over all vessels
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/QuickStart_HTL_API/" class="md-nav__link">
+        QuickStart HTL API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Historical%20Tonnage%20List%20API/" class="md-nav__link">
+        Historical Tonnage List API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessel_OnSubs_PerDay/" class="md-nav__link">
+        Vessel OnSubs PerDay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessels%20open%20at%20Fos%20over%20time/" class="md-nav__link">
+        Vessels open at Fos over time
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Persist%20HTL%20query%20data%20in%20SQLite/" class="md-nav__link">
+        Persist HTL query data in SQLite
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Voyages
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Voyages" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Voyages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voyages/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases/" class="md-nav__link">
+        VoyagesAPI UseCases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI/" class="md-nav__link">
+        VoyagesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike/" class="md-nav__link">
+        VoyagesAPI VoyagesDataLike
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Vessels
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Vessels" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Vessels
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vessels/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VesselsAPI/VesselsAPI/" class="md-nav__link">
+        VesselsAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Companies
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Companies" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Companies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../companies/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/CompaniesAPI/CompaniesAPI/" class="md-nav__link">
+        CompaniesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      <label class="md-nav__link" for="__nav_6">
+        Distances
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distances" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Distances
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Package Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Package Documentation
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances" class="md-nav__link">
+    signal_ocean.distances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api" class="md-nav__link">
+    distances_api
+  </a>
+  
+    <nav class="md-nav" aria-label="distances_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI" class="md-nav__link">
+    DistancesAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="DistancesAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_generic_point_to_point_route" class="md-nav__link">
+    get_generic_point_to_point_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_distance" class="md-nav__link">
+    get_point_to_point_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_route" class="md-nav__link">
+    get_point_to_point_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_distance" class="md-nav__link">
+    get_point_to_port_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_route" class="md-nav__link">
+    get_point_to_port_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_distance" class="md-nav__link">
+    get_port_to_port_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_route" class="md-nav__link">
+    get_port_to_port_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_ports" class="md-nav__link">
+    get_ports()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_vessel_classes" class="md-nav__link">
+    get_vessel_classes()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition" class="md-nav__link">
+    loading_condition
+  </a>
+  
+    <nav class="md-nav" aria-label="loading_condition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition.LoadingCondition" class="md-nav__link">
+    LoadingCondition
+  </a>
+  
+    <nav class="md-nav" aria-label="LoadingCondition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition.LoadingCondition.BALLAST" class="md-nav__link">
+    BALLAST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition.LoadingCondition.LADEN" class="md-nav__link">
+    LADEN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models" class="md-nav__link">
+    models
+  </a>
+  
+    <nav class="md-nav" aria-label="models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.AlternativePath" class="md-nav__link">
+    AlternativePath
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.Point" class="md-nav__link">
+    Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.PointsOnRoute" class="md-nav__link">
+    PointsOnRoute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.RouteResponse" class="md-nav__link">
+    RouteResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.RouteRestrictions" class="md-nav__link">
+    RouteRestrictions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port" class="md-nav__link">
+    port
+  </a>
+  
+    <nav class="md-nav" aria-label="port">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port.Port" class="md-nav__link">
+    Port
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port_filter" class="md-nav__link">
+    port_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="port_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port_filter.PortFilter" class="md-nav__link">
+    PortFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class" class="md-nav__link">
+    vessel_class
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class.VesselClass" class="md-nav__link">
+    VesselClass
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class_filter" class="md-nav__link">
+    vessel_class_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_class_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class_filter.VesselClassFilter" class="md-nav__link">
+    VesselClassFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/QuickStartDistancesAPI/" class="md-nav__link">
+        QuickStartDistancesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/DistancesWithRouteExample/" class="md-nav__link">
+        DistancesWithRouteExample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/AlternativeRoutes/" class="md-nav__link">
+        AlternativeRoutes
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Port Expenses
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Port Expenses" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Port Expenses
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../port_expenses/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/PortExpensesAPI/PortExpensesAPI/" class="md-nav__link">
+        PortExpensesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Market Rates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Market Rates" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Market Rates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../market_rates/" class="md-nav__link">
+        Market Rates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/MarketRatesAPI/MarketRatesAPI/" class="md-nav__link">
+        MarketRatesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Release notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Release notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Release notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.2/" class="md-nav__link">
+        v1.0.2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.1.b6/" class="md-nav__link">
+        v1.0.1b6
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances" class="md-nav__link">
+    signal_ocean.distances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api" class="md-nav__link">
+    distances_api
+  </a>
+  
+    <nav class="md-nav" aria-label="distances_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI" class="md-nav__link">
+    DistancesAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="DistancesAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_generic_point_to_point_route" class="md-nav__link">
+    get_generic_point_to_point_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_distance" class="md-nav__link">
+    get_point_to_point_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_route" class="md-nav__link">
+    get_point_to_point_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_distance" class="md-nav__link">
+    get_point_to_port_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_route" class="md-nav__link">
+    get_point_to_port_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_distance" class="md-nav__link">
+    get_port_to_port_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_route" class="md-nav__link">
+    get_port_to_port_route()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_ports" class="md-nav__link">
+    get_ports()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.distances_api.DistancesAPI.get_vessel_classes" class="md-nav__link">
+    get_vessel_classes()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition" class="md-nav__link">
+    loading_condition
+  </a>
+  
+    <nav class="md-nav" aria-label="loading_condition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition.LoadingCondition" class="md-nav__link">
+    LoadingCondition
+  </a>
+  
+    <nav class="md-nav" aria-label="LoadingCondition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition.LoadingCondition.BALLAST" class="md-nav__link">
+    BALLAST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.loading_condition.LoadingCondition.LADEN" class="md-nav__link">
+    LADEN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models" class="md-nav__link">
+    models
+  </a>
+  
+    <nav class="md-nav" aria-label="models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.AlternativePath" class="md-nav__link">
+    AlternativePath
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.Point" class="md-nav__link">
+    Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.PointsOnRoute" class="md-nav__link">
+    PointsOnRoute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.RouteResponse" class="md-nav__link">
+    RouteResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.models.RouteRestrictions" class="md-nav__link">
+    RouteRestrictions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port" class="md-nav__link">
+    port
+  </a>
+  
+    <nav class="md-nav" aria-label="port">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port.Port" class="md-nav__link">
+    Port
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port_filter" class="md-nav__link">
+    port_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="port_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.port_filter.PortFilter" class="md-nav__link">
+    PortFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class" class="md-nav__link">
+    vessel_class
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class.VesselClass" class="md-nav__link">
+    VesselClass
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class_filter" class="md-nav__link">
+    vessel_class_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="vessel_class_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.distances.vessel_class_filter.VesselClassFilter" class="md-nav__link">
+    VesselClassFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="package-documentation">Package Documentation<a class="headerlink" href="#package-documentation" title="Permanent link">&para;</a></h1>
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="signal_ocean.distances"></a>
+    <div class="doc doc-contents first">
+
+      <p>Distances API Package.</p>
+<div class="admonition classes">
+<p class="admonition-title">Classes</p>
+<p>DistancesAPI: Represents Signal's Distances API.</p>
+<p>VesselClass: A group of vessels of similar characteristics.</p>
+<p>VesselClassFilter: A filter used to find specific vessel classes.</p>
+<p>Port: A maritime facility where vessels can dock.</p>
+<p>PortFilter: A filter used to find specific ports.</p>
+<p>LoadingCondition: The states of a vessel carrying cargo.</p>
+<p>RouteResponse: A route between two points</p>
+<p>AlternativePath: An alternative path for the route</p>
+<p>PointsOnRoute: A point and extra properties needed for a route</p>
+<p>Point: A point in latitude and longitude.</p>
+</div>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.distances.distances_api" class="doc doc-heading">
+        <code>distances_api</code>
+
+
+
+<a href="#signal_ocean.distances.distances_api" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.distances_api.DistancesAPI" class="doc doc-heading">
+        <code>DistancesAPI</code>
+
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Represents Signal's Distances API.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes DistancesAPI.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>connection</code></td>
+        <td><code>Optional[signal_ocean.connection.Connection]</code></td>
+        <td><p>API connection configuration. If not provided, the
+default connection method is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Connection</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes DistancesAPI.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        connection: API connection configuration. If not provided, the</span>
+<span class="sd">            default connection method is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="ow">or</span> <span class="n">Connection</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_generic_point_to_point_route" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_generic_point_to_point_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">,</span> <span class="n">route_restrictions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delays_valid_at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">get_alternatives</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_generic_point_to_point_route" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves a generic route between two points.</p>
+<p>The method takes into consideration the provided restrictions and can
+also return alternative routes.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>start_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The starting point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>end_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The ending point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>route_restrictions</code></td>
+        <td><code>Optional[signal_ocean.distances.models.RouteRestrictions]</code></td>
+        <td><p>Restrictions to obey while calculating the
+route.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>delays_valid_at</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>Date at which the route delays are valid.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>get_alternatives</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Whether or not to include alternative routes.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>RouteResponse</code></td>
+      <td><p>A Route between two points with distance in NM.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_generic_point_to_point_route</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">start_point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+    <span class="n">end_point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+    <span class="n">route_restrictions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RouteRestrictions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">delays_valid_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">get_alternatives</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RouteResponse</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves a generic route between two points.</span>
+
+<span class="sd">    The method takes into consideration the provided restrictions and can</span>
+<span class="sd">    also return alternative routes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        start_point: The starting point latitude and longitude.</span>
+<span class="sd">        end_point: The ending point latitude and longitude.</span>
+<span class="sd">        route_restrictions: Restrictions to obey while calculating the</span>
+<span class="sd">            route.</span>
+<span class="sd">        delays_valid_at: Date at which the route delays are valid.</span>
+<span class="sd">        get_alternatives: Whether or not to include alternative routes.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Route between two points with distance in NM.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">route_restrictions</span> <span class="o">=</span> <span class="n">route_restrictions</span> <span class="ow">or</span> <span class="n">RouteRestrictions</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/Distance/Generic&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;StartPointLatitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;StartPointLongitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+            <span class="s2">&quot;EndPointLatitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;EndPointLongitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+            <span class="s2">&quot;DelaysValidAt&quot;</span><span class="p">:</span> <span class="n">format_iso_date</span><span class="p">(</span><span class="n">delays_valid_at</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">delays_valid_at</span>
+            <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;GetAlternatives&quot;</span><span class="p">:</span> <span class="n">get_alternatives</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">route_restrictions</span><span class="o">.</span><span class="n">_to_query_string</span><span class="p">(),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">_distances_json</span><span class="o">.</span><span class="n">parse_route_response</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_distance" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_point_to_point_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vessel_class</span><span class="p">,</span> <span class="n">loading_condition_id</span><span class="p">,</span> <span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_distance" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves the distance from one point to another.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>VesselClass</code></td>
+        <td><p>Vessel class for which the distance will be
+calculated.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>loading_condition_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Loading condition of the vessels
+for which the distance will be calculated.
+Options available: Laden and Ballast.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>start_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The starting point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>end_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The ending point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[decimal.Decimal]</code></td>
+      <td><p>A Decimal representing the distance in NM between two points.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_point_to_point_distance</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">vessel_class</span><span class="p">:</span> <span class="n">VesselClass</span><span class="p">,</span>
+    <span class="n">loading_condition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">start_point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+    <span class="n">end_point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves the distance from one point to another.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vessel_class: Vessel class for which the distance will be</span>
+<span class="sd">            calculated.</span>
+<span class="sd">        loading_condition_id: Loading condition of the vessels</span>
+<span class="sd">            for which the distance will be calculated.</span>
+<span class="sd">            Options available: Laden and Ballast.</span>
+<span class="sd">        start_point: The starting point latitude and longitude.</span>
+<span class="sd">        end_point: The ending point latitude and longitude.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Decimal representing the distance in NM between two points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/Distance/PointToPoint&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;vesselclass&quot;</span><span class="p">:</span> <span class="n">vessel_class</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;loadingcondition&quot;</span><span class="p">:</span> <span class="n">loading_condition_id</span><span class="p">,</span>
+            <span class="s2">&quot;latitudefrom&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;latitudeto&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;longitudefrom&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+            <span class="s2">&quot;longitudeto&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">as_decimal</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_route" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_point_to_point_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vessel_class</span><span class="p">,</span> <span class="n">loading_condition_id</span><span class="p">,</span> <span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_point_route" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves the route from one point to another.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>VesselClass</code></td>
+        <td><p>Vessel class for which the distance will be
+calculated.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>loading_condition_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Loading condition of the vessels
+for which the distance will be calculated.
+Options available: Laden and Ballast.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>start_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The starting point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>end_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The ending point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>RouteResponse</code></td>
+      <td><p>A Route between two points with distance in NM.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_point_to_point_route</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">vessel_class</span><span class="p">:</span> <span class="n">VesselClass</span><span class="p">,</span>
+    <span class="n">loading_condition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">start_point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+    <span class="n">end_point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RouteResponse</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves the route from one point to another.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vessel_class: Vessel class for which the distance will be</span>
+<span class="sd">            calculated.</span>
+<span class="sd">        loading_condition_id: Loading condition of the vessels</span>
+<span class="sd">            for which the distance will be calculated.</span>
+<span class="sd">            Options available: Laden and Ballast.</span>
+<span class="sd">        start_point: The starting point latitude and longitude.</span>
+<span class="sd">        end_point: The ending point latitude and longitude.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Route between two points with distance in NM.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/Distance/PointToPoint/Route&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;vesselclass&quot;</span><span class="p">:</span> <span class="n">vessel_class</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;loadingcondition&quot;</span><span class="p">:</span> <span class="n">loading_condition_id</span><span class="p">,</span>
+            <span class="s2">&quot;latitudefrom&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;latitudeto&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;longitudefrom&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+            <span class="s2">&quot;longitudeto&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">_distances_json</span><span class="o">.</span><span class="n">parse_route_response</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_distance" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_point_to_port_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vessel_class</span><span class="p">,</span> <span class="n">loading_condition_id</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_distance" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves the distance from one point to another.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>VesselClass</code></td>
+        <td><p>Vessel class for which the distance will be
+calculated.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>loading_condition_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Loading condition of the vessels
+for which the distance will be calculated.
+Options available: Laden and Ballast.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The starting point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>port</code></td>
+        <td><code>Port</code></td>
+        <td><p>The target port.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[decimal.Decimal]</code></td>
+      <td><p>A Decimal representing the distance in NM between a point
+    and a port.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_point_to_port_distance</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">vessel_class</span><span class="p">:</span> <span class="n">VesselClass</span><span class="p">,</span>
+    <span class="n">loading_condition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+    <span class="n">port</span><span class="p">:</span> <span class="n">Port</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves the distance from one point to another.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vessel_class: Vessel class for which the distance will be</span>
+<span class="sd">            calculated.</span>
+<span class="sd">        loading_condition_id: Loading condition of the vessels</span>
+<span class="sd">            for which the distance will be calculated.</span>
+<span class="sd">            Options available: Laden and Ballast.</span>
+<span class="sd">        point: The starting point latitude and longitude.</span>
+<span class="sd">        port: The target port.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Decimal representing the distance in NM between a point</span>
+<span class="sd">            and a port.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/Distance/PointToPort&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;vesselclass&quot;</span><span class="p">:</span> <span class="n">vessel_class</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;loadingcondition&quot;</span><span class="p">:</span> <span class="n">loading_condition_id</span><span class="p">,</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+            <span class="s2">&quot;portid&quot;</span><span class="p">:</span> <span class="n">port</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">as_decimal</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_route" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_point_to_port_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vessel_class</span><span class="p">,</span> <span class="n">loading_condition_id</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_point_to_port_route" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves the route from one point to another.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>VesselClass</code></td>
+        <td><p>Vessel class for which the distance will be
+calculated.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>loading_condition_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Loading condition of the vessels
+for which the distance will be calculated.
+Options available: Laden and Ballast.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The starting point latitude and longitude.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>port</code></td>
+        <td><code>Port</code></td>
+        <td><p>The ending port for the distance
+route calculation.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>RouteResponse</code></td>
+      <td><p>A Route between a point and a port with distance in NM.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_point_to_port_route</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">vessel_class</span><span class="p">:</span> <span class="n">VesselClass</span><span class="p">,</span>
+    <span class="n">loading_condition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span>
+    <span class="n">port</span><span class="p">:</span> <span class="n">Port</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RouteResponse</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves the route from one point to another.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vessel_class: Vessel class for which the distance will be</span>
+<span class="sd">            calculated.</span>
+<span class="sd">        loading_condition_id: Loading condition of the vessels</span>
+<span class="sd">            for which the distance will be calculated.</span>
+<span class="sd">            Options available: Laden and Ballast.</span>
+<span class="sd">        point: The starting point latitude and longitude.</span>
+<span class="sd">        port: The ending port for the distance</span>
+<span class="sd">            route calculation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Route between a point and a port with distance in NM.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/Distance/PointToPort/Route&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;vesselclass&quot;</span><span class="p">:</span> <span class="n">vessel_class</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;loadingcondition&quot;</span><span class="p">:</span> <span class="n">loading_condition_id</span><span class="p">,</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+            <span class="s2">&quot;portid&quot;</span><span class="p">:</span> <span class="n">port</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">_distances_json</span><span class="o">.</span><span class="n">parse_route_response</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_distance" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_port_to_port_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vessel_class</span><span class="p">,</span> <span class="n">loading_condition_id</span><span class="p">,</span> <span class="n">port_from</span><span class="p">,</span> <span class="n">port_to</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_distance" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves the distance from one point to another.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>VesselClass</code></td>
+        <td><p>Vessel class for which the distance will be
+calculated.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>loading_condition_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Loading condition of the vessels
+for which the distance will be calculated.
+Options available: Laden and Ballast.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>port_from</code></td>
+        <td><code>Port</code></td>
+        <td><p>The starting port for the distance
+route calculation.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>port_to</code></td>
+        <td><code>Port</code></td>
+        <td><p>The ending port for the distance
+route calculation.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[decimal.Decimal]</code></td>
+      <td><p>A Decimal representing the distance in NM between two ports.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_port_to_port_distance</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">vessel_class</span><span class="p">:</span> <span class="n">VesselClass</span><span class="p">,</span>
+    <span class="n">loading_condition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">port_from</span><span class="p">:</span> <span class="n">Port</span><span class="p">,</span>
+    <span class="n">port_to</span><span class="p">:</span> <span class="n">Port</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves the distance from one point to another.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vessel_class: Vessel class for which the distance will be</span>
+<span class="sd">            calculated.</span>
+<span class="sd">        loading_condition_id: Loading condition of the vessels</span>
+<span class="sd">            for which the distance will be calculated.</span>
+<span class="sd">            Options available: Laden and Ballast.</span>
+<span class="sd">        port_from: The starting port for the distance</span>
+<span class="sd">            route calculation.</span>
+<span class="sd">        port_to: The ending port for the distance</span>
+<span class="sd">            route calculation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Decimal representing the distance in NM between two ports.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/Distance/PortToPort&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;vesselclass&quot;</span><span class="p">:</span> <span class="n">vessel_class</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;loadingcondition&quot;</span><span class="p">:</span> <span class="n">loading_condition_id</span><span class="p">,</span>
+            <span class="s2">&quot;portIdFrom&quot;</span><span class="p">:</span> <span class="n">port_from</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;portIdTo&quot;</span><span class="p">:</span> <span class="n">port_to</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">as_decimal</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_route" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_port_to_port_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vessel_class</span><span class="p">,</span> <span class="n">loading_condition_id</span><span class="p">,</span> <span class="n">port_from</span><span class="p">,</span> <span class="n">port_to</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_port_to_port_route" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves the route from one point to another.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>VesselClass</code></td>
+        <td><p>Vessel class for which the distance will be
+calculated.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>loading_condition_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Loading condition of the vessels
+for which the distance will be calculated.
+Options available: Laden and Ballast.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>port_from</code></td>
+        <td><code>Port</code></td>
+        <td><p>The starting port for the distance
+route calculation.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>port_to</code></td>
+        <td><code>Port</code></td>
+        <td><p>The ending port for the distance
+route calculation.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>RouteResponse</code></td>
+      <td><p>A Route between two ports with distance in NM.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_port_to_port_route</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">vessel_class</span><span class="p">:</span> <span class="n">VesselClass</span><span class="p">,</span>
+    <span class="n">loading_condition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">port_from</span><span class="p">:</span> <span class="n">Port</span><span class="p">,</span>
+    <span class="n">port_to</span><span class="p">:</span> <span class="n">Port</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RouteResponse</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves the route from one point to another.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vessel_class: Vessel class for which the distance will be</span>
+<span class="sd">            calculated.</span>
+<span class="sd">        loading_condition_id: Loading condition of the vessels</span>
+<span class="sd">            for which the distance will be calculated.</span>
+<span class="sd">            Options available: Laden and Ballast.</span>
+<span class="sd">        port_from: The starting port for the distance</span>
+<span class="sd">            route calculation.</span>
+<span class="sd">        port_to: The ending port for the distance</span>
+<span class="sd">            route calculation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Route between two ports with distance in NM.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/Distance/PortToPort/Route&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;vesselclass&quot;</span><span class="p">:</span> <span class="n">vessel_class</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;loadingcondition&quot;</span><span class="p">:</span> <span class="n">loading_condition_id</span><span class="p">,</span>
+            <span class="s2">&quot;portIdFrom&quot;</span><span class="p">:</span> <span class="n">port_from</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;portIdTo&quot;</span><span class="p">:</span> <span class="n">port_to</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">_distances_json</span><span class="o">.</span><span class="n">parse_route_response</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_ports" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_ports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_ports" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves available ports.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>port_filter</code></td>
+        <td><code>Optional[signal_ocean.distances.port_filter.PortFilter]</code></td>
+        <td><p>A filter used to find specific ports. If not
+specified, returns all available ports.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[signal_ocean.distances.port.Port, ...]</code></td>
+      <td><p>A tuple of available ports that match the filter.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_ports</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">port_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PortFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Port</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves available ports.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        port_filter: A filter used to find specific ports. If not</span>
+<span class="sd">            specified, returns all available ports.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple of available ports that match the filter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/ports&quot;</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="n">ports</span> <span class="o">=</span> <span class="p">(</span><span class="n">Port</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+    <span class="n">port_filter</span> <span class="o">=</span> <span class="n">port_filter</span> <span class="ow">or</span> <span class="n">PortFilter</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">port_filter</span><span class="o">.</span><span class="n">_apply</span><span class="p">(</span><span class="n">ports</span><span class="p">))</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.distances.distances_api.DistancesAPI.get_vessel_classes" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_vessel_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.distances.distances_api.DistancesAPI.get_vessel_classes" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves available vessel classes.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>class_filter</code></td>
+        <td><code>Optional[signal_ocean.distances.vessel_class_filter.VesselClassFilter]</code></td>
+        <td><p>A filter used to find specific vessel classes. If not
+specified, returns all available vessel classes.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[signal_ocean.distances.vessel_class.VesselClass, ...]</code></td>
+      <td><p>A tuple of available vessel classes that match the filter.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/distances/distances_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_vessel_classes</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">class_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">VesselClassFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">VesselClass</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves available vessel classes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        class_filter: A filter used to find specific vessel classes. If not</span>
+<span class="sd">            specified, returns all available vessel classes.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple of available vessel classes that match the filter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+        <span class="s2">&quot;/distances-api/api/v1/VesselClasses&quot;</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">(</span><span class="n">VesselClass</span><span class="p">(</span><span class="o">**</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+    <span class="n">class_filter</span> <span class="o">=</span> <span class="n">class_filter</span> <span class="ow">or</span> <span class="n">VesselClassFilter</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">class_filter</span><span class="o">.</span><span class="n">_apply</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.distances.loading_condition" class="doc doc-heading">
+        <code>loading_condition</code>
+
+
+
+<a href="#signal_ocean.distances.loading_condition" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.loading_condition.LoadingCondition" class="doc doc-heading">
+        <code>LoadingCondition</code>
+
+
+
+<a href="#signal_ocean.distances.loading_condition.LoadingCondition" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains constants for available loading conditions.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.distances.loading_condition.LoadingCondition.BALLAST" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">BALLAST</span></code>
+
+
+<a href="#signal_ocean.distances.loading_condition.LoadingCondition.BALLAST" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is free of cargo</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="signal_ocean.distances.loading_condition.LoadingCondition.LADEN" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">LADEN</span></code>
+
+
+<a href="#signal_ocean.distances.loading_condition.LoadingCondition.LADEN" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Vessel is loaded.</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.distances.models" class="doc doc-heading">
+        <code>models</code>
+
+
+
+<a href="#signal_ocean.distances.models" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.models.AlternativePath" class="doc doc-heading">
+        <code>AlternativePath</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.models.AlternativePath" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An alternative path for the route.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>calculated_route</code></td>
+        <td><code>Tuple[signal_ocean.distances.models.Point, ...]</code></td>
+        <td><p>List of coordinates between start and end point.</p></td>
+      </tr>
+      <tr>
+        <td><code>distance</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The distance between the two points.</p></td>
+      </tr>
+      <tr>
+        <td><code>routing_points_on_route</code></td>
+        <td><code>Tuple[signal_ocean.distances.models.PointsOnRoute, ...]</code></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>piracy_distance</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The distance between the two points when piracy
+is considered.</p></td>
+      </tr>
+      <tr>
+        <td><code>seca_distance</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The distance between the two points when SECA is
+considered.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.models.Point" class="doc doc-heading">
+        <code>Point</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.models.Point" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A point on the surface of Earth.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>lat</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The latitude of the point.</p></td>
+      </tr>
+      <tr>
+        <td><code>lon</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The longitude of the point.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.models.PointsOnRoute" class="doc doc-heading">
+        <code>PointsOnRoute</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.models.PointsOnRoute" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A point and extra properties needed for a route.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>is_hra</code></td>
+        <td><code>bool</code></td>
+        <td><p>Is the point in a high-risk area.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_seca</code></td>
+        <td><code>bool</code></td>
+        <td><p>Is the point in a Sulfur Emission Control Area.</p></td>
+      </tr>
+      <tr>
+        <td><code>distance</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The distance between the two points.</p></td>
+      </tr>
+      <tr>
+        <td><code>distance_to_enter</code></td>
+        <td><code>Decimal</code></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>heading</code></td>
+        <td><code>int</code></td>
+        <td><p>The point on route heading.</p></td>
+      </tr>
+      <tr>
+        <td><code>editable</code></td>
+        <td><code>bool</code></td>
+        <td><p>If the point on route is editable.</p></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>The point on route name.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_shown</code></td>
+        <td><code>bool</code></td>
+        <td><p>If the point on route is shown.</p></td>
+      </tr>
+      <tr>
+        <td><code>delay_mins</code></td>
+        <td><code>int</code></td>
+        <td><p>The delay in minutes.</p></td>
+      </tr>
+      <tr>
+        <td><code>center_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>The center point of route.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.models.RouteResponse" class="doc doc-heading">
+        <code>RouteResponse</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.models.RouteResponse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A route between two points.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>int</code></td>
+        <td><p>The id of the route response.</p></td>
+      </tr>
+      <tr>
+        <td><code>start_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>Start point coordinates.</p></td>
+      </tr>
+      <tr>
+        <td><code>end_point</code></td>
+        <td><code>Point</code></td>
+        <td><p>End point coordinates.</p></td>
+      </tr>
+      <tr>
+        <td><code>calculated_route</code></td>
+        <td><code>Tuple[signal_ocean.distances.models.Point, ...]</code></td>
+        <td><p>List of coordinates between start and end point.</p></td>
+      </tr>
+      <tr>
+        <td><code>routing_points_on_route</code></td>
+        <td><code>Tuple[signal_ocean.distances.models.PointsOnRoute, ...]</code></td>
+        <td><p>List of points on a route.</p></td>
+      </tr>
+      <tr>
+        <td><code>distance</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The distance between the two points.</p></td>
+      </tr>
+      <tr>
+        <td><code>piracy_distance</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The distance between the two points when piracy is
+considered.</p></td>
+      </tr>
+      <tr>
+        <td><code>seca_distance</code></td>
+        <td><code>Decimal</code></td>
+        <td><p>The distance between the two points when seca is
+considered.</p></td>
+      </tr>
+      <tr>
+        <td><code>alternative_paths</code></td>
+        <td><code>Tuple[signal_ocean.distances.models.AlternativePath, ...]</code></td>
+        <td><p>List of alternative paths between the two points.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_empty</code></td>
+        <td><code>bool</code></td>
+        <td><p>If the response is empty.</p></td>
+      </tr>
+      <tr>
+        <td><code>bbox</code></td>
+        <td><code>Optional[Tuple[decimal.Decimal, ...]]</code></td>
+        <td><p>The bounding box of the route.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.models.RouteRestrictions" class="doc doc-heading">
+        <code>RouteRestrictions</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.models.RouteRestrictions" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Restrictions that can be placed upon a route.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>is_suez_open</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Determines whether or not to route through the Suez
+Canal.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_panama_open</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Determines whether or not to route through the Panama
+Canal.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_messina_open</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Determines whether or not to route through the Strait
+of Messina.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_oresund_open</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Determines whether or not to route through the Øresund
+Strait.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_suez_open_only_northbound</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Determines whether or not to route
+through the Suez Canal only when northbound.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_piracy_considered</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Determines whether or not to route through areas
+where a piracy threat exists.</p></td>
+      </tr>
+      <tr>
+        <td><code>minimize_seca</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Determines whether or not to minimize distance travelled
+through SECA areas.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.distances.port" class="doc doc-heading">
+        <code>port</code>
+
+
+
+<a href="#signal_ocean.distances.port" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.port.Port" class="doc doc-heading">
+        <code>Port</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.port.Port" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A maritime facility where vessels can dock.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>int</code></td>
+        <td><p>The ID of the port.</p></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>The name of the port.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.distances.port_filter" class="doc doc-heading">
+        <code>port_filter</code>
+
+
+
+<a href="#signal_ocean.distances.port_filter" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.port_filter.PortFilter" class="doc doc-heading">
+        <code>PortFilter</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.port_filter.PortFilter" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A filter used to find specific ports.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>name_like</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Used to find ports by name. When specified, ports whose
+names partially match (contain) the attribute's value will be
+returned. Matching is case-insensitive.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.distances.vessel_class" class="doc doc-heading">
+        <code>vessel_class</code>
+
+
+
+<a href="#signal_ocean.distances.vessel_class" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.vessel_class.VesselClass" class="doc doc-heading">
+        <code>VesselClass</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.vessel_class.VesselClass" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>int</code></td>
+        <td><p>The vessel class ID.</p></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>The vessel class name.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.distances.vessel_class_filter" class="doc doc-heading">
+        <code>vessel_class_filter</code>
+
+
+
+<a href="#signal_ocean.distances.vessel_class_filter" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.distances.vessel_class_filter.VesselClassFilter" class="doc doc-heading">
+        <code>VesselClassFilter</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.distances.vessel_class_filter.VesselClassFilter" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A filter used to find specific vessel classes.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>name_like</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Used to find vessel classes by name. When specified, vessel
+classes whose names partially match (contain) the attribute's value
+will be returned. Matching is case-insensitive.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../examples/jupyter/CompaniesAPI/CompaniesAPI/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              CompaniesAPI
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../examples/jupyter/DistancesAPI/QuickStartDistancesAPI/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              QuickStartDistancesAPI
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>

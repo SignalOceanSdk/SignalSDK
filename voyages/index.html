@@ -1,0 +1,3309 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../img/favicondark.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Package Documentation - Signal SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../css/site.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#package-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Signal SDK" class="md-header__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Signal SDK
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Package Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Signal SDK" class="md-nav__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    Signal SDK
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to the Signal SDK
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Historical Tonnage List
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Historical Tonnage List" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Historical Tonnage List
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../historical_tonnage_list/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Analysis_over_all_vessels/" class="md-nav__link">
+        Analysis over all vessels
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/QuickStart_HTL_API/" class="md-nav__link">
+        QuickStart HTL API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Historical%20Tonnage%20List%20API/" class="md-nav__link">
+        Historical Tonnage List API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessel_OnSubs_PerDay/" class="md-nav__link">
+        Vessel OnSubs PerDay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessels%20open%20at%20Fos%20over%20time/" class="md-nav__link">
+        Vessels open at Fos over time
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Persist%20HTL%20query%20data%20in%20SQLite/" class="md-nav__link">
+        Persist HTL query data in SQLite
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Voyages
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Voyages" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Voyages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Package Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Package Documentation
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.voyages" class="md-nav__link">
+    signal_ocean.voyages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models" class="md-nav__link">
+    models
+  </a>
+  
+    <nav class="md-nav" aria-label="models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.Voyage" class="md-nav__link">
+    Voyage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyageEvent" class="md-nav__link">
+    VoyageEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyageEventDetail" class="md-nav__link">
+    VoyageEventDetail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyageGeo" class="md-nav__link">
+    VoyageGeo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyagesFlat" class="md-nav__link">
+    VoyagesFlat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyagesFlatPagedResponse" class="md-nav__link">
+    VoyagesFlatPagedResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyagesPagedResponse" class="md-nav__link">
+    VoyagesPagedResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api" class="md-nav__link">
+    voyages_api
+  </a>
+  
+    <nav class="md-nav" aria-label="voyages_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI" class="md-nav__link">
+    VoyagesAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="VoyagesAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages" class="md-nav__link">
+    get_incremental_voyages()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages_flat" class="md-nav__link">
+    get_incremental_voyages_flat()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages" class="md-nav__link">
+    get_voyages()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages_flat" class="md-nav__link">
+    get_voyages_flat()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases/" class="md-nav__link">
+        VoyagesAPI UseCases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI/" class="md-nav__link">
+        VoyagesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike/" class="md-nav__link">
+        VoyagesAPI VoyagesDataLike
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Vessels
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Vessels" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Vessels
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vessels/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VesselsAPI/VesselsAPI/" class="md-nav__link">
+        VesselsAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Companies
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Companies" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Companies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../companies/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/CompaniesAPI/CompaniesAPI/" class="md-nav__link">
+        CompaniesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Distances
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distances" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Distances
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distances/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/QuickStartDistancesAPI/" class="md-nav__link">
+        QuickStartDistancesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/DistancesWithRouteExample/" class="md-nav__link">
+        DistancesWithRouteExample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/AlternativeRoutes/" class="md-nav__link">
+        AlternativeRoutes
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Port Expenses
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Port Expenses" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Port Expenses
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../port_expenses/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/PortExpensesAPI/PortExpensesAPI/" class="md-nav__link">
+        PortExpensesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Market Rates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Market Rates" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Market Rates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../market_rates/" class="md-nav__link">
+        Market Rates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/MarketRatesAPI/MarketRatesAPI/" class="md-nav__link">
+        MarketRatesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Release notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Release notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Release notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.2/" class="md-nav__link">
+        v1.0.2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.1.b6/" class="md-nav__link">
+        v1.0.1b6
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.voyages" class="md-nav__link">
+    signal_ocean.voyages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models" class="md-nav__link">
+    models
+  </a>
+  
+    <nav class="md-nav" aria-label="models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.Voyage" class="md-nav__link">
+    Voyage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyageEvent" class="md-nav__link">
+    VoyageEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyageEventDetail" class="md-nav__link">
+    VoyageEventDetail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyageGeo" class="md-nav__link">
+    VoyageGeo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyagesFlat" class="md-nav__link">
+    VoyagesFlat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyagesFlatPagedResponse" class="md-nav__link">
+    VoyagesFlatPagedResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.models.VoyagesPagedResponse" class="md-nav__link">
+    VoyagesPagedResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api" class="md-nav__link">
+    voyages_api
+  </a>
+  
+    <nav class="md-nav" aria-label="voyages_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI" class="md-nav__link">
+    VoyagesAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="VoyagesAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages" class="md-nav__link">
+    get_incremental_voyages()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages_flat" class="md-nav__link">
+    get_incremental_voyages_flat()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages" class="md-nav__link">
+    get_voyages()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages_flat" class="md-nav__link">
+    get_voyages_flat()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="package-documentation">Package Documentation<a class="headerlink" href="#package-documentation" title="Permanent link">&para;</a></h1>
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="signal_ocean.voyages"></a>
+    <div class="doc doc-contents first">
+
+      <p>Voyages API Package.</p>
+<div class="admonition classes">
+<p class="admonition-title">Classes</p>
+<p>VoyagesAPI: Represents Signal's Voyages API.
+Voyage: Represents a Voyage of a vessel.
+VoyageEvent: Represents an Event associated with a Voyage.
+VoyageEventDetail: Represents details about a VoyageEvent.
+VoyageGeo: Represents a geo asset object associated with a voyage.
+VoyagesFlat: Voyages with additional information in flat format.
+VoyagesIncremental: Incremental voyages, including token for next request.</p>
+</div>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.voyages.models" class="doc doc-heading">
+        <code>models</code>
+
+
+
+<a href="#signal_ocean.voyages.models" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Models instantiated by the voyages api.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.models.Voyage" class="doc doc-heading">
+        <code>Voyage</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.models.Voyage" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Contains information about a single voyage of a vessel.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>imo</code></td>
+        <td><code>int</code></td>
+        <td><p>A seven-digits number that uniquely identifies a ship and does not
+change when the ship's owner, country of registry or name of the
+vessel changes.</p></td>
+      </tr>
+      <tr>
+        <td><code>voyage_number</code></td>
+        <td><code>int</code></td>
+        <td><p>Numeric, a counter of the voyages for the same IMO.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the different values of the
+VesselType field.  1-&gt; Tanker, 3-&gt; Dry, 4 -&gt; Containers, 5 -&gt;LNG
+(Liquified Natural gas) , 6-&gt; LPG (Liquified Petroleum Gas).</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the different vessel
+classes of a certain vessel type.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_status_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID that takes the following values  1 -&gt;
+Voyage, 2 -&gt; Breaking, 3 -&gt; Domestic Trade, 4-&gt; FPSO, 5-&gt; FPSO
+Conversion, 6-&gt; Inactive, 7-&gt; Storage Vessel, 9-&gt; Conversion.</p></td>
+      </tr>
+      <tr>
+        <td><code>commercial_operator_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the maritime
+company that manages the vessel commercially.</p></td>
+      </tr>
+      <tr>
+        <td><code>deleted</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Boolean. This will be true if the voyage has been deleted from
+our database.</p></td>
+      </tr>
+      <tr>
+        <td><code>events</code></td>
+        <td><code>Optional[Tuple[signal_ocean.voyages.models.VoyageEvent, ...]]</code></td>
+        <td><p>The events that took place during the voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. Uniquely identifies the voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>The vessel name corresponding to that IMO at the time of
+that voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Description of the type of the vessel, based on the
+carried cargo. Main categories are Tankers, Dry (bulk carriers),
+Containers, LNG and LPG.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the vessel class the vessel belongs to.
+Assignment of a vessel to a certain VesselClass is based on the
+VesselType and the value of its Deadweight (if Tanker or Dry), its
+LiquidCap (if LNG/LPG) or its TEU (if Containers).   For example,
+an Aframax is a Tanker vessel with Deadweight within the range 82kt
+- 125kt, while a Capesize is a Dry vessel with Deadweight within
+the range 120kt-220kt. LR2 are defined as Aframax, as only
+Deadweight is used to define vessel classes.</p></td>
+      </tr>
+      <tr>
+        <td><code>trade</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Additional attribute used to specify a Tanker vessel with finer
+granularity. It is derived by the last cargo carried by the vessel
+at the time of query.  For example, an LR2 with fueloil as last
+cargo has VesselClass=Aframax and Trade=Product.</p></td>
+      </tr>
+      <tr>
+        <td><code>trade_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>For Tankers only. Numeric ID that takes the following values
+1 -&gt; Crude, 2 -&gt; Product, 3 -&gt; Chemical.</p></td>
+      </tr>
+      <tr>
+        <td><code>vessel_status</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String identifying the status of a vessel. The active
+and most common status is the "Voyage" one, the one in which the
+vessel continuously sails and performs operations. The other
+statuses are used for specific purposes different than voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>commercial_operator</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the maritime company that manages the
+vessel commercially.</p></td>
+      </tr>
+      <tr>
+        <td><code>start_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The beginning of the
+specific voyage. The start of a voyage is set as the end of the
+previous voyage (if existing) or the first received AIS (for a new
+building). Voyages are consecutive and with no breaks in between,
+therefore a vessel is always in a voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>first_load_arrival_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The time
+of arrival for the first load in the voyage. Indicates the
+transition from Ballast to Laden.</p></td>
+      </tr>
+      <tr>
+        <td><code>end_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The end of the specific
+voyage. The end of a voyage is set as the sailing date (or
+completion date) from the port where the vessel discharged for the
+last time.</p></td>
+      </tr>
+      <tr>
+        <td><code>charterer_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the company reported as
+charterer in at least one of the fixtures.</p></td>
+      </tr>
+      <tr>
+        <td><code>charterer</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String, name of the company reported as charterer in at
+least one of the fixtures.</p></td>
+      </tr>
+      <tr>
+        <td><code>rate</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric, indicates the rate reported in at least one of the
+fixtures. If lump sum, the rate is reported in USD.</p></td>
+      </tr>
+      <tr>
+        <td><code>rate_type</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String, indicates the type of rate reported in at least one
+of the fixtures. Main types are "WS" for World Scale or "LS" for
+Lump Sum.</p></td>
+      </tr>
+      <tr>
+        <td><code>ballast_bonus</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>.</p></td>
+      </tr>
+      <tr>
+        <td><code>ballast_bonus_type</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>.</p></td>
+      </tr>
+      <tr>
+        <td><code>cargo_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the type of cargo the vessel
+carries in this voyage. For example 19-&gt; Crude Oil, 16-&gt;Fueloil,
+9-&gt; Naphtha, 135-&gt; Unleaded Motor Spirit, 12-&gt; Gasoil.</p></td>
+      </tr>
+      <tr>
+        <td><code>cargo_type</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String, it corresponds to the estimated cargo type the
+vessel carries according to the specific voyage, AIS information,
+jetty the vessel may have visited or information coming from market
+reports.</p></td>
+      </tr>
+      <tr>
+        <td><code>cargo_group_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the high-level cargo the
+vessel carries in this voyage, therefore called cargo group. For
+example 130000-&gt;Dirty, 120000-&gt; Clean.</p></td>
+      </tr>
+      <tr>
+        <td><code>cargo_group</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String, it corresponds to the estimated high-level cargo
+the vessel carries in this voyage, according to AIS information and
+jetties the vessel may have visited or information coming from
+market reports.</p></td>
+      </tr>
+      <tr>
+        <td><code>cargo_type_source</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String, it specifies the source of CargoType and
+CargoGroup. If market reports are available this filed takes value
+"MarketInfo". If no market reports are available for this voyage,
+the cargo is estimated based on AIS and visited jetties. Market
+info are considered more accurate and reliable, whenever available.</p></td>
+      </tr>
+      <tr>
+        <td><code>quantity</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric, measured in kilotonnes [kt]. It is the cargo
+quantity reported in at least one of the market reports.</p></td>
+      </tr>
+      <tr>
+        <td><code>laycan_from</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD indicates the earliest reported
+Laycan From (latest day of cancellation) across all fixtures.</p></td>
+      </tr>
+      <tr>
+        <td><code>laycan_to</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD indicates the latest reported Laycan
+To (latest day of cancellation) across all fixtures.</p></td>
+      </tr>
+      <tr>
+        <td><code>fixture_status_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the different values of
+the FixtureStatus field.   0-&gt; OnSubs, 1-&gt; FullyFixed, 2 -&gt; Failed,
+3 -&gt; Cancelled , 4-&gt; Available, 5-&gt; PossFixed,
+-2 -&gt; NotSet, -1 -&gt; Unknown.</p></td>
+      </tr>
+      <tr>
+        <td><code>fixture_status</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String denoting the commercial status of a fixture if
+explicitly mentioned, like ffxd for fully fixed or subs for on
+subs.</p></td>
+      </tr>
+      <tr>
+        <td><code>fixture_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. Details the date of the
+first fixture reporting the specific voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>fixture_is_coa</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Boolean. Value is true if "COA" (Contract of
+Affreightment) is explicitly reported in at least one of the
+fixtures relative to the specific voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>fixture_is_hold</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Boolean. Value is true if "Hold" is explicitly
+reported in at least one of the fixtures relative to the specific
+voyage.</p></td>
+      </tr>
+      <tr>
+        <td><code>is_implied_by_ais</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Boolean. This will be true if the voyage is implied
+from AIS.</p></td>
+      </tr>
+      <tr>
+        <td><code>has_manual_entries</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Boolean. True if the fused matched fixture on a
+voyage contains at least one (partial or full) fixture input by a
+user. It indicates that there is additional information input by a
+user in addition to what received through market reports only.</p></td>
+      </tr>
+      <tr>
+        <td><code>ballast_distance</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric. Travelled distance in nautical miles between
+the last discharge port of the previous voyage and the first load
+port of the current voyage. It is computed based on AIS data.
+It includes the whole period between the two port calls and non
+operational stops as well. Accuracy depends on AIS coverage.</p></td>
+      </tr>
+      <tr>
+        <td><code>laden_distance</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric. Travelled distance in nautical miles between
+the first load port and the last discharge port of the same voyage.
+It is computed based on AIS data. Accuracy depends on AIS coverage.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.models.VoyageEvent" class="doc doc-heading">
+        <code>VoyageEvent</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.models.VoyageEvent" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An event associated with a voyage of a vessel.</p>
+<p>Voyage events describe the start of the voyage, a stop or a port call that
+took place during this voyage.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. Uniquely identifies the event.</p></td>
+      </tr>
+      <tr>
+        <td><code>port_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the port in which the event took
+place. A port may be associated with multiple geo assets
+representing different terminals and anchorages within this port.</p></td>
+      </tr>
+      <tr>
+        <td><code>voyage_id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. Uniquely identifies the voyage that this event
+relates to.</p></td>
+      </tr>
+      <tr>
+        <td><code>event_type</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. It can take values "Stop", "Portcall" or
+"VoyageStart".</p></td>
+      </tr>
+      <tr>
+        <td><code>event_horizon</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. It can take "Historical", "Current" or "Future"
+values, depending on whether the event is in the past with
+reference point the latest AIS point of the vessel (ArrivalDate
+and SailingDate both in the past), is current (ArrivalDate in the
+past and SailingDate in the future) or future (both ArrivalDate
+and SailingDate in the future).</p></td>
+      </tr>
+      <tr>
+        <td><code>purpose</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. It will be "Stop" if EventType="Stop" and "Start" if
+EventType="VoyageStart". If the event is a portcall, that is an
+operational stop, this field specifies the type of operation, like
+"Load", "Discharge" or "Dry dock".</p></td>
+      </tr>
+      <tr>
+        <td><code>event_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The timestamp of the
+specific event, for instantaneous events e.g. VoyageStart</p></td>
+      </tr>
+      <tr>
+        <td><code>arrival_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The beginning of the
+specific event. The arrival date of an event is calculated based on
+the first AIS point within the event. In the case of missing AIS
+data, the arrival date is derived based on the last reported
+location of the vessel before the event and the time without
+reported AIS information. If an event is associated with multiple
+event details, the arrival date of the event reports the arrival
+date of the first event detail associated with this event.</p></td>
+      </tr>
+      <tr>
+        <td><code>sailing_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The end of the specific
+event. The sailing date of an event is calculated based on the last
+AIS point within the event. In the case of missing AIS data, the
+sailing date is derived based on the next reported location of the
+vessel after the event and the time without reported AIS
+information. If an event is associated with multiple event details,
+the sailing date of the event reports the sailing date of the final
+event detail associated with this event.</p></td>
+      </tr>
+      <tr>
+        <td><code>latitude</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric, decimal value representing the latitude of the
+location where the event took place.</p></td>
+      </tr>
+      <tr>
+        <td><code>longitude</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric, decimal value representing the longitude of the
+location where the event took place.</p></td>
+      </tr>
+      <tr>
+        <td><code>geo_asset_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the geo asset in which the
+event took place. Geo assets represent maritime facilities such as
+terminals, anchorages and lightering zones. Multiple geo assets are
+grouped under the same port.</p></td>
+      </tr>
+      <tr>
+        <td><code>geo_asset_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the GeoAsset in which the event took place. Geo
+assets represent maritime facilities such as terminals, anchorages
+and lightering zones. Multiple geo assets are grouped under the
+same port.</p></td>
+      </tr>
+      <tr>
+        <td><code>port_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the port in which the event took place. A port may
+be associated with multiple geo assets representing different
+terminals and anchorages within this port.</p></td>
+      </tr>
+      <tr>
+        <td><code>country_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the country in which the event
+took place.</p></td>
+      </tr>
+      <tr>
+        <td><code>country</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the country in which the event took place.</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel0</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the level 0 area in which
+the event took place. Level 0 areas offer a detailed breakdown of
+the globe to the areas of maritime interest. Examples of level 0
+areas include "Arabian Gulf", "US Gulf" and "East Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level0</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the area in which the event took place. Level
+0 areas offer a detailed breakdown of the globe to the areas of
+maritime interest. Examples of level 0 areas include "Arabian
+Gulf", "US Gulf" and "East Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel1</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the area in which the event
+took place. Level 1 areas consist of one or multiple level 0 areas.
+For example, level 1 area "Mediterranean" groups together the level
+0 areas "West Mediterranean", "Central Mediterranean" and "East
+Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level1</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the area in which the event took place. Level
+1 areas consist of one or multiple level 0 areas. For example,
+level 1 area "Mediterranean" groups together the level 0 areas
+"West Mediterranean", "Central Mediterranean" and "East
+Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel2</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the area in which the event
+took place. Level 2 areas consist of one or multiple level 1 areas.
+For example, level 2 area "Mediterranean/UK Continent" groups
+together the "Mediterranean" and "UK Continent" level 1 areas.</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level2</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the area in which the event took place. Level
+2 areas consist of one or multiple level 1 areas. For example,
+level 2 area "Mediterranean/UK Continent" groups together the
+"Mediterranean" and "UK Continent" level 1 areas.</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel3</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the area in which the event
+took place. Level 3 areas the highest area grouping in our
+taxonomy. Examples of such areas are "Pacific America" or "Africa".
+These group together level 2 areas. For instance, "Pacific America"
+groups together the level 2 areas "West Coast North America", "West
+Coast Mexico", "West Coast Central America" and "West Coast South
+America".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level3</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the area in which the event took place. Level
+3 areas the highest area grouping in our taxonomy. Examples of such
+areas are "Pacific America" or "Africa". These group together level
+2 areas. For instance, "Pacific America" groups together the level
+2 areas "West Coast North America", "West Coast Mexico", "West
+Coast Central America" and "West Coast South America".</p></td>
+      </tr>
+      <tr>
+        <td><code>low_ais_density</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Boolean, indicating whether there is no tracked AIS
+data for a duration higher that the time required for an operation.</p></td>
+      </tr>
+      <tr>
+        <td><code>event_details</code></td>
+        <td><code>Optional[Tuple[signal_ocean.voyages.models.VoyageEventDetail, ...]]</code></td>
+        <td><p>Specific details regarding the voyage events, e.g. a
+ship-to-ship operation or a jetty stay.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.models.VoyageEventDetail" class="doc doc-heading">
+        <code>VoyageEventDetail</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.models.VoyageEventDetail" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Detailed information about a voyage events.</p>
+<p>Voyage event details provides information a such as a jetty stay
+or ship-to-ship operation.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. Uniquely identifies the event detail.</p></td>
+      </tr>
+      <tr>
+        <td><code>event_id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. Uniquely identifies the event that this event detail
+relates to.</p></td>
+      </tr>
+      <tr>
+        <td><code>event_detail_type</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String, denotes the type of the event detail. For
+instance, "StS" indicates that the event is a ship-to-ship
+operation, while "Jetty" describes that the event took place in a
+jetty.</p></td>
+      </tr>
+      <tr>
+        <td><code>arrival_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The beginning of the
+specific event. The arrival date of an event is calculated based on
+the first AIS point within the event. In the case of missing AIS
+data, the arrival date is derived based on the last reported
+location of the vessel before the event and the time without
+reported AIS information.</p></td>
+      </tr>
+      <tr>
+        <td><code>sailing_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. The end of the specific
+event. The sailing date of an event is calculated based on the last
+AIS point within the event. In the case of missing AIS data, the
+sailing date is derived based on the next reported location of the
+vessel after the event and the time without reported AIS
+information.</p></td>
+      </tr>
+      <tr>
+        <td><code>start_time_of_operation</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. Timestamp
+indicating the beginning of the operation described by the event
+detail. This is the timestamp of the first AIS point the vessel is
+tracked within a jetty or that is captured performing a ship-to-
+ship operation.</p></td>
+      </tr>
+      <tr>
+        <td><code>end_time_of_operation</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Date, format YYYY-MM-DD HH:MM:SS. Timestamp
+indicating the end of the operation described by the event detail.
+This is the timestamp of the final AIS point the vessel is tracked
+within a jetty or that is captured performing a ship-to-ship
+operation.</p></td>
+      </tr>
+      <tr>
+        <td><code>geo_asset_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the geo asset in which the
+event took place. Geo assets represent maritime facilities such as
+terminals, anchorages and lightering zones. Multiple geo assets are
+grouped under the same port.</p></td>
+      </tr>
+      <tr>
+        <td><code>geo_asset_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the GeoAsset in which the event took place. Geo
+assets represent maritime facilities such as terminals, anchorages
+and lightering zones. Multiple geo assets are grouped under the
+same port.</p></td>
+      </tr>
+      <tr>
+        <td><code>latitude</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric, decimal value representing the latitude of the
+location where the event took place. The location of the vessel is
+identified from AIS data within the duration of the event or, in
+the case of missing AIS data, from the location of the GeoAsset in
+which the event took place. If the event represents an operation in
+a jetty or a STS operation, the latitude reports the location of
+the first AIS within the jetty or STS operation.</p></td>
+      </tr>
+      <tr>
+        <td><code>longitude</code></td>
+        <td><code>Optional[float]</code></td>
+        <td><p>Numeric, decimal value representing the longitude of the
+location where the event took place. The location of the vessel is
+identified from AIS data within the duration of the event or, in
+the case of missing AIS data, from the location of the GeoAsset in
+which the event took place. If the event represents an operation in
+a jetty or a STS operation, the longitude reports the location of
+the first AIS within the jetty or STS operation.</p></td>
+      </tr>
+      <tr>
+        <td><code>other_vessel_imo</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric, Containing the IMO of the second vessel in
+case of ship-to-ship operation.</p></td>
+      </tr>
+      <tr>
+        <td><code>other_vessel_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String, Containing the name of the second vessel in
+case of ship-to-ship operation.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.models.VoyageGeo" class="doc doc-heading">
+        <code>VoyageGeo</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.models.VoyageGeo" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Information about a geo asset object associated with a voyage.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID of the geo asset. Geo assets represent maritime
+facilities such as terminals, anchorages and lightering zones.
+Multiple geo assets are grouped under the same port.</p></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the geo asset. Geo assets represent maritime facilities
+such as terminals, anchorages and lightering zones. Multiple geo
+assets are grouped under the same port.</p></td>
+      </tr>
+      <tr>
+        <td><code>port_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the port. A port may be associated
+with multiple geo assets representing different terminals and
+anchorages within this port.</p></td>
+      </tr>
+      <tr>
+        <td><code>port_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the port. A port may be associated with multiple geo
+assets representing different terminals and anchorages within this
+port.</p></td>
+      </tr>
+      <tr>
+        <td><code>country_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the country of the geo asset.</p></td>
+      </tr>
+      <tr>
+        <td><code>country</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the country of the geo asset.</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel0</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the level 0 area of the geo
+asset. Level 0 areas offer a detailed breakdown of the globe to the
+areas of maritime interest. Examples of level 0 areas include
+"Arabian Gulf", "US Gulf" and "East Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level0</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the level 0 area of the geo asset. Level 0
+areas offer a detailed breakdown of the globe to the areas of
+maritime interest. Examples of level 0 areas include "Arabian
+Gulf", "US Gulf" and "East Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel1</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the level 1 area of the geo
+asset. Level 1 areas consist of one or multiple level 0 areas. For
+example, level 1 area "Mediterranean" groups together the level 0
+areas "West Mediterranean", "Central Mediterranean" and "East
+Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level1</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the level 1 area of the geo asset. Level 1
+areas consist of one or multiple level 0 areas. For example, level
+1 area "Mediterranean" groups together the level 0 areas "West
+Mediterranean", "Central Mediterranean" and "East Mediterranean".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel2</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the level 2 area of the geo
+asset. Level 2 areas consist of one or multiple level 1 areas. For
+example, level 2 area "Mediterranean/UK Continent" groups together
+the "Mediterranean" and "UK Continent" level 1 areas.</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level2</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the level 2 area of the geo asset. Level 2
+areas consist of one or multiple level 1 areas. For example, level
+2 area "Mediterranean/UK Continent" groups together the
+"Mediterranean" and "UK Continent" level 1 areas.</p></td>
+      </tr>
+      <tr>
+        <td><code>area_idlevel3</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Numeric ID corresponding to the level 3 area of the geo
+asset. Level 3 areas the highest area grouping in our taxonomy.
+Examples of such areas are "Pacific America" or "Africa". These
+group together level 2 areas. For instance, "Pacific America"
+groups together the level 2 areas "West Coast North America", "West
+Coast Mexico", "West Coast Central America" and "West Coast South
+America".</p></td>
+      </tr>
+      <tr>
+        <td><code>area_name_level3</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Name of the level 3 area of the geo asset. Level 3
+areas the highest area grouping in our taxonomy. Examples of such
+areas are "Pacific America" or "Africa". These group together level
+2 areas. For instance, "Pacific America" groups together the level
+2 areas "West Coast North America", "West Coast Mexico", "West
+Coast Central America" and "West Coast South America".</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.models.VoyagesFlat" class="doc doc-heading">
+        <code>VoyagesFlat</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.models.VoyagesFlat" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Voyages with additional information in flat format.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>voyages</code></td>
+        <td><code>Optional[Tuple[signal_ocean.voyages.models.Voyage, ...]]</code></td>
+        <td><p>List of voyages.</p></td>
+      </tr>
+      <tr>
+        <td><code>events</code></td>
+        <td><code>Optional[Tuple[signal_ocean.voyages.models.VoyageEvent, ...]]</code></td>
+        <td><p>List of events that relate to the voyages.</p></td>
+      </tr>
+      <tr>
+        <td><code>event_details</code></td>
+        <td><code>Optional[Tuple[signal_ocean.voyages.models.VoyageEventDetail, ...]]</code></td>
+        <td><p>List of event details that relate to the events.</p></td>
+      </tr>
+      <tr>
+        <td><code>geos</code></td>
+        <td><code>Optional[Tuple[signal_ocean.voyages.models.VoyageGeo, ...]]</code></td>
+        <td><p>Geo asset data linked in events or event details.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.models.VoyagesFlatPagedResponse" class="doc doc-heading">
+        <code>VoyagesFlatPagedResponse</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.models.VoyagesFlatPagedResponse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Paged response for voyages in flat format from the Voyages API.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>next_page_token</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. The key that should be used as a parameter of
+the token to retrieve the next page.</p></td>
+      </tr>
+      <tr>
+        <td><code>next_request_token</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. Populated on the last page of incremental
+results and should be used in the next incremental update request.</p></td>
+      </tr>
+      <tr>
+        <td><code>data</code></td>
+        <td><code>Optional[signal_ocean.voyages.models.VoyagesFlat]</code></td>
+        <td><p>The structure that contains records retrieve for the current
+page.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.models.VoyagesPagedResponse" class="doc doc-heading">
+        <code>VoyagesPagedResponse</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.models.VoyagesPagedResponse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Paged response for voyages in nested format from the Voyages API.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>next_page_token</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. The key that should be used as a parameter of
+the token to retrieve the next page.</p></td>
+      </tr>
+      <tr>
+        <td><code>next_request_token</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>String. Populated on the last page of incremental
+results and should be used in the next incremental update request.</p></td>
+      </tr>
+      <tr>
+        <td><code>data</code></td>
+        <td><code>Optional[Tuple[signal_ocean.voyages.models.Voyage, ...]]</code></td>
+        <td><p>The structure that contains records retrieve for the current
+page.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.voyages.voyages_api" class="doc doc-heading">
+        <code>voyages_api</code>
+
+
+
+<a href="#signal_ocean.voyages.voyages_api" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>The voyages api.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.voyages.voyages_api.VoyagesAPI" class="doc doc-heading">
+        <code>VoyagesAPI</code>
+
+
+
+<a href="#signal_ocean.voyages.voyages_api.VoyagesAPI" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Represents Signal's Voyages API.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.voyages.voyages_api.VoyagesAPI.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes VoyagesAPI.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>connection</code></td>
+        <td><code>Optional[signal_ocean.connection.Connection]</code></td>
+        <td><p>API connection configuration. If not provided, the
+default connection method is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/voyages/voyages_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Connection</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes VoyagesAPI.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        connection: API connection configuration. If not provided, the</span>
+<span class="sd">            default connection method is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="ow">or</span> <span class="n">Connection</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_incremental_voyages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">date_from</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">incremental_token</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves all voyages filtered for the provided parameters.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>imo</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel IMO. If None
+voyages for all vessels are returned.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel class.
+If None voyages for all vessels are returned. If imo is
+specified and vessel_class_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel type.
+If None voyages for all vessels are returned. If either imo or
+vessel_class_id is specified vessel_type_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>date_from</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>Return voyages after provided date. If imo is specified
+date_from is treated as None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>incremental_token</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Token returned from the previous incremental
+call. If this is the first call, then it can be omitted.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[Tuple[signal_ocean.voyages.models.Voyage, ...], Optional[str]]</code></td>
+      <td><p>A tuple containing the returned voyages, including any deleted
+voyages, and the token for the next incremental request.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/voyages/voyages_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_incremental_voyages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                            <span class="n">imo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">vessel_class_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">vessel_type_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">date_from</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">incremental_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>\
+        <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Voyages</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NextRequestToken</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves all voyages filtered for the provided parameters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        imo: Return only voyages for the provided vessel IMO. If None</span>
+<span class="sd">            voyages for all vessels are returned.</span>
+<span class="sd">        vessel_class_id: Return only voyages for the provided vessel class.</span>
+<span class="sd">            If None voyages for all vessels are returned. If imo is</span>
+<span class="sd">            specified and vessel_class_id is ignored.</span>
+<span class="sd">        vessel_type_id: Return only voyages for the provided vessel type.</span>
+<span class="sd">            If None voyages for all vessels are returned. If either imo or</span>
+<span class="sd">            vessel_class_id is specified vessel_type_id is ignored.</span>
+<span class="sd">        date_from: Return voyages after provided date. If imo is specified</span>
+<span class="sd">            date_from is treated as None.</span>
+<span class="sd">        incremental_token: Token returned from the previous incremental</span>
+<span class="sd">            call. If this is the first call, then it can be omitted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing the returned voyages, including any deleted</span>
+<span class="sd">        voyages, and the token for the next incremental request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_endpoint</span><span class="p">(</span><span class="n">imo</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="p">,</span>
+                                  <span class="n">date_from</span><span class="p">,</span> <span class="n">nested</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">incremental</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_voyages_pages</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="n">incremental_token</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages_flat" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_incremental_voyages_flat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">date_from</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">incremental_token</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_incremental_voyages_flat" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves all voyages filtered for the provided parameters.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>imo</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel IMO. If None
+voyages for all vessels are returned.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel class.
+If None voyages for all vessels are returned. If imo is
+specified and vessel_class_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel type.
+If None voyages for all vessels are returned. If either imo or
+vessel_class_id is specified vessel_type_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>date_from</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>Return voyages after provided date. If imo is specified
+date_from is treated as None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>incremental_token</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Token returned from the previous incremental
+call. If this is the first call, then it can be omitted.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[signal_ocean.voyages.models.VoyagesFlat, Optional[str]]</code></td>
+      <td><p>A tuple containing the returned voyages in flat format, including
+any deleted voyages, and the token for the next incremental
+request.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/voyages/voyages_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_incremental_voyages_flat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                 <span class="n">imo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">vessel_class_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">vessel_type_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">date_from</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">incremental_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>\
+        <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">VoyagesFlat</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NextRequestToken</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves all voyages filtered for the provided parameters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        imo: Return only voyages for the provided vessel IMO. If None</span>
+<span class="sd">            voyages for all vessels are returned.</span>
+<span class="sd">        vessel_class_id: Return only voyages for the provided vessel class.</span>
+<span class="sd">            If None voyages for all vessels are returned. If imo is</span>
+<span class="sd">            specified and vessel_class_id is ignored.</span>
+<span class="sd">        vessel_type_id: Return only voyages for the provided vessel type.</span>
+<span class="sd">            If None voyages for all vessels are returned. If either imo or</span>
+<span class="sd">            vessel_class_id is specified vessel_type_id is ignored.</span>
+<span class="sd">        date_from: Return voyages after provided date. If imo is specified</span>
+<span class="sd">            date_from is treated as None.</span>
+<span class="sd">        incremental_token: Token returned from the previous incremental</span>
+<span class="sd">            call. If this is the first call, then it can be omitted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing the returned voyages in flat format, including</span>
+<span class="sd">        any deleted voyages, and the token for the next incremental</span>
+<span class="sd">        request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_endpoint</span><span class="p">(</span><span class="n">imo</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="p">,</span>
+                                  <span class="n">date_from</span><span class="p">,</span> <span class="n">nested</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">incremental</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_voyages_flat_pages</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span>
+                                           <span class="n">token</span><span class="o">=</span><span class="n">incremental_token</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_voyages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">date_from</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves all voyages filtered for the provided parameters.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>imo</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel IMO. If None
+voyages for all vessels are returned.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel class.
+If None voyages for all vessels are returned. If imo is
+specified and vessel_class_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel type.
+If None voyages for all vessels are returned. If either imo or
+vessel_class_id is specified vessel_type_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>date_from</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>Return voyages after provided date. If imo is specified
+date_from is treated as None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[signal_ocean.voyages.models.Voyage, ...]</code></td>
+      <td><p>A tuple containing the returned voyages.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/voyages/voyages_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_voyages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">imo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">vessel_class_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">vessel_type_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">date_from</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> \
+        <span class="o">-&gt;</span> <span class="n">Voyages</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves all voyages filtered for the provided parameters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        imo: Return only voyages for the provided vessel IMO. If None</span>
+<span class="sd">            voyages for all vessels are returned.</span>
+<span class="sd">        vessel_class_id: Return only voyages for the provided vessel class.</span>
+<span class="sd">            If None voyages for all vessels are returned. If imo is</span>
+<span class="sd">            specified and vessel_class_id is ignored.</span>
+<span class="sd">        vessel_type_id: Return only voyages for the provided vessel type.</span>
+<span class="sd">            If None voyages for all vessels are returned. If either imo or</span>
+<span class="sd">            vessel_class_id is specified vessel_type_id is ignored.</span>
+<span class="sd">        date_from: Return voyages after provided date. If imo is specified</span>
+<span class="sd">            date_from is treated as None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing the returned voyages.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_endpoint</span><span class="p">(</span><span class="n">imo</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="p">,</span>
+                                  <span class="n">date_from</span><span class="p">,</span> <span class="n">nested</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">imo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">get_multiple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">Voyage</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">results</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_voyages_pages</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages_flat" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_voyages_flat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">date_from</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.voyages.voyages_api.VoyagesAPI.get_voyages_flat" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves all voyages filtered for the provided parameters.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>imo</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel IMO. If None
+voyages for all vessels are returned.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel class.
+If None voyages for all vessels are returned. If imo is
+specified and vessel_class_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Return only voyages for the provided vessel type.
+If None voyages for all vessels are returned. If either imo or
+vessel_class_id is specified vessel_type_id is ignored.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>date_from</code></td>
+        <td><code>Optional[datetime.date]</code></td>
+        <td><p>Return voyages after provided date. If imo is specified
+date_from is treated as None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[signal_ocean.voyages.models.VoyagesFlat]</code></td>
+      <td><p>A VoyagesFlat object containing lists of voyages, voyage events,
+voyage event details and voyage geos otherwise.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/voyages/voyages_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_voyages_flat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                     <span class="n">imo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="n">vessel_class_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="n">vessel_type_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="n">date_from</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> \
+        <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">VoyagesFlat</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves all voyages filtered for the provided parameters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        imo: Return only voyages for the provided vessel IMO. If None</span>
+<span class="sd">            voyages for all vessels are returned.</span>
+<span class="sd">        vessel_class_id: Return only voyages for the provided vessel class.</span>
+<span class="sd">            If None voyages for all vessels are returned. If imo is</span>
+<span class="sd">            specified and vessel_class_id is ignored.</span>
+<span class="sd">        vessel_type_id: Return only voyages for the provided vessel type.</span>
+<span class="sd">            If None voyages for all vessels are returned. If either imo or</span>
+<span class="sd">            vessel_class_id is specified vessel_type_id is ignored.</span>
+<span class="sd">        date_from: Return voyages after provided date. If imo is specified</span>
+<span class="sd">            date_from is treated as None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A VoyagesFlat object containing lists of voyages, voyage events,</span>
+<span class="sd">        voyage event details and voyage geos otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_endpoint</span><span class="p">(</span><span class="n">imo</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="p">,</span>
+                                  <span class="n">date_from</span><span class="p">,</span> <span class="n">nested</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">imo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">get_single</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">VoyagesFlat</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">results</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_voyages_flat_pages</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../examples/jupyter/HTL%20API/Persist%20HTL%20query%20data%20in%20SQLite/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Persist HTL query data in SQLite
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              VoyagesAPI UseCases
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>

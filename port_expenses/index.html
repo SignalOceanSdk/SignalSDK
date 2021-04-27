@@ -1,0 +1,2916 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../img/favicondark.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Package Documentation - Signal SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../css/site.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#package-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Signal SDK" class="md-header__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Signal SDK
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Package Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Signal SDK" class="md-nav__button md-logo" aria-label="Signal SDK" data-md-component="logo">
+      
+  <img src="../img/favicondark.ico" alt="logo">
+
+    </a>
+    Signal SDK
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SignalOceanSdk/SignalSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to the Signal SDK
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Historical Tonnage List
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Historical Tonnage List" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Historical Tonnage List
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../historical_tonnage_list/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Analysis_over_all_vessels/" class="md-nav__link">
+        Analysis over all vessels
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/QuickStart_HTL_API/" class="md-nav__link">
+        QuickStart HTL API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Historical%20Tonnage%20List%20API/" class="md-nav__link">
+        Historical Tonnage List API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessel_OnSubs_PerDay/" class="md-nav__link">
+        Vessel OnSubs PerDay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Vessels%20open%20at%20Fos%20over%20time/" class="md-nav__link">
+        Vessels open at Fos over time
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/HTL%20API/Persist%20HTL%20query%20data%20in%20SQLite/" class="md-nav__link">
+        Persist HTL query data in SQLite
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Voyages
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Voyages" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Voyages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voyages/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases/" class="md-nav__link">
+        VoyagesAPI UseCases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI/" class="md-nav__link">
+        VoyagesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike/" class="md-nav__link">
+        VoyagesAPI VoyagesDataLike
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Vessels
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Vessels" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Vessels
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vessels/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/VesselsAPI/VesselsAPI/" class="md-nav__link">
+        VesselsAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Companies
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Companies" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Companies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../companies/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/CompaniesAPI/CompaniesAPI/" class="md-nav__link">
+        CompaniesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Distances
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distances" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Distances
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distances/" class="md-nav__link">
+        Package Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/QuickStartDistancesAPI/" class="md-nav__link">
+        QuickStartDistancesAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/DistancesWithRouteExample/" class="md-nav__link">
+        DistancesWithRouteExample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/DistancesAPI/AlternativeRoutes/" class="md-nav__link">
+        AlternativeRoutes
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      <label class="md-nav__link" for="__nav_7">
+        Port Expenses
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Port Expenses" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Port Expenses
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Package Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Package Documentation
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses" class="md-nav__link">
+    signal_ocean.port_expenses
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums" class="md-nav__link">
+    enums
+  </a>
+  
+    <nav class="md-nav" aria-label="enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.EstimationStatus" class="md-nav__link">
+    EstimationStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.ItalianAnchorageDues" class="md-nav__link">
+    ItalianAnchorageDues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.Operation" class="md-nav__link">
+    Operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.OperationStatus" class="md-nav__link">
+    OperationStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.VesselTypeEnum" class="md-nav__link">
+    VesselTypeEnum
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models" class="md-nav__link">
+    models
+  </a>
+  
+    <nav class="md-nav" aria-label="models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models.Port" class="md-nav__link">
+    Port
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models.PortExpenses" class="md-nav__link">
+    PortExpenses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models.VesselType" class="md-nav__link">
+    VesselType
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api" class="md-nav__link">
+    port_expenses_api
+  </a>
+  
+    <nav class="md-nav" aria-label="port_expenses_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI" class="md-nav__link">
+    PortExpensesAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="PortExpensesAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_expenses" class="md-nav__link">
+    get_port_expenses()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_model_vessel_expenses" class="md-nav__link">
+    get_port_model_vessel_expenses()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_ports" class="md-nav__link">
+    get_ports()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_required_formula_parameters" class="md-nav__link">
+    get_required_formula_parameters()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_vessel_types" class="md-nav__link">
+    get_vessel_types()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_filter" class="md-nav__link">
+    port_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="port_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_filter.PortFilter" class="md-nav__link">
+    PortFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/PortExpensesAPI/PortExpensesAPI/" class="md-nav__link">
+        PortExpensesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Market Rates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Market Rates" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Market Rates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../market_rates/" class="md-nav__link">
+        Market Rates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jupyter/MarketRatesAPI/MarketRatesAPI/" class="md-nav__link">
+        MarketRatesAPI
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Release notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Release notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Release notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.2/" class="md-nav__link">
+        v1.0.2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/Version%201.0.1.b6/" class="md-nav__link">
+        v1.0.1b6
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses" class="md-nav__link">
+    signal_ocean.port_expenses
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums" class="md-nav__link">
+    enums
+  </a>
+  
+    <nav class="md-nav" aria-label="enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.EstimationStatus" class="md-nav__link">
+    EstimationStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.ItalianAnchorageDues" class="md-nav__link">
+    ItalianAnchorageDues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.Operation" class="md-nav__link">
+    Operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.OperationStatus" class="md-nav__link">
+    OperationStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.enums.VesselTypeEnum" class="md-nav__link">
+    VesselTypeEnum
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models" class="md-nav__link">
+    models
+  </a>
+  
+    <nav class="md-nav" aria-label="models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models.Port" class="md-nav__link">
+    Port
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models.PortExpenses" class="md-nav__link">
+    PortExpenses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.models.VesselType" class="md-nav__link">
+    VesselType
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api" class="md-nav__link">
+    port_expenses_api
+  </a>
+  
+    <nav class="md-nav" aria-label="port_expenses_api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI" class="md-nav__link">
+    PortExpensesAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="PortExpensesAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_expenses" class="md-nav__link">
+    get_port_expenses()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_model_vessel_expenses" class="md-nav__link">
+    get_port_model_vessel_expenses()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_ports" class="md-nav__link">
+    get_ports()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_required_formula_parameters" class="md-nav__link">
+    get_required_formula_parameters()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_vessel_types" class="md-nav__link">
+    get_vessel_types()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_filter" class="md-nav__link">
+    port_filter
+  </a>
+  
+    <nav class="md-nav" aria-label="port_filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal_ocean.port_expenses.port_filter.PortFilter" class="md-nav__link">
+    PortFilter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="package-documentation">Package Documentation<a class="headerlink" href="#package-documentation" title="Permanent link">&para;</a></h1>
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="signal_ocean.port_expenses"></a>
+    <div class="doc doc-contents first">
+
+      <p>Port Expenses API Package.</p>
+<div class="admonition classes">
+<p class="admonition-title">Classes</p>
+<p>PortExpensesAPI: Represents Signal's Port Expenses API.
+Operation: An enumeration of all possible operations.
+OperationStatus: An enumeration of all possible operations statuses.
+EstimationStatus: An enumeration of all possible estimation statuses.</p>
+<div class="admonition italiananchoragedues">
+<p class="admonition-title">An enumeration of all possible italian anchorage</p>
+<p>dues.</p>
+</div>
+<div class="admonition portexpenses">
+<p class="admonition-title">The fees that shipping operators and their customers pay to</p>
+<p>port authorities for the use of the port's facilities and services.</p>
+</div>
+<p>Port: A maritime facility where vessels can dock.
+VesselType: A vessel type.
+PortFilter: A filter used to find specific ports.</p>
+</div>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.port_expenses.enums" class="doc doc-heading">
+        <code>enums</code>
+
+
+
+<a href="#signal_ocean.port_expenses.enums" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.enums.EstimationStatus" class="doc doc-heading">
+        <code>EstimationStatus</code>
+
+
+
+<a href="#signal_ocean.port_expenses.enums.EstimationStatus" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An enumeration of all possible estimation statuses.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.enums.ItalianAnchorageDues" class="doc doc-heading">
+        <code>ItalianAnchorageDues</code>
+
+
+
+<a href="#signal_ocean.port_expenses.enums.ItalianAnchorageDues" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An enumeration of all possible italian anchorage dues.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.enums.Operation" class="doc doc-heading">
+        <code>Operation</code>
+
+
+
+<a href="#signal_ocean.port_expenses.enums.Operation" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An enumeration of all possible operations.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.enums.OperationStatus" class="doc doc-heading">
+        <code>OperationStatus</code>
+
+
+
+<a href="#signal_ocean.port_expenses.enums.OperationStatus" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An enumeration of all possible operations statuses.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.enums.VesselTypeEnum" class="doc doc-heading">
+        <code>VesselTypeEnum</code>
+
+
+
+<a href="#signal_ocean.port_expenses.enums.VesselTypeEnum" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>An enumeration of all vessel types.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.port_expenses.models" class="doc doc-heading">
+        <code>models</code>
+
+
+
+<a href="#signal_ocean.port_expenses.models" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.models.Port" class="doc doc-heading">
+        <code>Port</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.port_expenses.models.Port" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A maritime facility where vessels can dock.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>int</code></td>
+        <td><p>ID of the port.</p></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>Name of the port.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.models.PortExpenses" class="doc doc-heading">
+        <code>PortExpenses</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.port_expenses.models.PortExpenses" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>The fees for port's facilities and services.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>port_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Port ID</p></td>
+      </tr>
+      <tr>
+        <td><code>port_canal</code></td>
+        <td><code>int</code></td>
+        <td><p>Port Canal</p></td>
+      </tr>
+      <tr>
+        <td><code>towage</code></td>
+        <td><code>int</code></td>
+        <td><p>Towage</p></td>
+      </tr>
+      <tr>
+        <td><code>berth</code></td>
+        <td><code>int</code></td>
+        <td><p>Berth</p></td>
+      </tr>
+      <tr>
+        <td><code>port_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Port dues</p></td>
+      </tr>
+      <tr>
+        <td><code>lighthouse</code></td>
+        <td><code>int</code></td>
+        <td><p>Lighthouse</p></td>
+      </tr>
+      <tr>
+        <td><code>mooring</code></td>
+        <td><code>int</code></td>
+        <td><p>Mooring</p></td>
+      </tr>
+      <tr>
+        <td><code>pilotage</code></td>
+        <td><code>int</code></td>
+        <td><p>Pilotage</p></td>
+      </tr>
+      <tr>
+        <td><code>quay</code></td>
+        <td><code>int</code></td>
+        <td><p>Quay</p></td>
+      </tr>
+      <tr>
+        <td><code>anchorage</code></td>
+        <td><code>int</code></td>
+        <td><p>Anchorage</p></td>
+      </tr>
+      <tr>
+        <td><code>agency_fees</code></td>
+        <td><code>int</code></td>
+        <td><p>Agency fees</p></td>
+      </tr>
+      <tr>
+        <td><code>other</code></td>
+        <td><code>int</code></td>
+        <td><p>Other</p></td>
+      </tr>
+      <tr>
+        <td><code>suez_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Suez dues</p></td>
+      </tr>
+      <tr>
+        <td><code>total_cost</code></td>
+        <td><code>int</code></td>
+        <td><p>Total cost</p></td>
+      </tr>
+      <tr>
+        <td><code>miscellaneous_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Mischellaneous dues</p></td>
+      </tr>
+      <tr>
+        <td><code>is_estimated</code></td>
+        <td><code>bool</code></td>
+        <td><p>Flag for estimation</p></td>
+      </tr>
+      <tr>
+        <td><code>canal_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Canal dues</p></td>
+      </tr>
+      <tr>
+        <td><code>berth_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Berth dues</p></td>
+      </tr>
+      <tr>
+        <td><code>lighthouse_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Lighthouse dues</p></td>
+      </tr>
+      <tr>
+        <td><code>mooring_unmooring</code></td>
+        <td><code>int</code></td>
+        <td><p>Mooring-unmooring</p></td>
+      </tr>
+      <tr>
+        <td><code>quay_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Quay dues</p></td>
+      </tr>
+      <tr>
+        <td><code>anchorage_dues</code></td>
+        <td><code>int</code></td>
+        <td><p>Anchorage dues</p></td>
+      </tr>
+      <tr>
+        <td><code>port_agents</code></td>
+        <td><code>List[int]</code></td>
+        <td><p>Port agents</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.models.VesselType" class="doc doc-heading">
+        <code>VesselType</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.port_expenses.models.VesselType" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A vessel type.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>int</code></td>
+        <td><p>The vessel type id, e.g. 1 -&gt; Tanker, 3 -&gt; Dry, 4 -&gt; Containers,
+5 -&gt; LNG (Liquified Natural gas),
+6-&gt; LPG (Liquified Petroleum Gas).</p></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>The vessel type name, e.g. Tanker, Dry, Containers,
+LNG (Liquified Natural gas), LPG (Liquified Petroleum Gas).</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.port_expenses.port_expenses_api" class="doc doc-heading">
+        <code>port_expenses_api</code>
+
+
+
+<a href="#signal_ocean.port_expenses.port_expenses_api" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI" class="doc doc-heading">
+        <code>PortExpensesAPI</code>
+
+
+
+<a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Represents Signal's Port Expenses API.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes the Port Expenses API.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>connection</code></td>
+        <td><code>Optional[signal_ocean.connection.Connection]</code></td>
+        <td><p>API connection configuration. If not provided, the
+default connection method is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/port_expenses/port_expenses_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Connection</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes the Port Expenses API.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        connection: API connection configuration. If not provided, the</span>
+<span class="sd">            default connection method is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="ow">or</span> <span class="n">Connection</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_expenses" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_port_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imo</span><span class="p">,</span> <span class="n">port_id</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">estimated_time_of_berth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">estimated_time_of_sail</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">italian_anchorage_dues</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cargo_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">operation_status</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">utc_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">historical_tce</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">estimation_status</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_expenses" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves port expenses.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>imo</code></td>
+        <td><code>int</code></td>
+        <td><p>The vessel's IMO number.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>port_id</code></td>
+        <td><code>int</code></td>
+        <td><p>ID of the port to retrieve the expenses for.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>group_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Group ID.</p></td>
+        <td><code>1</code></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Vessel type ID.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>estimated_time_of_berth</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Estimated time of berth.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>estimated_time_of_sail</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Estimated time of sail.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>operation</code></td>
+        <td><code>Optional[signal_ocean.port_expenses.enums.Operation]</code></td>
+        <td><p>Operation type.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>italian_anchorage_dues</code></td>
+        <td><code>Optional[signal_ocean.port_expenses.enums.ItalianAnchorageDues]</code></td>
+        <td><p>Italian anchorage dues.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>cargo_type</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Cargo type.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>operation_status</code></td>
+        <td><code>Optional[signal_ocean.port_expenses.enums.OperationStatus]</code></td>
+        <td><p>Operation status.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>utc_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>UTC date.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>historical_tce</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Flag for Historical TCE.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>estimation_status</code></td>
+        <td><code>Optional[signal_ocean.port_expenses.enums.EstimationStatus]</code></td>
+        <td><p>Estimation status.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[signal_ocean.port_expenses.models.PortExpenses]</code></td>
+      <td><p>The port expenses or None if a port with given ID does not exist or
+a vessel with the given IMO number does not exist.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/port_expenses/port_expenses_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_port_expenses</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">imo</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">port_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">vessel_type_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">estimated_time_of_berth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">estimated_time_of_sail</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">operation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Operation</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">italian_anchorage_dues</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ItalianAnchorageDues</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cargo_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">operation_status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OperationStatus</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">utc_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">historical_tce</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">estimation_status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">EstimationStatus</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PortExpenses</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves port expenses.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        imo: The vessel&#39;s IMO number.</span>
+<span class="sd">        port_id: ID of the port to retrieve the expenses for.</span>
+<span class="sd">        group_id: Group ID.</span>
+<span class="sd">        vessel_type_id: Vessel type ID.</span>
+<span class="sd">        estimated_time_of_berth: Estimated time of berth.</span>
+<span class="sd">        estimated_time_of_sail: Estimated time of sail.</span>
+<span class="sd">        operation: Operation type.</span>
+<span class="sd">        italian_anchorage_dues: Italian anchorage dues.</span>
+<span class="sd">        cargo_type: Cargo type.</span>
+<span class="sd">        operation_status: Operation status.</span>
+<span class="sd">        utc_date: UTC date.</span>
+<span class="sd">        historical_tce: Flag for Historical TCE.</span>
+<span class="sd">        estimation_status: Estimation status.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The port expenses or None if a port with given ID does not exist or</span>
+<span class="sd">        a vessel with the given IMO number does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;imo&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">imo</span><span class="p">),</span>
+        <span class="s2">&quot;portId&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">port_id</span><span class="p">),</span>
+        <span class="s2">&quot;groupId&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">vessel_type_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;vesselTypeId&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vessel_type_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">estimated_time_of_berth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;estimatedTimeOfBerth&quot;</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="n">estimated_time_of_berth</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">estimated_time_of_sail</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;estimatedTimeOfSail&quot;</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="n">estimated_time_of_sail</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">operation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;operation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">operation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">italian_anchorage_dues</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;italianAnchorageDues&quot;</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">italian_anchorage_dues</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cargo_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;cargoType&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cargo_type</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">operation_status</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;operationStatus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">operation_status</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">utc_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;utcDate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">utc_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">historical_tce</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;historicalTce&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">historical_tce</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">estimation_status</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;estimationStatus&quot;</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estimation_status</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="n">query_string</span><span class="p">:</span> <span class="n">QueryString</span> <span class="o">=</span> <span class="n">query_dict</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_post_request</span><span class="p">(</span>
+        <span class="s2">&quot;port-expenses/api/v1/Port&quot;</span><span class="p">,</span> <span class="n">query_string</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">return_object</span> <span class="o">=</span> <span class="n">parse_port_expenses</span><span class="p">(</span><span class="n">response_json</span><span class="p">)</span> \
+        <span class="k">if</span> <span class="n">response_json</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">return_object</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_model_vessel_expenses" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_port_model_vessel_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_id</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="p">,</span> <span class="n">formula_calculation_date</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">operation_status</span><span class="o">=&lt;</span><span class="n">OperationStatus</span><span class="o">.</span><span class="n">BALLAST</span><span class="p">:</span> <span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">historical_tce</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">estimation_status</span><span class="o">=&lt;</span><span class="n">EstimationStatus</span><span class="o">.</span><span class="n">PRIORITY_TO_FORMULAS</span><span class="p">:</span> <span class="mi">0</span><span class="o">&gt;</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_port_model_vessel_expenses" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves model vessel port expenses.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>port_id</code></td>
+        <td><code>int</code></td>
+        <td><p>ID of the port to retrieve the expenses for.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Vessel type ID.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>formula_calculation_date</code></td>
+        <td><code>datetime</code></td>
+        <td><p>Formula calculation date.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>vessel_class_id</code></td>
+        <td><code>int</code></td>
+        <td><p>Vessel class ID.</p></td>
+        <td><code>0</code></td>
+      </tr>
+      <tr>
+        <td><code>operation_status</code></td>
+        <td><code>OperationStatus</code></td>
+        <td><p>Operation status.</p></td>
+        <td><code>&lt;OperationStatus.BALLAST: 0&gt;</code></td>
+      </tr>
+      <tr>
+        <td><code>historical_tce</code></td>
+        <td><code>bool</code></td>
+        <td><p>Flag for historical TCE.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>estimation_status</code></td>
+        <td><code>EstimationStatus</code></td>
+        <td><p>Estimation status.</p></td>
+        <td><code>&lt;EstimationStatus.PRIORITY_TO_FORMULAS: 0&gt;</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[signal_ocean.port_expenses.models.PortExpenses]</code></td>
+      <td><p>The port expenses for model vessel or None if a port with given ID
+does not exist or a vessel type with the given ID number does not
+exist.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/port_expenses/port_expenses_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_port_model_vessel_expenses</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">port_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">formula_calculation_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">vessel_class_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">operation_status</span><span class="p">:</span> <span class="n">OperationStatus</span> <span class="o">=</span> <span class="n">OperationStatus</span><span class="o">.</span><span class="n">BALLAST</span><span class="p">,</span>
+        <span class="n">historical_tce</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">estimation_status</span><span class="p">:</span> <span class="n">EstimationStatus</span> <span class="o">=</span>
+        <span class="n">EstimationStatus</span><span class="o">.</span><span class="n">PRIORITY_TO_FORMULAS</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PortExpenses</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves model vessel port expenses.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        port_id: ID of the port to retrieve the expenses for.</span>
+<span class="sd">        vessel_type_id: Vessel type ID.</span>
+<span class="sd">        formula_calculation_date: Formula calculation date.</span>
+<span class="sd">        vessel_class_id: Vessel class ID.</span>
+<span class="sd">        operation_status: Operation status.</span>
+<span class="sd">        historical_tce: Flag for historical TCE.</span>
+<span class="sd">        estimation_status: Estimation status.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The port expenses for model vessel or None if a port with given ID</span>
+<span class="sd">        does not exist or a vessel type with the given ID number does not</span>
+<span class="sd">        exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query_string</span><span class="p">:</span> <span class="n">QueryString</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;portId&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">port_id</span><span class="p">),</span>
+        <span class="s2">&quot;vesselTypeId&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vessel_type_id</span><span class="p">),</span>
+        <span class="s2">&quot;formulaCalculationDate&quot;</span><span class="p">:</span> <span class="n">formula_calculation_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+        <span class="s2">&quot;vesselClassId&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vessel_class_id</span><span class="p">),</span>
+        <span class="s2">&quot;operationStatus&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">operation_status</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
+        <span class="s2">&quot;historicalTce&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">historical_tce</span><span class="p">),</span>
+        <span class="s2">&quot;estimationStatus&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estimation_status</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_post_request</span><span class="p">(</span>
+        <span class="s2">&quot;port-expenses/api/v1/PortModelVessel&quot;</span><span class="p">,</span> <span class="n">query_string</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">return_object</span> <span class="o">=</span> <span class="n">parse_port_expenses</span><span class="p">(</span><span class="n">response_json</span><span class="p">)</span> \
+        <span class="k">if</span> <span class="n">response_json</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">return_object</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_ports" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_ports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_ports" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves available ports.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>port_filter</code></td>
+        <td><code>Optional[signal_ocean.port_expenses.port_filter.PortFilter]</code></td>
+        <td><p>A filter used to find specific ports. If not
+specified, returns all available ports.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[signal_ocean.port_expenses.models.Port, ...]</code></td>
+      <td><p>A tuple of available ports that match the filter.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/port_expenses/port_expenses_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_ports</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">port_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PortFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Port</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves available ports.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        port_filter: A filter used to find specific ports. If not</span>
+<span class="sd">            specified, returns all available ports.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple of available ports that match the filter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="n">query_string</span><span class="p">:</span> <span class="n">QueryString</span> <span class="o">=</span> <span class="n">query_dict</span>
+
+    <span class="n">available_ports</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Port</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">vessel_type</span> <span class="ow">in</span> <span class="n">VesselTypeEnum</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_get_request</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;port-expenses/api/v1/AvailablePorts/</span><span class="si">{</span><span class="n">vessel_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">query_string</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">available_ports</span> <span class="o">+=</span> <span class="n">parse_ports</span><span class="p">(</span><span class="n">response_json</span><span class="p">)</span>
+
+    <span class="n">port_filter</span> <span class="o">=</span> <span class="n">port_filter</span> <span class="ow">or</span> <span class="n">PortFilter</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">port_filter</span><span class="o">.</span><span class="n">_apply</span><span class="p">(</span><span class="n">available_ports</span><span class="p">))</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_required_formula_parameters" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_required_formula_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_id</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">calculation_date</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_required_formula_parameters" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves required formula parameters.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>port_id</code></td>
+        <td><code>int</code></td>
+        <td><p>ID of the port to retrieve the expenses for.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>vessel_type_id</code></td>
+        <td><code>Optional[int]</code></td>
+        <td><p>Vessel type ID.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>calculation_date</code></td>
+        <td><code>Optional[datetime.datetime]</code></td>
+        <td><p>Calculation date.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>List[str]</code></td>
+      <td><p>List of required port expenses formula calculation parameters.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/port_expenses/port_expenses_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_required_formula_parameters</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">port_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">vessel_type_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">calculation_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves required formula parameters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        port_id: ID of the port to retrieve the expenses for.</span>
+<span class="sd">        vessel_type_id: Vessel type ID.</span>
+<span class="sd">        calculation_date: Calculation date.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of required port expenses formula calculation parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;portId&quot;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">port_id</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">vessel_type_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;vesselTypeId&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vessel_type_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">calculation_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_dict</span><span class="p">[</span><span class="s2">&quot;calculationDate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calculation_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+
+    <span class="n">query_string</span><span class="p">:</span> <span class="n">QueryString</span> <span class="o">=</span> <span class="n">query_dict</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__connection</span><span class="o">.</span><span class="n">_make_post_request</span><span class="p">(</span>
+        <span class="s2">&quot;port-expenses/api/v1/RequiredFormulaParameters&quot;</span><span class="p">,</span> <span class="n">query_string</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">response_json</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h4 id="signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_vessel_types" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_vessel_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#signal_ocean.port_expenses.port_expenses_api.PortExpensesAPI.get_vessel_types" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves all available vessel types.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[signal_ocean.port_expenses.models.VesselType, ...]</code></td>
+      <td><p>A tuple of all available vessel types.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>signal_ocean/port_expenses/port_expenses_api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_vessel_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">VesselType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves all available vessel types.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple of all available vessel types.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vessel_types</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">VesselType</span><span class="p">(</span><span class="n">vessel_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">vessel_type</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                         <span class="k">for</span> <span class="n">vessel_type</span> <span class="ow">in</span> <span class="n">VesselTypeEnum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vessel_types</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="signal_ocean.port_expenses.port_filter" class="doc doc-heading">
+        <code>port_filter</code>
+
+
+
+<a href="#signal_ocean.port_expenses.port_filter" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="signal_ocean.port_expenses.port_filter.PortFilter" class="doc doc-heading">
+        <code>PortFilter</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#signal_ocean.port_expenses.port_filter.PortFilter" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A filter used to find specific ports.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>name_like</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Used to find ports by name. When specified, ports whose
+names partially match (contain) the attribute's value will be
+returned. Matching is case-insensitive.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../examples/jupyter/DistancesAPI/AlternativeRoutes/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              AlternativeRoutes
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../examples/jupyter/PortExpensesAPI/PortExpensesAPI/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              PortExpensesAPI
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
