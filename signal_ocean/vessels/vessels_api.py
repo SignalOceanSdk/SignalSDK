@@ -69,9 +69,7 @@ class VesselsAPI:
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel)
 
-    def get_vessels_by_vessel_class(self,
-                                    vesselClass: int,
-                                    pointInTime: Optional[str] = default_pit) -> Tuple[Vessel, ...]:
+    def get_vessels_by_vessel_class(self, vesselClass: int, pointInTime: Optional[str] = default_pit) -> Tuple[Vessel, ...]:
         """Retrieves all vessels of a specific vessel class.
 
         Args:
