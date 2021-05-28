@@ -2,7 +2,6 @@
 from typing import Optional, Tuple
 from urllib.parse import urljoin
 from datetime import date
-
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_multiple, get_single
 from signal_ocean.vessels.models import VesselClass, VesselType, Vessel
@@ -12,7 +11,7 @@ class VesselsAPI:
     """Represents Signal's Vessels API."""
 
     relative_url = "vessels-api/v1/"
-    
+    default_pit = str(date.today())
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VesselsAPI.
@@ -70,10 +69,10 @@ class VesselsAPI:
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel)
 
-    def get_vessels_by_vessel_class(self, 
-                                    vesselClass: int, 
-                                    pointInTime: Optional[str] = str(date.today())) -> Tuple[Vessel, ...]:
-        """Retrieves all available vessels of a specific vessel class(optional:pointInTime).
+    def get_vessels_by_vessel_class(self,
+                                    vesselClass: int,
+                                    pointInTime: Optional[str] = default_pit) -> Tuple[Vessel, ...]:
+        """Retrieves all vessels of a specific vessel class.
 
         Args:
                 vessel_class: Vessel Class of the vessels to retrieve.
@@ -83,6 +82,4 @@ class VesselsAPI:
         """
         endpoint = f'pointInTime/{pointInTime}/byVesselClass/{vesselClass}'
         url = urljoin(VesselsAPI.relative_url, endpoint)
-
         return get_multiple(self.__connection, url, Vessel)
-        
