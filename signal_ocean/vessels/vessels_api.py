@@ -1,6 +1,7 @@
 """The vessels api."""
 from typing import Optional, Tuple
 from urllib.parse import urljoin
+from datetime import date
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_multiple, get_single
@@ -11,6 +12,7 @@ class VesselsAPI:
     """Represents Signal's Vessels API."""
 
     relative_url = "vessels-api/v1/"
+    
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VesselsAPI.
@@ -67,3 +69,20 @@ class VesselsAPI:
             else f'vessels/searchByName/{name}'
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel)
+
+    def get_vessels_by_vessel_class(self, 
+                                    vesselClass: int, 
+                                    pointInTime: Optional[str] = str(date.today())) -> Tuple[Vessel, ...]:
+        """Retrieves all available vessels of a specific vessel class(optional:pointInTime).
+
+        Args:
+                vessel_class: Vessel Class of the vessels to retrieve.
+
+        Returns:
+            A tuple of all available vessels.
+        """
+        endpoint = f'pointInTime/{pointInTime}/byVesselClass/{vesselClass}'
+        url = urljoin(VesselsAPI.relative_url, endpoint)
+
+        return get_multiple(self.__connection, url, Vessel)
+        
