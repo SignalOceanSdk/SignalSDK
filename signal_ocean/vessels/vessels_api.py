@@ -11,7 +11,7 @@ class VesselsAPI:
     """Represents Signal's Vessels API."""
 
     relative_url = "vessels-api/v1/"
-    default_pit = str(date.today())
+    today = str(date.today())
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VesselsAPI.
@@ -28,7 +28,7 @@ class VesselsAPI:
         Returns:
             A tuple of all available vessel classes.
         """
-        url = urljoin(VesselsAPI.relative_url, 'vesselClasses')
+        url = urljoin(VesselsAPI.relative_url, "vesselClasses")
         return get_multiple(self.__connection, url, VesselClass)
 
     def get_vessel_types(self) -> Tuple[VesselType, ...]:
@@ -37,7 +37,7 @@ class VesselsAPI:
         Returns:
             A tuple of all available vessel types.
         """
-        url = urljoin(VesselsAPI.relative_url, 'vesselTypes')
+        url = urljoin(VesselsAPI.relative_url, "vesselTypes")
         return get_multiple(self.__connection, url, VesselType)
 
     def get_vessel(self, imo: int) -> Optional[Vessel]:
@@ -50,7 +50,7 @@ class VesselsAPI:
             A vessel or None if no vessel with the specified IMO has
                 been found.
         """
-        url = urljoin(VesselsAPI.relative_url, f'vessels/{imo}')
+        url = urljoin(VesselsAPI.relative_url, f"vessels/{imo}")
         return get_single(self.__connection, url, Vessel)
 
     def get_vessels(self, name: Optional[str] = None) -> Tuple[Vessel, ...]:
@@ -64,20 +64,23 @@ class VesselsAPI:
         Returns:
             A tuple of all available vessels.
         """
-        endpoint = 'vessels/all' if name is None \
-            else f'vessels/searchByName/{name}'
+        endpoint = (
+            "vessels/all" if name is None else f"vessels/searchByName/{name}"
+        )
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel)
 
-    def get_vessels_by_vessel_class(self, vesselClass: int, pointInTime: Optional[str] = default_pit) -> Tuple[Vessel, ...]:
+    def get_vessels_by_vessel_class(
+        self, vesselClass: int, pit: Optional[str] = today
+    ) -> Tuple[Vessel, ...]:
         """Retrieves all vessels of a specific vessel class.
 
         Args:
-                vessel_class: Vessel Class of the vessels to retrieve.
+                vesselClass: Vessel Class of the vessels to retrieve.
 
         Returns:
             A tuple of all available vessels.
         """
-        endpoint = f'pointInTime/{pointInTime}/byVesselClass/{vesselClass}'
+        endpoint = f"pointInTime/{pit}/byVesselClass/{vesselClass}"
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel)
