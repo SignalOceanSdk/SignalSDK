@@ -11,7 +11,7 @@ class VesselsAPI:
     """Represents Signal's Vessels API."""
 
     relative_url = "vessels-api/v1/"
-    today = str(date.today())
+    default_pit = str(date.today())
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VesselsAPI.
@@ -71,7 +71,7 @@ class VesselsAPI:
         return get_multiple(self.__connection, url, Vessel)
 
     def get_vessels_by_vessel_class(
-        self, vesselClass: int, pit: Optional[str] = today
+        self, vesselClass: int, point_in_time: Optional[str] = default_pit
     ) -> Tuple[Vessel, ...]:
         """Retrieves all vessels of a specific vessel class.
 
@@ -81,6 +81,6 @@ class VesselsAPI:
         Returns:
             A tuple of all available vessels.
         """
-        endpoint = f"pointInTime/{pit}/byVesselClass/{vesselClass}"
+        endpoint = f"pointInTime/{point_in_time}/byVesselClass/{vesselClass}"
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel)
