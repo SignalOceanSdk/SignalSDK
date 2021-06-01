@@ -54,6 +54,8 @@ nav:
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/Supply Trend on fixture date.ipynb'
+        - 'examples/jupyter/Combined Examples/PersistVessels.ipynb'
+        - 'examples/jupyter/Combined Examples/CargoFlowPlots.ipynb'
 extra_css:
   - css/site.css
 markdown_extensions:
