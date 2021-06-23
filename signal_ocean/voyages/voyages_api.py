@@ -79,6 +79,34 @@ class VoyagesAPI:
 
         return urljoin(VoyagesAPI.relative_url, endpoint)
 
+    @staticmethod
+    def _get_advanced_endpoint(**endpoint_params) -> str:
+        """Constructs the advanced search endpoint to call to retrieve the requested voyages.
+
+        Args:
+            endpoint_params: Advanced search endpoint parameters dictionary. Same as 
+                get_voyages_by_advanced_search method arguments.
+                
+        Returns:
+            The constructed endpoint to call to retrieve the requested voyages for
+            the provided arguments.
+        """
+        args = endpoint_params.keys()
+        vals = list(endpoint_params.values())
+        
+        endpoint = 'search/advanced/'
+
+        for i,arg in enumerate(args):
+            _to_camelcase = arg.split('_')
+            _to_camelcase = [word.capitalize() for word in _to_camelcase]
+            _to_camelcase = ''.join(_to_camelcase)
+           
+            if vals[i] is not None:
+                endpoint += f'&{_to_camelcase}={vals[i]}'
+
+        endpoint = endpoint.replace('&', '?', 1)
+        return urljoin(VoyagesAPI.relative_url, endpoint)
+
     def _get_voyages_pages(self, endpoint: str, token: Optional[str] = None) \
             -> Tuple[Voyages, Optional[NextRequestToken]]:
         """Get voyages paged data.
@@ -292,4 +320,84 @@ class VoyagesAPI:
                                       incremental=True)
         results = self._get_voyages_flat_pages(endpoint,
                                                token=incremental_token)
+        return results
+
+    def get_voyages_by_advanced_search(self, 
+                                event_type:Optional[int]=None, event_horizon:Optional[int]=None,
+                                event_purpose:Optional[str]=None,
+                                vessel_class_id:Optional[int]=None, vessel_type_id:Optional[int]=None,
+                                start_date_from:Optional[date]=None, start_date_to:Optional[date]=None,
+                                first_load_arrival_date_from:Optional[date]=None, first_load_arrival_date_to:Optional[date]=None,
+                                end_date_from:Optional[date]=None, end_date_to:Optional[date]=None,
+                                market_info_rate_from:Optional[date]=None, market_info_rate_to:Optional[date]=None,
+                                market_info_rate_type:Optional[date]=None,
+                                commercial_operator_id:Optional[int]=None, 
+                                charterer_id:Optional[int]=None,
+                                voyage_horizon:Optional[str]=None,
+                                token:Optional[str]=None,
+                                hide_event_details:Optional[bool]=False, hide_events:Optional[bool]=False,
+                                hide_market_info:Optional[bool]=False) -> Voyages:
+        """Retrieves all voyages filtered for the provided parameters.
+
+        Args:
+
+        event_type: If an EventType is provided then only voyages that include 
+                at least one event of this type will be returned.
+        event_horizon: If an EventHorizon is provided then only voyages that include
+                at least one event of this type will be returned.
+        event_purpose: If an EventPurpose is provided then only voyages that include 
+                at least one event of this type will be returned.
+        vessel_class_id: Return only voyages for the provided vessel class.
+                If None voyages for all vessels are returned.
+        vessel_type_id: Return only voyages for the provided vessel type.
+                If None voyages for all vessels are returned.
+        start_date_from: Return voyages after the provided voyage start date.
+
+        start_date_to: Return voyages up to the provided voyage end date.
+
+        first_load_arrival_date_from: Return voyages with a first load arrival date
+                after the provided date.
+        first_load_arrival_date_to: Return voyages with a first load arrival date
+                up to the provided date.
+
+        end_date_from: Return voyages after the provided voyage end date.
+        
+        end_date_to: Return voyages up to the provided voyage end date.
+
+        market_info_rate_from: If provided only voyages that have market data 
+                and with rate greater than this will be returned.
+        market_info_rate_to: If provided only voyages that have market data 
+                and with rate lower than this will be returned.
+        market_info_rate_type: If provided only voyages that have market data 
+                and with rate type equal to this will be returned.
+        commercial_operator_id: If provided only voyages that have this commercial
+                operator will be returned.
+        charterer_id: If provided only voyages that have this charterer will be returned.
+
+        voyage_horizon: If a VoyageHorizon is provided then only voyages of that 
+                type will be returned.
+        token: Token returned from the previous incremental call.
+                 If this is the first call, then it can be omitted.
+        hide_event_details: If True, do not return event details.
+
+        hide_events: If True, do not return events.
+
+        hide_market_info: If True, do not return market information.
+
+        Returns:
+            A tuple containing the returned voyages.
+        """
+
+        endpoint = self._get_advanced_endpoint(event_type=event_type, event_horizon=event_horizon, event_purpose=event_purpose, 
+                                        vessel_class_id=vessel_class_id, vessel_type_id=vessel_type_id, start_date_from=start_date_from,
+                                        start_date_to=start_date_to, first_load_arrival_date_from=first_load_arrival_date_from,
+                                        first_load_arrival_date_to=first_load_arrival_date_to, end_date_from=end_date_from,
+                                        end_date_to=end_date_to, market_info_rate_from=market_info_rate_from,
+                                        market_info_rate_to=market_info_rate_to, market_info_rate_type=market_info_rate_type,
+                                        commercial_operator_id=commercial_operator_id, charterer_id=charterer_id, 
+                                        voyage_horizon=voyage_horizon, token=token, hide_event_details=hide_event_details, 
+                                        hide_events=hide_events, hide_market_info=hide_market_info)
+
+        results, _ = self._get_voyages_pages(endpoint)
+        
         return results
