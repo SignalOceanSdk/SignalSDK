@@ -1,7 +1,7 @@
 """The voyages api."""
 from datetime import date
 from typing import Optional, Tuple, List
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single, get_multiple
@@ -92,19 +92,11 @@ class VoyagesAPI:
             The constructed endpoint to call to retrieve the requested voyages for
             the provided arguments.
         """
-        args = endpoint_params.keys()
-        vals = list(endpoint_params.values())
-        
-        endpoint = 'search/advanced/'
-
-        for i,arg in enumerate(args):
-            _to_camelcase = _to_camel_case(arg)
-           
-            if vals[i] is not None:
-                endpoint += f'&{_to_camelcase}={vals[i]}'
-
-        endpoint = endpoint.replace('&', '?', 1)
+        endpoint = 'search/advanced/?'
+        params = urlencode({_to_camel_case(key): value for key, value in endpoint_params.items() if value is not None})
+        endpoint += params
         return urljoin(VoyagesAPI.relative_url, endpoint)
+
 
     def _get_voyages_pages(self, endpoint: str, token: Optional[str] = None) \
             -> Tuple[Voyages, Optional[NextRequestToken]]:
