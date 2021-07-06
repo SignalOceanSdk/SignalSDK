@@ -18,6 +18,14 @@ def test_to_snake_case(cap_words: str, snake_cased: str) -> None:
     assert transformed == snake_cased
 
 
+@pytest.mark.parametrize("snake_cased, camel_cased",
+                         [('vessel_type_id', 'VesselTypeID'),
+                          ('token', 'Token'),
+                          ('first_load_arrival_date_to', 'FirstLoadArrivalDateTo')])
+def test_to_camel_case(snake_cased: str, camel_cased: str) -> None:
+    transformed = parsing_helpers._to_camel_case(snake_cased)
+    assert transformed == camel_cased
+
 @pytest.mark.parametrize("value, cls, expected",
                          [(None, type(None), None),
                           ('Abc', str, 'Abc'),

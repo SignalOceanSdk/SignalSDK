@@ -349,6 +349,79 @@ _mock_nested_voyage_2 = dataclasses.replace(_mock_flat_voyage_2, events=())
 
 _mock_voyages = (_mock_nested_voyage_1, _mock_nested_voyage_2)
 
+_mock_get_advanced_search_init = {
+    'event_type' : None,
+    'event_horizon' : None,
+    'event_purpose' : None,
+    'vessel_class_id': None, 
+    'vessel_type_id': None,
+    'start_date_from': None, 
+    'start_date_to': None,
+    'first_load_arrival_date_from': None, 
+    'first_load_arrival_date_to': None,
+    'end_date_from': None, 
+    'end_date_to' : None,
+    'market_info_rate_from' : None,
+    'market_info_rate_to': None,
+    'market_info_rate_type' : None,
+    'commercial_operator_id' : None, 
+    'charterer_id' : None,
+    'voyage_horizon' : None,
+    'token' : None,
+    'hide_event_details' : None, 
+    'hide_events' : None,
+    'hide_market_info' : None
+}
+
+_mock_get_advanced_search = {
+    'vessel_class_id' : 84,
+    'first_load_arrival_date_from' : '2021-06-04',
+    'first_load_arrival_date_to' : '2021-07-04',
+    'hide_event_details' : True,
+    'hide_events' : True,
+    'hide_market_info' : False,
+    'expected' : 'voyages-api/v2/search/advanced/?'\
+                 'VesselClassId=84&'\
+                 'FirstLoadArrivalDateFrom=2021-06-04&'\
+        	     'FirstLoadArrivalDateTo=2021-07-04&'\
+                 'HideEventDetails=True&'\
+                 'HideEvents=True&'\
+                 'HideMarketInfo=False'
+}
+
+_mock_get_advanced_search_voyage = {Voyage(
+    id= 'I8BFD7DVED758D000', imo = 9174397,
+    voyage_number = 65, vessel_name = 'Melissa Amy',
+    vessel_type_id = 1, vessel_type = 'Tanker',
+    vessel_class_id = 84, vessel_class = 'VLCC',
+    trade_id = 1, vessel_status = 'Voyage',
+    commercial_operator = 'Winson Oil', start_date = datetime.fromisoformat(
+        '2020-12-23T14:42:00'
+    ).replace(tzinfo=timezone.utc), first_load_arrival_date = datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), end_date = datetime.fromisoformat(
+        '2021-07-20T23:44:51.004'
+    ).replace(tzinfo=timezone.utc),
+    charterer_id = -1, charterer = 'Unknown',
+    rate = None, rate_type = None,
+    ballast_bonus = None, ballast_bonus_type = None,
+    cargo_type_id = -2, cargo_type = 'Not set',
+    cargo_group_id = -32, cargo_group = 'Not set',
+    cargo_type_source = 'Estimated', quantity = None,
+    laycan_from = datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), laycan_to = datetime.fromisoformat(
+        '2021-06-14T01:22:40.829'
+    ).replace(tzinfo=timezone.utc),
+    fixture_status_id = 5, fixture_status = 'PossFixed',
+    fixture_date = datetime.fromisoformat(
+        '2021-05-26T07:53:40'
+    ).replace(tzinfo=timezone.utc), fixture_is_coa = False,
+    fixture_is_hold = False, is_implied_by_ais = True,
+    has_manual_entries = None, ballast_distance = 9036.5,
+    laden_distance = None
+)
+}
 
 @pytest.mark.parametrize("imo, vessel_class_id, vessel_type_id, date_from, "
                          "nested, incremental, expected",
@@ -399,7 +472,6 @@ def test_get_endpoint(imo, vessel_class_id, vessel_type_id, date_from, nested,
         incremental=incremental)
     assert endpoint == expected
 
-
 def test_get_endpoint_error_no_arguments():
     with pytest.raises(NotImplementedError):
         VoyagesAPI._get_endpoint()
@@ -409,6 +481,12 @@ def test_get_endpoint_error_vessel_type_no_date_non_incremental():
     with pytest.raises(NotImplementedError):
         VoyagesAPI._get_endpoint(vessel_type_id=1, date_from=None,
                                  incremental=False)
+
+
+def test_get_advanced_endpoint():
+    expected = _mock_get_advanced_search.pop('expected')
+    endpoint = VoyagesAPI._get_advanced_endpoint(**_mock_get_advanced_search)
+    assert endpoint == expected
 
 
 def create_voyages_api(response_data: Union[Dict, List] = None) \
@@ -575,3 +653,14 @@ def test_get_incremental_voyages_flat_type_returns():
     api, _ = create_voyages_api_multiple_requests(mock_response)
     voyages, _ = api.get_incremental_voyages_flat(vessel_class_id=84)
     assert voyages == _mock_flat_voyages
+
+
+def test_get_advanced_search_voyages():
+    _mock_get_advanced_search.pop('expected')
+    values = list(_mock_get_advanced_search.values())
+    for i, key in enumerate(_mock_get_advanced_search):
+        if values[i] is not None:
+            _mock_get_advanced_search_init[key] = values[i]
+    api, _ = create_voyages_api(_mock_get_advanced_search)
+    results, _ = api.get_voyages_by_advanced_search('')
+    assert results[0] == _mock_get_advanced_search_voyage

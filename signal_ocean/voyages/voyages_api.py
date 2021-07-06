@@ -5,6 +5,7 @@ from urllib.parse import urljoin
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single, get_multiple
+from signal_ocean.util.parsing_helpers import _to_camel_case
 from signal_ocean.voyages.models import Voyage, VoyagesFlat, \
     VoyagesFlatPagedResponse, VoyageEvent, \
     VoyageEventDetail, VoyageGeo, VoyagesPagedResponse
@@ -97,9 +98,7 @@ class VoyagesAPI:
         endpoint = 'search/advanced/'
 
         for i,arg in enumerate(args):
-            _to_camelcase = arg.split('_')
-            _to_camelcase = [word.capitalize() for word in _to_camelcase]
-            _to_camelcase = ''.join(_to_camelcase)
+            _to_camelcase = _to_camel_case(arg)
            
             if vals[i] is not None:
                 endpoint += f'&{_to_camelcase}={vals[i]}'
@@ -335,8 +334,8 @@ class VoyagesAPI:
                                 charterer_id:Optional[int]=None,
                                 voyage_horizon:Optional[str]=None,
                                 token:Optional[str]=None,
-                                hide_event_details:Optional[bool]=False, hide_events:Optional[bool]=False,
-                                hide_market_info:Optional[bool]=False) -> Voyages:
+                                hide_event_details:Optional[bool]=None, hide_events:Optional[bool]=None,
+                                hide_market_info:Optional[bool]=None) -> Voyages:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
