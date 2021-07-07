@@ -97,7 +97,6 @@ class VoyagesAPI:
         endpoint += params
         return urljoin(VoyagesAPI.relative_url, endpoint)
 
-
     def _get_voyages_pages(self, endpoint: str, token: Optional[str] = None) \
             -> Tuple[Voyages, Optional[NextRequestToken]]:
         """Get voyages paged data.

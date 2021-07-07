@@ -349,38 +349,18 @@ _mock_nested_voyage_2 = dataclasses.replace(_mock_flat_voyage_2, events=())
 
 _mock_voyages = (_mock_nested_voyage_1, _mock_nested_voyage_2)
 
-_mock_get_advanced_search_init = {
-    'event_type' : None,
-    'event_horizon' : None,
-    'event_purpose' : None,
-    'vessel_class_id': None, 
-    'vessel_type_id': None,
-    'start_date_from': None, 
-    'start_date_to': None,
-    'first_load_arrival_date_from': None, 
-    'first_load_arrival_date_to': None,
-    'end_date_from': None, 
-    'end_date_to' : None,
-    'market_info_rate_from' : None,
-    'market_info_rate_to': None,
-    'market_info_rate_type' : None,
-    'commercial_operator_id' : None, 
-    'charterer_id' : None,
-    'voyage_horizon' : None,
-    'token' : None,
-    'hide_event_details' : None, 
-    'hide_events' : None,
-    'hide_market_info' : None
-}
-
 _mock_get_advanced_search = {
+    'input' : {
     'vessel_class_id' : 84,
     'first_load_arrival_date_from' : '2021-06-04',
     'first_load_arrival_date_to' : '2021-07-04',
     'hide_event_details' : True,
     'hide_events' : True,
-    'hide_market_info' : False,
-    'expected' : 'voyages-api/v2/search/advanced/?'\
+    'hide_market_info' : False
+    },
+
+    'expected_output' : 
+                 'voyages-api/v2/search/advanced/?'\
                  'VesselClassId=84&'\
                  'FirstLoadArrivalDateFrom=2021-06-04&'\
         	     'FirstLoadArrivalDateTo=2021-07-04&'\
@@ -389,13 +369,51 @@ _mock_get_advanced_search = {
                  'HideMarketInfo=False'
 }
 
-_mock_get_advanced_search_voyage = {Voyage(
-    id= 'I8BFD7DVED758D000', imo = 9174397,
-    voyage_number = 65, vessel_name = 'Melissa Amy',
-    vessel_type_id = 1, vessel_type = 'Tanker',
-    vessel_class_id = 84, vessel_class = 'VLCC',
-    trade_id = 1, vessel_status = 'Voyage',
-    commercial_operator = 'Winson Oil', start_date = datetime.fromisoformat(
+_mock_advanced_search_response_data = {
+    'ID' : '91017.130',
+    'IMO' : '91017',
+    'VoyageNumber' : 65,
+    'Horizon' : 'Current',
+    'VesselName' : 'Signal Vessel',
+    'VesselTypeID' : 1,
+    'VesselType' : 'Tanker',
+    'VesselClassID' : 84,
+    'VesselClass' : 'VLCC',
+    'TradeID' : 1,
+    'Trade' : 'Crude',
+    'VesselStatusID' : 1,
+    'VesselStatus': 'Voyage',
+    'CommercialOperatorID': 1797,
+    'CommercialOperator': 'Signal',
+    'StartDate': '2020-12-23T14:42:00Z',
+    'FirstLoadArrivalDate': '2021-06-11T12:09:11.131Z',
+    'EndDate': '2021-07-20T23:44:51.004Z',
+    'ChartererID': -1,
+    'Charterer': 'Unknown',
+    'CargoTypeID': -2,
+    'CargoType': 'Not set',
+    'CargoGroupID': -32,
+    'CargoGroup': 'Not set',
+    'CargoTypeSource': 'Estimated',
+    'LaycanFrom': '2021-06-11T12:09:11.131Z',
+    'LaycanTo': '2021-06-14T01:22:40.829Z',
+    'FixtureStatusID': 5,
+    'FixtureStatus': 'PossFixed',
+    'FixtureDate': '2021-05-26T07:53:40Z',
+    'FixtureIsCOA': False,
+    'FixtureIsHold': False,
+    'IsImpliedByAIS': True,
+    'BallastDistance': 9036.45
+}
+
+_mock_advanced_search_voyage = Voyage(
+    imo = 91017, voyage_number = 65, 
+    vessel_type_id = 1, vessel_class_id = 84, 
+    vessel_status_id = 1, vessel_class = 'VLCC', trade_id = 1, 
+    vessel_type = 'Tanker', trade = 'Crude', vessel_status = 'Voyage',
+    commercial_operator_id = 1797, id= '91017.130', vessel_name = 'Signal Vessel',
+    commercial_operator = 'Signal', 
+    start_date = datetime.fromisoformat(
         '2020-12-23T14:42:00'
     ).replace(tzinfo=timezone.utc), first_load_arrival_date = datetime.fromisoformat(
         '2021-06-11T12:09:11.131'
@@ -404,10 +422,10 @@ _mock_get_advanced_search_voyage = {Voyage(
     ).replace(tzinfo=timezone.utc),
     charterer_id = -1, charterer = 'Unknown',
     rate = None, rate_type = None,
-    ballast_bonus = None, ballast_bonus_type = None,
+    ballast_bonus = None, ballast_bonus_type = None, 
     cargo_type_id = -2, cargo_type = 'Not set',
     cargo_group_id = -32, cargo_group = 'Not set',
-    cargo_type_source = 'Estimated', quantity = None,
+    cargo_type_source = 'Estimated',
     laycan_from = datetime.fromisoformat(
         '2021-06-11T12:09:11.131'
     ).replace(tzinfo=timezone.utc), laycan_to = datetime.fromisoformat(
@@ -418,10 +436,10 @@ _mock_get_advanced_search_voyage = {Voyage(
         '2021-05-26T07:53:40'
     ).replace(tzinfo=timezone.utc), fixture_is_coa = False,
     fixture_is_hold = False, is_implied_by_ais = True,
-    has_manual_entries = None, ballast_distance = 9036.5,
-    laden_distance = None
+    has_manual_entries = None,
+    ballast_distance = 9036.45, laden_distance = None
 )
-}
+
 
 @pytest.mark.parametrize("imo, vessel_class_id, vessel_type_id, date_from, "
                          "nested, incremental, expected",
@@ -472,6 +490,7 @@ def test_get_endpoint(imo, vessel_class_id, vessel_type_id, date_from, nested,
         incremental=incremental)
     assert endpoint == expected
 
+
 def test_get_endpoint_error_no_arguments():
     with pytest.raises(NotImplementedError):
         VoyagesAPI._get_endpoint()
@@ -484,8 +503,8 @@ def test_get_endpoint_error_vessel_type_no_date_non_incremental():
 
 
 def test_get_advanced_endpoint():
-    expected = _mock_get_advanced_search.pop('expected')
-    endpoint = VoyagesAPI._get_advanced_endpoint(**_mock_get_advanced_search)
+    expected = _mock_get_advanced_search['expected_output']
+    endpoint = VoyagesAPI._get_advanced_endpoint(**_mock_get_advanced_search['input'])
     assert endpoint == expected
 
 
@@ -562,7 +581,7 @@ def test_get_voyages_flat_imo_returns():
     api, _ = create_voyages_api(mock_response)
     voyages = api.get_voyages_flat(imo)
     assert voyages == _mock_flat_voyages_1
-
+ 
 
 def test_get_voyages_class_requests():
     mock_responses = [_mock_voyages_paged_nested_response_data_1,
@@ -656,11 +675,7 @@ def test_get_incremental_voyages_flat_type_returns():
 
 
 def test_get_advanced_search_voyages():
-    _mock_get_advanced_search.pop('expected')
-    values = list(_mock_get_advanced_search.values())
-    for i, key in enumerate(_mock_get_advanced_search):
-        if values[i] is not None:
-            _mock_get_advanced_search_init[key] = values[i]
-    api, _ = create_voyages_api(_mock_get_advanced_search)
-    results, _ = api.get_voyages_by_advanced_search('')
-    assert results[0] == _mock_get_advanced_search_voyage
+    mock_response = {'Data' : [_mock_advanced_search_response_data]}
+    api, _ = create_voyages_api(mock_response)
+    results = api.get_voyages_by_advanced_search('')
+    assert results[0] == _mock_advanced_search_voyage
