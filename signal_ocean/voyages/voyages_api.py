@@ -344,54 +344,52 @@ class VoyagesAPI:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
+            event_type: If an EventType is provided then only voyages that include 
+                    at least one event of this type will be returned.
+            event_horizon: If an EventHorizon is provided then only voyages that include
+                    at least one event of this type will be returned.
+            event_purpose: If an EventPurpose is provided then only voyages that include 
+                    at least one event of this type will be returned.
+            vessel_class_id: Return only voyages for the provided vessel class.
+                    If None voyages for all vessels are returned.
+            vessel_type_id: Return only voyages for the provided vessel type.
+                    If None voyages for all vessels are returned.
+            start_date_from: Return voyages after the provided voyage start date.
 
-        event_type: If an EventType is provided then only voyages that include 
-                at least one event of this type will be returned.
-        event_horizon: If an EventHorizon is provided then only voyages that include
-                at least one event of this type will be returned.
-        event_purpose: If an EventPurpose is provided then only voyages that include 
-                at least one event of this type will be returned.
-        vessel_class_id: Return only voyages for the provided vessel class.
-                If None voyages for all vessels are returned.
-        vessel_type_id: Return only voyages for the provided vessel type.
-                If None voyages for all vessels are returned.
-        start_date_from: Return voyages after the provided voyage start date.
+            start_date_to: Return voyages up to the provided voyage end date.
 
-        start_date_to: Return voyages up to the provided voyage end date.
+            first_load_arrival_date_from: Return voyages with a first load arrival date
+                    after the provided date.
+            first_load_arrival_date_to: Return voyages with a first load arrival date
+                    up to the provided date.
 
-        first_load_arrival_date_from: Return voyages with a first load arrival date
-                after the provided date.
-        first_load_arrival_date_to: Return voyages with a first load arrival date
-                up to the provided date.
+            end_date_from: Return voyages after the provided voyage end date.
+            
+            end_date_to: Return voyages up to the provided voyage end date.
 
-        end_date_from: Return voyages after the provided voyage end date.
-        
-        end_date_to: Return voyages up to the provided voyage end date.
+            market_info_rate_from: If provided only voyages that have market data 
+                    and with rate greater than this will be returned.
+            market_info_rate_to: If provided only voyages that have market data 
+                    and with rate lower than this will be returned.
+            market_info_rate_type: If provided only voyages that have market data 
+                    and with rate type equal to this will be returned.
+            commercial_operator_id: If provided only voyages that have this commercial
+                    operator will be returned.
+            charterer_id: If provided only voyages that have this charterer will be returned.
 
-        market_info_rate_from: If provided only voyages that have market data 
-                and with rate greater than this will be returned.
-        market_info_rate_to: If provided only voyages that have market data 
-                and with rate lower than this will be returned.
-        market_info_rate_type: If provided only voyages that have market data 
-                and with rate type equal to this will be returned.
-        commercial_operator_id: If provided only voyages that have this commercial
-                operator will be returned.
-        charterer_id: If provided only voyages that have this charterer will be returned.
+            voyage_horizon: If a VoyageHorizon is provided then only voyages of that 
+                    type will be returned.
+            token: Token returned from the previous incremental call.
+                    If this is the first call, then it can be omitted.
+            hide_event_details: If True, do not return event details.
 
-        voyage_horizon: If a VoyageHorizon is provided then only voyages of that 
-                type will be returned.
-        token: Token returned from the previous incremental call.
-                 If this is the first call, then it can be omitted.
-        hide_event_details: If True, do not return event details.
+            hide_events: If True, do not return events.
 
-        hide_events: If True, do not return events.
-
-        hide_market_info: If True, do not return market information.
+            hide_market_info: If True, do not return market information.
 
         Returns:
             A tuple containing the returned voyages.
         """
-
         endpoint = self._get_advanced_endpoint(event_type=event_type, event_horizon=event_horizon, event_purpose=event_purpose, 
                                         vessel_class_id=vessel_class_id, vessel_type_id=vessel_type_id, start_date_from=start_date_from,
                                         start_date_to=start_date_to, first_load_arrival_date_from=first_load_arrival_date_from,
