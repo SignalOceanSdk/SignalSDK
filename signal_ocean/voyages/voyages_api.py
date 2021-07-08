@@ -81,7 +81,20 @@ class VoyagesAPI:
         return urljoin(VoyagesAPI.relative_url, endpoint)
 
     @staticmethod
-    def _get_advanced_endpoint(**endpoint_params) -> str:
+    def _get_advanced_endpoint(event_type:Optional[int]=None, event_horizon:Optional[int]=None,
+                                event_purpose:Optional[str]=None,
+                                vessel_class_id:Optional[int]=None, vessel_type_id:Optional[int]=None,
+                                start_date_from:Optional[date]=None, start_date_to:Optional[date]=None,
+                                first_load_arrival_date_from:Optional[date]=None, first_load_arrival_date_to:Optional[date]=None,
+                                end_date_from:Optional[date]=None, end_date_to:Optional[date]=None,
+                                market_info_rate_from:Optional[date]=None, market_info_rate_to:Optional[date]=None,
+                                market_info_rate_type:Optional[date]=None,
+                                commercial_operator_id:Optional[int]=None, 
+                                charterer_id:Optional[int]=None,
+                                voyage_horizon:Optional[str]=None,
+                                token:Optional[str]=None,
+                                hide_event_details:Optional[bool]=None, hide_events:Optional[bool]=None,
+                                hide_market_info:Optional[bool]=None) -> str:
         """Constructs the advanced search endpoint to call to retrieve the requested voyages.
 
         Args:
@@ -92,6 +105,7 @@ class VoyagesAPI:
             The constructed endpoint to call to retrieve the requested voyages for
             the provided arguments.
         """
+        endpoint_params = locals()
         endpoint = 'search/advanced/?'
         params = urlencode({_to_camel_case(key): value for key, value in endpoint_params.items() if value is not None})
         endpoint += params
