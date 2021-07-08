@@ -8,7 +8,7 @@ from signal_ocean.util import parsing_helpers
 
 
 @pytest.mark.parametrize("cap_words, snake_cased",
-                         [('VesselTypeID', 'vessel_type_id'),
+                         [('VesselTypeId', 'vessel_type_id'),
                           ('Flag', 'flag'),
                           ('Id', 'id'),
                           ('VesselName', 'vessel_name'), ('IMO', 'imo'),
@@ -17,6 +17,14 @@ def test_to_snake_case(cap_words: str, snake_cased: str) -> None:
     transformed = parsing_helpers._to_snake_case(cap_words)
     assert transformed == snake_cased
 
+
+@pytest.mark.parametrize("snake_cased, camel_cased",
+                         [('vessel_type_id', 'VesselTypeId'),
+                          ('token', 'Token'),
+                          ('first_load_arrival_date_to', 'FirstLoadArrivalDateTo')])
+def test_to_camel_case(snake_cased: str, camel_cased: str) -> None:
+    transformed = parsing_helpers._to_camel_case(snake_cased)
+    assert transformed == camel_cased
 
 @pytest.mark.parametrize("value, cls, expected",
                          [(None, type(None), None),
