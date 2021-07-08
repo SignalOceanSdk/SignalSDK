@@ -23,6 +23,20 @@ def _to_snake_case(s: str) -> str:
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s).lower()
 
 
+def _to_camel_case(s: str) -> str:
+    """Transforms a string from snake_case to camel_case.
+
+    Args:
+        s: The string to transform
+
+    Returns:
+        The transformed string
+    """
+    _to_camelcase = s.split('_')
+    _to_camelcase = [word.capitalize() for word in _to_camelcase]
+    return ''.join(_to_camelcase)
+
+
 def _parse_class(value: Any, cls: Type[ParsableClass]) \
         -> ParsableClass:
     """Parses a value to match the type of a provided class.

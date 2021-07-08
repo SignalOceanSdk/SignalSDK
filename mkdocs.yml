@@ -53,6 +53,7 @@ nav:
       - 'releases/Version 1.0.1.b6.md'
     - Combined Examples:
       - Examples:
+        - 'examples/jupyter/Combined Examples/Supply Trend.ipynb'
         - 'examples/jupyter/Combined Examples/PersistVessels.ipynb'
         - 'examples/jupyter/Combined Examples/CargoFlowPlots.ipynb'
 extra_css:
