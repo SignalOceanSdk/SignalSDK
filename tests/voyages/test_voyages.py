@@ -349,6 +349,97 @@ _mock_nested_voyage_2 = dataclasses.replace(_mock_flat_voyage_2, events=())
 
 _mock_voyages = (_mock_nested_voyage_1, _mock_nested_voyage_2)
 
+_mock_get_advanced_search = {
+    'input' : {
+    'vessel_class_id' : 84,
+    'first_load_arrival_date_from' : '2021-06-04',
+    'first_load_arrival_date_to' : '2021-07-04',
+    'hide_event_details' : True,
+    'hide_events' : True,
+    'hide_market_info' : False
+    },
+
+    'expected_output' : 
+                 'voyages-api/v2/search/advanced/?'\
+                 'VesselClassId=84&'\
+                 'FirstLoadArrivalDateFrom=2021-06-04&'\
+        	     'FirstLoadArrivalDateTo=2021-07-04&'\
+                 'HideEventDetails=True&'\
+                 'HideEvents=True&'\
+                 'HideMarketInfo=False'
+}
+
+_mock_advanced_search_response_data = {
+    'ID' : '91017.130',
+    'IMO' : '91017',
+    'VoyageNumber' : 65,
+    'Horizon' : 'Current',
+    'VesselName' : 'Signal Vessel',
+    'VesselTypeID' : 1,
+    'VesselType' : 'Tanker',
+    'VesselClassID' : 84,
+    'VesselClass' : 'VLCC',
+    'TradeID' : 1,
+    'Trade' : 'Crude',
+    'VesselStatusID' : 1,
+    'VesselStatus': 'Voyage',
+    'CommercialOperatorID': 1797,
+    'CommercialOperator': 'Signal',
+    'StartDate': '2020-12-23T14:42:00Z',
+    'FirstLoadArrivalDate': '2021-06-11T12:09:11.131Z',
+    'EndDate': '2021-07-20T23:44:51.004Z',
+    'ChartererID': -1,
+    'Charterer': 'Unknown',
+    'CargoTypeID': -2,
+    'CargoType': 'Not set',
+    'CargoGroupID': -32,
+    'CargoGroup': 'Not set',
+    'CargoTypeSource': 'Estimated',
+    'LaycanFrom': '2021-06-11T12:09:11.131Z',
+    'LaycanTo': '2021-06-14T01:22:40.829Z',
+    'FixtureStatusID': 5,
+    'FixtureStatus': 'PossFixed',
+    'FixtureDate': '2021-05-26T07:53:40Z',
+    'FixtureIsCOA': False,
+    'FixtureIsHold': False,
+    'IsImpliedByAIS': True,
+    'BallastDistance': 9036.45
+}
+
+_mock_advanced_search_voyage = Voyage(
+    imo = 91017, voyage_number = 65, 
+    vessel_type_id = 1, vessel_class_id = 84, 
+    vessel_status_id = 1, vessel_class = 'VLCC', trade_id = 1, 
+    vessel_type = 'Tanker', trade = 'Crude', vessel_status = 'Voyage',
+    commercial_operator_id = 1797, id= '91017.130', vessel_name = 'Signal Vessel',
+    commercial_operator = 'Signal', 
+    start_date = datetime.fromisoformat(
+        '2020-12-23T14:42:00'
+    ).replace(tzinfo=timezone.utc), first_load_arrival_date = datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), end_date = datetime.fromisoformat(
+        '2021-07-20T23:44:51.004'
+    ).replace(tzinfo=timezone.utc),
+    charterer_id = -1, charterer = 'Unknown',
+    rate = None, rate_type = None,
+    ballast_bonus = None, ballast_bonus_type = None, 
+    cargo_type_id = -2, cargo_type = 'Not set',
+    cargo_group_id = -32, cargo_group = 'Not set',
+    cargo_type_source = 'Estimated',
+    laycan_from = datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), laycan_to = datetime.fromisoformat(
+        '2021-06-14T01:22:40.829'
+    ).replace(tzinfo=timezone.utc),
+    fixture_status_id = 5, fixture_status = 'PossFixed',
+    fixture_date = datetime.fromisoformat(
+        '2021-05-26T07:53:40'
+    ).replace(tzinfo=timezone.utc), fixture_is_coa = False,
+    fixture_is_hold = False, is_implied_by_ais = True,
+    has_manual_entries = None,
+    ballast_distance = 9036.45, laden_distance = None
+)
+
 
 @pytest.mark.parametrize("imo, vessel_class_id, vessel_type_id, date_from, "
                          "nested, incremental, expected",
@@ -409,6 +500,12 @@ def test_get_endpoint_error_vessel_type_no_date_non_incremental():
     with pytest.raises(NotImplementedError):
         VoyagesAPI._get_endpoint(vessel_type_id=1, date_from=None,
                                  incremental=False)
+
+
+def test_get_advanced_endpoint():
+    expected = _mock_get_advanced_search['expected_output']
+    endpoint = VoyagesAPI._get_advanced_endpoint(**_mock_get_advanced_search['input'])
+    assert endpoint == expected
 
 
 def create_voyages_api(response_data: Union[Dict, List] = None) \
@@ -484,7 +581,7 @@ def test_get_voyages_flat_imo_returns():
     api, _ = create_voyages_api(mock_response)
     voyages = api.get_voyages_flat(imo)
     assert voyages == _mock_flat_voyages_1
-
+ 
 
 def test_get_voyages_class_requests():
     mock_responses = [_mock_voyages_paged_nested_response_data_1,
@@ -575,3 +672,10 @@ def test_get_incremental_voyages_flat_type_returns():
     api, _ = create_voyages_api_multiple_requests(mock_response)
     voyages, _ = api.get_incremental_voyages_flat(vessel_class_id=84)
     assert voyages == _mock_flat_voyages
+
+
+def test_get_advanced_search_voyages():
+    mock_response = {'Data' : [_mock_advanced_search_response_data]}
+    api, _ = create_voyages_api(mock_response)
+    results = api.get_voyages_by_advanced_search('')
+    assert results[0] == _mock_advanced_search_voyage
