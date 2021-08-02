@@ -51,7 +51,7 @@ nav:
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/SupplyTrend.ipynb'
-        - 'examples/jupyter/Combined Examples/CargoFlowPlots.ipynb'
+        - 'examples/jupyter/Combined Examples/CargoFlows.ipynb'
     - Release notes:
       - 'releases/Version 1.0.3.md'
       - 'releases/Version 1.0.2.md'
