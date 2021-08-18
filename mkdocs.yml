@@ -20,6 +20,7 @@ nav:
         - 'examples/jupyter/HTL API/Vessel_OnSubs_PerDay.ipynb'
         - 'examples/jupyter/HTL API/Vessels open at Fos over time.ipynb'
         - 'examples/jupyter/HTL API/Persist HTL query data in SQLite.ipynb'
+        - 'examples/jupyter/HTL API/SupplyTrend.ipynb'
     - Voyages:
       - 'voyages.md'
       - Examples:
@@ -50,7 +51,6 @@ nav:
         - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
     - Combined Examples:
       - Examples:
-        - 'examples/jupyter/Combined Examples/SupplyTrend.ipynb'
         - 'examples/jupyter/Combined Examples/CargoFlows.ipynb'
     - Release notes:
       - 'releases/Version 1.0.3.md'
