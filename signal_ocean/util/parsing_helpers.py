@@ -120,13 +120,21 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
 
         field_names = set(f.name for f in dataclasses.fields(cls))
         field_types = {f.name: f.type for f in dataclasses.fields(cls)}
-
+        #print('This is the original data')
+        #print(data)
+        #print(5*'***')
+        #print(field_names)
+        #print(field_types)
+        #print(10*'-----')
         parsed_data: Dict[str, Any] = {}
         for key, value in data.items():
             key = _to_snake_case(key)
             if key in field_names:
                 field_type = field_types[key]
+                #print(f'parse_model({value},{field_type})')
                 parsed_data[key] = parse_model(value, field_type)
+                #print(parsed_data)
+                #print(5*'!!!!')
 
         args = []
         for f in dataclasses.fields(cls):
@@ -146,14 +154,15 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
         return cls(*args)
 
     field_type_origin = getattr(cls, '__origin__', None)
-
+    #print('field_type_origin')
+    #print(field_type_origin)
     if field_type_origin is Union:
         for candidate_cls in getattr(cls, '__args__', []):
+            #print(candidate_cls)
             try:
                 return parse_model(data, candidate_cls)
             except (TypeError, ValueError):
-                pass
-        raise ValueError(f'Cannot parse value {data} as {cls}')
+                raise ValueError(f'Cannot parse value {data} as {cls}')
 
     if field_type_origin is list and isinstance(data, Iterable):
         list_field_type = getattr(cls, '__args__', [])[0]
@@ -163,6 +172,8 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
 
     if field_type_origin is tuple and isinstance(data, Iterable):
         tuple_field_types = getattr(cls, '__args__', [])
+        #print('tuple_field_types')
+        #print(tuple_field_types)
         if not tuple_field_types:
             return tuple(data)
         return tuple(parse_model(v, tuple_field_types[0]) for v in data)
