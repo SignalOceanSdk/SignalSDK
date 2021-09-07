@@ -15,7 +15,7 @@ class OilxCargoTrackingAPI:
     relative_url = "oilx-cargo-tracking-api/v1/"
 
     def __init__(self, connection: Optional[Connection] = None):
-        """Initializes VoyagesAPI.
+        """Initializes OilxCargoTrackingAPI.
 
         Args:
             connection: API connection configuration. If not provided, the
@@ -26,6 +26,17 @@ class OilxCargoTrackingAPI:
     @staticmethod
     def _get_endpoint(vessel_class_id: Optional[int] = None,
                       incremental: bool = False) -> str:
+        """Retrieves the endpoint to call to retrieve the requested cargo flows.
+
+        Args:
+            vessel_class_id: Return only cargo flows for the provided vessel class.
+                If None, cargo flows for all vessels are returned.
+            incremental: Return cargo flows incrementally.
+
+        Returns:
+            The endpoint to call to retrieve the requested cargo flows for
+            the provided arguments.
+        """
 
         endpoint = 'cargoTracking'
        
@@ -39,21 +50,34 @@ class OilxCargoTrackingAPI:
     def _get_oilx_cargoes_pages(
         self, endpoint: str, token: Optional[str] = None
         ) -> Tuple[CargoFlows, Optional[NextRequestToken]]:
-   
-            results: List[CargoFlow] = []
-            next_page_token = token
-            while True:
-                params = {'token': next_page_token} \
-                    if next_page_token is not None else None
-                response = get_single(self.__connection, endpoint,
-                                    CargoFlowsPagedResponse, query_string=params)
-                if response is not None and response.data is not None:
-                    results.extend(response.data)
-                next_page_token = response.next_page_token \
-                    if response is not None else None
 
-                if next_page_token is None:
-                    break
+        """Get cargo flows paged data.
+
+        Args:
+            endpoint: The endpoint to call.
+            token: Next request token for incremental cargo flows.
+
+        Make consecutive requests until no next page token is returned, gather
+        and return data.
+
+        Returns:
+            Cargo flows data gathered from the returned pages.
+        """
+   
+        results: List[CargoFlow] = []
+        next_page_token = token
+        while True:
+            params = {'token': next_page_token} \
+                if next_page_token is not None else None
+            response = get_single(self.__connection, endpoint,
+                                CargoFlowsPagedResponse, query_string=params)
+            if response is not None and response.data is not None:
+                results.extend(response.data)
+            next_page_token = response.next_page_token \
+                if response is not None else None
+
+            if next_page_token is None:
+                break
 
             next_request_token = response.next_request_token \
                 if response is not None else None
@@ -63,6 +87,16 @@ class OilxCargoTrackingAPI:
         self,
         vessel_class_id: Optional[int] = None
         ) -> CargoFlows:
+
+       """Retrieves all cargo flows filtered for the provided parameters.
+
+        Args:
+            vessel_class_id: Return only cargo flows for the provided vessel class.
+                If None, cargo flows for all vessels are returned.
+
+        Returns:
+            A tuple containing the returned cargo flows.
+        """ 
 
        endpoint = self._get_endpoint(vessel_class_id, incremental=False) 
     
