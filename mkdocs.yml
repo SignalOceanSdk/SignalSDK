@@ -26,6 +26,7 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
+        - 'examples/jupyter/VoyagesAPI/Port Congestion.ipynb'
     - Vessels:
       - 'vessels.md'
       - Examples:
