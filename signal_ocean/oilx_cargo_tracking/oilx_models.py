@@ -9,7 +9,7 @@ class CargoFlow:
 
     Attributes:
         imo: Vessel’s international maritime organization unique number.
-        id: 
+        id: Numeric ID of each cargo flow.
         vessel_class_id: Numeric ID corresponding to the different vessel
             classes of a certain vessel type.
         load_date: End date of loading
@@ -25,18 +25,18 @@ class CargoFlow:
             anchorages within this port.
         load_sts_indicator: Ship-to-Ship indicator during loading
         crude_oil_grade_id: Numeric ID corresponding to the type of cargo the vessel
-            carries in this voyage. For example 19-> Crude Oil, 16->Fueloil,
+            carries in this cargo flow. For example 19-> Crude Oil, 16->Fueloil,
             9-> Naphtha, 135-> Unleaded Motor Spirit, 12-> Gasoil.
         crude_oil_grade_name: Crude oil grade name
         crude_oil_grade_group_id: Numeric ID corresponding to the high-level cargo the
-            vessel carries in this voyage, therefore called cargo group. For
+            vessel carries in this cargo flow, therefore called cargo group. For
             example 130000->Dirty, 120000-> Clean.
         crude_oil_grade_group_name:  String, it corresponds to the estimated high-level cargo
-            the vessel carries in this voyage
+            the vessel carries in this cargo flow
         api_gravity: Crude oil API gravity
-        gravity_band:  
+        gravity_band:
         sulphur_content: Crude oil sulphur content
-        sulphur_band:  
+        sulphur_band:
         origin_country_id: Numeric ID corresponding to the Country of origin.
         origin_country_name: Crude oil country of origin
         load_quantity_kilo_tonnes: Load quantity in kilotonnes
@@ -47,20 +47,20 @@ class CargoFlow:
         discharge_sts_indicator: Ship-to-Ship indicator during discharging
         supplier_name: Supplier’s company name
         buyer_name:  Buyer’s company name
-        load_country_group_id: Numeric ID corresponding to global organizations of countries. 
+        load_country_group_id: Numeric ID corresponding to global organizations of countries.
             This field is used to mark OECD and OPEC origin countries.
-        load_country_group_name: String, it corresponds to global organizations of countries. 
+        load_country_group_name: String, it corresponds to global organizations of countries.
             This field is used to mark OECD and OPEC origin countries.
-        destination_country_id: Numeric ID corresponding to the Country of destination. 
+        destination_country_id: Numeric ID corresponding to the Country of destination.
         destination_country_name: Crude oil country of destination.
         voyage_id: string. The id of the voyage which is mapped to the specific cargo flow.
-        load_event_id: string. The id of the event which is mapped to the 
+        load_event_id: string. The id of the event which is mapped to the
             loading operation of the specific cargo flow.
-        discharge_event_id: string. The id of the event which is mapped to the 
+        discharge_event_id: string. The id of the event which is mapped to the
             discharge operation of the specific cargo flow.
-        load_event_detail_id:  string. The id of the event detail which is mapped to the 
+        load_event_detail_id:  string. The id of the event detail which is mapped to the
             loading operation of the specific cargo flow.
-        discharge_event_detail_id: string. The id of the event detail which is mapped to the 
+        discharge_event_detail_id: string. The id of the event detail which is mapped to the
             discharge operation of the specific cargo flow.
         deleted: Boolean. Indicator of wether the mapped voyage is deleted or not
 
@@ -95,12 +95,13 @@ class CargoFlow:
     load_country_group_name: Optional[str] = None
     destination_country_id: Optional[int] = None
     destination_country_name: Optional[str] = None
-    voyage_id: Optional[str] = None 
+    voyage_id: Optional[str] = None
     load_event_id: Optional[str] = None
-    discharge_event_id: Optional[str] = None 
-    load_event_detail_id: Optional[str] = None 
+    discharge_event_id: Optional[str] = None
+    load_event_detail_id: Optional[str] = None
     discharge_event_detail_id: Optional[str] = None
     deleted: Optional[bool] = None
+
 
 @dataclass(frozen=True)
 class CargoFlowsPagedResponse:
@@ -114,6 +115,7 @@ class CargoFlowsPagedResponse:
         data: The structure that contains records retrieve for the current
             page.
     """
+
     next_page_token: Optional[str] = None
     next_request_token: Optional[str] = None
     data: Optional[Tuple[CargoFlow, ...]] = None
