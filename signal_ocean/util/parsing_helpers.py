@@ -153,7 +153,9 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
             try:
                 return parse_model(data, candidate_cls)
             except (TypeError, ValueError):
-                raise ValueError(f'Cannot parse value {data} as {cls}')
+                pass
+
+        raise ValueError(f'Cannot parse value {data} as {cls}')
 
     if field_type_origin is list and isinstance(data, Iterable):
         list_field_type = getattr(cls, '__args__', [])[0]
