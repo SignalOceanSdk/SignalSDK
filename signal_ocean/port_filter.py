@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from typing import Iterable, Optional
+import warnings
 
 from .port import Port
 from ._internals import contains_caseless
@@ -18,6 +19,15 @@ class PortFilter:
     """
 
     name_like: Optional[str] = None
+
+    def __post_init__(self) -> None:  # noqa: D105
+        warnings.warn(
+            "signal_ocean.PortFilter is deprecated and will be removed in a "
+            "future version of the SDK. Please use tonnage_list.PortFilter "
+            "with tonnage_list.TonnageListAPI instead.",
+            DeprecationWarning,
+            stacklevel=3,
+        )
 
     def _apply(self, ports: Iterable[Port]) -> Iterable[Port]:
         return filter(self.__does_port_match, ports)
