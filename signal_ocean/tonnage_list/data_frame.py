@@ -4,7 +4,6 @@ from datetime import datetime
 from typing import Dict, Optional, Tuple
 
 from .._internals import IterableConstants
-from .models import Vessel
 
 
 def _pit_col(name: str) -> str:
@@ -17,6 +16,33 @@ _data_types: Dict[str, str] = {}
 def _category(name: str) -> str:
     _data_types[name] = "category"
     return name
+
+
+DataFrameRow = Tuple[
+    str,
+    str,
+    Optional[str],
+    int,
+    int,
+    float,
+    int,
+    str,
+    str,
+    str,
+    str,
+    Optional[datetime],
+    str,
+    str,
+    str,
+    Optional[datetime],
+    Optional[datetime],
+    str,
+    Optional[str],
+    Optional[str],
+    Optional[str],
+    str,
+    str,
+]
 
 
 class Column(metaclass=IterableConstants):
@@ -48,56 +74,54 @@ class Column(metaclass=IterableConstants):
 
     @staticmethod
     def _create_row(
-        vessel: Vessel,
-    ) -> Tuple[
-        str,
-        str,
-        Optional[str],
-        int,
-        int,
-        float,
-        int,
-        str,
-        str,
-        str,
-        str,
-        Optional[datetime],
-        str,
-        str,
-        str,
-        Optional[datetime],
-        Optional[datetime],
-        str,
-        Optional[str],
-        Optional[str],
-        Optional[str],
-        str,
-        str,
-    ]:
+        name: str,
+        vessel_class: str,
+        ice_class: Optional[str],
+        year_built: int,
+        deadweight: int,
+        length_overall: float,
+        breadth_extreme: int,
+        subclass: str,
+        market_deployment: str,
+        push_type: str,
+        open_port: str,
+        open_date: Optional[datetime],
+        operational_status: str,
+        commercial_operator: str,
+        commercial_status: str,
+        eta: Optional[datetime],
+        latest_ais: Optional[datetime],
+        open_prediction_accuracy: str,
+        open_country: Optional[str],
+        open_narrow_area: Optional[str],
+        open_wide_area: Optional[str],
+        availability_port_type: str,
+        availability_date_type: str,
+    ) -> DataFrameRow:
         return (
-            vessel.name,
-            vessel.vessel_class,
-            vessel.ice_class,
-            vessel.year_built,
-            vessel.deadweight,
-            vessel.length_overall,
-            vessel.breadth_extreme,
-            vessel.subclass,
-            vessel.market_deployment,
-            vessel.push_type,
-            vessel.open_port,
-            vessel.open_date,
-            vessel.operational_status,
-            vessel.commercial_operator,
-            vessel.commercial_status,
-            vessel.eta,
-            vessel.latest_ais,
-            vessel.open_prediction_accuracy,
-            vessel.open_country,
-            vessel.open_narrow_area,
-            vessel.open_wide_area,
-            vessel.availability_port_type,
-            vessel.availability_date_type,
+            name,
+            vessel_class,
+            ice_class,
+            year_built,
+            deadweight,
+            length_overall,
+            breadth_extreme,
+            subclass,
+            market_deployment,
+            push_type,
+            open_port,
+            open_date,
+            operational_status,
+            commercial_operator,
+            commercial_status,
+            eta,
+            latest_ais,
+            open_prediction_accuracy,
+            open_country,
+            open_narrow_area,
+            open_wide_area,
+            availability_port_type,
+            availability_date_type,
         )
 
     @staticmethod

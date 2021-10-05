@@ -1,6 +1,7 @@
 """Tonnage List API Package."""
 
-from .api import (
+from .api import TonnageListAPI
+from .models import (
     VesselSubclass,
     PushType,
     MarketDeployment,
@@ -8,14 +9,11 @@ from .api import (
     DateRange,
     PortFilter,
     VesselClassFilter,
-    TonnageListAPI,
-)
-from .models import (
+    TonnageList,
+    HistoricalTonnageList,
     LocationTaxonomy,
     Area,
     Vessel,
-    TonnageList,
-    HistoricalTonnageList,
     Port,
     VesselClass,
 )
