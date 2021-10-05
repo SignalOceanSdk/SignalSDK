@@ -16,4 +16,5 @@
         - vessel_filter
         - vessel_subclass
         - location_taxonomy
-    show_source: false
+    rendering:
+      show_source: false

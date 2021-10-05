@@ -2,4 +2,5 @@
 
 ::: signal_ocean.tonnage_list
     handler: python
-    show_source: false
+    rendering:
+      show_source: false
