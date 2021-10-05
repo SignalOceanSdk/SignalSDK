@@ -23,7 +23,7 @@ class TonnageListAPI:
     __MAX_DATE_RANGE_DAYS = 365
 
     def __init__(self, connection: Optional[Connection] = None):
-        """Initializes TonnageListAPI.
+        """Initializes `TonnageListAPI`.
 
         Args:
             connection: API connection configuration. If not provided, the
@@ -41,15 +41,15 @@ class TonnageListAPI:
         """Retrieves a tonnage list.
 
         Args:
-            loading_port: The loading port from which ETA will be calculated.
-            vessel_class: Vessel class of vessels in the tonnage list.
+            loading_port: A loading port from which ETA will be calculated.
+            vessel_class: The vessel class of vessels in the tonnage list.
             laycan_end_in_days: The maximum ETA expressed as a number of days
                 from now.
             vessel_filter: A filter defining which vessels should be included
-                in the response. See the VesselFilter class for more details.
+                in the response. See the `VesselFilter` class for details.
 
         Returns:
-            Returns a tonnage list containing vessels that match the specified
+            Returns a `TonnageList` containing vessels that match the specified
             criteria.
         """
         query_string: QueryString = {
@@ -74,7 +74,7 @@ class TonnageListAPI:
         date_range: Optional[DateRange] = None,
         vessel_filter: Optional[VesselFilter] = None,
     ) -> HistoricalTonnageList:
-        """Retrieves a Historical Tonnage List.
+        """Retrieves a historical tonnage list.
 
         If no input dates are provided, the last 10 days will be fetched
         (including today).
@@ -83,22 +83,18 @@ class TonnageListAPI:
         the desired date.
 
         Args:
-            loading_port: The loading port from which ETA will be calculated.
-            vessel_class: The vessel class to calculate the tonnage lists.
+            loading_port: A loading port from which ETA will be calculated.
+            vessel_class: The vessel class of vessels in the tonnage list.
             laycan_end_in_days: The maximum ETA expressed as a number of days
                 after the end date.
-            start_date: The date of the earliest tonnage list in the response.
-            end_date: The date of the latest tonnage list in the response.
-            time: Specifies the UTC time of day for which the state of
-                the tonnage lists will be retrieved.
-                It can get the values 00, 06, 12, 18.
+            date_range: A range of dates for which to get historical tonnage
+                lists.
             vessel_filter: A filter defining which vessels should be included
-                in the response see Vessel Filter class for more details.
+                in the response. See `VesselFilter` class for details.
 
         Returns:
-            Given a time-range, returns a Historical Tonnage List containing a
-            Tonnage List for every day between the start and end dates, at the
-            requested time of day.
+            Given a time-range, returns a `HistoricalTonnageList` containing a
+            `TonnageList` for every day between the start and end dates.
         """
         date_ranges = (date_range or DateRange(start=None, end=None))._split(
             TonnageListAPI.__MAX_DATE_RANGE_DAYS
@@ -148,7 +144,7 @@ class TonnageListAPI:
 
         Args:
             port_filter: A filter used to find specific ports. If not
-            specified, returns all available ports.
+                specified, returns all available ports.
 
         Returns:
             A tuple of available ports that match the filter.

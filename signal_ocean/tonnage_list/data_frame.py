@@ -49,28 +49,83 @@ class Column(metaclass=IterableConstants):
     """Contains constants for data frame column names."""
 
     NAME = "name"
+    """The vessel's name."""
+
     VESSEL_CLASS = _category("vessel_class")
+    """Name of the vessel class the vessel is categorized as."""
+
     ICE_CLASS = _category("ice_class")
+    """The vessel's ice class."""
+
     YEAR_BUILT = "year_built"
+    """The year the vessel has been built."""
+
     DEADWEIGHT = "deadweight"
+    """The vessel's deadweight."""
+
     LENGTH_OVERALL = "length_overall"
+    """The vessel's length overall."""
+
     BREADTH_EXTREME = "breadth_extreme"
+    """The vessel's breadth extreme."""
+
     SUBCLASS = _category("subclass")
+    """The vessel's subclass. See the `VesselSubclass` class for available
+    values."""
+
     MARKET_DEPLOYMENT = _category(_pit_col("market_deployment"))
+    """Market deployment of the vessel at the tonnage lists' point in time. See
+    the `MarketDeployment` class for available values."""
+
     PUSH_TYPE = _category(_pit_col("push_type"))
+    """Push type of the vessel at the tonnage lists' point in time. See the
+    `PushType` class for available values."""
+
     OPEN_PORT = _category(_pit_col("open_port"))
+    """The vessel's open port name at the tonnage lists' point in time."""
+
     OPEN_DATE = _pit_col("open_date")
+    """The vessel's open date at the tonnage lists' point in time."""
+
     OPERATIONAL_STATUS = _category(_pit_col("operational_status"))
+    """Operational status of the vessel at the tonnage lists' point in time.
+    See the `OperationalStatus` class for available values."""
+
     COMMERCIAL_OPERATOR = _category(_pit_col("commercial_operator"))
+    """The vessel's commercial operator at the tonnage lists' point in time."""
+
     COMMERCIAL_STATUS = _category(_pit_col("commercial_status"))
+    """Commercial status of the vessel at the tonnage lists' point in time. See
+    the `CommercialStatus` class for available values."""
+
     ETA = _pit_col("eta")
+    """Estimated time of arrival at the tonnage lists' point in time."""
+
     LATEST_AIS = _pit_col("latest_ais")
+    """Timestamp of the vessel's latest AIS information at the tonnage lists'
+    point in time."""
+
     OPEN_PREDICTION_ACCURACY = _category(_pit_col("open_prediction_accuracy"))
+    """How accurate, in terms of location taxonomy, is the vessel's open
+    prediction at the tonnage lists' point in time. See the `LocationTaxonomy`
+    class for available values."""
+
     OPEN_COUNTRY = _category(_pit_col("open_country"))
+    """The country at which the vessel opens."""
+
     OPEN_NARROW_AREA = _category(_pit_col("open_narrow_area"))
+    """The narrow geographical area at which the vessel opens."""
+
     OPEN_WIDE_AREA = _category(_pit_col("open_wide_area"))
+    """The wide geographical area at which the vessel opens."""
+
     AVAILABILITY_PORT_TYPE = _category(_pit_col("availability_port_type"))
+    """Prediction source of the vessel's open port at the tonnage lists' point
+    in time. See the `SourceType` class for possible values."""
+
     AVAILABILITY_DATE_TYPE = _category(_pit_col("availability_date_type"))
+    """Prediction source of the vessel's open date at the tonnage lists' point
+    in time. See the `SourceType` class for possible values."""
 
     @staticmethod
     def _create_row(
@@ -133,4 +188,7 @@ class IndexLevel(metaclass=IterableConstants):
     """Contains constants for available data frame index levels."""
 
     DATE = "date"
+    """The point in time at which the data was captured."""
+
     IMO = "imo"
+    """The vessel's IMO number."""

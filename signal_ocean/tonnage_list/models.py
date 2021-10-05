@@ -28,21 +28,16 @@ class LocationTaxonomy(metaclass=IterableConstants):
     """Contains constants for available location taxonomies."""
 
     PORT = "Port"
-    """
-    Location Taxonomy Port.
-    """
+    """A port."""
+
     COUNTRY = "Country"
-    """
-    Location Taxonomy Country.
-    """
+    """A country."""
+
     NARROW_AREA = "Narrow Area"
-    """
-    Location Taxonomy Narrow Area.
-    """
+    """A narrow geographical Area."""
+
     WIDE_AREA = "Wide Area"
-    """
-    Location Taxonomy Wide Area.
-    """
+    """A wide geographical area."""
 
 
 @dataclass(frozen=True)
@@ -50,9 +45,9 @@ class Area:
     """A geographical area.
 
     Attributes:
-        name: The area name.
+        name: The area's name.
         location_taxonomy: The area's location taxonomy. See the
-            LocationTaxonomy class for available values.
+            `LocationTaxonomy` class for available values.
     """
 
     name: str
@@ -61,71 +56,59 @@ class Area:
 
 @dataclass(frozen=True, eq=False)
 class Vessel:
-    """Holds information for a vessel that participates in a tonnage list.
+    """Holds information for a vessel that's present in a `TonnageList`.
 
-    Contains both static vessel and point-in-time vessel data.
-    All point in time data are annotated with the name _point_in_time
-    when converted to data_frame, see column class for details
+    Contains both static and point-in-time vessel data. When converted to a
+    data frame, all point-in-time data is suffixed with `_point_in_time`. See
+    the `Column` class for the available data frame column names.
 
     Attributes:
         imo: The vessel's IMO number.
         name: The vessel's name.
-        vessel_class: The vessel's class name.
+        vessel_class: Name of the vessel class the vessel is categorized as.
         ice_class: The vessel's ice class.
         year_built: The year the vessel has been built.
         deadweight: The vessel's deadweight.
         length_overall: The vessel's length overall.
         breadth_extreme: The vessel's breadth extreme.
-        market_deployment: Market deployment of the vessel.
-             Point in time property.
-             See the MarketDeployment class for available values.
-        push_type: Push type of the vessel.
-            Point in time property.
-            See the PushType class for available values.
-        open_port: The vessel's open port name.
-            Point in time property.
-        open_date: The vessel's open date.
-            Point in time property.
-        operational_status: Operational status of the vessel.
-            Point in time property.
-            See the OperationalStatus class for available values.
-        commercial_operator: The vessel's commercial operator.
-            Point in time property.
-        commercial_status: Commercial status of the vessel.
-            Point in time property.
-            See the CommercialStatus class for available values.
-        eta: Estimated time of arrival.
-            Point in time property.
-        latest_ais: Timestamp of the vessel's latest AIS information.
-            Point in time property.
-        subclass: The vessel's subclass.
-            See the VesselSubclass class for available values.
-        willing_to_switch_subclass: Is the vessel willing
-            to switch its subclass.
-        open_prediction_accuracy: How accurate is the open prediction.
-            Point in time property. i.e: if a source is specifying the port
-            then prediction is given at port level.
-            See the LocationTaxonomy class for available values.
-        open_areas: A hierarchical collection of areas the vessel opens
-            at used to filtering.
-            Point in time property.
-            i.e: if a vessel opens in Rotterdam you get as open areas
-            "openAreas":[{"id":24758,"label":"Continent","taxonomy":4},
-            {"id":25016,"label":"UK Continent","taxonomy":5},
-            {"id":25025,"label":"Mediterranean / UK Continent","taxonomy":6},
-            {"id":25028,"label":"West","taxonomy":7},
-            {"id":173,"label":"Netherlands","taxonomy":3}]
-        availability_port_type: If it says source it means that there is
-            hard evidence for the specific prediction of Port,
-            if it says prediction it means the system is predicting
-            based on the algorithm.
-            Point in time property.
-        availability_date_type: If it says source it means that there is
-            hard evidence for
-            the specific prediction of the Open date,
-            if it says prediction it means the system is
-            predicting based on the algorithm.
-            Point in time property.
+        market_deployment: Market deployment of the vessel at the tonnage
+            lists' point in time. See the `MarketDeployment` class for
+            available values.
+        push_type: Push type of the vessel at the tonnage lists' point in time.
+            See the `PushType` class for available values.
+        open_port: The vessel's open port name at the tonnage lists' point in
+            time.
+        open_date: The vessel's open date at the tonnage lists' point in time.
+        operational_status: Operational status of the vessel at the tonnage
+            lists' point in time. See the `OperationalStatus` class for
+            available values.
+        commercial_operator: The vessel's commercial operator at the tonnage
+            lists' point in time.
+        commercial_status: Commercial status of the vessel at the tonnage
+            lists' point in time. See the `CommercialStatus` class for
+            available values.
+        eta: Estimated time of arrival at the tonnage lists' point in time.
+        latest_ais: Timestamp of the vessel's latest AIS information at the
+            tonnage lists' point in time.
+        subclass: The vessel's subclass. See the `VesselSubclass` class for
+            available values.
+        willing_to_switch_subclass: When `True`, the vessel is willing to
+            switch its subclass.
+        open_prediction_accuracy: How accurate, in terms of location taxonomy,
+            is the vessel's open prediction at the tonnage lists' point in
+            time. See the `LocationTaxonomy` class for available values.
+        open_areas: A hierarchical collection of areas the vessel opens at at
+            the tonnage lists' point in time.
+
+            If a vessel opens at a specific port, this attribute
+            will contain areas containing the port. For example, the continent,
+            wide/narrow areas, country, etc.
+        availability_port_type: Prediction source of the vessel's open port at
+            the tonnage lists' point in time. See the `SourceType` class for
+            possible values.
+        availability_date_type: Prediction source of the vessel's open date at
+            the tonnage lists' point in time. See the `SourceType` class for
+            possible values.
     """
 
     imo: int
@@ -158,31 +141,31 @@ class Vessel:
 
     @property
     def open_country(self) -> Optional[str]:
-        """Returns the vessel's open country name.
+        """The vessel's open country name.
 
         Returns:
-            The name of the open country or None if an area with
-            LocationTaxonomy.COUNTRY was not present.
+            The name of the open country or `None` if an area with
+            `LocationTaxonomy.COUNTRY` was not present.
         """
         return self.__area_name_by_taxonomy(LocationTaxonomy.COUNTRY)
 
     @property
     def open_narrow_area(self) -> Optional[str]:
-        """Returns the vessel's open narrow area name.
+        """The vessel's narrow open area name.
 
         Returns:
-            The name of the open narrow area or None if an area with
-            LocationTaxonomy.NARROW_AREA was not present.
+            The name of the narrow open area or `None` if an area with
+            `LocationTaxonomy.NARROW_AREA` was not present.
         """
         return self.__area_name_by_taxonomy(LocationTaxonomy.NARROW_AREA)
 
     @property
     def open_wide_area(self) -> Optional[str]:
-        """Returns the vessel's open wide area name.
+        """The vessel's wide open area name.
 
         Returns:
-            The name of the open wide area or None if an area with
-            LocationTaxonomy.WIDE_AREA was not present.
+            The name of the wide open area or `None` if an area with
+            `LocationTaxonomy.WIDE_AREA` was not present.
         """
         return self.__area_name_by_taxonomy(LocationTaxonomy.WIDE_AREA)
 
@@ -218,6 +201,82 @@ class Vessel:
             availability_port_type=self.availability_port_type,
             availability_date_type=self.availability_date_type,
         )
+
+
+class OperationalStatus(metaclass=IterableConstants):
+    """Contains constants for available operational statuses."""
+
+    BALLAST_FIXED = "Ballast Fixed"
+    """The vessel is currently without cargo but fixed."""
+
+    REPAIRS = "Repairs"
+    """The vessel is undergoing repairs or is in dry dock."""
+
+    WAITING_TO_LOAD = "Waiting to Load"
+    """The vessel is waiting to load."""
+
+    LOADING = "Loading"
+    """The vessel is loading.
+    
+    This means the vessel has entered a jetty or is performing a ship-to-ship
+    operation."""
+
+    LADEN = "Laden"
+    """The vesel has loaded."""
+
+    WAITING_TO_DISCHARGE = "Waiting to Discharge"
+    """The vessel is waiting to Discharge."""
+
+    DISCHARGING = "Discharging"
+    """The vessel is discharging.
+    
+    This means the vessel has entered a jetty or is performing a ship-to-ship
+    operation."""
+
+    ACTIVE_STORAGE = "Active Storage"
+    """The vessel is in active storage.
+    
+    This means the vessel acts as short-term storage (in comparison to storage
+    vessels).
+    """
+
+    BALLAST_UNFIXED = "Ballast Unfixed"
+    """The vessel is currently without cargo and is not fixed (is prompt)."""
+
+    BALLAST_FIXED_IMPLIED = "Ballast Fixed (implied)"
+    """The vessel is currently without cargo and its AIS destination implies
+    that it's fixed."""
+
+
+class CommercialStatus(metaclass=IterableConstants):
+    """Contains constants for available commercial statuses."""
+
+    ON_SUBS = "On Subs"
+    """The vessel is "on subs" for a new fixture."""
+
+    FAILED = "Failed"
+    """The last fixture failed for this vessel."""
+
+    CANCELLED = "Cancelled"
+    """The last fixture has been cancelled for this vessel."""
+
+    AVAILABLE = "Available"
+    """The vessel is available for a new voyage after its open date."""
+
+    POTENTIALLY_FIXED = "Poss Fixed"
+    """The vessel is assumed to be fixed for a new voyage based on available
+    AIS information.
+    """
+
+
+class SourceType(metaclass=IterableConstants):
+    """Contains constants for available prediction source types."""
+
+    SOURCE = "Source"
+    """There is hard evidence backing the given prediction."""
+
+    PREDICTION = "Prediction"
+    """The prediction was made based on an algorithm."""
 
 
 @dataclass(frozen=True, eq=False)
@@ -293,29 +352,25 @@ class MarketDeployment(metaclass=IterableConstants):
     """Available market deployments."""
 
     SPOT = "Spot"
-    """Vessels participating in the spot market.
-
-    Vessels controlled by commercial operators that participate in the spot
+    """Vessels controlled by commercial operators that participate in the spot
     market and are advertised through tonnage lists and reported fixtures.
     """
 
     PROGRAM = "Program"
-    """Vessels controlled by charterers that do not participate in the spot
-    market and are either not advertised through tonnage lists or tonnage lists
-    report the fact that they are program
+    """Vessels that are controlled by charterers that do not participate in the
+    spot market and are either not advertised through tonnage lists or tonnage
+    lists report the fact that they participate in the program market.
     """
 
     RELET = "Relet"
-    """
-    Vessels controlled by charterers that participate in the spot market
-    and are advertised through Tonnage lists and get reported fixtures
+    """Vessels controlled by charterers that participate in the spot market and
+    are advertised through tonnage lists and reported fixtures.
     """
 
     CONTRACT = "Contract"
-    """
-    Vessels controlled by commercial operators that do not participate
-    in the spot market and are typically
-    doing system cargoes with repetitive trading patterns.
+    """Vessels controlled by commercial operators that do not participate in
+    the spot market and are typically carrying system cargoes with repetitive
+    trading patterns.
     """
 
 
@@ -336,10 +391,10 @@ class VesselFilter:
 
     Attributes:
         push_types: Return vessels with the specified push types. Use constants
-            defined in the :py:class:`PushType` class as values of this
+            defined in the `PushType` class as values of this
             attribute.
         market_deployments: Return vessels with the specified market deployment
-            types. Use constants defined in the :py:class:`MarketDeployment`
+            types. Use constants defined in the `MarketDeployment`
             class as values of this attribute.
         commercial_statuses: Return vessels with the specified
             commercial statuses. Use constants defined in the CommercialStatus
@@ -549,7 +604,7 @@ class TonnageList(Sequence[Vessel]):
 
     Attributes:
         vessels: Vessels present in the tonnage list at the time it was
-            captured. For more details see the :py:class:`Vessel` class.
+            captured. For more details see the `Vessel` class.
         date: The date and time at which the tonnage list was captured.
     """
 
@@ -558,7 +613,7 @@ class TonnageList(Sequence[Vessel]):
 
         Args:
             vessels: Vessels present in the tonnage list at the time it was
-                captured. For more details see the :py:class:`Vessel` class.
+                captured. For more details see the `Vessel` class.
             date: The date and time at which the tonnage list was captured.
         """
         self.vessels = tuple(vessels)
@@ -596,19 +651,19 @@ class TonnageList(Sequence[Vessel]):
 
 
 class HistoricalTonnageList(Sequence[TonnageList]):
-    """The class that represents a Historical Tonnage List.
+    """A historical tonnage list.
 
-    A Historical Tonnage List consists from an collection of Tonnage Lists
-    one for every day between the start and end date specified
-    when querying the Historica Tonnage List API.
+    A historical tonnage list consists of a collection of tonnage lists, one
+    for every day between the start and end date specified when querying the
+    Historical Tonnage List API.
     """
 
     def __init__(self, tonnage_lists: Iterable[TonnageList]):
-        """Initializes the Historical Tonnage List.
+        """Initializes the `HistoricalTonnageList`.
 
         Args:
-            tonnage_lists: Tonnage Lists contained within the Historical
-                Tonnage List.
+            tonnage_lists: Tonnage lists per each day in the historical date
+                range.
         """
         self.tonnage_lists = tuple(tonnage_lists)
 
