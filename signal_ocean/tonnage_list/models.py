@@ -217,7 +217,7 @@ class OperationalStatus(metaclass=IterableConstants):
 
     LOADING = "Loading"
     """The vessel is loading.
-    
+
     This means the vessel has entered a jetty or is performing a ship-to-ship
     operation."""
 
@@ -229,13 +229,13 @@ class OperationalStatus(metaclass=IterableConstants):
 
     DISCHARGING = "Discharging"
     """The vessel is discharging.
-    
+
     This means the vessel has entered a jetty or is performing a ship-to-ship
     operation."""
 
     ACTIVE_STORAGE = "Active Storage"
     """The vessel is in active storage.
-    
+
     This means the vessel acts as short-term storage (in comparison to storage
     vessels).
     """
@@ -397,10 +397,10 @@ class VesselFilter:
             types. Use constants defined in the `MarketDeployment`
             class as values of this attribute.
         commercial_statuses: Return vessels with the specified
-            commercial statuses. Use constants defined in the CommercialStatus
-            class for the values of this attribute.
+            commercial statuses. Use constants defined in the
+            `CommercialStatus` class for the values of this attribute.
         vessel_subclass: Return vessels of the specified subclass.
-            Use constants defined in the VesselSubclass class for the values
+            Use constants defined in the `VesselSubclass` class for the values
             of this attribute.
         add_willing_to_switch_subclass: When True, returns vessels
             that do not match the subclass but are willing to switch to it.
@@ -408,13 +408,13 @@ class VesselFilter:
             AIS information at the time the tonnage list was captured.
         operational_statuses: Return vessels with the specified
             operational statuses. Use constants defined in the
-            OperationalStatus class for the values of this attribute.
+            `OperationalStatus` class for the values of this attribute.
         min_liquid_capacity: The minimum liquid capacity, in cubic
             meters, the vessel should be able to hold.
         max_liquid_capacity: The maximum liquid capacity, in cubic
             meters, the vessel should be able to hold.
         fixture_types: Return vessels with the specified
-            fixture types. Use constants defined in the FixtureType class for
+            fixture types. Use constants defined in the `FixtureType` class for
             the values of this attribute.
         last_cargo_types: Return vessels with the specified last
             cargo type IDs.
@@ -513,6 +513,19 @@ class VesselFilter:
             "openArea": self.open_area_ids,
             "openCountry": self.open_country_ids,
         }
+
+
+class FixtureType(metaclass=IterableConstants):
+    """Contains constants for available fixture types."""
+
+    SCRAPED = "Scraped"
+    """The fixture was scraped from an email."""
+
+    MANUAL = "Manual"
+    """The fixture was added manually."""
+
+    IMPLIED = "Implied"
+    """The fixture is implied by the vessel's AIS destination."""
 
 
 class DateRange:

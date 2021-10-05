@@ -71,7 +71,9 @@ def parse_historical_tonnage_list_response(
 
     return HistoricalTonnageList(
         to_tonnage_list(
-            tl, static_vessel_data, cast(datetime, parse_datetime(tl["date"]))
+            tl["pointInTimeVesselData"],
+            static_vessel_data,
+            cast(datetime, parse_datetime(tl["date"])),
         )
         for tl in tonnage_lists
     )
