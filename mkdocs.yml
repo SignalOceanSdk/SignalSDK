@@ -23,6 +23,8 @@ nav:
         - 'examples/jupyter/HTL API/SupplyTrend.ipynb'
     - Tonnage List:
       - 'tonnage_list.md'
+      - Examples:
+        - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
     - Voyages:
       - 'voyages.md'
       - Examples:
