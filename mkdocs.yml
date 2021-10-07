@@ -25,7 +25,7 @@ nav:
       - 'tonnage_list.md'
       - Examples:
         - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
-        - 'examples/jupyter/Tonnage List API/Working with historical tonnage lists.ipynb'
+        - 'examples/jupyter/Tonnage List API/Working with the TonnageListAPI.ipynb'
     - Voyages:
       - 'voyages.md'
       - Examples:
