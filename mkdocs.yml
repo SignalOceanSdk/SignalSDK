@@ -11,7 +11,7 @@ theme:
     - navigation.instant
 nav:
     - 'index.md'
-    - Historical Tonnage List:
+    - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
       - Examples:
         - 'examples/jupyter/HTL API/Analysis_over_all_vessels.ipynb'

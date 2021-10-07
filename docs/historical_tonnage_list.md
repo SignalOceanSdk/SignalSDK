@@ -1,5 +1,9 @@
 # Package Documentation
 
+**⚠ Deprecation Warning**
+
+This package is deprecated and will be removed in a future version of the SDK. Please use the [tonnage_list package](./tonnage_list.md) instead.
+
 ::: signal_ocean.historical_tonnage_list
     handler: python
     selection:
