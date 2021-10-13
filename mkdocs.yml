@@ -27,6 +27,7 @@ nav:
         - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
         - 'examples/jupyter/Tonnage List API/Working with the TonnageListAPI.ipynb'
         - 'examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels that were "on subs" around Houston.ipynb'
     - Voyages:
       - 'voyages.md'
       - Examples:
