@@ -14,6 +14,7 @@ Classes:
 
 from .connection import Connection
 from .market_rates import MarketRatesAPI
+from .freight_rates import FreightRatesAPI
 from .port import Port
 from .port_api import PortAPI
 from .port_expenses import PortExpensesAPI
@@ -28,6 +29,7 @@ __all__ = [
     "PortAPI",
     "PortExpensesAPI",
     "MarketRatesAPI",
+    "FreightRatesAPI",
     "PortFilter",
     "VesselClass",
     "VesselClassAPI",
