@@ -28,8 +28,7 @@ class FreightRatesAPI:
             vessel_classes: List[str], is_clean: bool,
             date: date = date.today()
     ) -> Tuple[FreightPricing, ...]:
-        """Provides freight pricing for given load/discharge ports and vessel
-        classes.
+        """Provides freight pricing for given load/discharge ports.
 
         Args:
             load_port_id: Load port ID.
