@@ -30,7 +30,7 @@ def parse_freight_pricing(json_list: List[Mapping[str, Any]]) -> \
                  area=discharge_port.get("area")),
             cast(float, json.get("quantity")),
             cast(bool, json.get("minFlatAugustaUsed")),
-            cast(str, json.get("routingChoices")),
+            cast(List[str], json.get("routingChoices")),
         )
         pricing_list.append(pricing)
     return tuple(pricing_list)

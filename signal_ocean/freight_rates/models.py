@@ -1,7 +1,7 @@
 # noqa: D100
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 
 
 @dataclass(frozen=True)
@@ -66,4 +66,4 @@ class FreightPricing:
     discharge_port: Port
     quantity: float
     min_flat_augusta_used: bool
-    routing_choices: Optional[str]
+    routing_choices: Optional[List[str]]

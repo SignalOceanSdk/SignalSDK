@@ -19,7 +19,7 @@ from signal_ocean.freight_rates import FreightPricing, _freight_rates_json
             "totalFreightCost": 289191.6,
             "totalFreightRate": 1.07108,
             "routeType": "Unknown",
-            "routingChoices": None,
+            "routingChoices": [],
             "loadPort": {
                 "name": "Fujairah",
                 "country": "United Arab Emirates",
@@ -47,7 +47,7 @@ from signal_ocean.freight_rates import FreightPricing, _freight_rates_json
             "totalFreightCost": 435000,
             "totalFreightRate": 5.4375,
             "routeType": "Unknown",
-            "routingChoices": None,
+            "routingChoices": [],
             "loadPort": {
                 "name": "Fujairah",
                 "country": "United Arab Emirates",
