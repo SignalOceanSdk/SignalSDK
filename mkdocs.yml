@@ -50,11 +50,16 @@ nav:
       - 'market_rates.md'
       - Examples:
         - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
+    - Freight Rates:
+      - 'freight_rates.md'
+      - Examples:
+        - 'examples/jupyter/FreightRatesAPI/FreightRatesAPI.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/CargoFlows.ipynb'
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
     - Release notes:
+      - 'releases/Version 1.0.4.md'
       - 'releases/Version 1.0.3.md'
       - 'releases/Version 1.0.2.md'
       - 'releases/Version 1.0.1.b6.md'
