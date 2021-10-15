@@ -31,6 +31,7 @@ Classes:
 
     FixtureType: Contains constants for available fixture types.
 """
+import warnings
 
 from .historical_tonnage_list_api import HistoricalTonnageListAPI
 from .historical_tonnage_list import HistoricalTonnageList
@@ -47,6 +48,14 @@ from .column import Column
 from .index_level import IndexLevel
 from .operational_status import OperationalStatus
 from .fixture_type import FixtureType
+
+warnings.warn(
+    "The historical_tonnage_list package is deprecated and will be removed in "
+    "a future version of the SDK. Please use the tonnage_list package "
+    "instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
 __all__ = [
     "HistoricalTonnageListAPI",
