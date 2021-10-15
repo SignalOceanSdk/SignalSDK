@@ -12,6 +12,14 @@ Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-
     - Added get_vessel_classes method:
     Added helper method that returns all available vessel classes for which we can provide freight rates.
 
+- Live Tonnage list available under renamed Tonnage List API
+    
+    - Historical Tonnage List API is renamed to Tonnage List API. Old API libraries are deprecated and replacable 1-1 with the new api. Users can now recall data from Signal Ocean Tonnage List in a live format for any time of the day they want to.
+
+- Deprecation of Historical Tonnage List API
+    
+    - Users should switch to the new Tonnage List API which replaces 100% the old Historical Tonnage List API.
+
 
 ## Installation and Upgrade Notes
 Update your package with:
