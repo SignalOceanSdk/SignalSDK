@@ -1,4 +1,5 @@
 # Package Documentation
 ::: signal_ocean.companies
     handler: python
-    show_source: false
+    rendering:
+      show_source: false
