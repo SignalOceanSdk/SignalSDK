@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from typing import Iterable, Optional
+import warnings
 
 from .vessel_class import VesselClass
 from ._internals import contains_caseless
@@ -18,6 +19,16 @@ class VesselClassFilter:
     """
 
     name_like: Optional[str] = None
+
+    def __post_init__(self) -> None:  # noqa: D105
+        warnings.warn(
+            "signal_ocean.VesselClassFilter is deprecated and will be removed "
+            "in a future version of the SDK. Please use "
+            "tonnage_list.VesselClassFilter with tonnage_list.TonnageListAPI "
+            "instead.",
+            DeprecationWarning,
+            stacklevel=3,
+        )
 
     def _apply(
         self, vessel_classes: Iterable[VesselClass]
