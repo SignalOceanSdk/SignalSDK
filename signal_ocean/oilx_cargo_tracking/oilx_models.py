@@ -34,9 +34,10 @@ class CargoFlow:
         crude_oil_grade_group_name:  String, it corresponds to the estimated high-level cargo
             the vessel carries in this cargo flow
         api_gravity: Crude oil API gravity
-        gravity_band:
+        gravity_band: Light / Heavy, crude oil can be classified as either light or heavy depending on its API gravity.
         sulphur_content: Crude oil sulphur content
-        sulphur_band:
+        sulphur_band: Sweet / Sour, crude oil can be classified as either sour or sweet, depending on the amount
+            of sulfur it contains.
         origin_country_id: Numeric ID corresponding to the Country of origin.
         origin_country_name: Crude oil country of origin
         load_quantity_kilo_tonnes: Load quantity in kilotonnes
@@ -68,6 +69,7 @@ class CargoFlow:
 
     imo: int
     id: str
+    vessel_name: Optional[str] = None
     vessel_class_id: Optional[int] = None
     load_date: Optional[datetime] = None
     load_geoasset_id: Optional[int] = None
@@ -93,6 +95,12 @@ class CargoFlow:
     buyer_name: Optional[str] = None
     load_country_group_id: Optional[int] = None
     load_country_group_name: Optional[str] = None
+    load_sub_country_id: Optional[int] = None
+    load_sub_country_name: Optional[str] = None
+    discharge_country_group_id: Optional[int] = None
+    discharge_country_group_name: Optional[str] = None
+    discharge_sub_country_id: Optional[int] = None
+    discharge_sub_country_name: Optional[str] = None
     destination_country_id: Optional[int] = None
     destination_country_name: Optional[str] = None
     voyage_id: Optional[str] = None
@@ -100,7 +108,7 @@ class CargoFlow:
     discharge_event_id: Optional[str] = None
     load_event_detail_id: Optional[str] = None
     discharge_event_detail_id: Optional[str] = None
-    deleted: Optional[bool] = None
+    deleted: Optional[str] = None
 
 
 @dataclass(frozen=True)

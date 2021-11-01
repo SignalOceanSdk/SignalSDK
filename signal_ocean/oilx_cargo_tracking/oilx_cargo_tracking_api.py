@@ -3,8 +3,7 @@ from typing import Optional, Tuple, List
 from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
-from signal_ocean.util.request_helpers import get_single, get_multiple
-from signal_ocean.util.parsing_helpers import _to_camel_case
+from signal_ocean.util.request_helpers import get_single
 from signal_ocean.oilx_cargo_tracking.oilx_models import (
     CargoFlow,
     CargoFlowsPagedResponse,
@@ -83,23 +82,27 @@ class OilxCargoTrackingAPI:
                 CargoFlowsPagedResponse,
                 query_string=params,
             )
+
             if response is not None and response.data is not None:
                 results.extend(response.data)
+
             next_page_token = (
                 response.next_page_token if response is not None else None
             )
-
+           
             if next_page_token is None:
                 break
 
-            next_request_token = (
-                response.next_request_token if response is not None else None
-            )
+        next_request_token = (
+            response.next_request_token if response is not None else None
+        )
         return tuple(results), next_request_token
 
 
     def get_oilx_cargoes(
-        self, vessel_class_id: Optional[int] = None
+        self, 
+        vessel_class_id: Optional[int] = None,
+        incremental_token: Optional[str] = None
     ) -> CargoFlows:
 
         """Retrieves all cargo flows filtered for the provided parameters.
@@ -111,9 +114,13 @@ class OilxCargoTrackingAPI:
         Returns:
             A tuple containing the returned cargo flows.
         """
+        if incremental_token is not None:
+            endpoint = self._get_endpoint(vessel_class_id, incremental=True)
+        else:
+            endpoint = self._get_endpoint(vessel_class_id, incremental=False)
 
-        endpoint = self._get_endpoint(vessel_class_id, incremental=False)
+        results, next_request_token = self._get_oilx_cargoes_pages(
+            endpoint, token = incremental_token
+            )
 
-        results, _ = self._get_oilx_cargoes_pages(endpoint)
-
-        return results
+        return results, next_request_token
