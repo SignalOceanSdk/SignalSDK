@@ -1,6 +1,7 @@
 # noqa: D100
 
 from typing import Tuple, Optional
+import warnings
 
 from .connection import Connection
 from .port import Port
@@ -17,6 +18,14 @@ class PortAPI:
             connection: API connection configuration. If not provided, the
                 default connection method is used.
         """
+        warnings.warn(
+            "signal_ocean.PortAPI is deprecated and will be removed in a "
+            "future version of the SDK. Please use "
+            "tonnage_list.TonnageListAPI to get ports instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
         self.__connection = connection or Connection()
 
     def get_ports(

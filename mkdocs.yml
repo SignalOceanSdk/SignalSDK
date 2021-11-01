@@ -11,21 +11,23 @@ theme:
     - navigation.instant
 nav:
     - 'index.md'
-    - Historical Tonnage List:
+    - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
+    - Tonnage List:
+      - 'tonnage_list.md'
       - Examples:
-        - 'examples/jupyter/HTL API/Analysis_over_all_vessels.ipynb'
-        - 'examples/jupyter/HTL API/QuickStart_HTL_API.ipynb'
-        - 'examples/jupyter/HTL API/Historical Tonnage List API.ipynb'
-        - 'examples/jupyter/HTL API/Vessel_OnSubs_PerDay.ipynb'
-        - 'examples/jupyter/HTL API/Vessels open at Fos over time.ipynb'
-        - 'examples/jupyter/HTL API/Persist HTL query data in SQLite.ipynb'
+        - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
+        - 'examples/jupyter/Tonnage List API/Working with the TonnageListAPI.ipynb'
+        - 'examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels that were on subs around Houston.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels that were opening at Fos.ipynb'
     - Voyages:
       - 'voyages.md'
       - Examples:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
+        - 'examples/jupyter/VoyagesAPI/Port Congestion.ipynb'
     - Vessels:
       - 'vessels.md'
       - Examples:
@@ -48,11 +50,16 @@ nav:
       - 'market_rates.md'
       - Examples:
         - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
+    - Freight Rates:
+      - 'freight_rates.md'
+      - Examples:
+        - 'examples/jupyter/FreightRatesAPI/FreightRatesAPI.ipynb'
     - Combined Examples:
       - Examples:
-        - 'examples/jupyter/Combined Examples/SupplyTrend.ipynb'
         - 'examples/jupyter/Combined Examples/CargoFlows.ipynb'
+        - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
     - Release notes:
+      - 'releases/Version 1.0.4.md'
       - 'releases/Version 1.0.3.md'
       - 'releases/Version 1.0.2.md'
       - 'releases/Version 1.0.1.b6.md'
