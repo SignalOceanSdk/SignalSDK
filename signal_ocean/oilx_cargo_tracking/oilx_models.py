@@ -13,11 +13,11 @@ class CargoFlow:
         vessel_class_id: Numeric ID corresponding to the different vessel
             classes of a certain vessel type.
         load_date: End date of loading
-        load_geoasset_id: Numeric ID of the load geo asset. Geo assets represent maritime
+        load_geo_asset_id: Numeric ID of the load geo asset. Geo assets represent maritime
             facilities such as terminals, anchorages and lightering zones.
             Multiple geo assets are grouped under the same port.
         discharge_date: End date of discharge
-        discharge_geoasset_id: Numeric ID of the discharge geo asset. Geo assets represent maritime
+        discharge_geo_asset_id: Numeric ID of the discharge geo asset. Geo assets represent maritime
             facilities such as terminals, anchorages and lightering zones.
             Multiple geo assets are grouped under the same port.
         load_port_id:  ID corresponding to the load port. A port may be associated
@@ -72,9 +72,9 @@ class CargoFlow:
     vessel_name: Optional[str] = None
     vessel_class_id: Optional[int] = None
     load_date: Optional[datetime] = None
-    load_geoasset_id: Optional[int] = None
+    load_geo_asset_id: Optional[int] = None
     discharge_date: Optional[datetime] = None
-    discharge_geoasset_id: Optional[int] = None
+    discharge_geo_asset_id: Optional[int] = None
     load_port_id: Optional[int] = None
     load_sts_indicator: Optional[int] = None
     crude_oil_grade_id: Optional[int] = None

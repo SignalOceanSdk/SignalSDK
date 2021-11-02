@@ -1,6 +1,5 @@
-from datetime import date
 from typing import Optional, Tuple, List
-from urllib.parse import urljoin, urlencode
+from urllib.parse import urljoin
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single
@@ -103,7 +102,7 @@ class OilxCargoTrackingAPI:
         self, 
         vessel_class_id: Optional[int] = None,
         incremental_token: Optional[str] = None
-    ) -> CargoFlows:
+    ) -> Tuple[CargoFlows, Optional[str]]:
 
         """Retrieves all cargo flows filtered for the provided parameters.
 
