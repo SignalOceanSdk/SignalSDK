@@ -120,7 +120,7 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
 
         field_names = set(f.name for f in dataclasses.fields(cls))
         field_types = {f.name: f.type for f in dataclasses.fields(cls)}
-        
+
         parsed_data: Dict[str, Any] = {}
         for key, value in data.items():
             key = _to_snake_case(key)
