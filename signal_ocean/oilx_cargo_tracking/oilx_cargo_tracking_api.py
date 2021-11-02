@@ -32,7 +32,8 @@ class OilxCargoTrackingAPI:
         """Retrieves the endpoint to call to retrieve the requested cargo flows.
 
         Args:
-            vessel_class_id: Return only cargo flows for the provided vessel class.
+            vessel_class_id:
+                Return only cargo flows for the provided vessel class.
                 If None, cargo flows for all vessels are returned.
             incremental: Return cargo flows incrementally.
 
@@ -46,7 +47,7 @@ class OilxCargoTrackingAPI:
         if vessel_class_id is not None:
             endpoint += f"/class/{vessel_class_id}"
         if incremental:
-            endpoint += f"/incremental"
+            endpoint += "/incremental"
 
         return urljoin(OilxCargoTrackingAPI.relative_url, endpoint)
 
@@ -88,7 +89,7 @@ class OilxCargoTrackingAPI:
             next_page_token = (
                 response.next_page_token if response is not None else None
             )
-           
+
             if next_page_token is None:
                 break
 
@@ -97,9 +98,8 @@ class OilxCargoTrackingAPI:
         )
         return tuple(results), next_request_token
 
-
     def get_oilx_cargoes(
-        self, 
+        self,
         vessel_class_id: Optional[int] = None,
         incremental_token: Optional[str] = None
     ) -> Tuple[CargoFlows, Optional[str]]:
@@ -107,7 +107,8 @@ class OilxCargoTrackingAPI:
         """Retrieves all cargo flows filtered for the provided parameters.
 
         Args:
-            vessel_class_id: Return only cargo flows for the provided vessel class.
+            vessel_class_id:
+                Return only cargo flows for the provided vessel class.
                 If None, cargo flows for all vessels are returned.
 
         Returns:
@@ -119,7 +120,7 @@ class OilxCargoTrackingAPI:
             endpoint = self._get_endpoint(vessel_class_id, incremental=False)
 
         results, next_request_token = self._get_oilx_cargoes_pages(
-            endpoint, token = incremental_token
-            )
+            endpoint, token=incremental_token
+        )
 
         return results, next_request_token

@@ -13,58 +13,77 @@ class CargoFlow:
         vessel_class_id: Numeric ID corresponding to the different vessel
             classes of a certain vessel type.
         load_date: End date of loading
-        load_geo_asset_id: Numeric ID of the load geo asset. Geo assets represent maritime
+        load_geo_asset_id:
+            Numeric ID of the load geo asset. Geo assets represent maritime
             facilities such as terminals, anchorages and lightering zones.
             Multiple geo assets are grouped under the same port.
         discharge_date: End date of discharge
-        discharge_geo_asset_id: Numeric ID of the discharge geo asset. Geo assets represent maritime
+        discharge_geo_asset_id:
+            Numeric ID of the discharge geo asset.
+            Geo assets represent maritime
             facilities such as terminals, anchorages and lightering zones.
             Multiple geo assets are grouped under the same port.
-        load_port_id:  ID corresponding to the load port. A port may be associated
+        load_port_id:
+            ID corresponding to the load port. A port may be associated
             with multiple geo assets representing different terminals and
             anchorages within this port.
         load_sts_indicator: Ship-to-Ship indicator during loading
-        crude_oil_grade_id: Numeric ID corresponding to the type of cargo the vessel
-            carries in this cargo flow. For example 19-> Crude Oil, 16->Fueloil,
+        crude_oil_grade_id:
+            Numeric ID corresponding to the type of cargo the vessel
+            carries in this cargo flow.
+            For example 19-> Crude Oil, 16->Fueloil,
             9-> Naphtha, 135-> Unleaded Motor Spirit, 12-> Gasoil.
         crude_oil_grade_name: Crude oil grade name
-        crude_oil_grade_group_id: Numeric ID corresponding to the high-level cargo the
-            vessel carries in this cargo flow, therefore called cargo group. For
-            example 130000->Dirty, 120000-> Clean.
-        crude_oil_grade_group_name:  String, it corresponds to the estimated high-level cargo
+        crude_oil_grade_group_id:
+            Numeric ID corresponding to the high-level cargo the
+            vessel carries in this cargo flow, therefore called cargo group.
+            For example 130000->Dirty, 120000-> Clean.
+        crude_oil_grade_group_name:
+            String, it corresponds to the estimated high-level cargo
             the vessel carries in this cargo flow
         api_gravity: Crude oil API gravity
-        gravity_band: Light / Heavy, crude oil can be classified as either light or heavy depending on its API gravity.
+        gravity_band: Light / Heavy,
+            classification of crude oil depending on its API gravity.
         sulphur_content: Crude oil sulphur content
-        sulphur_band: Sweet / Sour, crude oil can be classified as either sour or sweet, depending on the amount
+        sulphur_band: Sweet / Sour,
+            classification of crude oil depending on the amount
             of sulfur it contains.
         origin_country_id: Numeric ID corresponding to the Country of origin.
         origin_country_name: Crude oil country of origin
         load_quantity_kilo_tonnes: Load quantity in kilotonnes
         load_quantity_kilo_barrels: Load quantity in kilobarrels
-        discharge_port_id:ID corresponding to the discharge port. A port may be associated
+        discharge_port_id:
+            ID corresponding to the discharge port. A port may be associated
             with multiple geo assets representing different terminals and
             anchorages within this port.
         discharge_sts_indicator: Ship-to-Ship indicator during discharging
         supplier_name: Supplier’s company name
         buyer_name:  Buyer’s company name
-        load_country_group_id: Numeric ID corresponding to global organizations of countries.
+        load_country_group_id:
+            Numeric ID corresponding to global organizations of countries.
             This field is used to mark OECD and OPEC origin countries.
-        load_country_group_name: String, it corresponds to global organizations of countries.
+        load_country_group_name:
+            String, it corresponds to global organizations of countries.
             This field is used to mark OECD and OPEC origin countries.
-        destination_country_id: Numeric ID corresponding to the Country of destination.
+        destination_country_id:
+            Numeric ID corresponding to the Country of destination.
         destination_country_name: Crude oil country of destination.
-        voyage_id: string. The id of the voyage which is mapped to the specific cargo flow.
-        load_event_id: string. The id of the event which is mapped to the
+        voyage_id: string.
+            The id of the voyage which is mapped to the specific cargo flow.
+        load_event_id: string.
+            The id of the event which is mapped to the
             loading operation of the specific cargo flow.
-        discharge_event_id: string. The id of the event which is mapped to the
+        discharge_event_id: string.
+            The id of the event which is mapped to the
             discharge operation of the specific cargo flow.
-        load_event_detail_id:  string. The id of the event detail which is mapped to the
+        load_event_detail_id:  string.
+            The id of the event detail which is mapped to the
             loading operation of the specific cargo flow.
-        discharge_event_detail_id: string. The id of the event detail which is mapped to the
+        discharge_event_detail_id: string.
+            The id of the event detail which is mapped to the
             discharge operation of the specific cargo flow.
-        deleted: Boolean. Indicator of wether the mapped voyage is deleted or not
-
+        deleted: Boolean.
+            Indicator of wether the mapped voyage is deleted or not
     """
 
     imo: int
