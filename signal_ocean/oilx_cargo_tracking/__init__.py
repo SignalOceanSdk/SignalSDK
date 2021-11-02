@@ -3,7 +3,7 @@
 Classes:
     OilxCargoTrackingAPI: Represents Signal's OilX Cargo Tracking API.
     CargoFlow: Represents a CargoFlow.
-    CargoFlowsPagedResponse: 
+    CargoFlowsPagedResponse:
         Represents paged response of OilX Cargo Tracking API.
 """
 from .oilx_models import CargoFlow, CargoFlowsPagedResponse
