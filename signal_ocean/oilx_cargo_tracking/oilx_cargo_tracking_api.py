@@ -1,3 +1,4 @@
+"""The oilx cargo tracking api."""
 from typing import Optional, Tuple, List
 from urllib.parse import urljoin
 
@@ -13,6 +14,7 @@ NextRequestToken = str
 
 
 class OilxCargoTrackingAPI:
+    """Represents OilX Cargo Tracking API."""
 
     relative_url = "oilx-cargo-tracking-api/v1/"
 
@@ -41,7 +43,6 @@ class OilxCargoTrackingAPI:
             The endpoint to call to retrieve the requested cargo flows for
             the provided arguments.
         """
-
         endpoint = "cargoTracking"
 
         if vessel_class_id is not None:
@@ -54,7 +55,6 @@ class OilxCargoTrackingAPI:
     def _get_oilx_cargoes_pages(
         self, endpoint: str, token: Optional[str] = None
     ) -> Tuple[CargoFlows, Optional[NextRequestToken]]:
-
         """Get cargo flows paged data.
 
         Args:
@@ -67,7 +67,6 @@ class OilxCargoTrackingAPI:
         Returns:
             Cargo flows data gathered from the returned pages.
         """
-
         results: List[CargoFlow] = []
         next_page_token = token
         while True:
@@ -103,7 +102,6 @@ class OilxCargoTrackingAPI:
         vessel_class_id: Optional[int] = None,
         incremental_token: Optional[str] = None
     ) -> Tuple[CargoFlows, Optional[str]]:
-
         """Retrieves all cargo flows filtered for the provided parameters.
 
         Args:
