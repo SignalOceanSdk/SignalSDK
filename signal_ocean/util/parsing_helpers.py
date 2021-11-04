@@ -126,7 +126,9 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
             key = _to_snake_case(key)
             if key in field_names:
                 field_type = field_types[key]
-                parsed_data[key] = parse_model(value, field_type)
+                parsed_data[key] = parse_model(
+                    value, field_type, rename_keys=rename_keys
+                )
 
         args = []
         for f in dataclasses.fields(cls):
@@ -150,7 +152,9 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
     if field_type_origin is Union:
         for candidate_cls in getattr(cls, '__args__', []):
             try:
-                return parse_model(data, candidate_cls)
+                return parse_model(
+                    data, candidate_cls, rename_keys=rename_keys
+                )
             except (TypeError, ValueError):
                 pass
 
@@ -160,14 +164,21 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
         list_field_type = getattr(cls, '__args__', [])[0]
         if type(list_field_type) is TypeVar:
             return list(data)
-        return [parse_model(v, list_field_type) for v in data]
+        return [parse_model(
+            v, list_field_type, rename_keys=rename_keys
+            ) for v in data
+        ]
 
     if field_type_origin is tuple and isinstance(data, Iterable):
         tuple_field_types = getattr(cls, '__args__', [])
 
         if not tuple_field_types:
             return tuple(data)
-        return tuple(parse_model(v, tuple_field_types[0]) for v in data)
+        return tuple(
+            parse_model(
+                v, tuple_field_types[0], rename_keys=rename_keys
+                ) for v in data
+            )
 
     parsable_classes = tuple(getattr(ParsableClass, '__args__', []))
     if cls in parsable_classes:

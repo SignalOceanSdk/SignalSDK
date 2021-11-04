@@ -80,6 +80,7 @@ class OilxCargoTrackingAPI:
                 endpoint,
                 CargoFlowsPagedResponse,
                 query_string=params,
+                rename_keys={'APIGravity': 'ApiGravity'}
             )
 
             if response is not None and response.data is not None:

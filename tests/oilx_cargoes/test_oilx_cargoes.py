@@ -118,18 +118,18 @@ _mock_oilx_cargo_1 = CargoFlow(
     load_date=datetime(
         2014, 12, 6, 23, 48, 24, tzinfo=timezone.utc
     ),
-    load_geo_asset_id=None,
+    load_geo_asset_id=6372,
     discharge_date=datetime(
         2015, 1, 4, 7, 48, 51, tzinfo=timezone.utc
     ),
-    discharge_geo_asset_id=None,
+    discharge_geo_asset_id=4698,
     load_port_id=3281,
     load_sts_indicator=0,
     crude_oil_grade_id=5053,
     crude_oil_grade_name="Chile Crude Oil",
     crude_oil_grade_group_id=130000,
     crude_oil_grade_group_name="Dirty",
-    api_gravity=None,
+    api_gravity=37.30,
     gravity_band="Light",
     sulphur_content=0.05,
     sulphur_band="Sweet",
@@ -167,18 +167,18 @@ _mock_oilx_cargo_2 = CargoFlow(
     load_date=datetime(
         2014, 12, 6, 23, 48, 24, tzinfo=timezone.utc
     ),
-    load_geo_asset_id=None,
+    load_geo_asset_id=6372,
     discharge_date=datetime(
         2015, 1, 11, 18, 53, 25, tzinfo=timezone.utc
     ),
-    discharge_geo_asset_id=None,
+    discharge_geo_asset_id=5436,
     load_port_id=3281,
     load_sts_indicator=0,
     crude_oil_grade_id=5053,
     crude_oil_grade_name="Chile Crude Oil",
     crude_oil_grade_group_id=130000,
     crude_oil_grade_group_name="Dirty",
-    api_gravity=None,
+    api_gravity=37.30,
     gravity_band="Light",
     sulphur_content=0.05,
     sulphur_band="Sweet",
@@ -246,7 +246,9 @@ def test_oilx_cargo_tracking_api_pages():
     ]
     api, _ = create_oilx_cargo_tracking_api(mock_response)
     oilx_cargoes, _ = api._get_oilx_cargoes_pages("")
-    assert oilx_cargoes, _ == _mock_oilx_cargoes
+    print(oilx_cargoes)
+    print(_mock_oilx_cargoes)
+    assert oilx_cargoes == _mock_oilx_cargoes
 
 
 def test_get_oilx_cargoes_vessel_class_requests():
@@ -294,4 +296,4 @@ def test_get_oilx_cargoes_returns():
     ]
     api, _ = create_oilx_cargo_tracking_api(mock_response)
     oilx_cargoes, _ = api.get_oilx_cargoes(vessel_class_id=86)
-    assert oilx_cargoes, _ == _mock_oilx_cargoes
+    assert oilx_cargoes == _mock_oilx_cargoes
