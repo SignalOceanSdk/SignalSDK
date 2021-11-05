@@ -28,6 +28,10 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/Port Congestion.ipynb'
+    - OilX Cargo Tracking:
+      - 'oilx_cargoes.md'
+      - Examples:
+        - 'examples/jupyter/OilXCargoTrackingAPI/OilX Cargo Tracking API.ipynb'
     - Vessels:
       - 'vessels.md'
       - Examples:
