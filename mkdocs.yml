@@ -11,16 +11,6 @@ theme:
     - navigation.instant
 nav:
     - 'index.md'
-    - Historical Tonnage List (deprecated):
-      - 'historical_tonnage_list.md'
-    - Tonnage List:
-      - 'tonnage_list.md'
-      - Examples:
-        - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
-        - 'examples/jupyter/Tonnage List API/Working with the TonnageListAPI.ipynb'
-        - 'examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb'
-        - 'examples/jupyter/Tonnage List API/Finding vessels that were on subs around Houston.ipynb'
-        - 'examples/jupyter/Tonnage List API/Finding vessels that were opening at Fos.ipynb'
     - Voyages:
       - 'voyages.md'
       - Examples:
@@ -28,20 +18,26 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/Port Congestion.ipynb'
-    - Vessels:
-      - 'vessels.md'
+    - Tonnage List:
+      - 'tonnage_list.md'
       - Examples:
-        - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
-    - Companies:
-      - 'companies.md'
-      - Examples:
-        - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
+        - 'examples/jupyter/Tonnage List API/Working with the TonnageListAPI.ipynb'
+        - 'examples/jupyter/Tonnage List API/Recall live Tonnage List.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels that were on subs around Houston.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels that were opening at Fos.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels opening east and west of Suez.ipynb'
+        - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
+        - 'examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb'
     - Distances:
       - 'distances.md'
       - Examples:
         - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
         - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
         - 'examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb'
+    - Freight Rates:
+      - 'freight_rates.md'
+      - Examples:
+        - 'examples/jupyter/FreightRatesAPI/FreightRatesAPI.ipynb'
     - Port Expenses:
       - 'port_expenses.md'
       - Examples:
@@ -50,14 +46,20 @@ nav:
       - 'market_rates.md'
       - Examples:
         - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
-    - Freight Rates:
-      - 'freight_rates.md'
+    - Vessels:
+      - 'vessels.md'
       - Examples:
-        - 'examples/jupyter/FreightRatesAPI/FreightRatesAPI.ipynb'
+        - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
+    - Companies:
+      - 'companies.md'
+      - Examples:
+        - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/CargoFlows.ipynb'
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
+    - Historical Tonnage List (deprecated):
+      - 'historical_tonnage_list.md'
     - Release notes:
       - 'releases/Version 1.0.5.md'
       - 'releases/Version 1.0.4.md'
