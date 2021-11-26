@@ -241,6 +241,16 @@ class Voyage:
             our database.
         events: The events that took place during the voyage.
         id: String. Uniquely identifies the voyage.
+        horizon: String. It can take "Historic", "Current" or "Future" values,
+            depending on whether the voyage event is in the past (StartDate and
+            EndDate both in the past), is current (StartDate in the past and
+            EndDate in the future) or future (both StartDate and EndDate in the
+            future). Note: the notions of "past", "current" and "future" are
+            not derived by the current date, but by the comparison between the
+            voyage dates and the latest received AIS for that specific vessel.
+        latest_received_ais: Date, format YYYY-MM-DD HH:MM:SS. The most recent
+        AIS update for the vessel. It is used to define the horizon of a voyage
+            and its events.
         vessel_name: The vessel name corresponding to that IMO at the time of
             that voyage.
         vessel_type: Description of the type of the vessel, based on the
@@ -340,9 +350,19 @@ class Voyage:
             port of the current voyage. It is computed based on AIS data.
             It includes the whole period between the two port calls and non
             operational stops as well. Accuracy depends on AIS coverage.
+        predicted_ballast_distance: Numeric, Computed distance of the ballast
+            leg based on our distance model, in nautical miles. For current
+            voyage, when vessel is ballast, it is the remaining distance
+            between the vessel position and the first load port. For
+            historical legs PredictedBallastDistance is empty.
         laden_distance: Numeric. Travelled distance in nautical miles between
             the first load port and the last discharge port of the same voyage.
             It is computed based on AIS data. Accuracy depends on AIS coverage.
+        predicted_laden_distance: Numeric, Computed distance of the laden leg
+            based on our distance model, in nautical miles. For current voyage,
+            when vessel is laden, it is the remaining distance between the
+            vessel position and the last discharge port. For historical legs
+            PredictedLadenDistance is empty.
     """
     imo: int
     voyage_number: int
@@ -353,6 +373,8 @@ class Voyage:
     deleted: Optional[bool] = False
     events: Optional[Tuple[VoyageEvent, ...]] = None
     id: Optional[str] = None
+    horizon: Optional[str] = None
+    latest_received_ais: Optional[datetime] = None
     vessel_name: Optional[str] = None
     vessel_type: Optional[str] = None
     vessel_class: Optional[str] = None
@@ -385,7 +407,9 @@ class Voyage:
     is_implied_by_ais: Optional[bool] = None
     has_manual_entries: Optional[bool] = None
     ballast_distance: Optional[float] = None
+    predicted_ballast_distance: Optional[float] = None
     laden_distance: Optional[float] = None
+    predicted_laden_distance: Optional[float] = None
 
 
 @dataclass(frozen=True)
