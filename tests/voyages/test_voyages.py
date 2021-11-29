@@ -403,11 +403,13 @@ _mock_advanced_search_response_data = {
     'FixtureIsCOA': False,
     'FixtureIsHold': False,
     'IsImpliedByAIS': True,
-    'BallastDistance': 9036.45
+    'BallastDistance': 9036.45,
+    'PredictedBallastDistance': 9032.41,
+    'PredictedLadenDistance': 9900.03,
 }
 
 _mock_advanced_search_voyage = Voyage(
-    imo = 91017, voyage_number = 65, 
+    imo = 91017, voyage_number = 65, horizon='Current',
     vessel_type_id = 1, vessel_class_id = 84, 
     vessel_status_id = 1, vessel_class = 'VLCC', trade_id = 1, 
     vessel_type = 'Tanker', trade = 'Crude', vessel_status = 'Voyage',
@@ -436,8 +438,8 @@ _mock_advanced_search_voyage = Voyage(
         '2021-05-26T07:53:40'
     ).replace(tzinfo=timezone.utc), fixture_is_coa = False,
     fixture_is_hold = False, is_implied_by_ais = True,
-    has_manual_entries = None,
-    ballast_distance = 9036.45, laden_distance = None
+    has_manual_entries = None,ballast_distance = 9036.45, laden_distance = None,
+    predicted_ballast_distance = 9032.41, predicted_laden_distance = 9900.03
 )
 
 
