@@ -54,6 +54,10 @@ nav:
       - 'companies.md'
       - Examples:
         - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
+    - Geos:
+      - 'geo.md'
+      - Examples:
+        - 'examples/jupyter/GeoAPI/GeoAPI Use Case.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/CargoFlows.ipynb'
