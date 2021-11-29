@@ -2,7 +2,9 @@
 Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
 ## Voyages API package
+
 ### Added horizon / latest_received_ais / predicted_ballast_distance / predicted_laden_distance fields
+
 Four new fields exposed through the VoyageData API:
 
 `horizon`: It can take "Historic", "Current" or "Future" values, depending on whether the voyage event is in the past (StartDate and EndDate both in the past), is current (StartDate in the past and EndDate in the future) \ or future (both StartDate and EndDate in the future). Note: the notions of "past", "current" and "future" are not derived by the current date, but by the comparison between the voyage dates and the latest received AIS for that specific vessel.
@@ -13,6 +15,13 @@ Four new fields exposed through the VoyageData API:
 
 `predicted_laden_distance`: Computed distance of the laden leg based on our distance model, in nautical miles. For current voyage, when vessel is laden, it is the remaining distance between the vessel position and the last discharge port. For historical legs PredictedLadenDistance is empty.
 
+## Notebook examples additions
+
+### Geo API
+Added a simple notebook example how to use the library and generate the Geo hierarchy
+
+### Freight rates API
+Display freight instead of flat rate in freight pricing notebook example
 
 ## Installation and Upgrade Notes
 Update your package with:
