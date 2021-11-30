@@ -54,14 +54,14 @@ nav:
       - 'companies.md'
       - Examples:
         - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
-    - Geos:
-      - 'geo.md'
-      - Examples:
-        - 'examples/jupyter/GeoAPI/GeoAPI Use Case.ipynb'
     - OilX Cargo Tracking:
       - 'oilx_cargoes.md'
       - Examples:
         - 'examples/jupyter/OilXCargoTrackingAPI/OilX Cargo Tracking API.ipynb'
+    - Geos:
+      - 'geo.md'
+      - Examples:
+        - 'examples/jupyter/GeoAPI/GeoAPI Use Case.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/CargoFlows.ipynb'
