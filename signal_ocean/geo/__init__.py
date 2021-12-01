@@ -10,7 +10,7 @@ Classes:
     Area: A geographical area.
 
     PortFilter: A filter used to find specific ports.
-    
+
 """
 
 from .models import Country, Port, Area
