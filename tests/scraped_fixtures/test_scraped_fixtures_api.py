@@ -6,7 +6,7 @@ from datetime import datetime
 import requests
 from signal_ocean import Connection
 
-from signal_ocean.companies import CompaniesAPI
+
 from signal_ocean.scraped_fixtures import ScrapedFixturesAPI
 
 example_request_1 ={
