@@ -134,7 +134,7 @@ class ScrapedFixture:
         redelivery_to_taxonomy_id: Integer. An internal ID corresponding to the 
             taxonomy of the mapped redelivery location. Values from 1 to 7. 
             See LoadTaxonomyID for more details.
-        charterer_type_id: Integer. An internal ID to distinguish fixtures reporting 
+        charter_type_id: Integer. An internal ID to distinguish fixtures reporting 
             voyage charter and time charter agreements. Possible values are 0 and 1.
         fixture_status_id: Numeric ID corresponding to the different values of the 
             FixtureStatus field. 0-> OnSubs, 1-> FullyFixed, 2 -> Failed, 3 ->Cancelled , 
@@ -338,8 +338,8 @@ class ScrapedFixture:
 
     fixture_id: int = None
     message_id: int = None
-    updated_date: str = None
-    received_date: str = None
+    updated_date: datetime = None
+    received_date: datetime = None
     reported_fixture_date: Optional[str] = None
     imo: Optional[int] = None
     vessel_class_id: Optional[int] = None
@@ -369,7 +369,7 @@ class ScrapedFixture:
     redelivery_from_taxonomy_id: Optional[int] = None
     redelivery_to_geo_id: Optional[int] = None
     redelivery_to_taxonomy_id: Optional[int] = None
-    charterer_type_id: Optional[int] = None
+    charter_type_id: Optional[int] = None
     fixture_status_id: Optional[int] = None
     is_owners_option: Optional[bool] = False
     is_coa: Optional[bool] = False
