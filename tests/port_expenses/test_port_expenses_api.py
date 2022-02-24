@@ -117,7 +117,7 @@ def test_get_port_model_vessel_expenses(port_id, vessel_type_id,
 
 
 @pytest.mark.parametrize('port_id, vessel_type_id, calculation_date', [
-    (3153, None, None), (3153, 3, None),
+    (3153, 3, None),
     (3153, 3, datetime(2020, 2, 27, 17, 48, 11))
 ])
 def test_get_required_formula_parameters(port_id, vessel_type_id,
@@ -129,10 +129,10 @@ def test_get_required_formula_parameters(port_id, vessel_type_id,
                                         calculation_date)
 
     query_params = {
-        "portId": '{}'.format(port_id)
+        "portId": '{}'.format(port_id),
+        "vesselTypeId": '{}'.format(vessel_type_id)
     }
-    if vessel_type_id is not None:
-        query_params["vesselTypeId"] = '{}'.format(vessel_type_id)
+
     if calculation_date is not None:
         query_params["calculationDate"] = calculation_date.isoformat()
 

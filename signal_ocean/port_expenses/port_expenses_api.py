@@ -144,7 +144,7 @@ class PortExpensesAPI:
         return return_object
 
     def get_required_formula_parameters(
-        self, port_id: int, vessel_type_id: Optional[int] = None,
+        self, port_id: int, vessel_type_id: int,
             calculation_date: Optional[datetime] = None
     ) -> List[str]:
         """Retrieves required formula parameters.
@@ -158,11 +158,10 @@ class PortExpensesAPI:
             List of required port expenses formula calculation parameters.
         """
         query_dict = {
-            "portId": '{}'.format(port_id)
+            "portId": '{}'.format(port_id),
+            "vesselTypeId": '{}'.format(vessel_type_id),
         }
 
-        if vessel_type_id is not None:
-            query_dict["vesselTypeId"] = '{}'.format(vessel_type_id)
         if calculation_date is not None:
             query_dict["calculationDate"] = calculation_date.isoformat()
 
