@@ -1,8 +1,114 @@
 """Models instantiated by the voyages api."""
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Iterable
+from .._internals import contains_caseless
 
+@dataclass(frozen=True, eq=False)
+class Vessel:
+    """Vessels.
+
+    Attributes:
+        imo: The vessel imo.
+        vessel_name: The vessel name.
+    """
+
+    imo: int
+    vessel_name: str
+
+@dataclass(eq=False)
+class VesselFilter:
+    """A filter used to find specific vessels.
+
+    Attributes:
+        name_like: Used to find vessel by name. When specified, vessel
+            name whose names partially match (contain) the attribute's value
+            will be returned. Matching is case-insensitive.
+    """
+
+    name_like: Optional[str] = None
+
+    def _apply(
+        self, vessels: Iterable[Vessel]
+    ) -> Iterable[Vessel]:
+        return filter(self.__does_class_match, vessels)
+
+    def __does_class_match(self, vessel: Vessel) -> bool:
+        return not self.name_like or contains_caseless(
+            self.name_like, vessel.vessel_name
+        )
+
+@dataclass(frozen=True, eq=False)
+class VesselClass:
+    """A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.
+
+    Attributes:
+        vessel_class_id: The vessel class ID.
+        vessel_class_name: The vessel class name.
+        vessel_type_id: The vessel type ID.
+        vessel_type: The vessel type
+    """
+
+    vessel_class_id: int
+    vessel_class_name: str
+    vessel_type_id: int
+    vessel_type: str
+
+@dataclass(eq=False)
+class VesselClassFilter:
+    """A filter used to find specific vessel classes.
+
+    Attributes:
+        name_like: Used to find vessel classes by name. When specified, vessel
+            classes whose names partially match (contain) the attribute's value
+            will be returned. Matching is case-insensitive.
+    """
+
+    name_like: Optional[str] = None
+
+    def _apply(
+        self, vessel_classes: Iterable[VesselClass]
+    ) -> Iterable[VesselClass]:
+        return filter(self.__does_class_match, vessel_classes)
+
+    def __does_class_match(self, vessel_class: VesselClass) -> bool:
+        return not self.name_like or contains_caseless(
+            self.name_like, vessel_class.vessel_class_name
+        )
+
+
+@dataclass(frozen=True, eq=False)
+class VesselType:
+    """Type of vessel used for transport.
+
+    Attributes:
+        vessel_type_id: The vessel type ID.
+        vessel_type: The vessel type name.
+    """
+    vessel_type_id: int
+    vessel_type: str
+
+@dataclass(eq=False)
+class VesselTypeFilter:
+    """A filter used to find specific vessel types.
+
+    Attributes:
+        name_like: Used to find vessel types by name. When specified, vessel
+            types whose names partially match (contain) the attribute's value
+            will be returned. Matching is case-insensitive.
+    """
+
+    name_like: Optional[str] = None
+
+    def _apply(
+        self, vessel_types: Iterable[VesselType]
+    ) -> Iterable[VesselType]:
+        return filter(self.__does_type_match, vessel_types)
+
+    def __does_type_match(self, vessel_type: VesselType) -> bool:
+        return not self.name_like or contains_caseless(
+            self.name_like, vessel_type.vessel_type
+        )
 
 @dataclass(frozen=True)
 class VoyageEventDetail:

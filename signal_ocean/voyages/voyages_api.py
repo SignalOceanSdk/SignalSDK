@@ -5,10 +5,11 @@ from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single, get_multiple
-from signal_ocean.util.parsing_helpers import _to_camel_case
+from signal_ocean.util.parsing_helpers import _to_camel_case, parse_model
 from signal_ocean.voyages.models import Voyage, VoyagesFlat, \
     VoyagesFlatPagedResponse, VoyageEvent, \
-    VoyageEventDetail, VoyageGeo, VoyagesPagedResponse
+    VoyageEventDetail, VoyageGeo, VoyagesPagedResponse, VesselClassFilter, \
+    VesselClass, VesselTypeFilter, VesselType, Vessel, VesselFilter
 
 Voyages = Tuple[Voyage, ...]
 NextRequestToken = str
@@ -203,6 +204,7 @@ class VoyagesAPI:
             if response is not None else None
 
         return result, next_request_token
+
 
     def get_voyages(self,
                     imo: Optional[int] = None,
@@ -424,3 +426,74 @@ class VoyagesAPI:
 
         results, _ = self._get_voyages_pages(endpoint)
         return results
+
+    def get_vessel_classes(
+        self, class_filter: Optional[VesselClassFilter] = None
+    ) -> Tuple[VesselClass, ...]:
+        """Retrieves available vessel classes.
+
+        Args:
+            class_filter: A filter used to find specific vessel classes. If not
+                specified, returns all available vessel classes.
+
+        Returns:
+            A tuple of available vessel classes that match the filter.
+        """
+        response = self.__connection._make_get_request(
+            "voyages-api/v2/filters/availableVesselClasses"
+        )
+        response.raise_for_status()
+
+        classes = (parse_model(c,VesselClass) for c in response.json())
+        class_filter = class_filter or VesselClassFilter()
+
+        return tuple(class_filter._apply(classes))
+
+    def get_vessel_types(
+        self, type_filter: Optional[VesselTypeFilter] = None
+    ) -> Tuple[VesselType, ...]:
+        """Retrieves available vessel types.
+
+        Args:
+            type_filter: A filter used to find specific vessel types. If not
+                specified, returns all available vessel types.
+
+        Returns:
+            A tuple of available vessel types that match the filter.
+        """
+        response = self.__connection._make_get_request(
+            "voyages-api/v2/filters/availableVesselTypes"
+        )
+        response.raise_for_status()
+
+        types = (parse_model(c,VesselType) for c in response.json())
+        type_filter = type_filter or VesselTypeFilter()
+
+        return tuple(type_filter._apply(types))
+
+
+    def get_imos(
+        self,
+        vessel_filter: Optional[VesselFilter] = None
+        )-> Tuple[Vessel, ...]:
+        """Retrieves available vessel types.
+
+        Args:
+            type_filter: A filter used to find specific vessel . If not
+                specified, returns all available vessel .
+
+        Returns:
+            A tuple of available vessels that match the filter.
+        """
+        response = self.__connection._make_get_request(
+            "voyages-api/v2/filters/availableVessels"
+        )
+        response.raise_for_status()
+
+        types = (parse_model(c,Vessel) for c in response.json())
+        vessel_filter = vessel_filter or VesselFilter()
+
+        return tuple(vessel_filter._apply(types))
+
+
+
