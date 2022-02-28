@@ -1,4 +1,5 @@
 from decimal import Decimal
+from pickle import NONE
 from unittest.mock import patch, MagicMock, ANY
 from typing import Tuple
 from datetime import datetime, date, timezone
@@ -245,13 +246,14 @@ def test_get_fixtures(received_date_from,received_date_to,vessel_type):
     
 
 @pytest.mark.parametrize(
-    "received_date_from, received_date_to, vessel_type, port_id",
+    "received_date_from, received_date_to, vessel_type, port_id, vessel_class_id",
     [
-        (datetime(2022,1,1), datetime(2022,1,6), 1, 3778),
+        (datetime(2022,1,1), datetime(2022,1,6), 1, 3778, 86),
+        (datetime(2022,1,1), datetime(2022,1,6), 1, 3778, None),
         
     ],
 )
-def test_get_fixtures_by_port(received_date_from, received_date_to, vessel_type, port_id):
+def test_get_fixtures_by_port(received_date_from, received_date_to, vessel_type, port_id, vessel_class_id):
 
     mock_response = [
         rt_sf1,
@@ -264,7 +266,8 @@ def test_get_fixtures_by_port(received_date_from, received_date_to, vessel_type,
         received_date_from=received_date_from,
         received_date_to=received_date_to,
         vessel_type=vessel_type,
-        port_id= port_id
+        port_id= port_id,
+        vessel_class_id=vessel_class_id
         )
 
     # exclude port that has not load geo in ras tanura(3778)
@@ -305,6 +308,30 @@ def test_get_fixtures_by_port2(received_date_from, received_date_to, vessel_type
     ]
 
     assert final_response == results
+
+
+# def test_get_fixtures_by_port3(received_date_from, received_date_to, vessel_type, port_id):
+
+#     mock_response = [
+#         sf1,
+#         sf2,
+#     ]
+#     api, connection = create_sf_api(mock_response)
+
+#     results1 = api.get_fixtures(
+#         received_date_from=received_date_from,
+#         received_date_to=received_date_to,
+#         vessel_type=vessel_type
+#         )
+#     results2 = api.get_fixtures(
+#         received_date_from=received_date_from,
+#         received_date_to=received_date_to,
+#         vessel_type=vessel_type
+#         )
+
+
+
+# test_get_fixtures_by_port3(datetime(2022,1,1), datetime(2022,1,4), 1, None)
 
 
 
