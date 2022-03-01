@@ -8,10 +8,17 @@ Classes:
     VoyageGeo: Represents a geo asset object associated with a voyage.
     VoyagesFlat: Voyages with additional information in flat format.
     VoyagesIncremental: Incremental voyages, including token for next request.
+    Vessel: Vessel name and IMO
+    VesselFilter: Vessel Filter object
+    VesselClass: Vessel class
+    VesselClasslFilter: Vessel class Filter object
+    VesselType: Vessel type object
+    VesselTypeFilter: Vessel type Filter object
 """
 
 from .models import Voyage, VoyageEvent, VoyageEventDetail, VoyageGeo
 from .voyages_api import VoyagesAPI
 
 __all__ = ["Voyage", "VoyageEvent", "VoyageEventDetail", "VoyageGeo",
-           "VoyagesAPI"]
+           "VoyagesAPI","Vessel","VesselFilter"
+           ,"VesselClass","VesselClasslFilter","VesselType","VesselTypeFilter"]
