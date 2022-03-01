@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 from signal_ocean.voyages import VoyagesAPI
-from signal_ocean.voyages.models import VesselClass
+from signal_ocean.voyages import VesselClass
 from signal_ocean import Connection
 
 __mock_vessel_classes_response = [{

@@ -16,7 +16,9 @@ Classes:
     VesselTypeFilter: Vessel type Filter object
 """
 
-from .models import Voyage, VoyageEvent, VoyageEventDetail, VoyageGeo
+from .models import Voyage, VoyageEvent, VoyageEventDetail, \
+                    VoyageGeo, Vessel, VesselClass, VesselType, \
+                        VesselFilter, VesselClassFilter, VesselTypeFilter
 from .voyages_api import VoyagesAPI
 
 __all__ = ["Voyage", "VoyageEvent", "VoyageEventDetail", "VoyageGeo",
