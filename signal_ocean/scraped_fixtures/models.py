@@ -336,10 +336,10 @@ class ScrapedFixture:
 
     """
 
-    fixture_id: int = None
-    message_id: int = None
-    updated_date: datetime = None
-    received_date: datetime = None
+    fixture_id: int
+    message_id: int
+    updated_date: datetime
+    received_date: datetime
     reported_fixture_date: Optional[str] = None
     imo: Optional[int] = None
     vessel_class_id: Optional[int] = None

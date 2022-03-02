@@ -25,7 +25,7 @@ class ScrapedFixturesAPI:
     page_number = 1
     
 
-    def __init__(self, connection: Optional[Connection] = None, max_pages=10000):
+    def __init__(self, connection: Optional[Connection] = None, max_pages:int=10000):
         """Initializes the Scraped Fixturess API.
 
         Args:
@@ -38,9 +38,9 @@ class ScrapedFixturesAPI:
 
     def get_fixtures(
         self, 
-        received_date_from: date = None, 
+        received_date_from: date, 
+        vessel_type: int,
         received_date_to: Optional[date] = None,
-        vessel_type: int = None,
         updated_date_from: Optional[date] = None, 
         updated_date_to: Optional[date] = None,
         include_fixture_details: Optional[bool] = True,
@@ -92,26 +92,28 @@ class ScrapedFixturesAPI:
         """
 
         more_fixtues = True
-        
-        query_string: QueryString = {
-                "PageNumber": self.page_number,
-                "PageSize": self.page_size,
-                "ReceivedDateFrom": format_iso_date(received_date_from),
-                "ReceivedDateTo": format_iso_date(received_date_to),
-                "VesselType": vessel_type,
-                "UpdatedDateFrom": format_iso_date(updated_date_from),
-                "UpdatedDateTo": format_iso_date(updated_date_to),
-                "IncludeFixtureDetails": include_fixture_details,
-                "IncludeScrapedFields": include_scraped_fields,
-                "IncludeVesselDetails": include_vessel_details,
-                "IncludeLabels": include_labels,
-                "IncludeContent": include_content,
-                "IncludeSender": include_sender,
-                "IncludeDebugInfo": include_debug_info,
-            }
+
 
         results: List[ScrapedFixture] = []
         while more_fixtues and self.page_number<self.max_pages:
+        
+            query_string: QueryString = {
+                    "PageNumber": self.page_number,
+                    "PageSize": self.page_size,
+                    "ReceivedDateFrom": format_iso_date(received_date_from),
+                    "ReceivedDateTo": format_iso_date(received_date_to),
+                    "VesselType": vessel_type,
+                    "UpdatedDateFrom": format_iso_date(updated_date_from),
+                    "UpdatedDateTo": format_iso_date(updated_date_to),
+                    "IncludeFixtureDetails": include_fixture_details,
+                    "IncludeScrapedFields": include_scraped_fields,
+                    "IncludeVesselDetails": include_vessel_details,
+                    "IncludeLabels": include_labels,
+                    "IncludeContent": include_content,
+                    "IncludeSender": include_sender,
+                    "IncludeDebugInfo": include_debug_info,
+                }
+
             fixtures = get_multiple(
                 connection = self.__connection, 
                 relative_url = self.relative_url, 
@@ -123,8 +125,6 @@ class ScrapedFixturesAPI:
                 more_fixtues = False
             
             self.page_number = self.page_number+1
-            next_page = {"PageNumber": self.page_number}
-            query_string.update(next_page)
 
             filtered_fixtures: List[ScrapedFixture] = []
             if port_id and vessel_class_id:
