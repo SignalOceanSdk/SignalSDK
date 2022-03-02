@@ -23,9 +23,11 @@ class ScrapedFixturesAPI:
     ):
         """Initializes the Scraped Fixturess API.
 
-        Args: connection: API connection configuration. If not provided,
-        the default connection method is used. max_pages: max_pages to
-        return. We use this parameter to avoid memory leaks
+        Args:
+            connection: API connection configuration. If not provided,
+                the default connection method is used.
+            max_pages: max_pages to
+                return. We use this parameter to avoid memory leaks
         """
         self.__connection = connection or Connection()
         self.max_pages = max_pages
@@ -49,30 +51,40 @@ class ScrapedFixturesAPI:
     ) -> Iterable[ScrapedFixture]:
         """This function returns the all the scraped fixtures.
 
-        Attributes: received_date_from: Format - date-time (as date-time in
-        RFC3339). Earliest date the fixture received. Cannot be combined with
-        'Updated' dates received_date_to: Format - date-time (as date-time in
-        RFC3339). Latest date the fixture received. Cannot be combined with
-        'Updated' dates vessel_type: Format - int32. Available values ►
-        Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
-        updated_date_from: Format - date-time (as date-time in RFC3339).
-        Earliest date the fixture updated. Cannot be combined with 'Received'
-        dates updated_date_to: Format - date-time (as date-time in RFC3339).
-        Latest date the fixture updated. Cannot be combined with 'Received'
-        dates include_fixture_details: Boolean. Whether to include additional
-        fixture details in the response. include_scraped_fields: Boolean.
-        Whether to include the relative scraped fields in the response.
-        include_vessel_details: Boolean. Whether to include some vessel
-        details in the response. include_labels: Boolean. Whether to include
-        the relative labels in the response. include_content: Whether to
-        include the original message line (untouched) in the response.
+        Attributes:
+            received_date_from: Format - date-time (as date-time in
+                RFC3339). Earliest date the fixture received.
+                Cannot be combined with 'Updated' dates
+            received_date_to: Format - date-time (as date-time in
+                RFC3339). Latest date the fixture received.
+                Cannot be combined with 'Updated' dates
+            vessel_type: Format - int32. Available values
+                Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
+            updated_date_from: Format - date-time (as date-time in RFC3339).
+                Earliest date the fixture updated.
+                Cannot be combined with 'Received'
+            dates updated_date_to: Format - date-time (as date-time in RFC3339)
+                .Latest date the fixture updated.
+                Cannot be combined with 'Received'
+            dates include_fixture_details: Boolean. Whether to include
+                additional fixture details in the response.
+            include_scraped_fields: Boolean. Whether to include the relative
+                scraped fields in the response.
+            include_vessel_details: Boolean. Whether to include some vessel
+                details in the response.
+            include_labels: Boolean. Whether to include the relative labels in
+                the response.
+            include_content: Whether to include the original message line
+                (untouched) in the response.
         include_sender: Boolean. Whether to include some of the message
-        sender details in the response. include_debug_info: Boolean. Whether
-        to include some information about the distribution of the fixture in
-        the response. port_id: Integer. The port id vessel_class_id: Integer.
-        It is an ID corresponding to the different vessel classes of a
-        certain vessel type, as split according to our internal Vessel
-        Database. For example 84->VLCC, 85->Suezmax, 70->Capesize.
+            sender details in the response.
+        include_debug_info: Boolean. Whether to include some information about
+            the distribution of the fixture in the response.
+        port_id: Integer. The port id
+        vessel_class_id: Integer. It is an ID corresponding to the different
+            vessel classes of a certain vessel type, as split according to
+            our internal Vessel Database.
+            For example 84->VLCC, 85->Suezmax, 70->Capesize.
 
         Returns: An Iterable of ScrapedFixture objects, as we have defined in
         models.py.
