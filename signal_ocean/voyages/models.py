@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Optional, Tuple, Iterable
 from .._internals import contains_caseless
 
+
 @dataclass(frozen=True, eq=False)
 class Vessel:
     """Vessels.
@@ -15,6 +16,7 @@ class Vessel:
 
     imo: int
     vessel_name: str
+
 
 @dataclass(eq=False)
 class VesselFilter:
@@ -28,15 +30,14 @@ class VesselFilter:
 
     name_like: Optional[str] = None
 
-    def _apply(
-        self, vessels: Iterable[Vessel]
-    ) -> Iterable[Vessel]:
+    def _apply(self, vessels: Iterable[Vessel]) -> Iterable[Vessel]:
         return filter(self.__does_class_match, vessels)
 
     def __does_class_match(self, vessel: Vessel) -> bool:
         return not self.name_like or contains_caseless(
             self.name_like, vessel.vessel_name
         )
+
 
 @dataclass(frozen=True, eq=False)
 class VesselClass:
@@ -53,6 +54,7 @@ class VesselClass:
     vessel_class_name: str
     vessel_type_id: int
     vessel_type: str
+
 
 @dataclass(eq=False)
 class VesselClassFilter:
@@ -85,8 +87,10 @@ class VesselType:
         vessel_type_id: The vessel type ID.
         vessel_type: The vessel type name.
     """
+
     vessel_type_id: int
     vessel_type: str
+
 
 @dataclass(eq=False)
 class VesselTypeFilter:
@@ -109,6 +113,7 @@ class VesselTypeFilter:
         return not self.name_like or contains_caseless(
             self.name_like, vessel_type.vessel_type
         )
+
 
 @dataclass(frozen=True)
 class VoyageEventDetail:
@@ -174,6 +179,7 @@ class VoyageEventDetail:
         other_vessel_name: String, Containing the name of the second vessel in
             case of ship-to-ship operation.
     """
+
     id: Optional[str] = None
     event_id: Optional[str] = None
     event_detail_type: Optional[str] = None
@@ -470,6 +476,7 @@ class Voyage:
             vessel position and the last discharge port. For historical legs
             PredictedLadenDistance is empty.
     """
+
     imo: int
     voyage_number: int
     vessel_type_id: Optional[int] = None
@@ -576,6 +583,7 @@ class VoyageGeo:
             2 areas "West Coast North America", "West Coast Mexico", "West
             Coast Central America" and "West Coast South America".
     """
+
     id: Optional[int] = None
     name: Optional[str] = None
     port_id: Optional[int] = None
@@ -602,6 +610,7 @@ class VoyagesFlat:
         event_details: List of event details that relate to the events.
         geos: Geo asset data linked in events or event details.
     """
+
     voyages: Optional[Tuple[Voyage, ...]] = None
     events: Optional[Tuple[VoyageEvent, ...]] = None
     event_details: Optional[Tuple[VoyageEventDetail, ...]] = None
@@ -620,6 +629,7 @@ class VoyagesPagedResponse:
         data: The structure that contains records retrieve for the current
             page.
     """
+
     next_page_token: Optional[str] = None
     next_request_token: Optional[str] = None
     data: Optional[Tuple[Voyage, ...]] = None
@@ -637,6 +647,7 @@ class VoyagesFlatPagedResponse:
         data: The structure that contains records retrieve for the current
             page.
     """
+
     next_page_token: Optional[str] = None
     next_request_token: Optional[str] = None
     data: Optional[VoyagesFlat] = None

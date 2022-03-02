@@ -6,10 +6,21 @@ from urllib.parse import urljoin, urlencode
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single, get_multiple
 from signal_ocean.util.parsing_helpers import _to_camel_case, parse_model
-from signal_ocean.voyages.models import Voyage, VoyagesFlat, \
-    VoyagesFlatPagedResponse, VoyageEvent, \
-    VoyageEventDetail, VoyageGeo, VoyagesPagedResponse, VesselClassFilter, \
-    VesselClass, VesselTypeFilter, VesselType, Vessel, VesselFilter
+from signal_ocean.voyages.models import (
+    Voyage,
+    VoyagesFlat,
+    VoyagesFlatPagedResponse,
+    VoyageEvent,
+    VoyageEventDetail,
+    VoyageGeo,
+    VoyagesPagedResponse,
+    VesselClassFilter,
+    VesselClass,
+    VesselTypeFilter,
+    VesselType,
+    Vessel,
+    VesselFilter,
+)
 
 Voyages = Tuple[Voyage, ...]
 NextRequestToken = str
@@ -30,12 +41,14 @@ class VoyagesAPI:
         self.__connection = connection or Connection()
 
     @staticmethod
-    def _get_endpoint(imo: Optional[int] = None,
-                      vessel_class_id: Optional[int] = None,
-                      vessel_type_id: Optional[int] = None,
-                      date_from: Optional[date] = None,
-                      nested: Optional[bool] = True,
-                      incremental: bool = False) -> str:
+    def _get_endpoint(
+        imo: Optional[int] = None,
+        vessel_class_id: Optional[int] = None,
+        vessel_type_id: Optional[int] = None,
+        date_from: Optional[date] = None,
+        nested: Optional[bool] = True,
+        incremental: bool = False,
+    ) -> str:
         """Retrieves the endpoint to call to retrieve the requested voyages.
 
         Args:
@@ -62,48 +75,52 @@ class VoyagesAPI:
         endpoint = f'voyages{"" if nested else "flat"}'
 
         if imo is not None:
-            endpoint += f'/imo/{imo}'
+            endpoint += f"/imo/{imo}"
         elif vessel_class_id is not None:
-            endpoint += f'/class/{vessel_class_id}'
-        elif vessel_type_id is not None and \
-                (date_from is not None or incremental):
-            endpoint += f'/type/{vessel_type_id}'
+            endpoint += f"/class/{vessel_class_id}"
+        elif vessel_type_id is not None and (
+            date_from is not None or incremental
+        ):
+            endpoint += f"/type/{vessel_type_id}"
         elif not incremental:
-            raise NotImplementedError('For non incremental mode, either imo, '
-                                      'vessel_class_id or both vessel_type_id '
-                                      'and date_from must be provide.')
+            raise NotImplementedError(
+                "For non incremental mode, either imo, "
+                "vessel_class_id or both vessel_type_id "
+                "and date_from must be provide."
+            )
 
         if imo is None and date_from is not None:
-            endpoint += f'/date/{date_from.isoformat()}'
+            endpoint += f"/date/{date_from.isoformat()}"
 
         if incremental:
-            endpoint += '/incremental'
+            endpoint += "/incremental"
 
         return urljoin(VoyagesAPI.relative_url, endpoint)
 
     @staticmethod
     def _get_advanced_endpoint(
-                        event_type: Optional[int] = None,
-                        event_horizon: Optional[int] = None,
-                        event_purpose: Optional[str] = None,
-                        vessel_class_id: Optional[int] = None,
-                        vessel_type_id: Optional[int] = None,
-                        start_date_from:  Optional[date] = None,
-                        start_date_to: Optional[date] = None,
-                        first_load_arrival_date_from: Optional[date] = None,
-                        first_load_arrival_date_to: Optional[date] = None,
-                        end_date_from: Optional[date] = None,
-                        end_date_to: Optional[date] = None,
-                        market_info_rate_from: Optional[date] = None,
-                        market_info_rate_to: Optional[date] = None,
-                        market_info_rate_type: Optional[date] = None,
-                        commercial_operator_id: Optional[int] = None,
-                        charterer_id: Optional[int] = None,
-                        voyage_horizon: Optional[str] = None,
-                        token: Optional[str] = None,
-                        hide_event_details: Optional[bool] = None,
-                        hide_events: Optional[bool] = None,
-                        hide_market_info: Optional[bool] = None) -> str:
+        event_type: Optional[int] = None,
+        event_horizon: Optional[int] = None,
+        event_purpose: Optional[str] = None,
+        vessel_class_id: Optional[int] = None,
+        vessel_type_id: Optional[int] = None,
+        start_date_from: Optional[date] = None,
+        start_date_to: Optional[date] = None,
+        first_load_arrival_date_from: Optional[date] = None,
+        first_load_arrival_date_to: Optional[date] = None,
+        end_date_from: Optional[date] = None,
+        end_date_to: Optional[date] = None,
+        market_info_rate_from: Optional[date] = None,
+        market_info_rate_to: Optional[date] = None,
+        market_info_rate_type: Optional[date] = None,
+        commercial_operator_id: Optional[int] = None,
+        charterer_id: Optional[int] = None,
+        voyage_horizon: Optional[str] = None,
+        token: Optional[str] = None,
+        hide_event_details: Optional[bool] = None,
+        hide_events: Optional[bool] = None,
+        hide_market_info: Optional[bool] = None,
+    ) -> str:
         """Constructs the advanced search endpoint.
 
         Args:
@@ -115,14 +132,20 @@ class VoyagesAPI:
             for the provided arguments.
         """
         endpoint_params = locals()
-        endpoint = 'search/advanced/?'
-        params = urlencode({_to_camel_case(key): value for key, value
-                            in endpoint_params.items() if value is not None})
+        endpoint = "search/advanced/?"
+        params = urlencode(
+            {
+                _to_camel_case(key): value
+                for key, value in endpoint_params.items()
+                if value is not None
+            }
+        )
         endpoint += params
         return urljoin(VoyagesAPI.relative_url, endpoint)
 
-    def _get_voyages_pages(self, endpoint: str, token: Optional[str] = None) \
-            -> Tuple[Voyages, Optional[NextRequestToken]]:
+    def _get_voyages_pages(
+        self, endpoint: str, token: Optional[str] = None
+    ) -> Tuple[Voyages, Optional[NextRequestToken]]:
         """Get voyages paged data.
 
         Args:
@@ -138,25 +161,34 @@ class VoyagesAPI:
         results: List[Voyage] = []
         next_page_token = token
         while True:
-            params = {'token': next_page_token} \
-                if next_page_token is not None else None
-            response = get_single(self.__connection, endpoint,
-                                  VoyagesPagedResponse, query_string=params)
+            params = (
+                {"token": next_page_token}
+                if next_page_token is not None
+                else None
+            )
+            response = get_single(
+                self.__connection,
+                endpoint,
+                VoyagesPagedResponse,
+                query_string=params,
+            )
             if response is not None and response.data is not None:
                 results.extend(response.data)
-            next_page_token = response.next_page_token \
-                if response is not None else None
+            next_page_token = (
+                response.next_page_token if response is not None else None
+            )
 
             if next_page_token is None:
                 break
 
-        next_request_token = response.next_request_token \
-            if response is not None else None
+        next_request_token = (
+            response.next_request_token if response is not None else None
+        )
         return tuple(results), next_request_token
 
-    def _get_voyages_flat_pages(self, endpoint: str,
-                                token: Optional[str] = None) \
-            -> Tuple[VoyagesFlat, Optional[NextRequestToken]]:
+    def _get_voyages_flat_pages(
+        self, endpoint: str, token: Optional[str] = None
+    ) -> Tuple[VoyagesFlat, Optional[NextRequestToken]]:
         """Get voyages flat paged data.
 
         Args:
@@ -175,43 +207,52 @@ class VoyagesAPI:
         geos: List[VoyageGeo] = []
         next_page_token = token
         while True:
-            params = {'token': next_page_token} \
-                if next_page_token is not None else None
+            params = (
+                {"token": next_page_token}
+                if next_page_token is not None
+                else None
+            )
 
-            response = get_single(self.__connection,
-                                  endpoint,
-                                  VoyagesFlatPagedResponse,
-                                  query_string=params)
+            response = get_single(
+                self.__connection,
+                endpoint,
+                VoyagesFlatPagedResponse,
+                query_string=params,
+            )
 
             if response is not None and response.data is not None:
                 voyages.extend(response.data.voyages or [])
                 events.extend(response.data.events or [])
-                event_details.extend(
-                    response.data.event_details or [])
+                event_details.extend(response.data.event_details or [])
                 geos.extend(response.data.geos or [])
 
-            next_page_token = response.next_page_token \
-                if response is not None else None
+            next_page_token = (
+                response.next_page_token if response is not None else None
+            )
 
             if next_page_token is None:
                 break
 
-        result = VoyagesFlat(voyages=tuple(voyages), events=tuple(events),
-                             event_details=tuple(event_details),
-                             geos=tuple(geos))
+        result = VoyagesFlat(
+            voyages=tuple(voyages),
+            events=tuple(events),
+            event_details=tuple(event_details),
+            geos=tuple(geos),
+        )
 
-        next_request_token = response.next_request_token \
-            if response is not None else None
+        next_request_token = (
+            response.next_request_token if response is not None else None
+        )
 
         return result, next_request_token
 
-
-    def get_voyages(self,
-                    imo: Optional[int] = None,
-                    vessel_class_id: Optional[int] = None,
-                    vessel_type_id: Optional[int] = None,
-                    date_from: Optional[date] = None) \
-            -> Voyages:
+    def get_voyages(
+        self,
+        imo: Optional[int] = None,
+        vessel_class_id: Optional[int] = None,
+        vessel_type_id: Optional[int] = None,
+        date_from: Optional[date] = None,
+    ) -> Voyages:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
@@ -229,20 +270,22 @@ class VoyagesAPI:
         Returns:
             A tuple containing the returned voyages.
         """
-        endpoint = self._get_endpoint(imo, vessel_class_id, vessel_type_id,
-                                      date_from, nested=True)
+        endpoint = self._get_endpoint(
+            imo, vessel_class_id, vessel_type_id, date_from, nested=True
+        )
         if imo is not None:
             results = get_multiple(self.__connection, endpoint, Voyage)
         else:
             results, _ = self._get_voyages_pages(endpoint)
         return results
 
-    def get_voyages_flat(self,
-                         imo: Optional[int] = None,
-                         vessel_class_id: Optional[int] = None,
-                         vessel_type_id: Optional[int] = None,
-                         date_from: Optional[date] = None) \
-            -> Optional[VoyagesFlat]:
+    def get_voyages_flat(
+        self,
+        imo: Optional[int] = None,
+        vessel_class_id: Optional[int] = None,
+        vessel_type_id: Optional[int] = None,
+        date_from: Optional[date] = None,
+    ) -> Optional[VoyagesFlat]:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
@@ -261,8 +304,9 @@ class VoyagesAPI:
             A VoyagesFlat object containing lists of voyages, voyage events,
             voyage event details and voyage geos otherwise.
         """
-        endpoint = self._get_endpoint(imo, vessel_class_id, vessel_type_id,
-                                      date_from, nested=False)
+        endpoint = self._get_endpoint(
+            imo, vessel_class_id, vessel_type_id, date_from, nested=False
+        )
         if imo is not None:
             results = get_single(self.__connection, endpoint, VoyagesFlat)
         else:
@@ -270,13 +314,14 @@ class VoyagesAPI:
 
         return results
 
-    def get_incremental_voyages(self,
-                                imo: Optional[int] = None,
-                                vessel_class_id: Optional[int] = None,
-                                vessel_type_id: Optional[int] = None,
-                                date_from: Optional[date] = None,
-                                incremental_token: Optional[str] = None)\
-            -> Tuple[Voyages, Optional[NextRequestToken]]:
+    def get_incremental_voyages(
+        self,
+        imo: Optional[int] = None,
+        vessel_class_id: Optional[int] = None,
+        vessel_type_id: Optional[int] = None,
+        date_from: Optional[date] = None,
+        incremental_token: Optional[str] = None,
+    ) -> Tuple[Voyages, Optional[NextRequestToken]]:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
@@ -297,18 +342,25 @@ class VoyagesAPI:
             A tuple containing the returned voyages, including any deleted
             voyages, and the token for the next incremental request.
         """
-        endpoint = self._get_endpoint(imo, vessel_class_id, vessel_type_id,
-                                      date_from, nested=True, incremental=True)
+        endpoint = self._get_endpoint(
+            imo,
+            vessel_class_id,
+            vessel_type_id,
+            date_from,
+            nested=True,
+            incremental=True,
+        )
         results = self._get_voyages_pages(endpoint, token=incremental_token)
         return results
 
-    def get_incremental_voyages_flat(self,
-                                     imo: Optional[int] = None,
-                                     vessel_class_id: Optional[int] = None,
-                                     vessel_type_id: Optional[int] = None,
-                                     date_from: Optional[date] = None,
-                                     incremental_token: Optional[str] = None)\
-            -> Tuple[VoyagesFlat, Optional[NextRequestToken]]:
+    def get_incremental_voyages_flat(
+        self,
+        imo: Optional[int] = None,
+        vessel_class_id: Optional[int] = None,
+        vessel_type_id: Optional[int] = None,
+        date_from: Optional[date] = None,
+        incremental_token: Optional[str] = None,
+    ) -> Tuple[VoyagesFlat, Optional[NextRequestToken]]:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
@@ -330,36 +382,43 @@ class VoyagesAPI:
             any deleted voyages, and the token for the next incremental
             request.
         """
-        endpoint = self._get_endpoint(imo, vessel_class_id, vessel_type_id,
-                                      date_from, nested=False,
-                                      incremental=True)
-        results = self._get_voyages_flat_pages(endpoint,
-                                               token=incremental_token)
+        endpoint = self._get_endpoint(
+            imo,
+            vessel_class_id,
+            vessel_type_id,
+            date_from,
+            nested=False,
+            incremental=True,
+        )
+        results = self._get_voyages_flat_pages(
+            endpoint, token=incremental_token
+        )
         return results
 
     def get_voyages_by_advanced_search(
-                        self,
-                        event_type: Optional[int] = None,
-                        event_horizon: Optional[int] = None,
-                        event_purpose: Optional[str] = None,
-                        vessel_class_id: Optional[int] = None,
-                        vessel_type_id: Optional[int] = None,
-                        start_date_from:  Optional[date] = None,
-                        start_date_to: Optional[date] = None,
-                        first_load_arrival_date_from: Optional[date] = None,
-                        first_load_arrival_date_to: Optional[date] = None,
-                        end_date_from: Optional[date] = None,
-                        end_date_to: Optional[date] = None,
-                        market_info_rate_from: Optional[date] = None,
-                        market_info_rate_to: Optional[date] = None,
-                        market_info_rate_type: Optional[date] = None,
-                        commercial_operator_id: Optional[int] = None,
-                        charterer_id: Optional[int] = None,
-                        voyage_horizon: Optional[str] = None,
-                        token: Optional[str] = None,
-                        hide_event_details: Optional[bool] = None,
-                        hide_events: Optional[bool] = None,
-                        hide_market_info: Optional[bool] = None) -> Voyages:
+        self,
+        event_type: Optional[int] = None,
+        event_horizon: Optional[int] = None,
+        event_purpose: Optional[str] = None,
+        vessel_class_id: Optional[int] = None,
+        vessel_type_id: Optional[int] = None,
+        start_date_from: Optional[date] = None,
+        start_date_to: Optional[date] = None,
+        first_load_arrival_date_from: Optional[date] = None,
+        first_load_arrival_date_to: Optional[date] = None,
+        end_date_from: Optional[date] = None,
+        end_date_to: Optional[date] = None,
+        market_info_rate_from: Optional[date] = None,
+        market_info_rate_to: Optional[date] = None,
+        market_info_rate_type: Optional[date] = None,
+        commercial_operator_id: Optional[int] = None,
+        charterer_id: Optional[int] = None,
+        voyage_horizon: Optional[str] = None,
+        token: Optional[str] = None,
+        hide_event_details: Optional[bool] = None,
+        hide_events: Optional[bool] = None,
+        hide_market_info: Optional[bool] = None,
+    ) -> Voyages:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
@@ -409,20 +468,28 @@ class VoyagesAPI:
             A tuple containing the returned voyages.
         """
         endpoint = self._get_advanced_endpoint(
-            event_type=event_type, event_horizon=event_horizon,
-            event_purpose=event_purpose, vessel_class_id=vessel_class_id,
-            vessel_type_id=vessel_type_id, start_date_from=start_date_from,
+            event_type=event_type,
+            event_horizon=event_horizon,
+            event_purpose=event_purpose,
+            vessel_class_id=vessel_class_id,
+            vessel_type_id=vessel_type_id,
+            start_date_from=start_date_from,
             start_date_to=start_date_to,
             first_load_arrival_date_from=first_load_arrival_date_from,
             first_load_arrival_date_to=first_load_arrival_date_to,
-            end_date_from=end_date_from, end_date_to=end_date_to,
+            end_date_from=end_date_from,
+            end_date_to=end_date_to,
             market_info_rate_from=market_info_rate_from,
             market_info_rate_to=market_info_rate_to,
             market_info_rate_type=market_info_rate_type,
             commercial_operator_id=commercial_operator_id,
-            charterer_id=charterer_id, voyage_horizon=voyage_horizon,
-            token=token, hide_event_details=hide_event_details,
-            hide_events=hide_events, hide_market_info=hide_market_info)
+            charterer_id=charterer_id,
+            voyage_horizon=voyage_horizon,
+            token=token,
+            hide_event_details=hide_event_details,
+            hide_events=hide_events,
+            hide_market_info=hide_market_info,
+        )
 
         results, _ = self._get_voyages_pages(endpoint)
         return results
@@ -444,7 +511,7 @@ class VoyagesAPI:
         )
         response.raise_for_status()
 
-        classes = (parse_model(c,VesselClass) for c in response.json())
+        classes = (parse_model(c, VesselClass) for c in response.json())
         class_filter = class_filter or VesselClassFilter()
 
         return tuple(class_filter._apply(classes))
@@ -466,16 +533,14 @@ class VoyagesAPI:
         )
         response.raise_for_status()
 
-        types = (parse_model(c,VesselType) for c in response.json())
+        types = (parse_model(c, VesselType) for c in response.json())
         type_filter = type_filter or VesselTypeFilter()
 
         return tuple(type_filter._apply(types))
 
-
     def get_imos(
-        self,
-        vessel_filter: Optional[VesselFilter] = None
-        )-> Tuple[Vessel, ...]:
+        self, vessel_filter: Optional[VesselFilter] = None
+    ) -> Tuple[Vessel, ...]:
         """Retrieves available vessel types.
 
         Args:
@@ -490,10 +555,7 @@ class VoyagesAPI:
         )
         response.raise_for_status()
 
-        types = (parse_model(c,Vessel) for c in response.json())
+        types = (parse_model(c, Vessel) for c in response.json())
         vessel_filter = vessel_filter or VesselFilter()
 
         return tuple(vessel_filter._apply(types))
-
-
-
