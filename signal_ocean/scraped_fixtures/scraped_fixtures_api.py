@@ -1,3 +1,5 @@
+"""The scraped fixtures api."""
+
 from typing import Optional, List, Iterable
 from datetime import date
 from .._internals import format_iso_date, QueryString
@@ -45,8 +47,7 @@ class ScrapedFixturesAPI:
         port_id: Optional[int] = None,
         vessel_class_id: Optional[int] = None,
     ) -> Iterable[ScrapedFixture]:
-        """This function returns the all the scraped fixtures for a specific
-        selected port.
+        """This function returns the all the scraped fixtures.
 
         Attributes: received_date_from: Format - date-time (as date-time in
         RFC3339). Earliest date the fixture received. Cannot be combined with
@@ -76,7 +77,6 @@ class ScrapedFixturesAPI:
         Returns: An Iterable of ScrapedFixture objects, as we have defined in
         models.py.
         """
-
         more_fixtues = True
 
         results: List[ScrapedFixture] = []

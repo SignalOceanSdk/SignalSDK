@@ -6,8 +6,7 @@ from typing import Optional
 
 @dataclass(frozen=True)
 class ScrapedFixture:
-    """
-    Detailed information about a scraped fixtures.
+    """Detailed information about a scraped fixtures.
 
     Attributes:
         fixture_id: Integer. A unique identifier of the fixture line.
