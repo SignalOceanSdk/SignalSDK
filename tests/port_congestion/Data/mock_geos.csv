@@ -1,0 +1,1212 @@
+,id,name,port_id,port_name,country_id,country,area_idlevel0,area_name_level0,area_idlevel1,area_name_level1,area_idlevel2,area_name_level2,area_idlevel3,area_name_level3
+0,6694,Krishnapatnam,6694,Krishnapatnam,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+1,16646,Richard's Bay Coal Terminal,3918,Richard's Bay,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+2,8656,Diego Garcia Bulk Terminal,6530,Diego Garcia,113,British Indian Ocean Territory,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+3,8576,Visakhapatnam Bulk Terminal,3533,Visakhapatnam,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+4,3533,Visakhapatnam,3533,Visakhapatnam,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+5,8567,Colombo Bulk Terminal,3615,Colombo,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+6,8481,Cochin Bulk Terminal,3518,Cochin,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+7,8637,Salalah Bulk Terminal,3712,Salalah,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+8,8574,Trincomalee Bulk Terminal,3616,Trincomalee,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+9,9560,Sagar Bulk Terminal,9104,Sagar,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+10,8573,Paradip Bulk Terminal,3529,Paradip,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+11,3529,Paradip,3529,Paradip,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+12,8572,Krishnapatnam Bulk Terminal,6694,Krishnapatnam,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+13,8566,Chittagong Bulk Terminal,3215,Chittagong,26,Bangladesh,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+14,9559,Gangavaram Bulk Terminal,9103,Gangavaram,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+15,9103,Gangavaram,9103,Gangavaram,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+16,8781,Kwangyang,8781,Kwangyang,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+17,8096,Pasir Gudang Bulk Terminal,3669,Pasir Gudang,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+18,14681,Puerto Drummond Coal Terminal,8983,Puerto Drummond,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+19,7316,Boryeong,7316,Boryeong,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+20,14444,Gwangyang Anchorage,8781,Kwangyang,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+21,15411,Port Alberni Bulk Terminal,14950,Port Alberni,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+22,9397,Roberts Bank Bulk Terminal,8941,Roberts Bank,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+23,14438,Boryeong Power Station,7316,Boryeong,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+24,16628,Suez Dry Anchorage,3376,Suez,72,Egypt,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+25,4132,Istanbul Anchorage,3813,Istanbul,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+26,8058,Taman Bulk Terminal,7344,Taman,198,Russian Federation,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+27,8068,Istanbul Bulk Terminal,3813,Istanbul,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+28,8644,Ain Sukhna Bulk Terminal,3370,Ain Sukhna,72,Egypt,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+29,15042,Lae Bulk Terminal,3734,Lae,183,Papua New Guinea,24708,Papua New Guinea,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+30,14522,Newcastle Anchorage,3201,Newcastle,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+31,8675,Sydney Bulk Terminal,3198,Sydney,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+32,14523,PWCS Kooragang Coal Terminal,3201,Newcastle,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+33,6560,"Kure, Hiroshima",6560,"Kure, Hiroshima",121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+34,9412,El Morro Bulk Terminal,8956,Morro Redondo,164,Mexico,24742,West Coast Mexico,39,West Coast Mexico,112,West Coast Mexico,85,Pacific America
+35,11808,Susaki Bulk Terminal,11807,Susaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+36,8267,"Kure, Hiroshima Bulk Terminal",6560,"Kure, Hiroshima",121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+37,8264,Kashima Nippon Steel Plant,3574,Kashima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+38,3574,Kashima,3574,Kashima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+39,8956,Morro Redondo,8956,Morro Redondo,164,Mexico,24742,West Coast Mexico,39,West Coast Mexico,112,West Coast Mexico,85,Pacific America
+40,6382,Rizhao - Lanshan,6382,Rizhao - Lanshan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+41,8548,Montevideo Bulk Terminal,3892,Montevideo,241,Uruguay,24769,Argentina & Uruguay,15,East Coast South America,25019,Atlantic America,25028,West
+42,3300,Longkou,3300,Longkou,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+43,6975,Zhoushan Asia Pacific Dockyard,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+44,14515,Kamsar Anchorage,3463,Kamsar,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+45,15349,Bengkulu Bulk Terminal,14888,Bengkulu,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+46,6642,Yantai,6642,Yantai,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+47,14635,Boryeong Anchorage,7316,Boryeong,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+48,14441,Dangjin Power Station,16863,Dangjin,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+49,8205,Boryeong Bulk Terminal,7316,Boryeong,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+50,15314,Abashiri Bulk Terminal,14853,Abashiri,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+51,15424,Chemainus Bulk Terminal,14963,Chemainus,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+52,6657,Lianyungang,6657,Lianyungang,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+53,9203,Pontianak Bulk Terminal,8747,Pontianak,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+54,8115,Rizhao - Donggang Bulk Terminal,3307,Rizhao - Donggang,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+55,3307,Rizhao - Donggang,3307,Rizhao - Donggang,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+56,8116,Rizhao - Lanshan Bulk Terminal,6382,Rizhao - Lanshan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+57,14715,Caofeidian Anchorage,3286,Caofeidian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+58,3286,Caofeidian,3286,Caofeidian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+59,8225,Hong Kong Bulk Terminal,3293,Hong Kong,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+60,8106,Dongjiangkou Bulk Terminal,7104,Dongjiangkou,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+61,7104,Dongjiangkou,7104,Dongjiangkou,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+62,13271,CUD (Weihai) Shipyard,6648,Shidao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+63,9104,Sagar,9104,Sagar,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+64,8484,Jaigad Bulk Terminal,6519,Jaigarh,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+65,16856,New Mangalore Coal Terminal,3528,New Mangalore,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+66,3528,New Mangalore,3528,New Mangalore,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+67,3524,Kandla,3524,Kandla,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+68,8328,Malta Bulk Terminal,3640,Malta,160,Malta,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+69,8400,Baltimore Bulk Terminal,3837,Baltimore,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+70,8340,Valletta Bulk Terminal,3641,Valletta,160,Malta,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+71,8650,Jeddah Bulk Terminal,3773,Jeddah,200,Saudi Arabia,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+72,8485,Kandla Bulk Terminal,3524,Kandla,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+73,15095,Argentia Bulk Terminal,11873,Argentia,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+74,9446,Annapolis Bulk Terminal,8990,Annapolis,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+75,8191,Gibraltar Bulk Terminal,7345,Gibraltar,90,Gibraltar,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+76,9269,Manila Bulk Terminal,8813,Manila,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+77,8091,Kuantan Bulk Terminal,3663,Kuantan,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+78,9200,Muara Satui Bulk Terminal,8744,Muara Satui,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+79,8491,Mundra Bulk Terminal,3527,Mundra,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+80,3527,Mundra,3527,Mundra,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+81,3303,Qingdao,3303,Qingdao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+82,9179,Kendawangan Bulk Terminal,8723,Kendawangan,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+83,8113,Qingdao Bulk Terminal,3303,Qingdao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+84,15327,Kin Bulk Terminal,14866,Kin,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+85,9275,Port Nonoc Bulk Terminal,8819,Port Nonoc,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+86,16863,Dangjin,16863,Dangjin,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+87,8669,Brisbane Bulk Terminal,3203,Brisbane,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+88,3201,Newcastle,3201,Newcastle,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+89,3823,Mailiao,3823,Mailiao,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+90,9188,Kijang Bulk Terminal,8732,Kijang,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+91,8110,Lianyungang Bulk Terminal,6657,Lianyungang,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+92,8117,Tianjin Bulk Terminal,3310,Tianjin,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+93,13375,Dalian Shipbuilding Industry offshore Co,3288,Dalian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+94,7330,Telok Ramunia,7329,Pengerang Terminal,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+95,8616,Richard's Bay Bulk Terminal,3918,Richard's Bay,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+96,8786,Youngheung,8786,Youngheung,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+97,14521,NCIG Export Terminal,3201,Newcastle,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+98,9242,Yeongheung Power Station,8786,Youngheung,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+99,9241,Samchonpo Power Station,8785,Samcheonpo,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+100,14652,Yosu Shipyard ,3603,Yosu,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+101,14451,Samcheonpo Anchorage,8785,Samcheonpo,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+102,8785,Samcheonpo,8785,Samcheonpo,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+103,8540,San Nicolas (Peru) SHP Terminal,3731,San Nicolas (Peru),181,Peru,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+104,8118,Yantai Bulk Terminal,6642,Yantai,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+105,8111,Longkou Bulk Terminal,3300,Longkou,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+106,8704,Dandong,8704,Dandong,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+107,8105,Dalian Bulk Terminal,3288,Dalian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+108,14528,Batam Island Anchorage,6497,Batam Island,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+109,8107,Huanghua Bulk Terminal,3294,Huanghua,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+110,8705,Jingtang,8705,Jingtang,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+111,8221,Fangcheng Bulk Terminal,6670,Fangcheng,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+112,6670,Fangcheng,6670,Fangcheng,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+113,16195,Wiggins Island Coal Export Terminal,3204,Gladstone,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+114,14437,Gwangyang POSCO Steel Plant,8781,Kwangyang,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+115,9210,Taboneo Bulk Terminal,8754,Taboneo,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+116,16752,Boffa Bulk Terminal,16751,Boffa,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+117,3294,Huanghua,3294,Huanghua,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+118,6976,Qingdao Shipyard,3303,Qingdao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+119,7163,Port Louis Anchorage,3642,Port Louis,161,Mauritius,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+120,3463,Kamsar,3463,Kamsar,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+121,3310,Tianjin,3310,Tianjin,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+122,16748,Itaguai Tecar Terminal (CSN),9067,Itaguai,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+123,16800,Mailiao Power Station,3823,Mailiao,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+124,8201,Kozmino Bulk Terminal,7346,Kozmino,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+125,6414,Hyundai Mipo Dockyard,3602,Ulsan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+126,8255,Kaohsiung Bulk Terminal,3821,Kaohsiung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+127,3821,Kaohsiung,3821,Kaohsiung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+128,15933,CSBC Kaohsiung Shipyard,3821,Kaohsiung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+129,8213,Ulsan Bulk Terminal,3602,Ulsan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+130,9100,Dhamra,9100,Dhamra,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+131,9556,Dhamra Bulk Terminal,9100,Dhamra,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+132,9558,Galle Bulk Terminal,9102,Galle,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+133,8570,Kakinada Bulk Terminal,3523,Kakinada,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+134,15182,Tulear Bulk Terminal,14411,Tulear,149,Madagascar,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+135,8488,Mormugao Bulk Terminal,3525,Mormugao,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+136,3525,Mormugao,3525,Mormugao,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+137,8693,Icdas,8693,Icdas,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+138,9149,Icdas Bulk Terminal,8693,Icdas,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+139,8707,Weihai,8707,Weihai,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+140,8482,Dahej Bulk Terminal,3519,Dahej,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+141,3519,Dahej,3519,Dahej,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+142,8315,Vatika Bay Bulk Terminal,7338,Vatika Bay,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+143,9517,Ratnagiri Bulk Terminal,9061,Ratnagiri,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+144,7015,Duqm Shipyard,6669,Duqm,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+145,3317,Zhanjiang,3317,Zhanjiang,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+146,6797,Hyundai Gunsan Shipyard,6614,Gunsan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+147,6907,Tongyeong Shipyard,6617,Tongyeong,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+148,6789,Gamcheon Shipyard,6612,Gamcheon/busan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+149,13014,Ponta Da Madeira Iron Ore Terminal,13013,Ponta Da Madeira,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+150,8615,Port Elizabeth Bulk Terminal,3917,Port Elizabeth,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+151,6649,Bayuquan,6649,Bayuquan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+152,13022,Xinsha,13022,Xinsha,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+153,9533,Terminal Ilha Guaiba (TIG),9077,Guaiba,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+154,5322,Qinhuangdao Shipyard,3304,Qinhuangdao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+155,8202,Nakhodka Bulk Terminal,3762,Nakhodka,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+156,8084,Cristobal Bulk Terminal,3717,Cristobal,180,Panama,24600,East Coast Central America,10,East Coast Central America,25019,Atlantic America,25028,West
+157,3689,Rotterdam,3689,Rotterdam,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+158,13272,Taicang,13272,Taicang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+159,7341,Subic Bay Shipyard,3739,Subic Bay,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+160,3288,Dalian,3288,Dalian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+161,4221,Yokkaichi Anchorage,3596,Yokkaichi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+162,14534,Zhoushan Wugang Dock,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+163,14547,Luhuashan Bulk Terminal,14546,Luhuashan,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+164,8239,Jiangyin Bulk Terminal,3296,Jiangyin,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+165,8238,Gaogang Bulk Terminal,6645,Gaogang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+166,6645,Gaogang,6645,Gaogang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+167,16347,Jiangsu Hantong Shipyard 1,8802,Danyang Wei,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+168,8216,Dutch Harbor Bulk Terminal,6589,Dutch Harbor,240,United States,24719,Alaska,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+169,9409,Eureka Bulk Terminal,8953,Eureka,240,United States,24741,US West Coast,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+170,9581,Khalifa Port Bulk Terminal,9125,Khalifa Port,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+171,9125,Khalifa Port,9125,Khalifa Port,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+172,8623,Fujairah Bulk Terminal,3153,Fujairah,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+173,14674,Tianjin Huaneng Coal Terminal,3310,Tianjin,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+174,13401,Zhousan Huafeng Shipyard,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+175,8659,Maputo Bulk Terminal,3675,Maputo,166,Mozambique,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+176,15057,Hambantota Bulk Terminal,6482,Hambantota,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+177,16645,Saldanha Bay Iron Ore Terminal,3919,Saldanha Bay,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+178,3221,Sitrah,3221,Sitrah,30,Bahrain,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+179,8640,Sitrah Bulk Terminal,3221,Sitrah,30,Bahrain,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+180,16747,Sept-Iles IOC Terminal,3264,Sept-Iles,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+181,8184,Arzew Bulk Terminal,3358,Arzew,69,Algeria,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+182,3358,Arzew,3358,Arzew,69,Algeria,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+183,9569,Pepel Bulk Terminal,9113,Pepel,210,Sierra Leone,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+184,8235,Zhanjiang Bulk Terminal,3317,Zhanjiang,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+185,8813,Manila,8813,Manila,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+186,9199,Muara Pantai Coal Terminal,8743,Muara Pantai,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+187,9206,Samarinda Bulk Terminal,8750,Samarinda,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+188,9175,Adang Bay Coal Terminal,8719,Adang Bay,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+189,15866,Navlakhi Outer Anchorage,9056,Navlakhi,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+190,3919,Saldanha Bay,3919,Saldanha Bay,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+191,8242,Ningbo Bulk Terminal,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+192,9277,San Fernando (PH) Bulk Terminal,8821,San Fernando (PH),184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+193,8657,La Reunion Bulk Terminal,3755,La Reunion,195,Reunion,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+194,8061,Yuzhnyy Bulk Terminal,3833,Yuzhnyy,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+195,9352,Chios Bulk Terminal,8896,Chios,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+196,15278,Zamboanga Bulk Terminal,14817,Zamboanga,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+197,8589,Luanda Bulk Terminal,3166,Luanda,15,Angola,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+198,8595,Takoradi Bulk Terminal,3459,Takoradi,89,Ghana,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+199,9586,Ehoala Bulk Terminal,9130,Ehoala,149,Madagascar,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+200,5332,COSCO Dalian Shipyard,3288,Dalian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+201,8801,Dagang,8801,Dagang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+202,5333,Jiangnan Shipyard,3308,Shanghai,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+203,14424,East Intercourse Island Iron Ore Terminal,3209,Dampier,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+204,3993,Dampier Anchorage,3209,Dampier,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+205,9574,Cape Lambert Iron Ore Terminal A,9118,Port Walcott,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+206,8236,Zhuhai Bulk Terminal,3319,Zhuhai,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+207,3319,Zhuhai,3319,Zhuhai,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+208,9374,Bar Bulk Terminal,8918,Bar,147,Montenegro,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+209,6495,Gadani Scrapyard,3740,Karachi,185,Pakistan,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+210,3740,Karachi,3740,Karachi,185,Pakistan,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+211,15356,Gopalpur Bulk Terminal,14895,Gopalpur,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+212,14722,Weihai Anchorage,8707,Weihai,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+213,13017,Shidao Bulk Terminal,6648,Shidao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+214,8520,Caldera (Chile) Bulk Terminal,3274,Caldera (Chile),53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+215,9543,Punta Totoralillo Minerals Terminal,9087,Punta de San Cosme,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+216,13273,Taicang Bulk Terminal,13272,Taicang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+217,9611,Daehan Shipbuilding Shipyard,6567,Mokpo,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+218,8078,Balboa Bulk Terminal,3714,Balboa,180,Panama,24598,West Coast Central America,38,West Coast Central America,111,West Coast Central America,85,Pacific America
+219,14679,Puerto Bolivar Cerrejon Coal Terminal,3322,Puerto Bolivar,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+220,8605,BHP Nelson Point,3210,Port Hedland,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+221,3296,Jiangyin,3296,Jiangyin,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+222,8214,Yosu Bulk Terminal,3603,Yosu,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+223,14431,BHP Finucane Island,3210,Port Hedland,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+224,16687,Koh Sichang,16687,Koh Sichang,225,Thailand,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+225,15943,Sungai Linggi Bulk Terminal,15879,Sungai Linggi,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+226,8526,Guayacan Iron Ore Terminal,3275,Guayacan,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+227,8094,Lumut Bulk Terminal,6721,Lumut,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+228,3302,Ningbo,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+229,14691,North Pulau Laut Anchorage,14690,North Pulau Laut,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+230,8483,Hazira Port Bulk Terminal,3522,Hazira Port,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+231,3522,Hazira Port,3522,Hazira Port,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+232,14514,Kaohsiung OPL Anchorage,3821,Kaohsiung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+233,14427,Cape Lambert Iron Ore Terminal B,9118,Port Walcott,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+234,3209,Dampier,3209,Dampier,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+235,13311,Nghi Son,13311,Nghi Son,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+236,15181,Nghi Son Bulk Terminal,13311,Nghi Son,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+237,14461,Vung Ang Anchorage,11835,Vung Ang,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+238,11835,Vung Ang,11835,Vung Ang,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+239,6978,Sharjah Shipyard,6404,Dubai,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+240,3833,Yuzhnyy,3833,Yuzhnyy,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+241,16194,RG Tanna Coal Terminal,3204,Gladstone,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+242,11827,Hosan,11827,Hosan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+243,15197,Vinh Tan Bulk Terminal,14736,Vinh Tan,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+244,8600,Parker Point Iron Ore Terminal,3209,Dampier,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+245,9161,Jingtang Bulk Terminal,8705,Jingtang,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+246,14430,Port Walcott Anchorage,9118,Port Walcott,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+247,9118,Port Walcott,9118,Port Walcott,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+248,13019,Taean Power Station,13018,Taean,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+249,13018,Taean,13018,Taean,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+250,4217,Ningbo Anchorage,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+251,9067,Itaguai,9067,Itaguai,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+252,9515,Port Okha Bulk Terminal,9059,Port Okha,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+253,3918,Richard's Bay,3918,Richard's Bay,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+254,13394,ZTHI - Zhousan Zhongtian Heavy Industry Co,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+255,9157,Kuching Bulk Terminal,8701,Kuching,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+256,8173,Gijon Bulk Terminal,3387,Gijon,75,Spain,24709,Iberian Atlantic Coast,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+257,16848,ArcelorMittal Dunkirk Steel Plant,3408,Dunkirk,82,France,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+258,3408,Dunkirk,3408,Dunkirk,82,France,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+259,15285,Glomfjord Bulk Terminal,14824,Glomfjord,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+260,16750,Narvik LKAB Terminal,8709,Narvik,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+261,3343,Hamburg,3343,Hamburg,64,Germany,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+262,3370,Ain Sukhna,3370,Ain Sukhna,72,Egypt,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+263,9364,Lemnos Island Bulk Terminal,8908,Lemnos Island,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+264,8476,Rotterdam Bulk Terminal,3689,Rotterdam,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+265,8459,Antwerp Bulk Terminal,3216,Antwerp,27,Belgium,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+266,3216,Antwerp,3216,Antwerp,27,Belgium,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+267,9523,Itaguai Bulk Terminal,9067,Itaguai,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+268,8804,Majishan,8804,Majishan,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+269,8792,Kemen,8792,Kemen,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+270,8624,Hulaylah Terminal Bulk Terminal,3156,Mina Saqr,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+271,8901,Isdemir,8901,Isdemir,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+272,3316,Zhangjiagang,3316,Zhangjiagang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+273,9326,Tokachi Bulk Terminal,8870,Tokachi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+274,5397,Neptune Terminal,3267,Vancouver (CA),45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+275,11816,Matsushima Power Station,11815,Matsushima (Nagasaki),121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+276,3813,Istanbul,3813,Istanbul,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+277,8069,Tekirdag Bulk Terminal,3817,Tekirdag,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+278,8161,Tanjung Bara Coal Terminal,3507,Tanjung Bara,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+279,12028,El-Dekheila,12028,El-Dekheila,72,Egypt,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+280,8209,Incheon Bulk Terminal,3600,Incheon,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+281,14695,Callao Anchorage,3722,Callao,181,Peru,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+282,14466,Baosteel Zhanjiang Steel Plant,3317,Zhanjiang,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+283,5331,Guangzhou Shipyard,3289,Dongguan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+284,13071,Cape Preston,13071,Cape Preston,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+285,8206,Busan Bulk Terminal,6616,Busan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+286,6977,Qushan Island Shipyard,6644,Qushan Island,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+287,16676,Sudeste Bulk Terminal,16675,Porto Sudeste,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+288,15177,Qui Nhon Bulk Terminal,12689,Qui Nhon,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+289,9182,Bunati Bulk Terminal,8726,Bunati,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+290,8217,Basuo Pt Bulk Terminal,6654,Basuo Pt,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+291,14492,Nacala Anchorage,6574,Nacala,166,Mozambique,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+292,13382,Longshan Shipyard,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+293,9133,Abbot Point,9133,Abbot Point,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+294,8617,Saldanha Bay Bulk Terminal,3919,Saldanha Bay,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+295,15079,Luderitz Bulk Terminal,7280,Luderitz,167,Namibia,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+296,8499,Campos Basin Bulk Terminal,3231,Campos Basin,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+297,6431,Rio De Janeiro Bay Anchorage,3242,Rio De Janeiro,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+298,8164,Tarakan Island Bulk Terminal,6678,Tarakan Island,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+299,8104,Caofeidian Bulk Terminal,3286,Caofeidian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+300,14443,Hadong Power Station,8781,Kwangyang,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+301,14479,Ningbo Iron & Steel,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+302,14895,Gopalpur,14895,Gopalpur,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+303,9527,Ponta Do Ubu Bulk Terminal,9071,Ponta Do Ubu,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+304,9310,Matsuura Power Station,8854,Matsuura,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+305,6843,Okpo Anchorage,6615,Okpo/Geoje,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+306,16698,Tubarao Iron Ore Terminal,12770,Tubarao,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+307,9239,Pohang POSCO Steel Plant,8783,Pohang,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+308,8783,Pohang,8783,Pohang,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+309,9194,Lubuk Tutung Coal Terminal,8738,Lubuk Tutung,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+310,8098,Pengerang Terminal Bulk Terminal,7329,Pengerang Terminal,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+311,7329,Pengerang Terminal,7329,Pengerang Terminal,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+312,7212,Lanshan Anchorage,6382,Rizhao - Lanshan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+313,14426,Dalrymple Bay Coal Terminal,9134,Hay Point,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+314,3714,Balboa,3714,Balboa,180,Panama,24598,West Coast Central America,38,West Coast Central America,111,West Coast Central America,85,Pacific America
+315,9298,Ishigaki Bulk Terminal,8842,Ishigaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+316,9589,Abbot Point Bulk Terminal,9133,Abbot Point,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+317,8564,Vung Tau Bulk Terminal,3908,Vung Tau,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+318,3908,Vung Tau,3908,Vung Tau,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+319,8754,Taboneo,8754,Taboneo,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+320,12959,Zhoushan Changhong International Shipyard,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+321,8103,Bayuquan Bulk Terminal,6649,Bayuquan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+322,3308,Shanghai,3308,Shanghai,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+323,9260,Baosteel Majishan Ore Transit Terminal,8804,Majishan,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+324,8244,Shanghai Bulk Terminal,3308,Shanghai,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+325,9248,Kemen Bulk Terminal,8792,Kemen,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+326,14429,Port Hedland Anchorage,3210,Port Hedland,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+327,3210,Port Hedland,3210,Port Hedland,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+328,6644,Qushan Island,6644,Qushan Island,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+329,14440,Chiba Nippon Steel Plant,11817,Kisarazu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+330,15111,Hososhima Bulk Terminal,11921,Hososhima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+331,14450,Oita Nippon Steel Plant,3585,Oita,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+332,3585,Oita,3585,Oita,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+333,12770,Tubarao,12770,Tubarao,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+334,16639,Dalian Port Ore Terminal,3288,Dalian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+335,14731,Ba Ngoi Bulk Terminal,14729,Ba Ngoi,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+336,9141,Eregli Bulk Terminal,8685,Eregli,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+337,8685,Eregli,8685,Eregli,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+338,9142,Eren Bulk Terminal,8686,Eren,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+339,8686,Eren,8686,Eren,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+340,8232,Xiamen Bulk Terminal,3311,Xiamen,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+341,3311,Xiamen,3311,Xiamen,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+342,3731,San Nicolas (Peru),3731,San Nicolas (Peru),181,Peru,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+343,14682,Cam Pha,14682,Cam Pha,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+344,8612,Cape Town Bulk Terminal,3913,Cape Town,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+345,14587,Ferroport Iron Ore Terminal,13305,Porto do Acu,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+346,13305,Porto do Acu,13305,Porto do Acu,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+347,15002,Yangpu Bulk Terminal,3312,Yangpu,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+348,8641,Sohar Bulk Terminal,3713,Sohar,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+349,14543,Vale Oman,3713,Sohar,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+350,11836,Formosa Ha Tinh Steel Corporation,11835,Vung Ang,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+351,15942,Dung Quat Bulk Terminal,3906,Dung Quat,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+352,3906,Dung Quat,3906,Dung Quat,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+353,8694,Karabiga,8694,Karabiga,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+354,8838,Higashi-harima,8838,Higashi-harima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+355,9254,Zhangzhou Bulk Terminal,8798,Zhangzhou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+356,15443,Bundaberg Bulk Terminal,14982,Bundaberg,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+357,16366,Queensland Bulk Handling (QBH) Coal Terminal,3203,Brisbane,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+358,3241,Pecem,3241,Pecem,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+359,9531,Salvador (Bahia) Bulk Terminal,9075,Salvador (Bahia),38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+360,16777,Meulaboh Anchorage,16776,Meulaboh,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+361,8154,Malacca Srt. In Bulk Terminal,6463,Malacca Srt. In,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+362,15351,Malahayati Bulk Terminal,14890,Malahayati,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+363,8680,Las Palmas Bulk Terminal (Spain),3390,Las Palmas,75,Spain,25007,North West Africa,37,West Africa,25018,Africa,25027,Africa
+364,15162,El-Dekheila Bulk Terminal,12028,El-Dekheila,72,Egypt,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+365,8505,Pecem Bulk Terminal,3241,Pecem,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+366,16857,ArcelorMittal Tubarao Steel Plant,12771,Praia Mole,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+367,12771,Praia Mole,12771,Praia Mole,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+368,13013,Ponta Da Madeira,13013,Ponta Da Madeira,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+369,3756,Constantza,3756,Constantza,196,Romania,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+370,9180,Benete Bay Bulk Terminal,8724,Benete Bay,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+371,13383,Zhoushan Xinya Ship Repair,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+372,3665,Labuan,3665,Labuan,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+373,16773,Sangkulirang Coal Terminal,16768,Sangkulirang,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+374,5320,Mmhe Shipyard,3669,Pasir Gudang,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+375,3825,Taichung,3825,Taichung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+376,14455,Kaohsiung China Steel Plant,3821,Kaohsiung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+377,14456,Taichung China Steel Plant,3825,Taichung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+378,8243,Qushan Island Bulk Terminal,6644,Qushan Island,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+379,8248,Zhangjiagang Bulk Terminal,3316,Zhangjiagang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+380,14434,Stanley Point (Roy Hill),3210,Port Hedland,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+381,15344,Garongkong Bulk Terminal,14883,Garongkong,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+382,15401,Binhai Bulk Terminal,14940,Binhai,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+383,3156,Mina Saqr,3156,Mina Saqr,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+384,9357,Isdemir Bulk Terminal,8901,Isdemir,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+385,16744,Nouadhibou SNIM Terminal,3639,Nouadhibou,158,Mauritania,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+386,8337,Taranto Bulk Terminal,3564,Taranto,117,Italy,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+387,3564,Taranto,3564,Taranto,117,Italy,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+388,14995,Broome Bulk Terminal,3211,Broome,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+389,11822,Longyan Bulk Terminal,11821,Longyan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+390,15326,Kochi Bulk Terminal,14865,Kochi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+391,9294,Kakogawa Kobelco Steel Works,8838,Higashi-harima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+392,3753,Mesaieed,3753,Mesaieed,194,Qatar,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+393,3742,Gdansk,3742,Gdansk,186,Poland,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+394,8360,Long Beach Bulk Terminal,3857,Long Beach,240,United States,24741,US West Coast,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+395,8827,Villanueva,8827,Villanueva,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+396,14646,Pyeongtaek Anchorage,3601,Pyeongtaek,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+397,9355,Hadera Bulk Terminal,8899,Hadera,110,Israel,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+398,8899,Hadera,8899,Hadera,110,Israel,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+399,8356,Sept-Iles Bulk Terminal,3264,Sept-Iles,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+400,14544,Jindal Shadeed Iron and Steel,3713,Sohar,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+401,13391,Qingdao Qianjin Shipyard,3303,Qingdao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+402,15091,Oranjestad Bulk Terminal,11866,Oranjestad,21,Aruba,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+403,6577,Flushing,6577,Flushing,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+404,15444,Cape Flattery Bulk Terminal,14983,Cape Flattery,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+405,9413,San Juan De La Costa Bulk Terminal,8957,San Juan De La Costa,164,Mexico,24742,West Coast Mexico,39,West Coast Mexico,112,West Coast Mexico,85,Pacific America
+406,8396,Santa Marta Bulk Terminal,3326,Santa Marta,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+407,15934,Astican Shipyard,3390,Las Palmas,75,Spain,25007,North West Africa,37,West Africa,25018,Africa,25027,Africa
+408,8426,Hamburg Bulk Terminal,3343,Hamburg,64,Germany,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+409,15290,Floro Bulk Terminal,14829,Floro,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+410,3775,Jubail,3775,Jubail,200,Saudi Arabia,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+411,14465,Hyundai Steel Works,16863,Dangjin,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+412,14436,Pohang Bulk Anchorage,8783,Pohang,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+413,3195,Port Kembla,3195,Port Kembla,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+414,3204,Gladstone,3204,Gladstone,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+415,8601,Esperance Bulk Terminal,3197,Esperance,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+416,16201,Montoir,16201,Montoir,82,France,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+417,16756,Curtis Bay CSX Coal Terminal,3837,Baltimore,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+418,8306,Piraeus Bulk Terminal,7385,Piraeus,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+419,8568,Ennore Bulk Terminal,3520,Ennore,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+420,3520,Ennore,3520,Ennore,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+421,8139,Pascagoula Bulk Terminal,3867,Pascagoula,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+422,3861,Mobile,3861,Mobile,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+423,6678,Tarakan Island,6678,Tarakan Island,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+424,9056,Navlakhi,9056,Navlakhi,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+425,12013,Nagoya,12013,Nagoya,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+426,15335,Shingu Bulk Terminal,14874,Shingu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+427,9323,Tachibana Power Station,8867,Tachibana,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+428,14442,Fukuyama JFE Steel Plant,8832,Fukuyama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+429,8832,Fukuyama,8832,Fukuyama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+430,7215,Jinhai Heavy Industry,7217,Jinhai Heavy Industries Port,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+431,11817,Kisarazu,11817,Kisarazu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+432,4213,Taichung Anchorage,3825,Taichung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+433,3515,Ashkelon,3515,Ashkelon,110,Israel,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+434,-101,Uncertain,-101,Uncertain,-101,East Mediterranean,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+435,8983,Puerto Drummond,8983,Puerto Drummond,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+436,7344,Taman,7344,Taman,198,Russian Federation,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+437,14663,Zheneng Liuheng Power Station,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+438,8083,Colon Bulk Terminal,3716,Colon,180,Panama,24600,East Coast Central America,10,East Coast Central America,25019,Atlantic America,25028,West
+439,3648,Lazaro Cardenas,3648,Lazaro Cardenas,164,Mexico,24742,West Coast Mexico,39,West Coast Mexico,112,West Coast Mexico,85,Pacific America
+440,13072,Cape Preston Sino Iron Terminal,13071,Cape Preston,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+441,14433,Anderson Point (FMG),3210,Port Hedland,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+442,9255,Changshu Bulk Terminal,8799,Changshu,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+443,8799,Changshu,8799,Changshu,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+444,16765,Sacomar Iron Ore Terminal,3168,Namibe,15,Angola,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+445,9570,San Pedro (CI) Bulk Terminal,9114,San Pedro (CI),51,Cote d'Ivoire,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+446,15313,Greenville Bulk Terminal,14852,Greenville,138,Liberia,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+447,12890,Bunyu Bulk Terminal,6680,Bunyu,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+448,6702,Huasco,6702,Huasco,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+449,5304,Riga Shipyard,3619,Riga,142,Latvia,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+450,8277,Sasebo Bulk Terminal,6562,Sasebo,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+451,5339,Forgacs Cairncross Dockyard,3203,Brisbane,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+452,3601,Pyeongtaek,3601,Pyeongtaek,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+453,9215,Cockatoo Island Bulk Terminal,8759,Cockatoo Island,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+454,6979,Shidao Shipyard,6648,Shidao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+455,6648,Shidao,6648,Shidao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+456,16755,Huasco Pellet Plant,6702,Huasco,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+457,9536,Ancud Bulk Terminal,9080,Ancud,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+458,9315,Naha Bulk Terminal,8859,Naha,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+459,9257,Dagang Bulk Terminal,8801,Dagang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+460,8287,Yokohama Bulk Terminal,3597,Yokohama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+461,3597,Yokohama,3597,Yokohama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+462,14689,Whyalla Anchorage,9123,Whyalla,20,Australia,24774,Australia South,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+463,15260,Sovgavan Bulk Terminal,14799,Sovgavan,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+464,8203,Vanino Bulk Terminal,6397,Vanino,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+465,10803,Dung Quat Shipyard,3906,Dung Quat,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+466,8259,Taichung Bulk Terminal,3825,Taichung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+467,8260,Taipei Bulk Terminal,3824,Taipei,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+468,6530,Diego Garcia,6530,Diego Garcia,113,British Indian Ocean Territory,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+469,3615,Colombo,3615,Colombo,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+470,3518,Cochin,3518,Cochin,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+471,3712,Salalah,3712,Salalah,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+472,3616,Trincomalee,3616,Trincomalee,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+473,3215,Chittagong,3215,Chittagong,26,Bangladesh,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+474,3669,Pasir Gudang,3669,Pasir Gudang,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+475,14950,Port Alberni,14950,Port Alberni,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+476,8941,Roberts Bank,8941,Roberts Bank,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+477,3376,Suez,3376,Suez,72,Egypt,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+478,3734,Lae,3734,Lae,183,Papua New Guinea,24708,Papua New Guinea,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+479,3198,Sydney,3198,Sydney,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+480,11807,Susaki,11807,Susaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+481,3892,Montevideo,3892,Montevideo,241,Uruguay,24769,Argentina & Uruguay,15,East Coast South America,25019,Atlantic America,25028,West
+482,14888,Bengkulu,14888,Bengkulu,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+483,14853,Abashiri,14853,Abashiri,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+484,14963,Chemainus,14963,Chemainus,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+485,8747,Pontianak,8747,Pontianak,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+486,3293,Hong Kong,3293,Hong Kong,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+487,6519,Jaigarh,6519,Jaigarh,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+488,3640,Malta,3640,Malta,160,Malta,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+489,3837,Baltimore,3837,Baltimore,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+490,3641,Valletta,3641,Valletta,160,Malta,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+491,3773,Jeddah,3773,Jeddah,200,Saudi Arabia,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+492,11873,Argentia,11873,Argentia,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+493,8990,Annapolis,8990,Annapolis,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+494,7345,Gibraltar,7345,Gibraltar,90,Gibraltar,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+495,3663,Kuantan,3663,Kuantan,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+496,8744,Muara Satui,8744,Muara Satui,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+497,8723,Kendawangan,8723,Kendawangan,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+498,14866,Kin,14866,Kin,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+499,8819,Port Nonoc,8819,Port Nonoc,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+500,3203,Brisbane,3203,Brisbane,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+501,8732,Kijang,8732,Kijang,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+502,3603,Yosu,3603,Yosu,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+503,6497,Batam Island,6497,Batam Island,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+504,16751,Boffa,16751,Boffa,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+505,3642,Port Louis,3642,Port Louis,161,Mauritius,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+506,7346,Kozmino,7346,Kozmino,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+507,3602,Ulsan,3602,Ulsan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+508,9102,Galle,9102,Galle,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+509,3523,Kakinada,3523,Kakinada,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+510,14411,Tulear,14411,Tulear,149,Madagascar,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+511,7338,Vatika Bay,7338,Vatika Bay,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+512,9061,Ratnagiri,9061,Ratnagiri,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+513,6669,Duqm,6669,Duqm,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+514,6614,Gunsan,6614,Gunsan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+515,6617,Tongyeong,6617,Tongyeong,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+516,6612,Gamcheon/busan,6612,Gamcheon/busan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+517,3917,Port Elizabeth,3917,Port Elizabeth,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+518,9077,Guaiba,9077,Guaiba,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+519,3304,Qinhuangdao,3304,Qinhuangdao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+520,3762,Nakhodka,3762,Nakhodka,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+521,3717,Cristobal,3717,Cristobal,180,Panama,24600,East Coast Central America,10,East Coast Central America,25019,Atlantic America,25028,West
+522,3739,Subic Bay,3739,Subic Bay,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+523,3596,Yokkaichi,3596,Yokkaichi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+524,14546,Luhuashan,14546,Luhuashan,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+525,8802,Danyang Wei,8802,Danyang Wei,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+526,6589,Dutch Harbor,6589,Dutch Harbor,240,United States,24719,Alaska,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+527,8953,Eureka,8953,Eureka,240,United States,24741,US West Coast,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+528,3153,Fujairah,3153,Fujairah,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+529,3675,Maputo,3675,Maputo,166,Mozambique,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+530,6482,Hambantota,6482,Hambantota,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+531,3264,Sept-Iles,3264,Sept-Iles,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+532,9113,Pepel,9113,Pepel,210,Sierra Leone,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+533,8743,Muara Pantai,8743,Muara Pantai,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+534,8750,Samarinda,8750,Samarinda,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+535,8719,Adang Bay,8719,Adang Bay,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+536,8821,San Fernando (PH),8821,San Fernando (PH),184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+537,3755,La Reunion,3755,La Reunion,195,Reunion,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+538,8896,Chios,8896,Chios,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+539,14817,Zamboanga,14817,Zamboanga,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+540,3166,Luanda,3166,Luanda,15,Angola,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+541,3459,Takoradi,3459,Takoradi,89,Ghana,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+542,9130,Ehoala,9130,Ehoala,149,Madagascar,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+543,8918,Bar,8918,Bar,147,Montenegro,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+544,3274,Caldera (Chile),3274,Caldera (Chile),53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+545,9087,Punta de San Cosme,9087,Punta de San Cosme,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+546,6567,Mokpo,6567,Mokpo,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+547,3322,Puerto Bolivar,3322,Puerto Bolivar,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+548,15879,Sungai Linggi,15879,Sungai Linggi,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+549,3275,Guayacan,3275,Guayacan,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+550,6721,Lumut,6721,Lumut,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+551,14690,North Pulau Laut,14690,North Pulau Laut,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+552,6404,Dubai,6404,Dubai,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+553,14736,Vinh Tan,14736,Vinh Tan,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+554,9059,Port Okha,9059,Port Okha,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+555,8701,Kuching,8701,Kuching,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+556,3387,Gijon,3387,Gijon,75,Spain,24709,Iberian Atlantic Coast,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+557,14824,Glomfjord,14824,Glomfjord,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+558,8709,Narvik,8709,Narvik,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+559,8908,Lemnos Island,8908,Lemnos Island,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+560,8870,Tokachi,8870,Tokachi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+561,3267,Vancouver (CA),3267,Vancouver (CA),45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+562,11815,Matsushima (Nagasaki),11815,Matsushima (Nagasaki),121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+563,3817,Tekirdag,3817,Tekirdag,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+564,3507,Tanjung Bara,3507,Tanjung Bara,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+565,3600,Incheon,3600,Incheon,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+566,3722,Callao,3722,Callao,181,Peru,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+567,3289,Dongguan,3289,Dongguan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+568,6616,Busan,6616,Busan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+569,16675,Porto Sudeste,16675,Porto Sudeste,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+570,12689,Qui Nhon,12689,Qui Nhon,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+571,8726,Bunati,8726,Bunati,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+572,6654,Basuo Pt,6654,Basuo Pt,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+573,6574,Nacala,6574,Nacala,166,Mozambique,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+574,7280,Luderitz,7280,Luderitz,167,Namibia,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+575,3231,Campos Basin,3231,Campos Basin,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+576,3242,Rio De Janeiro,3242,Rio De Janeiro,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+577,9071,Ponta Do Ubu,9071,Ponta Do Ubu,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+578,8854,Matsuura,8854,Matsuura,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+579,6615,Okpo/Geoje,6615,Okpo/Geoje,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+580,8738,Lubuk Tutung,8738,Lubuk Tutung,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+581,9134,Hay Point,9134,Hay Point,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+582,8842,Ishigaki,8842,Ishigaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+583,11921,Hososhima,11921,Hososhima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+584,14729,Ba Ngoi,14729,Ba Ngoi,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+585,3913,Cape Town,3913,Cape Town,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+586,3312,Yangpu,3312,Yangpu,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+587,3713,Sohar,3713,Sohar,179,Oman,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+588,8798,Zhangzhou,8798,Zhangzhou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+589,14982,Bundaberg,14982,Bundaberg,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+590,9075,Salvador (Bahia),9075,Salvador (Bahia),38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+591,16776,Meulaboh,16776,Meulaboh,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+592,6463,Malacca Srt. In,6463,Malacca Srt. In,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+593,14890,Malahayati,14890,Malahayati,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+594,3390,Las Palmas,3390,Las Palmas,75,Spain,25007,North West Africa,37,West Africa,25018,Africa,25027,Africa
+595,8724,Benete Bay,8724,Benete Bay,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+596,16768,Sangkulirang,16768,Sangkulirang,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+597,14883,Garongkong,14883,Garongkong,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+598,14940,Binhai,14940,Binhai,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+599,3639,Nouadhibou,3639,Nouadhibou,158,Mauritania,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+600,3211,Broome,3211,Broome,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+601,11821,Longyan,11821,Longyan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+602,14865,Kochi,14865,Kochi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+603,3857,Long Beach,3857,Long Beach,240,United States,24741,US West Coast,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+604,11866,Oranjestad,11866,Oranjestad,21,Aruba,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+605,14983,Cape Flattery,14983,Cape Flattery,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+606,8957,San Juan De La Costa,8957,San Juan De La Costa,164,Mexico,24742,West Coast Mexico,39,West Coast Mexico,112,West Coast Mexico,85,Pacific America
+607,3326,Santa Marta,3326,Santa Marta,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+608,14829,Floro,14829,Floro,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+609,3197,Esperance,3197,Esperance,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+610,7385,Piraeus,7385,Piraeus,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+611,3867,Pascagoula,3867,Pascagoula,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+612,14874,Shingu,14874,Shingu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+613,8867,Tachibana,8867,Tachibana,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+614,7217,Jinhai Heavy Industries Port,7217,Jinhai Heavy Industries Port,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+615,3716,Colon,3716,Colon,180,Panama,24600,East Coast Central America,10,East Coast Central America,25019,Atlantic America,25028,West
+616,3168,Namibe,3168,Namibe,15,Angola,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+617,9114,San Pedro (CI),9114,San Pedro (CI),51,Cote d'Ivoire,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+618,14852,Greenville,14852,Greenville,138,Liberia,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+619,6680,Bunyu,6680,Bunyu,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+620,3619,Riga,3619,Riga,142,Latvia,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+621,6562,Sasebo,6562,Sasebo,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+622,8759,Cockatoo Island,8759,Cockatoo Island,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+623,9080,Ancud,9080,Ancud,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+624,8859,Naha,8859,Naha,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+625,9123,Whyalla,9123,Whyalla,20,Australia,24774,Australia South,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+626,14799,Sovgavan,14799,Sovgavan,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+627,6397,Vanino,6397,Vanino,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+628,3824,Taipei,3824,Taipei,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+629,9270,Mariveles Bulk Terminal,8814,Mariveles,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+630,8257,Mailiao Bulk Terminal,3823,Mailiao,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+631,15402,Shenhu Bulk Terminal,14941,Shenhu,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+632,8293,Ashkelon Bulk Terminal,3515,Ashkelon,110,Israel,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+633,8591,Namibe Bulk Terminal,3168,Namibe,15,Angola,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+634,16660,Huanghua Coal Silos,3294,Huanghua,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+635,14694,Shakhtersk Anchorage,8803,Shakhtersk,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+645,8281,Tokuyama Bulk Terminal,3592,Tokuyama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+646,8847,Kamaishi,8847,Kamaishi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+672,3570,Chiba,3570,Chiba,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+678,15347,Biringkassi Bulk Terminal,14886,Biringkassi,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+682,9250,Shanwei Bulk Terminal,8794,Shanwei,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+684,9160,Dandong Bulk Terminal,8704,Dandong,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+698,8301,Iskenderun Bulk Terminal,7352,Iskenderun,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+705,14676,Tianjin Yuanhang Ore Terminal,3310,Tianjin,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+711,15396,Yu Huan Terminal Bulk Terminal,14935,Yu Huan Terminal,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+734,15277,Tabaco Bulk Terminal,14816,Tabaco,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+737,9053,Jakhau,9053,Jakhau,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+739,3626,Misurata,3626,Misurata,143,Libya,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+741,16697,Itaguai Terminal (CPBS),9067,Itaguai,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+746,8584,Freetown Bulk Terminal,3796,Freetown,210,Sierra Leone,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+747,16730,Konta Ashapura Terminal,16729,Konta,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+750,8296,Ceyhan Bulk Terminal,3812,Ceyhan,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+751,7352,Iskenderun,7352,Iskenderun,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+758,13020,Taean Anchorage,13018,Taean,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+764,14617,Tanah Kuning Bulk Terminal,14615,Tanah Kuning,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+770,9455,Dominion Terminal Associates,8999,Newport News (VA),240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+774,8330,Misurata Bulk Terminal,3626,Misurata,143,Libya,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+791,8305,Mersin Bulk Terminal,3816,Mersin,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+792,8653,Yanbu Bulk Terminal,3780,Yanbu,200,Saudi Arabia,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+793,3794,Singapore,3794,Singapore,205,Singapore,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+803,6971,Luoyang Shipyard,6647,Luoyuan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+808,8593,Pointe Noire Bulk Terminal,3269,Pointe Noire,49,Congo,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+813,14464,Castle Peak Power Station,3293,Hong Kong,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+815,6962,Xin Hui Scrapyard North,6672,Xin Hui,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+816,8224,Guangzhou Bulk Terminal,3291,Guangzhou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+817,8269,Muroran Nippon Steel Plant,3581,Muroran,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+818,8273,Onahama Bulk Terminal,3586,Onahama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+828,3581,Muroran,3581,Muroran,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+829,8279,Shibushi Bulk Terminal,3591,Shibushi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+835,16206,Davant Anchorage,8713,Davant,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+836,16219,Empire Stevedoring Terminal NOLA,3863,New Orleans,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+839,16364,Port Kembla Coal Terminal,3195,Port Kembla,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+840,3575,Kawasaki,3575,Kawasaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+842,16688,Koh Sichang Bulk Terminal,16687,Koh Sichang,225,Thailand,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+856,9360,Kalamata Bulk Terminal,8904,Kalamata,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+857,3688,Amsterdam,3688,Amsterdam,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+860,15315,Aburatsu Bulk Terminal,14854,Aburatsu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+864,14445,Higashi-harima Anchorage,8838,Higashi-harima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+868,16732,Martas Bulk Terminal,16731,Martas,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+870,9325,Tobata Nippon Steel Plant,8869,Tobata,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+871,8869,Tobata,8869,Tobata,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+872,6479,Krakatau Steel Group Terminal,3490,Cigading,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+873,3490,Cigading,3490,Cigading,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+881,3580,Mizushima,3580,Mizushima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+882,14439,Chiba JFE Steel Plant,3570,Chiba,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+883,14448,Kurashiki JFE Steel Plant,3580,Mizushima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+886,9283,Villanueva Bulk Terminal,8827,Villanueva,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+887,6413,Hyundai Shipyard,3602,Ulsan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+891,13078,Moroni Bulk Terminal,12010,Moroni,126,Comoros,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+896,16874,Skardon River Bulk Terminal,16873,Skardon River,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+899,8145,Balikpapan Bulk Terminal,3486,Balikpapan,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+905,15270,Currimao Bulk Terminal,14809,Currimao,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+910,8237,Changzhou Bulk Terminal,3287,Changzhou,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+911,3287,Changzhou,3287,Changzhou,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+913,9246,Hongshan Bulk Terminal,8790,Hongshan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+919,8613,Durban Bulk Terminal,3914,Durban,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+921,14500,Ho Chi Minh Anchorage,3907,Ho Chi Minh City,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+926,13023,Xinsha Bulk Terminal,13022,Xinsha,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+933,14446,Keihin JFE Steel Plant,3575,Kawasaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+935,14454,"Tokai, Aichi Nippon Steel Plant",12013,Nagoya,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+938,8661,Nacala Bulk Terminal,6574,Nacala,166,Mozambique,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+940,8254,Subic Bay Bulk Terminal,3739,Subic Bay,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+947,8256,Keelung Bulk Terminal,3822,Keelung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+950,9590,Hay Point BHP Coal Terminal,9134,Hay Point,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+954,9044,IJmuiden,9044,IJmuiden,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+956,9297,Hitachinaka Power Station,8841,Hitachinaka,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+958,8451,Portland (UK) Bulk Terminal,7291,Portland (UK),84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+959,16649,AMMC Port Cartier Pellet Plant,6538,Cartier,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+961,16349,Hakodate Dock Co. Shipyard,11811,Hakodate,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+962,15331,Ofunato Bulk Terminal,14870,Ofunato,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+963,9303,Kamaishi Bulk Terminal,8847,Kamaishi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+964,14453,Wakayama Nippon Steel Plant,3595,Wakayama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+965,3595,Wakayama,3595,Wakayama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+966,6647,Luoyuan,6647,Luoyuan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+969,15074,Calaca Bulk Terminal,7056,Calaca,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+970,15071,Lahad Datu East Bulk Terminal,7041,Lahad Datu East,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+975,9271,Masinloc Bulk Terminal,8815,Masinloc,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+976,6922,Wakayama Shipyard,6606,"Yura, Wakayama",121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+984,8575,Tuticorin Bulk Terminal,3531,Tuticorin,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+986,15070,Kemaman Bulk Terminal,7033,Kemaman,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+989,14678,Tianjin Yuanhang International Ore Terminal,3310,Tianjin,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+992,4215,Bayuquan Anchorage,6649,Bayuquan,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+993,8614,East London Bulk Terminal,3915,East London,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+996,8051,Mangalia Bulk Terminal,6581,Mangalia,196,Romania,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+997,9145,Ust Dunaysk Bulk Terminal,8689,Ust Dunaysk,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+999,3802,Ban Map Ta Phut,3802,Ban Map Ta Phut,225,Thailand,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+1002,9159,Telok Anson Bulk Terminal,8703,Telok Anson,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1003,6793,Samkang Shipyard,6631,Georyu-Myeon,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+1008,8355,Quebec Bulk Terminal,3262,Quebec,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+1024,16190,Norfolk Lambert's Point,3866,Norfolk,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+1025,3812,Ceyhan,3812,Ceyhan,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1036,14672,Salaya Bulk Terminal,14671,Salaya,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+1037,14671,Salaya,14671,Salaya,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+1039,15867,Kandla Anchorage,3524,Kandla,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+1044,9195,Makassar Bulk Terminal,8739,Makassar,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1045,14428,Hay Point Anchorage,9134,Hay Point,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+1047,3438,Immingham,3438,Immingham,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1051,8662,Port Louis Bulk Terminal,3642,Port Louis,161,Mauritius,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+1054,16849,ArcelorMittal Fos Sur Mer Steel Plant,7348,Fos,82,France,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1055,7348,Fos,7348,Fos,82,France,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1059,9212,Ternate Bulk Terminal,8756,Ternate,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1062,16653,Jiangyin Sulong Coal Power Plant,3296,Jiangyin,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+1063,6920,Yokosuka Shipyard,6564,Yokosuka,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1064,8263,Hirohata Nippon Steel Plant,6558,Hirohata,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1065,8284,Ube Bulk Terminal,3594,Ube,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1066,15188,Manokwari Bulk Terminal,14538,Manokwari,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1067,16798,Ban Map Ta Phut BLCP Power Station,3802,Ban Map Ta Phut,225,Thailand,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+1068,8324,Koper Bulk Terminal,3795,Koper,207,Slovenia,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1069,3795,Koper,3795,Koper,207,Slovenia,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1070,11828,Samcheok Power Station,11827,Hosan,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+1074,8266,Kobe Bulk Terminal,6383,Kobe,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1075,8671,Gladstone Bulk Terminal,3204,Gladstone,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+1078,8095,Miri Bulk Terminal,3668,Miri,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1079,8097,Penang Bulk Terminal,3670,Penang,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1080,15246,Anping Bulk Terminal,14785,Anping,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+1081,5335,Yulian Dockyards Shekou,3291,Guangzhou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1082,15054,"Noro, New Georgia Bulk Terminal",6451,"Noro, New Georgia",201,Solomon Islands,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+1083,12891,Vostochny Bulk Terminal,11954,Vostochny,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+1085,3592,Tokuyama,3592,Tokuyama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1092,14886,Biringkassi,14886,Biringkassi,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1093,8794,Shanwei,8794,Shanwei,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1098,14935,Yu Huan Terminal,14935,Yu Huan Terminal,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+1102,14816,Tabaco,14816,Tabaco,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1104,3796,Freetown,3796,Freetown,210,Sierra Leone,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+1105,16729,Konta,16729,Konta,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+1109,14615,Tanah Kuning,14615,Tanah Kuning,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1111,8999,Newport News (VA),8999,Newport News (VA),240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+1118,3816,Mersin,3816,Mersin,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1119,3780,Yanbu,3780,Yanbu,200,Saudi Arabia,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+1124,3269,Pointe Noire,3269,Pointe Noire,49,Congo,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+1126,6672,Xin Hui,6672,Xin Hui,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1127,3291,Guangzhou,3291,Guangzhou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1128,3586,Onahama,3586,Onahama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1130,3591,Shibushi,3591,Shibushi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1132,8713,Davant,8713,Davant,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+1133,3863,New Orleans,3863,New Orleans,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+1137,8904,Kalamata,8904,Kalamata,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1138,14854,Aburatsu,14854,Aburatsu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1141,16731,Martas,16731,Martas,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+1146,12010,Moroni,12010,Moroni,126,Comoros,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+1148,16873,Skardon River,16873,Skardon River,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+1149,3486,Balikpapan,3486,Balikpapan,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1152,14809,Currimao,14809,Currimao,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1155,8790,Hongshan,8790,Hongshan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1158,3914,Durban,3914,Durban,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+1159,3907,Ho Chi Minh City,3907,Ho Chi Minh City,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+1171,3822,Keelung,3822,Keelung,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+1174,8841,Hitachinaka,8841,Hitachinaka,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1175,7291,Portland (UK),7291,Portland (UK),84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1176,6538,Cartier,6538,Cartier,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+1178,11811,Hakodate,11811,Hakodate,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1179,14870,Ofunato,14870,Ofunato,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1182,7056,Calaca,7056,Calaca,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1183,7041,Lahad Datu East,7041,Lahad Datu East,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1184,8815,Masinloc,8815,Masinloc,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1185,6606,"Yura, Wakayama",6606,"Yura, Wakayama",121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1190,3531,Tuticorin,3531,Tuticorin,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+1192,7033,Kemaman,7033,Kemaman,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1194,3915,East London,3915,East London,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+1196,6581,Mangalia,6581,Mangalia,196,Romania,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+1197,8689,Ust Dunaysk,8689,Ust Dunaysk,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+1199,8703,Telok Anson,8703,Telok Anson,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1200,6631,Georyu-Myeon,6631,Georyu-Myeon,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+1202,3262,Quebec,3262,Quebec,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+1206,3866,Norfolk,3866,Norfolk,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+1209,8739,Makassar,8739,Makassar,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1211,8756,Ternate,8756,Ternate,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1212,6564,Yokosuka,6564,Yokosuka,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1213,6558,Hirohata,6558,Hirohata,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1214,3594,Ube,3594,Ube,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1215,14538,Manokwari,14538,Manokwari,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1218,6383,Kobe,6383,Kobe,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1220,3668,Miri,3668,Miri,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1221,3670,Penang,3670,Penang,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1222,14785,Anping,14785,Anping,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+1223,6451,"Noro, New Georgia",6451,"Noro, New Georgia",201,Solomon Islands,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+1224,11954,Vostochny,11954,Vostochny,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+1225,16864,Dangjin Bulk Terminal,16863,Dangjin,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+1228,4226,Kashima Anchorage,3574,Kashima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1229,4587,Tomato-Atsuma Power Plant,3593,Tomakomai,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1249,9268,Lugait Bulk Terminal,8812,Lugait,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1267,9036,Port Talbot,9036,Port Talbot,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1284,6952,Port Kembla Bluescope Steel,3195,Port Kembla,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+1307,10802,Tsuneishi/Numakuma Shipyard,8874,Tsuneishi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1341,8268,Mizushima Bulk Terminal,3580,Mizushima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1353,3662,Klang,3662,Klang,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1354,7320,Mina Zayed,7320,Mina Zayed,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+1375,15274,Santa Cruz Bulk Terminal,14813,Santa Cruz,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1378,14612,Muara Banyuasin Anchorage,8755,Muara Banyuasin,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1385,8528,Huasco Bulk Terminal,6702,Huasco,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+1396,8366,Lazaro Cardenas Bulk Terminal,3648,Lazaro Cardenas,164,Mexico,24742,West Coast Mexico,39,West Coast Mexico,112,West Coast Mexico,85,Pacific America
+1414,8090,Klang Bulk Terminal,3662,Klang,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+1416,6931,Qinhuangdao Anchorage,3304,Qinhuangdao,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+1428,9252,Xiaocuo Bulk Terminal,8796,Xiaocuo,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1429,8796,Xiaocuo,8796,Xiaocuo,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1433,7406,ZTHI Shipyard,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+1437,8258,Suao Bulk Terminal,7201,Suao,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+1446,8169,Port Moresby Bulk Terminal,3736,Port Moresby,183,Papua New Guinea,24708,Papua New Guinea,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+1464,6827,Hyundai Samho Shipyard,6567,Mokpo,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+1480,9267,Cebu Bulk Terminal,8811,Cebu,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1491,8504,Paranagua Bulk Terminal,3240,Paranagua,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+1492,15020,Tuban Bulk Terminal,3510,Tuban,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1494,15143,Da Nang Bulk Terminal,12001,Da Nang,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+1501,9500,Ijmuiden Steelworks,9044,IJmuiden,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1502,8458,Amsterdam Bulk Terminal,3688,Amsterdam,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1504,8632,Mesaieed Bulk Terminal,3753,Mesaieed,194,Qatar,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+1512,9396,Prince Rupert Bulk Terminal,8940,Prince Rupert,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+1516,8351,Cartier Bulk Terminal,6538,Cartier,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+1525,16753,Dhamra Anchorage,9100,Dhamra,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+1530,8450,Plymouth Bulk Terminal,3424,Plymouth,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1534,9280,Semirara Bulk Terminal,8824,Semirara,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1553,9193,Kuala Langsa Bulk Terminal,8737,Kuala Langsa,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1560,6974,COSCO Zhoushan Shipyard,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+1565,9150,Karabiga Bulk Terminal,8694,Karabiga,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+1567,8381,Point Lisas Bulk Terminal,3819,Point Lisas,233,Trinidad and Tobago,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+1568,9302,Kagoshima Bulk Terminal,8846,Kagoshima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1569,9286,Hualien Bulk Terminal,8830,Hualien,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+1580,6794,Sungdong Shipyard,6631,Georyu-Myeon,129,"Korea, Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+1589,8230,Songxia Bulk Terminal,6651,Songxia,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1593,6836,Mitsubishi HI Koyagi Plant Shipyard ,6561,Nagasaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1594,5280,Balboa Dry Dock,3714,Balboa,180,Panama,24598,West Coast Central America,38,West Coast Central America,111,West Coast Central America,85,Pacific America
+1596,8223,Guangao Bulk Terminal,6652,Guangao,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1598,9363,Lattakia Bulk Terminal,8907,Lattakia,219,Syrian Arab Republic,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1601,8250,Limay Bulk Terminal,3737,Limay,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1603,8424,Gdansk Bulk Terminal,3742,Gdansk,186,Poland,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+1610,16655,Guohua Zhoushan Coal Power Plant,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+1614,9592,Midway Islands Bulk Terminal,9136,Midway Islands,239,United States Minor Outlying Islands,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+1623,8618,Walvis Bay Bulk Terminal,3676,Walvis Bay,167,Namibia,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+1626,15892,Kendari Anchorage,15886,Kendari,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1628,8229,Quanzhou Bulk Terminal,3306,Quanzhou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1633,8127,Kirkenes Bulk Terminal,3696,Kirkenes,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+1634,8128,Murmansk Bulk Terminal,3761,Murmansk,198,Russian Federation,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+1635,15343,Moneypoint Bulk Terminal,14882,Moneypoint,109,Ireland,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1636,8453,Tarbert Bulk Terminal,6552,Tarbert,109,Ireland,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1637,6552,Tarbert,6552,Tarbert,109,Ireland,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1640,8627,Jubail Bulk Terminal,3775,Jubail,200,Saudi Arabia,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+1642,4051,Amsterdam Anchorage,3688,Amsterdam,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1654,4275,Algeciras Shipyard,3379,Algeciras,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1655,16202,Montoir Bulk Terminal,16201,Montoir,82,France,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1657,8446,Falmouth Bulk Terminal,3423,Falmouth,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1658,9361,Kali Limenes Bulk Terminal,8905,Kali Limenes,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1659,15414,Magdalen Is Bulk Terminal,14953,Magdalen Is,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+1662,11818,Kisarazu Bulk Terminal,11817,Kisarazu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1664,9288,Fukuyama Bulk Terminal,8832,Fukuyama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1668,5327,Harung Dadong Shipyard,3308,Shanghai,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+1669,14452,Tobata Anchorage,8869,Tobata,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1670,16837,Misumi Power Station,16836,Misumi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1685,9392,Gold River Bulk Terminal,8936,Gold River,240,United States,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+1690,3306,Quanzhou,3306,Quanzhou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1691,8478,Wilhelmshaven Bulk Terminal,3345,Wilhelmshaven,64,Germany,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1692,14684,Cam Pha Anchorage,14682,Cam Pha,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+1697,6972,Lushun Shipyard,6650,Lushun New Pt,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+1698,6650,Lushun New Pt,6650,Lushun New Pt,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+1707,8812,Lugait,8812,Lugait,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1720,8874,Tsuneishi,8874,Tsuneishi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1733,14813,Santa Cruz,14813,Santa Cruz,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1734,8755,Muara Banyuasin,8755,Muara Banyuasin,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1751,7201,Suao,7201,Suao,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+1754,3736,Port Moresby,3736,Port Moresby,183,Papua New Guinea,24708,Papua New Guinea,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+1760,8811,Cebu,8811,Cebu,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1765,3240,Paranagua,3240,Paranagua,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+1766,3510,Tuban,3510,Tuban,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1767,12001,Da Nang,12001,Da Nang,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+1769,8940,Prince Rupert,8940,Prince Rupert,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+1774,3424,Plymouth,3424,Plymouth,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1776,8824,Semirara,8824,Semirara,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1784,8737,Kuala Langsa,8737,Kuala Langsa,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1788,3819,Point Lisas,3819,Point Lisas,233,Trinidad and Tobago,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+1789,8846,Kagoshima,8846,Kagoshima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1790,8830,Hualien,8830,Hualien,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+1796,6651,Songxia,6651,Songxia,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1799,6561,Nagasaki,6561,Nagasaki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1800,6652,Guangao,6652,Guangao,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+1801,8907,Lattakia,8907,Lattakia,219,Syrian Arab Republic,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1803,3737,Limay,3737,Limay,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1807,9136,Midway Islands,9136,Midway Islands,239,United States Minor Outlying Islands,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+1810,3676,Walvis Bay,3676,Walvis Bay,167,Namibia,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+1813,15886,Kendari,15886,Kendari,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1814,3696,Kirkenes,3696,Kirkenes,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+1815,3761,Murmansk,3761,Murmansk,198,Russian Federation,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+1816,14882,Moneypoint,14882,Moneypoint,109,Ireland,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1819,3379,Algeciras,3379,Algeciras,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1820,3423,Falmouth,3423,Falmouth,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1821,8905,Kali Limenes,8905,Kali Limenes,96,Greece,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1822,14953,Magdalen Is,14953,Magdalen Is,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+1825,16836,Misumi,16836,Misumi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+1831,8936,Gold River,8936,Gold River,240,United States,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+1834,3345,Wilhelmshaven,3345,Wilhelmshaven,64,Germany,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1844,8193,Malaga Bulk Terminal,3391,Malaga,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1845,15865,Ceuta Anchorage,3385,Ceuta,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+1846,8674,Port Kembla Bulk Terminal,3195,Port Kembla,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+1847,16356,STX Dalian Shipbuilding Co.,3288,Dalian,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+1858,8492,New Mangalore Bulk Terminal,3528,New Mangalore,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+1889,9165,Narvik Bulk Terminal,8709,Narvik,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+1938,8626,Jebel Ali Bulk Terminal,3157,Jebel Ali,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+1949,8373,Emmastad Bulk Terminal,3336,Emmastad,60,Curacao,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+1957,7221,Ningbo South Anchorage,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+1960,8349,Vancouver (CA) Bulk Terminal,3267,Vancouver (CA),45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+1964,14559,Narvik Anchorage,8709,Narvik,174,Norway,24673,Arctic Ocean & Barents Sea,3,Arctic Ocean & Barents Sea,25021,Baltic / North Sea,25028,West
+1973,6805,Keppel Subic Shipyard,3739,Subic Bay,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+1978,8461,Flushing Bulk Terminal,6577,Flushing,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+1989,8148,Cilacap Bulk Terminal,3491,Cilacap,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+1991,3386,Ferrol,3386,Ferrol,75,Spain,24709,Iberian Atlantic Coast,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2002,9263,Aparri Bulk Terminal,8807,Aparri,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2006,15194,Duyen Hai Bulk Terminal,14733,Duyen Hai,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+2012,15125,Magadan Bulk Terminal,11951,Magadan,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+2045,14633,Immingham Bulk Terminal (Corus),3438,Immingham,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2047,15132,Kawaihae Bulk Terminal,11968,Kawaihae,240,United States,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+2061,9276,Rio Tuba Bulk Terminal,8820,Rio Tuba,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2073,15033,Malacca Bulk Terminal,3667,Malacca,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+2086,10804,Rongsheng Heavy Industries,3301,Nantong,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2089,15932,Wison (Nantong) Heavy Industry Co. Shipyard ,3301,Nantong,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2091,14685,Hon Gai Anchorage,7294,Hon Gai,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+2120,9492,Port Talbot Steel Plant,9036,Port Talbot,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2122,8634,Mina Zayed Bulk Terminal,7320,Mina Zayed,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+2124,15939,Qidong Shipyard,15469,Qidong,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2126,3517,Chennai,3517,Chennai,112,India,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+2128,15288,Mosjoen Bulk Terminal,14827,Mosjoen,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+2140,8479,Zeebrugge Bulk Terminal,7108,Zeebrugge,27,Belgium,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2173,8155,Merak Bulk Terminal,3501,Merak,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2179,16573,Taizhou (Zhejiang) Shipyard,8805,Taizhou (Zhejiang),55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2180,8252,Davao Bulk Terminal,7065,Davao,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2182,8066,Ereglisi Bulk Terminal,3815,Ereglisi,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2194,15037,New Plymouth Bulk Terminal,3706,New Plymouth,178,New Zealand,24780,New Zealand,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2195,11800,Taharoa Bulk Terminal,11799,Taharoa ,178,New Zealand,24780,New Zealand,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2197,9227,Annaba Bulk Terminal,8771,Annaba,69,Algeria,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+2207,15238,Bartin Bulk Terminal,14777,Bartin,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2211,8721,Bahudopi,8721,Bahudopi,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2214,14432,Utah Point,3210,Port Hedland,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2218,8398,St Eustatius Bulk Terminal,3225,St Eustatius,37,"Bonaire, Sint Eustatius and Saba",24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+2224,6912,Istanbul Naval Shipyard,6586,Tuzla,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2230,14586,Porto do Acu Anchorage,13305,Porto do Acu,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+2234,14503,Kisarazu Anchorage,11817,Kisarazu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2242,8241,Nantong Bulk Terminal,3301,Nantong,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2245,9296,Hitachi Bulk Terminal,8840,Hitachi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2249,15276,Lazi Bulk Terminal,14815,Lazi,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2251,14467,Ishikawa Power Station,8843,Ishikawa,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2261,14710,Obi Island Anchorage,14709,Obi Island,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2263,15239,Karasu Bulk Terminal,14778,Karasu,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2272,14486,Vostochny Anchorage,11954,Vostochny,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+2276,14673,Salaya Anchorage,14671,Salaya,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+2278,3989,Rio De Janeiro Anchorage,3242,Rio De Janeiro,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+2290,8672,Mackay Bulk Terminal,6639,Mackay,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2293,8220,Dongguan Bulk Terminal,3289,Dongguan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+2297,9571,Cape Cuvier Bulk Terminal,9115,Cape Cuvier,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2300,8581,Conakry Bulk Terminal,3462,Conakry,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+2320,3157,Jebel Ali,3157,Jebel Ali,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+2322,3336,Emmastad,3336,Emmastad,60,Curacao,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+2331,3491,Cilacap,3491,Cilacap,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2337,8807,Aparri,8807,Aparri,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2339,14733,Duyen Hai,14733,Duyen Hai,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+2341,11951,Magadan,11951,Magadan,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+2349,11968,Kawaihae,11968,Kawaihae,240,United States,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+2354,8820,Rio Tuba,8820,Rio Tuba,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2358,3667,Malacca,3667,Malacca,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+2361,3301,Nantong,3301,Nantong,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2364,7294,Hon Gai,7294,Hon Gai,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+2367,15469,Qidong,15469,Qidong,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2369,14827,Mosjoen,14827,Mosjoen,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+2372,7108,Zeebrugge,7108,Zeebrugge,27,Belgium,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2382,3501,Merak,3501,Merak,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2385,8805,Taizhou (Zhejiang),8805,Taizhou (Zhejiang),55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2386,7065,Davao,7065,Davao,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2387,3815,Ereglisi,3815,Ereglisi,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2392,3706,New Plymouth,3706,New Plymouth,178,New Zealand,24780,New Zealand,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2393,11799,Taharoa ,11799,Taharoa ,178,New Zealand,24780,New Zealand,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2394,8771,Annaba,8771,Annaba,69,Algeria,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+2396,14777,Bartin,14777,Bartin,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2401,3391,Malaga,3391,Malaga,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+2402,3225,St Eustatius,3225,St Eustatius,37,"Bonaire, Sint Eustatius and Saba",24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+2408,6586,Tuzla,6586,Tuzla,232,Turkey,24584,Sea of Marmara,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2415,8840,Hitachi,8840,Hitachi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2417,14815,Lazi,14815,Lazi,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+2418,8843,Ishikawa,8843,Ishikawa,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2421,14709,Obi Island,14709,Obi Island,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2422,14778,Karasu,14778,Karasu,232,Turkey,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2439,6639,Mackay,6639,Mackay,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2442,9115,Cape Cuvier,9115,Cape Cuvier,20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2444,3462,Conakry,3462,Conakry,93,Guinea,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+2447,14634,Fibreco Wood Pellet Terminal,3267,Vancouver (CA),45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+2448,8189,Ceuta Bulk Terminal,3385,Ceuta,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+2449,16333,Oshima Shipyard,6562,Sasebo,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2450,6759,Damen Shiprepair Vlissingen,6577,Flushing,173,Netherlands,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2451,9181,Bontang Bulk Terminal,8725,Bontang,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2452,14497,WOPL Singapore Anchorage,3794,Singapore,205,Singapore,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+2455,8292,Ashdod Bulk Terminal,3514,Ashdod,110,Israel,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+2504,9156,Kota Kinabalu Bulk Terminal,8700,Kota Kinabalu,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+2534,3987,Sao Luis Anchorage,3248,Itaqui,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+2563,11852,Port McNeill Bulk Terminal,11851,Port McNeill,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+2594,8261,Chiba Bulk Terminal,3570,Chiba,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2606,16782,Matola Bulk Terminal,3675,Maputo,166,Mozambique,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+2620,8146,Belawan Bulk Terminal,3489,Belawan,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2660,9220,Aviles Bulk Terminal,8764,Aviles,75,Spain,24709,Iberian Atlantic Coast,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2701,8533,Mejillones Bulk Terminal,3278,Mejillones,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+2702,3278,Mejillones,3278,Mejillones,53,Chile,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+2705,6973,Zhoushan IMC – Yongyue Shipyard and Engineering,3302,Ningbo,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2715,8048,Chornomorsk Bulk Terminal,3829,Chornomorsk,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2719,14549,Luojing,14549,Luojing,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+2735,15210,Hydaburg Bulk Terminal,14749,Hydaburg,240,United States,24719,Alaska,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+2780,14732,Hon La Bulk Terminal,14730,Hon La,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+2789,11842,Rennell Island Bulk Terminal,11841,Rennell Island,201,Solomon Islands,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+2798,16344,Shin Kurushima Toyohashi Shipbuilding,8872,Toyohashi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2803,8181,Sines Bulk Terminal,3750,Sines,191,Portugal,24709,Iberian Atlantic Coast,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2809,9284,Hoping Bulk Terminal,8828,Hoping,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+2815,8850,Kokura,8850,Kokura,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2816,14621,Gove Anchorage,6633,Gove,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2819,8638,Sharjah Bulk Terminal,3161,Sharjah,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+2826,-104,Uncertain,-104,Uncertain,-104,Korea,24715,Korea,19,Korea / Japan,99,Far East,84,East
+2827,6391,Vladivostok Anchorage,6387,Vladivostok,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+2835,8677,Barbers Point Bulk Terminal,3852,Barbers Point,240,United States,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+2848,9566,Libreville Bulk Terminal,9110,Libreville,83,Gabon,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+2859,9321,Shimizu (Honshu) Bulk Terminal,8865,Shimizu (Honshu),121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2878,8700,Kota Kinabalu,8700,Kota Kinabalu,165,Malaysia,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+2885,3248,Itaqui,3248,Itaqui,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+2896,11851,Port McNeill,11851,Port McNeill,45,Canada,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+2901,3385,Ceuta,3385,Ceuta,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+2912,3489,Belawan,3489,Belawan,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+2929,8764,Aviles,8764,Aviles,75,Spain,24709,Iberian Atlantic Coast,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2943,3829,Chornomorsk,3829,Chornomorsk,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+2948,14749,Hydaburg,14749,Hydaburg,240,United States,24719,Alaska,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+2961,14730,Hon La,14730,Hon La,248,Viet Nam,24770,Thailand / Vietnam,23,South East Asia,99,Far East,84,East
+2965,11841,Rennell Island,11841,Rennell Island,201,Solomon Islands,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+2970,8872,Toyohashi,8872,Toyohashi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2974,3750,Sines,3750,Sines,191,Portugal,24709,Iberian Atlantic Coast,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+2976,8828,Hoping,8828,Hoping,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+2979,6633,Gove,6633,Gove,20,Australia,24704,Australia North,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+2980,3161,Sharjah,3161,Sharjah,9,United Arab Emirates,24777,Arabian Gulf,2,Arabian Gulf,89,Arabian Gulf,84,East
+2983,6387,Vladivostok,6387,Vladivostok,198,Russian Federation,24714,Russian Pacific,22,Russian Pacific,99,Far East,84,East
+2986,3852,Barbers Point,3852,Barbers Point,240,United States,24782,Pacific Islands,20,Pacific Islands,99,Far East,84,East
+2991,9110,Libreville,9110,Libreville,83,Gabon,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+2995,8865,Shimizu (Honshu),8865,Shimizu (Honshu),121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+2997,13377,Gibdock,7345,Gibraltar,90,Gibraltar,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+3002,9240,Rajin Bulk Terminal,8784,Rajin,128,"Korea, Democratic People's Republic of",24715,Korea,19,Korea / Japan,99,Far East,84,East
+3124,8227,Luoyuan Bulk Terminal,6647,Luoyuan,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+3167,15072,General Santos Bulk Terminal,7046,General Santos,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+3224,16200,Kinder Morgan Bulk Terminal,8999,Newport News (VA),240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+3225,9449,Cape Henry Bulk Terminal,8993,Cape Henry,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+3252,15298,Jossingfjord Bulk Terminal,14837,Jossingfjord,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+3254,15295,Slovag Bulk Terminal,14834,Slovag,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+3256,9285,Hsinta Bulk Terminal,8829,Hsinta,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+3270,11844,Malita Bulk Terminal,11843,Malita,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+3273,16867,Petacalco Power Plant,3648,Lazaro Cardenas,164,Mexico,24742,West Coast Mexico,39,West Coast Mexico,112,West Coast Mexico,85,Pacific America
+3276,14512,Cristobal Anchorage,3717,Cristobal,180,Panama,24600,East Coast Central America,10,East Coast Central America,25019,Atlantic America,25028,West
+3295,8057,Sevastopol Bulk Terminal,6588,Sevastopol,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+3301,8101,Singapore Bulk Terminal,3794,Singapore,205,Singapore,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+3303,5338,Chiba Shipyard,3570,Chiba,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+3320,9513,Panaji Bulk Terminal,9057,Panaji,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+3340,9439,Puerto Nuevo Coal Terminal,8983,Puerto Drummond,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+3346,8592,Nouadhibou Bulk Terminal,3639,Nouadhibou,158,Mauritania,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+3347,16854,McDuffie Coal Terminal,3861,Mobile,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+3352,15446,Eden Bulk Terminal,14985,Eden,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+3358,8410,Norfolk Bulk Terminal,3866,Norfolk,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+3363,5317,Keppel Shipyard East,3794,Singapore,205,Singapore,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+3378,14714,Jinzhou Anchorage,3298,Jinzhou,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+3386,14557,Puerto Drummond Anchorage,8983,Puerto Drummond,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+3388,16772,Kaliorang Coal Terminal,16769,Kaliorang,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+3397,14687,Koper Anchorage,3795,Koper,207,Slovenia,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+3399,15176,Kodiak Bulk Terminal,12688,Kodiak,240,United States,24719,Alaska,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+3400,10787,Washington Marine Repair,3870,Port Angeles,240,United States,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+3404,3982,Come By Chance Anchorage,3258,Come By Chance,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+3410,9151,Kokkola Bulk Terminal,8695,Kokkola,77,Finland,24594,Baltic Sea Upper,25008,Baltic,25021,Baltic / North Sea,25028,West
+3411,15372,Vaasa Bulk Terminal,14911,Vaasa,77,Finland,24594,Baltic Sea Upper,25008,Baltic,25021,Baltic / North Sea,25028,West
+3412,16761,Koverhar Bulk Terminal,16760,Koverhar,77,Finland,24594,Baltic Sea Upper,25008,Baltic,25021,Baltic / North Sea,25028,West
+3413,9461,Grenaa Bulk Terminal,9005,Grenaa,66,Denmark,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+3439,5336,SWS Shipyard,3308,Shanghai,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+3440,15163,Shekou Bulk Terminal,12029,Shekou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+3480,7046,General Santos,7046,General Santos,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+3497,8993,Cape Henry,8993,Cape Henry,240,United States,24747,US Atlantic Coast,32,US Atlantic Coast,25019,Atlantic America,25028,West
+3508,14837,Jossingfjord,14837,Jossingfjord,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+3509,14834,Slovag,14834,Slovag,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+3510,8829,Hsinta,8829,Hsinta,235,Taiwan,24729,Taiwan,17,China / Taiwan,99,Far East,84,East
+3514,11843,Malita,11843,Malita,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+3523,6588,Sevastopol,6588,Sevastopol,237,Ukraine,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+3533,9057,Panaji,9057,Panaji,112,India,24764,Pakistan / West Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+3543,14985,Eden,14985,Eden,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+3553,3298,Jinzhou,3298,Jinzhou,55,China,24666,North China,17,China / Taiwan,99,Far East,84,East
+3558,16769,Kaliorang,16769,Kaliorang,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+3567,12688,Kodiak,12688,Kodiak,240,United States,24719,Alaska,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+3568,3870,Port Angeles,3870,Port Angeles,240,United States,24739,US North Pacific,25017,West Coast North America,25026,West Coast North America,85,Pacific America
+3570,3258,Come By Chance,3258,Come By Chance,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+3572,8695,Kokkola,8695,Kokkola,77,Finland,24594,Baltic Sea Upper,25008,Baltic,25021,Baltic / North Sea,25028,West
+3573,14911,Vaasa,14911,Vaasa,77,Finland,24594,Baltic Sea Upper,25008,Baltic,25021,Baltic / North Sea,25028,West
+3574,16760,Koverhar,16760,Koverhar,77,Finland,24594,Baltic Sea Upper,25008,Baltic,25021,Baltic / North Sea,25028,West
+3575,9005,Grenaa,9005,Grenaa,66,Denmark,24755,Baltic Sea Low,25008,Baltic,25021,Baltic / North Sea,25028,West
+3578,3593,Tomakomai,3593,Tomakomai,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+3583,12029,Shekou,12029,Shekou,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+3590,8300,Haifa Bulk Terminal,3516,Haifa,110,Israel,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+3686,8182,Algeciras Bulk Terminal,3379,Algeciras,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+3716,8535,Pisco Bulk Terminal,3729,Pisco,181,Peru,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+3755,5297,Pendennis Falmouth,3423,Falmouth,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+3765,9351,Akcansa Bulk Terminal,8895,Akcansa,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+3772,3395,Tarragona,3395,Tarragona,75,Spain,24712,West Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+3774,9272,Narra Palawan Bulk Terminal,8816,Narra Palawan,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+3778,12889,Sydney Nova Scotia Bulk Terminal,12888,Sydney Nova Scotia,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+3786,5313,Tuas Shipyard,3794,Singapore,205,Singapore,24655,Singapore / Malaysia,23,South East Asia,99,Far East,84,East
+3787,15345,IBT Coal Terminal,14884,Mekar Putih,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+3800,8598,Albany(AU) Bulk Terminal,7300,Albany(AU),20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+3828,8047,Constantza Bulk Terminal,3756,Constantza,196,Romania,24583,Black Sea,7,Black Sea / Sea Of Marmara,93,Black Sea / Sea Of Marmara,25028,West
+3845,15154,Cagliari Bulk Terminal,12017,Cagliari,117,Italy,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+3849,14997,Vitoria Bulk Terminal,3254,Vitoria,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+3854,8470,Ghent Bulk Terminal,3217,Ghent,27,Belgium,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+3873,15904,Taliabu Bulk Terminal,15902,Taliabu,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+3885,-102,Uncertain,-102,Uncertain,-102,Caribs,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+3890,9256,Dafeng Bulk Terminal,8800,Dafeng,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+3895,8285,Wakayama Bulk Terminal,3595,Wakayama,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+3899,9264,Berong Bulk Terminal,8808,Berong,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+3910,15235,Great Yarmouth Bulk Terminal,14774,Great Yarmouth,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+3912,6822,Mammonal Shipyard,3324,Mamonal,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+3922,16336,Saiki Heavy Industries Shipyard,14872,Saiki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+3929,9292,Haramachi Bulk Terminal,8836,Haramachi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+3931,8514,Tubarao Bulk Terminal,12770,Tubarao,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+3939,9488,Lisahally Bulk Terminal,9032,Lisahally,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+3948,9473,Bremanger Bulk Terminal,9017,Bremanger,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+3958,8652,Suez Bulk Terminal,3376,Suez,72,Egypt,24778,Red Sea,28,Red Sea,103,Red Sea,84,East
+3979,15144,Coega Bulk Terminal,12004,Coega,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+3999,16669,Balikpapan Coal Terminal,3486,Balikpapan,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+4001,9587,Male Bulk Terminal,9131,Male,162,Maldives,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+4004,9247,Huilai Bulk Terminal,8791,Huilai,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+4005,9245,Haimeng Bulk Terminal,8789,Haimeng,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+4006,8789,Haimeng,8789,Haimeng,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+4012,9169,Host Davant,8713,Davant,240,United States,24676,US Gulf,33,US Gulf & Mainland,25019,Atlantic America,25028,West
+4014,8317,Bizerte Bulk Terminal,3804,Bizerte,230,Tunisia,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+4015,14724,Colombo Shipyard,3615,Colombo,137,Sri Lanka,24771,East Coast India,25012,India / Pakistan,25023,India / Pakistan,84,East
+4020,14573,Port Said Anchorage,7281,Port Said,72,Egypt,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+4048,3729,Pisco,3729,Pisco,181,Peru,24768,West Coast South America,40,West Coast South America,113,West Coast South America,85,Pacific America
+4058,8895,Akcansa,8895,Akcansa,232,Turkey,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+4062,8816,Narra Palawan,8816,Narra Palawan,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+4064,12888,Sydney Nova Scotia,12888,Sydney Nova Scotia,45,Canada,24740,Canada Atlantic Coast,12,East Coast Canada,25019,Atlantic America,25028,West
+4067,14884,Mekar Putih,14884,Mekar Putih,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+4072,7300,Albany(AU),7300,Albany(AU),20,Australia,24773,Australia West,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+4088,12017,Cagliari,12017,Cagliari,117,Italy,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+4091,3254,Vitoria,3254,Vitoria,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+4093,3217,Ghent,3217,Ghent,27,Belgium,24758,Continent,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+4098,15902,Taliabu,15902,Taliabu,108,Indonesia,24702,Indonesia,23,South East Asia,99,Far East,84,East
+4106,8800,Dafeng,8800,Dafeng,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+4111,8808,Berong,8808,Berong,184,Philippines,24728,Philippines,23,South East Asia,99,Far East,84,East
+4115,14774,Great Yarmouth,14774,Great Yarmouth,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+4117,3324,Mamonal,3324,Mamonal,56,Colombia,24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+4121,14872,Saiki,14872,Saiki,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4126,8836,Haramachi,8836,Haramachi,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4128,9032,Lisahally,9032,Lisahally,84,United Kingdom,24757,British Isles,25016,UK Continent,25025,Mediterranean / UK Continent,25028,West
+4132,9017,Bremanger,9017,Bremanger,174,Norway,24756,North Sea,27,North Sea,25021,Baltic / North Sea,25028,West
+4145,12004,Coega,12004,Coega,254,South Africa,24776,South Africa,25015,South East Africa,25018,Africa,25027,Africa
+4156,9131,Male,9131,Male,162,Maldives,24779,East Africa,25015,South East Africa,25018,Africa,25027,Africa
+4158,8791,Huilai,8791,Huilai,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+4161,3804,Bizerte,3804,Bizerte,230,Tunisia,24738,Central Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+4163,7281,Port Said,7281,Port Said,72,Egypt,24737,East Mediterranean,25013,Mediterranean,25025,Mediterranean / UK Continent,25028,West
+4171,8388,Puerto La Cruz Bulk Terminal,3902,Puerto La Cruz,245,"Venezuela, Bolivarian Republic of",24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+4172,8377,Jose Terminal Bulk Terminal,3899,Jose Terminal,245,"Venezuela, Bolivarian Republic of",24746,Caribs,9,Caribs,25019,Atlantic America,25028,West
+4173,8282,Tomakomai Bulk Terminal,3593,Tomakomai,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4377,4565,Queensland Alumina Plant,3204,Gladstone,20,Australia,24781,Australia East,16,Australia / New Zealand,25020,Australia / New Zealand,84,East
+4430,8590,Monrovia Bulk Terminal,6568,Monrovia,138,Liberia,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+4431,16345,China Shipping Industry Co. Shipyard,8801,Dagang,55,China,24726,Central China,17,China / Taiwan,99,Far East,84,East
+4433,6396,Imari Shipyard,6395,Imari,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4436,16361,Murakami Hide Shipyard,14862,Hakatashima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4437,6400,Tadotsu Shipyard,6399,Tadotsu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4439,6390,Ariake Shipyard,6389,Oura/ariake,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4442,6908,Japan Marine United Shipyard,6605,Tsu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4445,14468,Zhanjiang Anchorage,3317,Zhanjiang,55,China,24725,South China,17,China / Taiwan,99,Far East,84,East
+4452,8507,Santana Bulk Terminal,3244,Santana,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+4453,8503,Manaus Bulk Terminal,3238,Manaus,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+4454,8497,Belem Bulk Terminal,3229,Belem,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+4527,6568,Monrovia,6568,Monrovia,138,Liberia,24772,Africa Atlantic Coast,37,West Africa,25018,Africa,25027,Africa
+4528,6395,Imari,6395,Imari,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4530,14862,Hakatashima,14862,Hakatashima,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4531,6399,Tadotsu,6399,Tadotsu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4532,6389,Oura/ariake,6389,Oura/ariake,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4534,6605,Tsu,6605,Tsu,121,Japan,24730,Japan Island,19,Korea / Japan,99,Far East,84,East
+4541,3244,Santana,3244,Santana,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+4542,3238,Manaus,3238,Manaus,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West
+4543,3229,Belem,3229,Belem,38,Brazil,24767,Brazil,15,East Coast South America,25019,Atlantic America,25028,West

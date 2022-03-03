@@ -1,9 +1,8 @@
 """ Port Congestion"""
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
-from typing import Optional, Tuple, List
-from strictly_typed_pandas import DataSet, IndexedDataSet
-from urllib.parse import urljoin, urlencode
+from typing import Optional, Tuple, List, cast
+from strictly_typed_pandas import DataSet
 from functools import reduce
 
 from signal_ocean import Connection
@@ -13,6 +12,7 @@ from signal_ocean.voyages.models import (
     VoyageEvent,
     VoyageEventDetail,
     VoyageGeo,
+    VoyagesFlat,
 )
 from signal_ocean.port_congestion.models import (
     LiveCongestion,
@@ -48,15 +48,38 @@ class PortCongestion:
         voyages_flat = voyages_api.get_voyages_flat(
             vessel_class_id=vessel_class_id, date_from=voyages_start_date
         )
+        voyages_flat = cast(VoyagesFlat, voyages_flat)
 
-        voyages_df = pd.DataFrame(v.__dict__ for v in voyages_flat.voyages)
-        events_df = pd.DataFrame(v.__dict__ for v in voyages_flat.events)
-        events_details_df = pd.DataFrame(
-            v.__dict__ for v in voyages_flat.event_details
+        voyages_df = cast(
+            DataSet[Voyage],
+            pd.DataFrame(
+                v.__dict__
+                for v in cast(Tuple[Voyage, ...], voyages_flat.voyages)
+            ),
         )
-        geos_df = pd.DataFrame(
-            v.__dict__ for v in voyages_flat.geos
-        ).drop_duplicates()
+        events_df = cast(
+            DataSet[VoyageEvent],
+            pd.DataFrame(
+                v.__dict__
+                for v in cast(Tuple[VoyageEvent, ...], voyages_flat.events)
+            ),
+        )
+        events_details_df = cast(
+            DataSet[VoyageEventDetail],
+            pd.DataFrame(
+                v.__dict__
+                for v in cast(
+                    Tuple[VoyageEventDetail, ...], voyages_flat.event_details
+                )
+            ),
+        )
+        geos_df = cast(
+            DataSet[VoyageGeo],
+            pd.DataFrame(
+                v.__dict__
+                for v in cast(Tuple[VoyageGeo, ...], voyages_flat.geos)
+            ).drop_duplicates(),
+        )
 
         return (
             voyages_df,
@@ -81,31 +104,30 @@ class PortCongestion:
         right_merge_keys = iter(["voyage_id", "event_id", "id"])
         suffixes = iter([("_voy", "_ev"), ("_ev", "_det"), ("", "_geos")])
 
-        voyages_extd = reduce(
-            lambda left, right: pd.merge(
-                left,
-                right,
-                how="left",
-                left_on=next(left_merge_keys, None),
-                right_on=next(right_merge_keys, None),
-                suffixes=next(suffixes, None),
+        voyages_extd = cast(
+            pd.DataFrame,
+            reduce(
+                lambda left, right: pd.merge(
+                    left,
+                    right,
+                    how="left",
+                    left_on=next(left_merge_keys, None),
+                    right_on=next(right_merge_keys, None),
+                    suffixes=next(suffixes, None),
+                ),
+                [voyages_df, events_df, events_details_df, geos_df],
             ),
-            [voyages_df, events_df, events_details_df, geos_df],
         )
 
         ports_filter = pd.Series([True] * voyages_extd.shape[0])
         areas_filter = pd.Series([True] * voyages_extd.shape[0])
 
         if ports:
-            ports_filter = (
-                voyages_extd.port_name_geos.isin(ports)
-            )
+            ports_filter = voyages_extd.port_name_geos.isin(ports)
         if areas:
-            areas_filter = (
-                voyages_extd.area_name_level0_geos.isin(areas)
-            )
+            areas_filter = voyages_extd.area_name_level0_geos.isin(areas)
 
-        final_filter = (ports_filter & areas_filter)
+        final_filter = ports_filter & areas_filter
 
         voyages_extd = voyages_extd[
             (voyages_extd["purpose"].isin(["Load", "Discharge"]))
@@ -113,13 +135,13 @@ class PortCongestion:
             & final_filter
         ].copy()
 
-        """ Port Congestion calculation takes into account also 
-            stopped vessels outside the port/anchorage limits using 
-            the forecasted part of the voyage (mainly driven from AIS).  
-            This is achieved by 'connecting' future(predicted) port calls 
-            with their previous stops, given that the stops ended during 
-            the last 24 hours from the beginnning of the port calls.  
-            The above results to new extended port calls that span from 
+        """ Port Congestion calculation takes into account also
+            stopped vessels outside the port/anchorage limits using
+            the forecasted part of the voyage (mainly driven from AIS).
+            This is achieved by 'connecting' future(predicted) port calls
+            with their previous stops, given that the stops ended during
+            the last 24 hours from the beginnning of the port calls.
+            The above results to new extended port calls that span from
             previous stop arrival date to future portcall sailing date.
         """
         future_portcalls = events_df.loc[
@@ -169,42 +191,43 @@ class PortCongestion:
 
         """ # Define Waiting/Operating time for every vessel
 
-            The date range between start_time_of_operation and 
-            end_time_of_operation(sailing date) will be marked as Operating, 
-            and the rest of the days inside each port call 
-            are going to be marked as waiting.  
+            The date range between start_time_of_operation and
+            end_time_of_operation(sailing date) will be marked as Operating,
+            and the rest of the days inside each port call
+            are going to be marked as waiting.
 
             ## Waiting Time
 
-            We will split the port calls into 4 categories whose 
-            waiting interval calculation is differentiated.  
-            For each category start/end time 
-            of the waiting interval is calculated as follows:  
-            * **Historical Port Calls with start time of operation** : 
+            We will split the port calls into 4 categories whose
+            waiting interval calculation is differentiated.
+            For each category start/end time
+            of the waiting interval is calculated as follows:
+            * **Historical Port Calls with start time of operation** :
                 * waiting_time_start -> event arrival date
-                * waiting_time_end -> one day prior to the start time of operation
-            * **Historical Port Calls without start time of operation** :    
-            (Note) A historical port call may lack the attribute start 
+                * waiting_time_end -> one day prior to the
+                    start time of operation
+            * **Historical Port Calls without start time of operation** :
+            (Note) A historical port call may lack the attribute start
             time of operation due to low ais density during the port call.
                 * waiting_time_start -> event arrival date
-                * waiting_time_end -> event detail sailing date 
-            * **Current Port Calls without start time of operation** :    
-            (Note) A Current port call may also have 
+                * waiting_time_end -> event detail sailing date
+            * **Current Port Calls without start time of operation** :
+            (Note) A Current port call may also have
             event_horizon = 'Future' due to missing AIS data.
                 * waiting_time_start -> event arrival date
-                * waiting_time_end -> event sailing date  
-            * **Extended Port Calls** :    
-            (Note) A Current port call may also have 
+                * waiting_time_end -> event sailing date
+            * **Extended Port Calls** :
+            (Note) A Current port call may also have
             event_horizon = 'Future' due to missing AIS data.
                 * waiting_time_start -> arrival date of previous stop
                 * waiting_time_end -> event sailing date
 
             ## Operating Time
 
-            The operating time interval is simply calculated by 
-            taking as operating_time_start the start time of operation 
-            and as operating_time_end the end time of operation.  
-            In cases that later is not available 
+            The operating time interval is simply calculated by
+            taking as operating_time_start the start time of operation
+            and as operating_time_end the end time of operation.
+            In cases that later is not available
             the event sailing date is used instead.
         """
         hist_port_calls_with_start_time_of_operation = (
@@ -376,13 +399,18 @@ class PortCongestion:
             lambda x: x.dt.tz_convert(None), axis=0
         )
 
-        vessels_congestion_data = (
-            vessels_congestion_data[
-                vessels_congestion_data.day_date.dt.date.between(
-                    congestion_start_date, date.today()
-                )
-            ]
-        )[wanted_columns].copy()
+        vessels_congestion_data = cast(
+            DataSet[VesselsCongestionData],
+            (
+                vessels_congestion_data[
+                    vessels_congestion_data.day_date.dt.date.between(
+                        congestion_start_date, date.today()
+                    )
+                ]
+            )[wanted_columns]
+            .copy()
+            .reset_index(drop=True)
+        )
 
         return vessels_congestion_data
 
@@ -434,7 +462,8 @@ class PortCongestion:
         all_days = pd.date_range(
             waiting_time_df.index.min(), waiting_time_df.index.max(), freq="D"
         )
-        waiting_time_df = waiting_time_df.reindex(all_days)
+        waiting_time_df = waiting_time_df.reindex(all_days).reset_index()
+        waiting_time_df.columns = ['date', 'avg_waiting_time']
 
         return waiting_time_df
 
@@ -452,7 +481,7 @@ class PortCongestion:
         vessels_at_port_df.loc[
             vessels_at_port_df.days_at_port < 0, "days_at_port"
         ] = None
-        return vessels_at_port_df
+        return vessels_at_port_df.reset_index(drop=True)
 
     def get_port_congestion(
         self,
