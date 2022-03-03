@@ -21,7 +21,7 @@ from signal_ocean.port_congestion.models import (
     VesselsCongestionData,
 )
 
-import numpy as np
+import numpy as np  # type: ignore
 import pandas as pd
 
 
@@ -417,11 +417,12 @@ class PortCongestion:
     def _calculate_number_of_vessels_over_time(
         self, vessels_congestion_data: DataSet[VesselsCongestionData]
     ) -> DataSet[NumberOfVesselsOverTime]:
-        num_of_vessels_time_series = (
+
+        num_of_vessels_time_series = cast(DataSet[NumberOfVesselsOverTime], (
             vessels_congestion_data.groupby("day_date")["imo"]
             .nunique()
             .reset_index()
-        )
+        ))
         num_of_vessels_time_series.columns = ["date", "vessels"]
 
         return num_of_vessels_time_series
@@ -465,7 +466,7 @@ class PortCongestion:
         waiting_time_df = waiting_time_df.reindex(all_days).reset_index()
         waiting_time_df.columns = ['date', 'avg_waiting_time']
 
-        return waiting_time_df
+        return cast(DataSet[WaitingTimeOverTime], waiting_time_df)
 
     def _calculate_live_port_congestion(
         self, vessels_congestion_data: DataSet[VesselsCongestionData]
@@ -481,7 +482,10 @@ class PortCongestion:
         vessels_at_port_df.loc[
             vessels_at_port_df.days_at_port < 0, "days_at_port"
         ] = None
-        return vessels_at_port_df.reset_index(drop=True)
+        return cast(
+            DataSet[LiveCongestion],
+            vessels_at_port_df.reset_index(drop=True)
+        )
 
     def get_port_congestion(
         self,
