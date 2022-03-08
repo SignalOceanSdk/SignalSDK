@@ -3,7 +3,7 @@
 if [[ ! -f ./env/bin/activate ]]
 then
     echo 'Creating virtual environment...'
-    python3 -m venv ./env
+    python3.8 -m venv ./env
 fi
 
 echo 'Activating virtual environment...'
@@ -26,4 +26,4 @@ pydocstyle --match='(?!_[^_]).*\.py' --convention=google signal_ocean
 
 echo 'Building dist...'
 rm -rf dist/*
-python3 ./setup.py sdist bdist_wheel
+python3.8 ./setup.py sdist bdist_wheel

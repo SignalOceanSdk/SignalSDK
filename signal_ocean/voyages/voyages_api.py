@@ -555,7 +555,7 @@ class VoyagesAPI:
         )
         response.raise_for_status()
 
-        types = (parse_model(c, Vessel) for c in response.json())
+        vessels = (parse_model(c, Vessel) for c in response.json())
         vessel_filter = vessel_filter or VesselFilter()
 
-        return tuple(vessel_filter._apply(types))
+        return tuple(vessel_filter._apply(vessels))
