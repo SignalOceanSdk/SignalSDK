@@ -6,8 +6,6 @@ then
     python3.8 -m venv ./env
 fi
 
-rm -rf ~/.cache/pip
-
 echo 'Activating virtual environment...'
 source ./env/bin/activate
 
