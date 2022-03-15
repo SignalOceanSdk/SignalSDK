@@ -10,7 +10,7 @@ echo 'Activating virtual environment...'
 source ./env/bin/activate
 
 echo 'Installing dependencies...'
-pip3 install -r ./requirements.txt
+pip install -r ./requirements.txt
 
 echo 'Running type checks...'
 mypy --strict signal_ocean
