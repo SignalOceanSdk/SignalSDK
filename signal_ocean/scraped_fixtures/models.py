@@ -19,12 +19,6 @@ class ScrapedFixture:
         received_date: String, format YYYY-MM-DD HH:MM:SS, UTC timezone.
             Date on which the fixture has been injected into our system
             and processed.
-        reported_fixture_date: String, format YYYY-MM-DD. Only occasionally
-            reported. Some tanker market reports summarize the fixtures of the
-            week by splitting them per day. This day is generally reported in
-            the text as a header. If present and if correctly extracted, the
-            field
-            ReportedFixtureDate refers to that date.
         imo: Integer. The seven-digits number that uniquely identifies the ship
             reported in the fixture.
         vessel_class_id: Integer. It is an ID corresponding to the different
@@ -43,13 +37,25 @@ class ScrapedFixture:
             proprietary
             geofencing structure. Each geo entity is identified by a taxonomy,
             an ID and a name.
+        load_geo_id2: Integer. An internal ID corresponding to the mapped
+            second loading location of the fixture. See LoadGeoID for more
+            details.
         load_taxonomy_id: Integer. An internal ID corresponding to each
             taxonomy,the level of geo details, from 1 to 7
+        load_taxonomy_id2: Integer. An internal ID corresponding to the
+            taxonomy of the mapped discharging location. See LoadTaxonomyID
+            for more details.
         discharge_geo_id: Integer. An internal ID corresponding to the mapped
             discharging location of the fixture.See LoadGeoID for more details.
+        discharge_geo_id2: Integer. An internal ID corresponding to the mapped
+            second discharging location of the fixture. See LoadGeoID for more
+            details.
         discharge_taxonomy_id: Integer. An internal ID corresponding to the
             taxonomy of the mapped discharging location. See LoadTaxonomyID for
             more details.
+        discharge_taxonomy_id2: Integer. An internal ID corresponding to the
+            taxonomy of the mapped second discharging location.
+            See LoadTaxonomyID for more details.
         charterer_id: Integer. Numeric ID corresponding to the
             chartering company that it is reported in the line. We use an
             internal mapper to find the correspondence between the reported
@@ -169,10 +175,21 @@ class ScrapedFixture:
         scraped_load: "String. The loading location reported in the original
             text of the fixture. It is very often shortened, very compact and
             can refer to terminals, ports, countries or wider areas.
+        scraped_load2:"String. The second loading location reported in the
+            original text of the fixture. It is very often shortened, very
+            compact  and can refer to terminals, ports, countries or wider
+            areas.  Examples: ""singgi"" for Singgi, ""rt"" for Ras Tanura,
+             ""waf""  for West Africa.
         scraped_discharge: "String. The discharging port reported in
             the original text of the fixture. It is very often shortened,
             very compact and can refer to terminals, ports, countries or wider
             areas.
+        scraped_discharge2: String. The second discharging port reported in the
+            original text of the fixture. It is very often shortened, very
+            compact and can refer to terminals, ports, countries or wider
+            areas. For example in the fixture ""al agaila 130
+            gabon+algeria/feast 14/01 rnr lord energy"" the field
+            ScrapedDischarge2 contains ""algeria"".
         scraped_discharge_options: "String. All the discharging
             options reported in the original text of the fixture.
         scraped_charterer: String. The fixture charterer as reported in the
@@ -235,17 +252,31 @@ class ScrapedFixture:
         Include labels
         load_name: "String. The name of the Signal geo entity
             related to the reported loading location of the fixture.
+        load_name2: "String. The name of the Signal geo entity related to the
+            reported second loading location of the fixture.
+            Examples: ""Bonny"", ""Nigeria"", ""Africa Atlantic Coast"",
+            ""Arabian Gulf"", ""Singapore"", ""East Coast Mexico"".
         load_taxonomy: "String. The
             extended name identifying the TaxonomyID.
+        load_taxonomy2: "String. The extended name identifying the TaxonomyID.
+            Possible values are: GeoAsset-> 1, Port -> 2, Country-> 3,
+            Level0->4, Level1->5, Level2->6, Level3->7.
         Possible values are:
             GeoAsset-> 1, Port -> 2, Country-> 3, Level0->4, Level1->5,
-            Level2->6, Level3->7. "
+            Level2->6, Level3->7.
         discharge_name: String. The name of the Signal geo entity related to
             the discharging location of the fixture.
+        discharge_name2: String. The name of the Signal geo entity related to
+            the second discharging location of the fixture.
+            Examples: "Algeria", "Greece", "France".
         discharge_taxonomy:
             "String. The extended name identifying the taxonomy of the mapped
             discharging location. Possible values are: GeoAsset-> 1, Port -> 2,
             Country-> 3, Level0->4, Level1->5, Level2->6, Level3->7. "
+        discharge_taxonomy2:
+            "String. The extended name identifying the TaxonomyID.
+            Possible values are: GeoAsset-> 1, Port -> 2, Country-> 3,
+            Level0->4, Level1->5, Level2->6, Level3->7.
         charterer: String. The company name corresponding to the ChartererID
             field.
             Provided to better specify the company involved in the business.
@@ -289,13 +320,6 @@ class ScrapedFixture:
             a single line fixture it is the line content.
 
         include sender
-        sender: String. The full address of the email's
-            sender. Examples from our public reports are: "tanker@braemar.com",
-            "galtanker@galbraiths.co.uk". These public reports are marked by a
-            blue [PUBLIC] tag in the TSOP Emails Dashboard.
-        sender_name: String.
-            The sender's name as setup in the sender's email client.
-        sender_domain: String.The sender's domain.
         mapped_sender: Optional[str] = String. Our own mapping of the
             shipping company sending out the market report through email.  This
             string helps grouping emails sent by the same organization,but from
@@ -309,10 +333,6 @@ class ScrapedFixture:
             contributions or through Slack. Private fixture information stay in
             the account,are accessible by the account users only (people within
             the same company) and are the most valuable ones.
-        is_shared: Boolean.
-            A fixture is "Shared" if provided by a source to a list of
-            subscribers. In some cases the source is a brokerage company and
-            the subscribers are commercial operators only.
         is_invalidated: Boolean. A fixture is invalidated whenever a user
             selects "Ignore this fixture" from the Reported Fixtures dashboard
             in TSOP.
@@ -334,9 +354,13 @@ class ScrapedFixture:
     laycan_from: Optional[datetime] = None
     laycan_to: Optional[datetime] = None
     load_geo_id: Optional[int] = None
+    load_geo_id2: Optional[int] = None
     load_taxonomy_id: Optional[int] = None
+    load_taxonomy_id2: Optional[int] = None
     discharge_geo_id: Optional[int] = None
+    discharge_geo_id2: Optional[int] = None
     discharge_taxonomy_id: Optional[int] = None
+    discharge_taxonomy_id2: Optional[int] = None
     charterer_id: Optional[int] = None
     cargo_type_id: Optional[int] = None
     cargo_group_id: Optional[int] = None
@@ -375,7 +399,9 @@ class ScrapedFixture:
     scraped_year_build: Optional[str] = None
     scraped_laycan: Optional[str] = None
     scraped_load: Optional[str] = None
+    scraped_load2: Optional[str] = None
     scraped_discharge: Optional[str] = None
+    scraped_discharge2: Optional[str] = None
     scraped_discharge_options: Optional[str] = None
     scraped_charterer: Optional[str] = None
     scraped_cargo_type: Optional[str] = None
@@ -400,9 +426,13 @@ class ScrapedFixture:
 
     # include labels
     load_name: Optional[str] = None
+    load_name2: Optional[str] = None
     load_taxonomy: Optional[str] = None
+    load_taxonomy2: Optional[str] = None
     discharge_name: Optional[str] = None
+    discharge_name2: Optional[str] = None
     discharge_taxonomy: Optional[str] = None
+    discharge_taxonomy2: Optional[str] = None
     charterer: Optional[str] = None
     cargo_type: Optional[str] = None
     cargo_group: Optional[str] = None
@@ -420,14 +450,9 @@ class ScrapedFixture:
     content: Optional[str] = None
 
     # include sender
-    sender: Optional[str] = None
-    sender_name: Optional[str] = None
-    sender_domain: Optional[str] = None
     mapped_sender: Optional[str] = None
 
     # include debug info
-    is_public: Optional[bool] = False
     is_private: Optional[bool] = False
-    is_shared: Optional[bool] = False
     is_invalidated: Optional[bool] = False
     is_partial: Optional[bool] = False
