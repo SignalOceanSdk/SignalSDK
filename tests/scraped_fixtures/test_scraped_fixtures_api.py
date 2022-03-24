@@ -155,7 +155,7 @@ rt_sf3 = {
     "DischargeName2": "testDischargeName2",
     "DischargeTaxonomyID2": 2,
     "DischargeTaxonomy2": "testDischargeTaxonomy2",
-    "MappedSender": "testMappedSender",
+    "Sender": "testSender",
 }
 
 rt_sf_3_model = ScrapedFixture(
@@ -190,7 +190,7 @@ rt_sf_3_model = ScrapedFixture(
     discharge_name2="testDischargeName2",
     discharge_taxonomy_id2=2,
     discharge_taxonomy2="testDischargeTaxonomy2",
-    mapped_sender="testMappedSender",
+    sender="testSender",
 )
 
 

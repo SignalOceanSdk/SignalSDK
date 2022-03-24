@@ -320,7 +320,7 @@ class ScrapedFixture:
             a single line fixture it is the line content.
 
         include sender
-        mapped_sender: Optional[str] = String. Our own mapping of the
+        sender: Optional[str] = String. Our own mapping of the
             shipping company sending out the market report through email.  This
             string helps grouping emails sent by the same organization,but from
             different domains. It is often the case for big organizations
@@ -450,7 +450,7 @@ class ScrapedFixture:
     content: Optional[str] = None
 
     # include sender
-    mapped_sender: Optional[str] = None
+    sender: Optional[str] = None
 
     # include debug info
     is_private: Optional[bool] = False
