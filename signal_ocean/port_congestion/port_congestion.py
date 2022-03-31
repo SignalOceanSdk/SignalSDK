@@ -42,6 +42,16 @@ class PortCongestion:
         DataSet[VoyageEventDetail],
         DataSet[VoyageGeo],
     ]:
+        """Get Voyages Data to calculate port congestion.
+
+            Args:
+                voyages_start_date: We retrieve voyages after that date.
+                vessel_class_id: We retrieve the voyages of the specific 
+                    vessel class id.
+
+            Returns:
+                Voyages, Events, Events Details and Geos.
+            """
 
         voyages_api = VoyagesAPI(self.__connection)
 
@@ -98,7 +108,23 @@ class PortCongestion:
         ports: Optional[List[str]] = None,
         areas: Optional[List[str]] = None,
     ) -> DataSet[VesselsCongestionData]:
-        """ """
+        """Preprocess the Voyages Data to get a basis dataset
+            to calculate Port Congestion.
+
+            Args:
+                voyages_df: Voyages DataFrame.
+                events_df: Events DataFrame.
+                events_details_df: EventDetails DataFrame.
+                geos_df: Geos DataFrame
+                congestion_start_date: starting point of port 
+                    congestion calculation
+                ports: ports for which the congestion will
+                    be calculated.
+                areas: areas for which the congestion will
+                    be calculated.
+            Returns:
+                VesselsCongestionData.
+            """
 
         left_merge_keys = iter(["id", "id_ev", "geo_asset_id_ev"])
         right_merge_keys = iter(["voyage_id", "event_id", "id"])
@@ -417,6 +443,14 @@ class PortCongestion:
     def _calculate_number_of_vessels_over_time(
         self, vessels_congestion_data: DataSet[VesselsCongestionData]
     ) -> DataSet[NumberOfVesselsOverTime]:
+        """Generate number of vessels time series.
+
+            Args:
+                VesselsCongestionData: The Dataset over which
+                    port congestion will be calculated.
+            Returns:
+                NumberOfVesselsOverTime.
+            """
 
         num_of_vessels_time_series = cast(DataSet[NumberOfVesselsOverTime], (
             vessels_congestion_data.groupby("day_date")["imo"]
@@ -430,7 +464,14 @@ class PortCongestion:
     def _calculate_waiting_time_over_time(
         self, vessels_congestion_data: DataSet[VesselsCongestionData]
     ) -> DataSet[WaitingTimeOverTime]:
-        """ """
+        """Generate waiting time time series.
+
+            Args:
+                VesselsCongestionData: The Dataset over which
+                    port congestion will be calculated.
+            Returns:
+                WaitingTimeOverTime.
+            """
         waiting_vessels = vessels_congestion_data[
             (vessels_congestion_data["mode"] == "Waiting")
             & (
@@ -471,6 +512,14 @@ class PortCongestion:
     def _calculate_live_port_congestion(
         self, vessels_congestion_data: DataSet[VesselsCongestionData]
     ) -> DataSet[LiveCongestion]:
+        """Generate live port congestion DataFrame.
+
+            Args:
+                VesselsCongestionData: The Dataset over which
+                    port congestion will be calculated.
+            Returns:
+                LiveCongestion.
+            """
         vessels_at_port_df = vessels_congestion_data[
             (vessels_congestion_data.day_date.dt.date == date.today())
         ].copy()
@@ -499,6 +548,22 @@ class PortCongestion:
         DataSet[LiveCongestion],
         DataSet[VesselsCongestionData],
     ]:
+        """Get port congestion data.
+
+            Args:
+                congestion_start_date: starting point of port 
+                    congestion calculation
+                ports: ports for which the congestion will
+                    be calculated.
+                areas: areas for which the congestion will
+                    be calculated.
+
+            Returns:
+                NumberOfVesselsOverTime, 
+                WaitingTimeOverTime,
+                LiveCongestion,
+                VesselsCongestionData.
+            """
         voyages_start_date = congestion_start_date - relativedelta(months=4)
 
         (
