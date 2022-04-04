@@ -1,5 +1,5 @@
-"""Port Congestion Package.
-"""
+"""Port Congestion Package."""
+
 from .models import (
     LiveCongestion,
     NumberOfVesselsOverTime,

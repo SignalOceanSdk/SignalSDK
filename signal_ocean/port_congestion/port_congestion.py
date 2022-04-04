@@ -1,4 +1,4 @@
-""" Port Congestion"""
+"""Port Congestion."""
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from typing import Optional, Tuple, List, cast
@@ -29,7 +29,12 @@ class PortCongestion:
     """Represents Signal's Port Congestion."""
 
     def __init__(self, connection: Optional[Connection] = None):
-        """ """
+        """Initializes PortCongestion.
+
+        Args:
+            connection: API connection configuration. If not provided, the
+                default connection method is used.
+        """
         self.__connection = connection or Connection()
 
     def _get_voyages_data(
@@ -44,15 +49,14 @@ class PortCongestion:
     ]:
         """Get Voyages Data to calculate port congestion.
 
-            Args:
-                voyages_start_date: We retrieve voyages after that date.
-                vessel_class_id: We retrieve the voyages of the specific 
-                    vessel class id.
+        Args:
+            voyages_start_date: We retrieve voyages after that date.
+            vessel_class_id: We retrieve the voyages of the specific 
+                vessel class id.
 
-            Returns:
-                Voyages, Events, Events Details and Geos.
-            """
-
+        Returns:
+            Voyages, Events, Events Details and Geos.
+        """
         voyages_api = VoyagesAPI(self.__connection)
 
         voyages_flat = voyages_api.get_voyages_flat(
@@ -108,24 +112,23 @@ class PortCongestion:
         ports: Optional[List[str]] = None,
         areas: Optional[List[str]] = None,
     ) -> DataSet[VesselsCongestionData]:
-        """Preprocess the Voyages Data to get a basis dataset
-            to calculate Port Congestion.
+        """Preprocess Voyages to get Port Congestion data.
 
-            Args:
-                voyages_df: Voyages DataFrame.
-                events_df: Events DataFrame.
-                events_details_df: EventDetails DataFrame.
-                geos_df: Geos DataFrame
-                congestion_start_date: starting point of port 
-                    congestion calculation
-                ports: ports for which the congestion will
-                    be calculated.
-                areas: areas for which the congestion will
-                    be calculated.
-            Returns:
-                VesselsCongestionData.
-            """
+        Args:
+            voyages_df: Voyages DataFrame.
+            events_df: Events DataFrame.
+            events_details_df: EventDetails DataFrame.
+            geos_df: Geos DataFrame
+            congestion_start_date: starting point of port 
+                congestion calculation
+            ports: ports for which the congestion will
+                be calculated.
+            areas: areas for which the congestion will
+                be calculated.
 
+        Returns:
+            VesselsCongestionData.
+        """
         left_merge_keys = iter(["id", "id_ev", "geo_asset_id_ev"])
         right_merge_keys = iter(["voyage_id", "event_id", "id"])
         suffixes = iter([("_voy", "_ev"), ("_ev", "_det"), ("", "_geos")])
@@ -145,31 +148,29 @@ class PortCongestion:
             ),
         )
 
-        ports_filter = pd.Series([True] * voyages_extd.shape[0])
-        areas_filter = pd.Series([True] * voyages_extd.shape[0])
+        _filter = pd.Series([True] * voyages_extd.shape[0])
 
-        if ports:
+        if ports and not areas:
             ports_filter = voyages_extd.port_name_geos.isin(ports)
-        if areas:
+            _filter = _filter & ports_filter
+        elif areas and not ports:
             areas_filter = voyages_extd.area_name_level0_geos.isin(areas)
-
-        final_filter = ports_filter & areas_filter
-
+            _filter = _filter & areas_filter
+        elif areas and ports:
+            areas_ports_filter = (
+                (voyages_extd.area_name_level0_geos.isin(areas)) |
+                (voyages_extd.port_name_geos.isin(ports))
+            )
+            _filter = _filter & areas_ports_filter
+        else:
+            pass
+        
         voyages_extd = voyages_extd[
             (voyages_extd["purpose"].isin(["Load", "Discharge"]))
             & (voyages_extd["event_detail_type"] != "StS")
-            & final_filter
+            & _filter
         ].copy()
 
-        """ Port Congestion calculation takes into account also
-            stopped vessels outside the port/anchorage limits using
-            the forecasted part of the voyage (mainly driven from AIS).
-            This is achieved by 'connecting' future(predicted) port calls
-            with their previous stops, given that the stops ended during
-            the last 24 hours from the beginnning of the port calls.
-            The above results to new extended port calls that span from
-            previous stop arrival date to future portcall sailing date.
-        """
         future_portcalls = events_df.loc[
             (events_df["purpose"].isin(["Load", "Discharge"]))
             & (events_df["event_horizon"] == "Future")
@@ -215,47 +216,6 @@ class PortCongestion:
             voyages_final_df.Exist != "right_only"
         ].copy()
 
-        """ # Define Waiting/Operating time for every vessel
-
-            The date range between start_time_of_operation and
-            end_time_of_operation(sailing date) will be marked as Operating,
-            and the rest of the days inside each port call
-            are going to be marked as waiting.
-
-            ## Waiting Time
-
-            We will split the port calls into 4 categories whose
-            waiting interval calculation is differentiated.
-            For each category start/end time
-            of the waiting interval is calculated as follows:
-            * **Historical Port Calls with start time of operation** :
-                * waiting_time_start -> event arrival date
-                * waiting_time_end -> one day prior to the
-                    start time of operation
-            * **Historical Port Calls without start time of operation** :
-            (Note) A historical port call may lack the attribute start
-            time of operation due to low ais density during the port call.
-                * waiting_time_start -> event arrival date
-                * waiting_time_end -> event detail sailing date
-            * **Current Port Calls without start time of operation** :
-            (Note) A Current port call may also have
-            event_horizon = 'Future' due to missing AIS data.
-                * waiting_time_start -> event arrival date
-                * waiting_time_end -> event sailing date
-            * **Extended Port Calls** :
-            (Note) A Current port call may also have
-            event_horizon = 'Future' due to missing AIS data.
-                * waiting_time_start -> arrival date of previous stop
-                * waiting_time_end -> event sailing date
-
-            ## Operating Time
-
-            The operating time interval is simply calculated by
-            taking as operating_time_start the start time of operation
-            and as operating_time_end the end time of operation.
-            In cases that later is not available
-            the event sailing date is used instead.
-        """
         hist_port_calls_with_start_time_of_operation = (
             voyages_final_df.start_time_of_operation.notna()
         )
@@ -445,13 +405,13 @@ class PortCongestion:
     ) -> DataSet[NumberOfVesselsOverTime]:
         """Generate number of vessels time series.
 
-            Args:
-                VesselsCongestionData: The Dataset over which
-                    port congestion will be calculated.
-            Returns:
-                NumberOfVesselsOverTime.
-            """
+        Args:
+            VesselsCongestionData: The Dataset over which
+                port congestion will be calculated.
 
+        Returns:
+            NumberOfVesselsOverTime.
+        """
         num_of_vessels_time_series = cast(DataSet[NumberOfVesselsOverTime], (
             vessels_congestion_data.groupby("day_date")["imo"]
             .nunique()
@@ -466,12 +426,13 @@ class PortCongestion:
     ) -> DataSet[WaitingTimeOverTime]:
         """Generate waiting time time series.
 
-            Args:
-                VesselsCongestionData: The Dataset over which
-                    port congestion will be calculated.
-            Returns:
-                WaitingTimeOverTime.
-            """
+        Args:
+            VesselsCongestionData: The Dataset over which
+                port congestion will be calculated.
+
+        Returns:
+            WaitingTimeOverTime.
+        """
         waiting_vessels = vessels_congestion_data[
             (vessels_congestion_data["mode"] == "Waiting")
             & (
@@ -514,12 +475,13 @@ class PortCongestion:
     ) -> DataSet[LiveCongestion]:
         """Generate live port congestion DataFrame.
 
-            Args:
-                VesselsCongestionData: The Dataset over which
-                    port congestion will be calculated.
-            Returns:
-                LiveCongestion.
-            """
+        Args:
+            VesselsCongestionData: The Dataset over which
+                port congestion will be calculated.
+
+        Returns:
+            LiveCongestion.
+        """
         vessels_at_port_df = vessels_congestion_data[
             (vessels_congestion_data.day_date.dt.date == date.today())
         ].copy()
@@ -550,20 +512,20 @@ class PortCongestion:
     ]:
         """Get port congestion data.
 
-            Args:
-                congestion_start_date: starting point of port 
-                    congestion calculation
-                ports: ports for which the congestion will
-                    be calculated.
-                areas: areas for which the congestion will
-                    be calculated.
+        Args:
+            congestion_start_date: starting point of port 
+                congestion calculation
+            ports: ports for which the congestion will
+                be calculated.
+            areas: areas for which the congestion will
+                be calculated.
 
-            Returns:
-                NumberOfVesselsOverTime, 
-                WaitingTimeOverTime,
-                LiveCongestion,
-                VesselsCongestionData.
-            """
+        Returns:
+            NumberOfVesselsOverTime, 
+            WaitingTimeOverTime,
+            LiveCongestion,
+            VesselsCongestionData.
+        """
         voyages_start_date = congestion_start_date - relativedelta(months=4)
 
         (
