@@ -19,6 +19,7 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/Port_Congestion_in_China-Capes.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
+        - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
     - Tonnage List:
       - 'tonnage_list.md'
       - Examples:
