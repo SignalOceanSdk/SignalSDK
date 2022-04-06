@@ -9,6 +9,7 @@ click==7.1.2
 cryptography==3.3.2
 docutils==0.16
 flake8==3.8.3
+freezegun==1.2.1
 idna==2.9
 jeepney==0.4.3
 keyring==21.2.1
@@ -18,7 +19,7 @@ mypy==0.782
 mypy-extensions==0.4.3
 numpy==1.18.5
 packaging==20.4
-pandas==1.0.3
+pandas==1.3.0
 pathspec==0.8.0
 pip==20.1.1
 pkginfo==1.5.0.1
@@ -41,6 +42,7 @@ SecretStorage==3.1.2
 setuptools==46.4.0
 six==1.15.0
 snowballstemmer==2.0.0
+strictly-typed-pandas==0.1.4
 toml==0.10.1
 tqdm==4.46.0
 twine==3.1.1
