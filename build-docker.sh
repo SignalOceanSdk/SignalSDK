@@ -1,4 +1,5 @@
 #!/bin/bash -e
+set -euxo pipefail
 
 while [[ "$#" -gt 0 ]]
 do
