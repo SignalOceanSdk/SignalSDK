@@ -1,4 +1,4 @@
-import pandas as pd  # type: ignore
+import pandas as pd
 import plotly.express as px  # type: ignore
 import plotly.figure_factory as ff  # type: ignore
 

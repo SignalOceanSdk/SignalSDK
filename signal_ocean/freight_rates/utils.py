@@ -1,6 +1,6 @@
 # noqa: D100
 
-import pandas as pd  # type: ignore
+import pandas as pd
 
 from typing import Tuple
 
@@ -29,5 +29,5 @@ def create_dataframe(
     df = pd.DataFrame([response_dict])
     for column_name, _ in df.iteritems():
         df = df.rename(
-            columns={column_name: snake_to_camel_case(column_name)})
+            columns={column_name: snake_to_camel_case(str(column_name))})
     return df
