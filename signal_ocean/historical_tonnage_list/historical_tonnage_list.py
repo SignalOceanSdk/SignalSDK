@@ -2,7 +2,7 @@
 
 from typing import Iterable, Sequence, overload, Union
 
-import pandas as pd  # type: ignore
+import pandas as pd
 
 from .tonnage_list import TonnageList
 from .column import Column

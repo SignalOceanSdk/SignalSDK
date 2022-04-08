@@ -51,7 +51,7 @@ class PortCongestion:
 
         Args:
             voyages_start_date: We retrieve voyages after that date.
-            vessel_class_id: We retrieve the voyages of the specific 
+            vessel_class_id: We retrieve the voyages of the specific
                 vessel class id.
 
         Returns:
@@ -119,7 +119,7 @@ class PortCongestion:
             events_df: Events DataFrame.
             events_details_df: EventDetails DataFrame.
             geos_df: Geos DataFrame
-            congestion_start_date: starting point of port 
+            congestion_start_date: starting point of port
                 congestion calculation
             ports: ports for which the congestion will
                 be calculated.
@@ -164,7 +164,7 @@ class PortCongestion:
             _filter = _filter & areas_ports_filter
         else:
             pass
-        
+
         voyages_extd = voyages_extd[
             (voyages_extd["purpose"].isin(["Load", "Discharge"]))
             & (voyages_extd["event_detail_type"] != "StS")
@@ -513,7 +513,7 @@ class PortCongestion:
         """Get port congestion data.
 
         Args:
-            congestion_start_date: starting point of port 
+            congestion_start_date: starting point of port
                 congestion calculation
             ports: ports for which the congestion will
                 be calculated.
@@ -521,7 +521,7 @@ class PortCongestion:
                 be calculated.
 
         Returns:
-            NumberOfVesselsOverTime, 
+            NumberOfVesselsOverTime,
             WaitingTimeOverTime,
             LiveCongestion,
             VesselsCongestionData.
