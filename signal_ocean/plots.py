@@ -1,3 +1,5 @@
+# noqa: D100
+
 import pandas as pd
 import plotly.express as px  # type: ignore
 import plotly.figure_factory as ff  # type: ignore
