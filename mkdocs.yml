@@ -71,7 +71,12 @@ nav:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
+    - Scraped Fixtures:
+      - 'scraped_fixtures.md'
+      -Examples:
+        - 'examples/jupyter/ScrapedFixtureAPI/ScrapedFixturesAPI.ipynb'
     - Release notes:
+      - 'releases/Version 1.0.10.md'
       - 'releases/Version 1.0.9.md'
       - 'releases/Version 1.0.8.md'
       - 'releases/Version 1.0.6.md'
