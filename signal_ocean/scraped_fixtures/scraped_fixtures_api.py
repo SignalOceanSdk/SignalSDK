@@ -111,15 +111,17 @@ class ScrapedFixturesAPI:
                 "IncludeDebugInfo": include_debug_info,
             }
 
-            fixtures = get_multiple(
-                connection=self.__connection,
-                relative_url=self.relative_url,
-                cls=ScrapedFixture,
-                query_string=query_string,
-            )
-
-            if len(fixtures) == 0:
-                more_fixtues = False
+            try:
+                fixtures = get_multiple(
+                    connection=self.__connection,
+                    relative_url=self.relative_url,
+                    cls=ScrapedFixture,
+                    query_string=query_string,
+                )
+                if len(fixtures) == 0:
+                    more_fixtues = False
+            except TypeError:
+                fixtures = []
 
             self.page_number = self.page_number + 1
 
