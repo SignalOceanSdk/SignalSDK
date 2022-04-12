@@ -8,6 +8,7 @@ from signal_ocean.util.request_helpers import get_multiple
 
 from .models import ScrapedFixture
 from ..connection import Connection
+from typing import Tuple
 
 
 class ScrapedFixturesAPI:
@@ -120,36 +121,37 @@ class ScrapedFixturesAPI:
                 )
                 if len(fixtures) == 0:
                     more_fixtues = False
+
+                filtered_fixtures: List[ScrapedFixture] = []
+                if port_id and vessel_class_id:
+                    filtered_fixtures = [
+                        fixture
+                        for fixture in fixtures
+                        if (fixture.load_geo_id == port_id)
+                        and (fixture.vessel_class_id == vessel_class_id)
+                    ]
+                elif port_id:
+                    filtered_fixtures = [
+                        fixture
+                        for fixture in fixtures
+                        if fixture.load_geo_id == port_id
+                    ]
+                elif vessel_class_id:
+                    filtered_fixtures = [
+                        fixture
+                        for fixture in fixtures
+                        if fixture.vessel_class_id == vessel_class_id
+                    ]
+                else:
+                    results += fixtures
+
+                if len(filtered_fixtures) > 0:
+                    results += filtered_fixtures
+
             except TypeError:
-                fixtures = []
+                pass
 
             self.page_number = self.page_number + 1
-
-            filtered_fixtures: List[ScrapedFixture] = []
-            if port_id and vessel_class_id:
-                filtered_fixtures = [
-                    fixture
-                    for fixture in fixtures
-                    if (fixture.load_geo_id == port_id)
-                    and (fixture.vessel_class_id == vessel_class_id)
-                ]
-            elif port_id:
-                filtered_fixtures = [
-                    fixture
-                    for fixture in fixtures
-                    if fixture.load_geo_id == port_id
-                ]
-            elif vessel_class_id:
-                filtered_fixtures = [
-                    fixture
-                    for fixture in fixtures
-                    if fixture.vessel_class_id == vessel_class_id
-                ]
-            else:
-                results += fixtures
-
-            if len(filtered_fixtures) > 0:
-                results += filtered_fixtures
 
         self.page_number = 1
         return results
