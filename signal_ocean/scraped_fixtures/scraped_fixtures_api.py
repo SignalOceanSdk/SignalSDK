@@ -8,7 +8,6 @@ from signal_ocean.util.request_helpers import get_multiple
 
 from .models import ScrapedFixture
 from ..connection import Connection
-from typing import Tuple
 
 
 class ScrapedFixturesAPI:
