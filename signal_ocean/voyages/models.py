@@ -477,8 +477,8 @@ class Voyage:
             PredictedLadenDistance is empty.
     """
 
-    imo: int
-    voyage_number: int
+    imo: Optional[int] = None
+    voyage_number: Optional[int] = None
     vessel_type_id: Optional[int] = None
     vessel_class_id: Optional[int] = None
     vessel_status_id: Optional[int] = None
