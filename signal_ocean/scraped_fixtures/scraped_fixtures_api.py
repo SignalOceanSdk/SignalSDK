@@ -123,6 +123,8 @@ class ScrapedFixturesAPI:
 
             self.page_number = self.page_number + 1
 
+            fixtures = (fix for fix in fixtures if not fix.is_deleted)
+
             filtered_fixtures: List[ScrapedFixture] = []
             if port_id and vessel_class_id:
                 filtered_fixtures = [
