@@ -1,3 +1,4 @@
+
 from datetime import date, datetime, timezone
 from decimal import Decimal, InvalidOperation
 from typing import Union, Optional, Mapping, Iterable, Iterator
@@ -45,3 +46,19 @@ def parse_datetime(value: Optional[str]) -> Optional[datetime]:
         return None
 
     return result.replace(tzinfo=timezone.utc)
+
+
+def snake_to_camel_case(input_string: str) -> str:
+    """Function to reformat input string from snake_case to CamelCase.
+
+    Args:
+        input_string: The inpyt string.
+
+    Returns:
+        Input string converted to CamelCase.
+    """
+    temp = input_string.split('_')
+    for i, s in enumerate(temp):
+        temp[i] = s[0].upper() + s[1:]
+        result = temp[0] + ''.join(x.title() for x in temp[1:])
+    return result
