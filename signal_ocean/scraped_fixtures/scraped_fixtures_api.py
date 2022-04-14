@@ -149,5 +149,6 @@ class ScrapedFixturesAPI:
             if len(filtered_fixtures) > 0:
                 results += filtered_fixtures
 
+        remove_deleted_fix = [fix for fix in results if not fix.is_deleted]
         self.page_number = 1
-        return results
+        return remove_deleted_fix
