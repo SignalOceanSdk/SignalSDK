@@ -15,7 +15,8 @@ The required parameters of this function are:
 
 `vessel_type`: The vessel type of the vessels
 
-Also, the user can request fixtures for a specific vessel class or/and using a port id 
+Also, the user can request fixtures for a specific vessel class or/and using a port id.
+The deleted fixtures are excluded from the results
 
 The funtion returns a list of Scraped Fixtures. The fields of Scraped fixtures 
 are defined in models file 

@@ -342,12 +342,15 @@ class ScrapedFixture:
             an "on subs" indication in a tonnage list line and those included
             in a fixture report with vessel name, laycan and load port only.
 
+        # deleted fixtures
+        is_deleted: Boolean. If True the fixture is deleted
+
     """
 
     fixture_id: int
-    message_id: int
-    updated_date: datetime
-    received_date: datetime
+    message_id: Optional[int] = None
+    updated_date: Optional[datetime] = None
+    received_date: Optional[datetime] = None
     reported_fixture_date: Optional[str] = None
     imo: Optional[int] = None
     vessel_class_id: Optional[int] = None
@@ -456,3 +459,6 @@ class ScrapedFixture:
     is_private: Optional[bool] = False
     is_invalidated: Optional[bool] = False
     is_partial: Optional[bool] = False
+
+    # deleted fixture
+    is_deleted: Optional[bool] = False
