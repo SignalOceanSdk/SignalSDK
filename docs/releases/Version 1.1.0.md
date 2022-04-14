@@ -1,10 +1,11 @@
 # v1.1.0
 Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
+
+## Removed OilX Cargo Tracking API Package
 ## Added Scraped Fixtures API
 
 The goal of Scraped Fixtures API is to collect and return the fixtures by the given filters.  
-
 
 ## Added get_fixtures
 Method to retrieve the fixtures data. 
