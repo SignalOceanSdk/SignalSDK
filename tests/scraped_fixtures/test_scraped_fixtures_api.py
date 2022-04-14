@@ -22,6 +22,10 @@ example_request_1 = {
     "VesselType": 1,
 }
 
+deleted_fixtures = {"FixtureID": 85374825, "IsDeleted": True}
+
+deleted_fixtures_model = ScrapedFixture(fixture_id=85374825, is_deleted=True)
+
 sf1 = {
     "FixtureID": 71338679,
     "MessageID": 20811043,
@@ -412,5 +416,28 @@ def test_get_fixtures_by_port3(
     assert final_response == results
 
 
-# test_get_fixtures_by_port3(datetime(2022, 1, 1), datetime(2022, 1, 4), 1, None)
+# test deleted fixtures
+@pytest.mark.parametrize(
+    "received_date_from, received_date_to, vessel_type, port_id",
+    [(datetime(2022, 1, 1), datetime(2022, 1, 6), 1, None),],
+)
+def test_get_fixtures_by_port3(
+    received_date_from, received_date_to, vessel_type, port_id
+):
 
+    mock_response = [deleted_fixtures]
+    mock_response += [rt_sf3]
+    api, connection = create_sf_api(mock_response)
+    # api = ScrapedFixturesAPI()
+
+    results = api.get_fixtures(
+        received_date_from=received_date_from,
+        received_date_to=received_date_to,
+        vessel_type=vessel_type,
+        port_id=port_id,
+    )
+
+    # if user does not set the port is the function will return an empty object
+    final_response = [rt_sf_3_model]
+
+    assert final_response == results
