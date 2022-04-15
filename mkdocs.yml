@@ -70,9 +70,9 @@ nav:
     - Scraped Fixtures:
       - 'scraped_fixtures.md'
       -Examples:
-        - 'examples/jupyter/ScrapedFixtureAPI/ScrapedFixturesAPI.ipynb'
+        - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
     - Release notes:
-      - 'releases/Version 1.0.10.md'
+      - 'releases/Version 1.1.0.md'
       - 'releases/Version 1.0.9.md'
       - 'releases/Version 1.0.8.md'
       - 'releases/Version 1.0.6.md'
