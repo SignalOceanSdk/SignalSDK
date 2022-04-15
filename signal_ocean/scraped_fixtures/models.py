@@ -261,9 +261,6 @@ class ScrapedFixture:
         load_taxonomy2: "String. The extended name identifying the TaxonomyID.
             Possible values are: GeoAsset-> 1, Port -> 2, Country-> 3,
             Level0->4, Level1->5, Level2->6, Level3->7.
-        Possible values are:
-            GeoAsset-> 1, Port -> 2, Country-> 3, Level0->4, Level1->5,
-            Level2->6, Level3->7.
         discharge_name: String. The name of the Signal geo entity related to
             the discharging location of the fixture.
         discharge_name2: String. The name of the Signal geo entity related to

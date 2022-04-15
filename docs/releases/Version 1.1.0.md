@@ -5,7 +5,7 @@ Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-
 ## Removed OilX Cargo Tracking API Package
 ## Added Scraped Fixtures API
 
-The goal of Scraped Data APIs is to collect and return the fixtures by the given filters.  
+The goal of Scraped Fixtures API is to collect and return the fixtures by the given filters.  
 
 ## Added get_fixtures
 Method to retrieve the fixtures data. 
@@ -24,7 +24,7 @@ are defined in models file
 ## Notebook examples update
 
 ### ScrapedFixturesAPI
-Example which describes how the user can extract the fixtures for VLCC/Aframax in the last 7 days.
+Example which describes how the user can extract the fixtures for VLCC in the last 7 days.
 
 
 ## Installation and Upgrade Notes
