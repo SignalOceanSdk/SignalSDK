@@ -69,7 +69,7 @@ nav:
       - 'historical_tonnage_list.md'
     - Scraped Fixtures:
       - 'scraped_fixtures.md'
-      -Examples:
+      - Examples:
         - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
     - Release notes:
       - 'releases/Version 1.1.0.md'
