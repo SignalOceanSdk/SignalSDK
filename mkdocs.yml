@@ -19,6 +19,8 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/Port_Congestion_in_China-Capes.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
+        - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
+        - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
     - Tonnage List:
       - 'tonnage_list.md'
       - Examples:
@@ -55,10 +57,6 @@ nav:
       - 'companies.md'
       - Examples:
         - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
-    - OilX Cargo Tracking:
-      - 'oilx_cargoes.md'
-      - Examples:
-        - 'examples/jupyter/OilXCargoTrackingAPI/OilX Cargo Tracking API.ipynb'
     - Geos:
       - 'geo.md'
       - Examples:
@@ -69,7 +67,13 @@ nav:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
+    - Scraped Fixtures:
+      - 'scraped_fixtures.md'
+      -Examples:
+        - 'examples/jupyter/ScrapedFixtureAPI/ScrapedFixturesAPI.ipynb'
     - Release notes:
+      - 'releases/Version 1.0.10.md'
+      - 'releases/Version 1.0.9.md'
       - 'releases/Version 1.0.8.md'
       - 'releases/Version 1.0.6.md'
       - 'releases/Version 1.0.5.md'

@@ -1,4 +1,5 @@
 #!/bin/bash -e
+set -euxo pipefail
 
 echo 'Installing dependencies...'
 pip install -r ./requirements.txt
