@@ -23,6 +23,8 @@ def create_dataframe(
     response_dict = vars(api_response[0])
     response_dict['freight_cost'] = response_dict['costs'].freight_cost
     response_dict['canal_costs'] = response_dict['costs'].canal
+    response_dict['other_port_expenses'] = \
+        response_dict['costs'].other_port_expenses
     response_dict['load_port'] = response_dict['load_port'].name
     response_dict['discharge_port'] = response_dict['discharge_port'].name
     response_dict.pop('costs')
