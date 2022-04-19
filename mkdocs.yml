@@ -14,7 +14,7 @@ nav:
     - Voyages:
       - 'voyages.md'
       - Examples:
-        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI_UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI_VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
