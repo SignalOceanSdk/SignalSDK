@@ -11,10 +11,12 @@ class Cost:
     Attributes:
         canal: Canal costs.
         freight_cost: Freight cost.
+        other_port_expenses: Other port expenses.
     """
 
     canal: float
     freight_cost: float
+    other_port_expenses: float
 
 
 @dataclass(frozen=True)
