@@ -14,7 +14,7 @@ nav:
     - Voyages:
       - 'voyages.md'
       - Examples:
-        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI_UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI_VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
@@ -43,7 +43,7 @@ nav:
     - Port Congestion:
       - 'port_congestion.md'
       - Examples:
-        - 'examples/jupyter/PortCongestion/Port_Congestion_in_China_(Capes).ipynb'
+        - 'examples/jupyter/PortCongestion/Port_Congestion_in_China-Capes.ipynb'
     - Freight Rates:
       - 'freight_rates.md'
       - Examples:
@@ -75,6 +75,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 1.1.1.md'
       - 'releases/Version 1.1.0.md'
       - 'releases/Version 1.0.9.md'
       - 'releases/Version 1.0.8.md'
