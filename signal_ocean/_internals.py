@@ -1,4 +1,3 @@
-
 from datetime import date, datetime, timezone
 from decimal import Decimal, InvalidOperation
 from typing import Union, Optional, Mapping, Iterable, Iterator
@@ -30,6 +29,10 @@ def format_iso_date(value: Optional[date]) -> Optional[str]:
     return value.strftime("%Y-%m-%d") if value else None
 
 
+def format_iso_datetime(value: Optional[datetime]) -> Optional[str]:
+    return value.strftime("%Y-%m-%dT%H:%M:%SZ") if value else None
+
+
 def as_decimal(value: Optional[Union[float, str]]) -> Optional[Decimal]:
     try:
         return Decimal(str(value)) if value is not None else None
@@ -57,8 +60,8 @@ def snake_to_camel_case(input_string: str) -> str:
     Returns:
         Input string converted to CamelCase.
     """
-    temp = input_string.split('_')
+    temp = input_string.split("_")
     for i, s in enumerate(temp):
         temp[i] = s[0].upper() + s[1:]
-        result = temp[0] + ''.join(x.title() for x in temp[1:])
+        result = temp[0] + "".join(x.title() for x in temp[1:])
     return result

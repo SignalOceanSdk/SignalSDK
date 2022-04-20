@@ -1,8 +1,8 @@
 """The scraped fixtures api."""
 
 from typing import Optional, List, Iterable
-from datetime import date
-from .._internals import format_iso_date, QueryString
+from datetime import datetime
+from .._internals import format_iso_datetime, QueryString
 
 from signal_ocean.util.request_helpers import get_multiple
 
@@ -34,11 +34,11 @@ class ScrapedFixturesAPI:
 
     def get_fixtures(
         self,
-        received_date_from: date,
-        vessel_type: int,
-        received_date_to: Optional[date] = None,
-        updated_date_from: Optional[date] = None,
-        updated_date_to: Optional[date] = None,
+        received_date_from: Optional[datetime],
+        vessel_type: Optional[int],
+        received_date_to: Optional[datetime] = None,
+        updated_date_from: Optional[datetime] = None,
+        updated_date_to: Optional[datetime] = None,
         include_fixture_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_vessel_details: Optional[bool] = True,
@@ -89,6 +89,7 @@ class ScrapedFixturesAPI:
         Returns: An Iterable of ScrapedFixture objects, as we have defined in
         models.py.
         """
+
         more_fixtues = True
 
         results: List[ScrapedFixture] = []
@@ -97,11 +98,11 @@ class ScrapedFixturesAPI:
             query_string: QueryString = {
                 "PageNumber": self.page_number,
                 "PageSize": self.page_size,
-                "ReceivedDateFrom": format_iso_date(received_date_from),
-                "ReceivedDateTo": format_iso_date(received_date_to),
+                "ReceivedDateFrom": format_iso_datetime(received_date_from),
+                "ReceivedDateTo": format_iso_datetime(received_date_to),
                 "VesselType": vessel_type,
-                "UpdatedDateFrom": format_iso_date(updated_date_from),
-                "UpdatedDateTo": format_iso_date(updated_date_to),
+                "UpdatedDateFrom": format_iso_datetime(updated_date_from),
+                "UpdatedDateTo": format_iso_datetime(updated_date_to),
                 "IncludeFixtureDetails": include_fixture_details,
                 "IncludeScrapedFields": include_scraped_fields,
                 "IncludeVesselDetails": include_vessel_details,
