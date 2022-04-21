@@ -34,8 +34,8 @@ class ScrapedFixturesAPI:
 
     def get_fixtures(
         self,
-        received_date_from: Optional[datetime],
-        vessel_type: Optional[int],
+        received_date_from: Optional[datetime] = None,
+        vessel_type: Optional[int] = None,
         received_date_to: Optional[datetime] = None,
         updated_date_from: Optional[datetime] = None,
         updated_date_to: Optional[datetime] = None,
@@ -76,20 +76,20 @@ class ScrapedFixturesAPI:
                 the response.
             include_content: Whether to include the original message line
                 (untouched) in the response.
-        include_sender: Boolean. Whether to include some of the message
-            sender details in the response.
-        include_debug_info: Boolean. Whether to include some information about
-            the distribution of the fixture in the response.
-        port_id: Integer. The port id
-        vessel_class_id: Integer. It is an ID corresponding to the different
-            vessel classes of a certain vessel type, as split according to
-            our internal Vessel Database.
-            For example 84->VLCC, 85->Suezmax, 70->Capesize.
-
-        Returns: An Iterable of ScrapedFixture objects, as we have defined in
-        models.py.
+            include_sender: Boolean. Whether to include some of the message
+                sender details in the response.
+            include_debug_info: Boolean. Whether to include some information
+                about the distribution of the fixture in the response.
+            port_id: Integer. The port id. correspond to load geo id
+            vessel_class_id: Integer. It is an ID corresponding to the
+                different vessel classes of a certain vessel type, as split
+                according to our internal Vessel Database.
+                For example 84->VLCC, 85->Suezmax, 70->Capesize.
+        
+        Returns: 
+            An Iterable of ScrapedFixture objects, as we have defined in
+            models.py.
         """
-
         more_fixtues = True
 
         results: List[ScrapedFixture] = []
