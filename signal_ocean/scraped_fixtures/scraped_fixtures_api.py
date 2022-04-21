@@ -85,8 +85,8 @@ class ScrapedFixturesAPI:
                 different vessel classes of a certain vessel type, as split
                 according to our internal Vessel Database.
                 For example 84->VLCC, 85->Suezmax, 70->Capesize.
-        
-        Returns: 
+
+        Returns:
             An Iterable of ScrapedFixture objects, as we have defined in
             models.py.
         """
