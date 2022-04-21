@@ -1,4 +1,3 @@
-
 from datetime import date, datetime, timezone
 from decimal import Decimal, InvalidOperation
 from typing import Union, Optional, Mapping, Iterable, Iterator
@@ -28,6 +27,10 @@ def contains_caseless(pattern: str, target: str) -> bool:
 
 def format_iso_date(value: Optional[date]) -> Optional[str]:
     return value.strftime("%Y-%m-%d") if value else None
+
+
+def format_iso_datetime(value: Optional[datetime]) -> Optional[str]:
+    return value.strftime("%Y-%m-%dT%H:%M:%SZ") if value else None
 
 
 def as_decimal(value: Optional[Union[float, str]]) -> Optional[Decimal]:

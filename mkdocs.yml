@@ -34,6 +34,7 @@ nav:
       - 'scraped_fixtures.md'
       - Examples:
         - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
+        - 'examples/jupyter/ScrapedFixturesAPI/LatestReceivedScrapedFixtures.ipynb'
     - Distances:
       - 'distances.md'
       - Examples:

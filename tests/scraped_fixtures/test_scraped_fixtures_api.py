@@ -305,7 +305,7 @@ def create_sf_api(
 @pytest.mark.parametrize(
     "received_date_from, received_date_to, vessel_type",
     [
-        (datetime(2022, 1, 1), datetime(2022, 1, 4), 1),
+        (datetime(2022, 1, 1, 2, 0, 0), datetime(2022, 1, 4, 2, 59, 59), 1),
         # (datetime(2022,1,1), None, 1),
         # (None, None, 1),
         # (datetime(2022,1,1), datetime(2022,1,4), None)
@@ -333,8 +333,20 @@ def test_get_fixtures(received_date_from, received_date_to, vessel_type):
 @pytest.mark.parametrize(
     "received_date_from, received_date_to, vessel_type, port_id, vessel_class_id",
     [
-        (datetime(2022, 1, 1), datetime(2022, 1, 6), 1, 3778, 86),
-        (datetime(2022, 1, 1), datetime(2022, 1, 6), 1, 3778, None),
+        (
+            datetime(2022, 1, 1, 2, 0, 0),
+            datetime(2022, 1, 6, 2, 59, 59),
+            1,
+            3778,
+            86,
+        ),
+        (
+            datetime(2022, 1, 1, 2, 0, 0),
+            datetime(2022, 1, 6, 2, 59, 59),
+            1,
+            3778,
+            None,
+        ),
     ],
 )
 def test_get_fixtures_by_port(
@@ -364,7 +376,14 @@ def test_get_fixtures_by_port(
 
 @pytest.mark.parametrize(
     "received_date_from, received_date_to, vessel_type, port_id",
-    [(datetime(2022, 1, 1), datetime(2022, 1, 6), 1, None),],
+    [
+        (
+            datetime(2022, 1, 1, 2, 0, 0),
+            datetime(2022, 1, 6, 2, 59, 59),
+            1,
+            None,
+        ),
+    ],
 )
 def test_get_fixtures_by_port2(
     received_date_from, received_date_to, vessel_type, port_id
@@ -393,7 +412,14 @@ def test_get_fixtures_by_port2(
 # test new changes
 @pytest.mark.parametrize(
     "received_date_from, received_date_to, vessel_type, port_id",
-    [(datetime(2022, 1, 1), datetime(2022, 1, 6), 1, None),],
+    [
+        (
+            datetime(2022, 1, 1, 2, 0, 0),
+            datetime(2022, 1, 6, 2, 59, 59),
+            1,
+            None,
+        ),
+    ],
 )
 def test_get_fixtures_by_port3(
     received_date_from, received_date_to, vessel_type, port_id
@@ -402,7 +428,6 @@ def test_get_fixtures_by_port3(
     mock_response = [rt_sf3]
     api, connection = create_sf_api(mock_response)
     # api = ScrapedFixturesAPI()
-
     results = api.get_fixtures(
         received_date_from=received_date_from,
         received_date_to=received_date_to,
@@ -419,7 +444,14 @@ def test_get_fixtures_by_port3(
 # test deleted fixtures
 @pytest.mark.parametrize(
     "received_date_from, received_date_to, vessel_type, port_id",
-    [(datetime(2022, 1, 1), datetime(2022, 1, 6), 1, None),],
+    [
+        (
+            datetime(2022, 1, 1, 2, 0, 0),
+            datetime(2022, 1, 6, 20, 59, 59),
+            1,
+            None,
+        ),
+    ],
 )
 def test_get_fixtures_by_port3(
     received_date_from, received_date_to, vessel_type, port_id
