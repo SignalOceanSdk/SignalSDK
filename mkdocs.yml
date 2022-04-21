@@ -14,9 +14,9 @@ nav:
     - Voyages:
       - 'voyages.md'
       - Examples:
-        - 'examples/jupyter/VoyagesAPI/VoyagesAPI_UseCases.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
-        - 'examples/jupyter/VoyagesAPI/VoyagesAPI_VoyagesDataLike.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
         - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
         - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
