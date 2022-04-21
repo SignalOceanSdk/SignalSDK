@@ -1,15 +1,27 @@
-# v1.1.1
+# v1.1.2
 Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
 
-## Updated Freight Rates API 
-## Updated get_freight_pricing response model
-Added field `other_port_expenses` under `costs`.
+## Updated Scraped Fixtures API 
+### Updated get_fixtures function
+Change data type for field `received_date_from` from date to datetime.
+Set field `received_date_from` Optional.
+Set field `vessel_type` Optional.
+Change data type for field `received_date_to` from date to datetime.
+Change data type for field `updated_date_from` from date to datetime.
+Change data type for field `updated_date_to` from date to datetime.
+
+### Updated Scraped Fixtures model
+Rename field `charterer_type` to `charter_type`
 
 ## Notebook examples update
 
-### FreightRatesAPI
-Updated the example of getting freight rates for specific ports to include `other_port_expenses` field.
+### Update Scraped Fixtures API Example
+Updated the example by using datetime instead of date for `received_date_to` field
+
+### Add new example (Latest Received Scraped Fixtures)
+This example uses the Scraped Fixture API in order to get the latest fixtures for tanker and dry.
+The final results are exported to csv files.
 
 
 ## Installation and Upgrade Notes
