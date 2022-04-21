@@ -60,8 +60,8 @@ def snake_to_camel_case(input_string: str) -> str:
     Returns:
         Input string converted to CamelCase.
     """
-    temp = input_string.split("_")
+    temp = input_string.split('_')
     for i, s in enumerate(temp):
         temp[i] = s[0].upper() + s[1:]
-        result = temp[0] + "".join(x.title() for x in temp[1:])
+        result = temp[0] + ''.join(x.title() for x in temp[1:])
     return result
