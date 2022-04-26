@@ -28,6 +28,8 @@ setup(
         "requests>=2.23.0,<3",
         "python-dateutil>=2.8.1,<3",
         "pandas>=1.0.3,<2",
+        "numpy>=1.18.5",
+        "strictly-typed-pandas==0.1.4"
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
