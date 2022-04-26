@@ -17,7 +17,6 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
-        - 'examples/jupyter/VoyagesAPI/Port_Congestion_in_China-Capes.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
         - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
         - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
@@ -31,24 +30,33 @@ nav:
         - 'examples/jupyter/Tonnage List API/Finding vessels opening east and west of Suez.ipynb'
         - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
         - 'examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb'
+    - Scraped Fixtures:
+      - 'scraped_fixtures.md'
+      - Examples:
+        - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
+        - 'examples/jupyter/ScrapedFixturesAPI/LatestReceivedScrapedFixtures.ipynb'
     - Distances:
       - 'distances.md'
       - Examples:
         - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
         - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
         - 'examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb'
+    - Port Congestion:
+      - 'port_congestion.md'
+      - Examples:
+        - 'examples/jupyter/PortCongestion/Port_Congestion_in_China-Capes.ipynb'
     - Freight Rates:
       - 'freight_rates.md'
       - Examples:
         - 'examples/jupyter/FreightRatesAPI/FreightRatesAPI.ipynb'
-    - Port Expenses:
-      - 'port_expenses.md'
-      - Examples:
-        - 'examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb'
     - Market Rates:
       - 'market_rates.md'
       - Examples:
         - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
+    - Port Expenses:
+      - 'port_expenses.md'
+      - Examples:
+        - 'examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb'
     - Vessels:
       - 'vessels.md'
       - Examples:
@@ -67,11 +75,9 @@ nav:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
-    - Scraped Fixtures:
-      - 'scraped_fixtures.md'
-      - Examples:
-        - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
     - Release notes:
+      - 'releases/Version 1.1.2.md'
+      - 'releases/Version 1.1.1.md'
       - 'releases/Version 1.1.0.md'
       - 'releases/Version 1.0.9.md'
       - 'releases/Version 1.0.8.md'

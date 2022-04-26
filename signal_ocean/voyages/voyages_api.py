@@ -544,8 +544,8 @@ class VoyagesAPI:
         """Retrieves available vessel types.
 
         Args:
-            type_filter: A filter used to find specific vessel . If not
-                specified, returns all available vessel .
+            vessel_filter: A filter used to find specific vessel . If not
+                specified, returns all available vessels .
 
         Returns:
             A tuple of available vessels that match the filter.
