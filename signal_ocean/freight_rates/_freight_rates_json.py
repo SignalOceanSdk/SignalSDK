@@ -42,9 +42,9 @@ def parse_ports(json: Mapping[str, Dict[str, str]]) -> Tuple[Port, ...]:
     for port_id, port_details in json.items():
         port = Port(
             id=cast(int, port_id),
-            name=cast(str, port_details["name"]),
-            country=cast(str, port_details["country"]),
-            area=cast(str, port_details["area"]),
+            name=port_details["name"],
+            country=port_details["country"],
+            area=port_details["area"],
         )
         ports.append(port)
     return tuple(ports)
