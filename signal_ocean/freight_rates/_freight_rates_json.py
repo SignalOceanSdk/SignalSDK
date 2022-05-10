@@ -1,4 +1,4 @@
-from typing import cast, Mapping, Any, List, Tuple
+from typing import cast, Mapping, Any, List, Tuple, Dict
 
 from .models import FreightPricing, Cost, Port
 
@@ -37,12 +37,14 @@ def parse_freight_pricing(json_list: List[Mapping[str, Any]]) -> \
     return tuple(pricing_list)
 
 
-def parse_ports(json: Mapping[str, Any]) -> Tuple[Port, ...]:
+def parse_ports(json: Mapping[str, Dict[str, str]]) -> Tuple[Port, ...]:
     ports: List[Port] = []
-    for port_id, port_name in json.items():
+    for port_id, port_details in json.items():
         port = Port(
             id=cast(int, port_id),
-            name=cast(str, port_name),
+            name=cast(str, port_details["name"]),
+            country=cast(str, port_details["country"]),
+            area=cast(str, port_details["area"]),
         )
         ports.append(port)
     return tuple(ports)
