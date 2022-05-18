@@ -494,6 +494,7 @@ class Voyage:
     trade: Optional[str] = None
     trade_id: Optional[int] = None
     vessel_status: Optional[str] = None
+    deadweight: Optional[int] = None
     commercial_operator: Optional[str] = None
     start_date: Optional[datetime] = None
     first_load_arrival_date: Optional[datetime] = None
