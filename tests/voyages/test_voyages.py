@@ -366,7 +366,8 @@ _mock_get_advanced_search = {
         	     'FirstLoadArrivalDateTo=2021-07-04&'\
                  'HideEventDetails=True&'\
                  'HideEvents=True&'\
-                 'HideMarketInfo=False'
+                 'HideMarketInfo=False&'\
+                 'Nested=True&Condensed=False'
 }
 
 _mock_advanced_search_response_data = {
