@@ -347,6 +347,9 @@ class Voyage:
         vessel_status_id: Numeric ID that takes the following values  1 ->
             Voyage, 2 -> Breaking, 3 -> Domestic Trade, 4-> FPSO, 5-> FPSO
             Conversion, 6-> Inactive, 7-> Storage Vessel, 9-> Conversion.
+        deadweight: Numeric, measured in tonnes [t], often shortened as DWT,
+            denotes the total carrying capacity of the vessel including cargo,
+            ballast water, stores, provisions, crew and so on.
         commercial_operator_id: Numeric ID corresponding to the maritime
             company that manages the vessel commercially.
         deleted: Boolean. This will be true if the voyage has been deleted from
