@@ -152,6 +152,8 @@ class VoyageEventDetail:
             This is the timestamp of the final AIS point the vessel is tracked
             within a jetty or that is captured performing a ship-to-ship
             operation.
+        sts_id: String, A unique identifier assigned to each ship-to-ship 
+            event. Will be identical for both participating vessels.
         geo_asset_id: Numeric ID corresponding to the geo asset in which the
             event took place. Geo assets represent maritime facilities such as
             terminals, anchorages and lightering zones. Multiple geo assets are
@@ -187,6 +189,7 @@ class VoyageEventDetail:
     sailing_date: Optional[datetime] = None
     start_time_of_operation: Optional[datetime] = None
     end_time_of_operation: Optional[datetime] = None
+    sts_id: Optional[str] = None
     geo_asset_id: Optional[int] = None
     geo_asset_name: Optional[str] = None
     latitude: Optional[float] = None
@@ -353,6 +356,8 @@ class Voyage:
             our database.
         events: The events that took place during the voyage.
         id: String. Uniquely identifies the voyage.
+        horizon_id: Numeric ID that takes the following values Unknown (0), 
+            Historic (1), Historical (1), Current (2), Future (3)
         horizon: String. It can take "Historic", "Current" or "Future" values,
             depending on whether the voyage event is in the past (StartDate and
             EndDate both in the past), is current (StartDate in the past and
@@ -365,6 +370,8 @@ class Voyage:
             and its events.
         vessel_name: The vessel name corresponding to that IMO at the time of
             that voyage.
+        pit_vessel_name: String, The vessel name corresponding to that IMO at 
+            the time of that voyage (if different than VesselName)
         vessel_type: Description of the type of the vessel, based on the
             carried cargo. Main categories are Tankers, Dry (bulk carriers),
             Containers, LNG and LPG.
@@ -386,6 +393,10 @@ class Voyage:
             and most common status is the "Voyage" one, the one in which the
             vessel continuously sails and performs operations. The other
             statuses are used for specific purposes different than voyage.
+        deadweight: Numeric, measured in tonnes [t], often shortened as DWT, 
+            denotes the total carrying capacity of the vessel including cargo, 
+            ballast water, stores, provisions, crew and so on.
+        year_built: Numeric, year format, the year the vessel was built.
         commercial_operator: Name of the maritime company that manages the
             vessel commercially.
         start_date: Date, format YYYY-MM-DD HH:MM:SS. The beginning of the
@@ -475,6 +486,18 @@ class Voyage:
             when vessel is laden, it is the remaining distance between the
             vessel position and the last discharge port. For historical legs
             PredictedLadenDistance is empty.
+        suez_crossing: String, indicates whether the vessel crossed the Suez 
+            canal during the voyage. Depending on the leg, it can take 
+            "Laden", "Ballast" or "Both" as values.
+        panama_crossing: String, indicates whether the vessel crossed the 
+            Panama canal during the voyage. Depending on the leg, it can take 
+            "Laden", "Ballast" or "Both" as values.
+        canakkale_crossing: String, indicates whether the vessel crossed the 
+            Canakkale strait during the voyage. Depending on the leg, it can 
+            take "Laden", "Ballast" or "Both" as values.
+        bosporus_crossing: String, indicates whether the vessel crossed the 
+            Bosporus strait during the voyage. Depending on the leg, it can 
+            take "Laden", "Ballast" or "Both" as values.
     """
 
     imo: Optional[int] = None
@@ -486,14 +509,18 @@ class Voyage:
     deleted: Optional[bool] = False
     events: Optional[Tuple[VoyageEvent, ...]] = None
     id: Optional[str] = None
+    horizon_id: Optional[int] = None
     horizon: Optional[str] = None
     latest_received_ais: Optional[datetime] = None
     vessel_name: Optional[str] = None
+    pit_vessel_name: Optional[str] = None
     vessel_type: Optional[str] = None
     vessel_class: Optional[str] = None
     trade: Optional[str] = None
     trade_id: Optional[int] = None
     vessel_status: Optional[str] = None
+    deadweight: Optional[int] = None
+    year_built: Optional[int] = None
     commercial_operator: Optional[str] = None
     start_date: Optional[datetime] = None
     first_load_arrival_date: Optional[datetime] = None
@@ -523,6 +550,10 @@ class Voyage:
     predicted_ballast_distance: Optional[float] = None
     laden_distance: Optional[float] = None
     predicted_laden_distance: Optional[float] = None
+    suez_crossing: Optional[str] = None
+    panama_crossing: Optional[str] = None
+    canakkale_crossing: Optional[str] = None
+    bosporus_crossing: Optional[str] = None
 
 
 @dataclass(frozen=True)
