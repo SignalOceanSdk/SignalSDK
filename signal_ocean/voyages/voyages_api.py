@@ -9,7 +9,6 @@ from signal_ocean.util.parsing_helpers import _to_camel_case, parse_model
 from signal_ocean.voyages.models import (
     Voyage,
     VoyageCondensed,
-    VoyagesCondensed,
     VoyagesCondensedPagedResponse,
     VoyagesFlat,
     VoyagesFlatPagedResponse,
@@ -26,7 +25,7 @@ from signal_ocean.voyages.models import (
 )
 
 Voyages = Tuple[Voyage, ...]
-# VoyagesFlat = Tuple[Voyage, ...]
+VoyagesCondensed = Tuple[VoyageCondensed, ...]
 NextRequestToken = str
 
 
@@ -72,6 +71,7 @@ class VoyagesAPI:
                 format.
             incremental: Return voyages incrementally, including voyages that
                 may have been retrieved in previous calls and are now deleted.
+            condensed:
 
         Returns:
             The endpoint to call to retrieve the requested voyages for
@@ -270,7 +270,7 @@ class VoyagesAPI:
         Returns:
             Voyages condensed data gathered from the returned pages.
         """
-        voyages: List[VoyageCondensed] = []
+        results: List[VoyageCondensed] = []
         next_page_token = token
         while True:
             params = (
@@ -278,17 +278,14 @@ class VoyagesAPI:
                 if next_page_token is not None
                 else None
             )
-
             response = get_single(
                 self.__connection,
                 endpoint,
                 VoyagesCondensedPagedResponse,
                 query_string=params,
             )
-
             if response is not None and response.data is not None:
-                voyages.extend(response.data.voyages or [])
-
+                results.extend(response.data)
             next_page_token = (
                 response.next_page_token if response is not None else None
             )
@@ -296,15 +293,10 @@ class VoyagesAPI:
             if next_page_token is None:
                 break
 
-        result = VoyagesCondensed(
-            voyages=tuple(voyages),
-        )
-
         next_request_token = (
             response.next_request_token if response is not None else None
         )
-
-        return result, next_request_token
+        return tuple(results), next_request_token
 
     def get_voyages(
         self,
@@ -380,7 +372,7 @@ class VoyagesAPI:
         vessel_class_id: Optional[int] = None,
         vessel_type_id: Optional[int] = None,
         date_from: Optional[date] = None,
-    ) -> Optional[VoyagesCondensed]:
+    ) -> VoyagesCondensed:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
@@ -407,10 +399,13 @@ class VoyagesAPI:
             condensed=True
         )
         if imo is not None:
-            results = get_single(self.__connection, endpoint, VoyagesCondensed)
+            results = get_multiple(
+                self.__connection,
+                endpoint,
+                VoyageCondensed
+            )
         else:
             results, _ = self._get_voyages_condensed_pages(endpoint)
-
         return results
 
     def get_incremental_voyages(
@@ -519,9 +514,9 @@ class VoyagesAPI:
                 call. If this is the first call, then it can be omitted.
 
         Returns:
-            A tuple containing the returned voyages in condensed format, including
-            any deleted voyages, and the token for the next incremental
-            request.
+            A tuple containing the returned voyages in condensed format,
+            including any deleted voyages, and the token for the next
+            incremental request.
         """
         endpoint = self._get_endpoint(
             imo,

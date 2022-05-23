@@ -1,6 +1,7 @@
 import dataclasses
 from copy import copy
 from datetime import datetime, date, timezone
+import re
 from typing import Tuple, Dict, Union, List
 from unittest.mock import MagicMock
 from urllib.parse import urljoin
@@ -8,7 +9,7 @@ from urllib.parse import urljoin
 import pytest
 
 from signal_ocean import Connection
-from signal_ocean.voyages.models import Voyage, \
+from signal_ocean.voyages.models import Voyage, VoyageCondensed, \
     VoyageEvent, VoyageEventDetail, VoyageGeo, VoyagesFlat, \
     VoyagesFlatPagedResponse
 from signal_ocean.voyages.voyages_api import VoyagesAPI
@@ -206,7 +207,8 @@ _mock_event_detail_data_2 = {
     'Latitude': 1.27225,
     'Longitude': 103.97495,
     'OtherVesselIMO': 9183348,
-    'OtherVesselName': 'Tian Ma Zuo'
+    'OtherVesselName': 'Tian Ma Zuo',
+    'StsID': '123456'
 }
 
 _mock_event_detail_2 = VoyageEventDetail(
@@ -225,7 +227,8 @@ _mock_event_detail_2 = VoyageEventDetail(
     geo_asset_name='Lightering Zone',
     latitude=1.27225, longitude=103.97495,
     other_vessel_imo=9183348,
-    other_vessel_name='Tian Ma Zuo'
+    other_vessel_name='Tian Ma Zuo',
+    sts_id='123456'
 )
 
 _mock_geo_data_1 = {
@@ -333,6 +336,7 @@ _mock_voyages_paged_nested_response_data_1 = {
     'NextPageToken': 'ASDF',
     'Data': [_mock_nested_voyage_data_1]
 }
+
 _mock_voyages_paged_nested_response_data_2 = \
     {'Data': [_mock_nested_voyage_data_2]}
 
@@ -350,39 +354,40 @@ _mock_nested_voyage_2 = dataclasses.replace(_mock_flat_voyage_2, events=())
 _mock_voyages = (_mock_nested_voyage_1, _mock_nested_voyage_2)
 
 _mock_get_advanced_search = {
-    'input' : {
-    'vessel_class_id' : 84,
-    'first_load_arrival_date_from' : '2021-06-04',
-    'first_load_arrival_date_to' : '2021-07-04',
-    'hide_event_details' : True,
-    'hide_events' : True,
-    'hide_market_info' : False
+    'input': {
+        'vessel_class_id': 84,
+        'first_load_arrival_date_from': '2021-06-04',
+        'first_load_arrival_date_to': '2021-07-04',
+        'hide_event_details': True,
+        'hide_events': True,
+        'hide_market_info': False
     },
 
-    'expected_output' : 
-                 'voyages-api/v2/search/advanced/?'\
-                 'VesselClassId=84&'\
-                 'FirstLoadArrivalDateFrom=2021-06-04&'\
-        	     'FirstLoadArrivalDateTo=2021-07-04&'\
-                 'HideEventDetails=True&'\
-                 'HideEvents=True&'\
-                 'HideMarketInfo=False&'\
-                 'Nested=True&Condensed=False'
+    'expected_output':
+    'voyages-api/v2/search/advanced/?'
+    'VesselClassId=84&'
+    'FirstLoadArrivalDateFrom=2021-06-04&'
+    'FirstLoadArrivalDateTo=2021-07-04&'
+    'HideEventDetails=True&'
+    'HideEvents=True&'
+    'HideMarketInfo=False&'
+    'Nested=True&Condensed=False'
 }
 
 _mock_advanced_search_response_data = {
-    'ID' : '91017.130',
-    'IMO' : '91017',
-    'VoyageNumber' : 65,
-    'Horizon' : 'Current',
-    'VesselName' : 'Signal Vessel',
-    'VesselTypeID' : 1,
-    'VesselType' : 'Tanker',
-    'VesselClassID' : 84,
-    'VesselClass' : 'VLCC',
-    'TradeID' : 1,
-    'Trade' : 'Crude',
-    'VesselStatusID' : 1,
+    'ID': '91017.130',
+    'IMO': '91017',
+    'VoyageNumber': 65,
+    'Horizon': 'Current',
+    'HorizonID': 2,
+    'VesselName': 'Signal Vessel',
+    'VesselTypeID': 1,
+    'VesselType': 'Tanker',
+    'VesselClassID': 84,
+    'VesselClass': 'VLCC',
+    'TradeID': 1,
+    'Trade': 'Crude',
+    'VesselStatusID': 1,
     'VesselStatus': 'Voyage',
     'CommercialOperatorID': 1797,
     'CommercialOperator': 'Signal',
@@ -407,42 +412,256 @@ _mock_advanced_search_response_data = {
     'BallastDistance': 9036.45,
     'PredictedBallastDistance': 9032.41,
     'PredictedLadenDistance': 9900.03,
+    'Deadweight': 116337,
+    'PITVesselName': "S Vessel",
+    'YearBuilt': 2015,
+    'SuezCrossing': 'Laden',
+    'PanamaCrossing': 'Ballast',
+    'CanakkaleCrossing': 'Both',
+    'BosporusCrossing': 'Laden',
+
 }
 
 _mock_advanced_search_voyage = Voyage(
-    imo = 91017, voyage_number = 65, horizon='Current',
-    vessel_type_id = 1, vessel_class_id = 84, 
-    vessel_status_id = 1, vessel_class = 'VLCC', trade_id = 1, 
-    vessel_type = 'Tanker', trade = 'Crude', vessel_status = 'Voyage',
-    commercial_operator_id = 1797, id= '91017.130', vessel_name = 'Signal Vessel',
-    commercial_operator = 'Signal', 
-    start_date = datetime.fromisoformat(
+    imo=91017, voyage_number=65, horizon='Current', horizon_id=2,
+    vessel_type_id=1, vessel_class_id=84,
+    vessel_status_id=1, vessel_class='VLCC', trade_id=1,
+    vessel_type='Tanker', trade='Crude', vessel_status='Voyage',
+    commercial_operator_id=1797, id='91017.130', vessel_name='Signal Vessel',
+    commercial_operator='Signal',
+    start_date=datetime.fromisoformat(
         '2020-12-23T14:42:00'
-    ).replace(tzinfo=timezone.utc), first_load_arrival_date = datetime.fromisoformat(
+    ).replace(tzinfo=timezone.utc), first_load_arrival_date=datetime.fromisoformat(
         '2021-06-11T12:09:11.131'
-    ).replace(tzinfo=timezone.utc), end_date = datetime.fromisoformat(
+    ).replace(tzinfo=timezone.utc), end_date=datetime.fromisoformat(
         '2021-07-20T23:44:51.004'
     ).replace(tzinfo=timezone.utc),
-    charterer_id = -1, charterer = 'Unknown',
-    rate = None, rate_type = None,
-    ballast_bonus = None, ballast_bonus_type = None, 
-    cargo_type_id = -2, cargo_type = 'Not set',
-    cargo_group_id = -32, cargo_group = 'Not set',
-    cargo_type_source = 'Estimated',
-    laycan_from = datetime.fromisoformat(
+    charterer_id=-1, charterer='Unknown',
+    rate=None, rate_type=None,
+    deadweight=116337,
+    ballast_bonus=None, ballast_bonus_type=None,
+    cargo_type_id=-2, cargo_type='Not set',
+    cargo_group_id=-32, cargo_group='Not set',
+    cargo_type_source='Estimated',
+    laycan_from=datetime.fromisoformat(
         '2021-06-11T12:09:11.131'
-    ).replace(tzinfo=timezone.utc), laycan_to = datetime.fromisoformat(
+    ).replace(tzinfo=timezone.utc), laycan_to=datetime.fromisoformat(
         '2021-06-14T01:22:40.829'
     ).replace(tzinfo=timezone.utc),
-    fixture_status_id = 5, fixture_status = 'PossFixed',
-    fixture_date = datetime.fromisoformat(
+    fixture_status_id=5, fixture_status='PossFixed',
+    fixture_date=datetime.fromisoformat(
         '2021-05-26T07:53:40'
-    ).replace(tzinfo=timezone.utc), fixture_is_coa = False,
-    fixture_is_hold = False, is_implied_by_ais = True,
-    has_manual_entries = None,ballast_distance = 9036.45, laden_distance = None,
-    predicted_ballast_distance = 9032.41, predicted_laden_distance = 9900.03
+    ).replace(tzinfo=timezone.utc), fixture_is_coa=False,
+    fixture_is_hold=False, is_implied_by_ais=True,
+    has_manual_entries=None, ballast_distance=9036.45, laden_distance=None,
+    predicted_ballast_distance=9032.41, predicted_laden_distance=9900.03,
+    year_built=2015, suez_crossing='Laden', panama_crossing='Ballast',
+    canakkale_crossing='Both', bosporus_crossing='Laden'
 )
 
+_mock_condensed_response_data_1 = {
+    'ID': '91017.130',
+    'IMO': '91017',
+    'VoyageNumber': 65,
+    'Horizon': 'Current',
+    'HorizonID': 2,
+    'VesselName': 'Signal Vessel',
+    'VesselTypeID': 1,
+    'VesselType': 'Tanker',
+    'VesselClassID': 84,
+    'VesselClass': 'VLCC',
+    'TradeID': 1,
+    'Trade': 'Crude',
+    'VesselStatusID': 1,
+    'VesselStatus': 'Voyage',
+    'CommercialOperatorID': 1797,
+    'CommercialOperator': 'Signal',
+    'StartDate': '2020-12-23T14:42:00Z',
+    'FirstLoadArrivalDate': '2021-06-11T12:09:11.131Z',
+    'EndDate': '2021-07-20T23:44:51.004Z',
+    'ChartererID': -1,
+    'Charterer': 'Unknown',
+    'CargoTypeID': -2,
+    'CargoType': 'Not set',
+    'CargoGroupID': -32,
+    'CargoGroup': 'Not set',
+    'CargoTypeSource': 'Estimated',
+    'LaycanFrom': '2021-06-11T12:09:11.131Z',
+    'LaycanTo': '2021-06-14T01:22:40.829Z',
+    'FixtureStatusID': 5,
+    'FixtureStatus': 'PossFixed',
+    'FixtureDate': '2021-05-26T07:53:40Z',
+    'FixtureIsCOA': False,
+    'FixtureIsHold': False,
+    'IsImpliedByAIS': True,
+    'BallastDistance': 9036.45,
+    'PredictedBallastDistance': 9032.41,
+    'PredictedLadenDistance': 9900.03,
+    'Deadweight': 116337,
+    'PITVesselName': "S Vessel",
+    'YearBuilt': 2015,
+    'SuezCrossing': 'Laden',
+    'PanamaCrossing': 'Ballast',
+    'CanakkaleCrossing': 'Both',
+    'BosporusCrossing': 'Laden',
+    'StartingPortName': 'Port name',
+    'StartingPortID': 1,
+    'FirstLoadCountryName': 'First load country name',
+    'FirstLoadCountryID': 10,
+    'LastDischargePortName': 'Last discharge country name',
+    'LastDischargePortID': 100,
+    'RepairsInd': True,
+}
+
+_mock_condensed_voyage_1 = VoyageCondensed(
+    imo=91017, voyage_number=65, horizon='Current', horizon_id=2,
+    vessel_type_id=1, vessel_class_id=84,
+    vessel_status_id=1, vessel_class='VLCC', trade_id=1,
+    vessel_type='Tanker', trade='Crude', vessel_status='Voyage',
+    commercial_operator_id=1797, id='91017.130', vessel_name='Signal Vessel',
+    commercial_operator='Signal',
+    start_date=datetime.fromisoformat(
+        '2020-12-23T14:42:00'
+    ).replace(tzinfo=timezone.utc), first_load_arrival_date=datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), end_date=datetime.fromisoformat(
+        '2021-07-20T23:44:51.004'
+    ).replace(tzinfo=timezone.utc),
+    charterer_id=-1, charterer='Unknown',
+    rate=None, rate_type=None,
+    deadweight=116337,
+    ballast_bonus=None, ballast_bonus_type=None,
+    cargo_type_id=-2, cargo_type='Not set',
+    cargo_group_id=-32, cargo_group='Not set',
+    cargo_type_source='Estimated',
+    laycan_from=datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), laycan_to=datetime.fromisoformat(
+        '2021-06-14T01:22:40.829'
+    ).replace(tzinfo=timezone.utc),
+    fixture_status_id=5, fixture_status='PossFixed',
+    fixture_date=datetime.fromisoformat(
+        '2021-05-26T07:53:40'
+    ).replace(tzinfo=timezone.utc), fixture_is_coa=False,
+    fixture_is_hold=False, is_implied_by_ais=True,
+    has_manual_entries=None, ballast_distance=9036.45, laden_distance=None,
+    predicted_ballast_distance=9032.41, predicted_laden_distance=9900.03,
+    year_built=2015, suez_crossing='Laden', panama_crossing='Ballast',
+    canakkale_crossing='Both', bosporus_crossing='Laden',
+    starting_port_name='Port name', starting_port_id=1,
+    first_load_country_name='First load country name',
+    first_load_country_id=10,
+    last_discharge_port_name='Last discharge country name',
+    last_discharge_port_id=100,
+    repairs_ind=True
+)
+
+
+_mock_voyages_paged_condensed_response_data_1 = {
+    'NextPageToken': 'ASDF',
+    'Data': [_mock_condensed_response_data_1]
+}
+
+_mock_condensed_response_data_2 = {
+    'ID': '910172.130',
+    'IMO': '910172',
+    'VoyageNumber': 64,
+    'Horizon': 'Current',
+    'HorizonID': 2,
+    'VesselName': 'Signal Vessel 2',
+    'VesselTypeID': 1,
+    'VesselType': 'Tanker',
+    'VesselClassID': 84,
+    'VesselClass': 'VLCC',
+    'TradeID': 1,
+    'Trade': 'Crude',
+    'VesselStatusID': 1,
+    'VesselStatus': 'Voyage',
+    'CommercialOperatorID': 1797,
+    'CommercialOperator': 'Signal',
+    'StartDate': '2020-12-23T14:42:00Z',
+    'FirstLoadArrivalDate': '2021-06-11T12:09:11.131Z',
+    'EndDate': '2021-07-20T23:44:51.004Z',
+    'ChartererID': -1,
+    'Charterer': 'Unknown',
+    'CargoTypeID': -2,
+    'CargoType': 'Not set',
+    'CargoGroupID': -32,
+    'CargoGroup': 'Not set',
+    'CargoTypeSource': 'Estimated',
+    'LaycanFrom': '2021-06-11T12:09:11.131Z',
+    'LaycanTo': '2021-06-14T01:22:40.829Z',
+    'FixtureStatusID': 5,
+    'FixtureStatus': 'PossFixed',
+    'FixtureDate': '2021-05-26T07:53:40Z',
+    'FixtureIsCOA': False,
+    'FixtureIsHold': False,
+    'IsImpliedByAIS': True,
+    'BallastDistance': 9036.45,
+    'PredictedBallastDistance': 9032.41,
+    'PredictedLadenDistance': 9900.03,
+    'Deadweight': 116337,
+    'PITVesselName': "S Vessel",
+    'YearBuilt': 2015,
+    'SuezCrossing': 'Laden',
+    'PanamaCrossing': 'Ballast',
+    'CanakkaleCrossing': 'Both',
+    'BosporusCrossing': 'Laden',
+    'StartingPortName': 'Port name',
+    'StartingPortID': 1,
+    'FirstLoadCountryName': 'First load country name',
+    'FirstLoadCountryID': 10,
+    'LastDischargePortName': 'Last discharge country name',
+    'LastDischargePortID': 100,
+    'RepairsInd': True,
+}
+
+_mock_condensed_voyage_2 = VoyageCondensed(
+    imo=910172, voyage_number=64, horizon='Current', horizon_id=2,
+    vessel_type_id=1, vessel_class_id=84,
+    vessel_status_id=1, vessel_class='VLCC', trade_id=1,
+    vessel_type='Tanker', trade='Crude', vessel_status='Voyage',
+    commercial_operator_id=1797, id='910172.130', vessel_name='Signal Vessel 2',
+    commercial_operator='Signal',
+    start_date=datetime.fromisoformat(
+        '2020-12-23T14:42:00'
+    ).replace(tzinfo=timezone.utc), first_load_arrival_date=datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), end_date=datetime.fromisoformat(
+        '2021-07-20T23:44:51.004'
+    ).replace(tzinfo=timezone.utc),
+    charterer_id=-1, charterer='Unknown',
+    rate=None, rate_type=None,
+    deadweight=116337,
+    ballast_bonus=None, ballast_bonus_type=None,
+    cargo_type_id=-2, cargo_type='Not set',
+    cargo_group_id=-32, cargo_group='Not set',
+    cargo_type_source='Estimated',
+    laycan_from=datetime.fromisoformat(
+        '2021-06-11T12:09:11.131'
+    ).replace(tzinfo=timezone.utc), laycan_to=datetime.fromisoformat(
+        '2021-06-14T01:22:40.829'
+    ).replace(tzinfo=timezone.utc),
+    fixture_status_id=5, fixture_status='PossFixed',
+    fixture_date=datetime.fromisoformat(
+        '2021-05-26T07:53:40'
+    ).replace(tzinfo=timezone.utc), fixture_is_coa=False,
+    fixture_is_hold=False, is_implied_by_ais=True,
+    has_manual_entries=None, ballast_distance=9036.45, laden_distance=None,
+    predicted_ballast_distance=9032.41, predicted_laden_distance=9900.03,
+    year_built=2015, suez_crossing='Laden', panama_crossing='Ballast',
+    canakkale_crossing='Both', bosporus_crossing='Laden',
+    starting_port_name='Port name', starting_port_id=1,
+    first_load_country_name='First load country name',
+    first_load_country_id=10,
+    last_discharge_port_name='Last discharge country name',
+    last_discharge_port_id=100,
+    repairs_ind=True
+)
+
+_mock_voyages_paged_condensed_response_data_2 = {
+    'Data': [_mock_condensed_response_data_2]
+}
 
 @pytest.mark.parametrize("imo, vessel_class_id, vessel_type_id, date_from, "
                          "nested, incremental, expected",
@@ -507,7 +726,8 @@ def test_get_endpoint_error_vessel_type_no_date_non_incremental():
 
 def test_get_advanced_endpoint():
     expected = _mock_get_advanced_search['expected_output']
-    endpoint = VoyagesAPI._get_advanced_endpoint(**_mock_get_advanced_search['input'])
+    endpoint = VoyagesAPI._get_advanced_endpoint(
+        **_mock_get_advanced_search['input'])
     assert endpoint == expected
 
 
@@ -584,7 +804,7 @@ def test_get_voyages_flat_imo_returns():
     api, _ = create_voyages_api(mock_response)
     voyages = api.get_voyages_flat(imo)
     assert voyages == _mock_flat_voyages_1
- 
+
 
 def test_get_voyages_class_requests():
     mock_responses = [_mock_voyages_paged_nested_response_data_1,
@@ -676,9 +896,42 @@ def test_get_incremental_voyages_flat_type_returns():
     voyages, _ = api.get_incremental_voyages_flat(vessel_class_id=84)
     assert voyages == _mock_flat_voyages
 
+def test_get_incremental_voyages_condensed_type_requests():
+    mock_responses = [_mock_voyages_paged_condensed_response_data_1,
+                     _mock_voyages_paged_condensed_response_data_2]
+    next_page_token = \
+        _mock_voyages_paged_condensed_response_data_1['NextPageToken']
+    vessel_type_id = 1
+    api, mocked_make_request = create_voyages_api_multiple_requests(
+        mock_responses)
+    _ = api.get_incremental_voyages_condensed(vessel_type_id=vessel_type_id)
+    mocked_make_request.assert_called_with(
+        urljoin(VoyagesAPI.relative_url,
+                f'voyagescondensed/type/{vessel_type_id}/incremental'),
+        query_string={'token': next_page_token})
+
 
 def test_get_advanced_search_voyages():
-    mock_response = {'Data' : [_mock_advanced_search_response_data]}
+    mock_response = {'Data': [_mock_advanced_search_response_data]}
     api, _ = create_voyages_api(mock_response)
     results = api.get_voyages_by_advanced_search('')
     assert results[0] == _mock_advanced_search_voyage
+
+
+def test_get_advanced_search_voyages_condensed():
+    mock_response = {'Data': [_mock_condensed_response_data_1]}
+    api, _ = create_voyages_api(mock_response)
+    results = api.get_voyages_condensed_by_advanced_search('')
+    assert results[0] == _mock_condensed_voyage_1
+
+
+def test_get_advanced_search_voyages_flat():
+    mock_response = {'Data': {
+        'Voyages': [_mock_flat_voyage_data_1],
+        'Events': [_mock_event_data_1, _mock_event_data_2],
+        'EventDetails': [_mock_event_detail_data_1, _mock_event_detail_data_2],
+        'Geos': [_mock_geo_data_1, _mock_geo_data_2]
+    }}
+    api, _ = create_voyages_api(mock_response)
+    results = api.get_voyages_flat_by_advanced_search('')
+    assert results == _mock_flat_voyages_1

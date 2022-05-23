@@ -152,7 +152,7 @@ class VoyageEventDetail:
             This is the timestamp of the final AIS point the vessel is tracked
             within a jetty or that is captured performing a ship-to-ship
             operation.
-        sts_id: String, A unique identifier assigned to each ship-to-ship 
+        sts_id: String, A unique identifier assigned to each ship-to-ship
             event. Will be identical for both participating vessels.
         geo_asset_id: Numeric ID corresponding to the geo asset in which the
             event took place. Geo assets represent maritime facilities such as
@@ -359,7 +359,7 @@ class Voyage:
             our database.
         events: The events that took place during the voyage.
         id: String. Uniquely identifies the voyage.
-        horizon_id: Numeric ID that takes the following values Unknown (0), 
+        horizon_id: Numeric ID that takes the following values Unknown (0),
             Historic (1), Historical (1), Current (2), Future (3)
         horizon: String. It can take "Historic", "Current" or "Future" values,
             depending on whether the voyage event is in the past (StartDate and
@@ -373,7 +373,7 @@ class Voyage:
             and its events.
         vessel_name: The vessel name corresponding to that IMO at the time of
             that voyage.
-        pit_vessel_name: String, The vessel name corresponding to that IMO at 
+        pit_vessel_name: String, The vessel name corresponding to that IMO at
             the time of that voyage (if different than VesselName)
         vessel_type: Description of the type of the vessel, based on the
             carried cargo. Main categories are Tankers, Dry (bulk carriers),
@@ -396,8 +396,8 @@ class Voyage:
             and most common status is the "Voyage" one, the one in which the
             vessel continuously sails and performs operations. The other
             statuses are used for specific purposes different than voyage.
-        deadweight: Numeric, measured in tonnes [t], often shortened as DWT, 
-            denotes the total carrying capacity of the vessel including cargo, 
+        deadweight: Numeric, measured in tonnes [t], often shortened as DWT,
+            denotes the total carrying capacity of the vessel including cargo,
             ballast water, stores, provisions, crew and so on.
         year_built: Numeric, year format, the year the vessel was built.
         commercial_operator: Name of the maritime company that manages the
@@ -489,17 +489,17 @@ class Voyage:
             when vessel is laden, it is the remaining distance between the
             vessel position and the last discharge port. For historical legs
             PredictedLadenDistance is empty.
-        suez_crossing: String, indicates whether the vessel crossed the Suez 
-            canal during the voyage. Depending on the leg, it can take 
+        suez_crossing: String, indicates whether the vessel crossed the Suez
+            canal during the voyage. Depending on the leg, it can take
             "Laden", "Ballast" or "Both" as values.
-        panama_crossing: String, indicates whether the vessel crossed the 
-            Panama canal during the voyage. Depending on the leg, it can take 
+        panama_crossing: String, indicates whether the vessel crossed the
+            Panama canal during the voyage. Depending on the leg, it can take
             "Laden", "Ballast" or "Both" as values.
-        canakkale_crossing: String, indicates whether the vessel crossed the 
-            Canakkale strait during the voyage. Depending on the leg, it can 
+        canakkale_crossing: String, indicates whether the vessel crossed the
+            Canakkale strait during the voyage. Depending on the leg, it can
             take "Laden", "Ballast" or "Both" as values.
-        bosporus_crossing: String, indicates whether the vessel crossed the 
-            Bosporus strait during the voyage. Depending on the leg, it can 
+        bosporus_crossing: String, indicates whether the vessel crossed the
+            Bosporus strait during the voyage. Depending on the leg, it can
             take "Laden", "Ballast" or "Both" as values.
     """
 
@@ -561,110 +561,110 @@ class Voyage:
 
 @dataclass(frozen=True)
 class VoyageCondensed(Voyage):
-    """Information about a single voyage of a vessel and details the events that took place during the voyage.
+    """Contains information about a single voyage of a vessel.
 
     Attributes:
-            starting_port_name: String, name of the port in where the voyage 
+            starting_port_name: String, name of the port in where the voyage
                 started from.
-            starting_port_id: Numeric ID corresponding to the port where the 
-                voyage started from. The start of a voyage is set as the end 
+            starting_port_id: Numeric ID corresponding to the port where the
+                voyage started from. The start of a voyage is set as the end
                 of the previous voyage (if existing) or the first received AIS
-                (for a new building). Voyages are consecutive and with no 
+                (for a new building). Voyages are consecutive and with no
                 breaks in between, therefore a vessel is always in a voyage.
-            starting_country_id: Numeric ID corresponding to the country 
+            starting_country_id: Numeric ID corresponding to the country
                 where the voyage started from.
             starting_country_name: String, name of the country where the voyage
                 started from.
-            starting_area_id_level0: Numeric ID corresponding to the level 0 
-                area where the voyage started from. Level 0 areas offer a 
-                detailed breakdown of the globe to the areas of maritime 
+            starting_area_id_level0: Numeric ID corresponding to the level 0
+                area where the voyage started from. Level 0 areas offer a
+                detailed breakdown of the globe to the areas of maritime
                 interest.
-            starting_area_name_level0: String, name of the area where the 
-                voyage started from. Level 0 areas offer a detailed breakdown 
-                of the globe to the areas of maritime interest. Examples of 
-                level 0 areas include "Arabian Gulf", "US Gulf" and "East 
+            starting_area_name_level0: String, name of the area where the
+                voyage started from. Level 0 areas offer a detailed breakdown
+                of the globe to the areas of maritime interest. Examples of
+                level 0 areas include "Arabian Gulf", "US Gulf" and "East
                 Mediterranean".
-            first_load_port_name: String, name of the port where the vessel 
+            first_load_port_name: String, name of the port where the vessel
                 performed the first loading port call of a voyage.
-            first_load_port_id: Numeric ID corresponding to the port where 
+            first_load_port_id: Numeric ID corresponding to the port where
                 the vessel performed the first loading port call of a voyage.
-            first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The 
-                beginning of the first loading port call, including waiting 
-                time. The arrival date of a port call is calculated based on 
-                the first AIS point within the event. If the vessel waits in 
-                an anchorage area for days, this waiting time is captured as 
-                the difference between the FirstLoadArrivalDate and the 
+            first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
+                beginning of the first loading port call, including waiting
+                time. The arrival date of a port call is calculated based on
+                the first AIS point within the event. If the vessel waits in
+                an anchorage area for days, this waiting time is captured as
+                the difference between the FirstLoadArrivalDate and the
                 FirstLoadStartTimeOfOperation.
-            first_load_start_time_of_operation: Date, format 
-                YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the 
-                first loading operation. This is the timestamp of the first 
-                AIS point received when the vessel is within a jetty or while 
+            first_load_start_time_of_operation: Date, format
+                YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
+                first loading operation. This is the timestamp of the first
+                AIS point received when the vessel is within a jetty or while
                 performing a ship-to-ship operation.
-            first_load_sailing_date: Date, format YYYY-MM-DD HH:MM:SS. The end 
-                of the first loading port call. The sailing date of an event 
-                is calculated based on the last AIS point within the event. 
-                In the case of missing AIS data, the sailing date is derived 
-                based on the next reported location of the vessel after the 
+            first_load_sailing_date: Date, format YYYY-MM-DD HH:MM:SS. The end
+                of the first loading port call. The sailing date of an event
+                is calculated based on the last AIS point within the event.
+                In the case of missing AIS data, the sailing date is derived
+                based on the next reported location of the vessel after the
                 event and the time without reported AIS information.
-            first_load_country_id: Numeric ID corresponding to the country 
+            first_load_country_id: Numeric ID corresponding to the country
                 where the vessel performed the first loading port call.
-            first_load_country_name: String, name of the country where the 
+            first_load_country_name: String, name of the country where the
                 vessel performed the first loading port call.
-            first_load_area_id_level0: Numeric ID corresponding to the level 0 
-                area where the vessel performed the first loading operation of 
-                the voyage. Level 0 areas offer a detailed breakdown of the 
+            first_load_area_id_level0: Numeric ID corresponding to the level 0
+                area where the vessel performed the first loading operation of
+                the voyage. Level 0 areas offer a detailed breakdown of the
                 globe to the areas of maritime interest.
-            first_load_area_name_level0: String, name of the area where the 
-                vessel performed the first loading operation of the voyage. 
-                Level 0 areas offer a detailed breakdown of the globe to the 
-                areas of maritime interest. Examples of level 0 areas include 
+            first_load_area_name_level0: String, name of the area where the
+                vessel performed the first loading operation of the voyage.
+                Level 0 areas offer a detailed breakdown of the globe to the
+                areas of maritime interest. Examples of level 0 areas include
                 "Arabian Gulf", "US Gulf" and "East Mediterranean".
-            last_discharge_port_name: String, name of the port where the 
+            last_discharge_port_name: String, name of the port where the
                 vessel performed the last discharging port call of a voyage.
-            last_discharge_port_id: Numeric ID corresponding to the port where 
-                the vessel performed the last discharging port call of a 
+            last_discharge_port_id: Numeric ID corresponding to the port where
+                the vessel performed the last discharging port call of a
                 voyage.
-            last_discharge_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The 
-                beginning of the last discharging port call, including waiting 
-                time. The arrival date of a port call is calculated based on 
-                the first AIS point within the event. If the vessel waits in 
-                an anchorage area for days, this waiting time is captured as 
-                the difference between the LastDischargeArrivalDate and the 
+            last_discharge_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
+                beginning of the last discharging port call, including waiting
+                time. The arrival date of a port call is calculated based on
+                the first AIS point within the event. If the vessel waits in
+                an anchorage area for days, this waiting time is captured as
+                the difference between the LastDischargeArrivalDate and the
                 LastDischargeStartTimeOfOperation.
-            last_discharge_start_time_of_operation: Date, format 
-                YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the 
-                last discharging operation. This is the timestamp of the first 
-                AIS point received when the vessel is within a jetty or while 
+            last_discharge_start_time_of_operation: Date, format
+                YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
+                last discharging operation. This is the timestamp of the first
+                AIS point received when the vessel is within a jetty or while
                 performing a ship-to-ship operation.
-            last_discharge_sailing_date: Date, format YYYY-MM-DD HH:MM:SS. 
-                Timestamp indicating the beginning of the first loading 
-                operation. This is the timestamp of the first AIS point 
-                received when the vessel is within a jetty or while performing 
+            last_discharge_sailing_date: Date, format YYYY-MM-DD HH:MM:SS.
+                Timestamp indicating the beginning of the first loading
+                operation. This is the timestamp of the first AIS point
+                received when the vessel is within a jetty or while performing
                 a ship-to-ship operation.
-            last_discharge_country_id: Numeric ID corresponding to the country 
+            last_discharge_country_id: Numeric ID corresponding to the country
                 where the vessel performed the last discharging port call.
-            last_discharge_country_name: String, name of the country where the 
+            last_discharge_country_name: String, name of the country where the
                 vessel performed the last discharging port call.
-            last_discharge_area_id_level0: Numeric ID corresponding to the 
-                level 0 area where the vessel performed the last discharging 
-                operation of the voyage. Level 0 areas offer a detailed 
+            last_discharge_area_id_level0: Numeric ID corresponding to the
+                level 0 area where the vessel performed the last discharging
+                operation of the voyage. Level 0 areas offer a detailed
                 breakdown of the globe to the areas of maritime interest.
-            last_discharge_area_name_level0: String, name of the area where 
-                the vessel performed the last discharging operation of the 
-                voyage. Level 0 areas offer a detailed breakdown of the globe 
-                to the areas of maritime interest. Examples of level 0 areas 
+            last_discharge_area_name_level0: String, name of the area where
+                the vessel performed the last discharging operation of the
+                voyage. Level 0 areas offer a detailed breakdown of the globe
+                to the areas of maritime interest. Examples of level 0 areas
                 include "Arabian Gulf", "US Gulf" and "East Mediterranean".
-            repairs_ind: Boolean. True if the voyage contains any port call 
+            repairs_ind: Boolean. True if the voyage contains any port call
                 operation performed in a dry dock or shipyard.
-            storage_ind: Boolean. True if the vessel acted as storage in the 
+            storage_ind: Boolean. True if the vessel acted as storage in the
                 specific voyage.
-            sts_load_ind: Boolean. True if at least one loading operation has 
-                been performed by transferring cargo from another vessel 
+            sts_load_ind: Boolean. True if at least one loading operation has
+                been performed by transferring cargo from another vessel
                 through a ship-to-ship operation.
-            sts_discharge_ind: Boolean. True if at least one discharging 
-                operation has been performed by transferring cargo from 
+            sts_discharge_ind: Boolean. True if at least one discharging
+                operation has been performed by transferring cargo from
                 another vessel through a ship-to-ship operation.
-            local_trade_ind: Boolean. True if the vessel has loaded and 
+            local_trade_ind: Boolean. True if the vessel has loaded and
                 discharged in the same country.
     """
 
@@ -697,6 +697,7 @@ class VoyageCondensed(Voyage):
     sts_load_ind: Optional[bool] = None
     sts_discharge_ind: Optional[bool] = None
     local_trade_ind: Optional[bool] = None
+
 
 @dataclass(frozen=True)
 class VoyageGeo:
@@ -791,17 +792,6 @@ class VoyagesFlat:
 
 
 @dataclass(frozen=True)
-class VoyagesCondensed:
-    """Voyages with additional information in condensed format.
-
-    Attributes:
-        voyages: List of voyages.
-    """
-
-    voyages: Optional[Tuple[VoyageCondensed, ...]] = None
-
-
-@dataclass(frozen=True)
 class VoyagesPagedResponse:
     """Paged response for voyages in nested format from the Voyages API.
 
@@ -836,6 +826,7 @@ class VoyagesFlatPagedResponse:
     next_request_token: Optional[str] = None
     data: Optional[VoyagesFlat] = None
 
+
 @dataclass(frozen=True)
 class VoyagesCondensedPagedResponse:
     """Paged response for voyages in condensed format from the Voyages API.
@@ -851,4 +842,4 @@ class VoyagesCondensedPagedResponse:
 
     next_page_token: Optional[str] = None
     next_request_token: Optional[str] = None
-    data: Optional[VoyagesCondensed] = None
+    data: Optional[Tuple[VoyageCondensed, ...]] = None
