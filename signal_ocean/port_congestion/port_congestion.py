@@ -2,7 +2,7 @@
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from typing import Optional, Tuple, List, cast
-from strictly_typed_pandas import DataSet
+from strictly_typed_pandas.dataset import DataSet
 from functools import reduce
 
 from signal_ocean import Connection
