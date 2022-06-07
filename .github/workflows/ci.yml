@@ -15,8 +15,7 @@ jobs:
         run: |
           pip install mkdocs            
           pip install mkdocs-material   
-          pip install mkdocstrings
-          pip install mkdocstrings_handlers      
+          pip install mkdocstrings-python
           pip install mkdocs-jupyter
           pip install requests
           pip install signal-ocean
