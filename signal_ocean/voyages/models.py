@@ -369,8 +369,8 @@ class Voyage:
             not derived by the current date, but by the comparison between the
             voyage dates and the latest received AIS for that specific vessel.
         latest_received_ais: Date, format YYYY-MM-DD HH:MM:SS. The most recent
-        AIS update for the vessel. It is used to define the horizon of a voyage
-            and its events.
+            AIS update for the vessel. It is used to define the horizon of a
+            voyage and its events.
         vessel_name: The vessel name corresponding to that IMO at the time of
             that voyage.
         pit_vessel_name: String, The vessel name corresponding to that IMO at
@@ -565,107 +565,107 @@ class VoyageCondensed(Voyage):
 
     Attributes:
             starting_port_name: String, name of the port in where the voyage
-                started from.
+                    started from.
             starting_port_id: Numeric ID corresponding to the port where the
-                voyage started from. The start of a voyage is set as the end
-                of the previous voyage (if existing) or the first received AIS
-                (for a new building). Voyages are consecutive and with no
-                breaks in between, therefore a vessel is always in a voyage.
+                    voyage started from. The start of a voyage is set as the end
+                    of the previous voyage (if existing) or the first received AIS
+                    (for a new building). Voyages are consecutive and with no
+                    breaks in between, therefore a vessel is always in a voyage.
             starting_country_id: Numeric ID corresponding to the country
-                where the voyage started from.
+                    where the voyage started from.
             starting_country_name: String, name of the country where the voyage
-                started from.
+                    started from.
             starting_area_id_level0: Numeric ID corresponding to the level 0
-                area where the voyage started from. Level 0 areas offer a
-                detailed breakdown of the globe to the areas of maritime
-                interest.
+                    area where the voyage started from. Level 0 areas offer a
+                    detailed breakdown of the globe to the areas of maritime
+                    interest.
             starting_area_name_level0: String, name of the area where the
-                voyage started from. Level 0 areas offer a detailed breakdown
-                of the globe to the areas of maritime interest. Examples of
-                level 0 areas include "Arabian Gulf", "US Gulf" and "East
-                Mediterranean".
+                    voyage started from. Level 0 areas offer a detailed breakdown
+                    of the globe to the areas of maritime interest. Examples of
+                    level 0 areas include "Arabian Gulf", "US Gulf" and "East
+                    Mediterranean".
             first_load_port_name: String, name of the port where the vessel
-                performed the first loading port call of a voyage.
+                    performed the first loading port call of a voyage.
             first_load_port_id: Numeric ID corresponding to the port where
-                the vessel performed the first loading port call of a voyage.
+                    the vessel performed the first loading port call of a voyage.
             first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
-                beginning of the first loading port call, including waiting
-                time. The arrival date of a port call is calculated based on
-                the first AIS point within the event. If the vessel waits in
-                an anchorage area for days, this waiting time is captured as
-                the difference between the FirstLoadArrivalDate and the
-                FirstLoadStartTimeOfOperation.
+                    beginning of the first loading port call, including waiting
+                    time. The arrival date of a port call is calculated based on
+                    the first AIS point within the event. If the vessel waits in
+                    an anchorage area for days, this waiting time is captured as
+                    the difference between the FirstLoadArrivalDate and the
+                    FirstLoadStartTimeOfOperation.
             first_load_start_time_of_operation: Date, format
-                YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
-                first loading operation. This is the timestamp of the first
-                AIS point received when the vessel is within a jetty or while
-                performing a ship-to-ship operation.
+                    YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
+                    first loading operation. This is the timestamp of the first
+                    AIS point received when the vessel is within a jetty or while
+                    performing a ship-to-ship operation.
             first_load_sailing_date: Date, format YYYY-MM-DD HH:MM:SS. The end
-                of the first loading port call. The sailing date of an event
-                is calculated based on the last AIS point within the event.
-                In the case of missing AIS data, the sailing date is derived
-                based on the next reported location of the vessel after the
-                event and the time without reported AIS information.
+                    of the first loading port call. The sailing date of an event
+                    is calculated based on the last AIS point within the event.
+                    In the case of missing AIS data, the sailing date is derived
+                    based on the next reported location of the vessel after the
+                    event and the time without reported AIS information.
             first_load_country_id: Numeric ID corresponding to the country
-                where the vessel performed the first loading port call.
+                    where the vessel performed the first loading port call.
             first_load_country_name: String, name of the country where the
-                vessel performed the first loading port call.
+                    vessel performed the first loading port call.
             first_load_area_id_level0: Numeric ID corresponding to the level 0
-                area where the vessel performed the first loading operation of
-                the voyage. Level 0 areas offer a detailed breakdown of the
-                globe to the areas of maritime interest.
+                    area where the vessel performed the first loading operation of
+                    the voyage. Level 0 areas offer a detailed breakdown of the
+                    globe to the areas of maritime interest.
             first_load_area_name_level0: String, name of the area where the
-                vessel performed the first loading operation of the voyage.
-                Level 0 areas offer a detailed breakdown of the globe to the
-                areas of maritime interest. Examples of level 0 areas include
-                "Arabian Gulf", "US Gulf" and "East Mediterranean".
+                    vessel performed the first loading operation of the voyage.
+                    Level 0 areas offer a detailed breakdown of the globe to the
+                    areas of maritime interest. Examples of level 0 areas include
+                    "Arabian Gulf", "US Gulf" and "East Mediterranean".
             last_discharge_port_name: String, name of the port where the
-                vessel performed the last discharging port call of a voyage.
+                    vessel performed the last discharging port call of a voyage.
             last_discharge_port_id: Numeric ID corresponding to the port where
-                the vessel performed the last discharging port call of a
-                voyage.
+                    the vessel performed the last discharging port call of a
+                    voyage.
             last_discharge_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
-                beginning of the last discharging port call, including waiting
-                time. The arrival date of a port call is calculated based on
-                the first AIS point within the event. If the vessel waits in
-                an anchorage area for days, this waiting time is captured as
-                the difference between the LastDischargeArrivalDate and the
-                LastDischargeStartTimeOfOperation.
+                    beginning of the last discharging port call, including waiting
+                    time. The arrival date of a port call is calculated based on
+                    the first AIS point within the event. If the vessel waits in
+                    an anchorage area for days, this waiting time is captured as
+                    the difference between the LastDischargeArrivalDate and the
+                    LastDischargeStartTimeOfOperation.
             last_discharge_start_time_of_operation: Date, format
-                YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
-                last discharging operation. This is the timestamp of the first
-                AIS point received when the vessel is within a jetty or while
-                performing a ship-to-ship operation.
+                    YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
+                    last discharging operation. This is the timestamp of the first
+                    AIS point received when the vessel is within a jetty or while
+                    performing a ship-to-ship operation.
             last_discharge_sailing_date: Date, format YYYY-MM-DD HH:MM:SS.
-                Timestamp indicating the beginning of the first loading
-                operation. This is the timestamp of the first AIS point
-                received when the vessel is within a jetty or while performing
-                a ship-to-ship operation.
+                    Timestamp indicating the beginning of the first loading
+                    operation. This is the timestamp of the first AIS point
+                    received when the vessel is within a jetty or while performing
+                    a ship-to-ship operation.
             last_discharge_country_id: Numeric ID corresponding to the country
-                where the vessel performed the last discharging port call.
+                    where the vessel performed the last discharging port call.
             last_discharge_country_name: String, name of the country where the
-                vessel performed the last discharging port call.
+                    vessel performed the last discharging port call.
             last_discharge_area_id_level0: Numeric ID corresponding to the
-                level 0 area where the vessel performed the last discharging
-                operation of the voyage. Level 0 areas offer a detailed
-                breakdown of the globe to the areas of maritime interest.
+                    level 0 area where the vessel performed the last discharging
+                    operation of the voyage. Level 0 areas offer a detailed
+                    breakdown of the globe to the areas of maritime interest.
             last_discharge_area_name_level0: String, name of the area where
-                the vessel performed the last discharging operation of the
-                voyage. Level 0 areas offer a detailed breakdown of the globe
-                to the areas of maritime interest. Examples of level 0 areas
-                include "Arabian Gulf", "US Gulf" and "East Mediterranean".
+                    the vessel performed the last discharging operation of the
+                    voyage. Level 0 areas offer a detailed breakdown of the globe
+                    to the areas of maritime interest. Examples of level 0 areas
+                    include "Arabian Gulf", "US Gulf" and "East Mediterranean".
             repairs_ind: Boolean. True if the voyage contains any port call
-                operation performed in a dry dock or shipyard.
+                    operation performed in a dry dock or shipyard.
             storage_ind: Boolean. True if the vessel acted as storage in the
-                specific voyage.
+                    specific voyage.
             sts_load_ind: Boolean. True if at least one loading operation has
-                been performed by transferring cargo from another vessel
-                through a ship-to-ship operation.
+                    been performed by transferring cargo from another vessel
+                    through a ship-to-ship operation.
             sts_discharge_ind: Boolean. True if at least one discharging
-                operation has been performed by transferring cargo from
-                another vessel through a ship-to-ship operation.
+                    operation has been performed by transferring cargo from
+                    another vessel through a ship-to-ship operation.
             local_trade_ind: Boolean. True if the vessel has loaded and
-                discharged in the same country.
+                    discharged in the same country.
     """
 
     starting_port_name: Optional[str] = None
