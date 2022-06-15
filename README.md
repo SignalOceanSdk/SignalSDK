@@ -15,28 +15,10 @@ For more information refer to [pandas documentation](https://pandas.pydata.org/p
 
 # Getting Started
 
-To use the SDK, you need to create an account in our [API Portal](https://apis.signalocean.com/) and subscribe to an API. Once you have a subscription key, put it inside an environment variable called `SIGNAL_OCEAN_API_KEY`.
+To use the SDK, you need to create an account in our [API Portal](https://apis.signalocean.com/) and subscribe to an API.
 
-Now you're ready to fetch some data:
-```
-from signal_ocean import PortAPI
+Now you're ready to fetch some data. See our [examples](docs\examples) on how you can use our APIs.
 
-port_api = PortAPI()
-ports = port_api.get_ports()
+# Building and contributing
 
-print(ports)
-```
-
-If you don't want to use environment variables, want to use different keys for different APIs, or if you want to override the environment variables, you can configure your `Connection` when creating the API class:
-```
-from signal_ocean import VesselClassAPI, Connection
-
-vessel_class_api = VesselClassAPI(Connection(api_key='YOUR KEY GOES HERE'))
-vessel_classes = vessel_class_api.get_vessel_classes()
-
-print(vessel_classes)
-```
-
-All API classes follow this pattern of configuration.
-
-Check the docs for examples covering usage of our other APIs.
+Check [Contributing.md](Contributing.md) on how you can build and contribute this library. 
