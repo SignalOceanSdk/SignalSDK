@@ -13,8 +13,7 @@ class ScrapedFixturesAPI(ScrapedDataAPI):
     """Represents Signal's Scraped Fixtures API."""
 
     relative_url: str = "scraped-fixtures-api/v2/fixtures"
-    response: dataclass = ScrapedFixturesResponse
-    results: List[ScrapedFixture] = []
+    response_class: dataclass = ScrapedFixturesResponse
 
     def get_fixtures(
         self,

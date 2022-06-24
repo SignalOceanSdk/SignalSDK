@@ -13,8 +13,7 @@ class ScrapedPositionsAPI(ScrapedDataAPI):
     """Represents Signal's Scraped Positions API."""
 
     relative_url: str = "scraped-positions-api/v2/positions"
-    response: dataclass = ScrapedPositionsResponse
-    results: List[ScrapedPosition] = []
+    response_class: dataclass = ScrapedPositionsResponse
 
     def get_positions(
         self,

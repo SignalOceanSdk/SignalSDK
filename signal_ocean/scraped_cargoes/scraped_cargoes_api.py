@@ -13,8 +13,7 @@ class ScrapedCargoesAPI(ScrapedDataAPI):
     """Represents Signal's Scraped Cargoes API."""
 
     relative_url: str = "scraped-cargoes-api/v3/cargoes"
-    response: dataclass = ScrapedCargoesResponse
-    results: List[ScrapedCargo] = []
+    response_class: dataclass = ScrapedCargoesResponse
 
     def get_cargoes(
         self,

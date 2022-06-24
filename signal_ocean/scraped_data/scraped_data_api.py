@@ -14,8 +14,7 @@ class ScrapedDataAPI:
         "page_size": "?PageSize=" + str(page_size),
         "by_id": "/getbyids?",
     }
-    response: dataclass = None
-    results: List = []
+    response_class: dataclass = None
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes the Scraped Data API.
@@ -69,12 +68,12 @@ class ScrapedDataAPI:
             A tuple containing ScrapedData objects.
             ScrapedData object are defined by outer class.
         """
-        results = self.results
+        results = []
         while True:
             request_url = self._get_endpoint("page_size", params)
 
             response = get_single(
-                self.__connection, request_url, self.response
+                self.__connection, request_url, self.response_class
             )
 
             if response is not None and response.data is not None:
@@ -99,10 +98,10 @@ class ScrapedDataAPI:
             A tuple containing ScrapedData objects.
             ScrapedData object are defined by outer class.
         """
-        results = self.results
+        results = []
         request_url = self._get_endpoint("by_id", params)
 
-        response = get_single(self.__connection, request_url, self.response)
+        response = get_single(self.__connection, request_url, self.response_class)
 
         if response is not None and response.data is not None:
             results.extend(response.data)
