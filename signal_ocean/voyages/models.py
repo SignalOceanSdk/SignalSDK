@@ -541,6 +541,7 @@ class Voyage:
     cargo_type_source: Optional[str] = None
     quantity: Optional[float] = None
     laycan_from: Optional[datetime] = None
+    quantity_source: Optional[str] = None
     laycan_to: Optional[datetime] = None
     fixture_status_id: Optional[int] = None
     fixture_status: Optional[str] = None
