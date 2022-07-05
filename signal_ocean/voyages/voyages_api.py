@@ -1,6 +1,6 @@
 """The voyages api."""
 from datetime import date
-from typing import Optional, Tuple, List
+from typing import Optional, Set, Tuple, List
 from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
@@ -105,10 +105,16 @@ class VoyagesAPI:
 
     @staticmethod
     def _get_advanced_endpoint(
+        imos: Optional[Set[int]] = None,
+        voyage_keys: Optional[Set[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[Set[int]] = None,
         event_purpose: Optional[str] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[Set[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[Set[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -147,7 +153,7 @@ class VoyagesAPI:
                 _to_camel_case(key): value
                 for key, value in endpoint_params.items()
                 if value is not None
-            }
+            }, doseq = True
         )
         endpoint += params
         return urljoin(VoyagesAPI.relative_url, endpoint)
@@ -534,10 +540,16 @@ class VoyagesAPI:
 
     def get_voyages_by_advanced_search(
         self,
+        imos: Optional[Set[int]] = None,
+        voyage_keys: Optional[Set[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[Set[int]] = None,
         event_purpose: Optional[str] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[Set[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[Set[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -600,10 +612,16 @@ class VoyagesAPI:
             A tuple containing the returned voyages.
         """
         endpoint = self._get_advanced_endpoint(
+            imos=imos,
+            voyage_keys=voyage_keys,
             event_type=event_type,
             event_horizon=event_horizon,
+            event_horizons=event_horizons,
             event_purpose=event_purpose,
             vessel_class_id=vessel_class_id,
+            vessel_class_ids=vessel_class_ids,
+            port_id=port_id,
+            port_ids=port_ids,
             vessel_type_id=vessel_type_id,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
@@ -628,10 +646,16 @@ class VoyagesAPI:
 
     def get_voyages_flat_by_advanced_search(
         self,
+        imos: Optional[Set[int]] = None,
+        voyage_keys: Optional[Set[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[Set[int]] = None,
         event_purpose: Optional[str] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[Set[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[Set[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -694,10 +718,16 @@ class VoyagesAPI:
             A tuple containing the returned voyages in flat format.
         """
         endpoint = self._get_advanced_endpoint(
+            imos=imos,
+            voyage_keys=voyage_keys,
             event_type=event_type,
             event_horizon=event_horizon,
+            event_horizons=event_horizons,
             event_purpose=event_purpose,
             vessel_class_id=vessel_class_id,
+            vessel_class_ids=vessel_class_ids,
+            port_id=port_id,
+            port_ids=port_ids,
             vessel_type_id=vessel_type_id,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
@@ -723,10 +753,16 @@ class VoyagesAPI:
 
     def get_voyages_condensed_by_advanced_search(
         self,
+        imos: Optional[Set[int]] = None,
+        voyage_keys: Optional[Set[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[Set[int]] = None,
         event_purpose: Optional[str] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[Set[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[Set[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -789,10 +825,16 @@ class VoyagesAPI:
             A tuple containing the returned voyagesin condensed format.
         """
         endpoint = self._get_advanced_endpoint(
+            imos=imos,
+            voyage_keys=voyage_keys,
             event_type=event_type,
             event_horizon=event_horizon,
+            event_horizons=event_horizons,
             event_purpose=event_purpose,
             vessel_class_id=vessel_class_id,
+            vessel_class_ids=vessel_class_ids,
+            port_id=port_id,
+            port_ids=port_ids,
             vessel_type_id=vessel_type_id,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
