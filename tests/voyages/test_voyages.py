@@ -355,6 +355,7 @@ _mock_voyages = (_mock_nested_voyage_1, _mock_nested_voyage_2)
 
 _mock_get_advanced_search = {
     'input': {
+        'imos': [91017,90455],
         'vessel_class_id': 84,
         'first_load_arrival_date_from': '2021-06-04',
         'first_load_arrival_date_to': '2021-07-04',
@@ -365,6 +366,7 @@ _mock_get_advanced_search = {
 
     'expected_output':
     'voyages-api/v2/search/advanced/?'
+    'Imos=91017&Imos=90455&'
     'VesselClassId=84&'
     'FirstLoadArrivalDateFrom=2021-06-04&'
     'FirstLoadArrivalDateTo=2021-07-04&'
