@@ -153,7 +153,7 @@ class VoyagesAPI:
                 _to_camel_case(key): value
                 for key, value in endpoint_params.items()
                 if value is not None
-            }, doseq = True
+            }, doseq=True
         )
         endpoint += params
         return urljoin(VoyagesAPI.relative_url, endpoint)
