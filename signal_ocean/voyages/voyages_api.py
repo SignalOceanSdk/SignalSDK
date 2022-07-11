@@ -589,14 +589,23 @@ class VoyagesAPI:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
+            imos: If a list of imos is provided then only voyages of these imos will be returned
+            voyage_keys: If provided only the voyages with the requested keys will be returned
             event_type: If an EventType is provided then only voyages that
                 include at least one event of this type will be returned.
             event_horizon: If an EventHorizon is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_horizons: If a list of EventHorizons is provided then only voyages that 
+                include at least one event of those types will be returned
             event_purpose: If an EventPurpose is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_purposes: If a list of EventPurposes is provided then only voyages that 
+                include at least one event of this type will be returned
             vessel_class_id: Return only voyages for the provided vessel class.
                 If None voyages for all vessels are returned.
+            vessel_class_ids: If provided only voyages of those vessel classes will be returned
+            port_id: If PortId is provided then only voyages that contains at least one event at this port will be returned
+            port_ids: If a list of ports is provided then only voyages that contains at least one event at those ports will be returned
             vessel_type_id: Return only voyages for the provided vessel type.
                 If None voyages for all vessels are returned.
             start_date_from: Return voyages after the provided voyage start
@@ -619,6 +628,8 @@ class VoyagesAPI:
             charterer_id: If provided only voyages that have this charterer
                 will be returned.
             voyage_horizon: If a VoyageHorizon is provided then only voyages
+                of that type will be returned.
+            voyage_horizons: If a list of VoyageHorizon is provided then only voyages
                 of that type will be returned.
             token: Token returned from the previous incremental call. If this
                 is the first call, then it can be omitted.
