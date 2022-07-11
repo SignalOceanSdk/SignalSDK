@@ -1,6 +1,6 @@
 """The voyages api."""
 from datetime import date
-from typing import Optional, Set, Tuple, List
+from typing import Optional, Tuple, List
 from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
@@ -105,16 +105,17 @@ class VoyagesAPI:
 
     @staticmethod
     def _get_advanced_endpoint(
-        imos: Optional[Set[int]] = None,
-        voyage_keys: Optional[Set[str]] = None,
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
-        event_horizons: Optional[Set[int]] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
-        vessel_class_ids: Optional[Set[int]] = None,
+        vessel_class_ids: Optional[List[int]] = None,
         port_id: Optional[int] = None,
-        port_ids: Optional[Set[int]] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -128,6 +129,7 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
@@ -145,9 +147,23 @@ class VoyagesAPI:
             The constructed endpoint to call to retrieve the requested voyages
             for the provided arguments.
         """
+        # Special Handling for event purposes and VoyageHorizons
+        if event_purpose is not None:
+            if event_purposes is None:
+                event_purposes = []
+            event_purposes.append(event_purpose)
+        if voyage_horizon is not None:
+            if voyage_horizons is None:
+                voyage_horizons = []
+            voyage_horizons.append(voyage_horizon)
+
         endpoint_params = locals()
         endpoint = "search/advanced/" + \
             f'{"condensed" if condensed else "" if nested else "flat"}?'
+        endpoint_params['event_purpose'] = endpoint_params['event_purposes']
+        endpoint_params['voyage_horizon'] = endpoint_params['voyage_horizons']
+        endpoint_params.pop('event_purposes')
+        endpoint_params.pop('voyage_horizons')
         params = urlencode(
             {
                 _to_camel_case(key): value
@@ -540,16 +556,17 @@ class VoyagesAPI:
 
     def get_voyages_by_advanced_search(
         self,
-        imos: Optional[Set[int]] = None,
-        voyage_keys: Optional[Set[str]] = None,
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
-        event_horizons: Optional[Set[int]] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
-        vessel_class_ids: Optional[Set[int]] = None,
+        vessel_class_ids: Optional[List[int]] = None,
         port_id: Optional[int] = None,
-        port_ids: Optional[Set[int]] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -563,10 +580,11 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
-        hide_market_info: Optional[bool] = None
+        hide_market_info: Optional[bool] = None,
     ) -> Voyages:
         """Retrieves all voyages filtered for the provided parameters.
 
@@ -618,6 +636,7 @@ class VoyagesAPI:
             event_horizon=event_horizon,
             event_horizons=event_horizons,
             event_purpose=event_purpose,
+            event_purposes=event_purposes,
             vessel_class_id=vessel_class_id,
             vessel_class_ids=vessel_class_ids,
             port_id=port_id,
@@ -635,27 +654,28 @@ class VoyagesAPI:
             commercial_operator_id=commercial_operator_id,
             charterer_id=charterer_id,
             voyage_horizon=voyage_horizon,
+            voyage_horizons=voyage_horizons,
             token=token,
             hide_event_details=hide_event_details,
             hide_events=hide_events,
             hide_market_info=hide_market_info,
         )
-
         results, _ = self._get_voyages_pages(endpoint)
         return results
 
     def get_voyages_flat_by_advanced_search(
         self,
-        imos: Optional[Set[int]] = None,
-        voyage_keys: Optional[Set[str]] = None,
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
-        event_horizons: Optional[Set[int]] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
-        vessel_class_ids: Optional[Set[int]] = None,
+        vessel_class_ids: Optional[List[int]] = None,
         port_id: Optional[int] = None,
-        port_ids: Optional[Set[int]] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -669,10 +689,11 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
-        hide_market_info: Optional[bool] = None
+        hide_market_info: Optional[bool] = None,
     ) -> VoyagesFlat:
         """Retrieves all voyages filtered for the provided parameters.
 
@@ -724,6 +745,7 @@ class VoyagesAPI:
             event_horizon=event_horizon,
             event_horizons=event_horizons,
             event_purpose=event_purpose,
+            event_purposes=event_purposes,
             vessel_class_id=vessel_class_id,
             vessel_class_ids=vessel_class_ids,
             port_id=port_id,
@@ -741,6 +763,7 @@ class VoyagesAPI:
             commercial_operator_id=commercial_operator_id,
             charterer_id=charterer_id,
             voyage_horizon=voyage_horizon,
+            voyage_horizons=voyage_horizons,
             token=token,
             hide_event_details=hide_event_details,
             hide_events=hide_events,
@@ -753,16 +776,17 @@ class VoyagesAPI:
 
     def get_voyages_condensed_by_advanced_search(
         self,
-        imos: Optional[Set[int]] = None,
-        voyage_keys: Optional[Set[str]] = None,
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
-        event_horizons: Optional[Set[int]] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
-        vessel_class_ids: Optional[Set[int]] = None,
+        vessel_class_ids: Optional[List[int]] = None,
         port_id: Optional[int] = None,
-        port_ids: Optional[Set[int]] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -776,10 +800,11 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
-        hide_market_info: Optional[bool] = None
+        hide_market_info: Optional[bool] = None,
     ) -> VoyagesCondensed:
         """Retrieves all voyages filtered for the provided parameters.
 
@@ -825,35 +850,37 @@ class VoyagesAPI:
             A tuple containing the returned voyagesin condensed format.
         """
         endpoint = self._get_advanced_endpoint(
-            imos=imos,
-            voyage_keys=voyage_keys,
-            event_type=event_type,
-            event_horizon=event_horizon,
-            event_horizons=event_horizons,
-            event_purpose=event_purpose,
-            vessel_class_id=vessel_class_id,
-            vessel_class_ids=vessel_class_ids,
-            port_id=port_id,
-            port_ids=port_ids,
-            vessel_type_id=vessel_type_id,
-            start_date_from=start_date_from,
-            start_date_to=start_date_to,
-            first_load_arrival_date_from=first_load_arrival_date_from,
-            first_load_arrival_date_to=first_load_arrival_date_to,
-            end_date_from=end_date_from,
-            end_date_to=end_date_to,
-            market_info_rate_from=market_info_rate_from,
-            market_info_rate_to=market_info_rate_to,
-            market_info_rate_type=market_info_rate_type,
-            commercial_operator_id=commercial_operator_id,
-            charterer_id=charterer_id,
-            voyage_horizon=voyage_horizon,
-            token=token,
-            hide_event_details=hide_event_details,
-            hide_events=hide_events,
-            hide_market_info=hide_market_info,
-            nested=False,
-            condensed=True
+           imos=imos,
+           voyage_keys=voyage_keys,
+           event_type=event_type,
+           event_horizon=event_horizon,
+           event_horizons=event_horizons,
+           event_purpose=event_purpose,
+           event_purposes=event_purposes,
+           vessel_class_id=vessel_class_id,
+           vessel_class_ids=vessel_class_ids,
+           port_id=port_id,
+           port_ids=port_ids,
+           vessel_type_id=vessel_type_id,
+           start_date_from=start_date_from,
+           start_date_to=start_date_to,
+           first_load_arrival_date_from=first_load_arrival_date_from,
+           first_load_arrival_date_to=first_load_arrival_date_to,
+           end_date_from=end_date_from,
+           end_date_to=end_date_to,
+           market_info_rate_from=market_info_rate_from,
+           market_info_rate_to=market_info_rate_to,
+           market_info_rate_type=market_info_rate_type,
+           commercial_operator_id=commercial_operator_id,
+           charterer_id=charterer_id,
+           voyage_horizon=voyage_horizon,
+           voyage_horizons=voyage_horizons,
+           token=token,
+           hide_event_details=hide_event_details,
+           hide_events=hide_events,
+           hide_market_info=hide_market_info,
+           nested=False,
+           condensed=True,
         )
 
         results, _ = self._get_voyages_condensed_pages(endpoint)

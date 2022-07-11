@@ -356,9 +356,31 @@ _mock_voyages = (_mock_nested_voyage_1, _mock_nested_voyage_2)
 _mock_get_advanced_search = {
     'input': {
         'imos': [91017,90455],
+        'voyage_keys': [2,3],
+        'event_type': 2,
+        'event_horizon':2,
+        'event_horizons':[0,1],
+        'event_purpose': "purpose",
+        'event_purposes': ["purpose1","purpose2"],
         'vessel_class_id': 84,
+        'vessel_class_ids':[60,61,84],
+        'port_id':2,
+        'port_ids':[2,3,4],
+        'vessel_type_id':3,
+        'start_date_from':'2021-06-04',
+        'start_date_to':'2021-07-04',
         'first_load_arrival_date_from': '2021-06-04',
         'first_load_arrival_date_to': '2021-07-04',
+        'end_date_from':'2021-06-04',
+        'end_date_to':'2021-07-04',
+        'market_info_rate_from':'2021-06-04',
+        'market_info_rate_to':'2021-07-04',
+        'market_info_rate_type':"type",
+        'commercial_operator_id':2,
+        'charterer_id':2,
+        'voyage_horizon':2,
+        'voyage_horizons':[0,1],
+        'token':"token",
         'hide_event_details': True,
         'hide_events': True,
         'hide_market_info': False
@@ -367,9 +389,31 @@ _mock_get_advanced_search = {
     'expected_output':
     'voyages-api/v2/search/advanced/?'
     'Imos=91017&Imos=90455&'
+    'VoyageKeys=2&VoyageKeys=3&'
+    'EventType=2&'
+    'EventHorizon=2&'
+    'EventHorizons=0&EventHorizons=1&'
+    'EventPurpose=purpose1&EventPurpose=purpose2&'
+    'EventPurpose=purpose&'
     'VesselClassId=84&'
+    'VesselClassIds=60&VesselClassIds=61&VesselClassIds=84&'
+    'PortId=2&'
+    'PortIds=2&PortIds=3&PortIds=4&'
+    'VesselTypeId=3&'
+    'StartDateFrom=2021-06-04&'
+    'StartDateTo=2021-07-04&'
     'FirstLoadArrivalDateFrom=2021-06-04&'
     'FirstLoadArrivalDateTo=2021-07-04&'
+    'EndDateFrom=2021-06-04&'
+    'EndDateTo=2021-07-04&'
+    'MarketInfoRateFrom=2021-06-04&'
+    'MarketInfoRateTo=2021-07-04&'
+    'MarketInfoRateType=type&'
+    'CommercialOperatorId=2&'
+    'ChartererId=2&'
+    'VoyageHorizon=0&VoyageHorizon=1&'
+    'VoyageHorizon=2&'   
+    'Token=token&'
     'HideEventDetails=True&'
     'HideEvents=True&'
     'HideMarketInfo=False&'
