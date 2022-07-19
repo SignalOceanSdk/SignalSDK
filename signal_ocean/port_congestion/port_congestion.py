@@ -136,8 +136,7 @@ class PortCongestion:
         voyages_extd = cast(
             pd.DataFrame,
             reduce(
-                lambda left, right: pd.merge(
-                    left,
+                lambda right: pd.merge(
                     right,
                     how="left",
                     left_on=next(left_merge_keys, None),
