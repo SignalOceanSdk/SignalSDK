@@ -655,7 +655,7 @@ class TonnageList(Sequence[Vessel]):
     def to_data_frame(self) -> pd.DataFrame:
         """Converts the tonnage list to a pandas data frame."""
         vessels_by_imo = {v.imo: v._to_data_frame_row() for v in self.vessels}
-        data_frame = pd.DataFrame.from_dict(vessels_by_imo, orient="index", columns=list(Column))   # type: ignore # noqa
+        data_frame = pd.DataFrame.from_dict(vessels_by_imo, orient="index", columns=list(Column))   # noqa
         data_frame.index.set_names(IndexLevel.IMO)
 
         return data_frame.astype(Column._get_data_types())

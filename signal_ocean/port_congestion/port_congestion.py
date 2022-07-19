@@ -142,7 +142,7 @@ class PortCongestion:
                     how="left",
                     left_on=next(left_merge_keys, None),
                     right_on=next(right_merge_keys, None),
-                    suffixes=next(suffixes, None),
+                    suffixes=next(suffixes, (None,)),
                 ),
                 [voyages_df, events_df, events_details_df, geos_df],
             ),
@@ -417,8 +417,7 @@ class PortCongestion:
             .nunique()
             .reset_index()
         ))
-        num_of_vessels_time_series.columns = ["date", "vessels"]
-
+        num_of_vessels_time_series.rename(columns={"number_of_vessels": "vessels"})
         return num_of_vessels_time_series
 
     def _calculate_waiting_time_over_time(
