@@ -137,8 +137,8 @@ class PortCongestion:
             pd.DataFrame,
             reduce(
                 lambda left, right: pd.merge(
-                    left, # type: ignore
-                    right, # type: ignore
+                    left,  # type: ignore
+                    right,  # type: ignore
                     how="left",
                     left_on=next(left_merge_keys, None),
                     right_on=next(right_merge_keys, None),
@@ -417,7 +417,9 @@ class PortCongestion:
             .nunique()
             .reset_index()
         ))
-        num_of_vessels_time_series.rename(columns={"number_of_vessels": "vessels"})
+        num_of_vessels_time_series.rename(
+            columns={"number_of_vessels": "vessels"}
+        )
         return num_of_vessels_time_series
 
     def _calculate_waiting_time_over_time(
