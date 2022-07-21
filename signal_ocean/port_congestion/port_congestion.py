@@ -417,9 +417,7 @@ class PortCongestion:
             .nunique()
             .reset_index()
         ))
-        num_of_vessels_time_series.rename(
-            columns={"number_of_vessels": "vessels"}
-        )
+        num_of_vessels_time_series.columns = ["date", "vessels"]  # type: ignore
         return num_of_vessels_time_series
 
     def _calculate_waiting_time_over_time(
