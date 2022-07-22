@@ -137,12 +137,12 @@ class PortCongestion:
             pd.DataFrame,
             reduce(
                 lambda left, right: pd.merge(
-                    left,
-                    right,
+                    left,  # type: ignore
+                    right,  # type: ignore
                     how="left",
                     left_on=next(left_merge_keys, None),
                     right_on=next(right_merge_keys, None),
-                    suffixes=next(suffixes, None),
+                    suffixes=next(suffixes, (None,)),
                 ),
                 [voyages_df, events_df, events_details_df, geos_df],
             ),
@@ -417,7 +417,8 @@ class PortCongestion:
             .nunique()
             .reset_index()
         ))
-        num_of_vessels_time_series.columns = ["date", "vessels"]
+
+        num_of_vessels_time_series.columns = ["date", "vessels"]  # type:ignore
 
         return num_of_vessels_time_series
 
