@@ -9,6 +9,9 @@ fi
 echo 'Activating virtual environment...'
 source ./env/bin/activate
 
+echo 'Upgrading pip...'
+python -m pip install --upgrade pip
+
 echo 'Installing dependencies...'
 pip install -r ./requirements.txt
 
@@ -26,4 +29,4 @@ pydocstyle --match='(?!_[^_]).*\.py' --convention=google signal_ocean
 
 echo 'Building dist...'
 rm -rf dist/*
-python3.8 ./setup.py sdist bdist_wheel
+python ./setup.py sdist bdist_wheel

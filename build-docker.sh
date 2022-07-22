@@ -22,6 +22,9 @@ do
     esac
 done
 
+echo 'Upgrading pip...'
+python3.8 -m pip install --upgrade pip
+
 echo 'Installing dependencies...'
 pip install -r ./requirements.txt
 
