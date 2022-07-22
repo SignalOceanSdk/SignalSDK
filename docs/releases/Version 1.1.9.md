@@ -1,4 +1,4 @@
-# v1.1.8
+# v1.1.9
 Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
 ## Updated Voyages Documentation
