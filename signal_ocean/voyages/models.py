@@ -574,93 +574,102 @@ class VoyageCondensed(Voyage):
             starting_port_name: String, name of the port in where the voyage
                     started from.
             starting_port_id: Numeric ID corresponding to the port where the
-                    voyage started from. The start of a voyage is set as the end
-                    of the previous voyage (if existing) or the first received AIS
-                    (for a new building). Voyages are consecutive and with no
-                    breaks in between, therefore a vessel is always in a voyage.
+                    voyage started from. The start of a voyage is set as the
+                    end of the previous voyage (if existing) or the first
+                    received AIS (for a new building). Voyages are
+                    consecutive and with no breaks in between, therefore a
+                    vessel is always in a voyage.
             starting_country_id: Numeric ID corresponding to the country
                     where the voyage started from.
-            starting_country_name: String, name of the country where the voyage
-                    started from.
+            starting_country_name: String, name of the country where the
+                    voyage started from.
             starting_area_id_level0: Numeric ID corresponding to the level 0
                     area where the voyage started from. Level 0 areas offer a
                     detailed breakdown of the globe to the areas of maritime
                     interest.
             starting_area_name_level0: String, name of the area where the
-                    voyage started from. Level 0 areas offer a detailed breakdown
-                    of the globe to the areas of maritime interest. Examples of
-                    level 0 areas include "Arabian Gulf", "US Gulf" and "East
-                    Mediterranean".
+                    voyage started from. Level 0 areas offer a detailed
+                    breakdown of the globe to the areas of maritime interest.
+                    Examples of level 0 areas include "Arabian Gulf",
+                    "US Gulf" and "East Mediterranean".
             first_load_port_name: String, name of the port where the vessel
                     performed the first loading port call of a voyage.
             first_load_port_id: Numeric ID corresponding to the port where
-                    the vessel performed the first loading port call of a voyage.
+                    the vessel performed the first loading port call of a
+                    voyage.
             first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
-                    beginning of the first loading port call, including waiting
-                    time. The arrival date of a port call is calculated based on
-                    the first AIS point within the event. If the vessel waits in
-                    an anchorage area for days, this waiting time is captured as
-                    the difference between the FirstLoadArrivalDate and the
+                    beginning of the first loading port call, including
+                    waiting time. The arrival date of a port call is
+                    calculated based on the first AIS point within the
+                    event. If the vessel waits in an anchorage area for days,
+                    this waiting time is captured as the difference between
+                    the FirstLoadArrivalDate and the
                     FirstLoadStartTimeOfOperation.
             first_load_start_time_of_operation: Date, format
-                    YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
-                    first loading operation. This is the timestamp of the first
-                    AIS point received when the vessel is within a jetty or while
-                    performing a ship-to-ship operation.
+                    YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of
+                    the first loading operation. This is the timestamp of the
+                    first AIS point received when the vessel is within a jetty
+                    or while performing a ship-to-ship operation.
             first_load_sailing_date: Date, format YYYY-MM-DD HH:MM:SS. The end
-                    of the first loading port call. The sailing date of an event
-                    is calculated based on the last AIS point within the event.
-                    In the case of missing AIS data, the sailing date is derived
-                    based on the next reported location of the vessel after the
-                    event and the time without reported AIS information.
+                    of the first loading port call. The sailing date of an
+                    event is calculated based on the last AIS point within the
+                    event. In the case of missing AIS data, the sailing date
+                    is derived based on the next reported location of the
+                    vessel after the event and the time without reported AIS
+                    information.
             first_load_country_id: Numeric ID corresponding to the country
                     where the vessel performed the first loading port call.
             first_load_country_name: String, name of the country where the
                     vessel performed the first loading port call.
             first_load_area_id_level0: Numeric ID corresponding to the level 0
-                    area where the vessel performed the first loading operation of
-                    the voyage. Level 0 areas offer a detailed breakdown of the
-                    globe to the areas of maritime interest.
+                    area where the vessel performed the first loading
+                    operation of the voyage. Level 0 areas offer a detailed
+                    breakdown of the globe to the areas of maritime interest.
             first_load_area_name_level0: String, name of the area where the
-                    vessel performed the first loading operation of the voyage.
-                    Level 0 areas offer a detailed breakdown of the globe to the
-                    areas of maritime interest. Examples of level 0 areas include
-                    "Arabian Gulf", "US Gulf" and "East Mediterranean".
+                    vessel performed the first loading operation of the
+                    voyage. Level 0 areas offer a detailed breakdown of the
+                    globe to the areas of maritime interest. Examples of level
+                    0 areas include "Arabian Gulf", "US Gulf" and "East
+                    Mediterranean".
             last_discharge_port_name: String, name of the port where the
-                    vessel performed the last discharging port call of a voyage.
+                    vessel performed the last discharging port call of a
+                    voyage.
             last_discharge_port_id: Numeric ID corresponding to the port where
                     the vessel performed the last discharging port call of a
                     voyage.
             last_discharge_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
-                    beginning of the last discharging port call, including waiting
-                    time. The arrival date of a port call is calculated based on
-                    the first AIS point within the event. If the vessel waits in
-                    an anchorage area for days, this waiting time is captured as
-                    the difference between the LastDischargeArrivalDate and the
+                    beginning of the last discharging port call, including
+                    waiting time. The arrival date of a port call is
+                    calculated based on the first AIS point within the event.
+                    If the vessel waits in an anchorage area for days, this
+                    waiting time is captured as the difference between the
+                    LastDischargeArrivalDate and the 
                     LastDischargeStartTimeOfOperation.
             last_discharge_start_time_of_operation: Date, format
-                    YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of the
-                    last discharging operation. This is the timestamp of the first
-                    AIS point received when the vessel is within a jetty or while
-                    performing a ship-to-ship operation.
+                    YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of
+                    the last discharging operation. This is the timestamp of
+                    the first AIS point received when the vessel is within a
+                    jetty or while performing a ship-to-ship operation.
             last_discharge_sailing_date: Date, format YYYY-MM-DD HH:MM:SS.
                     Timestamp indicating the beginning of the first loading
                     operation. This is the timestamp of the first AIS point
-                    received when the vessel is within a jetty or while performing
-                    a ship-to-ship operation.
+                    received when the vessel is within a jetty or while
+                    performing a ship-to-ship operation.
             last_discharge_country_id: Numeric ID corresponding to the country
                     where the vessel performed the last discharging port call.
             last_discharge_country_name: String, name of the country where the
                     vessel performed the last discharging port call.
             last_discharge_area_id_level0: Numeric ID corresponding to the
-                    level 0 area where the vessel performed the last discharging
-                    operation of the voyage. Level 0 areas offer a detailed
-                    breakdown of the globe to the areas of maritime interest.
+                    level 0 area where the vessel performed the last
+                    discharging operation of the voyage. Level 0 areas offer
+                    a detailed breakdown of the globe to the areas of maritime
+                    interest.
             last_discharge_area_name_level0: String, name of the area where
                     the vessel performed the last discharging operation of the
-                    voyage. Level 0 areas offer a detailed breakdown of the globe
-                    to the areas of maritime interest. Examples of level 0 areas
-                    include "Arabian Gulf", "US Gulf" and "East Mediterranean".
+                    voyage. Level 0 areas offer a detailed breakdown of the
+                    globe to the areas of maritime interest. Examples of level
+                    0 areas include "Arabian Gulf", "US Gulf" and "East
+                    Mediterranean".
             repairs_ind: Boolean. True if the voyage contains any port call
                     operation performed in a dry dock or shipyard.
             storage_ind: Boolean. True if the vessel acted as storage in the
@@ -717,17 +726,17 @@ class VoyageGeo:
         name: Name of the geo asset. Geo assets represent maritime facilities
             such as terminals, anchorages and lightering zones. Multiple geo
             assets are grouped under the same port.
-        port_id: Numeric ID corresponding to the port. A port may be associated
-            with multiple geo assets representing different terminals and
-            anchorages within this port.
-        port_name: Name of the port. A port may be associated with multiple geo
-            assets representing different terminals and anchorages within this
-            port.
+        port_id: Numeric ID corresponding to the port. A port may be
+            associated with multiple geo assets representing different
+            terminals and anchorages within this port.
+        port_name: Name of the port. A port may be associated with multiple
+            geo assets representing different terminals and anchorages within
+            this port.
         country_id: Numeric ID corresponding to the country of the geo asset.
         country: Name of the country of the geo asset.
         area_idlevel0: Numeric ID corresponding to the level 0 area of the geo
-            asset. Level 0 areas offer a detailed breakdown of the globe to the
-            areas of maritime interest. Examples of level 0 areas include
+            asset. Level 0 areas offer a detailed breakdown of the globe to
+            the areas of maritime interest. Examples of level 0 areas include
             "Arabian Gulf", "US Gulf" and "East Mediterranean".
         area_name_level0: Name of the level 0 area of the geo asset. Level 0
             areas offer a detailed breakdown of the globe to the areas of
@@ -754,15 +763,15 @@ class VoyageGeo:
             asset. Level 3 areas the highest area grouping in our taxonomy.
             Examples of such areas are "Pacific America" or "Africa". These
             group together level 2 areas. For instance, "Pacific America"
-            groups together the level 2 areas "West Coast North America", "West
-            Coast Mexico", "West Coast Central America" and "West Coast South
-            America".
+            groups together the level 2 areas "West Coast North America",
+            "West Coast Mexico", "West Coast Central America" and "West Coast
+            South America".
         area_name_level3: Name of the level 3 area of the geo asset. Level 3
             areas the highest area grouping in our taxonomy. Examples of such
-            areas are "Pacific America" or "Africa". These group together level
-            2 areas. For instance, "Pacific America" groups together the level
-            2 areas "West Coast North America", "West Coast Mexico", "West
-            Coast Central America" and "West Coast South America".
+            areas are "Pacific America" or "Africa". These group together
+            level 2 areas. For instance, "Pacific America" groups together the
+            level 2 areas "West Coast North America", "West Coast Mexico",
+            "West Coast Central America" and "West Coast South America".
     """
 
     id: Optional[int] = None

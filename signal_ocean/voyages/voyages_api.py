@@ -58,14 +58,15 @@ class VoyagesAPI:
         Args:
             imo: Return only voyages for the provided vessel IMO. If None
                 voyages for all vessels are returned.
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, voyages for all vessels are returned. If imo is
-                specified, then vessel_class_id is ignored.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, voyages for all vessels are returned. If imo
+                is specified, then vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
                 If None, voyages for all vessels are returned. If either imo
-                or vessel_class_id is specified, then vessel_type_id is ignored.
-            date_from: Return voyages after provided date. If imo is specified,
-                then date_from is treated as None.
+                or vessel_class_id is specified, then vessel_type_id is
+                ignored.
+            date_from: Return voyages after provided date. If imo is
+                specified, then date_from is treated as None.
             nested: Boolean controlling whether information associated with
                 voyages is returned nested in the voyage object or in flat
                 format.
@@ -145,8 +146,8 @@ class VoyagesAPI:
             Same as get_voyages_by_advanced_search method arguments.
 
         Returns:
-            The constructed endpoint to call to retrieve the requested voyages \
-            for the provided arguments.
+            The constructed endpoint to call to retrieve the requested \
+            voyages for the provided arguments.
         """
         # Special Handling for event purposes and VoyageHorizons
         if event_purpose is not None:
@@ -293,8 +294,8 @@ class VoyagesAPI:
         and return data.
 
         Returns:
-            Voyages condensed data gathered from the returned pages as a tupple.
-            The next request token, to be used for incremental updates.
+            Voyages condensed data gathered from the returned pages as a
+            tupple. The next request token, for incremental updates.
         """
         results: List[VoyageCondensed] = []
         next_page_token = token
@@ -336,14 +337,15 @@ class VoyagesAPI:
         Args:
             imo: Return only voyages for the provided vessel IMO. If None,
                 voyages for all vessels are returned.
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, voyages for all vessels are returned. If imo is
-                specified, then vessel_class_id is ignored.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, voyages for all vessels are returned. If
+                imo is specified, then vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
-                If None, voyages for all vessels are returned. If either imo or
-                vessel_class_id is specified, then vessel_type_id is ignored.
-            date_from: Return voyages after provided date. If imo is specified,
-                then date_from is ignored.
+                If None, voyages for all vessels are returned. If either imo
+                or vessel_class_id is specified, then vessel_type_id is
+                ignored.
+            date_from: Return voyages after provided date. If imo is
+                specified, then date_from is ignored.
 
         Returns:
             Voyages data as a tupple.
@@ -369,14 +371,15 @@ class VoyagesAPI:
         Args:
             imo: Return only voyages for the provided vessel IMO. If None
                 voyages for all vessels are returned.
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, voyages for all vessels are returned. If imo is
-                specified, then vessel_class_id is ignored.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, voyages for all vessels are returned. If imo
+                is specified, then vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
-                If None, voyages for all vessels are returned. If either imo or
-                vessel_class_id is specified, then vessel_type_id is ignored.
-            date_from: Return voyages after provided date. If imo is specified,
-                then date_from is treated as None.
+                If None, voyages for all vessels are returned. If either imo
+                or vessel_class_id is specified, then vessel_type_id is
+                ignored.
+            date_from: Return voyages after provided date. If imo is
+                specified, then date_from is treated as None.
 
         Returns:
             A VoyagesFlat object containing lists of voyages, voyage events, \
@@ -404,14 +407,15 @@ class VoyagesAPI:
         Args:
             imo: Return only voyages for the provided vessel IMO. If None
                 voyages for all vessels are returned.
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, voyages for all vessels are returned. If imo is
-                specified, then vessel_class_id is ignored.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, voyages for all vessels are returned. If imo
+                is specified, then vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
-                If None, voyages for all vessels are returned. If either imo or
-                vessel_class_id is specified, then vessel_type_id is ignored.
-            date_from: Return voyages after provided date. If imo is specified,
-                then date_from is treated as None.
+                If None, voyages for all vessels are returned. If either imo
+                or vessel_class_id is specified, then vessel_type_id is
+                ignored.
+            date_from: Return voyages after provided date. If imo is
+                specified, then date_from is treated as None.
 
         Returns:
             A VoyagesCondensed object containing lists of voyages.
@@ -447,14 +451,15 @@ class VoyagesAPI:
         Args:
             imo: Return only voyages for the provided vessel IMO. If None,
                 then voyages for all vessels are returned.
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, then voyages for all vessels are returned. If imo is
-                specified, then vessel_class_id is ignored.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, then voyages for all vessels are returned. If
+                imo is specified, then vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
-                If None, then voyages for all vessels are returned. If either imo
-                or vessel_class_id is specified, then vessel_type_id is ignored.
-            date_from: Return voyages after provided date. If imo is specified,
-                then date_from is treated as None.
+                If None, then voyages for all vessels are returned. If either
+                imo or vessel_class_id is specified, then vessel_type_id is
+                ignored.
+            date_from: Return voyages after provided date. If imo is
+                specified, then date_from is treated as None.
             incremental_token: Token returned from the previous incremental
                 call. If this is the first call, then it can be omitted.
 
@@ -486,21 +491,22 @@ class VoyagesAPI:
         Args:
             imo: Return only voyages for the provided vessel IMO. If None,
                 then voyages for all vessels are returned.
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, voyages for all vessels are returned. If imo is
-                specified, then vessel_class_id is ignored.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, voyages for all vessels are returned. If imo
+                is specified, then vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
-                If None, voyages for all vessels are returned. If either imo or
-                vessel_class_id is specified, then vessel_type_id is ignored.
+                If None, voyages for all vessels are returned. If either imo
+                or vessel_class_id is specified, then vessel_type_id is
+                ignored.
             date_from: Return  after the provided date. If imo is 
                 specified, then datevoyages_from is treated as None.
             incremental_token: Token returned from the previous incremental
                 call. If this is the first call, then it can be omitted.
 
         Returns:
-            A tuple containing the returned voyages in flat format, including \
-            any deleted voyages, and the token for the next incremental \
-            request.
+            A tuple containing the returned voyages in flat format, \
+            including any deleted voyages, and the token for the next \
+            incremental request.
         """
         endpoint = self._get_endpoint(
             imo,
@@ -532,10 +538,11 @@ class VoyagesAPI:
                 If None, then voyages for all vessels are returned. If imo is
                 specified, then vessel_class_id is ignored.
             vessel_type_id: Return only voyages for the provided vessel type.
-                If None, then voyages for all vessels are returned. If either imo
-                or vessel_class_id is specified, then vessel_type_id is ignored.
-            date_from: Return voyages after provided date. If imo is specified,
-                then date_from is treated as None.
+                If None, then voyages for all vessels are returned. If either
+                imo or vessel_class_id is specified, then vessel_type_id is
+                ignored.
+            date_from: Return voyages after provided date. If imo is
+                specified, then date_from is treated as None.
             incremental_token: Token returned from the previous incremental
                 call. If this is the first call, then it can be omitted.
 
@@ -605,12 +612,13 @@ class VoyagesAPI:
                 voyages that include at least one event of those types
                 will be returned
             event_purpose: If an EventPurpose is provided, then only voyages
-                that include at least one event of this purpose will be returned.
+                that include at least one event of this purpose will be
+                returned.
             event_purposes: If a list of EventPurposes is provided then only
                 voyages that include at least one event of this type
                 will be returned
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, then voyages for all vessels are returned.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, then voyages for all vessels are returned.
             vessel_class_ids: If provided only voyages of those vessel classes
                 will be returned.
             port_id: If PortId is provided then only voyages that contains at
@@ -632,8 +640,8 @@ class VoyagesAPI:
                 date.
             market_info_rate_from: If provided, then only voyages that have
                 market data and with rate greater than this will be returned.
-            market_info_rate_to: If provided, then only voyages that have market
-                data and with a lower rate will be returned.
+            market_info_rate_to: If provided, then only voyages that have
+                market data and with a lower rate will be returned.
             market_info_rate_type: If provided, then only voyages that have
                 market data and with the same rate type will be returned.
             commercial_operator_id: If provided, then only voyages that have
@@ -648,7 +656,8 @@ class VoyagesAPI:
                 is the first call, then it can be omitted.
             hide_event_details: If True, then event details will be excluded.
             hide_events: If True, then events will be excluded.
-            hide_market_info: If True, then market information will be excluded.
+            hide_market_info: If True, then market information will be
+                excluded.
 
         Returns:
             Voyages data as a tupple.
@@ -734,12 +743,13 @@ class VoyagesAPI:
                 voyages that include at least one event of those types
                 will be returned
             event_purpose: If an EventPurpose is provided, then only voyages
-                that include at least one event of this purpose will be returned.
+                that include at least one event of this purpose will be
+                returned.
             event_purposes: If a list of EventPurposes is provided then only
                 voyages that include at least one event of this type
                 will be returned
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, then voyages for all vessels are returned.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, then voyages for all vessels are returned.
             vessel_class_ids: If provided only voyages of those vessel classes
                 will be returned.
             port_id: If PortId is provided then only voyages that contains at
@@ -761,8 +771,8 @@ class VoyagesAPI:
                 date.
             market_info_rate_from: If provided, then only voyages that have
                 market data and with rate greater than this will be returned.
-            market_info_rate_to: If provided, then only voyages that have market
-                data and with a lower rate will be returned.
+            market_info_rate_to: If provided, then only voyages that have
+                market data and with a lower rate will be returned.
             market_info_rate_type: If provided, then only voyages that have
                 market data and with the same rate type will be returned.
             commercial_operator_id: If provided, then only voyages that have
@@ -777,7 +787,8 @@ class VoyagesAPI:
                 is the first call, then it can be omitted.
             hide_event_details: If True, then event details will be excluded.
             hide_events: If True, then events will be excluded.
-            hide_market_info: If True, then market information will be excluded.
+            hide_market_info: If True, then market information will be
+                excluded.
 
         Returns:
             Voyages data in flat format as a tupple.
@@ -865,12 +876,13 @@ class VoyagesAPI:
                 voyages that include at least one event of those types
                 will be returned
             event_purpose: If an EventPurpose is provided, then only voyages
-                that include at least one event of this purpose will be returned.
+                that include at least one event of this purpose will be
+                returned.
             event_purposes: If a list of EventPurposes is provided then only
                 voyages that include at least one event of this type
                 will be returned
-            vessel_class_id: Return only voyages for the provided vessel class.
-                If None, then voyages for all vessels are returned.
+            vessel_class_id: Return only voyages for the provided vessel
+                class. If None, then voyages for all vessels are returned.
             vessel_class_ids: If provided only voyages of those vessel classes
                 will be returned.
             port_id: If PortId is provided then only voyages that contains at
@@ -892,8 +904,8 @@ class VoyagesAPI:
                 date.
             market_info_rate_from: If provided, then only voyages that have
                 market data and with rate greater than this will be returned.
-            market_info_rate_to: If provided, then only voyages that have market
-                data and with a lower rate will be returned.
+            market_info_rate_to: If provided, then only voyages that have
+                market data and with a lower rate will be returned.
             market_info_rate_type: If provided, then only voyages that have
                 market data and with the same rate type will be returned.
             commercial_operator_id: If provided, then only voyages that have
@@ -908,7 +920,8 @@ class VoyagesAPI:
                 is the first call, then it can be omitted.
             hide_event_details: If True, then event details will be excluded.
             hide_events: If True, then events will be excluded.
-            hide_market_info: If True, then market information will be excluded.
+            hide_market_info: If True, then market information will be
+                excluded.
 
         Returns:
             Voyages data in condensed format as a tupple.
@@ -956,8 +969,8 @@ class VoyagesAPI:
         """Retrieves available vessel classes.
 
         Args:
-            class_filter: A filter used to find specific vessel classes. If not
-                specified, returns all available vessel classes.
+            class_filter: A filter used to find specific vessel classes. If
+                not specified, returns all available vessel classes.
 
         Returns:
             A tuple of available vessel classes that match the filter.
