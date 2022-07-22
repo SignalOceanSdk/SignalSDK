@@ -66,6 +66,10 @@ nav:
       - 'geo.md'
       - Examples:
         - 'examples/jupyter/GeoAPI/GeoAPI Use Case.ipynb'
+    - VoyagesMarketData:
+      - 'voyages_market_data.md'
+      - Examples:
+        - 'examples/jupyter/VoyagesMarketDataAPI/RateTrend.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
