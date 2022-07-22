@@ -446,6 +446,11 @@ class Voyage:
             info are considered more accurate and reliable, whenever available.
         quantity: Numeric, measured in kilotonnes [kt]. It is the cargo
             quantity reported in at least one of the market reports.
+        quantity_source: String, it specifies the source of Quantity. If market 
+            reports are available this field takes value "MarketInfo". If no
+            market reports are available for this voyage, the quantity is
+            estimated. Market info is considered more accurate and reliable,
+            whenever available.
         laycan_from: Date, format YYYY-MM-DD indicates the earliest reported
             Laycan From (latest day of cancellation) across all fixtures.
         laycan_to: Date, format YYYY-MM-DD indicates the latest reported Laycan
@@ -540,6 +545,7 @@ class Voyage:
     cargo_group: Optional[str] = None
     cargo_type_source: Optional[str] = None
     quantity: Optional[float] = None
+    quantity_source: Optional[str] = None
     laycan_from: Optional[datetime] = None
     laycan_to: Optional[datetime] = None
     fixture_status_id: Optional[int] = None
