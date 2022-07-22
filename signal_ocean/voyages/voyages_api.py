@@ -72,7 +72,7 @@ class VoyagesAPI:
                 format.
             incremental: Return voyages incrementally, including voyages that
                 may have been retrieved in previous calls and are now deleted.
-            condensed: Return voyages in the condensed form, including some 
+            condensed: Return voyages in the condensed form, including some
                 additional information.
 
         Returns:
@@ -498,7 +498,7 @@ class VoyagesAPI:
                 If None, voyages for all vessels are returned. If either imo
                 or vessel_class_id is specified, then vessel_type_id is
                 ignored.
-            date_from: Return  after the provided date. If imo is 
+            date_from: Return  after the provided date. If imo is
                 specified, then datevoyages_from is treated as None.
             incremental_token: Token returned from the previous incremental
                 call. If this is the first call, then it can be omitted.

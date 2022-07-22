@@ -643,7 +643,7 @@ class VoyageCondensed(Voyage):
                     calculated based on the first AIS point within the event.
                     If the vessel waits in an anchorage area for days, this
                     waiting time is captured as the difference between the
-                    LastDischargeArrivalDate and the 
+                    LastDischargeArrivalDate and the
                     LastDischargeStartTimeOfOperation.
             last_discharge_start_time_of_operation: Date, format
                     YYYY-MM-DD HH:MM:SS. Timestamp indicating the beginning of
