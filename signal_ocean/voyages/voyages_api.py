@@ -105,10 +105,17 @@ class VoyagesAPI:
 
     @staticmethod
     def _get_advanced_endpoint(
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[List[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -122,6 +129,7 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
@@ -139,15 +147,29 @@ class VoyagesAPI:
             The constructed endpoint to call to retrieve the requested voyages
             for the provided arguments.
         """
+        # Special Handling for event purposes and VoyageHorizons
+        if event_purpose is not None:
+            if event_purposes is None:
+                event_purposes = []
+            event_purposes.append(event_purpose)
+        if voyage_horizon is not None:
+            if voyage_horizons is None:
+                voyage_horizons = []
+            voyage_horizons.append(voyage_horizon)
+
         endpoint_params = locals()
         endpoint = "search/advanced/" + \
             f'{"condensed" if condensed else "" if nested else "flat"}?'
+        endpoint_params['event_purpose'] = endpoint_params['event_purposes']
+        endpoint_params['voyage_horizon'] = endpoint_params['voyage_horizons']
+        endpoint_params.pop('event_purposes')
+        endpoint_params.pop('voyage_horizons')
         params = urlencode(
             {
                 _to_camel_case(key): value
                 for key, value in endpoint_params.items()
                 if value is not None
-            }
+            }, doseq=True
         )
         endpoint += params
         return urljoin(VoyagesAPI.relative_url, endpoint)
@@ -534,10 +556,17 @@ class VoyagesAPI:
 
     def get_voyages_by_advanced_search(
         self,
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[List[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -551,22 +580,39 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
-        hide_market_info: Optional[bool] = None
+        hide_market_info: Optional[bool] = None,
     ) -> Voyages:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
+            imos: If a list of imos is provided then only voyages of these
+                imos will be returned
+            voyage_keys: If provided only the voyages with the requested
+                keys will be returned
             event_type: If an EventType is provided then only voyages that
                 include at least one event of this type will be returned.
             event_horizon: If an EventHorizon is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_horizons: If a list of EventHorizons is provided then only
+                voyages that include at least one event of those types
+                will be returned
             event_purpose: If an EventPurpose is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_purposes: If a list of EventPurposes is provided then only
+                voyages that include at least one event of this type
+                will be returned
             vessel_class_id: Return only voyages for the provided vessel class.
                 If None voyages for all vessels are returned.
+            vessel_class_ids: If provided only voyages of those vessel classes
+                will be returned.
+            port_id: If PortId is provided then only voyages that contains at
+                least one event at this port will be returned.
+            port_ids: If a list of ports is provided then only voyages that
+                contains at least one event at those ports will be returned.
             vessel_type_id: Return only voyages for the provided vessel type.
                 If None voyages for all vessels are returned.
             start_date_from: Return voyages after the provided voyage start
@@ -590,6 +636,8 @@ class VoyagesAPI:
                 will be returned.
             voyage_horizon: If a VoyageHorizon is provided then only voyages
                 of that type will be returned.
+            voyage_horizons: If a list of VoyageHorizon is provided then
+                only voyages of that type will be returned.
             token: Token returned from the previous incremental call. If this
                 is the first call, then it can be omitted.
             hide_event_details: If True, do not return event details.
@@ -600,10 +648,17 @@ class VoyagesAPI:
             A tuple containing the returned voyages.
         """
         endpoint = self._get_advanced_endpoint(
+            imos=imos,
+            voyage_keys=voyage_keys,
             event_type=event_type,
             event_horizon=event_horizon,
+            event_horizons=event_horizons,
             event_purpose=event_purpose,
+            event_purposes=event_purposes,
             vessel_class_id=vessel_class_id,
+            vessel_class_ids=vessel_class_ids,
+            port_id=port_id,
+            port_ids=port_ids,
             vessel_type_id=vessel_type_id,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
@@ -617,21 +672,28 @@ class VoyagesAPI:
             commercial_operator_id=commercial_operator_id,
             charterer_id=charterer_id,
             voyage_horizon=voyage_horizon,
+            voyage_horizons=voyage_horizons,
             token=token,
             hide_event_details=hide_event_details,
             hide_events=hide_events,
             hide_market_info=hide_market_info,
         )
-
         results, _ = self._get_voyages_pages(endpoint)
         return results
 
     def get_voyages_flat_by_advanced_search(
         self,
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[List[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -645,22 +707,39 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
-        hide_market_info: Optional[bool] = None
+        hide_market_info: Optional[bool] = None,
     ) -> VoyagesFlat:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
+            imos: If a list of imos is provided then only voyages of these
+                imos will be returned
+            voyage_keys: If provided only the voyages with the requested
+                keys will be returned
             event_type: If an EventType is provided then only voyages that
                 include at least one event of this type will be returned.
             event_horizon: If an EventHorizon is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_horizons: If a list of EventHorizons is provided then only
+                voyages that include at least one event of those types
+                will be returned
             event_purpose: If an EventPurpose is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_purposes: If a list of EventPurposes is provided then only
+                voyages that include at least one event of this type
+                will be returned
             vessel_class_id: Return only voyages for the provided vessel class.
                 If None voyages for all vessels are returned.
+            vessel_class_ids: If provided only voyages of those vessel classes
+                will be returned.
+            port_id: If PortId is provided then only voyages that contains at
+                least one event at this port will be returned.
+            port_ids: If a list of ports is provided then only voyages that
+                contains at least one event at those ports will be returned.
             vessel_type_id: Return only voyages for the provided vessel type.
                 If None voyages for all vessels are returned.
             start_date_from: Return voyages after the provided voyage start
@@ -684,6 +763,8 @@ class VoyagesAPI:
                 will be returned.
             voyage_horizon: If a VoyageHorizon is provided then only voyages
                 of that type will be returned.
+            voyage_horizons: If a list of VoyageHorizon is provided then
+                only voyages of that type will be returned.
             token: Token returned from the previous incremental call. If this
                 is the first call, then it can be omitted.
             hide_event_details: If True, do not return event details.
@@ -694,10 +775,17 @@ class VoyagesAPI:
             A tuple containing the returned voyages in flat format.
         """
         endpoint = self._get_advanced_endpoint(
+            imos=imos,
+            voyage_keys=voyage_keys,
             event_type=event_type,
             event_horizon=event_horizon,
+            event_horizons=event_horizons,
             event_purpose=event_purpose,
+            event_purposes=event_purposes,
             vessel_class_id=vessel_class_id,
+            vessel_class_ids=vessel_class_ids,
+            port_id=port_id,
+            port_ids=port_ids,
             vessel_type_id=vessel_type_id,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
@@ -711,6 +799,7 @@ class VoyagesAPI:
             commercial_operator_id=commercial_operator_id,
             charterer_id=charterer_id,
             voyage_horizon=voyage_horizon,
+            voyage_horizons=voyage_horizons,
             token=token,
             hide_event_details=hide_event_details,
             hide_events=hide_events,
@@ -723,10 +812,17 @@ class VoyagesAPI:
 
     def get_voyages_condensed_by_advanced_search(
         self,
+        imos: Optional[List[int]] = None,
+        voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
         event_horizon: Optional[int] = None,
+        event_horizons: Optional[List[int]] = None,
         event_purpose: Optional[str] = None,
+        event_purposes: Optional[List[str]] = None,
         vessel_class_id: Optional[int] = None,
+        vessel_class_ids: Optional[List[int]] = None,
+        port_id: Optional[int] = None,
+        port_ids: Optional[List[int]] = None,
         vessel_type_id: Optional[int] = None,
         start_date_from: Optional[date] = None,
         start_date_to: Optional[date] = None,
@@ -740,22 +836,39 @@ class VoyagesAPI:
         commercial_operator_id: Optional[int] = None,
         charterer_id: Optional[int] = None,
         voyage_horizon: Optional[str] = None,
+        voyage_horizons: Optional[List[str]] = None,
         token: Optional[str] = None,
         hide_event_details: Optional[bool] = None,
         hide_events: Optional[bool] = None,
-        hide_market_info: Optional[bool] = None
+        hide_market_info: Optional[bool] = None,
     ) -> VoyagesCondensed:
         """Retrieves all voyages filtered for the provided parameters.
 
         Args:
+            imos: If a list of imos is provided then only voyages of these
+                imos will be returned
+            voyage_keys: If provided only the voyages with the requested
+                keys will be returned
             event_type: If an EventType is provided then only voyages that
                 include at least one event of this type will be returned.
             event_horizon: If an EventHorizon is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_horizons: If a list of EventHorizons is provided then only
+                voyages that include at least one event of those types
+                will be returned
             event_purpose: If an EventPurpose is provided then only voyages
                 that include at least one event of this type will be returned.
+            event_purposes: If a list of EventPurposes is provided then only
+                voyages that include at least one event of this type
+                will be returned
             vessel_class_id: Return only voyages for the provided vessel class.
                 If None voyages for all vessels are returned.
+            vessel_class_ids: If provided only voyages of those vessel classes
+                will be returned.
+            port_id: If PortId is provided then only voyages that contains at
+                least one event at this port will be returned.
+            port_ids: If a list of ports is provided then only voyages that
+                contains at least one event at those ports will be returned.
             vessel_type_id: Return only voyages for the provided vessel type.
                 If None voyages for all vessels are returned.
             start_date_from: Return voyages after the provided voyage start
@@ -779,6 +892,8 @@ class VoyagesAPI:
                 will be returned.
             voyage_horizon: If a VoyageHorizon is provided then only voyages
                 of that type will be returned.
+            voyage_horizons: If a list of VoyageHorizon is provided then
+                only voyages of that type will be returned.
             token: Token returned from the previous incremental call. If this
                 is the first call, then it can be omitted.
             hide_event_details: If True, do not return event details.
@@ -789,29 +904,37 @@ class VoyagesAPI:
             A tuple containing the returned voyagesin condensed format.
         """
         endpoint = self._get_advanced_endpoint(
-            event_type=event_type,
-            event_horizon=event_horizon,
-            event_purpose=event_purpose,
-            vessel_class_id=vessel_class_id,
-            vessel_type_id=vessel_type_id,
-            start_date_from=start_date_from,
-            start_date_to=start_date_to,
-            first_load_arrival_date_from=first_load_arrival_date_from,
-            first_load_arrival_date_to=first_load_arrival_date_to,
-            end_date_from=end_date_from,
-            end_date_to=end_date_to,
-            market_info_rate_from=market_info_rate_from,
-            market_info_rate_to=market_info_rate_to,
-            market_info_rate_type=market_info_rate_type,
-            commercial_operator_id=commercial_operator_id,
-            charterer_id=charterer_id,
-            voyage_horizon=voyage_horizon,
-            token=token,
-            hide_event_details=hide_event_details,
-            hide_events=hide_events,
-            hide_market_info=hide_market_info,
-            nested=False,
-            condensed=True
+           imos=imos,
+           voyage_keys=voyage_keys,
+           event_type=event_type,
+           event_horizon=event_horizon,
+           event_horizons=event_horizons,
+           event_purpose=event_purpose,
+           event_purposes=event_purposes,
+           vessel_class_id=vessel_class_id,
+           vessel_class_ids=vessel_class_ids,
+           port_id=port_id,
+           port_ids=port_ids,
+           vessel_type_id=vessel_type_id,
+           start_date_from=start_date_from,
+           start_date_to=start_date_to,
+           first_load_arrival_date_from=first_load_arrival_date_from,
+           first_load_arrival_date_to=first_load_arrival_date_to,
+           end_date_from=end_date_from,
+           end_date_to=end_date_to,
+           market_info_rate_from=market_info_rate_from,
+           market_info_rate_to=market_info_rate_to,
+           market_info_rate_type=market_info_rate_type,
+           commercial_operator_id=commercial_operator_id,
+           charterer_id=charterer_id,
+           voyage_horizon=voyage_horizon,
+           voyage_horizons=voyage_horizons,
+           token=token,
+           hide_event_details=hide_event_details,
+           hide_events=hide_events,
+           hide_market_info=hide_market_info,
+           nested=False,
+           condensed=True,
         )
 
         results, _ = self._get_voyages_condensed_pages(endpoint)
