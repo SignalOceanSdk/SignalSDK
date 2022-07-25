@@ -18,7 +18,6 @@ class ScrapedPositionsAPI(ScrapedDataAPI):
     def get_positions(
         self,
         vessel_type: int = None,
-        page_token: Optional[str] = None,
         received_date_from: Optional[datetime] = None,
         received_date_to: Optional[datetime] = None,
         updated_date_from: Optional[datetime] = None,
@@ -37,11 +36,6 @@ class ScrapedPositionsAPI(ScrapedDataAPI):
         Args:
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
-            page_token: When requesting a page size smaller than the total attainable
-                records (by the given filters), then the records are grouped and
-                offered from the API in pages(chunks). In such cases, the 'NextPageToken'
-                is returned to be used as 'PageToken' in the sequent API request
-                in order to receive the results of the next page.
             received_date_from: Format - date-time (as date-time in RFC3339).
                 Earliest date the position received.
                 Cannot be combined with 'Updated' dates
@@ -76,7 +70,6 @@ class ScrapedPositionsAPI(ScrapedDataAPI):
         """
         return self.get_data(
             vessel_type=vessel_type,
-            page_token=page_token,
             received_date_from=received_date_from,
             received_date_to=received_date_to,
             updated_date_from=updated_date_from,

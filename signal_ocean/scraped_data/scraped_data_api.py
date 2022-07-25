@@ -101,7 +101,9 @@ class ScrapedDataAPI:
         results = []
         request_url = self._get_endpoint("by_id", params)
 
-        response = get_single(self.__connection, request_url, self.response_class)
+        response = get_single(
+            self.__connection, request_url, self.response_class
+        )
 
         if response is not None and response.data is not None:
             results.extend(response.data)
