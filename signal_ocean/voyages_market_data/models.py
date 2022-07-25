@@ -182,7 +182,7 @@ class MatchedFixture:
 
 @dataclass(frozen=True)
 class Fixture:
-    """Fixture information
+    """Fixture information.
 
     Attributes:
         next_page_token: String. The key that should be used as a parameter

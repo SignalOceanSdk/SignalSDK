@@ -5,7 +5,7 @@ from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single, get_multiple
-from signal_ocean.util.parsing_helpers import _to_camel_case, parse_model
+from signal_ocean.util.parsing_helpers import _to_camel_case
 from signal_ocean.voyages_market_data.models import (
     MatchedFixture,
     Fixture,
@@ -135,15 +135,13 @@ class VoyagesMarketDataAPI:
         Args:
             endpoint: The endpoint to call.
             token: Next request token for incremental voyage market data.
-
-        Make consecutive requests until no next page token is returned, gather
-        and return data.
+                Make consecutive requests until no next page token is
+                returned, gather and return data.
 
         Returns:
             Voyage market data gathered from the returned pages.
             The next request token, to be used for incremental updates.
         """
-
         results: List[VoyagesMarketData] = []
         next_page_token = token
         while True:
