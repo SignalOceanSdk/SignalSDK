@@ -69,6 +69,7 @@ nav:
     - VoyagesMarketData:
       - 'voyages_market_data.md'
       - Examples:
+        - 'examples/jupyter/VoyagesMarketDataAPI/VoyagesMarketDataAPIExample.ipynb'
         - 'examples/jupyter/VoyagesMarketDataAPI/RateTrend.ipynb'
         - 'examples/jupyter/VoyagesMarketDataAPI/FixtureStatus.ipynb'
     - Combined Examples:
