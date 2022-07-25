@@ -63,11 +63,11 @@ class VoyagesMarketDataAPI:
                 -2-> NotSet, -1-> Unknown
             incremental:  Return voyages incrementally, including voyages that
                 may have been retrieved in previous calls and are now deleted.
-            include_vessel_details: If set to true the following fields will be
-                included in the response. VesselName, Deadweight, YearBuilt,
-                VesselClass, VesselType, Trade, CommercialOperator
-            include_fixtures: If True, information on fixtures will be included
-                in the response.
+            include_vessel_details: If set to true the following fields will
+                be included in the response. VesselName, Deadweight,
+                YearBuilt, VesselClass, VesselType, Trade, CommercialOperator
+            include_fixtures: If True, information on fixtures will be
+                included in the response.
             include_lineups: If True, information on fixtures will be included
                 in the response. # to be implemented
             include_positions: If True, information on positions will be
@@ -82,8 +82,8 @@ class VoyagesMarketDataAPI:
                 RedeliveryFromName, RedeliveryFromTaxonomy, RedeliveryToName,
                 RedeliveryToTaxonomy
         Returns:
-            The endpoint to call to retrieve the requested voyage market data \
-            for the provided arguments.
+            The endpoint to call to retrieve the requested voyage market \
+            data for the provided arguments.
         """
         endpoint_params = {}
 
@@ -204,9 +204,9 @@ class VoyagesMarketDataAPI:
                 -2-> NotSet, -1-> Unknown
             incremental:  Return voyages incrementally, including voyages that
                 may have been retrieved in previous calls and are now deleted.
-            include_vessel_details: If set to true the following fields will be
-                included in the response. VesselName, Deadweight, YearBuilt,
-                VesselClass, VesselType, Trade, CommercialOperator
+            include_vessel_details: If set to true the following fields will
+                be included in the response. VesselName, Deadweight,
+                YearBuilt, VesselClass, VesselType, Trade, CommercialOperator
             include_fixtures: If True, information on fixtures will be
                 included in the response.
             include_lineups: If True, information on fixtures will be

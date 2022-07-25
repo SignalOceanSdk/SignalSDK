@@ -10,8 +10,8 @@ class MatchedFixture:
 
     Attributes:
         fixture_status_id: Numeric ID corresponding to the different values of
-            the FixtureStatus field.   0-> OnSubs, 1-> FullyFixed, 2 -> Failed,
-            3 -> Cancelled , 4-> Available, 5-> PossFixed,
+            the FixtureStatus field.   0-> OnSubs, 1-> FullyFixed,
+            2 -> Failed, 3 -> Cancelled , 4-> Available, 5-> PossFixed,
             -2 -> NotSet, -1 -> Unknown.
         fixture_status: String denoting the commercial status of a fixture if
             explicitly mentioned, like ffxd for fully fixed or subs for on
@@ -25,17 +25,18 @@ class MatchedFixture:
             least one of the fixtures.
         laycan_from: Date, format YYYY-MM-DD indicates the earliest reported
             Laycan From (latest day of cancellation) across all fixtures.
-        laycan_to: Date, format YYYY-MM-DD indicates the latest reported Laycan
-            To (latest day of cancellation) across all fixtures.
+        laycan_to: Date, format YYYY-MM-DD indicates the latest reported
+            Laycan To (latest day of cancellation) across all fixtures.
         load_geo_id: Numeric ID corresponding to the id of the load geo asset
         load_name: String, name of the load geo asset
         load_taxonomy_id: 1-> GeoAsset, 2->  Port, 3-> Country, 4-> Level0,
             5-> Level1, 6-> Level2, 7-> Level3, -3-> Invalid, -2-> NotSet,
             -1-> Unknown
         load_taxonomy: String, the taxonomy of the load geo asset
-        load_geo_id2:  Numeric ID corresponding to the id of the load geo asset
+        load_geo_id2:  Numeric ID corresponding to the id of the load geo
+            asset
         load_name: String, name of the load geo asset
-        load_name2: String, the taxonomy of the load geo asset ########### TODO
+        load_name2: String, the taxonomy of the second load geo asset
         load_taxonomy_id2: 1-> GeoAsset, 2->  Port, 3-> Country, 4-> Level0,
             5-> Level1, 6-> Level2, 7-> Level3, -3-> Invalid, -2-> NotSet,
             -1-> Unknown
@@ -54,42 +55,42 @@ class MatchedFixture:
             4-> Level0, 5-> Level1, 6-> Level2, 7-> Level3, -3-> Invalid,
             -2-> NotSet, -1-> Unknown
         discharge_taxonomy2: String, the taxonomy of the discharge geo asset
-        cargo_type_id: numeric ID corresponding to the type of cargo the vessel
-            carries in this voyage. For example 19-> Crude Oil, 16->Fueloil,
-            9-> Naphtha, 135-> Unleaded Motor Spirit, 12-> Gasoil
+        cargo_type_id: numeric ID corresponding to the type of cargo the
+            vessel carries in this voyage. For example 19-> Crude Oil,
+            16->Fueloil, 9-> Naphtha, 135-> Unleaded Motor Spirit, 12-> Gasoil
         cargo_type: String, it corresponds to the estimated cargo type the
             vessel carries according to the specific voyage, AIS information,
-            jetty the vessel may have visited or information coming from market
-            reports.
+            jetty the vessel may have visited or information coming from
+            market reports.
         cargo_group_id: Numeric ID corresponding to the high-level cargo the
             vessel carries in this voyage, therefore called cargo group.
             For example 130000->Dirty, 120000-> Clean
         cargo_group: String, it corresponds to the estimated high-level cargo
-            the vessel carries in this voyage, according to AIS information and
-            jetties the vessel may have visited or information coming from
+            the vessel carries in this voyage, according to AIS information
+            and jetties the vessel may have visited or information coming from
             market reports.
         quantity: Numeric, measured in kilotonnes [kt]. It is the cargo
             quantity reported in at least one of the market reports.
-        quantity_buffer:  ########### TODO write docstring info
+        quantity_buffer: Buffer on the agreed quantity.
         rate: Numeric, indicates the rate reported in at least one of the
             fixtures. If lump sum, the rate is reported in USD.
-        rate_type: String, indicates the type of rate reported in at least one
-            of the fixtures. Main types are "WS" for World Scale, "LS" for
-            Lump Sum, "TCE" ($/day) for Time Charter Equivalent.
+        rate_type: String, indicates the type of rate reported in at least
+            one of the fixtures. Main types are "WS" for World Scale, "LS"
+            for Lump Sum, "TCE" ($/day) for Time Charter Equivalent.
         ballast_bonus_value: Numeric, indicates the incentive or compensation
             paid to the ship owner for delivering the ship to the agreed
             delivery place. Derived from market info whenever available.
         ballast_bonus_type: String, indicates the currency of the ballast
             bonus, "$"(dollars).
-        delivery_geo_id: Numeric ID corresponding to the id of the delivery geo
-            asset
+        delivery_geo_id: Numeric ID corresponding to the id of the delivery
+            geo asset
         delivery_name: String, name of the delivery geo asset
-        delivery_taxonomy_id: 1-> GeoAsset, 2->  Port, 3-> Country, 4-> Level0,
-            5-> Level1, 6-> Level2, 7-> Level3, -3-> Invalid, -2-> NotSet,
-            -1-> Unknown
+        delivery_taxonomy_id: 1-> GeoAsset, 2->  Port, 3-> Country,
+            4-> Level0, 5-> Level1, 6-> Level2, 7-> Level3, -3-> Invalid,
+            -2-> NotSet, -1-> Unknown
         delivery_taxonomy: String, the taxonomy of the delivery geo asset
-        delivery_date_from:  ########### TODO write docstring info
-        delivery_date_to:  ########### TODO write docstring info
+        delivery_date_from: The start date of the delivery
+        delivery_date_to: The end date of the delivery
         redelivery_from_geo_id: Numeric ID corresponding to the id of the
             redelivery from geo
         redelivery_from_name: String, name of the  redelivery from geo asset
@@ -106,19 +107,17 @@ class MatchedFixture:
             -2-> NotSet, -1-> Unknown
         redelivery_to_taxonomy: String, the taxonomy of the redelivery to geo
             asset
-        user_entries:  ########### TODO write docstring info
-        full_fixtures:  ########### TODO write docstring info
-        partial_fixtures:  ########### TODO write docstring info
+        user_entries: The number of the user entries for the voyage
+        full_fixtures: The number of full fixtures for the voyage
+        partial_fixtures: The number of partial fixtures for the voyage
         is_coa: Boolean. Value is true if "COA" (Contract of Affreightment)
             is explicitly reported in at least one of the fixtures relative
             to the specific voyage
-        is_owners_option:  ########### TODO write docstring info
+        is_owners_option: Boolean, indicating if owners option is agreed
         is_hold: Boolean. Value is true if "Hold" is explicitly reported in
             at least one of the fixtures relative to the specific voyage
-        is_fio:  ########### TODO write docstring info
-        sources:  ########### TODO write docstring info
-        is_latest_failed:  ########### TODO write docstring info
-        is_fixture_date_reported:  ########### TODO write docstring info
+        is_fio: Boolean
+        sources: A list of the sources
 
     """
 
@@ -179,8 +178,6 @@ class MatchedFixture:
     is_hold: Optional[bool] = None
     is_fio: Optional[bool] = None
     sources: Optional[Tuple[str, ...]] = None
-    is_latest_failed: Optional[bool] = None
-    is_fixture_date_reported: Optional[bool] = None
 
 
 @dataclass(frozen=True)
@@ -240,11 +237,11 @@ class VoyagesMarketData:
         vessel_class: Name of the vessel class the vessel belongs to.
             Assignment of a vessel to a certain VesselClass is based on the
             VesselType and the value of its Deadweight (if Tanker or Dry),
-            its LiquidCap (if LNG/LPG) or its TEU (if Containers). For example,
-            an Aframax is a Tanker vessel with Deadweight within the range
-            82kt - 125kt, while a Capesize is a Dry vessel with Deadweight
-            within the range 120kt-220kt. LR2 are defined as Aframax, as only
-            Deadweight is used to define vessel classes.
+            its LiquidCap (if LNG/LPG) or its TEU (if Containers). For
+            example, an Aframax is a Tanker vessel with Deadweight within the
+            range 82kt - 125kt, while a Capesize is a Dry vessel with
+            Deadweight within the range 120kt-220kt. LR2 are defined as
+            Aframax, as only Deadweight is used to define vessel classes.
         trade_id: 1-> Crude, 2-> Product, 3-> Chemical, -2-> NotSet,
             -1-> Unknown
         trade: Additional attribute used to specify a Tanker vessel with finer
@@ -259,8 +256,8 @@ class VoyagesMarketData:
             denotes the total carrying capacity of the vessel including cargo,
             ballast water, stores, provisions, crew and so on.
         year_built: Numeric, year format, the year the vessel was built.
-        matched_fixture: Nested object containing additional information on the
-            matched fixture.
+        matched_fixture: Nested object containing additional information on
+            the matched fixture.
         fixtures: Nested object containing information on fixtures for a given
             IMO and voyage.
 
