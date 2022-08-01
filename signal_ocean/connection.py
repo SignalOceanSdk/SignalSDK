@@ -39,6 +39,7 @@ class Connection:
         return {
             "Api-Key": api_key,
             "Content-Type": "application/json",
+            "Source": "SignalSDK",
         }
 
     def __get_api_host(self) -> str:
