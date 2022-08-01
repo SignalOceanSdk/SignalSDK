@@ -1,16 +1,18 @@
-# v1.1.9
+# v1.2.0
 Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
-## Updated Voyages Documentation
-Fixed an issue, made some additional changes and reactivated voyage api documentation.
+## New api integration: Voyage Market Data API package
+Created the SDK for Voyage Market Data API
 
-### Updated Voyage Api documentation.
-Fixed an issue that was blocking the build of voyages_api documentation. Made some additional changes to improve clarity.
+### Added get_voyage_market_data method.
+Exposed the corresponding endpoint of Voyage Market Data API.
 
-### Updated Voyage models documentation.
-Fixed identation warnings.
+### Two examples added.
+VLCC Market rate calculation between A.Gulf and China
+Number of fixtures per month, grouped by status for VLCCs
 
-### Reactivated voyages_api documentation
+### Updated helper function request_helpers.py
+Added Optional argument for nested data info on response
 
 ## Installation and Upgrade Notes
 Update your package with:
