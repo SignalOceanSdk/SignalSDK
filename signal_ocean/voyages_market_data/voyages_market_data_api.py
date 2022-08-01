@@ -7,8 +7,6 @@ from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single, get_multiple
 from signal_ocean.util.parsing_helpers import _to_camel_case
 from signal_ocean.voyages_market_data.models import (
-    MatchedFixture,
-    Fixture,
     VoyagesMarketData,
     VoyagesMarketDataPagedResponse,
 )
@@ -41,8 +39,6 @@ class VoyagesMarketDataAPI:
         incremental: Optional[date] = None,
         include_vessel_details: Optional[bool] = None,
         include_fixtures: Optional[bool] = None,
-        include_lineups: Optional[bool] = None,
-        include_positions: Optional[bool] = None,
         include_matched_fixture: Optional[bool] = None,
         include_labels: Optional[bool] = None
     ) -> str:
@@ -68,10 +64,6 @@ class VoyagesMarketDataAPI:
                 YearBuilt, VesselClass, VesselType, Trade, CommercialOperator
             include_fixtures: If True, information on fixtures will be
                 included in the response.
-            include_lineups: If True, information on fixtures will be included
-                in the response. # to be implemented
-            include_positions: If True, information on positions will be
-                included in the response. # to be implemented
             include_matched_fixture: If True, information on the matched
                 fixture will be included in the response.
             include_labels: If set to true the following fields will be
@@ -89,7 +81,6 @@ class VoyagesMarketDataAPI:
 
         for key, value in locals().items():
             if key in {'include_vessel_details', 'include_fixtures',
-                       'include_lineups', 'include_positions',
                        'include_matched_fixture', 'include_labels'}:
                 endpoint_params[key] = value
 
@@ -180,8 +171,6 @@ class VoyagesMarketDataAPI:
         incremental: Optional[date] = None,
         include_vessel_details: Optional[bool] = None,
         include_fixtures: Optional[bool] = None,
-        include_lineups: Optional[bool] = None,
-        include_positions: Optional[bool] = None,
         include_matched_fixture: Optional[bool] = None,
         include_labels: Optional[bool] = None
     ) -> VoyagesMarketDataMultiple:
@@ -207,10 +196,6 @@ class VoyagesMarketDataAPI:
                 YearBuilt, VesselClass, VesselType, Trade, CommercialOperator
             include_fixtures: If True, information on fixtures will be
                 included in the response.
-            include_lineups: If True, information on fixtures will be
-                included in the response. # to be implemented
-            include_positions: If True, information on positions will be
-                included in the response. # to be implemented
             include_matched_fixture: If True, information on the matched
                 fixture will be included in the response.
             include_labels: If set to true the following fields will be
@@ -226,8 +211,8 @@ class VoyagesMarketDataAPI:
         endpoint = self._get_endpoint(
                         imo, voyage_id, voyage_number, vessel_class_id,
                         vessel_type_id, incremental, include_vessel_details,
-                        include_fixtures, include_lineups, include_positions,
-                        include_matched_fixture, include_labels
+                        include_fixtures, include_matched_fixture,
+                        include_labels
         )
 
         if imo is not None:

@@ -52,23 +52,22 @@ _mock_voyage_market_data_object = VoyagesMarketData(
 )
 
 @pytest.mark.parametrize("imo, voyage_id, voyage_number, vessel_class_id, vessel_type_id, "
-                           "incremental, include_vessel_details, include_fixtures, include_lineups, "
-                          "include_positions, include_matched_fixture, include_labels, "
+                           "incremental, include_vessel_details, include_fixtures, "
+                          "include_matched_fixture, include_labels, "
                           "expected",
                          [(9412036, None, None, None, None, None, 
-                           None, None, None, None, None, None,
+                           None, None, None, None,
                  'voyages-market-data-api/v1/marketData/imo/9412036'),
                          (None, None, None, 84, None, None, 
-                           None, None, None, None, None, None,
+                           None, None, None, None,
                  'voyages-market-data-api/v1/marketData/class/84'),
                          (9412036, None, None, None, None, None,
-                          None, None, None, None, True, None,
+                          None, None, True, None,
                            'voyages-market-data-api/v1/marketData/imo/9412036?IncludeMatchedFixture=True')])
 
 def test_get_endpoint(imo, voyage_id, voyage_number, vessel_class_id, vessel_type_id,
-                       incremental, include_vessel_details, include_fixtures, include_lineups,
-                       include_positions, include_matched_fixture, include_labels,
-                       expected):
+                       incremental, include_vessel_details, include_fixtures,
+                       include_matched_fixture, include_labels, expected):
     endpoint = VoyagesMarketDataAPI._get_endpoint(
         imo=imo,
         voyage_id=voyage_id,
@@ -78,8 +77,6 @@ def test_get_endpoint(imo, voyage_id, voyage_number, vessel_class_id, vessel_typ
         incremental=incremental,
         include_vessel_details=include_vessel_details,
         include_fixtures=include_fixtures,
-        include_lineups=include_lineups,
-        include_positions=include_positions,
         include_matched_fixture=include_matched_fixture,
         include_labels=include_labels)
     assert endpoint == expected
