@@ -50,7 +50,8 @@ def get_single(connection: Connection, relative_url: str, cls: Type[TModel],
 
 def get_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
                  query_string: Optional[QueryString] = None,
-                 rename_keys: Optional[Dict[str, str]] = None) \
+                 rename_keys: Optional[Dict[str, str]] = None,
+                 data_key_label: Optional[str] = None)  \
         -> Tuple[TModel, ...]:
     """Get a multiple objects from the API.
 
@@ -69,9 +70,13 @@ def get_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
             used when an automated translation of the name from CapsWords
             to snake_case is to sufficient. Renaming must provide the name
             in CapsWords.
+        data_key_label: String, to use in case the data is returned as a
+            value inside a key in the response dictionary.
     """
     response = connection._make_get_request(relative_url,
                                             query_string=query_string)
     response.raise_for_status()
     data = response.json()
+    if data_key_label is not None:
+        data = data[data_key_label]
     return tuple(parse_model(d, cls, rename_keys=rename_keys) for d in data)
