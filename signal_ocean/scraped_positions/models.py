@@ -3,6 +3,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional, Tuple
 
+from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
+
 
 @dataclass(frozen=True)
 class ScrapedPosition:
@@ -236,7 +238,7 @@ class ScrapedPosition:
 
 
 @dataclass(frozen=True)
-class ScrapedPositionsResponse:
+class ScrapedPositionsResponse(ScrapedDataResponse[ScrapedPosition]):
     """Paged response for scraped positions from the Scraped Positions API.
 
     Attributes:

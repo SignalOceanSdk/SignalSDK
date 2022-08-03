@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional, List, Tuple
 
@@ -9,20 +8,20 @@ from signal_ocean.scraped_fixtures.models import (
 )
 
 
-class ScrapedFixturesAPI(ScrapedDataAPI):
+class ScrapedFixturesAPI(ScrapedDataAPI[ScrapedFixturesResponse, ScrapedFixture]):
     """Represents Signal's Scraped Fixtures API."""
 
-    relative_url: str = "scraped-fixtures-api/v2/fixtures"
-    response_class: dataclass = ScrapedFixturesResponse
+    relative_url = "scraped-fixtures-api/v2/fixtures"
+    response_class = ScrapedFixturesResponse
 
     def get_fixtures(
         self,
-        vessel_type: int = None,
+        vessel_type: int,
         received_date_from: Optional[datetime] = None,
         received_date_to: Optional[datetime] = None,
         updated_date_from: Optional[datetime] = None,
         updated_date_to: Optional[datetime] = None,
-        imos: Optional[List] = None,
+        imos: Optional[List[int]] = None,
         include_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_vessel_details: Optional[bool] = True,
@@ -30,7 +29,7 @@ class ScrapedFixturesAPI(ScrapedDataAPI):
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedFixture]:
+    ) -> Tuple[ScrapedFixture, ...]:
         """This function collect and returns the fixtures by the given filters.
 
         Args:
@@ -86,7 +85,7 @@ class ScrapedFixturesAPI(ScrapedDataAPI):
 
     def get_fixtures_by_fixture_ids(
         self,
-        fixture_ids: List = None,
+        fixture_ids: List[int],
         include_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_vessel_details: Optional[bool] = True,
@@ -94,7 +93,7 @@ class ScrapedFixturesAPI(ScrapedDataAPI):
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedFixture]:
+    ) -> Tuple[ScrapedFixture, ...]:
         """This function collect and returns the fixtures by the given fixture ids.
 
         Args:

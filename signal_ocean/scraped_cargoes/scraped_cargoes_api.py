@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional, List, Tuple
 
@@ -9,15 +8,15 @@ from signal_ocean.scraped_cargoes.models import (
 )
 
 
-class ScrapedCargoesAPI(ScrapedDataAPI):
+class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
     """Represents Signal's Scraped Cargoes API."""
 
-    relative_url: str = "scraped-cargoes-api/v3/cargoes"
-    response_class: dataclass = ScrapedCargoesResponse
+    relative_url = "scraped-cargoes-api/v3/cargoes"
+    response_class = ScrapedCargoesResponse
 
     def get_cargoes(
         self,
-        vessel_type: int = None,
+        vessel_type: int,
         received_date_from: Optional[datetime] = None,
         received_date_to: Optional[datetime] = None,
         updated_date_from: Optional[datetime] = None,
@@ -28,7 +27,7 @@ class ScrapedCargoesAPI(ScrapedDataAPI):
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedCargo]:
+    ) -> Tuple[ScrapedCargo, ...]:
         """This function collect and returns the cargoes by the given filters.
 
         Args:
@@ -79,14 +78,14 @@ class ScrapedCargoesAPI(ScrapedDataAPI):
 
     def get_cargoes_by_cargo_ids(
         self,
-        cargo_ids: List = None,
+        cargo_ids: List[int],
         include_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_labels: Optional[bool] = True,
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedCargo]:
+    ) -> Tuple[ScrapedCargo, ...]:
         """This function collect and returns the cargoes by the given cargo ids.
 
         Args:

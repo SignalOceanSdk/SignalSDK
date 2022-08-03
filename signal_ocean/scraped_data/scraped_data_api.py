@@ -1,20 +1,30 @@
-from typing import Optional, List, Dict, Tuple
 from datetime import datetime
-from signal_ocean.connection import Connection
+from typing import Optional, List, Dict, Tuple, Type, Any, Generic, TypeVar, Protocol
+
 from signal_ocean._internals import format_iso_datetime
-from signal_ocean.util.request_helpers import get_single
+from signal_ocean.connection import Connection
 from signal_ocean.util.parsing_helpers import _to_camel_case
-from dataclasses import dataclass
+from signal_ocean.util.request_helpers import get_single, TModel
+
+TRecord = TypeVar("TRecord")
 
 
-class ScrapedDataAPI:
-    relative_url: str = None
-    page_size: int = 1000
-    endpoints: Dict = {
+class ScrapedDataResponse(Generic[TRecord]):
+    next_page_token: Optional[str]
+    data: Optional[Tuple[TRecord, ...]]
+
+
+TResponse = TypeVar("TResponse", bound=ScrapedDataResponse[Any])
+
+
+class ScrapedDataAPI(Generic[TResponse, TRecord]):
+    page_size = 1000
+    endpoints = {
         "page_size": "?PageSize=" + str(page_size),
         "by_id": "/getbyids?",
     }
-    response_class: dataclass = None
+    relative_url: str
+    response_class: Type[TResponse]
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes the Scraped Data API.
@@ -25,7 +35,7 @@ class ScrapedDataAPI:
         """
         self.__connection = connection or Connection()
 
-    def _get_endpoint(self, endpoint, params) -> str:
+    def _get_endpoint(self, endpoint: str, params: Dict[str, Any]) -> str:
         """Generates the endpoint to call to retrieve requested scraped data.
 
         Args:
@@ -36,7 +46,7 @@ class ScrapedDataAPI:
             The endpoint to call in order to retrieve the scraped data
             for provided parameters.
         """
-        url = self.relative_url + self.endpoints.get(endpoint)
+        url = self.relative_url + self.endpoints[endpoint]
 
         for param, value in params.items():
             if value:
@@ -57,7 +67,7 @@ class ScrapedDataAPI:
                 )
         return url
 
-    def get_data(self, **params) -> Tuple:
+    def get_data(self, **params: Any) -> Tuple[TRecord, ...]:
         """This function collects and returns scraped data by given filters.
 
         Args:
@@ -68,11 +78,11 @@ class ScrapedDataAPI:
             A tuple containing ScrapedData objects.
             ScrapedData object are defined by outer class.
         """
-        results = []
+        results: List[TRecord] = []
         while True:
             request_url = self._get_endpoint("page_size", params)
 
-            response = get_single(
+            response: Optional[TResponse] = get_single(
                 self.__connection, request_url, self.response_class
             )
 
@@ -87,7 +97,7 @@ class ScrapedDataAPI:
 
         return tuple(results)
 
-    def get_data_by_entity_ids(self, **params) -> Tuple:
+    def get_data_by_entity_ids(self, **params: Any) -> Tuple[TRecord, ...]:
         """This function collects and returns scraped data by given entity ids.
 
         Args:
@@ -98,10 +108,10 @@ class ScrapedDataAPI:
             A tuple containing ScrapedData objects.
             ScrapedData object are defined by outer class.
         """
-        results = []
+        results: List[TRecord] = []
         request_url = self._get_endpoint("by_id", params)
 
-        response = get_single(
+        response: Optional[TResponse] = get_single(
             self.__connection, request_url, self.response_class
         )
 

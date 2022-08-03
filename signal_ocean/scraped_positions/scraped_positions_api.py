@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional, List, Tuple
 
@@ -9,20 +8,20 @@ from signal_ocean.scraped_positions.models import (
 )
 
 
-class ScrapedPositionsAPI(ScrapedDataAPI):
+class ScrapedPositionsAPI(ScrapedDataAPI[ScrapedPositionsResponse, ScrapedPosition]):
     """Represents Signal's Scraped Positions API."""
 
-    relative_url: str = "scraped-positions-api/v2/positions"
-    response_class: dataclass = ScrapedPositionsResponse
+    relative_url = "scraped-positions-api/v2/positions"
+    response_class = ScrapedPositionsResponse
 
     def get_positions(
         self,
-        vessel_type: int = None,
+        vessel_type: int,
         received_date_from: Optional[datetime] = None,
         received_date_to: Optional[datetime] = None,
         updated_date_from: Optional[datetime] = None,
         updated_date_to: Optional[datetime] = None,
-        imos: Optional[List] = None,
+        imos: Optional[List[int]] = None,
         include_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_vessel_details: Optional[bool] = True,
@@ -30,7 +29,7 @@ class ScrapedPositionsAPI(ScrapedDataAPI):
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedPosition]:
+    ) -> Tuple[ScrapedPosition, ...]:
         """This function collect and returns the positions by the given filters.
 
         Args:
@@ -86,7 +85,7 @@ class ScrapedPositionsAPI(ScrapedDataAPI):
 
     def get_positions_by_position_ids(
         self,
-        position_ids: List = None,
+        position_ids: List[int],
         include_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_vessel_details: Optional[bool] = True,
@@ -94,7 +93,7 @@ class ScrapedPositionsAPI(ScrapedDataAPI):
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedPosition]:
+    ) -> Tuple[ScrapedPosition, ...]:
         """This function collect and returns the positions by the given position ids.
 
         Args:
