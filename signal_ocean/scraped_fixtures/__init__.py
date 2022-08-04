@@ -1,4 +1,5 @@
-"""Scraped Fixtures API Package.
+"""
+Scraped Fixtures API Package.
 
 Classes:
     ScrapedFixturesAPI: Represents Signal's Scraped Fixtures API.

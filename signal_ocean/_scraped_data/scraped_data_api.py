@@ -10,6 +10,7 @@ TRecord = TypeVar("TRecord")
 
 
 class ScrapedDataResponse(Generic[TRecord]):
+    """ Base class for Scraped Data API response classes. """
     next_page_token: Optional[str]
     data: Optional[Tuple[TRecord, ...]]
 
@@ -18,6 +19,8 @@ TResponse = TypeVar("TResponse", bound=ScrapedDataResponse[Any])
 
 
 class ScrapedDataAPI(Generic[TResponse, TRecord]):
+    """ Base class for Scraped Data API classes. """
+
     page_size = 1000
     endpoints = {
         "page_size": "?PageSize=" + str(page_size),
