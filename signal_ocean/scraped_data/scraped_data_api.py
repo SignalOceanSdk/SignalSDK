@@ -1,10 +1,10 @@
 from datetime import datetime
-from typing import Optional, List, Dict, Tuple, Type, Any, Generic, TypeVar, Protocol
+from typing import Optional, List, Dict, Tuple, Type, Any, Generic, TypeVar
 
 from signal_ocean._internals import format_iso_datetime
 from signal_ocean.connection import Connection
 from signal_ocean.util.parsing_helpers import _to_camel_case
-from signal_ocean.util.request_helpers import get_single, TModel
+from signal_ocean.util.request_helpers import get_single
 
 TRecord = TypeVar("TRecord")
 
@@ -39,7 +39,8 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
         """Generates the endpoint to call to retrieve requested scraped data.
 
         Args:
-            endpoint: Define endpoint to use. It could be either by filters or by entity ids.
+            endpoint: Define endpoint to use. It could be either by filters or
+                by entity ids.
             params: Return scraped data by provided parameters.
 
         Returns:

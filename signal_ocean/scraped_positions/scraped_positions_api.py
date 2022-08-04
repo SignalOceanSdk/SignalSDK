@@ -8,7 +8,9 @@ from signal_ocean.scraped_positions.models import (
 )
 
 
-class ScrapedPositionsAPI(ScrapedDataAPI[ScrapedPositionsResponse, ScrapedPosition]):
+class ScrapedPositionsAPI(
+    ScrapedDataAPI[ScrapedPositionsResponse, ScrapedPosition]
+):
     """Represents Signal's Scraped Positions API."""
 
     relative_url = "scraped-positions-api/v2/positions"
@@ -56,8 +58,8 @@ class ScrapedPositionsAPI(ScrapedDataAPI[ScrapedPositionsResponse, ScrapedPositi
                 details in the response.
             include_labels: Boolean - Whether to include the relative labels in
                 the response.
-            include_content: Boolean - Whether to include the original message line
-                (untouched) in the response.
+            include_content: Boolean - Whether to include the original message
+                line (untouched) in the response.
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information
@@ -106,8 +108,8 @@ class ScrapedPositionsAPI(ScrapedDataAPI[ScrapedPositionsResponse, ScrapedPositi
                 details in the response.
             include_labels: Boolean - Whether to include the relative labels in
                 the response.
-            include_content: Boolean - Whether to include the original message line
-                (untouched) in the response.
+            include_content: Boolean - Whether to include the original message
+                line (untouched) in the response.
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information

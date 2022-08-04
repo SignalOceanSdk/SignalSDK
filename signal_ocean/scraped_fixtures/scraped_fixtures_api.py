@@ -8,7 +8,9 @@ from signal_ocean.scraped_fixtures.models import (
 )
 
 
-class ScrapedFixturesAPI(ScrapedDataAPI[ScrapedFixturesResponse, ScrapedFixture]):
+class ScrapedFixturesAPI(
+    ScrapedDataAPI[ScrapedFixturesResponse, ScrapedFixture]
+):
     """Represents Signal's Scraped Fixtures API."""
 
     relative_url = "scraped-fixtures-api/v2/fixtures"
@@ -56,8 +58,8 @@ class ScrapedFixturesAPI(ScrapedDataAPI[ScrapedFixturesResponse, ScrapedFixture]
                 details in the response.
             include_labels: Boolean - Whether to include the relative labels in
                 the response.
-            include_content: Boolean - Whether to include the original message line
-                (untouched) in the response.
+            include_content: Boolean - Whether to include the original message
+                line (untouched) in the response.
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information
@@ -106,8 +108,8 @@ class ScrapedFixturesAPI(ScrapedDataAPI[ScrapedFixturesResponse, ScrapedFixture]
                 details in the response.
             include_labels: Boolean - Whether to include the relative labels in
                 the response.
-            include_content: Boolean - Whether to include the original message line
-                (untouched) in the response.
+            include_content: Boolean - Whether to include the original message
+                line (untouched) in the response.
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information
