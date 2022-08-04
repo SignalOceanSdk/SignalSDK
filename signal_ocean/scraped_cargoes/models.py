@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional, Tuple
 
-from signal_ocean._scraped_data.scraped_data_api import ScrapedDataResponse
+from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
 
 
 @dataclass(frozen=True)

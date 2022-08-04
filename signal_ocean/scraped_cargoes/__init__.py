@@ -1,5 +1,4 @@
-"""
-Scraped Cargoes API Package.
+"""Scraped Cargoes API Package.
 
 Classes:
     ScrapedCargoesAPI: Represents Signal's Scraped Cargoes API.

@@ -1,9 +1,9 @@
-""" Scraped Fixtures API """
+"""Scraped Fixtures API."""
 
 from datetime import datetime
 from typing import Optional, List, Tuple
 
-from signal_ocean._scraped_data.scraped_data_api import ScrapedDataAPI
+from signal_ocean.scraped_data.scraped_data_api import ScrapedDataAPI
 from signal_ocean.scraped_fixtures.models import (
     ScrapedFixture,
     ScrapedFixturesResponse,

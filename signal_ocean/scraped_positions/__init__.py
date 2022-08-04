@@ -1,5 +1,4 @@
-"""
-Scraped Positions API Package.
+"""Scraped Positions API Package.
 
 Classes:
     ScrapedPositionsAPI: Represents Signal's Scraped Positions API.

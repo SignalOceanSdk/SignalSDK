@@ -1,3 +1,5 @@
+"""Base Scraped Data API class."""
+
 from datetime import datetime
 from typing import Optional, List, Dict, Tuple, Type, Any, Generic, TypeVar
 
@@ -10,7 +12,7 @@ TRecord = TypeVar("TRecord")
 
 
 class ScrapedDataResponse(Generic[TRecord]):
-    """ Base class for Scraped Data API response classes. """
+    """Base class for Scraped Data API response classes."""
     next_page_token: Optional[str]
     data: Optional[Tuple[TRecord, ...]]
 
@@ -19,7 +21,7 @@ TResponse = TypeVar("TResponse", bound=ScrapedDataResponse[Any])
 
 
 class ScrapedDataAPI(Generic[TResponse, TRecord]):
-    """ Base class for Scraped Data API classes. """
+    """Base class for Scraped Data API classes."""
 
     page_size = 1000
     endpoints = {
