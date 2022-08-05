@@ -83,5 +83,9 @@ def test_makes_get_requests_with_specified_parameters():
     get.assert_called_with(
         "api_host/relative_url",
         params=query_string,
-        headers={"Api-Key": "api_key", "Content-Type": "application/json"},
+        headers={
+            "Api-Key": "api_key",
+            "Content-Type": "application/json",
+            "Source": "SignalSDK",
+        },
     )

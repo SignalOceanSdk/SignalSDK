@@ -1,24 +1,24 @@
-"""Scraped Fixtures API."""
+"""Scraped Positions API."""
 
 from datetime import datetime
 from typing import Optional, List, Tuple
 
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataAPI
-from signal_ocean.scraped_fixtures.models import (
-    ScrapedFixture,
-    ScrapedFixturesResponse,
+from signal_ocean.scraped_positions.models import (
+    ScrapedPosition,
+    ScrapedPositionsResponse,
 )
 
 
-class ScrapedFixturesAPI(
-    ScrapedDataAPI[ScrapedFixturesResponse, ScrapedFixture]
+class ScrapedPositionsAPI(
+    ScrapedDataAPI[ScrapedPositionsResponse, ScrapedPosition]
 ):
-    """Represents Signal's Scraped Fixtures API."""
+    """Represents Signal's Scraped Positions API."""
 
-    relative_url = "scraped-fixtures-api/v2/fixtures"
-    response_class = ScrapedFixturesResponse
+    relative_url = "scraped-positions-api/v2/positions"
+    response_class = ScrapedPositionsResponse
 
-    def get_fixtures(
+    def get_positions(
         self,
         vessel_type: int,
         received_date_from: Optional[datetime] = None,
@@ -33,27 +33,27 @@ class ScrapedFixturesAPI(
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedFixture, ...]:
-        """This function collect and returns the fixtures by the given filters.
+    ) -> Tuple[ScrapedPosition, ...]:
+        """This function collect and returns the positions by the given filters.
 
         Args:
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
             received_date_from: Format - date-time (as date-time in RFC3339).
-                Earliest date the fixture received.
+                Earliest date the position received.
                 Cannot be combined with 'Updated' dates
             received_date_to: Format - date-time (as date-time in RFC3339).
-                Latest date the fixture received.
+                Latest date the position received.
                 Cannot be combined with 'Updated' dates
             updated_date_from: Format - date-time (as date-time in RFC3339).
-                Earliest date the fixture updated.
+                Earliest date the position updated.
                 Cannot be combined with 'Received' dates
             updated_date_to: Format - date-time (as date-time in RFC3339).
-                Latest date the fixture updated.
+                Latest date the position updated.
                 Cannot be combined with 'Received' dates
             imos: List - Comma separated list of IMOs
             include_details: Boolean - Whether to include
-                additional fixture details in the response.
+                additional position details in the response.
             include_scraped_fields: Boolean - Whether to include the relative
                 scraped fields in the response.
             include_vessel_details: Boolean - Whether to include some vessel
@@ -65,10 +65,10 @@ class ScrapedFixturesAPI(
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information
-                about the distribution of the fixture in the response.
+                about the distribution of the position in the response.
 
         Returns:
-            An Iterable of ScrapedFixture objects, as we have defined in
+            An Iterable of ScrapedPosition objects, as we have defined in
             models.py Python file.
         """
         return self.get_data(
@@ -87,9 +87,9 @@ class ScrapedFixturesAPI(
             include_debug_info=include_debug_info,
         )
 
-    def get_fixtures_by_fixture_ids(
+    def get_positions_by_position_ids(
         self,
-        fixture_ids: List[int],
+        position_ids: List[int],
         include_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_vessel_details: Optional[bool] = True,
@@ -97,13 +97,13 @@ class ScrapedFixturesAPI(
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedFixture, ...]:
-        """This function collect and returns the fixtures by the given fixture ids.
+    ) -> Tuple[ScrapedPosition, ...]:
+        """This function collect and returns the positions by the given position ids.
 
         Args:
-            fixture_ids: List - Comma separated list of fixture ids
+            position_ids: List - Comma separated list of position ids
             include_details: Boolean - Whether to include
-                additional fixture details in the response.
+                additional position details in the response.
             include_scraped_fields: Boolean - Whether to include the relative
                 scraped fields in the response.
             include_vessel_details: Boolean - Whether to include some vessel
@@ -115,14 +115,14 @@ class ScrapedFixturesAPI(
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information
-                about the distribution of the fixture in the response.
+                about the distribution of the position in the response.
 
         Returns:
-            An Iterable of ScrapedFixture objects, as we have defined in
+            An Iterable of ScrapedPosition objects, as we have defined in
             models.py Python file.
         """
         return self.get_data_by_entity_ids(
-            fixture_ids=fixture_ids,
+            position_ids=position_ids,
             include_details=include_details,
             include_scraped_fields=include_scraped_fields,
             include_vessel_details=include_vessel_details,
