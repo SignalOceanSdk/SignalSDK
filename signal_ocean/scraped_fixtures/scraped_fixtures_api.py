@@ -34,7 +34,7 @@ class ScrapedFixturesAPI(
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
     ) -> Tuple[ScrapedFixture, ...]:
-        """This function collect and returns the fixtures by the given filters.
+        """This function collects and returns the fixtures by the given filters.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -98,7 +98,7 @@ class ScrapedFixturesAPI(
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
     ) -> Tuple[ScrapedFixture, ...]:
-        """This function collect and returns the fixtures by the given fixture ids.
+        """This function collects and returns the fixtures by the given fixture ids.
 
         Args:
             fixture_ids: List - Comma separated list of fixture ids

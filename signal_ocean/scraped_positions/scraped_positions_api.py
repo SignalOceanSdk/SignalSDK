@@ -34,7 +34,7 @@ class ScrapedPositionsAPI(
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
     ) -> Tuple[ScrapedPosition, ...]:
-        """This function collect and returns the positions by the given filters.
+        """This function collects and returns the positions by the given filters.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -98,7 +98,7 @@ class ScrapedPositionsAPI(
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
     ) -> Tuple[ScrapedPosition, ...]:
-        """This function collect and returns the positions by the given position ids.
+        """This function collects and returns the positions by the given position ids.
 
         Args:
             position_ids: List - Comma separated list of position ids
