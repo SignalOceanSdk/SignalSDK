@@ -127,7 +127,7 @@ class Vessel:
             Default value: -2.
         updated_date: Date, format YYYY-MM-DD HH:MM:SS, corresponding to the
             latest update.
-        interline_coating: interline coating            
+        interline_coating: interline coating
         vessel_name: The current vessel name corresponding to that IMO.
         call_sign: Alphanumeric code that uniquely identifies a vessel and is
             used for radio communication with land based operators or stations
