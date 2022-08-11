@@ -72,6 +72,11 @@ nav:
         - 'examples/jupyter/VoyagesMarketDataAPI/VoyagesMarketDataAPIExample.ipynb'
         - 'examples/jupyter/VoyagesMarketDataAPI/RateTrend.ipynb'
         - 'examples/jupyter/VoyagesMarketDataAPI/FixtureStatus.ipynb'
+    - Vessels:
+      - 'vessels.md'
+      - Examples:
+        - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
+        - 'examples/jupyter/VesselsAPI/ExploreVessels.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'

@@ -62,18 +62,27 @@ class Vessel:
     """Contains all details of a vessel.
 
     Attributes:
-        imo: A seven-digits number that uniquely identifies a ship and does not
-            change when the ship's owner, country of registry or name of the
-            vessel changes.
-        vessel_type_id: Numeric ID corresponding to the different values of the
-            VesselType field.  1 -> Tanker, 3 -> Dry, 4 -> Containers, 5 ->
-            LNG(Liquified Natural gas), 6 -> LPG(Liquified Petroleum Gas).
-        built_for_trade_id: Numeric ID corresponding to the different values of
-            the BuiltForTrade field.  1 -> Crude, 2 -> Product, 3 -> Chemical.
+        imo: A seven-digits number that uniquely identifies a ship and does
+            not change when the ship's owner, country of registry or name of
+            the vessel changes.
+        vessel_type_id: Numeric ID corresponding to the different values of
+            the VesselType field.  1 -> Tanker, 3 -> Dry, 4 -> Containers,
+            5 -> LNG(Liquified Natural gas), 6 -> LPG(Liquified Petroleum
+            Gas), -2 -> NotSet, -1 -> Unknown
+        built_for_trade_id: Numeric ID corresponding to the different values
+            of the BuiltForTrade field.  1 -> Crude, 2 -> Product,
+            3 -> Chemical, -2 -> NotSet, -1 -> Unknown
         trade_id: Numeric ID that takes the same values as the BuiltForTradeID
-            field.  1 -> Crude, 2 -> Product, 3 -> Chemical.
-        vessel_class_id: Numeric ID corresponding to the different vessel
-            classes of a certain vessel type.
+            field.  1 -> Crude, 2 -> Product, 3 -> Chemical,
+            -2 -> NotSet, -1 -> Unknown
+        vessel_class_id: 60-> VLGCLpg, 61-> MidsizeLpg, 62-> HandyLpg,
+            63-> SmallLpg, 69-> VLOC, 70-> Capesize, 72-> PostPanamaxDry,
+            74-> PanamaxDry, 75-> Supramax, 76-> Handymax, 77-> Handysize,
+            78-> ULCV, 79-> NewPanamaxContainer, 80-> PostPanamaxContainer,
+            81-> PanamaxContainer, 82-> FeedermaxContainer,
+            83-> FeederContainer, 84-> VLCC, 85-> Suezmax, 86-> Aframax,
+            87-> PanamaxTanker, 88-> MR2, 89-> MR1, 90-> Small, 91-> LNGLng,
+            92-> SmallDry, 94-> ULCC, 95-> SmallContainer
         commercial_operator_id: Numeric ID corresponding to the maritime
             company that manages the vessel commercially.
         deadweight: Numeric, measured in tonnes [t], often shortened as DWT,
@@ -118,6 +127,7 @@ class Vessel:
             Default value: -2.
         updated_date: Date, format YYYY-MM-DD HH:MM:SS, corresponding to the
             latest update.
+        interline_coating: interline coating            
         vessel_name: The current vessel name corresponding to that IMO.
         call_sign: Alphanumeric code that uniquely identifies a vessel and is
             used for radio communication with land based operators or stations
@@ -200,6 +210,38 @@ class Vessel:
             like bulk grain, which can flow into every corner.
         bale_capacity: This is the space available for solid cargo. Bale space
             is usually about 7–10% less than grain space.
+        gear_details: This value indicates the crane details of the vessel
+        main_engine_kw: This value indicates the main engine's power in KW
+        main_engine_rpm: This value indicates the main engine's revolutions
+            per minute (RPM)
+        air_draught: This value indicates the distance from the top of a
+            vessel's highest point to its waterline
+        deck_teu: This value indicates the number of containers that can be
+            stacked on the deck of the vessel
+        under_deck_teu: This value indicates the number of containers that can
+            be carried in the vessel's holds ("under deck")
+        suez_canal_net_tonnage: Numeric, measured in register tons, volumetric
+            measure derived by the NRT (NetRatedTonnage) and modified for Suez
+            Canal purposes. Often used to compute tonnage-based fees
+        class_renewal_date: This value indicates the latest date of the
+            vessel's “Class Renewal”, which is the official survey that all
+            seagoing vessels that travel international must do every 5 years
+        mewis_duct: The date the Becker Mewis Duct equipment was installed
+        inert_gas_system: Boolean, indicates whether a vessel has inert gas
+            system, which is a system of preventing any explosion in the cargo
+            tanks of a tanker
+        imo_type_1: The safest type of tanker, for most severe cargoes
+        imo_type_2: Can carry more polluting cargoes than ImoRating3
+        imo_type_3: Can carry cargoes that are not very polluting but need
+            special containment(ex: edibles)
+        stst_coating: STSS coating
+        epoxy_coating: Epoxy coating
+        zinc_coating: Zinc coating
+        marineline_coating: Marineline coating
+        crude_oil_washing: Crude Oil Washing system
+        beneficial_owner_id: Numeric ID corresponding to the beneficial owner
+            of the vessel
+        beneficial_owner: Name of the beneficial owner of the vessel
     """
 
     imo: int
@@ -222,6 +264,7 @@ class Vessel:
     main_engine_manufacturer_id: int
     classification_register_id: int
     updated_date: datetime
+    interline_coating: Optional[int] = None
     vessel_name: Optional[str] = None
     call_sign: Optional[str] = None
     vessel_type: Optional[str] = None
@@ -252,3 +295,23 @@ class Vessel:
     number_of_holds: Optional[int] = None
     grain_capacity: Optional[int] = None
     bale_capacity: Optional[int] = None
+    gear_details: Optional[str] = None
+    main_engine_kw: Optional[int] = None
+    main_engine_rpm: Optional[int] = None
+    air_draught: Optional[float] = None
+    deck_teu: Optional[int] = None
+    under_deck_teu: Optional[int] = None
+    suez_canal_net_tonnage: Optional[int] = None
+    class_renewal_date: Optional[datetime] = None
+    mewis_duct: Optional[datetime] = None
+    inert_gas_system: Optional[str] = None
+    imo_type_1: Optional[str] = None
+    imo_type_2: Optional[str] = None
+    imo_type_3: Optional[str] = None
+    stst_coating: Optional[int] = None
+    epoxy_coating: Optional[int] = None
+    zinc_coating: Optional[int] = None
+    marineline_coating: Optional[int] = None
+    crude_oil_washing: Optional[str] = None
+    beneficial_owner_id: Optional[int] = None
+    beneficial_owner: Optional[str] = None

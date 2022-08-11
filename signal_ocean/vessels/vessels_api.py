@@ -10,7 +10,7 @@ from signal_ocean.vessels.models import VesselClass, VesselType, Vessel
 class VesselsAPI:
     """Represents Signal's Vessels API."""
 
-    relative_url = "vessels-api/v1/"
+    relative_url = "vessels-api/v2/"
     default_pit = str(date.today())
 
     def __init__(self, connection: Optional[Connection] = None):
@@ -51,15 +51,15 @@ class VesselsAPI:
                 been found.
         """
         url = urljoin(VesselsAPI.relative_url, f"vessels/{imo}")
-        return get_single(self.__connection, url, Vessel)
+        return get_single(self.__connection, url, Vessel, rename_keys = {"STSTCoating": "stst_coating"})
 
     def get_vessels(self, name: Optional[str] = None) -> Tuple[Vessel, ...]:
         """Retrieves all available vessels.
 
         Args:
                 name: String to filter and return only companies the name
-                    of which contains the provided string. If None, all
-                    companies are returned.
+                        of which contains the provided string. If None, all
+                        companies are returned.
 
         Returns:
             A tuple of all available vessels.
@@ -68,7 +68,7 @@ class VesselsAPI:
             "vessels/all" if name is None else f"vessels/searchByName/{name}"
         )
         url = urljoin(VesselsAPI.relative_url, endpoint)
-        return get_multiple(self.__connection, url, Vessel)
+        return get_multiple(self.__connection, url, Vessel, rename_keys = {"STSTCoating": "stst_coating"})
 
     def get_vessels_by_vessel_class(
         self, vesselClass: int, point_in_time: Optional[str] = default_pit
@@ -83,4 +83,4 @@ class VesselsAPI:
         """
         endpoint = f"pointInTime/{point_in_time}/byVesselClass/{vesselClass}"
         url = urljoin(VesselsAPI.relative_url, endpoint)
-        return get_multiple(self.__connection, url, Vessel)
+        return get_multiple(self.__connection, url, Vessel, rename_keys = {"STSTCoating": "stst_coating"})
