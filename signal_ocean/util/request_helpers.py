@@ -11,10 +11,13 @@ from signal_ocean.util.parsing_helpers import parse_model
 TModel = TypeVar("TModel")
 
 
-def get_single(connection: Connection, relative_url: str, cls: Type[TModel],
-               query_string: Optional[QueryString] = None,
-               rename_keys: Optional[Dict[str, str]] = None) \
-        -> Optional[TModel]:
+def get_single(
+    connection: Connection,
+    relative_url: str,
+    cls: Type[TModel],
+    query_string: Optional[QueryString] = None,
+    rename_keys: Optional[Dict[str, str]] = None,
+) -> Optional[TModel]:
     """Get a single object from the API.
 
     Make a get request to the specified URL and return an object of the
@@ -37,8 +40,9 @@ def get_single(connection: Connection, relative_url: str, cls: Type[TModel],
         from the specified URL, or None if the API responds with a "Not Found"
         status code.
     """
-    response = connection._make_get_request(relative_url,
-                                            query_string=query_string)
+    response = connection._make_get_request(
+        relative_url, query_string=query_string
+    )
 
     if response.status_code == requests.codes.not_found:
         return None
@@ -48,11 +52,14 @@ def get_single(connection: Connection, relative_url: str, cls: Type[TModel],
     return parse_model(data, cls, rename_keys=rename_keys)
 
 
-def get_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
-                 query_string: Optional[QueryString] = None,
-                 rename_keys: Optional[Dict[str, str]] = None,
-                 data_key_label: Optional[str] = None)  \
-        -> Tuple[TModel, ...]:
+def get_multiple(
+    connection: Connection,
+    relative_url: str,
+    cls: Type[TModel],
+    query_string: Optional[QueryString] = None,
+    rename_keys: Optional[Dict[str, str]] = None,
+    data_key_label: Optional[str] = None,
+) -> Tuple[TModel, ...]:
     """Get a multiple objects from the API.
 
     Make a get request to the specified URL to retrieve a sequence of results
@@ -73,8 +80,9 @@ def get_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
         data_key_label: String, to use in case the data is returned as a
             value inside a key in the response dictionary.
     """
-    response = connection._make_get_request(relative_url,
-                                            query_string=query_string)
+    response = connection._make_get_request(
+        relative_url, query_string=query_string
+    )
     response.raise_for_status()
     data = response.json()
     if data_key_label is not None:

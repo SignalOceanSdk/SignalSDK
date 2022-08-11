@@ -31,11 +31,18 @@ nav:
         - 'examples/jupyter/Tonnage List API/Finding vessels opening east and west of Suez.ipynb'
         - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
         - 'examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb'
+    - Scraped Cargoes:
+      - 'scraped_cargoes.md'
+      - Examples:
+        - 'examples/jupyter/ScrapedCargoesAPI/Scraped Cargoes API Example.ipynb'
     - Scraped Fixtures:
       - 'scraped_fixtures.md'
       - Examples:
         - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
-        - 'examples/jupyter/ScrapedFixturesAPI/LatestReceivedScrapedFixtures.ipynb'
+    - Scraped Positions:
+      - 'scraped_positions.md'
+      - Examples:
+        - 'examples/jupyter/ScrapedPositionsAPI/Scraped Positions API Example.ipynb'
     - Distances:
       - 'distances.md'
       - Examples:
@@ -83,6 +90,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 1.2.0.md'
       - 'releases/Version 1.1.9.md'
       - 'releases/Version 1.1.8.md'
       - 'releases/Version 1.1.7.md'
