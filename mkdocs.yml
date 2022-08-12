@@ -79,12 +79,18 @@ nav:
         - 'examples/jupyter/VoyagesMarketDataAPI/VoyagesMarketDataAPIExample.ipynb'
         - 'examples/jupyter/VoyagesMarketDataAPI/RateTrend.ipynb'
         - 'examples/jupyter/VoyagesMarketDataAPI/FixtureStatus.ipynb'
+    - Vessels:
+      - 'vessels.md'
+      - Examples:
+        - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
+        - 'examples/jupyter/VesselsAPI/ExploreVessels.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 1.2.1.md'
       - 'releases/Version 1.2.0.md'
       - 'releases/Version 1.1.9.md'
       - 'releases/Version 1.1.8.md'
