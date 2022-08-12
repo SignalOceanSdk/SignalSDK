@@ -2,7 +2,7 @@
 Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
 ## New api integration: Vessels API package
-Created the SDK for Voyage Market Data API
+Created the SDK for Vessels API
 
 ### Added get_vessels method.
 Exposed the corresponding endpoint of Vessels API.
