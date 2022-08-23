@@ -13,6 +13,7 @@ jobs:
           python-version: 3.x
       - name: Install dependencies
         run: |
+          pip install nbconvert==6.5.0
           pip install mkdocs            
           pip install mkdocs-material   
           pip install mkdocstrings-python
