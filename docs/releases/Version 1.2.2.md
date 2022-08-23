@@ -1,4 +1,4 @@
-# v1.2.0
+# v1.2.2
 Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-ocean.svg)](https://pypi.python.org/pypi/signal-ocean/)
 
 # Added Scraped Lineups API
