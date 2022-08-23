@@ -1,6 +1,5 @@
 """Scraped Lineups API."""
 
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional, List, Tuple
 
@@ -14,8 +13,8 @@ from signal_ocean.scraped_lineups.models import (
 class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
     """Represents Signal's Scraped Lineups API."""
 
-    relative_url: str = "scraped-lineups-api/v2/lineups"
-    response_class: dataclass = ScrapedLineupsResponse
+    relative_url = "scraped-lineups-api/v2/lineups"
+    response_class = ScrapedLineupsResponse
 
     def get_lineups(
         self,
@@ -39,20 +38,20 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
             received_date_from: Format - date-time (as date-time in RFC3339).
-                Earliest date the position received.
+                Earliest date the lineup received.
                 Cannot be combined with 'Updated' dates
             received_date_to: Format - date-time (as date-time in RFC3339).
-                Latest date the position received.
+                Latest date the lineup received.
                 Cannot be combined with 'Updated' dates
             updated_date_from: Format - date-time (as date-time in RFC3339).
-                Earliest date the position updated.
+                Earliest date the lineup updated.
                 Cannot be combined with 'Received' dates
             updated_date_to: Format - date-time (as date-time in RFC3339).
-                Latest date the position updated.
+                Latest date the lineup updated.
                 Cannot be combined with 'Received' dates
             imos: List - Comma separated list of IMOs
             include_details: Boolean - Whether to include
-                additional position details in the response.
+                additional lineup details in the response.
             include_scraped_fields: Boolean - Whether to include the relative
                 scraped fields in the response.
             include_vessel_details: Boolean - Whether to include some vessel
@@ -64,7 +63,7 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information
-                about the distribution of the position in the response.
+                about the distribution of the lineup in the response.
 
         Returns:
             An Iterable of ScrapedLineup objects, as we have defined in
@@ -88,7 +87,7 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
 
     def get_lineups_by_lineup_ids(
         self,
-        lineup_ids: List = None,
+        lineup_ids: List[int],
         include_details: Optional[bool] = True,
         include_scraped_fields: Optional[bool] = True,
         include_vessel_details: Optional[bool] = True,
@@ -96,13 +95,13 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
         include_content: Optional[bool] = True,
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
-    ) -> Tuple[ScrapedLineup]:
+    ) -> Tuple[ScrapedLineup, ...]:
         """This function collects and returns the lineups by the given lineup ids.
 
         Args:
             lineup_ids: List - Comma separated list of lineup ids
             include_details: Boolean - Whether to include
-                additional position details in the response.
+                additional lineup details in the response.
             include_scraped_fields: Boolean - Whether to include the relative
                 scraped fields in the response.
             include_vessel_details: Boolean - Whether to include some vessel
@@ -114,7 +113,7 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
             include_sender: Boolean - Whether to include some of the message
                 sender details in the response.
             include_debug_info: Boolean - Whether to include some information
-                about the distribution of the position in the response.
+                about the distribution of the lineup in the response.
 
         Returns:
             An Iterable of ScrapedLineup objects, as we have defined in

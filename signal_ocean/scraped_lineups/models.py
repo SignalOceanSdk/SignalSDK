@@ -382,7 +382,8 @@ class ScrapedLineupsResponse(ScrapedDataResponse[ScrapedLineup]):
     """Paged response for scraped lineups from the Scraped Lineups API.
 
     Attributes:
-        next_page_token: String. The key that should be used as a parameter of the token to retrieve the next page.
+        next_page_token: String. The key that should be used as a parameter of
+            the token to retrieve the next page.
         data: A tuple of ScrapedLineup objects retrieved for the current page.
     """
 
