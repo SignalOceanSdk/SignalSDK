@@ -95,15 +95,15 @@ class ScrapedCargo:
             Possible values are: GeoAsset-> 1, Port -> 2, Country-> 3,
             Level0->4, Level1->5, Level2->6, Level3->7.
         scraped_load2: String. The second loading location reported in the
-            original text of the fixture. It is very often shortened, very
+            original text of the cargo. It is very often shortened, very
             compact and can refer to terminals, ports, countries or wider
             areas. Examples: 'singgi' for Singgi, 'rt' for Ras Tanura, 'waf'
             for West Africa.
         load_geo_id2: Integer. An internal ID corresponding to the mapped
-            second loading location of the fixture. See LoadGeoID for more
+            second loading location of the cargo. See LoadGeoID for more
             details.
         load_name2: String. The name of the Signal geo entity related to
-            the reported second loading location of the fixture. Examples:
+            the reported second loading location of the cargo. Examples:
             'Bonny', 'Nigeria', 'Africa Atlantic Coast', 'Arabian Gulf',
             'Singapore', 'East Coast Mexico'.
         load_taxonomy_id2: Integer. An internal ID corresponding to the
@@ -138,16 +138,16 @@ class ScrapedCargo:
             GeoAsset-> 1, Port -> 2, Country-> 3, Level0->4, Level1->5,
             Level2->6, Level3->7.
         scraped_discharge2: String. The second discharging port reported in the
-            original text of the fixture. It is very often shortened, very
+            original text of the cargo. It is very often shortened, very
             compact and can refer to terminals, ports, countries or wider
-            areas. For example in the fixture 'al agaila 130 gabon+algeria/
+            areas. For example in the cargo 'al agaila 130 gabon+algeria/
             feast 14/01 rnr lord energy' the field ScrapedDischarge2 contains
             'algeria'.
         discharge_geo_id2: Integer. An internal ID corresponding to the mapped
-            second discharging location of the fixture. See LoadGeoID for more
+            second discharging location of the cargo. See LoadGeoID for more
             details.
         discharge_name2: String. The name of the Signal geo entity related to
-            the second discharging location of the fixture. Examples:
+            the second discharging location of the cargo. Examples:
             'Algeria', 'Greece', 'France'.
         discharge_taxonomy_id2: Integer. An internal ID corresponding to the
             taxonomy of the mapped second discharging location. See
@@ -230,10 +230,10 @@ class ScrapedCargo:
             W Med 29/31 March  Redely UK  3,75 adc pus' we have
             ScrapedRedeliveryFrom = 'W Med'.
         delivery_from_geo_id: Integer. An internal ID corresponding to the
-            mapped delivery location of the fixture. See LoadGeoID for more
+            mapped delivery location of the cargo. See LoadGeoID for more
             details.
         delivery_from_name: String. The name of the Signal geo entity related
-            to the delivery location of the fixture. Examples: 'E.Med' matches
+            to the delivery location of the cargo. Examples: 'E.Med' matches
             to 'East Mediterranean' (DeliveryFromGeoID=24737,
             DeliveryFromTaxonomyID=4, DeliveryFromTaxonomy='Level0'); 'PDM'
             matches to 'Ponta Da Madeira' (DeliveryFromGeoID=13013,
@@ -252,9 +252,9 @@ class ScrapedCargo:
             tct to Cont 10 March onw 3.75 adcom pus' we have
             ScrapedDeliveryTo = 'West Africa'.
         delivery_to_geo_id: Integer. An internal ID corresponding to the mapped
-            delivery location of the fixture. See LoadGeoID for more details.
+            delivery location of the cargo. See LoadGeoID for more details.
         delivery_to_name: String. The name of the Signal geo entity related to
-            the delivery location of the fixture. Example: 'West Africa'
+            the delivery location of the cargo. Example: 'West Africa'
             matches to 'West Africa' (DeliveryToGeoID=37,
             DeliveryToTaxonomyID=5, DeliveryToTaxonomy='Level1')
         delivery_to_taxonomy_id: Integer. An internal ID corresponding to the
