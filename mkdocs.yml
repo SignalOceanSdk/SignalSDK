@@ -39,6 +39,10 @@ nav:
       - 'scraped_fixtures.md'
       - Examples:
         - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
+    - Scraped Lineups:
+      - 'scraped_lineups.md'
+      - Examples:
+        - 'examples/jupyter/ScrapedLineupsAPI/Scraped Lineups API Example.ipynb'
     - Scraped Positions:
       - 'scraped_positions.md'
       - Examples:
@@ -90,6 +94,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 1.2.2.md'
       - 'releases/Version 1.2.1.md'
       - 'releases/Version 1.2.0.md'
       - 'releases/Version 1.1.9.md'
