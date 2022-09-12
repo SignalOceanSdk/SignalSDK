@@ -49,8 +49,8 @@ class ScrapedLineup:
         scraped_vessel_name: String. The vessel name as reported in the lineup
             line, i.e. 'Signal Alpha', 'Cpt A Stellatos', 'Genco Tiberius'.
             'TBN' can also be found.
-        scraped_imo: String. The vessel IMO as reported in the lineup
-            line, i.e. '9412036', '9439670', '9331555'.
+        scraped_imo: String. Vessel's IMO as reported in the lineup line,
+            i.e. '9412036', '9439670', '9331555'.
         scraped_deadweight: String. The dead weight of the vessel as reported
             in the lineup line, i.e. '150249', '167'.
         scraped_year_built: String. The year built of the vessel as reported
