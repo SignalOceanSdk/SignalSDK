@@ -18,7 +18,8 @@ nav:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
-        - 'examples/jupyter/VoyagesAPI/CargoFlows.ipynb'
+        - 'examples/jupyter/VoyagesAPI/DryBulkFlows.ipynb'
+        - 'examples/jupyter/VoyagesAPI/OilFlows.ipynb'
         - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
         - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
     - Tonnage List:
@@ -94,6 +95,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 1.2.4.md'
       - 'releases/Version 1.2.3.md'
       - 'releases/Version 1.2.2.md'
       - 'releases/Version 1.2.1.md'
