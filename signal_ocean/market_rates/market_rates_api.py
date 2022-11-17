@@ -25,7 +25,8 @@ class MarketRatesAPI:
     def get_market_rates(
         self, start_date: date, route_id: Optional[str] = None,
             vessel_class_id: Optional[int] = None,
-            end_date: Optional[date] = None
+            end_date: Optional[date] = None,
+            is_clean: Optional[str] = "False"
     ) -> Tuple[MarketRate, ...]:
         """Provides market rates for given day/period and route/vessel class.
 
@@ -43,7 +44,7 @@ class MarketRatesAPI:
         """
         query_dict = {
             "start_date": start_date.isoformat(),
-            "is_clean": "False"
+            "is_clean": is_clean
         }
 
         if route_id is not None:
