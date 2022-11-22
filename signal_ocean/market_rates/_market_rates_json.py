@@ -16,7 +16,8 @@ def parse_market_rates(json: List[Mapping[str, Any]]) -> \
             cast(datetime, rate_json.get("RateDate")),
             cast(float, rate_json.get("RateValue")),
             cast(str, rate_json.get("Unit")),
-            cast(int, rate_json.get("VesselClassId"))
+            cast(int, rate_json.get("VesselClassId")),
+            cast(str, rate_json.get("DeprecatedTo"))
         )
         rates.append(rate)
     return tuple(rates)
@@ -30,7 +31,17 @@ def parse_routes(json: List[Mapping[str, Any]]) -> Tuple[Route, ...]:
             cast(str, route_json.get("description")),
             cast(str, route_json.get("unit")),
             cast(int, route_json.get("vessel_class_id")),
-            cast(bool, route_json.get("is_clean"))
+            cast(int, route_json.get("cargo_id")),
+            cast(int, route_json.get("load_port_id")),
+            cast(int, route_json.get("discharge_port_id")),
+            cast(int, route_json.get("load_area_id")),
+            cast(int, route_json.get("discharge_area_id")),
+            cast(int, route_json.get("load_port_2_id")),
+            cast(int, route_json.get("discharge_port_2_id")),
+            cast(int, route_json.get("load_area_2_id")),
+            cast(int, route_json.get("discharge_area_2_id")),
+            cast(str, route_json.get("deprecated_to")),
+            cast(datetime, route_json.get("deprecated_since"))
         )
         routes.append(route)
     return tuple(routes)

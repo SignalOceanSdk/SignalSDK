@@ -9,9 +9,12 @@ Classes:
 
     VesselClass: A vessel class.
 
+    CargoId: The cargo ID, Dirty (0), Clean(1) or IMO (2).
+
 """
 
+from .enums import CargoId
 from .models import MarketRate, Route, VesselClass
 from .market_rates_api import MarketRatesAPI
 
-__all__ = ["VesselClass", "Route", "MarketRate", "MarketRatesAPI"]
+__all__ = ["VesselClass", "Route", "MarketRate", "MarketRatesAPI", "CargoId"]
