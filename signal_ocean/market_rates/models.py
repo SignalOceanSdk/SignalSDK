@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Optional
 
 
 @dataclass(frozen=True)
@@ -14,6 +15,7 @@ class MarketRate:
         rate_value: Value of the rate.
         unit: Unit of the rate.
         vessel_class_id: ID of the vessel class.
+        deprecated_to: Route ID if route is deprecated.
     """
 
     route_id: str
@@ -21,6 +23,7 @@ class MarketRate:
     rate_value: float
     unit: str
     vessel_class_id: int
+    deprecated_to: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -32,14 +35,34 @@ class Route:
         description: Description of the route.
         unit: Unit in which rate is provided.
         vessel_class_id: ID of the vessel class.
-        is_clean: True if cargo is clean.
+        cargo_id: Cargo ID.
+        load_port_id: Load port ID.
+        discharge_port_id: Discharge port ID.
+        load_area_id: Load area ID.
+        discharge_area_id: Discharge area ID.
+        load_port_2_id: Second load port ID.
+        discharge_port_2_id: Second discharge port ID.
+        load_area_2_id: Second load area ID.
+        discharge_area_2_id: Second discharge area ID.
+        deprecated_to: Route ID if route is deprecated.
+        deprecated_since: Deprecation effective date.
     """
 
     id: str
     description: str
     unit: str
     vessel_class_id: int
-    is_clean: bool
+    cargo_id: int
+    load_port_id: int
+    discharge_port_id: int
+    load_area_id: int
+    discharge_area_id: int
+    load_port_2_id: Optional[int] = None
+    discharge_port_2_id: Optional[int] = None
+    load_area_2_id: Optional[int] = None
+    discharge_area_2_id: Optional[int] = None
+    deprecated_to: Optional[str] = None
+    deprecated_since: Optional[datetime] = None
 
 
 @dataclass(frozen=True)
