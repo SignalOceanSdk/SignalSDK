@@ -56,7 +56,7 @@ class MarketRatesAPI:
         if end_date is not None:
             query_dict["end_date"] = end_date.isoformat()
         if cargo_id is not None:
-            query_dict["cargo_id"] = '{}'.format(cargo_id)
+            query_dict["cargo_id"] = cargo_id.value
 
         query_string: QueryString = query_dict
         response = self.__connection._make_get_request(

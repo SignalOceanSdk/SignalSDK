@@ -47,7 +47,7 @@ def test_get_market_rates(start_date, route_id, vessel_class_id, end_date,
         query_dict["end_date"] = end_date.isoformat()
 
     if cargo_id:
-        query_dict["cargo_id"] = '{}'.format(cargo_id)
+        query_dict["cargo_id"] = cargo_id.value
 
     connection._make_get_request.assert_called_with(
         "market-rates/api/v2/market_rates",
