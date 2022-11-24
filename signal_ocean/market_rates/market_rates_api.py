@@ -5,6 +5,7 @@ from typing import Optional, Tuple, cast
 
 from .. import Connection
 from .._internals import QueryString
+from .enums import CargoId
 from .vessel_classes import VESSEL_CLASSES
 from .models import MarketRate, Route, VesselClass
 from ._market_rates_json import parse_market_rates, parse_routes
@@ -26,7 +27,7 @@ class MarketRatesAPI:
         self, start_date: date, route_id: Optional[str] = None,
             vessel_class_id: Optional[int] = None,
             end_date: Optional[date] = None,
-            is_clean: Optional[bool] = False
+            cargo_id: Optional[CargoId] = None
     ) -> Tuple[MarketRate, ...]:
         """Provides market rates for given day/period and route/vessel class.
 
@@ -37,6 +38,7 @@ class MarketRatesAPI:
             vessel_class_id: Vessel class ID.
             end_date: Combined with start_date will produce result market rates
             for all consecutive days from start to end date.
+            cargo_id: Dirty (0), Clean(1) or IMO (2).
 
         Returns:
             The market rates or None if there are no market rates matching the
@@ -44,7 +46,7 @@ class MarketRatesAPI:
         """
         query_dict = {
             "start_date": start_date.isoformat(),
-            "is_clean": str(is_clean)
+            "requested-by": "SignalSDK"
         }
 
         if route_id is not None:
@@ -53,10 +55,12 @@ class MarketRatesAPI:
             query_dict["vessel_class_id"] = '{}'.format(vessel_class_id)
         if end_date is not None:
             query_dict["end_date"] = end_date.isoformat()
+        if cargo_id is not None:
+            query_dict["cargo_id"] = cargo_id.value
 
         query_string: QueryString = query_dict
         response = self.__connection._make_get_request(
-            "market-rates/api/market_rates", query_string
+            "market-rates/api/v2/market_rates", query_string
         )
         response.raise_for_status()
         response_json = response.json()
@@ -76,9 +80,9 @@ class MarketRatesAPI:
             The result routes.
         """
         if vessel_class_id is not None:
-            uri = f"market-rates/api/routes/{vessel_class_id}"
+            uri = f"market-rates/api/v2/routes/{vessel_class_id}"
         else:
-            uri = "market-rates/api/routes"
+            uri = "market-rates/api/v2/routes"
 
         response = self.__connection._make_get_request(uri)
         response.raise_for_status()
