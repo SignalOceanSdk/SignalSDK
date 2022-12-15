@@ -45,13 +45,17 @@ class Area:
     """A geographical area.
 
     Attributes:
+        id: The area's id.
         name: The area's name.
         location_taxonomy: The area's location taxonomy. See the
             `LocationTaxonomy` class for available values.
+        taxonomy_id: Location taxonomy id
     """
 
+    id: int
     name: str
     location_taxonomy: str
+    taxonomy_id: int
 
 
 @dataclass(frozen=True, eq=False)
@@ -76,12 +80,16 @@ class Vessel:
             available values.
         push_type: Push type of the vessel at the tonnage lists' point in time.
             See the `PushType` class for available values.
+        open_port_id: The vessel's open port id at the tonnage lists' point in
+            time.
         open_port: The vessel's open port name at the tonnage lists' point in
             time.
         open_date: The vessel's open date at the tonnage lists' point in time.
         operational_status: Operational status of the vessel at the tonnage
             lists' point in time. See the `OperationalStatus` class for
             available values.
+        commercial_operator_id: The vessel's commercial operator id
+            at the tonnage lists' point in time.
         commercial_operator: The vessel's commercial operator at the tonnage
             lists' point in time.
         commercial_status: Commercial status of the vessel at the tonnage
@@ -109,6 +117,12 @@ class Vessel:
         availability_date_type: Prediction source of the vessel's open date at
             the tonnage lists' point in time. See the `SourceType` class for
             possible values.
+        fixture_type: Fixture type. One of Scraped, Manual, Implied
+        current_vessel_sub_type_id:  Current vessel sub type Id
+        current_vessel_sub_type:  One of: -1: Unknown, 1: Dirty, 2: Clean
+        willing_to_switch_current_vessel_sub_type: bool nullable. If the vessel
+            is willing to compete on a different vessel subclass
+            category or not.
     """
 
     imo: int
@@ -121,9 +135,11 @@ class Vessel:
     breadth_extreme: int
     market_deployment: str
     push_type: str
+    open_port_id: int
     open_port: str
     open_date: Optional[datetime]
     operational_status: str
+    commercial_operator_id: int
     commercial_operator: str
     commercial_status: str
     eta: Optional[datetime]
@@ -134,6 +150,10 @@ class Vessel:
     open_areas: Tuple[Area, ...]
     availability_port_type: str
     availability_date_type: str
+    fixture_type: str
+    current_vessel_sub_type_id: int
+    current_vessel_sub_type: str
+    willing_to_switch_current_vessel_sub_type: bool
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.open_areas is None:
@@ -187,9 +207,11 @@ class Vessel:
             subclass=self.subclass,
             market_deployment=self.market_deployment,
             push_type=self.push_type,
+            open_port_id=self.open_port_id,
             open_port=self.open_port,
             open_date=self.open_date,
             operational_status=self.operational_status,
+            commercial_operator_id=self.commercial_operator_id,
             commercial_operator=self.commercial_operator,
             commercial_status=self.commercial_status,
             eta=self.eta,
@@ -200,6 +222,11 @@ class Vessel:
             open_wide_area=self.open_wide_area,
             availability_port_type=self.availability_port_type,
             availability_date_type=self.availability_date_type,
+            fixture_type=self.fixture_type,
+            current_vessel_sub_type_id=self.current_vessel_sub_type_id,
+            current_vessel_sub_type=self.availability_date_type,
+            willing_to_switch_current_vessel_sub_type=self
+            .willing_to_switch_current_vessel_sub_type
         )
 
 
