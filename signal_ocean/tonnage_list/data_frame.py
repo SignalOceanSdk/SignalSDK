@@ -29,9 +29,11 @@ DataFrameRow = Tuple[
     str,
     str,
     str,
+    int,
     str,
     Optional[datetime],
     str,
+    int,
     str,
     str,
     Optional[datetime],
@@ -42,6 +44,10 @@ DataFrameRow = Tuple[
     Optional[str],
     str,
     str,
+    str,
+    int,
+    str,
+    bool
 ]
 
 
@@ -81,6 +87,9 @@ class Column(metaclass=IterableConstants):
     """Push type of the vessel at the tonnage lists' point in time. See the
     `PushType` class for available values."""
 
+    OPEN_PORT_ID = _category(_pit_col("open_port_id"))
+    """The vessel's open port id at the tonnage lists' point in time."""
+
     OPEN_PORT = _category(_pit_col("open_port"))
     """The vessel's open port name at the tonnage lists' point in time."""
 
@@ -90,6 +99,10 @@ class Column(metaclass=IterableConstants):
     OPERATIONAL_STATUS = _category(_pit_col("operational_status"))
     """Operational status of the vessel at the tonnage lists' point in time.
     See the `OperationalStatus` class for available values."""
+
+    COMMERCIAL_OPERATOR_ID = _category(_pit_col("commercial_operator_id"))
+    """The vessel's commercial operator id at the tonnage lists' point in
+    time."""
 
     COMMERCIAL_OPERATOR = _category(_pit_col("commercial_operator"))
     """The vessel's commercial operator at the tonnage lists' point in time."""
@@ -127,6 +140,23 @@ class Column(metaclass=IterableConstants):
     """Prediction source of the vessel's open date at the tonnage lists' point
     in time. See the `SourceType` class for possible values."""
 
+    FIXTURE_TYPE = _category(_pit_col("fixture_type"))
+    """Fixture type. One of Scraped, Manual, Implied"""
+
+    CURRENT_VESSEL_SUB_TYPE_ID = _category(
+                                    _pit_col("current_vessel_sub_type_id")
+                                          )
+    """Current vessel sub type Id"""
+
+    CURRENT_VESSEL_SUB_TYPE = _category(_pit_col("current_vessel_sub_type"))
+    """One of: -1: Unknown, 1: Dirty, 2: Clean"""
+
+    WILLING_TO_SWITCH_CURRENT_VESSEL_SUB_TYPE = _pit_col(
+                    "willing_to_switch_current_vessel_sub_type"
+                                                         )
+    """If the vessel is willing to compete on a different vessel subclass
+    category or not"""
+
     @staticmethod
     def _create_row(
         name: str,
@@ -139,9 +169,11 @@ class Column(metaclass=IterableConstants):
         subclass: str,
         market_deployment: str,
         push_type: str,
+        open_port_id: int,
         open_port: str,
         open_date: Optional[datetime],
         operational_status: str,
+        commercial_operator_id: int,
         commercial_operator: str,
         commercial_status: str,
         eta: Optional[datetime],
@@ -152,6 +184,10 @@ class Column(metaclass=IterableConstants):
         open_wide_area: Optional[str],
         availability_port_type: str,
         availability_date_type: str,
+        fixture_type: str,
+        current_vessel_sub_type_id: int,
+        current_vessel_sub_type: str,
+        willing_to_switch_current_vessel_sub_type: bool,
     ) -> DataFrameRow:
         return (
             name,
@@ -164,9 +200,11 @@ class Column(metaclass=IterableConstants):
             subclass,
             market_deployment,
             push_type,
+            open_port_id,
             open_port,
             open_date,
             operational_status,
+            commercial_operator_id,
             commercial_operator,
             commercial_status,
             eta,
@@ -177,6 +215,10 @@ class Column(metaclass=IterableConstants):
             open_wide_area,
             availability_port_type,
             availability_date_type,
+            fixture_type,
+            current_vessel_sub_type_id,
+            current_vessel_sub_type,
+            willing_to_switch_current_vessel_sub_type
         )
 
     @staticmethod
