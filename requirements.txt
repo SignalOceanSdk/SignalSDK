@@ -40,7 +40,7 @@ regex==2020.7.14
 requests==2.23.0
 requests-toolbelt==0.9.1
 SecretStorage==3.1.2
-setuptools==46.4.0
+setuptools==65.5.1
 six==1.15.0
 snowballstemmer==2.0.0
 strictly-typed-pandas==0.1.4
