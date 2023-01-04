@@ -32,8 +32,7 @@ NextRequestToken = str
 class VoyagesAPI:
     """Represents Signal's Voyages API."""
 
-    relative_url = "voyages-api/v2/"
-    relative_url_v3 = "voyages-api/v3/"
+    relative_url = "voyages-api/v3/"
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VoyagesAPI.
@@ -45,7 +44,7 @@ class VoyagesAPI:
         self.__connection = connection or Connection()
 
     @staticmethod
-    def _get_endpoint_v3(
+    def _get_endpoint(
         imo: Optional[List[int]] = None,
         voyage_keys: Optional[List[str]] = None,
         event_type: Optional[int] = None,
@@ -107,139 +106,6 @@ class VoyagesAPI:
         )
         endpoint += params
         print(endpoint)
-        return urljoin(VoyagesAPI.relative_url_v3, endpoint)
-
-    @staticmethod
-    def _get_endpoint(
-        imo: Optional[int] = None,
-        vessel_class_id: Optional[int] = None,
-        vessel_type_id: Optional[int] = None,
-        date_from: Optional[date] = None,
-        nested: Optional[bool] = True,
-        incremental: bool = False,
-        condensed: Optional[bool] = False,
-    ) -> str:
-        """Retrieves the endpoint to call to retrieve the requested voyages.
-
-        Args:
-            imo: Return only voyages for the provided vessel IMO. If None
-                voyages for all vessels are returned.
-            vessel_class_id: Return only voyages for the provided vessel
-                class. If None, voyages for all vessels are returned. If imo
-                is specified, then vessel_class_id is ignored.
-            vessel_type_id: Return only voyages for the provided vessel type.
-                If None, voyages for all vessels are returned. If either imo
-                or vessel_class_id is specified, then vessel_type_id is
-                ignored.
-            date_from: Return voyages after provided date. If imo is
-                specified, then date_from is treated as None.
-            nested: Boolean controlling whether information associated with
-                voyages is returned nested in the voyage object or in flat
-                format.
-            incremental: Return voyages incrementally, including voyages that
-                may have been retrieved in previous calls and are now deleted.
-            condensed: Return voyages in the condensed form, including some
-                additional information.
-
-        Returns:
-            The endpoint to call to retrieve the requested voyages for \
-            the provided arguments.
-        """
-        endpoint = "voyages" + \
-            f'{"condensed" if condensed else "" if nested else "flat"}'
-
-        if imo is not None:
-            endpoint += f"/imo/{imo}"
-        elif vessel_class_id is not None:
-            endpoint += f"/class/{vessel_class_id}"
-        elif vessel_type_id is not None and (
-            date_from is not None or incremental
-        ):
-            endpoint += f"/type/{vessel_type_id}"
-        elif not incremental:
-            raise NotImplementedError(
-                "For non incremental mode, either imo, "
-                "vessel_class_id or both vessel_type_id "
-                "and date_from must be provide."
-            )
-
-        if imo is None and date_from is not None:
-            endpoint += f"/date/{date_from.isoformat()}"
-
-        if incremental:
-            endpoint += "/incremental"
-
-        return urljoin(VoyagesAPI.relative_url, endpoint)
-
-    @staticmethod
-    def _get_advanced_endpoint(
-        imos: Optional[List[int]] = None,
-        voyage_keys: Optional[List[str]] = None,
-        event_type: Optional[int] = None,
-        event_horizon: Optional[int] = None,
-        event_horizons: Optional[List[int]] = None,
-        event_purpose: Optional[str] = None,
-        event_purposes: Optional[List[str]] = None,
-        vessel_class_id: Optional[int] = None,
-        vessel_class_ids: Optional[List[int]] = None,
-        port_id: Optional[int] = None,
-        port_ids: Optional[List[int]] = None,
-        vessel_type_id: Optional[int] = None,
-        start_date_from: Optional[date] = None,
-        start_date_to: Optional[date] = None,
-        first_load_arrival_date_from: Optional[date] = None,
-        first_load_arrival_date_to: Optional[date] = None,
-        end_date_from: Optional[date] = None,
-        end_date_to: Optional[date] = None,
-        market_info_rate_from: Optional[date] = None,
-        market_info_rate_to: Optional[date] = None,
-        market_info_rate_type: Optional[date] = None,
-        commercial_operator_id: Optional[int] = None,
-        charterer_id: Optional[int] = None,
-        voyage_horizon: Optional[str] = None,
-        voyage_horizons: Optional[List[str]] = None,
-        token: Optional[str] = None,
-        hide_event_details: Optional[bool] = None,
-        hide_events: Optional[bool] = None,
-        hide_market_info: Optional[bool] = None,
-        nested: Optional[bool] = True,
-        condensed: Optional[bool] = False,
-    ) -> str:
-        """Constructs the advanced search endpoint.
-
-        Args:
-            endpoint_params: Advanced search endpoint parameters dictionary.
-            Same as get_voyages_by_advanced_search method arguments.
-
-        Returns:
-            The constructed endpoint to call to retrieve the requested \
-            voyages for the provided arguments.
-        """
-        # Special Handling for event purposes and VoyageHorizons
-        if event_purpose is not None:
-            if event_purposes is None:
-                event_purposes = []
-            event_purposes.append(event_purpose)
-        if voyage_horizon is not None:
-            if voyage_horizons is None:
-                voyage_horizons = []
-            voyage_horizons.append(voyage_horizon)
-
-        endpoint_params = locals()
-        endpoint = "search/advanced/" + \
-            f'{"condensed" if condensed else "" if nested else "flat"}?'
-        endpoint_params['event_purpose'] = endpoint_params['event_purposes']
-        endpoint_params['voyage_horizon'] = endpoint_params['voyage_horizons']
-        endpoint_params.pop('event_purposes')
-        endpoint_params.pop('voyage_horizons')
-        params = urlencode(
-            {
-                _to_camel_case(key): value
-                for key, value in endpoint_params.items()
-                if value is not None
-            }, doseq=True
-        )
-        endpoint += params
         return urljoin(VoyagesAPI.relative_url, endpoint)
 
     def _get_voyages_pages(
@@ -426,7 +292,7 @@ class VoyagesAPI:
         else:
             imos = None
         
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
@@ -470,7 +336,7 @@ class VoyagesAPI:
             imos = [imo]
         else:
             imos = None
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos, 
             vessel_class_id=vcids, 
             vessel_type_id=vessel_type_id, 
@@ -514,7 +380,7 @@ class VoyagesAPI:
             imos = [imo]
         else:
             imos = None
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
@@ -563,7 +429,7 @@ class VoyagesAPI:
             imos = [imo]
         else:
             imos = None
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
@@ -613,7 +479,7 @@ class VoyagesAPI:
             imos = [imo]
         else:
             imos = None
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
@@ -665,7 +531,7 @@ class VoyagesAPI:
             imos = [imo]
         else:
             imos = None
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
@@ -800,7 +666,7 @@ class VoyagesAPI:
             if voyage_horizons is None:
                 voyage_horizons = []
             voyage_horizons.append(voyage_horizon)
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             voyage_keys=voyage_keys,
             event_type=event_type,
@@ -928,7 +794,7 @@ class VoyagesAPI:
         Returns:
             Voyages data in flat format as a tupple.
         """
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             voyage_keys=voyage_keys,
             event_type=event_type,
@@ -1057,7 +923,7 @@ class VoyagesAPI:
         Returns:
             Voyages data in condensed format as a tupple.
         """
-        endpoint = self._get_endpoint_v3(
+        endpoint = self._get_endpoint(
             imo=imos,
             voyage_keys=voyage_keys,
             event_type=event_type,
