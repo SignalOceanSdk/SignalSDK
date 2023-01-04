@@ -90,8 +90,14 @@ class VoyagesAPI:
         """
         # Special Handling for event purposes and VoyageHorizons
         endpoint_params = locals()
+        if condensed:
+            format_type = "condensed"
+        elif nested:
+            format_type = "nested"
+        else:
+            format_type = "flat"
         endpoint = "voyages/" + \
-            f'{"condensed" if condensed else "nested" if nested else "flat"}' + \
+            format_type + \
             f'{"/incremental?" if incremental else "?"}'
 
         del endpoint_params["nested"]
