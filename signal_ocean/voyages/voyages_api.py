@@ -91,7 +91,7 @@ class VoyagesAPI:
         # Special Handling for event purposes and VoyageHorizons
         endpoint_params = locals()
         endpoint = "voyages/" + \
-            f'{"condensed" if condensed else "nested" if nested else "flat"}'+\
+            f'{"condensed" if condensed else "nested" if nested else "flat"}' + \
             f'{"/incremental?" if incremental else "?"}'
 
         del endpoint_params["nested"]
