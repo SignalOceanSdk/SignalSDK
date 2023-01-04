@@ -4,7 +4,7 @@ from typing import Optional, Tuple, List
 from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
-from signal_ocean.util.request_helpers import get_single, get_multiple
+from signal_ocean.util.request_helpers import get_single
 from signal_ocean.util.parsing_helpers import _to_camel_case, parse_model
 from signal_ocean.voyages.models import (
     Voyage,
@@ -82,7 +82,7 @@ class VoyagesAPI:
         Args:
             endpoint_params: VoyagesData V3 endpoint parameters dictionary.
             Part of get_voyages method arguments.
-            Part of get_voyages_incremental arguments. 
+            Part of get_voyages_incremental arguments.
 
         Returns:
             The constructed endpoint to call to retrieve the requested \
@@ -91,7 +91,8 @@ class VoyagesAPI:
         # Special Handling for event purposes and VoyageHorizons
         endpoint_params = locals()
         endpoint = "voyages/" + \
-            f'{"condensed" if condensed else "nested" if nested else "flat"}{"/incremental?" if incremental else "?"}'
+            f'{"condensed" if condensed else "nested" if nested else "flat"}' + \
+            f'{"/incremental?" if incremental else "?"}'
 
         del endpoint_params["nested"]
         del endpoint_params["condensed"]
@@ -291,7 +292,7 @@ class VoyagesAPI:
             imos = [imo]
         else:
             imos = []
-        
+
         endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
@@ -336,10 +337,11 @@ class VoyagesAPI:
             imos = [imo]
         else:
             imos = []
+
         endpoint = self._get_endpoint(
-            imo=imos, 
+            imo=imos,
             vessel_class_id=vcids, 
-            vessel_type_id=vessel_type_id, 
+            vessel_type_id=vessel_type_id,
             voyage_date_from=date_from,
             nested = False
         )
