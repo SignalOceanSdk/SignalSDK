@@ -101,7 +101,7 @@ class VoyagesAPI:
             {
                 _to_camel_case(key): value
                 for key, value in endpoint_params.items()
-                if value is not None
+                if value is not None and value is not []
             }, doseq=True
         )
         endpoint += params
@@ -285,12 +285,12 @@ class VoyagesAPI:
         if vessel_class_id is not None:
             vcids = [vessel_class_id]
         else:
-            vcids = None
+            vcids = []
 
         if imo is not None:
             imos = [imo]
         else:
-            imos = None
+            imos = []
         
         endpoint = self._get_endpoint(
             imo=imos,
@@ -330,12 +330,12 @@ class VoyagesAPI:
         if vessel_class_id is not None:
             vcids = [vessel_class_id]
         else:
-            vcids = None
+            vcids = []
 
         if imo is not None:
             imos = [imo]
         else:
-            imos = None
+            imos = []
         endpoint = self._get_endpoint(
             imo=imos, 
             vessel_class_id=vcids, 
@@ -374,12 +374,12 @@ class VoyagesAPI:
         if vessel_class_id is not None:
             vcids = [vessel_class_id]
         else:
-            vcids = None
+            vcids = []
 
         if imo is not None:
             imos = [imo]
         else:
-            imos = None
+            imos = []
         endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
@@ -423,12 +423,12 @@ class VoyagesAPI:
         if vessel_class_id is not None:
             vcids = [vessel_class_id]
         else:
-            vcids = None
+            vcids = []
 
         if imo is not None:
             imos = [imo]
         else:
-            imos = None
+            imos = []
         endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
@@ -473,12 +473,12 @@ class VoyagesAPI:
         if vessel_class_id is not None:
             vcids = [vessel_class_id]
         else:
-            vcids = None
+            vcids = []
 
         if imo is not None:
             imos = [imo]
         else:
-            imos = None
+            imos = []
         endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
@@ -525,12 +525,12 @@ class VoyagesAPI:
         if vessel_class_id is not None:
             vcids = [vessel_class_id]
         else:
-            vcids = None
+            vcids = []
 
         if imo is not None:
             imos = [imo]
         else:
-            imos = None
+            imos = []
         endpoint = self._get_endpoint(
             imo=imos,
             vessel_class_id=vcids,
@@ -794,6 +794,30 @@ class VoyagesAPI:
         Returns:
             Voyages data in flat format as a tupple.
         """
+        if event_horizon is not None:
+            if event_horizons is None:
+                event_horizons = []
+            event_horizons.append(event_horizon)
+
+        if event_purpose is not None:
+            if event_purposes is None:
+                event_purposes = []
+            event_purposes.append(event_purpose)
+
+        if vessel_class_id is not None:
+            if vessel_class_ids is None:
+                vessel_class_ids = []
+            vessel_class_ids.append(vessel_class_id)
+        
+        if port_id is not None:
+            if port_ids is None:
+                port_ids = []
+            port_ids.append(port_id)
+
+        if voyage_horizon is not None:
+            if voyage_horizons is None:
+                voyage_horizons = []
+            voyage_horizons.append(voyage_horizon)
         endpoint = self._get_endpoint(
             imo=imos,
             voyage_keys=voyage_keys,
@@ -923,6 +947,30 @@ class VoyagesAPI:
         Returns:
             Voyages data in condensed format as a tupple.
         """
+        if event_horizon is not None:
+            if event_horizons is None:
+                event_horizons = []
+            event_horizons.append(event_horizon)
+
+        if event_purpose is not None:
+            if event_purposes is None:
+                event_purposes = []
+            event_purposes.append(event_purpose)
+
+        if vessel_class_id is not None:
+            if vessel_class_ids is None:
+                vessel_class_ids = []
+            vessel_class_ids.append(vessel_class_id)
+        
+        if port_id is not None:
+            if port_ids is None:
+                port_ids = []
+            port_ids.append(port_id)
+
+        if voyage_horizon is not None:
+            if voyage_horizons is None:
+                voyage_horizons = []
+            voyage_horizons.append(voyage_horizon)
         endpoint = self._get_endpoint(
             imo=imos,
             voyage_keys=voyage_keys,
