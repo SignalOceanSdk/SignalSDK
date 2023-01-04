@@ -91,7 +91,7 @@ class VoyagesAPI:
         # Special Handling for event purposes and VoyageHorizons
         endpoint_params = locals()
         endpoint = "voyages/" + \
-            f'{"condensed" if condensed else "nested" if nested else "flat"}' + \
+            f'{"condensed" if condensed else "nested" if nested else "flat"}'+\
             f'{"/incremental?" if incremental else "?"}'
 
         del endpoint_params["nested"]
@@ -340,10 +340,10 @@ class VoyagesAPI:
 
         endpoint = self._get_endpoint(
             imo=imos,
-            vessel_class_id=vcids, 
+            vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
             voyage_date_from=date_from,
-            nested = False
+            nested=False
         )
         results, _ = self._get_voyages_flat_pages(endpoint)
         return results
@@ -658,7 +658,7 @@ class VoyagesAPI:
             if vessel_class_ids is None:
                 vessel_class_ids = []
             vessel_class_ids.append(vessel_class_id)
-        
+
         if port_id is not None:
             if port_ids is None:
                 port_ids = []
@@ -810,7 +810,7 @@ class VoyagesAPI:
             if vessel_class_ids is None:
                 vessel_class_ids = []
             vessel_class_ids.append(vessel_class_id)
-        
+
         if port_id is not None:
             if port_ids is None:
                 port_ids = []
@@ -963,7 +963,7 @@ class VoyagesAPI:
             if vessel_class_ids is None:
                 vessel_class_ids = []
             vessel_class_ids.append(vessel_class_id)
-        
+
         if port_id is not None:
             if port_ids is None:
                 port_ids = []
