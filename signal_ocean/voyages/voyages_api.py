@@ -303,7 +303,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            voyage_date_from=date_from
+            start_date_from=date_from
         )
         results, _ = self._get_voyages_pages(endpoint)
         return results
@@ -348,7 +348,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            voyage_date_from=date_from,
+            start_date_from=date_from,
             nested=False
         )
         results, _ = self._get_voyages_flat_pages(endpoint)
@@ -392,7 +392,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            voyage_date_from=date_from,
+            start_date_from=date_from,
             nested=False,
             condensed=True
         )
@@ -441,7 +441,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            voyage_date_from=date_from,
+            start_date_from=date_from,
             nested=True,
             incremental=True
         )
@@ -491,7 +491,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            voyage_date_from=date_from,
+            start_date_from=date_from,
             nested=False,
             incremental=True
         )
@@ -543,7 +543,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            voyage_date_from=date_from,
+            start_date_from=date_from,
             nested=False,
             incremental=True,
             condensed=True
