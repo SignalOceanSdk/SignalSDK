@@ -25,9 +25,11 @@ def to_vessel(
         cast(int, data_for_imo.get("breadthExtreme")),
         cast(str, pit_vessel_data.get("marketDeployment")),
         cast(str, pit_vessel_data.get("pushType")),
+        cast(int, pit_vessel_data.get("openPortId")),
         cast(str, pit_vessel_data.get("openPort")),
         parse_datetime(pit_vessel_data.get("openDate")),
         cast(str, pit_vessel_data.get("operationalStatus")),
+        cast(int, pit_vessel_data.get("commercialOperatorId")),
         cast(str, pit_vessel_data.get("commercialOperator")),
         cast(str, pit_vessel_data.get("commercialStatus")),
         parse_datetime(pit_vessel_data.get("eta")),
@@ -36,11 +38,20 @@ def to_vessel(
         cast(bool, data_for_imo.get("willingToSwitchSubclass")),
         cast(str, pit_vessel_data.get("openPredictionAccuracy")),
         tuple(
-            Area(a.get("name"), a.get("locationTaxonomy"))
+            Area(
+                a.get("id"),
+                a.get("name"),
+                a.get("locationTaxonomy"),
+                a.get("taxonomyId")
+                )
             for a in pit_vessel_data.get("openAreas", [])
         ),
         cast(str, pit_vessel_data.get("availabilityPortType")),
         cast(str, pit_vessel_data.get("availabilityDateType")),
+        cast(str, pit_vessel_data.get("fixtureType")),
+        cast(int, pit_vessel_data.get("currentVesselSubTypeId")),
+        cast(str, pit_vessel_data.get("currentVesselSubType")),
+        cast(bool, pit_vessel_data.get("willingToSwitchCurrentVesselSubType")),
     )
 
 

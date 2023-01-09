@@ -14,22 +14,30 @@ def test_initializes_open_areas_to_empty_tuple_if_None() -> None:
 @pytest.mark.parametrize(  # type: ignore
     "areas, expected_country",
     [
-        ((), None),
-        ((Area("country", LocationTaxonomy.COUNTRY),), "country"),
+        (
+            (), 
+            None,
+        ),
         (
             (
-                Area("port", LocationTaxonomy.PORT),
-                Area("narrow", LocationTaxonomy.NARROW_AREA),
-                Area("wide", LocationTaxonomy.WIDE_AREA),
+                Area(123,"country", LocationTaxonomy.COUNTRY,0),
+            ),
+             "country",
+        ),
+        (
+            (
+                Area(123,"port", LocationTaxonomy.PORT,1),
+                Area(123,"narrow", LocationTaxonomy.NARROW_AREA,2),
+                Area(123,"wide", LocationTaxonomy.WIDE_AREA,3),
             ),
             None,
         ),
         (
             (
-                Area("port", LocationTaxonomy.PORT),
-                Area("narrow", LocationTaxonomy.NARROW_AREA),
-                Area("wide", LocationTaxonomy.WIDE_AREA),
-                Area("country", LocationTaxonomy.COUNTRY),
+                Area(123,"port", LocationTaxonomy.PORT,0),
+                Area(123,"narrow", LocationTaxonomy.NARROW_AREA,1),
+                Area(123,"wide", LocationTaxonomy.WIDE_AREA,2),
+                Area(123,"country", LocationTaxonomy.COUNTRY,3),
             ),
             "country",
         ),
@@ -47,21 +55,21 @@ def test_determines_open_country_by_location_taxonomy(
     "areas, expected_area",
     [
         ((), None),
-        ((Area("narrow", LocationTaxonomy.NARROW_AREA),), "narrow"),
+        ((Area(123,"narrow", LocationTaxonomy.NARROW_AREA,0),), "narrow"),
         (
             (
-                Area("port", LocationTaxonomy.PORT),
-                Area("country", LocationTaxonomy.COUNTRY),
-                Area("wide", LocationTaxonomy.WIDE_AREA),
+                Area(123,"port", LocationTaxonomy.PORT,0),
+                Area(123,"country", LocationTaxonomy.COUNTRY,0),
+                Area(123,"wide", LocationTaxonomy.WIDE_AREA,0),
             ),
             None,
         ),
         (
             (
-                Area("port", LocationTaxonomy.PORT),
-                Area("narrow", LocationTaxonomy.NARROW_AREA),
-                Area("wide", LocationTaxonomy.WIDE_AREA),
-                Area("country", LocationTaxonomy.COUNTRY),
+                Area(123,"port", LocationTaxonomy.PORT,0),
+                Area(123,"narrow", LocationTaxonomy.NARROW_AREA,0),
+                Area(123,"wide", LocationTaxonomy.WIDE_AREA,0),
+                Area(123,"country", LocationTaxonomy.COUNTRY,0),
             ),
             "narrow",
         ),
@@ -79,21 +87,21 @@ def test_determines_open_narrow_area_by_location_taxonomy(
     "areas, expected_area",
     [
         ([], None),
-        ([Area("wide", LocationTaxonomy.WIDE_AREA)], "wide"),
+        ([Area(123,"wide", LocationTaxonomy.WIDE_AREA,0)], "wide"),
         (
             [
-                Area("port", LocationTaxonomy.PORT),
-                Area("country", LocationTaxonomy.COUNTRY),
-                Area("narrow", LocationTaxonomy.NARROW_AREA),
+                Area(123,"port", LocationTaxonomy.PORT,0),
+                Area(123,"country", LocationTaxonomy.COUNTRY,0),
+                Area(123,"narrow", LocationTaxonomy.NARROW_AREA,0),
             ],
             None,
         ),
         (
             [
-                Area("port", LocationTaxonomy.PORT),
-                Area("narrow", LocationTaxonomy.NARROW_AREA),
-                Area("wide", LocationTaxonomy.WIDE_AREA),
-                Area("country", LocationTaxonomy.COUNTRY),
+                Area(123,"port", LocationTaxonomy.PORT,0),
+                Area(123,"narrow", LocationTaxonomy.NARROW_AREA,0),
+                Area(123,"wide", LocationTaxonomy.WIDE_AREA,0),
+                Area(123,"country", LocationTaxonomy.COUNTRY,0),
             ],
             "wide",
         ),

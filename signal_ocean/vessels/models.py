@@ -114,8 +114,6 @@ class Vessel:
             distance between the moulded base line and the top of the beams of
             the uppermost continuous deck.
         year_built: Numeric, year format, the year the vessel was built.
-        geared: Boolean, denotes whether the vessel has cranes installed for
-            handling its cargo or not.
         clean_dirty_willing: Boolean, indicates whether a tanker vessel is
             ‘willing’ to compete in the market complementary to the one shown
             in Trade. For example an LR willing dirty will have Trade=Product
@@ -127,6 +125,8 @@ class Vessel:
             Default value: -2.
         updated_date: Date, format YYYY-MM-DD HH:MM:SS, corresponding to the
             latest update.
+        geared: Boolean, denotes whether the vessel has cranes installed for
+            handling its cargo or not.
         interline_coating: interline coating
         vessel_name: The current vessel name corresponding to that IMO.
         call_sign: Alphanumeric code that uniquely identifies a vessel and is
@@ -171,8 +171,6 @@ class Vessel:
         ice_class: Alphanumeric code that denotes the vessel's additional level
             of strengthening as well as other arrangements that make navigation
             through frozen seas possible. For example 1A, 1D, etc.
-        cranes_ton_capacity: Numeric, measured in tonnes [t], denotes the
-            capacity of the vessel's cranes whenever applicable.
         teu: Numeric, measured in TEU (Twenty-Foot Equivalent Unit), denotes a
             volumetric measure of a container's cargo carrying capacity. Used
             for Containers, that is vessels with VesselType=4.
@@ -210,7 +208,6 @@ class Vessel:
             like bulk grain, which can flow into every corner.
         bale_capacity: This is the space available for solid cargo. Bale space
             is usually about 7–10% less than grain space.
-        gear_details: This value indicates the crane details of the vessel
         main_engine_kw: This value indicates the main engine's power in KW
         main_engine_rpm: This value indicates the main engine's revolutions
             per minute (RPM)
@@ -259,11 +256,11 @@ class Vessel:
     length_overall: float
     moulded_depth: float
     year_built: int
-    geared: bool
     clean_dirty_willing: bool
     main_engine_manufacturer_id: int
     classification_register_id: int
     updated_date: datetime
+    geared: Optional[bool] = None
     interline_coating: Optional[int] = None
     vessel_name: Optional[str] = None
     call_sign: Optional[str] = None
@@ -280,7 +277,6 @@ class Vessel:
     shipyard_built_id: Optional[int] = None
     shipyard_built_name: Optional[str] = None
     ice_class: Optional[str] = None
-    cranes_ton_capacity: Optional[int] = None
     teu: Optional[int] = None
     te_u14: Optional[int] = None
     reefers: Optional[int] = None
@@ -295,7 +291,6 @@ class Vessel:
     number_of_holds: Optional[int] = None
     grain_capacity: Optional[int] = None
     bale_capacity: Optional[int] = None
-    gear_details: Optional[str] = None
     main_engine_kw: Optional[int] = None
     main_engine_rpm: Optional[int] = None
     air_draught: Optional[float] = None

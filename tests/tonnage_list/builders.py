@@ -35,10 +35,12 @@ def create_vessel(
     breadth_extreme: int = 50,
     market_deployment: str = MarketDeployment.SPOT,
     push_type: str = PushType.PUSHED,
+    open_port_id: int = 123,
     open_port: str = "open port",
     open_date: Optional[datetime] = datetime.now(tz=timezone.utc)
     - timedelta(days=3),
     operational_status: str = "operational status",
+    commercial_operator_id: int = 123,
     commercial_operator: str = "commercial operator",
     commercial_status: str = CommercialStatus.AVAILABLE,
     eta: Optional[datetime] = datetime.now(tz=timezone.utc)
@@ -49,12 +51,16 @@ def create_vessel(
     willing_to_switch_subclass: bool = True,
     open_prediction_accuracy: str = LocationTaxonomy.PORT,
     open_areas: Tuple[Area, ...] = (
-        Area("country", LocationTaxonomy.COUNTRY),
-        Area("narrow", LocationTaxonomy.NARROW_AREA),
-        Area("wide", LocationTaxonomy.WIDE_AREA),
+        Area(123, "country", LocationTaxonomy.COUNTRY, 0),
+        Area(456, "narrow", LocationTaxonomy.NARROW_AREA, 1),
+        Area(789, "wide", LocationTaxonomy.WIDE_AREA, 2),
     ),
     availability_port_type: str = "Prediction",
     availability_date_type: str = "Prediction",
+    fixture_type: str = "fixture_type",
+    current_vessel_sub_type_id: int = 123,
+    current_vessel_sub_type: str = "current_vessel_sub_type",
+    willing_to_switch_current_vessel_sub_type: bool = True,
 ) -> Vessel:
     return Vessel(
         imo,
@@ -68,8 +74,10 @@ def create_vessel(
         market_deployment,
         push_type,
         open_port,
+        open_port_id,
         open_date,
         operational_status,
+        commercial_operator_id,
         commercial_operator,
         commercial_status,
         eta,
@@ -80,4 +88,8 @@ def create_vessel(
         open_areas,
         availability_port_type,
         availability_date_type,
+        fixture_type,
+        current_vessel_sub_type_id,
+        current_vessel_sub_type,
+        willing_to_switch_current_vessel_sub_type
     )
