@@ -103,7 +103,6 @@ class VoyagesAPI:
         del endpoint_params["nested"]
         del endpoint_params["condensed"]
         del endpoint_params["incremental"]
-        print(vessel_class_id)
         params = urlencode(
             {
                 _to_camel_case(key): value
@@ -112,7 +111,6 @@ class VoyagesAPI:
             }, doseq=True
         )
         endpoint += params
-        print(endpoint)
         return urljoin(VoyagesAPI.relative_url, endpoint)
 
     def _get_voyages_pages(
