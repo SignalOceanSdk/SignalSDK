@@ -439,7 +439,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            start_date_from=date_from,
+            voyage_date_from=date_from,
             nested=True,
             incremental=True
         )
@@ -489,7 +489,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            start_date_from=date_from,
+            voyage_date_from=date_from,
             nested=False,
             incremental=True
         )
@@ -541,7 +541,7 @@ class VoyagesAPI:
             imo=imos,
             vessel_class_id=vcids,
             vessel_type_id=vessel_type_id,
-            start_date_from=date_from,
+            voyage_date_from=date_from,
             nested=False,
             incremental=True,
             condensed=True
@@ -681,8 +681,6 @@ class VoyagesAPI:
             vessel_class_id=vessel_class_ids,
             port_ids=port_ids,
             vessel_type_id=vessel_type_id,
-            voyage_date_from=start_date_from,
-            voyage_date_to=start_date_from,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
             first_load_arrival_date_from=first_load_arrival_date_from,
