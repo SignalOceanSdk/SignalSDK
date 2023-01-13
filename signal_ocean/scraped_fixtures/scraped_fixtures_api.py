@@ -17,6 +17,7 @@ class ScrapedFixturesAPI(
 
     relative_url = "scraped-fixtures-api/v2/fixtures"
     response_class = ScrapedFixturesResponse
+    entity_ids_name = "fixture_ids"
 
     def get_fixtures(
         self,

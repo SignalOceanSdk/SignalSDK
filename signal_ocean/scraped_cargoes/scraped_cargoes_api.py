@@ -15,6 +15,7 @@ class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
 
     relative_url = "scraped-cargoes-api/v3/cargoes"
     response_class = ScrapedCargoesResponse
+    entity_ids_name = "cargo_ids"
 
     def get_cargoes(
         self,

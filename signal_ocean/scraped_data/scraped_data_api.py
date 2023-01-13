@@ -13,6 +13,7 @@ TRecord = TypeVar("TRecord")
 
 class ScrapedDataResponse(Generic[TRecord]):
     """Base class for Scraped Data API response classes."""
+
     next_page_token: Optional[str]
     data: Optional[Tuple[TRecord, ...]]
 
@@ -23,12 +24,14 @@ TResponse = TypeVar("TResponse", bound=ScrapedDataResponse[Any])
 class ScrapedDataAPI(Generic[TResponse, TRecord]):
     """Base class for Scraped Data API classes."""
 
-    page_size = 10000
-    endpoints = {
+    page_size: int = 10000
+    entity_ids_size: int = 500
+    endpoints: Dict[str, str] = {
         "page_size": "?PageSize=" + str(page_size),
         "by_id": "/getbyids?",
     }
     relative_url: str
+    entity_ids_name: str
     response_class: Type[TResponse]
 
     def __init__(self, connection: Optional[Connection] = None):
@@ -86,7 +89,7 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
         """
         results: List[TRecord] = []
         while True:
-            request_url = self._get_endpoint("page_size", params)
+            request_url: str = self._get_endpoint("page_size", params)
 
             response: Optional[TResponse] = get_single(
                 self.__connection, request_url, self.response_class
@@ -114,14 +117,18 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
             A tuple containing ScrapedData objects.
             ScrapedData object are defined by outer class.
         """
+        entity_ids: List[int] = params[self.entity_ids_name]
         results: List[TRecord] = []
-        request_url = self._get_endpoint("by_id", params)
+        while entity_ids:
+            params[self.entity_ids_name] = entity_ids[: self.entity_ids_size]
+            entity_ids = entity_ids[self.entity_ids_size :]
+            request_url: str = self._get_endpoint("by_id", params)
 
-        response: Optional[TResponse] = get_single(
-            self.__connection, request_url, self.response_class
-        )
+            response: Optional[TResponse] = get_single(
+                self.__connection, request_url, self.response_class
+            )
 
-        if response is not None and response.data is not None:
-            results.extend(response.data)
+            if response is not None and response.data is not None:
+                results.extend(response.data)
 
         return tuple(results)
