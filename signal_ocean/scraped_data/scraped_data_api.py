@@ -120,8 +120,8 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
         entity_ids: List[int] = params[self.entity_ids_name]
         results: List[TRecord] = []
         while entity_ids:
-            params[self.entity_ids_name] = entity_ids[: self.entity_ids_size]
-            entity_ids = entity_ids[self.entity_ids_size :]
+            params[self.entity_ids_name] = entity_ids[:self.entity_ids_size]
+            entity_ids = entity_ids[self.entity_ids_size:]
             request_url: str = self._get_endpoint("by_id", params)
 
             response: Optional[TResponse] = get_single(
