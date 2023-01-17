@@ -90,12 +90,15 @@ def get_multiple(
     return tuple(parse_model(d, cls, rename_keys=rename_keys) for d in data)
 
 
-def post_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
-                 query_string: Optional[QueryString] = None,
-                 rename_keys: Optional[Dict[str, str]] = None,
-                 data_key_label: Optional[QueryString] = None)  \
-        -> Tuple[TModel, ...]:
-    """use a post request to retrieve multiple objects from the API.
+def post_multiple(
+    connection: Connection,
+    relative_url: str,
+    cls: Type[TModel],
+    query_string: Optional[QueryString] = None,
+    rename_keys: Optional[Dict[str, str]] = None,
+    data_key_label: Optional[str] = None,
+) -> Tuple[TModel, ...]:
+    """Use a post request to retrieve multiple objects from the API.
 
     Make a post request to the specified URL to retrieve a sequence of results
     and return a list of objects of the provided class instantiated with the
@@ -107,7 +110,7 @@ def post_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
             request to the API.
         relative_url: The relative URL to make the request to.
         cls: The class to instantiate the object for the retrieved data.
-        query_string: Query parameters for the request.
+        query_string: Query parameters for the post request body.
         rename_keys: Key names to rename to match model attribute names,
             used when an automated translation of the name from CapsWords
             to snake_case is to sufficient. Renaming must provide the name
@@ -115,9 +118,9 @@ def post_multiple(connection: Connection, relative_url: str, cls: Type[TModel],
         data_key_label: String, to use in case the data is returned as a
             value inside a key in the response dictionary.
     """
-    
-    response = connection._make_post_request(relative_url,
-                                            query_string=query_string)
+    response = connection._make_post_request(
+        relative_url, query_string=query_string
+    )
     response.raise_for_status()
     data = response.json()
     if data_key_label is not None:

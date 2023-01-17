@@ -1,10 +1,12 @@
 """The voyages api."""
 from datetime import date
-from typing import Optional, Tuple, List
+from typing import Optional, Tuple, List, Any, Dict
 from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
-from signal_ocean.util.request_helpers import get_single, get_multiple, post_multiple
+from signal_ocean.util.request_helpers import (
+    get_single, get_multiple, post_multiple
+)
 from signal_ocean.util.parsing_helpers import _to_camel_case
 from signal_ocean.voyages_market_data.models import (
     VoyagesMarketData,
@@ -226,9 +228,9 @@ class VoyagesMarketDataAPI:
 
     def get_voyage_market_data_advanced(
         self,
-        imos: Optional[Tuple[int, ...]] = None,
-        voyage_ids: Optional[Tuple[str, ...]] = None,
-        vessel_class_ids: Optional[Tuple[int, ...]] = None,
+        imos: Optional[List[int]] = None,
+        voyage_ids: Optional[List[str]] = None,
+        vessel_class_ids: Optional[List[int]] = None,
         trade_id: Optional[int] = None,
         include_vessel_details: Optional[bool] = None,
         include_fixtures: Optional[bool] = None,
@@ -240,109 +242,114 @@ class VoyagesMarketDataAPI:
         laycan_date_from: Optional[date] = None,
         laycan_date_to: Optional[date] = None,
         include_labels: Optional[bool] = None,
-        charterer_ids_include: Optional[Tuple[int, ...]] = None,
-        charterer_ids_exclude: Optional[Tuple[int, ...]] = None,
-        cargo_type_ids_include: Optional[Tuple[int, ...]] = None,
-        cargo_type_ids_exclude: Optional[Tuple[int, ...]] = None,
-        sources_include: Optional[Tuple[str, ...]] = None,
-        sources_exclude: Optional[Tuple[str, ...]] = None
+        charterer_ids_include: Optional[List[int]] = None,
+        charterer_ids_exclude: Optional[List[int]] = None,
+        cargo_type_ids_include: Optional[List[int]] = None,
+        cargo_type_ids_exclude: Optional[List[int]] = None,
+        sources_include: Optional[List[str]] = None,
+        sources_exclude: Optional[List[str]] = None
     ) -> VoyagesMarketDataMultiple:
-        """Retrieves all matched voyage market data filtered for the provided parameters
+        """Retrieves matched voyage market data for the provided parameters.
 
         Args:
             imos: Return only voyages for the provided vessel IMOs. If None
                 voyages for all vessels are returned.
-            voyage_ids: If provided only market data with the requested voyage IDs will
-                be returned.
+            voyage_ids: If provided only market data with the requested voyage
+                IDs will be returned.
             vessel_class_ids: If provided only market data with the requested
                 vesselClassIds will be returned.
             trade_id: If provided only market data for the requested trade id
                 will be returned.
-            include_vessel_details: If True the following fields will be included
-                in the response. VesselName, Deadweight, YearBuilt, VesselClass,
-                VesselType, Trade, CommercialOperator
-            include_fixtures: If True, information on fixtures will be included
-                in the response.
+            include_vessel_details: If True the following fields will be
+                included in the response. VesselName, Deadweight, YearBuilt,
+                VesselClass, VesselType, Trade, CommercialOperator
+            include_fixtures: If True, information on fixtures will be
+                included in the response.
             include_lineups: If True, information on fixtures will be included
                 in the response.
-            include_positions: If True, information on positions will be included
-                in the response.
-            include_matched_fixture: If True, information on the matched fixture will
-                be included in the response.
-            fixture_date_from: Date format 'YYYY-MM-DD', if included market data with a
-                fixture date after the given date will be returned.
-            fixture_date_to: Date format 'YYYY-MM-DD', if included market data with a
-                fixture date prior to the given date will be returned.
-            laycan_date_from: Date format 'YYYY-MM-DD', if included market data with a
-                laycan date after the given date will be returned.
-            laycan_date_to: Date format 'YYYY-MM-DD', if included market data with a
-                laycan date prior to the given date will be returned.
-            include_labels: If set to true the following fields will be included in the
-                response. Charterer, LoadName, LoadTaxonomy, LoadName2, LoadTaxonomy2,
-                DischargeName, DischargeTaxonomy, DischargeName2, DischargeTaxonomy2,
-                CargoType, CargoGroup, CargoGroupID, DeliveryName, DeliveryTaxonomy,
+            include_positions: If True, information on positions will be
+                included in the response.
+            include_matched_fixture: If True, information on the matched
+                fixture will be included in the response.
+            fixture_date_from: Date format 'YYYY-MM-DD', if included market
+                data with a fixture date after the given date will be
+                returned.
+            fixture_date_to: Date format 'YYYY-MM-DD', if included market data
+                with a fixture date prior to the given date will be returned.
+            laycan_date_from: Date format 'YYYY-MM-DD', if included market
+                data with a laycan date after the given date will be returned.
+            laycan_date_to: Date format 'YYYY-MM-DD', if included market data
+                with a laycan date prior to the given date will be returned.
+            include_labels: If set to true the following fields will be
+                included in the response. Charterer, LoadName, LoadTaxonomy,
+                LoadName2, LoadTaxonomy2, DischargeName, DischargeTaxonomy,
+                DischargeName2, DischargeTaxonomy2, CargoType, CargoGroup,
+                CargoGroupID, DeliveryName, DeliveryTaxonomy,
                 RedeliveryFromName, RedeliveryFromTaxonomy, RedeliveryToName,
-                RedeliveryToTaxonomy
-            charterer_ids_include: If provided, charterers with the given ids will be
-                included.
-            charterer_ids_exclude: If provided, charterers with the given ids will be
-                excluded.
-            cargo_type_ids_include: If provided, market data for the give cargo type ids
+                RedeliveryToTaxonomy.
+            charterer_ids_include: If provided, charterers with the given ids
                 will be included.
-            cargo_type_ids_exclude: If provided, market data for the give cargo type ids
+            charterer_ids_exclude: If provided, charterers with the given ids
                 will be excluded.
-            sources_include: If provided, market data from the give sources will be
-                included.
-            sources_exclude: If provided, market data from the give sources will be
-                excluded.
+            cargo_type_ids_include: If provided, market data for the give
+                cargo type ids will be included.
+            cargo_type_ids_exclude: If provided, market data for the give
+                cargo type ids will be excluded.
+            sources_include: If provided, market data from the give sources
+                will be included.
+            sources_exclude: If provided, market data from the give sources
+                will be excluded.
+
         Returns:
             A tuple containing the returned voyage market data.
         """
-
-        data = {}
+        data_body: Dict[str, Any] = {}
+        IMOs = imos
         if imos:
-            data['IMOs'] = imos
+            data_body['IMOs'] = IMOs
         if voyage_ids:
-            data['VoyageIDs'] = voyage_ids
+            data_body['VoyageIDs'] = voyage_ids
         if vessel_class_ids:
-            data['VesselClassIDs'] = vessel_class_ids
+            data_body['VesselClassIDs'] = vessel_class_ids
         if trade_id:
-            data['TradeID'] = trade_id
+            data_body['TradeID'] = trade_id
         if include_vessel_details:
-            data['IncludeVesselDetails'] = True
+            data_body['IncludeVesselDetails'] = True
         if include_fixtures:
-            data['IncludeFixtures'] = True
+            data_body['IncludeFixtures'] = True
         if include_lineups:
-            data['IncludeLineups'] = True
+            data_body['IncludeLineups'] = True
         if include_positions:
-            data['IncludePositions'] = True
+            data_body['IncludePositions'] = True
         if include_matched_fixture:
-            data['IncludeMatchedFixture'] = True
+            data_body['IncludeMatchedFixture'] = True
         if fixture_date_from:
-            data['FixtureDateFrom'] = fixture_date_from
+            data_body['FixtureDateFrom'] = fixture_date_from
         if fixture_date_to:
-            data['FixtureDateTo'] = fixture_date_to
+            data_body['FixtureDateTo'] = fixture_date_to
         if laycan_date_from:
-            data['LaycanDateFrom'] = laycan_date_from
+            data_body['LaycanDateFrom'] = laycan_date_from
         if laycan_date_to:
-            data['LaycanDateTo'] = laycan_date_to
+            data_body['LaycanDateTo'] = laycan_date_to
         if include_labels:
-            data['IncludeLabels'] = True
+            data_body['IncludeLabels'] = True
         if charterer_ids_include:
-            data['ChartererIDsInclude'] = charterer_ids_include
+            data_body['ChartererIDsInclude'] = charterer_ids_include
         if charterer_ids_exclude:
-            data['ChartererIDsExclude'] = charterer_ids_exclude
+            data_body['ChartererIDsExclude'] = charterer_ids_exclude
         if cargo_type_ids_include:
-            data['CargoTypeIDsInclude'] = cargo_type_ids_include
+            data_body['CargoTypeIDsInclude'] = cargo_type_ids_include
         if cargo_type_ids_exclude:
-            data['CargoTypeIDsExclude'] = cargo_type_ids_exclude
+            data_body['CargoTypeIDsExclude'] = cargo_type_ids_exclude
         if sources_include:
-            data['SourcesInclude'] = True
+            data_body['SourcesInclude'] = True
         if sources_exclude:
-            data['SourcesExclude'] = True
+            data_body['SourcesExclude'] = True
 
         endpoint = VoyagesMarketDataAPI.advanced_url
 
-        results = post_multiple(self.__connection, endpoint, VoyagesMarketData, query_string = data, data_key_label = 'Data')
+        results = post_multiple(self.__connection, endpoint,
+                                VoyagesMarketData, query_string=data_body,
+                                data_key_label='Data')
 
         return results
