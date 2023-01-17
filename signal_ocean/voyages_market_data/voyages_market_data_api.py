@@ -304,9 +304,8 @@ class VoyagesMarketDataAPI:
             A tuple containing the returned voyage market data.
         """
         data_body: Dict[str, Any] = {}
-        IMOs = imos
         if imos:
-            data_body['IMOs'] = IMOs
+            data_body['IMOs'] = imos
         if voyage_ids:
             data_body['VoyageIDs'] = voyage_ids
         if vessel_class_ids:
