@@ -304,46 +304,24 @@ class VoyagesMarketDataAPI:
             A tuple containing the returned voyage market data.
         """
         data_body: Dict[str, Any] = {}
-        if imos:
-            data_body['IMOs'] = imos
-        if voyage_ids:
-            data_body['VoyageIDs'] = voyage_ids
-        if vessel_class_ids:
-            data_body['VesselClassIDs'] = vessel_class_ids
-        if trade_id:
-            data_body['TradeID'] = trade_id
-        if include_vessel_details:
-            data_body['IncludeVesselDetails'] = True
-        if include_fixtures:
-            data_body['IncludeFixtures'] = True
-        if include_lineups:
-            data_body['IncludeLineups'] = True
-        if include_positions:
-            data_body['IncludePositions'] = True
-        if include_matched_fixture:
-            data_body['IncludeMatchedFixture'] = True
-        if fixture_date_from:
-            data_body['FixtureDateFrom'] = fixture_date_from
-        if fixture_date_to:
-            data_body['FixtureDateTo'] = fixture_date_to
-        if laycan_date_from:
-            data_body['LaycanDateFrom'] = laycan_date_from
-        if laycan_date_to:
-            data_body['LaycanDateTo'] = laycan_date_to
-        if include_labels:
-            data_body['IncludeLabels'] = True
-        if charterer_ids_include:
-            data_body['ChartererIDsInclude'] = charterer_ids_include
-        if charterer_ids_exclude:
-            data_body['ChartererIDsExclude'] = charterer_ids_exclude
-        if cargo_type_ids_include:
-            data_body['CargoTypeIDsInclude'] = cargo_type_ids_include
-        if cargo_type_ids_exclude:
-            data_body['CargoTypeIDsExclude'] = cargo_type_ids_exclude
-        if sources_include:
-            data_body['SourcesInclude'] = True
-        if sources_exclude:
-            data_body['SourcesExclude'] = True
+
+        rename_keys = {'imos': 'IMOs',
+                       'voyage_ids': 'VoyageIDs',
+                       'vessel_class_ids': 'VesselClassIDs',
+                       'trade_id': 'TradeID',
+                       'charterer_ids_include': 'ChartererIDsInclude',
+                       'charterer_ids_exclude': 'ChartererIDsExclude',
+                       'cargo_type_ids_include': 'CargoTypeIDsInclude',
+                       'cargo_type_ids_exclude': 'CargoTypeIDsExclude'}
+
+        for key, value in locals().items():
+            if key != 'self':
+                if value:
+                    cc_key = _to_camel_case(key, rename_keys=rename_keys)
+                    data_body[cc_key] = value
+
+        del data_body['DataBody']
+        del data_body['RenameKeys']
 
         endpoint = VoyagesMarketDataAPI.advanced_url
 
