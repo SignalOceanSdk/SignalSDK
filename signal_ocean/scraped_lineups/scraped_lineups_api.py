@@ -15,6 +15,7 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
 
     relative_url = "scraped-lineups-api/v2/lineups"
     response_class = ScrapedLineupsResponse
+    entity_ids_name = "lineup_ids"
 
     def get_lineups(
         self,

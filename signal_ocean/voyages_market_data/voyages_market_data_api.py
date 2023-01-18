@@ -1,10 +1,12 @@
 """The voyages api."""
 from datetime import date
-from typing import Optional, Tuple, List
+from typing import Optional, Tuple, List, Any, Dict
 from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
-from signal_ocean.util.request_helpers import get_single, get_multiple
+from signal_ocean.util.request_helpers import (
+    get_single, get_multiple, post_multiple
+)
 from signal_ocean.util.parsing_helpers import _to_camel_case
 from signal_ocean.voyages_market_data.models import (
     VoyagesMarketData,
@@ -19,6 +21,7 @@ class VoyagesMarketDataAPI:
     """Represents Signal's VoyagesMarketData API."""
 
     relative_url = "voyages-market-data-api/v1/"
+    advanced_url = "voyages-market-data-api/v1/marketData/search/advanced"
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VoyagesMarketDataAPI.
@@ -220,5 +223,110 @@ class VoyagesMarketDataAPI:
                                    VoyagesMarketData, data_key_label='Data')
         else:
             results, _ = self._get_voyage_market_data_pages(endpoint)
+
+        return results
+
+    def get_voyage_market_data_advanced(
+        self,
+        imos: Optional[List[int]] = None,
+        voyage_ids: Optional[List[str]] = None,
+        vessel_class_ids: Optional[List[int]] = None,
+        trade_id: Optional[int] = None,
+        include_vessel_details: Optional[bool] = None,
+        include_fixtures: Optional[bool] = None,
+        include_lineups: Optional[bool] = None,
+        include_positions: Optional[bool] = None,
+        include_matched_fixture: Optional[bool] = None,
+        fixture_date_from: Optional[date] = None,
+        fixture_date_to: Optional[date] = None,
+        laycan_date_from: Optional[date] = None,
+        laycan_date_to: Optional[date] = None,
+        include_labels: Optional[bool] = None,
+        charterer_ids_include: Optional[List[int]] = None,
+        charterer_ids_exclude: Optional[List[int]] = None,
+        cargo_type_ids_include: Optional[List[int]] = None,
+        cargo_type_ids_exclude: Optional[List[int]] = None,
+        sources_include: Optional[List[str]] = None,
+        sources_exclude: Optional[List[str]] = None
+    ) -> VoyagesMarketDataMultiple:
+        """Retrieves matched voyage market data for the provided parameters.
+
+        Args:
+            imos: Return only voyages for the provided vessel IMOs. If None
+                voyages for all vessels are returned.
+            voyage_ids: If provided only market data with the requested voyage
+                IDs will be returned.
+            vessel_class_ids: If provided only market data with the requested
+                vesselClassIds will be returned.
+            trade_id: If provided only market data for the requested trade id
+                will be returned.
+            include_vessel_details: If True the following fields will be
+                included in the response. VesselName, Deadweight, YearBuilt,
+                VesselClass, VesselType, Trade, CommercialOperator
+            include_fixtures: If True, information on fixtures will be
+                included in the response.
+            include_lineups: If True, information on fixtures will be included
+                in the response.
+            include_positions: If True, information on positions will be
+                included in the response.
+            include_matched_fixture: If True, information on the matched
+                fixture will be included in the response.
+            fixture_date_from: Date format 'YYYY-MM-DD', if included market
+                data with a fixture date after the given date will be
+                returned.
+            fixture_date_to: Date format 'YYYY-MM-DD', if included market data
+                with a fixture date prior to the given date will be returned.
+            laycan_date_from: Date format 'YYYY-MM-DD', if included market
+                data with a laycan date after the given date will be returned.
+            laycan_date_to: Date format 'YYYY-MM-DD', if included market data
+                with a laycan date prior to the given date will be returned.
+            include_labels: If set to true the following fields will be
+                included in the response. Charterer, LoadName, LoadTaxonomy,
+                LoadName2, LoadTaxonomy2, DischargeName, DischargeTaxonomy,
+                DischargeName2, DischargeTaxonomy2, CargoType, CargoGroup,
+                CargoGroupID, DeliveryName, DeliveryTaxonomy,
+                RedeliveryFromName, RedeliveryFromTaxonomy, RedeliveryToName,
+                RedeliveryToTaxonomy.
+            charterer_ids_include: If provided, charterers with the given ids
+                will be included.
+            charterer_ids_exclude: If provided, charterers with the given ids
+                will be excluded.
+            cargo_type_ids_include: If provided, market data for the give
+                cargo type ids will be included.
+            cargo_type_ids_exclude: If provided, market data for the give
+                cargo type ids will be excluded.
+            sources_include: If provided, market data from the give sources
+                will be included.
+            sources_exclude: If provided, market data from the give sources
+                will be excluded.
+
+        Returns:
+            A tuple containing the returned voyage market data.
+        """
+        data_body: Dict[str, Any] = {}
+
+        rename_keys = {'imos': 'IMOs',
+                       'voyage_ids': 'VoyageIDs',
+                       'vessel_class_ids': 'VesselClassIDs',
+                       'trade_id': 'TradeID',
+                       'charterer_ids_include': 'ChartererIDsInclude',
+                       'charterer_ids_exclude': 'ChartererIDsExclude',
+                       'cargo_type_ids_include': 'CargoTypeIDsInclude',
+                       'cargo_type_ids_exclude': 'CargoTypeIDsExclude'}
+
+        for key, value in locals().items():
+            if key != 'self':
+                if value:
+                    cc_key = _to_camel_case(key, rename_keys=rename_keys)
+                    data_body[cc_key] = value
+
+        del data_body['DataBody']
+        del data_body['RenameKeys']
+
+        endpoint = VoyagesMarketDataAPI.advanced_url
+
+        results = post_multiple(self.__connection, endpoint,
+                                VoyagesMarketData, query_string=data_body,
+                                data_key_label='Data')
 
         return results
