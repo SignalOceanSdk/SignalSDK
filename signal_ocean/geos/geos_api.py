@@ -35,7 +35,6 @@ class GeosAPI:
         Returns:
             A tuple of all available areas.
         """
-
         endpoint = (
             "areas/all" if areaId is None else f"areas/{areaId}"
         )
@@ -61,7 +60,6 @@ class GeosAPI:
         Returns:
             A tuple of all available geo asset.
         """
-
         endpoint = (
             "geoAssets/all" if geoAssetId is None
             else f"geoAssets/{geoAssetId}"
@@ -95,7 +93,6 @@ class GeosAPI:
         Returns:
             A tuple of all available countries.
         """
-
         endpoint = (
             "countries/all" if countryId is None else f"countries/{countryId}"
         )
@@ -116,7 +113,6 @@ class GeosAPI:
         Returns:
             A tuple of all available ports.
         """
-
         endpoint = (
             "ports/all" if portId is None else f"ports/{portId}"
         )
