@@ -4,7 +4,7 @@ from typing import Tuple
 import requests
 
 from signal_ocean import Connection
-from signal_ocean.geos import GeosAPI, Country, Port, Area
+from signal_ocean.geos import GeosAPI
 
 
 def create_geo_api(response: requests.Response) -> Tuple[GeosAPI, Connection]:

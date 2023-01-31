@@ -1,7 +1,7 @@
 """Models instantiated by the geos api."""
 from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
+
 
 @dataclass(frozen=True)
 class Area:
@@ -10,8 +10,9 @@ class Area:
     Attributes:
         area_id: The area identifier.
         area_name: The name of the area.
-        location_taxonomy_id: GeoAsset (1), Port (2), Country (3), Level0 (4), Level1 (5), 
-            Level2 (6), Level3 (7), Invalid (-3), NotSet (-2), Unknown (-1).
+        location_taxonomy_id: GeoAsset (1), Port (2), Country (3),
+            Level0 (4), Level1 (5), Level2 (6), Level3 (7),
+            Invalid (-3), NotSet (-2), Unknown (-1).
         location_taxonomy_name: The name of the Location Taxonomy.
         parent_area_id: The parent area identifier.
         parent_area_name: The parent area name.
@@ -23,6 +24,7 @@ class Area:
     parent_area_id: Optional[int] = None
     parent_area_name: Optional[str] = None
 
+
 @dataclass(frozen=True)
 class Country:
     """Contains all details of an country.
@@ -30,8 +32,10 @@ class Country:
     Attributes:
         country_id: The country identifier.
         country_name: The name of the country.
-        location_taxonomy_id: GeoAsset (1), Port (2), Country (3), Level0 (4), Level1 (5), 
-            Level2 (6), Level3 (7), Invalid (-3), NotSet (-2), Unknown (-1).
+        location_taxonomy_id: GeoAsset (1), Port (2),
+            Country (3), Level0 (4), Level1 (5),
+            Level2 (6), Level3 (7), Invalid (-3),
+            NotSet (-2), Unknown (-1).
         location_taxonomy_name: The name of the Location Taxonomy.
     """
     country_id: int
@@ -39,14 +43,17 @@ class Country:
     location_taxonomy_id: int
     location_taxonomy_name: str
 
+
 @dataclass(frozen=True)
 class GeoAsset:
     """Contains all details of a geo asset.
 
     Attributes:
         geo_asset_id: The geo asset identifier.
-        location_taxonomy_id: GeoAsset (1), Port (2), Country (3), Level0 (4), Level1 (5), 
-            Level2 (6), Level3 (7), Invalid (-3), NotSet (-2), Unknown (-1).
+        location_taxonomy_id: GeoAsset (1), Port (2),
+            Country (3), Level0 (4), Level1 (5),
+            Level2 (6), Level3 (7), Invalid (-3),
+            NotSet (-2), Unknown (-1).
         location_taxonomy_name: The name of the Location Taxonomy.
         geo_asset_name: The name of the geo asset.
         country_id: The country identifier.
@@ -83,14 +90,16 @@ class GeoAsset:
     latitude: Optional[float] = None
     longitude: Optional[float] = None
 
+
 @dataclass(frozen=True)
 class Port:
     """Contains all details of a port.
 
     Attributes:
         port_id: The geo asset identifier.
-        location_taxonomy_id: GeoAsset (1), Port (2), Country (3), Level0 (4), Level1 (5), 
-            Level2 (6), Level3 (7), Invalid (-3), NotSet (-2), Unknown (-1).
+        location_taxonomy_id: GeoAsset (1), Port (2), Country (3),
+            Level0 (4), Level1 (5), Level2 (6),
+            Level3 (7), Invalid (-3), NotSet (-2), Unknown (-1).
         location_taxonomy_name: The name of the Location Taxonomy.
         port_name: The name of the geo asset.
         unlocode: The Unlocode of the port.
@@ -125,6 +134,7 @@ class Port:
     latitude: Optional[float] = None
     longitude: Optional[float] = None
 
+
 @dataclass(frozen=True)
 class AreasPagedResponse:
     """Paged response for areas from the Geos API.
@@ -134,6 +144,7 @@ class AreasPagedResponse:
             page.
     """
     data: Optional[Tuple[Area, ...]] = None
+
 
 @dataclass(frozen=True)
 class GeoAssetsPagedResponse:
@@ -145,6 +156,7 @@ class GeoAssetsPagedResponse:
     """
     data: Optional[Tuple[GeoAsset, ...]] = None
 
+
 @dataclass(frozen=True)
 class CountriesPagedResponse:
     """Paged response for countries from the Geos API.
@@ -154,6 +166,7 @@ class CountriesPagedResponse:
             page.
     """
     data: Optional[Tuple[Country, ...]] = None
+
 
 @dataclass(frozen=True)
 class PortsPagedResponse:
