@@ -20,9 +20,9 @@ def test_returns_None_if_country_does_not_exist():
     response.status_code = requests.codes.not_found
     api, *_ = create_geo_api(response)
 
-    country = api.get_country(country_id=123)
-
-    assert country is None
+    countries = api.get_countries(countryId=-999)
+    
+    assert len(countries) == 0
 
 
 def test_requests_country_by_id():
@@ -30,9 +30,9 @@ def test_requests_country_by_id():
     response.json.return_value = {}
     api, connection = create_geo_api(response)
 
-    country = api.get_country(country_id=123)
+    country = api.get_countries(countryId=123)
 
-    connection._make_get_request.assert_called_with("geo/countries/123")
+    connection._make_get_request.assert_called_with("geos-api/v2/countries/123", query_string=None)
 
 
 def test_returns_requested_country():
@@ -40,9 +40,9 @@ def test_returns_requested_country():
     response.json.return_value = {}
     api, *_ = create_geo_api(response)
 
-    country = api.get_country(country_id=123)
+    countries = api.get_countries(countryId=123)
 
-    assert type(country) is Country
+    assert isinstance(countries, tuple)
 
 
 def test_returns_None_if_port_does_not_exist():
@@ -50,9 +50,9 @@ def test_returns_None_if_port_does_not_exist():
     response.status_code = requests.codes.not_found
     api, *_ = create_geo_api(response)
 
-    port = api.get_port(port_id=123)
+    ports = api.get_ports(portId=-999)
 
-    assert port is None
+    assert len(ports) == 0
 
 
 def test_requests_port_by_id():
@@ -60,9 +60,9 @@ def test_requests_port_by_id():
     response.json.return_value = {}
     api, connection = create_geo_api(response)
 
-    port = api.get_port(port_id=123)
+    port = api.get_ports(portId=123)
 
-    connection._make_get_request.assert_called_with("geo/ports/123")
+    connection._make_get_request.assert_called_with("geos-api/v2/ports/123", query_string=None)
 
 
 def test_returns_requested_port():
@@ -70,9 +70,9 @@ def test_returns_requested_port():
     response.json.return_value = {}
     api, *_ = create_geo_api(response)
 
-    port = api.get_port(port_id=123)
+    ports = api.get_ports(portId=123)
 
-    assert type(port) is Port
+    assert isinstance(ports, tuple)
 
 
 def test_returns_None_if_area_does_not_exist():
@@ -80,9 +80,9 @@ def test_returns_None_if_area_does_not_exist():
     response.status_code = requests.codes.not_found
     api, *_ = create_geo_api(response)
 
-    area = api.get_area(area_id=123)
+    areas = api.get_areas(areaId=-999)
 
-    assert area is None
+    assert len(areas) == 0
 
 
 def test_requests_area_by_id():
@@ -90,9 +90,9 @@ def test_requests_area_by_id():
     response.json.return_value = {}
     api, connection = create_geo_api(response)
 
-    area = api.get_area(area_id=123)
+    area = api.get_areas(areaId=123)
 
-    connection._make_get_request.assert_called_with("geo/areas/123")
+    connection._make_get_request.assert_called_with("geos-api/v2/areas/123", query_string=None)
 
 
 def test_returns_requested_area():
@@ -100,6 +100,34 @@ def test_returns_requested_area():
     response.json.return_value = {}
     api, *_ = create_geo_api(response)
 
-    area = api.get_area(area_id=123)
+    areas = api.get_areas(areaId=123)
 
-    assert type(area) is Area
+    assert isinstance(areas, tuple)
+
+def test_returns_None_if_geo_asset_does_not_exist():
+    response = MagicMock()
+    response.status_code = requests.codes.not_found
+    api, *_ = create_geo_api(response)
+
+    geoAssets = api.get_geoAssets(geoAssetId=-999)
+    
+    assert len(geoAssets) == 0
+
+
+def test_requests_geo_asset_by_id():
+    response = MagicMock()
+    response.json.return_value = {}
+    api, connection = create_geo_api(response)
+
+    geoAsset = api.get_geoAssets(geoAssetId=123)
+
+    connection._make_get_request.assert_called_with("geos-api/v2/geoAssets/123", query_string=None)
+
+def test_returns_requested_geo_asset():
+    response = MagicMock()
+    response.json.return_value = {}
+    api, *_ = create_geo_api(response)
+
+    geoAssets = api.get_geoAssets(geoAssetId=123)
+
+    assert isinstance(geoAssets, tuple)

@@ -3,7 +3,7 @@ from typing import Optional, Tuple
 from urllib.parse import urljoin
 from datetime import date
 from signal_ocean import Connection
-from signal_ocean.util.request_helpers import get_multiple, get_single
+from signal_ocean.util.request_helpers import get_single
 from signal_ocean.geos.models import GeoAsset, Port, Country, Area
 from signal_ocean.geos.models import  AreasPagedResponse, GeoAssetsPagedResponse
 from signal_ocean.geos.models import CountriesPagedResponse, PortsPagedResponse
@@ -41,9 +41,13 @@ class GeosAPI:
 
         url = urljoin(GeosAPI.relative_url, endpoint)
         response = get_single(self.__connection, url, AreasPagedResponse)
-        return response.data
 
-    def get_geoAssets(self, geoAssetsId: Optional[int] = None) -> Tuple[GeoAsset, ...]:
+        if response is not None and response.data is not None:
+            return response.data
+        else:
+            return tuple([])
+
+    def get_geoAssets(self, geoAssetId: Optional[int] = None) -> Tuple[GeoAsset, ...]:
         """Retrieves all available geo assets.
 
         Args:
@@ -55,7 +59,7 @@ class GeosAPI:
         """
 
         endpoint = (
-            "geoAssets/all" if geoAssetsId is None else f"geoAssets/{geoAssetsId}"
+            "geoAssets/all" if geoAssetId is None else f"geoAssets/{geoAssetId}"
         )
         rename_keys= {
             "AreaIDLevel0":"area_id_level0",
@@ -64,7 +68,10 @@ class GeosAPI:
             "AreaIDLevel3":"area_id_level3"}
         url = urljoin(GeosAPI.relative_url, endpoint)
         response = get_single(self.__connection, url, GeoAssetsPagedResponse, rename_keys=rename_keys)
-        return response.data
+        if response is not None and response.data is not None:
+            return response.data
+        else:
+            return tuple([])
 
     def get_countries(self, countryId: Optional[int] = None) -> Tuple[Country, ...]:
         """Retrieves all available countries.
@@ -82,7 +89,10 @@ class GeosAPI:
         )
         url = urljoin(GeosAPI.relative_url, endpoint)
         response = get_single(self.__connection, url, CountriesPagedResponse)
-        return response.data
+        if response is not None and response.data is not None:
+            return response.data
+        else:
+            return tuple([])
 
     def get_ports(self, portId: Optional[int] = None) -> Tuple[Port, ...]:
         """Retrieves all available ports.
@@ -105,4 +115,7 @@ class GeosAPI:
             "AreaIDLevel3":"area_id_level3"}
         url = urljoin(GeosAPI.relative_url, endpoint)
         response = get_single(self.__connection, url, PortsPagedResponse, rename_keys=rename_keys)
-        return response.data
+        if response is not None and response.data is not None:
+            return response.data
+        else:
+            return tuple([])
