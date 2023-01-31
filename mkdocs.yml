@@ -75,9 +75,9 @@ nav:
       - Examples:
         - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
     - Geos:
-      - 'geo.md'
+      - 'geos.md'
       - Examples:
-        - 'examples/jupyter/GeoAPI/GeoAPI Use Case.ipynb'
+        - 'examples/jupyter/GeosAPI/GeosAPI Use Case.ipynb'
     - VoyagesMarketData:
       - 'voyages_market_data.md'
       - Examples:
