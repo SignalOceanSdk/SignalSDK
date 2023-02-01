@@ -29,7 +29,7 @@ class GeosAPI:
         """Retrieves all available areas.
 
         Args:
-                areaId: area identifier to filter and return only a
+            areaId: area identifier to filter and return only a
                 specific area.
 
         Returns:
@@ -54,7 +54,7 @@ class GeosAPI:
         """Retrieves all available geo assets.
 
         Args:
-                geoAssetId: geo asset identifier to filter and return only a
+            geoAssetId: geo asset identifier to filter and return only a
                 specific geo asset.
 
         Returns:
@@ -87,7 +87,7 @@ class GeosAPI:
         """Retrieves all available countries.
 
         Args:
-                countryId: country identifier to filter and return only a
+            countryId: country identifier to filter and return only a
                 specific country.
 
         Returns:
@@ -107,7 +107,7 @@ class GeosAPI:
         """Retrieves all available ports.
 
         Args:
-                portId: port identifier to filter and return only a
+            portId: port identifier to filter and return only a
                 specific port.
 
         Returns:

@@ -5,5 +5,9 @@ Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-
 
 -Switch to new Geos API v2
 
+# VoyagesMarketData API
+
+-Add pagination to the advanced endpoint
+
 ## Installation and Upgrade Notes
 Update your package with: `pip install signal-ocean -U`
