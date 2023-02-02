@@ -75,9 +75,9 @@ nav:
       - Examples:
         - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
     - Geos:
-      - 'geo.md'
+      - 'geos.md'
       - Examples:
-        - 'examples/jupyter/GeoAPI/GeoAPI Use Case.ipynb'
+        - 'examples/jupyter/GeosAPI/GeosAPI Use Case.ipynb'
     - VoyagesMarketData:
       - 'voyages_market_data.md'
       - Examples:
@@ -95,6 +95,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 3.0.0.md'
       - 'releases/Version 2.1.1.md'
       - 'releases/Version 2.1.0.md'
       - 'releases/Version 2.0.1.md'
