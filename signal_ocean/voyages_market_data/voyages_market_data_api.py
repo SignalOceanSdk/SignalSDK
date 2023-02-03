@@ -5,7 +5,7 @@ from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import (
-    get_single, get_multiple, post_multiple
+    get_single, get_multiple, post_single
 )
 from signal_ocean.util.parsing_helpers import _to_camel_case
 from signal_ocean.voyages_market_data.models import (
@@ -325,8 +325,27 @@ class VoyagesMarketDataAPI:
 
         endpoint = VoyagesMarketDataAPI.advanced_url
 
-        results = post_multiple(self.__connection, endpoint,
-                                VoyagesMarketData, query_string=data_body,
-                                data_key_label='Data')
+        results: List[VoyagesMarketData] = []
+        next_page_token = None
 
-        return results
+        while True:
+            if next_page_token is not None:
+                endpoint = VoyagesMarketDataAPI.advanced_url + \
+                           f"?token={next_page_token}"
+            response = post_single(self.__connection,
+                                   endpoint,
+                                   VoyagesMarketDataPagedResponse,
+                                   query_string=data_body)
+            if response is not None and response.data is not None:
+                results.extend(response.data)
+            next_page_token = (
+                response.next_page_token if response is not None else None
+            )
+            if next_page_token is None:
+                break
+
+        next_request_token = (
+            response.next_request_token if response is not None else None
+        )
+
+        return tuple(results)

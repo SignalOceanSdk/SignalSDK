@@ -1,5 +1,5 @@
 # Package Documentation
-::: signal_ocean.geo
+::: signal_ocean.geos
     handler: python
     rendering:
       show_source: false
