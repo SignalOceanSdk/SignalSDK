@@ -20,16 +20,16 @@ from signal_ocean.freight_rates import FreightPricing, _freight_rates_json
             "totalFreightRate": 1.07108,
             "routeType": "Unknown",
             "routingChoices": [],
-            "loadPort": {
+            "loadPorts": [{
                 "name": "Fujairah",
                 "country": "United Arab Emirates",
                 "area": "Arabian Gulf"
-            },
-            "dischargePort": {
+            }],
+            "dischargePorts": [{
                 "name": "Jebel Ali",
                 "country": "United Arab Emirates",
                 "area": "Arabian Gulf"
-            },
+            }],
             "quantity": 270000,
             "minFlatAugustaUsed": False
         },
@@ -48,16 +48,16 @@ from signal_ocean.freight_rates import FreightPricing, _freight_rates_json
             "totalFreightRate": 5.4375,
             "routeType": "Unknown",
             "routingChoices": [],
-            "loadPort": {
+            "loadPorts": [{
                 "name": "Fujairah",
                 "country": "United Arab Emirates",
                 "area": "Arabian Gulf"
-            },
-            "dischargePort": {
+            }],
+            "dischargePorts": [{
                 "name": "Jebel Ali",
                 "country": "United Arab Emirates",
                 "area": "Arabian Gulf"
-            },
+            }],
             "quantity": 80000,
             "minFlatAugustaUsed": False
         }
@@ -78,11 +78,13 @@ def test_parse_freight_pricing(pricing):
         assert fp.total_freight_rate == data["totalFreightRate"]
         assert fp.route_type == data["routeType"]
         assert fp.routing_choices == data["routingChoices"]
-        assert fp.load_port.name == data["loadPort"]["name"]
-        assert fp.load_port.country == data["loadPort"]["country"]
-        assert fp.load_port.area == data["loadPort"]["area"]
-        assert fp.discharge_port.name == data["dischargePort"]["name"]
-        assert fp.discharge_port.country == data["dischargePort"]["country"]
-        assert fp.discharge_port.area == data["dischargePort"]["area"]
         assert fp.quantity == data["quantity"]
         assert fp.min_flat_augusta_used == data["minFlatAugustaUsed"]
+        for fplp, dlp in zip(fp.load_ports, data["loadPorts"]):
+            assert fplp.name == dlp["name"]
+            assert fplp.country == dlp["country"]
+            assert fplp.area == dlp["area"]
+        for fpdp, ddp in zip(fp.discharge_ports, data["dischargePorts"]):
+            assert fpdp.name == ddp["name"]
+            assert fpdp.country == ddp["country"]
+            assert fpdp.area == ddp["area"]
