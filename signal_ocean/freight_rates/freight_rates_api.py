@@ -24,15 +24,15 @@ class FreightRatesAPI:
         self.__connection = connection or Connection()
 
     def get_freight_pricing(
-            self, load_port_id: int, discharge_port_id: int,
+            self, load_ports: List[int], discharge_ports: List[int],
             vessel_classes: List[str], is_clean: bool,
             date: date = date.today()
     ) -> Tuple[FreightPricing, ...]:
         """Provides freight pricing for given load/discharge ports.
 
         Args:
-            load_port_id: Load port ID.
-            discharge_port_id: Discharge port ID.
+            load_ports: Load ports.
+            discharge_ports: Discharge ports.
             vessel_classes: Vessel classes for which to return the freight e.g.
             VLCC, Aframax etc.
             is_clean: True if it is clean cargo.
@@ -44,8 +44,9 @@ class FreightRatesAPI:
             given criteria.
         """
         query_dict = {
-            "LoadPortId": '{}'.format(load_port_id),
-            "DischargePortId": '{}'.format(discharge_port_id),
+            "LoadPorts": '&LoadPorts='.join([str(lp) for lp in load_ports]),
+            "DischargePorts": '&DischargePorts='.join([str(dp) for dp in
+                                                       discharge_ports]),
             "IsClean": '{}'.format(is_clean),
             "Date": date.isoformat()
         }
@@ -55,7 +56,7 @@ class FreightRatesAPI:
 
         query_string: QueryString = query_dict
         response = self.__connection._make_get_request(
-            "freight/api/Freight/v2/pricing", query_string
+            "freight/api/Freight/v3/pricing", query_string
         )
         response.raise_for_status()
         response_json = response.json()
