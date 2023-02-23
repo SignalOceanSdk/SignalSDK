@@ -8,26 +8,27 @@ from signal_ocean.freight_rates import FreightRatesAPI, FreightPricing
 from signal_ocean.freight_rates.enums import VesselClass
 
 
-@pytest.mark.parametrize('load_port_id, discharge_port_id, vessel_classes, '
+@pytest.mark.parametrize('load_ports, discharge_ports, vessel_classes, '
                          'is_clean, date, ',
                          [
-                             (3153, 3157, ["VLCC", "Aframax"], 0,
-                              date.today())
+                             ([3153, 3211], [3157, 3158], ["VLCC", "Aframax"],
+                              0, date.today())
                          ])
-def test_get_freight_pricing(load_port_id, discharge_port_id, vessel_classes,
+def test_get_freight_pricing(load_ports, discharge_ports, vessel_classes,
                              is_clean, date):
     connection = MagicMock()
     api = FreightRatesAPI(connection)
 
-    fp_object = api.get_freight_pricing(load_port_id, discharge_port_id,
+    fp_object = api.get_freight_pricing(load_ports, discharge_ports,
                                         vessel_classes, is_clean, date)
 
     assert isinstance(fp_object, tuple)
     assert all([isinstance(fp, FreightPricing) for fp in fp_object])
 
     query_dict = {
-        "LoadPortId": '{}'.format(load_port_id),
-        "DischargePortId": '{}'.format(discharge_port_id),
+        "LoadPorts": '&LoadPorts='.join([str(lp) for lp in load_ports]),
+        "DischargePorts": '&DischargePorts='.join([str(dp) for dp in
+                                                       discharge_ports]),
         "IsClean": '{}'.format(is_clean),
         "Date": date.isoformat()
     }
@@ -36,7 +37,7 @@ def test_get_freight_pricing(load_port_id, discharge_port_id, vessel_classes,
     query_dict['VesselClasses'] = vessel_classes_param
 
     connection._make_get_request.assert_called_with(
-        "freight/api/Freight/v2/pricing",
+        "freight/api/Freight/v3/pricing",
         query_dict
     )
 

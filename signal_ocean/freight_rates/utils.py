@@ -25,8 +25,10 @@ def create_dataframe(
     response_dict['canal_costs'] = response_dict['costs'].canal
     response_dict['other_port_expenses'] = \
         response_dict['costs'].other_port_expenses
-    response_dict['load_port'] = response_dict['load_port'].name
-    response_dict['discharge_port'] = response_dict['discharge_port'].name
+    response_dict['load_ports'] = [lp.name for lp in
+                                   response_dict['load_ports']]
+    response_dict['discharge_ports'] = [dp.name for dp in
+                                        response_dict['discharge_ports']]
     response_dict.pop('costs')
     df = pd.DataFrame([response_dict])
     for column_name, _ in df.iteritems():

@@ -10,9 +10,8 @@ def parse_freight_pricing(json_list: List[Mapping[str, Any]]) -> \
         costs = json.get("costs")
         if isinstance(costs, list):
             costs = costs[0]
-        empty_port = {"name": None, "country": None, "area": None}
-        load_port = json.get("loadPort", empty_port)
-        discharge_port = json.get("dischargePort", empty_port)
+        load_ports = json.get("loadPorts")
+        discharge_ports = json.get("dischargePorts")
         pricing = FreightPricing(
             cast(str, json.get("vesselClass")),
             cast(float, json.get("rate")),
@@ -23,12 +22,14 @@ def parse_freight_pricing(json_list: List[Mapping[str, Any]]) -> \
             cast(float, json.get("totalFreightCost")),
             cast(float, json.get("totalFreightRate")),
             cast(str, json.get("routeType")),
-            Port(name=load_port.get("name"),
-                 country=load_port.get("country"),
-                 area=load_port.get("area")),
-            Port(name=discharge_port.get("name"),
-                 country=discharge_port.get("country"),
-                 area=discharge_port.get("area")),
+            [Port(name=load_port.get("name"),
+                  country=load_port.get("country"),
+                  area=load_port.get("area"))
+             for load_port in load_ports],
+            [Port(name=discharge_port.get("name"),
+                  country=discharge_port.get("country"),
+                  area=discharge_port.get("area"))
+             for discharge_port in discharge_ports],
             cast(float, json.get("quantity")),
             cast(bool, json.get("minFlatAugustaUsed")),
             cast(List[str], json.get("routingChoices")),

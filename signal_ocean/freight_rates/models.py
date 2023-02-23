@@ -49,8 +49,8 @@ class FreightPricing:
         total_freight_cost: Total freight cost.
         total_freight_rate: Total freight rate.
         route_type: Route type.
-        load_port: Load port.
-        discharge_port: Discharge port.
+        load_ports: Load ports.
+        discharge_ports: Discharge ports.
         quantity: Quantity.
         min_flat_augusta_used: True if minimum flat Augusta was used.
         routing_choices: Routing choices (e.g. Suez, Panama etc).
@@ -64,8 +64,8 @@ class FreightPricing:
     total_freight_cost: float
     total_freight_rate: float
     route_type: str
-    load_port: Port
-    discharge_port: Port
+    load_ports: List[Port]
+    discharge_ports: List[Port]
     quantity: float
     min_flat_augusta_used: bool
     routing_choices: Optional[List[str]]
