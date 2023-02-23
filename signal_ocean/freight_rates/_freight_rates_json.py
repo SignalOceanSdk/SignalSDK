@@ -10,8 +10,9 @@ def parse_freight_pricing(json_list: List[Mapping[str, Any]]) -> \
         costs = json.get("costs")
         if isinstance(costs, list):
             costs = costs[0]
-        load_ports = json.get("loadPorts")
-        discharge_ports = json.get("dischargePorts")
+        empty_ports = [{"name": None, "country": None, "area": None}]
+        load_ports = json.get("loadPorts", empty_ports)
+        discharge_ports = json.get("dischargePorts", empty_ports)
         pricing = FreightPricing(
             cast(str, json.get("vesselClass")),
             cast(float, json.get("rate")),
