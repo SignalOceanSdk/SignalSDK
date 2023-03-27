@@ -1,5 +1,7 @@
 """Models that difine the schemas of Port Congestion Data."""
-from datetime import datetime, date
+from dataclasses import dataclass
+from datetime import date, datetime
+from typing import List, Union
 
 
 class LiveCongestion:
@@ -109,3 +111,37 @@ class VesselsCongestionData:
     latitude: float
     longitude: float
     arrival_date: datetime
+
+
+@dataclass(frozen=True)
+class PortCongestionTimeSeriesEntry:
+    """
+    A Port Congestion API timeseries entry representation.
+
+    Attributes:
+        queue (int): The port queue size.
+        arrivals (int): The port arrivals amount.
+        departures (int): The port departures amount.
+        avg_days_since_arrival (float): Average days since arrival.
+        avg_wait_estimate (float): Average waiting time estimate.
+        observation_date (datetime): Corresponding day.
+    """
+    queue: int
+    arrivals: int
+    departures: int
+    avg_days_since_arrival: float
+    avg_wait_estimate: float
+    observation_date: datetime
+
+
+@dataclass(frozen=True)
+class PortCongestionQueryResponse:
+    """
+    Port Congestion API Query endpoint response model.
+
+    Attributes:
+        time_series (list): A list of PortCongestionTimeSeriesEntries
+        query_errors (list, optional): A potential list of errors reported from the endpoint.
+    """
+    time_series: List[PortCongestionTimeSeriesEntry]
+    query_errors: Union[list, None] = None

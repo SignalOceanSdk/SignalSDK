@@ -164,8 +164,8 @@ def parse_model(data: Union[Dict[str, Any], Iterable[Any], Any],
                 return parse_model(
                     data, candidate_cls, rename_keys=rename_keys
                 )
-            except (TypeError, ValueError):
-                pass
+            except (TypeError, ValueError, NotImplementedError):
+                continue
 
         raise ValueError(f'Cannot parse value {data} as {cls}')
 
