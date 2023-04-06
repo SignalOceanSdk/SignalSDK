@@ -95,6 +95,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 4.1.0.md'
       - 'releases/Version 4.0.0.md'
       - 'releases/Version 3.0.0.md'
       - 'releases/Version 2.1.1.md'
