@@ -4,30 +4,22 @@ from signal_ocean.port_expenses import PortExpenses, Port
 from signal_ocean.port_expenses import _port_expenses_json
 
 
-@pytest.mark.parametrize('port_id, port_canal, towage, berth, port_dues, '
-    'lighthouse, mooring, pilotage, quay, anchorage, agency_fees, other, '
-    'suez_dues, total_cost, miscellaneous_dues, is_estimated, canal_dues, '
-    'berth_dues, lighthouse_dues, mooring_unmooring, quay_dues, anchorage_dues, '
-    'port_agents', [
-    (3153, 0, 0, 0, 40196, 594, 0, 0, 0, 0, 1500, 2277, 0, 44568, 0, False, 0,
-     0, 0, 0, 0, 0, [])
+@pytest.mark.parametrize('port_id, port_canal, towage, port_dues, pilotage, '
+    'agency_fees, other, suez_dues, total_cost, miscellaneous_dues, '
+    'is_estimated, canal_dues, berth_dues, lighthouse_dues, mooring_unmooring, '
+    'quay_dues, anchorage_dues, port_agents', [
+    (3153, 0, 0, 40196, 0, 1500, 2277, 0, 44568, 0, False, 0, 0, 0, 0, 0, 0, [])
 ])
-def test_parse_port_expenses(port_id, port_canal, towage, berth, port_dues,
-    lighthouse, mooring, pilotage, quay, anchorage, agency_fees, other,
-    suez_dues, total_cost, miscellaneous_dues, is_estimated, canal_dues,
-    berth_dues, lighthouse_dues, mooring_unmooring, quay_dues, anchorage_dues,
-    port_agents):
+def test_parse_port_expenses(port_id, port_canal, towage, port_dues, pilotage,
+    agency_fees, other, suez_dues, total_cost, miscellaneous_dues, is_estimated,
+    canal_dues, berth_dues, lighthouse_dues, mooring_unmooring, quay_dues,
+    anchorage_dues, port_agents):
     port_expenses_json = {
         "PortId": port_id,
         "PortCanal": port_canal,
         "Towage": towage,
-        "Berth": berth,
         "PortDues": port_dues,
-        "Lighthouse": lighthouse,
-        "Mooring": mooring,
         "Pilotage": pilotage,
-        "Quay": quay,
-        "Anchorage": anchorage,
         "AgencyFees": agency_fees,
         "Other": other,
         "SuezDues": suez_dues,
@@ -49,13 +41,8 @@ def test_parse_port_expenses(port_id, port_canal, towage, berth, port_dues,
     assert pe_object.port_id == port_id
     assert pe_object.port_canal == port_canal
     assert pe_object.towage == towage
-    assert pe_object.berth == berth
     assert pe_object.port_dues == port_dues
-    assert pe_object.lighthouse == lighthouse
-    assert pe_object.mooring == mooring
     assert pe_object.pilotage == pilotage
-    assert pe_object.quay == quay
-    assert pe_object.anchorage == anchorage
     assert pe_object.agency_fees == agency_fees
     assert pe_object.other == other
     assert pe_object.suez_dues == suez_dues
