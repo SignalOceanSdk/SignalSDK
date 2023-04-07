@@ -12,13 +12,8 @@ class PortExpenses:
         port_id: Port ID
         port_canal: Port Canal
         towage: Towage
-        berth: Berth
         port_dues: Port dues
-        lighthouse: Lighthouse
-        mooring: Mooring
         pilotage: Pilotage
-        quay: Quay
-        anchorage: Anchorage
         agency_fees: Agency fees
         other: Other
         suez_dues: Suez dues
@@ -37,13 +32,8 @@ class PortExpenses:
     port_id: int
     port_canal: int
     towage: int
-    berth: int
     port_dues: int
-    lighthouse: int
-    mooring: int
     pilotage: int
-    quay: int
-    anchorage: int
     agency_fees: int
     other: int
     suez_dues: int
