@@ -40,9 +40,7 @@ class PortCongestion:
         self._port_congestion_api = PortCongestionAPI(self.__connection)
 
     def _get_voyages_data(
-        self,
-        voyages_start_date: date,
-        vessel_class_id: int,
+        self, voyages_start_date: date, vessel_class_id: int,
     ) -> Tuple[
         DataSet[Voyage],
         DataSet[VoyageEvent],
@@ -160,9 +158,8 @@ class PortCongestion:
             _filter = _filter & areas_filter
         elif areas and ports:
             areas_ports_filter = (
-                (voyages_extd.area_name_level0_geos.isin(areas)) |
-                (voyages_extd.port_name_geos.isin(ports))
-            )
+                voyages_extd.area_name_level0_geos.isin(areas)
+            ) | (voyages_extd.port_name_geos.isin(ports))
             _filter = _filter & areas_ports_filter
         else:
             pass
@@ -228,9 +225,7 @@ class PortCongestion:
 
         current_port_calls_without_start_time_of_operation = (
             voyages_final_df.start_time_of_operation.isna()
-        ) & (voyages_final_df.event_horizon.isin(
-            ["Current", "Future"]
-        ))
+        ) & (voyages_final_df.event_horizon.isin(["Current", "Future"]))
 
         port_calls_merged_with_previous_stops = (
             voyages_final_df.Exist == "both"
@@ -380,9 +375,8 @@ class PortCongestion:
             "arrival_date",
         ]
 
-        vessels_congestion_data_datetimetz = (
-            vessels_congestion_data.select_dtypes("datetimetz")
-        )
+        vessels_congestion_data_datetimetz = vessels_congestion_data\
+            .select_dtypes("datetimetz")
         vessels_congestion_data[
             vessels_congestion_data_datetimetz.columns
         ] = vessels_congestion_data_datetimetz.apply(
@@ -399,7 +393,7 @@ class PortCongestion:
                 ]
             )[wanted_columns]
             .copy()
-            .reset_index(drop=True)
+            .reset_index(drop=True),
         )
 
         return vessels_congestion_data
@@ -417,11 +411,12 @@ class PortCongestion:
             NumberOfVesselsOverTime.
         """
         num_of_vessels_time_series = cast(
-            DataSet[NumberOfVesselsOverTime], (
+            DataSet[NumberOfVesselsOverTime],
+            (
                 vessels_congestion_data.groupby("day_date")["imo"]
                 .nunique()
                 .reset_index()
-            )
+            ),
         )
 
         num_of_vessels_time_series.columns = ["date", "vessels"]  # type:ignore
@@ -433,7 +428,7 @@ class PortCongestion:
         congestion_start_date: datetime,
         vessel_class_id: int,
         ports: Optional[List[str]] = None,
-        areas: Optional[List[str]] = None
+        areas: Optional[List[str]] = None,
     ) -> DataSet[WaitingTimeOverTime]:
         """Generate waiting time time series.
 
@@ -453,27 +448,35 @@ class PortCongestion:
                     date_from=congestion_start_date.date(),
                     vessel_class_ids=[vessel_class_id],
                     ports=ports,
-                    level_0_areas=areas
+                    level_0_areas=areas,
                 )
             )
         except RuntimeError as exc:
             raise exc
 
         waiting_time_df = (
-            ts_df.rename(columns={"observation_date": "date",
-                         "avg_wait_estimate": "avg_waiting_time"})
+            ts_df.rename(
+                columns={
+                    "observation_date": "date",
+                    "avg_wait_estimate": "avg_waiting_time",
+                }
+            )
             .groupby("date")
             .mean()
             .reset_index()
             .set_index("date")
         )
-        waiting_time_df.avg_waiting_time = waiting_time_df.avg_waiting_time.round(
-            1)
-        waiting_time_df.index = cast(pd.Index, pd.to_datetime(
-            waiting_time_df.index).tz_convert(None))
+        waiting_time_df.avg_waiting_time = waiting_time_df\
+            .avg_waiting_time.round(1)
+        waiting_time_df.index = cast(
+            pd.Index, pd.to_datetime(waiting_time_df.index).tz_convert(None)
+        )
         waiting_time_df = waiting_time_df.reset_index()
 
-        return cast(DataSet[WaitingTimeOverTime], waiting_time_df[["date", "avg_waiting_time"]])
+        return cast(
+            DataSet[WaitingTimeOverTime],
+            waiting_time_df[["date", "avg_waiting_time"]],
+        )
 
     def _calculate_live_port_congestion(
         self, vessels_congestion_data: DataSet[VesselsCongestionData]
@@ -499,8 +502,7 @@ class PortCongestion:
             vessels_at_port_df.days_at_port < 0, "days_at_port"
         ] = None
         return cast(
-            DataSet[LiveCongestion],
-            vessels_at_port_df.reset_index(drop=True)
+            DataSet[LiveCongestion], vessels_at_port_df.reset_index(drop=True)
         )
 
     def get_port_congestion(
@@ -550,28 +552,29 @@ class PortCongestion:
             areas,
         )
 
-        number_of_vessels_over_time = (
-            self._calculate_number_of_vessels_over_time(
-                vessels_congestion_data
-            )
+        num_of_vessels_over_time = self._calculate_number_of_vessels_over_time(
+            vessels_congestion_data
         )
 
         try:
             waiting_time_over_time = self._get_waiting_time_over_time(
                 congestion_start_date, vessel_class_id, ports, areas
             )
-        except RuntimeError as exc:
-            waiting_time_over_time = cast(DataSet[WaitingTimeOverTime], {
-                "date": congestion_start_date.date(),
-                "avg_waiting_time": 0.0
-            })
+        except RuntimeError:
+            waiting_time_over_time = cast(
+                DataSet[WaitingTimeOverTime],
+                {
+                    "date": congestion_start_date.date(),
+                    "avg_waiting_time": 0.0,
+                },
+            )
 
         live_port_congestion = self._calculate_live_port_congestion(
             vessels_congestion_data
         )
 
         return (
-            number_of_vessels_over_time,
+            num_of_vessels_over_time,
             waiting_time_over_time,
             live_port_congestion,
             vessels_congestion_data,

@@ -1,7 +1,7 @@
 """Models that define the schemas of Port Congestion Data."""
 from dataclasses import dataclass
 from datetime import date, datetime
-from typing import List, Optional, Type, Union
+from typing import List, Optional
 
 
 class LiveCongestion:
@@ -126,6 +126,7 @@ class PortCongestionTimeSeriesEntry:
         avg_wait_estimate (float): Average waiting time estimate.
         observation_date (datetime): Corresponding day.
     """
+
     queue: int
     arrivals: int
     departures: int
@@ -141,7 +142,9 @@ class PortCongestionQueryResponse:
 
     Attributes:
         time_series (list): A list of PortCongestionTimeSeriesEntries
-        query_errors (list, optional): A potential list of errors reported from the endpoint.
+        query_errors (list, optional): A potential list of errors reported
+                                       from the endpoint.
     """
+
     time_series: List[PortCongestionTimeSeriesEntry]
     query_errors: Optional[List[str]] = None

@@ -2,7 +2,10 @@ from datetime import date
 from typing import List, Optional
 
 from signal_ocean import Connection
-from signal_ocean.port_congestion.models import PortCongestionQueryResponse, PortCongestionTimeSeriesEntry
+from signal_ocean.port_congestion.models import (
+    PortCongestionQueryResponse,
+    PortCongestionTimeSeriesEntry,
+)
 from signal_ocean.util.request_helpers import get_single
 
 
@@ -16,8 +19,9 @@ class PortCongestionAPI:
         Initializes PortCongestionAPI
 
         Args:
-            connection (Connection, optional): API connection configuration. If not provided, the
-                                               default connection method is used.
+            connection (Connection, optional): API connection configuration.
+                                               If not provided, the default
+                                               connection method is used.
         """
         self.__connection = connection or Connection()
 
@@ -43,23 +47,35 @@ class PortCongestionAPI:
         Args:
             ports (list, optional): A list of Port Names. Defaults to None.
             port_ids (list, optional): A list of Port IDs. Defaults to None.
-            level_0_areas (list, optional): A list of Level 0 Area names. Defaults to None.
-            level_0_area_ids (list, optional): A list of Level 0 Area IDs. Defaults to None.
-            level_1_areas (list, optional): A list of Level 1 Area names. Defaults to None.
-            level_1_area_ids (list, optional): A list of Level 1 Area IDs. Defaults to None.
-            countries (list, optional): A list of Country names. Defaults to None.
-            country_ids (list, optional): A list of Country IDs. Defaults to None.
-            vessel_types (list, optional): A list of Vessel Type names. Defaults to None.
-            vessel_type_ids (list, optional): A list of Vessel Type IDs. Defaults to None.
-            vessel_classes (list, optional): A list of Vessel Class names. Defaults to None.
-            vessel_class_ids (list, optional): A list of Vessel Class IDs. Defaults to None.
-            date_from (date, optional): A Date point to query from. Defaults to None.
+            level_0_areas (list, optional): A list of Level 0 Area names.
+                                            Defaults to None.
+            level_0_area_ids (list, optional): A list of Level 0 Area IDs.
+                                               Defaults to None.
+            level_1_areas (list, optional): A list of Level 1 Area names.
+                                            Defaults to None.
+            level_1_area_ids (list, optional): A list of Level 1 Area IDs.
+                                               Defaults to None.
+            countries (list, optional): A list of Country names.
+                                        Defaults to None.
+            country_ids (list, optional): A list of Country IDs.
+                                          Defaults to None.
+            vessel_types (list, optional): A list of Vessel Type names.
+                                           Defaults to None.
+            vessel_type_ids (list, optional): A list of Vessel Type IDs.
+                                              Defaults to None.
+            vessel_classes (list, optional): A list of Vessel Class names.
+                                             Defaults to None.
+            vessel_class_ids (list, optional): A list of Vessel Class IDs.
+                                               Defaults to None.
+            date_from (date, optional): A Date point to query from.
+                                        Defaults to None.
 
         Raises:
             RuntimeError: In case of any request issue.
 
         Returns:
-            List[PortCongestionTimeSeriesEntry], optional: A list of PortCongestionTimeSeriesEntry or None.
+            List[PortCongestionTimeSeriesEntry], optional:
+                A list of PortCongestionTimeSeriesEntry or None.
         """
         query_url = f"{self.base_url}/query/"
         params = {
@@ -90,6 +106,8 @@ class PortCongestionAPI:
 
         if response.query_errors is not None:
             raise RuntimeError(
-                f"Port Congestion API errors occurred:\n{[error for error in response.query_errors]}")
+                f"Port Congestion API errors occurred:"
+                f"\n{[error for error in response.query_errors]}"
+            )
 
         return response.time_series
