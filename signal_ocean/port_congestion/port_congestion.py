@@ -29,8 +29,6 @@ import pandas as pd
 class PortCongestion:
     """Represents Signal's Port Congestion."""
 
-    _port_congestion_api: PortCongestionAPI = None
-
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes PortCongestion.
 
@@ -72,21 +70,21 @@ class PortCongestion:
             DataSet[Voyage],
             pd.DataFrame(
                 v.__dict__
-                    for v in cast(Tuple[Voyage, ...], voyages_flat.voyages)
+                for v in cast(Tuple[Voyage, ...], voyages_flat.voyages)
             ),
         )
         events_df = cast(
             DataSet[VoyageEvent],
             pd.DataFrame(
                 v.__dict__
-                    for v in cast(Tuple[VoyageEvent, ...], voyages_flat.events)
+                for v in cast(Tuple[VoyageEvent, ...], voyages_flat.events)
             ),
         )
         events_details_df = cast(
             DataSet[VoyageEventDetail],
             pd.DataFrame(
                 v.__dict__
-                    for v in cast(
+                for v in cast(
                     Tuple[VoyageEventDetail, ...], voyages_flat.event_details
                 )
             ),
@@ -95,7 +93,7 @@ class PortCongestion:
             DataSet[VoyageGeo],
             pd.DataFrame(
                 v.__dict__
-                    for v in cast(Tuple[VoyageGeo, ...], voyages_flat.geos)
+                for v in cast(Tuple[VoyageGeo, ...], voyages_flat.geos)
             ).drop_duplicates(),
         )
 
@@ -191,11 +189,11 @@ class PortCongestion:
         )
 
         future_portcalls_extd["stop_portcall_diff"] = (
-                                                          (
-                                                              future_portcalls_extd["arrival_date_fportcalls"]
-                                                              - future_portcalls_extd["sailing_date_stops"]
-                                                          ).dt.total_seconds()
-                                                      ) / 3600
+            (
+                future_portcalls_extd["arrival_date_fportcalls"]
+                - future_portcalls_extd["sailing_date_stops"]
+            ).dt.total_seconds()
+        ) / 3600
 
         future_portcalls_extd = future_portcalls_extd.loc[
             future_portcalls_extd["stop_portcall_diff"] <= 24
@@ -225,12 +223,12 @@ class PortCongestion:
         )
 
         hist_port_calls_without_start_time_of_operation = (
-                                                              voyages_final_df.start_time_of_operation.isna()
-                                                          ) & (voyages_final_df.event_horizon == "Historical")
+            voyages_final_df.start_time_of_operation.isna()
+        ) & (voyages_final_df.event_horizon == "Historical")
 
         current_port_calls_without_start_time_of_operation = (
-                                                                 voyages_final_df.start_time_of_operation.isna()
-                                                             ) & (voyages_final_df.event_horizon.isin(
+            voyages_final_df.start_time_of_operation.isna()
+        ) & (voyages_final_df.event_horizon.isin(
             ["Current", "Future"]
         ))
 
@@ -261,7 +259,7 @@ class PortCongestion:
             hist_port_calls_with_start_time_of_operation
         ].start_time_of_operation.apply(
             lambda x: datetime.combine(x, datetime.min.time())
-                      - timedelta(minutes=1)
+            - timedelta(minutes=1)
         )
 
         voyages_final_df.loc[
@@ -462,14 +460,17 @@ class PortCongestion:
             raise exc
 
         waiting_time_df = (
-            ts_df.rename(columns={"observation_date": "date", "avg_wait_estimate": "avg_waiting_time"})
+            ts_df.rename(columns={"observation_date": "date",
+                         "avg_wait_estimate": "avg_waiting_time"})
             .groupby("date")
             .mean()
             .reset_index()
             .set_index("date")
         )
-        waiting_time_df.avg_waiting_time = waiting_time_df.avg_waiting_time.round(1)
-        waiting_time_df.index = pd.to_datetime(waiting_time_df.index).tz_convert(None)
+        waiting_time_df.avg_waiting_time = waiting_time_df.avg_waiting_time.round(
+            1)
+        waiting_time_df.index = cast(pd.Index, pd.to_datetime(
+            waiting_time_df.index).tz_convert(None))
         waiting_time_df = waiting_time_df.reset_index()
 
         return cast(DataSet[WaitingTimeOverTime], waiting_time_df[["date", "avg_waiting_time"]])
@@ -491,8 +492,8 @@ class PortCongestion:
         ].copy()
 
         vessels_at_port_df["days_at_port"] = (
-                                                 vessels_at_port_df.day_date - vessels_at_port_df["arrival_date"]
-                                             ).dt.total_seconds() / (60 * 60 * 24.0)
+            vessels_at_port_df.day_date - vessels_at_port_df["arrival_date"]
+        ).dt.total_seconds() / (60 * 60 * 24.0)
 
         vessels_at_port_df.loc[
             vessels_at_port_df.days_at_port < 0, "days_at_port"
@@ -560,9 +561,10 @@ class PortCongestion:
                 congestion_start_date, vessel_class_id, ports, areas
             )
         except RuntimeError as exc:
-            waiting_time_over_time = WaitingTimeOverTime()
-            waiting_time_over_time.date = congestion_start_date.date()
-            waiting_time_over_time.avg_waiting_time = 0.0
+            waiting_time_over_time = cast(DataSet[WaitingTimeOverTime], {
+                "date": congestion_start_date.date(),
+                "avg_waiting_time": 0.0
+            })
 
         live_port_congestion = self._calculate_live_port_congestion(
             vessels_congestion_data

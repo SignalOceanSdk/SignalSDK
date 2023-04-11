@@ -1,7 +1,7 @@
-"""Models that difine the schemas of Port Congestion Data."""
+"""Models that define the schemas of Port Congestion Data."""
 from dataclasses import dataclass
 from datetime import date, datetime
-from typing import List, Union
+from typing import List, Optional, Type, Union
 
 
 class LiveCongestion:
@@ -42,7 +42,7 @@ class NumberOfVesselsOverTime:
     Attributes:
         date: Date under consideration.
         number_of_vessels: The number of vessels at
-            port durin that date.
+            port during that date.
     """
 
     date: date
@@ -144,4 +144,4 @@ class PortCongestionQueryResponse:
         query_errors (list, optional): A potential list of errors reported from the endpoint.
     """
     time_series: List[PortCongestionTimeSeriesEntry]
-    query_errors: Union[list, None] = None
+    query_errors: Optional[List[str]] = None

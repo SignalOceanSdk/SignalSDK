@@ -1,8 +1,8 @@
-from datetime import datetime
+from datetime import date
 from typing import List, Optional
 
 from signal_ocean import Connection
-from signal_ocean.port_congestion.models import PortCongestionQueryResponse
+from signal_ocean.port_congestion.models import PortCongestionQueryResponse, PortCongestionTimeSeriesEntry
 from signal_ocean.util.request_helpers import get_single
 
 
@@ -35,8 +35,8 @@ class PortCongestionAPI:
         vessel_type_ids: Optional[List[int]] = None,
         vessel_classes: Optional[List[str]] = None,
         vessel_class_ids: Optional[List[int]] = None,
-        date_from: Optional[datetime.date] = None,
-    ) -> Optional[dict]:
+        date_from: Optional[date] = None,
+    ) -> Optional[List[PortCongestionTimeSeriesEntry]]:
         """
         Exposes Port Congestion's `query` endpoint
 
@@ -59,7 +59,7 @@ class PortCongestionAPI:
             RuntimeError: In case of any request issue.
 
         Returns:
-            dict, optional: A timeseries dict or None.
+            List[PortCongestionTimeSeriesEntry], optional: A list of PortCongestionTimeSeriesEntry or None.
         """
         query_url = f"{self.base_url}/query/"
         params = {
@@ -85,10 +85,11 @@ class PortCongestionAPI:
             query_string=params,
         )
 
-        if response is None:
-            return {}
+        if not response:
+            return None
 
         if response.query_errors is not None:
-            raise RuntimeError(f"Port Congestion API errors occurred:\n{[error for error in response.query_errors]}")
+            raise RuntimeError(
+                f"Port Congestion API errors occurred:\n{[error for error in response.query_errors]}")
 
         return response.time_series
