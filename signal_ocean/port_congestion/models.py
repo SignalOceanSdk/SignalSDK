@@ -115,8 +115,7 @@ class VesselsCongestionData:
 
 @dataclass(frozen=True)
 class PortCongestionTimeSeriesEntry:
-    """
-    A Port Congestion API timeseries entry representation.
+    """A Port Congestion API timeseries entry representation.
 
     Attributes:
         queue (int): The port queue size.
@@ -137,8 +136,7 @@ class PortCongestionTimeSeriesEntry:
 
 @dataclass(frozen=True)
 class PortCongestionQueryResponse:
-    """
-    Port Congestion API Query endpoint response model.
+    """Port Congestion API Query endpoint response model.
 
     Attributes:
         time_series (list): A list of PortCongestionTimeSeriesEntries
