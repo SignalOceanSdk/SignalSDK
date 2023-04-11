@@ -75,7 +75,7 @@ class PortCongestionAPI:
             "VesselTypeIDs": vessel_type_ids,
             "VesselClasses": vessel_classes,
             "VesselClassIDs": vessel_class_ids,
-            "DateFrom": date_from,
+            "DateFrom": date_from.isoformat() if date_from else None,
         }
 
         response = get_single(
