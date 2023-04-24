@@ -425,7 +425,7 @@ class PortCongestion:
 
     def _get_waiting_time_over_time(
         self,
-        congestion_start_date: datetime,
+        congestion_start_date: date,
         vessel_class_id: int,
         ports: Optional[List[str]] = None,
         areas: Optional[List[str]] = None,
@@ -445,7 +445,7 @@ class PortCongestion:
         try:
             ts_df = pd.DataFrame(
                 self._port_congestion_api.query_port_congestion(
-                    date_from=congestion_start_date.date(),
+                    date_from=congestion_start_date,
                     vessel_class_ids=[vessel_class_id],
                     ports=ports,
                     level_0_areas=areas,
@@ -507,7 +507,7 @@ class PortCongestion:
 
     def get_port_congestion(
         self,
-        congestion_start_date: datetime,
+        congestion_start_date: date,
         vessel_class_id: int,
         ports: Optional[List[str]] = None,
         areas: Optional[List[str]] = None,
