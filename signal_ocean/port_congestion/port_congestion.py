@@ -375,8 +375,9 @@ class PortCongestion:
             "arrival_date",
         ]
 
-        vessels_congestion_data_datetimetz = vessels_congestion_data\
-            .select_dtypes("datetimetz")
+        vessels_congestion_data_datetimetz = vessels_congestion_data.select_dtypes(
+            "datetimetz"
+        )
         vessels_congestion_data[
             vessels_congestion_data_datetimetz.columns
         ] = vessels_congestion_data_datetimetz.apply(
@@ -466,8 +467,9 @@ class PortCongestion:
             .reset_index()
             .set_index("date")
         )
-        waiting_time_df.avg_waiting_time = waiting_time_df\
-            .avg_waiting_time.round(1)
+        waiting_time_df.avg_waiting_time = waiting_time_df.avg_waiting_time.round(
+            1
+        )
         waiting_time_df.index = cast(
             pd.Index, pd.to_datetime(waiting_time_df.index).tz_convert(None)
         )
@@ -563,10 +565,7 @@ class PortCongestion:
         except RuntimeError:
             waiting_time_over_time = cast(
                 DataSet[WaitingTimeOverTime],
-                {
-                    "date": congestion_start_date.date(),
-                    "avg_waiting_time": 0.0,
-                },
+                {"date": congestion_start_date, "avg_waiting_time": 0.0,},
             )
 
         live_port_congestion = self._calculate_live_port_congestion(
