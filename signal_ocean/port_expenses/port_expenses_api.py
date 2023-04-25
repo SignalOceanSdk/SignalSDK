@@ -25,7 +25,7 @@ class PortExpensesAPI:
         self.__connection = connection or Connection()
 
     def get_port_expenses(
-        self, imo: int, port_id: int, group_id: int = 1,
+        self, imo: int, port_id: int,
             vessel_type_id: Optional[int] = None,
             estimated_time_of_berth: Optional[datetime] = None,
             estimated_time_of_sail: Optional[datetime] = None,
@@ -42,7 +42,6 @@ class PortExpensesAPI:
         Args:
             imo: The vessel's IMO number.
             port_id: ID of the port to retrieve the expenses for.
-            group_id: Group ID.
             vessel_type_id: Vessel type ID.
             estimated_time_of_berth: Estimated time of berth.
             estimated_time_of_sail: Estimated time of sail.
@@ -60,8 +59,7 @@ class PortExpensesAPI:
         """
         query_dict = {
             "imo": '{}'.format(imo),
-            "portId": '{}'.format(port_id),
-            "groupId": '{}'.format(group_id)
+            "portId": '{}'.format(port_id)
         }
 
         if vessel_type_id is not None:
