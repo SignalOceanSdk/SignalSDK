@@ -25,24 +25,23 @@ def test_get_port_expenses(imo, port_id):
         "port-expenses/api/v1/Port",
         {
             "imo": '{}'.format(imo),
-            "portId": '{}'.format(port_id),
-            "groupId": "1"
+            "portId": '{}'.format(port_id)
         },
     )
 
 
-@pytest.mark.parametrize('imo, port_id, group_id, vessel_type_id, '
+@pytest.mark.parametrize('imo, port_id, vessel_type_id, '
                          'estimated_time_of_berth, estimated_time_of_sail, '
                          'operation, italian_anchorage_dues, cargo_type, '
                          'operation_status, utc_date, historical_tce, '
                          'estimation_status', [
-    (9867621, 3153, 1, 3, datetime(2020, 2, 27, 17, 48, 11),
+    (9867621, 3153, 3, datetime(2020, 2, 27, 17, 48, 11),
      datetime(2020, 2, 27, 17, 48, 11), Operation.DISCHARGE,
      ItalianAnchorageDues.MONTHLY, "test", OperationStatus.LADEN,
      datetime(2020, 2, 27, 17, 48, 11), True,
      EstimationStatus.PRIORITY_TO_ESTIMATES)
 ])
-def test_get_port_expenses_with_optional_params(imo, port_id, group_id,
+def test_get_port_expenses_with_optional_params(imo, port_id,
                                                 vessel_type_id,
                                                 estimated_time_of_berth,
                                                 estimated_time_of_sail,
@@ -54,7 +53,7 @@ def test_get_port_expenses_with_optional_params(imo, port_id, group_id,
     connection = MagicMock()
     api = PortExpensesAPI(connection)
 
-    pe_object = api.get_port_expenses(imo, port_id, group_id,
+    pe_object = api.get_port_expenses(imo, port_id,
                                       vessel_type_id,
                                       estimated_time_of_berth,
                                       estimated_time_of_sail,
@@ -71,7 +70,6 @@ def test_get_port_expenses_with_optional_params(imo, port_id, group_id,
         {
             "imo": '{}'.format(imo),
             "portId": '{}'.format(port_id),
-            "groupId": "1",
             "vesselTypeId": '{}'.format(vessel_type_id),
             "estimatedTimeOfBerth": estimated_time_of_berth.isoformat(),
             "estimatedTimeOfSail": estimated_time_of_sail.isoformat(),
