@@ -1,0 +1,3085 @@
+{
+    "TimeSeries": [
+        {
+            "Queue": 440,
+            "Arrivals": 53,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-03-03"
+        },
+        {
+            "Queue": 438,
+            "Arrivals": 51,
+            "Departures": 64,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2022-03-04"
+        },
+        {
+            "Queue": 437,
+            "Arrivals": 63,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-03-05"
+        },
+        {
+            "Queue": 436,
+            "Arrivals": 48,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-03-06"
+        },
+        {
+            "Queue": 436,
+            "Arrivals": 51,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-07"
+        },
+        {
+            "Queue": 435,
+            "Arrivals": 57,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-08"
+        },
+        {
+            "Queue": 423,
+            "Arrivals": 45,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-03-09"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 61,
+            "Departures": 39,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-03-10"
+        },
+        {
+            "Queue": 444,
+            "Arrivals": 53,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-03-11"
+        },
+        {
+            "Queue": 453,
+            "Arrivals": 57,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-03-12"
+        },
+        {
+            "Queue": 454,
+            "Arrivals": 57,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-03-13"
+        },
+        {
+            "Queue": 457,
+            "Arrivals": 59,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-14"
+        },
+        {
+            "Queue": 458,
+            "Arrivals": 58,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-15"
+        },
+        {
+            "Queue": 456,
+            "Arrivals": 49,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-16"
+        },
+        {
+            "Queue": 467,
+            "Arrivals": 63,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-17"
+        },
+        {
+            "Queue": 456,
+            "Arrivals": 41,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-18"
+        },
+        {
+            "Queue": 466,
+            "Arrivals": 63,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-19"
+        },
+        {
+            "Queue": 474,
+            "Arrivals": 65,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-20"
+        },
+        {
+            "Queue": 481,
+            "Arrivals": 64,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-21"
+        },
+        {
+            "Queue": 453,
+            "Arrivals": 35,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-03-22"
+        },
+        {
+            "Queue": 450,
+            "Arrivals": 52,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-03-23"
+        },
+        {
+            "Queue": 456,
+            "Arrivals": 63,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-03-24"
+        },
+        {
+            "Queue": 459,
+            "Arrivals": 58,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-25"
+        },
+        {
+            "Queue": 470,
+            "Arrivals": 69,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-03-26"
+        },
+        {
+            "Queue": 464,
+            "Arrivals": 47,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-03-27"
+        },
+        {
+            "Queue": 464,
+            "Arrivals": 57,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-28"
+        },
+        {
+            "Queue": 464,
+            "Arrivals": 51,
+            "Departures": 68,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-29"
+        },
+        {
+            "Queue": 459,
+            "Arrivals": 63,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-30"
+        },
+        {
+            "Queue": 466,
+            "Arrivals": 66,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-03-31"
+        },
+        {
+            "Queue": 450,
+            "Arrivals": 45,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-04-01"
+        },
+        {
+            "Queue": 446,
+            "Arrivals": 56,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-04-02"
+        },
+        {
+            "Queue": 449,
+            "Arrivals": 59,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-04-03"
+        },
+        {
+            "Queue": 444,
+            "Arrivals": 49,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-04-04"
+        },
+        {
+            "Queue": 439,
+            "Arrivals": 58,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-04-05"
+        },
+        {
+            "Queue": 437,
+            "Arrivals": 50,
+            "Departures": 44,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-04-06"
+        },
+        {
+            "Queue": 445,
+            "Arrivals": 52,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-04-07"
+        },
+        {
+            "Queue": 443,
+            "Arrivals": 57,
+            "Departures": 47,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-04-08"
+        },
+        {
+            "Queue": 447,
+            "Arrivals": 51,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-04-09"
+        },
+        {
+            "Queue": 450,
+            "Arrivals": 59,
+            "Departures": 68,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-04-10"
+        },
+        {
+            "Queue": 436,
+            "Arrivals": 54,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-04-11"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 56,
+            "Departures": 46,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-04-12"
+        },
+        {
+            "Queue": 441,
+            "Arrivals": 58,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-04-13"
+        },
+        {
+            "Queue": 458,
+            "Arrivals": 67,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-04-14"
+        },
+        {
+            "Queue": 457,
+            "Arrivals": 54,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-04-15"
+        },
+        {
+            "Queue": 459,
+            "Arrivals": 50,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-04-16"
+        },
+        {
+            "Queue": 471,
+            "Arrivals": 61,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-04-17"
+        },
+        {
+            "Queue": 474,
+            "Arrivals": 57,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-04-18"
+        },
+        {
+            "Queue": 478,
+            "Arrivals": 63,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-04-19"
+        },
+        {
+            "Queue": 475,
+            "Arrivals": 50,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-04-20"
+        },
+        {
+            "Queue": 473,
+            "Arrivals": 55,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-04-21"
+        },
+        {
+            "Queue": 462,
+            "Arrivals": 51,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-04-22"
+        },
+        {
+            "Queue": 469,
+            "Arrivals": 66,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-04-23"
+        },
+        {
+            "Queue": 452,
+            "Arrivals": 39,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-04-24"
+        },
+        {
+            "Queue": 462,
+            "Arrivals": 60,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-04-25"
+        },
+        {
+            "Queue": 463,
+            "Arrivals": 51,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-04-26"
+        },
+        {
+            "Queue": 454,
+            "Arrivals": 53,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-04-27"
+        },
+        {
+            "Queue": 445,
+            "Arrivals": 47,
+            "Departures": 69,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-04-28"
+        },
+        {
+            "Queue": 448,
+            "Arrivals": 72,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-04-29"
+        },
+        {
+            "Queue": 460,
+            "Arrivals": 63,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-04-30"
+        },
+        {
+            "Queue": 456,
+            "Arrivals": 58,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-05-01"
+        },
+        {
+            "Queue": 446,
+            "Arrivals": 50,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-05-02"
+        },
+        {
+            "Queue": 432,
+            "Arrivals": 44,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-05-03"
+        },
+        {
+            "Queue": 436,
+            "Arrivals": 56,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-04"
+        },
+        {
+            "Queue": 433,
+            "Arrivals": 51,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-05"
+        },
+        {
+            "Queue": 445,
+            "Arrivals": 69,
+            "Departures": 64,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-06"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 49,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-07"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 51,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-05-08"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 58,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-09"
+        },
+        {
+            "Queue": 442,
+            "Arrivals": 68,
+            "Departures": 73,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-05-10"
+        },
+        {
+            "Queue": 435,
+            "Arrivals": 66,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-11"
+        },
+        {
+            "Queue": 425,
+            "Arrivals": 53,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-05-12"
+        },
+        {
+            "Queue": 447,
+            "Arrivals": 73,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-05-13"
+        },
+        {
+            "Queue": 466,
+            "Arrivals": 69,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-14"
+        },
+        {
+            "Queue": 478,
+            "Arrivals": 60,
+            "Departures": 69,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-15"
+        },
+        {
+            "Queue": 468,
+            "Arrivals": 59,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-16"
+        },
+        {
+            "Queue": 498,
+            "Arrivals": 78,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-17"
+        },
+        {
+            "Queue": 491,
+            "Arrivals": 55,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-18"
+        },
+        {
+            "Queue": 496,
+            "Arrivals": 58,
+            "Departures": 69,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-19"
+        },
+        {
+            "Queue": 488,
+            "Arrivals": 61,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-20"
+        },
+        {
+            "Queue": 468,
+            "Arrivals": 40,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-05-21"
+        },
+        {
+            "Queue": 466,
+            "Arrivals": 61,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-22"
+        },
+        {
+            "Queue": 475,
+            "Arrivals": 66,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-23"
+        },
+        {
+            "Queue": 473,
+            "Arrivals": 52,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-24"
+        },
+        {
+            "Queue": 473,
+            "Arrivals": 59,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-05-25"
+        },
+        {
+            "Queue": 470,
+            "Arrivals": 57,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-26"
+        },
+        {
+            "Queue": 460,
+            "Arrivals": 53,
+            "Departures": 71,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-05-27"
+        },
+        {
+            "Queue": 452,
+            "Arrivals": 63,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 6.2,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-05-28"
+        },
+        {
+            "Queue": 447,
+            "Arrivals": 47,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 6.4,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-05-29"
+        },
+        {
+            "Queue": 443,
+            "Arrivals": 56,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 6.3,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2022-05-30"
+        },
+        {
+            "Queue": 441,
+            "Arrivals": 58,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 6.2,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-05-31"
+        },
+        {
+            "Queue": 447,
+            "Arrivals": 69,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-01"
+        },
+        {
+            "Queue": 453,
+            "Arrivals": 58,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-02"
+        },
+        {
+            "Queue": 452,
+            "Arrivals": 57,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-06-03"
+        },
+        {
+            "Queue": 475,
+            "Arrivals": 79,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-04"
+        },
+        {
+            "Queue": 465,
+            "Arrivals": 49,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-05"
+        },
+        {
+            "Queue": 469,
+            "Arrivals": 64,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-06"
+        },
+        {
+            "Queue": 471,
+            "Arrivals": 61,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-07"
+        },
+        {
+            "Queue": 463,
+            "Arrivals": 54,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-08"
+        },
+        {
+            "Queue": 457,
+            "Arrivals": 60,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-09"
+        },
+        {
+            "Queue": 456,
+            "Arrivals": 52,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-10"
+        },
+        {
+            "Queue": 444,
+            "Arrivals": 43,
+            "Departures": 43,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2022-06-11"
+        },
+        {
+            "Queue": 462,
+            "Arrivals": 61,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-12"
+        },
+        {
+            "Queue": 455,
+            "Arrivals": 58,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-13"
+        },
+        {
+            "Queue": 467,
+            "Arrivals": 66,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-06-14"
+        },
+        {
+            "Queue": 463,
+            "Arrivals": 49,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-06-15"
+        },
+        {
+            "Queue": 474,
+            "Arrivals": 63,
+            "Departures": 72,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-16"
+        },
+        {
+            "Queue": 458,
+            "Arrivals": 56,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-17"
+        },
+        {
+            "Queue": 469,
+            "Arrivals": 70,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-18"
+        },
+        {
+            "Queue": 470,
+            "Arrivals": 59,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-06-19"
+        },
+        {
+            "Queue": 474,
+            "Arrivals": 54,
+            "Departures": 68,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-06-20"
+        },
+        {
+            "Queue": 472,
+            "Arrivals": 66,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-06-21"
+        },
+        {
+            "Queue": 471,
+            "Arrivals": 58,
+            "Departures": 67,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-06-22"
+        },
+        {
+            "Queue": 461,
+            "Arrivals": 57,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-23"
+        },
+        {
+            "Queue": 446,
+            "Arrivals": 43,
+            "Departures": 68,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-24"
+        },
+        {
+            "Queue": 432,
+            "Arrivals": 54,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-25"
+        },
+        {
+            "Queue": 442,
+            "Arrivals": 70,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-26"
+        },
+        {
+            "Queue": 435,
+            "Arrivals": 51,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-06-27"
+        },
+        {
+            "Queue": 407,
+            "Arrivals": 37,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 6.2,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2022-06-28"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 57,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-29"
+        },
+        {
+            "Queue": 417,
+            "Arrivals": 66,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-06-30"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 64,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-07-01"
+        },
+        {
+            "Queue": 418,
+            "Arrivals": 55,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-07-02"
+        },
+        {
+            "Queue": 421,
+            "Arrivals": 65,
+            "Departures": 67,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-07-03"
+        },
+        {
+            "Queue": 412,
+            "Arrivals": 58,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-07-04"
+        },
+        {
+            "Queue": 427,
+            "Arrivals": 63,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-05"
+        },
+        {
+            "Queue": 418,
+            "Arrivals": 45,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-06"
+        },
+        {
+            "Queue": 411,
+            "Arrivals": 45,
+            "Departures": 69,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-07"
+        },
+        {
+            "Queue": 407,
+            "Arrivals": 65,
+            "Departures": 42,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-08"
+        },
+        {
+            "Queue": 425,
+            "Arrivals": 60,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-09"
+        },
+        {
+            "Queue": 414,
+            "Arrivals": 46,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-10"
+        },
+        {
+            "Queue": 403,
+            "Arrivals": 48,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-11"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 71,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-12"
+        },
+        {
+            "Queue": 417,
+            "Arrivals": 53,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-13"
+        },
+        {
+            "Queue": 434,
+            "Arrivals": 70,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-07-14"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 50,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-07-15"
+        },
+        {
+            "Queue": 421,
+            "Arrivals": 52,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-16"
+        },
+        {
+            "Queue": 422,
+            "Arrivals": 60,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-17"
+        },
+        {
+            "Queue": 438,
+            "Arrivals": 65,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-07-18"
+        },
+        {
+            "Queue": 445,
+            "Arrivals": 58,
+            "Departures": 64,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-19"
+        },
+        {
+            "Queue": 431,
+            "Arrivals": 50,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-20"
+        },
+        {
+            "Queue": 439,
+            "Arrivals": 57,
+            "Departures": 67,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-07-21"
+        },
+        {
+            "Queue": 427,
+            "Arrivals": 55,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-22"
+        },
+        {
+            "Queue": 418,
+            "Arrivals": 48,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-23"
+        },
+        {
+            "Queue": 420,
+            "Arrivals": 52,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-24"
+        },
+        {
+            "Queue": 417,
+            "Arrivals": 51,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-07-25"
+        },
+        {
+            "Queue": 398,
+            "Arrivals": 39,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-07-26"
+        },
+        {
+            "Queue": 390,
+            "Arrivals": 51,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-07-27"
+        },
+        {
+            "Queue": 383,
+            "Arrivals": 58,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-07-28"
+        },
+        {
+            "Queue": 375,
+            "Arrivals": 53,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-07-29"
+        },
+        {
+            "Queue": 378,
+            "Arrivals": 54,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-07-30"
+        },
+        {
+            "Queue": 387,
+            "Arrivals": 59,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-07-31"
+        },
+        {
+            "Queue": 393,
+            "Arrivals": 62,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-08-01"
+        },
+        {
+            "Queue": 401,
+            "Arrivals": 59,
+            "Departures": 70,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-08-02"
+        },
+        {
+            "Queue": 390,
+            "Arrivals": 59,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 4.8,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-03"
+        },
+        {
+            "Queue": 389,
+            "Arrivals": 52,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-08-04"
+        },
+        {
+            "Queue": 390,
+            "Arrivals": 51,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 4.9,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-05"
+        },
+        {
+            "Queue": 396,
+            "Arrivals": 55,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-06"
+        },
+        {
+            "Queue": 377,
+            "Arrivals": 44,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-08-07"
+        },
+        {
+            "Queue": 386,
+            "Arrivals": 57,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-08-08"
+        },
+        {
+            "Queue": 383,
+            "Arrivals": 54,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-08-09"
+        },
+        {
+            "Queue": 374,
+            "Arrivals": 52,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-08-10"
+        },
+        {
+            "Queue": 366,
+            "Arrivals": 57,
+            "Departures": 45,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-11"
+        },
+        {
+            "Queue": 377,
+            "Arrivals": 56,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-08-12"
+        },
+        {
+            "Queue": 372,
+            "Arrivals": 53,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-08-13"
+        },
+        {
+            "Queue": 381,
+            "Arrivals": 67,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-08-14"
+        },
+        {
+            "Queue": 392,
+            "Arrivals": 69,
+            "Departures": 46,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-08-15"
+        },
+        {
+            "Queue": 394,
+            "Arrivals": 48,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-08-16"
+        },
+        {
+            "Queue": 393,
+            "Arrivals": 50,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-17"
+        },
+        {
+            "Queue": 391,
+            "Arrivals": 58,
+            "Departures": 46,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-18"
+        },
+        {
+            "Queue": 395,
+            "Arrivals": 50,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-19"
+        },
+        {
+            "Queue": 399,
+            "Arrivals": 65,
+            "Departures": 37,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-20"
+        },
+        {
+            "Queue": 423,
+            "Arrivals": 61,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-21"
+        },
+        {
+            "Queue": 426,
+            "Arrivals": 64,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-22"
+        },
+        {
+            "Queue": 409,
+            "Arrivals": 46,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-23"
+        },
+        {
+            "Queue": 399,
+            "Arrivals": 55,
+            "Departures": 47,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-24"
+        },
+        {
+            "Queue": 411,
+            "Arrivals": 59,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-25"
+        },
+        {
+            "Queue": 415,
+            "Arrivals": 52,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-26"
+        },
+        {
+            "Queue": 418,
+            "Arrivals": 56,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-27"
+        },
+        {
+            "Queue": 414,
+            "Arrivals": 55,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-28"
+        },
+        {
+            "Queue": 397,
+            "Arrivals": 43,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-29"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 68,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-08-30"
+        },
+        {
+            "Queue": 403,
+            "Arrivals": 52,
+            "Departures": 73,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-08-31"
+        },
+        {
+            "Queue": 387,
+            "Arrivals": 57,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 4.9,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-01"
+        },
+        {
+            "Queue": 381,
+            "Arrivals": 42,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-02"
+        },
+        {
+            "Queue": 372,
+            "Arrivals": 49,
+            "Departures": 43,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-09-03"
+        },
+        {
+            "Queue": 372,
+            "Arrivals": 43,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-09-04"
+        },
+        {
+            "Queue": 364,
+            "Arrivals": 43,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-09-05"
+        },
+        {
+            "Queue": 379,
+            "Arrivals": 65,
+            "Departures": 45,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-06"
+        },
+        {
+            "Queue": 398,
+            "Arrivals": 64,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-09-07"
+        },
+        {
+            "Queue": 402,
+            "Arrivals": 56,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-09-08"
+        },
+        {
+            "Queue": 405,
+            "Arrivals": 54,
+            "Departures": 44,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-09-09"
+        },
+        {
+            "Queue": 426,
+            "Arrivals": 65,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-09-10"
+        },
+        {
+            "Queue": 431,
+            "Arrivals": 66,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-09-11"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 54,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-09-12"
+        },
+        {
+            "Queue": 407,
+            "Arrivals": 51,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-09-13"
+        },
+        {
+            "Queue": 384,
+            "Arrivals": 42,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-09-14"
+        },
+        {
+            "Queue": 385,
+            "Arrivals": 54,
+            "Departures": 44,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-09-15"
+        },
+        {
+            "Queue": 399,
+            "Arrivals": 58,
+            "Departures": 46,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-16"
+        },
+        {
+            "Queue": 416,
+            "Arrivals": 63,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-17"
+        },
+        {
+            "Queue": 425,
+            "Arrivals": 72,
+            "Departures": 47,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-18"
+        },
+        {
+            "Queue": 435,
+            "Arrivals": 57,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-19"
+        },
+        {
+            "Queue": 446,
+            "Arrivals": 66,
+            "Departures": 71,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-20"
+        },
+        {
+            "Queue": 435,
+            "Arrivals": 60,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-21"
+        },
+        {
+            "Queue": 457,
+            "Arrivals": 73,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-09-22"
+        },
+        {
+            "Queue": 463,
+            "Arrivals": 58,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-09-23"
+        },
+        {
+            "Queue": 450,
+            "Arrivals": 53,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-09-24"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 40,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-09-25"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 51,
+            "Departures": 70,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-09-26"
+        },
+        {
+            "Queue": 397,
+            "Arrivals": 48,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-09-27"
+        },
+        {
+            "Queue": 398,
+            "Arrivals": 60,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-09-28"
+        },
+        {
+            "Queue": 405,
+            "Arrivals": 64,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-09-29"
+        },
+        {
+            "Queue": 398,
+            "Arrivals": 59,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-09-30"
+        },
+        {
+            "Queue": 397,
+            "Arrivals": 56,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-10-01"
+        },
+        {
+            "Queue": 402,
+            "Arrivals": 57,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-10-02"
+        },
+        {
+            "Queue": 391,
+            "Arrivals": 51,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-03"
+        },
+        {
+            "Queue": 395,
+            "Arrivals": 52,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-04"
+        },
+        {
+            "Queue": 414,
+            "Arrivals": 69,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-10-05"
+        },
+        {
+            "Queue": 394,
+            "Arrivals": 46,
+            "Departures": 40,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-06"
+        },
+        {
+            "Queue": 413,
+            "Arrivals": 59,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-07"
+        },
+        {
+            "Queue": 414,
+            "Arrivals": 62,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-08"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 64,
+            "Departures": 41,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-09"
+        },
+        {
+            "Queue": 436,
+            "Arrivals": 48,
+            "Departures": 73,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-10"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 66,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-10-11"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 60,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-12"
+        },
+        {
+            "Queue": 426,
+            "Arrivals": 53,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-10-13"
+        },
+        {
+            "Queue": 413,
+            "Arrivals": 53,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-10-14"
+        },
+        {
+            "Queue": 418,
+            "Arrivals": 56,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-10-15"
+        },
+        {
+            "Queue": 418,
+            "Arrivals": 49,
+            "Departures": 67,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-10-16"
+        },
+        {
+            "Queue": 401,
+            "Arrivals": 50,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-10-17"
+        },
+        {
+            "Queue": 397,
+            "Arrivals": 50,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-10-18"
+        },
+        {
+            "Queue": 386,
+            "Arrivals": 42,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 6.2,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2022-10-19"
+        },
+        {
+            "Queue": 389,
+            "Arrivals": 56,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2022-10-20"
+        },
+        {
+            "Queue": 394,
+            "Arrivals": 64,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-10-21"
+        },
+        {
+            "Queue": 389,
+            "Arrivals": 61,
+            "Departures": 68,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-10-22"
+        },
+        {
+            "Queue": 380,
+            "Arrivals": 59,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-10-23"
+        },
+        {
+            "Queue": 366,
+            "Arrivals": 51,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-10-24"
+        },
+        {
+            "Queue": 376,
+            "Arrivals": 70,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-10-25"
+        },
+        {
+            "Queue": 389,
+            "Arrivals": 67,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 4.8,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-10-26"
+        },
+        {
+            "Queue": 386,
+            "Arrivals": 59,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-10-27"
+        },
+        {
+            "Queue": 397,
+            "Arrivals": 59,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-10-28"
+        },
+        {
+            "Queue": 394,
+            "Arrivals": 55,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 4.8,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-10-29"
+        },
+        {
+            "Queue": 387,
+            "Arrivals": 53,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 4.9,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-10-30"
+        },
+        {
+            "Queue": 389,
+            "Arrivals": 68,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 4.5,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-10-31"
+        },
+        {
+            "Queue": 387,
+            "Arrivals": 60,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 4.5,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-01"
+        },
+        {
+            "Queue": 388,
+            "Arrivals": 50,
+            "Departures": 45,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-02"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 61,
+            "Departures": 64,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-03"
+        },
+        {
+            "Queue": 387,
+            "Arrivals": 47,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-04"
+        },
+        {
+            "Queue": 393,
+            "Arrivals": 59,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 4.6,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-05"
+        },
+        {
+            "Queue": 396,
+            "Arrivals": 68,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 4.6,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-06"
+        },
+        {
+            "Queue": 394,
+            "Arrivals": 61,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-07"
+        },
+        {
+            "Queue": 400,
+            "Arrivals": 59,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 4.8,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-08"
+        },
+        {
+            "Queue": 403,
+            "Arrivals": 61,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-09"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 53,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 4.8,
+            "AvgWaitEstimate": 4.7,
+            "ObservationDate": "2022-11-10"
+        },
+        {
+            "Queue": 402,
+            "Arrivals": 55,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.6,
+            "ObservationDate": "2022-11-11"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 62,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.6,
+            "ObservationDate": "2022-11-12"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 55,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 4.6,
+            "AvgWaitEstimate": 4.6,
+            "ObservationDate": "2022-11-13"
+        },
+        {
+            "Queue": 415,
+            "Arrivals": 66,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 4.6,
+            "AvgWaitEstimate": 4.5,
+            "ObservationDate": "2022-11-14"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 62,
+            "Departures": 69,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.6,
+            "ObservationDate": "2022-11-15"
+        },
+        {
+            "Queue": 422,
+            "Arrivals": 72,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 4.6,
+            "AvgWaitEstimate": 4.6,
+            "ObservationDate": "2022-11-16"
+        },
+        {
+            "Queue": 427,
+            "Arrivals": 62,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 4.7,
+            "AvgWaitEstimate": 4.7,
+            "ObservationDate": "2022-11-17"
+        },
+        {
+            "Queue": 438,
+            "Arrivals": 63,
+            "Departures": 64,
+            "AvgDaysSinceArrival": 4.8,
+            "AvgWaitEstimate": 4.7,
+            "ObservationDate": "2022-11-18"
+        },
+        {
+            "Queue": 428,
+            "Arrivals": 54,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-19"
+        },
+        {
+            "Queue": 424,
+            "Arrivals": 62,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-20"
+        },
+        {
+            "Queue": 417,
+            "Arrivals": 52,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.8,
+            "ObservationDate": "2022-11-21"
+        },
+        {
+            "Queue": 411,
+            "Arrivals": 57,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-22"
+        },
+        {
+            "Queue": 406,
+            "Arrivals": 61,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 4.8,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-23"
+        },
+        {
+            "Queue": 406,
+            "Arrivals": 48,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-24"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 53,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-25"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 59,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-26"
+        },
+        {
+            "Queue": 411,
+            "Arrivals": 64,
+            "Departures": 71,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-27"
+        },
+        {
+            "Queue": 407,
+            "Arrivals": 67,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 4.9,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-28"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 52,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-29"
+        },
+        {
+            "Queue": 406,
+            "Arrivals": 50,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-11-30"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 56,
+            "Departures": 44,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-01"
+        },
+        {
+            "Queue": 416,
+            "Arrivals": 52,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-02"
+        },
+        {
+            "Queue": 432,
+            "Arrivals": 65,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-03"
+        },
+        {
+            "Queue": 431,
+            "Arrivals": 53,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-04"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 54,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-05"
+        },
+        {
+            "Queue": 418,
+            "Arrivals": 62,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-06"
+        },
+        {
+            "Queue": 432,
+            "Arrivals": 63,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-07"
+        },
+        {
+            "Queue": 441,
+            "Arrivals": 69,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-08"
+        },
+        {
+            "Queue": 439,
+            "Arrivals": 58,
+            "Departures": 73,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-09"
+        },
+        {
+            "Queue": 428,
+            "Arrivals": 62,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-10"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 53,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-11"
+        },
+        {
+            "Queue": 428,
+            "Arrivals": 60,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 4.9,
+            "ObservationDate": "2022-12-12"
+        },
+        {
+            "Queue": 435,
+            "Arrivals": 59,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-13"
+        },
+        {
+            "Queue": 431,
+            "Arrivals": 56,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-14"
+        },
+        {
+            "Queue": 442,
+            "Arrivals": 72,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-15"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 52,
+            "Departures": 47,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-12-16"
+        },
+        {
+            "Queue": 438,
+            "Arrivals": 56,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-12-17"
+        },
+        {
+            "Queue": 426,
+            "Arrivals": 46,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-12-18"
+        },
+        {
+            "Queue": 434,
+            "Arrivals": 60,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2022-12-19"
+        },
+        {
+            "Queue": 421,
+            "Arrivals": 47,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-12-20"
+        },
+        {
+            "Queue": 422,
+            "Arrivals": 63,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-12-21"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 49,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-12-22"
+        },
+        {
+            "Queue": 400,
+            "Arrivals": 46,
+            "Departures": 67,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-12-23"
+        },
+        {
+            "Queue": 386,
+            "Arrivals": 53,
+            "Departures": 45,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2022-12-24"
+        },
+        {
+            "Queue": 406,
+            "Arrivals": 65,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2022-12-25"
+        },
+        {
+            "Queue": 414,
+            "Arrivals": 62,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-12-26"
+        },
+        {
+            "Queue": 424,
+            "Arrivals": 60,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-12-27"
+        },
+        {
+            "Queue": 426,
+            "Arrivals": 54,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2022-12-28"
+        },
+        {
+            "Queue": 438,
+            "Arrivals": 64,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-12-29"
+        },
+        {
+            "Queue": 440,
+            "Arrivals": 63,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.0,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2022-12-30"
+        },
+        {
+            "Queue": 443,
+            "Arrivals": 57,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2022-12-31"
+        },
+        {
+            "Queue": 448,
+            "Arrivals": 60,
+            "Departures": 69,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.0,
+            "ObservationDate": "2023-01-01"
+        },
+        {
+            "Queue": 431,
+            "Arrivals": 52,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-02"
+        },
+        {
+            "Queue": 433,
+            "Arrivals": 52,
+            "Departures": 65,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-03"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 61,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2023-01-04"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 62,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-05"
+        },
+        {
+            "Queue": 432,
+            "Arrivals": 56,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-06"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 57,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2023-01-07"
+        },
+        {
+            "Queue": 428,
+            "Arrivals": 52,
+            "Departures": 72,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-08"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 52,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-09"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 57,
+            "Departures": 41,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-10"
+        },
+        {
+            "Queue": 422,
+            "Arrivals": 59,
+            "Departures": 70,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-11"
+        },
+        {
+            "Queue": 417,
+            "Arrivals": 65,
+            "Departures": 46,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2023-01-12"
+        },
+        {
+            "Queue": 414,
+            "Arrivals": 43,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2023-01-13"
+        },
+        {
+            "Queue": 413,
+            "Arrivals": 56,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2023-01-14"
+        },
+        {
+            "Queue": 417,
+            "Arrivals": 63,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2023-01-15"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 62,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-16"
+        },
+        {
+            "Queue": 437,
+            "Arrivals": 59,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.2,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-17"
+        },
+        {
+            "Queue": 440,
+            "Arrivals": 61,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.1,
+            "AvgWaitEstimate": 5.1,
+            "ObservationDate": "2023-01-18"
+        },
+        {
+            "Queue": 439,
+            "Arrivals": 50,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.3,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2023-01-19"
+        },
+        {
+            "Queue": 433,
+            "Arrivals": 57,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.2,
+            "ObservationDate": "2023-01-20"
+        },
+        {
+            "Queue": 432,
+            "Arrivals": 57,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.3,
+            "ObservationDate": "2023-01-21"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 46,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2023-01-22"
+        },
+        {
+            "Queue": 433,
+            "Arrivals": 57,
+            "Departures": 41,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-01-23"
+        },
+        {
+            "Queue": 437,
+            "Arrivals": 45,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-01-24"
+        },
+        {
+            "Queue": 425,
+            "Arrivals": 50,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-01-25"
+        },
+        {
+            "Queue": 430,
+            "Arrivals": 56,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-01-26"
+        },
+        {
+            "Queue": 409,
+            "Arrivals": 38,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-01-27"
+        },
+        {
+            "Queue": 406,
+            "Arrivals": 49,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-01-28"
+        },
+        {
+            "Queue": 413,
+            "Arrivals": 57,
+            "Departures": 69,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-01-29"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 60,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-01-30"
+        },
+        {
+            "Queue": 406,
+            "Arrivals": 59,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-01-31"
+        },
+        {
+            "Queue": 405,
+            "Arrivals": 54,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-02-01"
+        },
+        {
+            "Queue": 394,
+            "Arrivals": 51,
+            "Departures": 61,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-02-02"
+        },
+        {
+            "Queue": 389,
+            "Arrivals": 56,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-02-03"
+        },
+        {
+            "Queue": 388,
+            "Arrivals": 52,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-04"
+        },
+        {
+            "Queue": 398,
+            "Arrivals": 62,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-05"
+        },
+        {
+            "Queue": 403,
+            "Arrivals": 65,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-02-06"
+        },
+        {
+            "Queue": 393,
+            "Arrivals": 47,
+            "Departures": 50,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-07"
+        },
+        {
+            "Queue": 410,
+            "Arrivals": 67,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.4,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-02-08"
+        },
+        {
+            "Queue": 410,
+            "Arrivals": 49,
+            "Departures": 42,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-02-09"
+        },
+        {
+            "Queue": 431,
+            "Arrivals": 63,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-02-10"
+        },
+        {
+            "Queue": 442,
+            "Arrivals": 64,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-02-11"
+        },
+        {
+            "Queue": 434,
+            "Arrivals": 46,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-02-12"
+        },
+        {
+            "Queue": 447,
+            "Arrivals": 66,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2023-02-13"
+        },
+        {
+            "Queue": 428,
+            "Arrivals": 40,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 6.1,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-02-14"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 53,
+            "Departures": 49,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-02-15"
+        },
+        {
+            "Queue": 453,
+            "Arrivals": 83,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.4,
+            "ObservationDate": "2023-02-16"
+        },
+        {
+            "Queue": 441,
+            "Arrivals": 50,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-02-17"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 46,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-02-18"
+        },
+        {
+            "Queue": 421,
+            "Arrivals": 55,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-19"
+        },
+        {
+            "Queue": 433,
+            "Arrivals": 71,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-20"
+        },
+        {
+            "Queue": 423,
+            "Arrivals": 43,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-21"
+        },
+        {
+            "Queue": 427,
+            "Arrivals": 61,
+            "Departures": 66,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-22"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 47,
+            "Departures": 44,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-23"
+        },
+        {
+            "Queue": 413,
+            "Arrivals": 49,
+            "Departures": 63,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-02-24"
+        },
+        {
+            "Queue": 408,
+            "Arrivals": 59,
+            "Departures": 54,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2023-02-25"
+        },
+        {
+            "Queue": 404,
+            "Arrivals": 50,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2023-02-26"
+        },
+        {
+            "Queue": 388,
+            "Arrivals": 43,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2023-02-27"
+        },
+        {
+            "Queue": 375,
+            "Arrivals": 47,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2023-02-28"
+        },
+        {
+            "Queue": 381,
+            "Arrivals": 59,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-03-01"
+        },
+        {
+            "Queue": 384,
+            "Arrivals": 54,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-03-02"
+        },
+        {
+            "Queue": 384,
+            "Arrivals": 51,
+            "Departures": 48,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2023-03-03"
+        },
+        {
+            "Queue": 392,
+            "Arrivals": 56,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.9,
+            "ObservationDate": "2023-03-04"
+        },
+        {
+            "Queue": 401,
+            "Arrivals": 67,
+            "Departures": 58,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-03-05"
+        },
+        {
+            "Queue": 414,
+            "Arrivals": 71,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-03-06"
+        },
+        {
+            "Queue": 403,
+            "Arrivals": 46,
+            "Departures": 47,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-03-07"
+        },
+        {
+            "Queue": 411,
+            "Arrivals": 55,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-03-08"
+        },
+        {
+            "Queue": 421,
+            "Arrivals": 73,
+            "Departures": 55,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-03-09"
+        },
+        {
+            "Queue": 419,
+            "Arrivals": 53,
+            "Departures": 51,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-03-10"
+        },
+        {
+            "Queue": 417,
+            "Arrivals": 49,
+            "Departures": 43,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-03-11"
+        },
+        {
+            "Queue": 429,
+            "Arrivals": 55,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.7,
+            "ObservationDate": "2023-03-12"
+        },
+        {
+            "Queue": 426,
+            "Arrivals": 54,
+            "Departures": 57,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-03-13"
+        },
+        {
+            "Queue": 425,
+            "Arrivals": 56,
+            "Departures": 59,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-03-14"
+        },
+        {
+            "Queue": 425,
+            "Arrivals": 59,
+            "Departures": 60,
+            "AvgDaysSinceArrival": 5.6,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-03-15"
+        },
+        {
+            "Queue": 426,
+            "Arrivals": 61,
+            "Departures": 62,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-03-16"
+        },
+        {
+            "Queue": 433,
+            "Arrivals": 69,
+            "Departures": 56,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.8,
+            "ObservationDate": "2023-03-17"
+        },
+        {
+            "Queue": 452,
+            "Arrivals": 75,
+            "Departures": 53,
+            "AvgDaysSinceArrival": 5.5,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-03-18"
+        },
+        {
+            "Queue": 455,
+            "Arrivals": 56,
+            "Departures": 67,
+            "AvgDaysSinceArrival": 5.8,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-03-19"
+        },
+        {
+            "Queue": 434,
+            "Arrivals": 46,
+            "Departures": 77,
+            "AvgDaysSinceArrival": 6.0,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-03-20"
+        },
+        {
+            "Queue": 412,
+            "Arrivals": 55,
+            "Departures": 52,
+            "AvgDaysSinceArrival": 5.9,
+            "AvgWaitEstimate": 5.6,
+            "ObservationDate": "2023-03-21"
+        },
+        {
+            "Queue": 431,
+            "Arrivals": 71,
+            "Departures": 0,
+            "AvgDaysSinceArrival": 5.7,
+            "AvgWaitEstimate": 5.5,
+            "ObservationDate": "2023-03-22"
+        }
+    ],
+    "QueryErrors": null
+}
