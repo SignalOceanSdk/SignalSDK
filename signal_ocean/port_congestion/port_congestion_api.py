@@ -41,8 +41,7 @@ class PortCongestionAPI:
         vessel_class_ids: Optional[List[int]] = None,
         date_from: Optional[date] = None,
     ) -> Optional[List[PortCongestionTimeSeriesEntry]]:
-        """Exposes Port Congestion's `query` endpoint.\n
-        Allows querying Port Congestion for ports and/or areas and/or Vessels.
+        """Exposes Port Congestion's `query` endpoint.
 
         Args:
             ports (list, optional): A list of Port Names. Defaults to None.
