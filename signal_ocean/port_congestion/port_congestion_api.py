@@ -1,4 +1,4 @@
-"""Port Congestion API wrapper."""
+"""Signal's Port Congestion API Wrapper."""
 from datetime import date
 from typing import List, Optional
 
@@ -11,7 +11,7 @@ from signal_ocean.util.request_helpers import get_single
 
 
 class PortCongestionAPI:
-    """Represents Signal's Port Congestion API."""
+    """Signal's Port Congestion API Wrapper."""
 
     base_url = "port-congestion-api"
 
@@ -41,7 +41,8 @@ class PortCongestionAPI:
         vessel_class_ids: Optional[List[int]] = None,
         date_from: Optional[date] = None,
     ) -> Optional[List[PortCongestionTimeSeriesEntry]]:
-        """Exposes Port Congestion's `query` endpoint.
+        """Exposes Port Congestion's `query` endpoint.\n
+        Allows querying Port Congestion for ports and/or areas and/or Vessels.
 
         Args:
             ports (list, optional): A list of Port Names. Defaults to None.
