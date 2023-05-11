@@ -1,4 +1,4 @@
-"""Port Congestion API wrapper."""
+"""Signal's Port Congestion API Wrapper."""
 from datetime import date
 from typing import List, Optional
 
@@ -11,7 +11,7 @@ from signal_ocean.util.request_helpers import get_single
 
 
 class PortCongestionAPI:
-    """Represents Signal's Port Congestion API."""
+    """Signal's Port Congestion API Wrapper."""
 
     base_url = "port-congestion-api"
 

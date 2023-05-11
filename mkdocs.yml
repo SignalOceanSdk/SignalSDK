@@ -54,10 +54,10 @@ nav:
         - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
         - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
         - 'examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb'
-    - Port Congestion:
-      - 'port_congestion.md'
+    - Port Congestion API:
+      - 'port_congestion_api.md'
       - Examples:
-        - 'examples/jupyter/PortCongestion/Port_Congestion_in_China-Capes.ipynb'
+        - 'examples/jupyter/PortCongestionAPI/Port_Congestion_API_China-Capes-Afra-Rott.ipynb'
     - Freight Rates:
       - 'freight_rates.md'
       - Examples:
