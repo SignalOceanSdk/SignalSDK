@@ -22,3 +22,5 @@ Now you're ready to fetch some data. See our [examples](docs\examples) on how yo
 # Building and contributing
 
 Check [Contributing.md](Contributing.md) on how you can build and contribute this library. 
+___
+Test
