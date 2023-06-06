@@ -2,7 +2,6 @@
 from datetime import date
 from typing import List, Optional
 
-import requests
 
 from signal_ocean import Connection
 from signal_ocean.port_congestion.models import (
