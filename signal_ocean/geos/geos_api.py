@@ -68,7 +68,8 @@ class GeosAPI:
             "AreaIDLevel0": "area_id_level0",
             "AreaIDLevel1": "area_id_level1",
             "AreaIDLevel2": "area_id_level2",
-            "AreaIDLevel3": "area_id_level3"}
+            "AreaIDLevel3": "area_id_level3",
+            "CountryCodeISO3": "country_code_iso3"}
         url = urljoin(GeosAPI.relative_url, endpoint)
         response = get_single(
             self.__connection,

@@ -37,11 +37,17 @@ class Country:
             Level2 (6), Level3 (7), Invalid (-3),
             NotSet (-2), Unknown (-1).
         location_taxonomy_name: The name of the Location Taxonomy.
+        country_code: Two-letter country codes (ISO).
+        country_code_numeric: Three-digit country codes (ISO).
+        country_code_iso3: Three-letter country codes (ISO).
     """
     country_id: int
     country_name: str
     location_taxonomy_id: int
     location_taxonomy_name: str
+    country_code: Optional[str] = None
+    country_code_numeric: Optional[str] = None
+    country_code_iso3: Optional[str] = None
 
 
 @dataclass(frozen=True)
