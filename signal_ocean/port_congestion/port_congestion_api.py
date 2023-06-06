@@ -2,6 +2,7 @@
 from datetime import date
 from typing import List, Optional
 
+
 from signal_ocean import Connection
 from signal_ocean.port_congestion.models import (
     PortCongestionQueryResponse,
@@ -76,7 +77,7 @@ class PortCongestionAPI:
             List[PortCongestionTimeSeriesEntry], optional:
                 A list of PortCongestionTimeSeriesEntry or None.
         """
-        query_url = f"{self.base_url}/query/"
+        query_url = f"{self.base_url}/api/v1/query/"
         params = {
             "Ports": ports,
             "PortIDs": port_ids,
