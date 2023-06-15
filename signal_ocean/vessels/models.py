@@ -240,9 +240,9 @@ class Vessel:
             of the vessel
         beneficial_owner: Name of the beneficial owner of the vessel
         parallel_body_length: The Parallel Body Length of the vessel
-        heating_coils_fitted: Boolean, denotes whether the vessel is equipped 
-            with a heating coils system. Tanker vessels may be fitted with 
-            heating coils in order to maintain the required temperature of 
+        heating_coils_fitted: Boolean, denotes whether the vessel is equipped
+            with a heating coils system. Tanker vessels may be fitted with
+            heating coils in order to maintain the required temperature of
             the cargo for pumping.
     """
 
