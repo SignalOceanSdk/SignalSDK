@@ -239,6 +239,11 @@ class Vessel:
         beneficial_owner_id: Numeric ID corresponding to the beneficial owner
             of the vessel
         beneficial_owner: Name of the beneficial owner of the vessel
+        parallel_body_length: The Parallel Body Length of the vessel
+        heating_coils_fitted: Boolean, denotes whether the vessel is equipped
+            with a heating coils system. Tanker vessels may be fitted with
+            heating coils in order to maintain the required temperature of
+            the cargo for pumping.
     """
 
     imo: int
@@ -310,3 +315,5 @@ class Vessel:
     crude_oil_washing: Optional[str] = None
     beneficial_owner_id: Optional[int] = None
     beneficial_owner: Optional[str] = None
+    parallel_body_length: Optional[float] = None
+    heating_coils_fitted: Optional[bool] = None
