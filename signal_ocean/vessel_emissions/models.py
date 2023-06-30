@@ -1,13 +1,11 @@
+"""The models for vessel emissions api."""
 from dataclasses import dataclass
-from datetime import datetime
-from enum import Enum
-from typing import Optional, List, Dict, Any
+from typing import Optional, List
 
 
 @dataclass(frozen=True)
 class Emissions:
-    """
-    Contains the reported emissions per gas type
+    """Contains the reported emissions per gas type.
 
     Attributes:
     co2_in_tons: CO2 emissions in tons
@@ -32,8 +30,7 @@ class Emissions:
 
 @dataclass(frozen=True)
 class EmissionsBreakdown:
-    """
-    Contains emissions breakdown for different parts of the Voyage
+    """Contains emissions breakdown for different parts of the Voyage.
 
     Attributes:
         voyage: Vessel Emissions for the voyage
@@ -43,16 +40,15 @@ class EmissionsBreakdown:
         stop: Vessel Emissions for the stops of the voyage
     """
     voyage: Emissions
-    ballast: Optional[Emissions]
-    laden: Optional[Emissions]
-    port_call: Optional[Emissions]
-    stop: Optional[Emissions]
+    ballast: Optional[Emissions] = None
+    laden: Optional[Emissions]= None
+    port_call: Optional[Emissions]= None
+    stop: Optional[Emissions]= None
 
 
 @dataclass(frozen=True)
 class Consumptions:
-    """
-    Contains the reported consumptions per gas type
+    """Contains the reported consumptions per gas type.
 
     Attributes:
     hfo_in_tons: HFO vessel consumption in tons
@@ -64,19 +60,18 @@ class Consumptions:
     total_in_tons: Total vessel consumption in tons
 
     """
-    hfo_in_tons: Optional[float]
-    lfo_in_tons: Optional[float]
-    mgo_in_tons: Optional[float]
-    lng_in_tons: Optional[float]
-    lpg_propane_in_tons: Optional[float]
-    lpg_butane_in_tons: Optional[float]
-    total_in_tons: float
+    hfoin_tons: Optional[float] = None
+    lfoin_tons: Optional[float] = None
+    mgoin_tons: Optional[float] = None
+    lngin_tons: Optional[float] = None
+    lpgpropane_in_tons: Optional[float] = None
+    lpgbutane_in_tons: Optional[float] = None
+    total_in_tons: Optional[float] = None
 
 
 @dataclass(frozen=True)
 class ConsumptionsBreakdown:
-    """
-    Contains consumptions breakdown for different parts of the Voyage
+    """Contains consumptions breakdown for different parts of the Voyage.
 
     Attributes:
         voyage: Vessel Consumptions for the voyage
@@ -86,16 +81,15 @@ class ConsumptionsBreakdown:
         stop: Vessel Consumptions for the stops of the voyage
     """
     voyage: Consumptions
-    ballast: Optional[Consumptions]
-    laden: Optional[Consumptions]
-    port_call: Optional[Consumptions]
-    stop: Optional[Consumptions]
+    ballast: Optional[Consumptions]= None
+    laden: Optional[Consumptions]= None
+    port_call: Optional[Consumptions]= None
+    stop: Optional[Consumptions]= None
 
 
 @dataclass(frozen=True)
 class Duration:
-    """
-    Contains voyage duration information
+    """Contains voyage duration information.
 
     Attributes:
         in_hours: Duration in Hours
@@ -107,8 +101,7 @@ class Duration:
 
 @dataclass(frozen=True)
 class DurationBreakdown:
-    """
-    Contains duration breakdown for the different parts of the voyage
+    """Contains duration breakdown for the different parts of the voyage.
 
     Attributes:
         voyage: Duration of the voyage
@@ -118,19 +111,33 @@ class DurationBreakdown:
         stop: Duration of the stops of the voyage
     """
     voyage: Duration
-    ballast: Optional[Duration]
-    laden: Optional[Duration]
-    port_call: Optional[Duration]
-    stop: Optional[Duration]
+    ballast: Optional[Duration]= None
+    laden: Optional[Duration]= None
+    port_call: Optional[Duration]= None
+    stop: Optional[Duration]= None
 
 
 @dataclass(frozen=True)
 class Distance:
+    """Contains Distance Info.
+
+    Attributes:
+        distance_travelled: Distance Travelled in NM
+
+    """
     distance_travelled: float
 
 
 @dataclass(frozen=True)
 class DistancesBreakdown:
+    """Contains Distance Info for different parts of the Voyage.
+
+    Attributes:
+        voyage: Distance Travelled for the voyage
+        ballast: Distance Travelled for the ballast part of the voyage
+        laden: Distance Travelled for the laden part of the voyage
+
+    """
     voyage: Distance
     ballast: Distance
     laden: Distance
@@ -138,6 +145,29 @@ class DistancesBreakdown:
 
 @dataclass(frozen=True)
 class Metrics:
+    """Vessel Metrics estimation.
+
+    Attributes:
+        voyage_cii: Carbon Intensity Indicator (VoyageCII) efficiency metrics for the voyage
+        voyage_cii_unit: The unit of the voyage Carbon Intensity Indicator (VoyageCII)
+        voyage_cii_rating: The rating of the vessel based on the VoyageCII
+        voyage_cii_target: The alignment target for the VoyageCII efficiency metric of the current year
+        voyage_cii_target_year: The year that has taken into account for calculating the alignment target for the VoyageCII efficiency metric
+        capacity_eeoi: The EEOI efficiency metric when the quantity equals with the capacity of the vessel (CapacityEEOI) e.g. the deadweight of the vessel
+        capacity_eeoi_unit: The unit of the Capacity EEOI efficiency metric
+        capacity_eeoi_sea_cargo_charter_year_target: The alignment target for the Capacity EEOI efficiency metric based on the Sea Cargo Charter guidelines for the year of the voyage
+        capacity_eeoi_sea_cargo_charter_class: The Sea Cargo Charter defined class that the vessel belongs to based on it's size
+        capacity_eeoi_sea_cargo_charter_alignment_in_percentage: The alignment delta in percentage, based on the acquired Capacity EEOI and the given alignment target from Sea Cargo Charter. Negative is aligned, positive is misaligned
+        eeoi: The EEOI efficiency metrics calculated for the voyage
+        eeoi_unit: The unit of the EEOI efficiency metrics
+        eeoi_sea_cargo_charter_year_target: The alignment target for the EEOI efficiency metric based on the Sea Cargo Charter guidelines for the year of the voyage
+        eeoi_sea_cargo_charter_class: The Sea Cargo Charter defined class that the vessel belongs to based on it's size
+        eeoi_sea_cargo_charter_alignment_in_percentage: The alignment delta in percentage, based on the acquired EEOI and the given alignment target from Sea Cargo Charter. Negative is aligned, positive is misaligned.
+        kg_co2_per_tonne_cargo: Kg of CO2 per tonne of cargo carried
+        kg_co2_per_tonne_dwt: Kg of CO2 per tonne of the vessel's deadweight
+
+
+    """
     voyage_cii: float
     voyage_cii_unit: str
     voyage_cii_rating: str
@@ -159,6 +189,15 @@ class Metrics:
 
 @dataclass(frozen=True)
 class SeagoingSpeedStatistics:
+    """Contains speed statistics.
+
+    Attributes:
+        average_speed_in_knots: Average seagoing speed in knots
+        std_speed_in_knots: Standard deviation speed in knots
+        min_speed_in_knots: Minimum seagoing speed in knots
+        max_speed_in_knots: Maximum seagoing speed in knots
+
+    """
     average_speed_in_knots: Optional[float]
     std_speed_in_knots: Optional[float]
     min_speed_in_knots: Optional[float]
@@ -167,6 +206,14 @@ class SeagoingSpeedStatistics:
 
 @dataclass(frozen=True)
 class SeagoingSpeedStatisticsBreakdown:
+    """Contains speed statistics for different parts of the Voyage.
+
+    Attributes:
+        voyage: Speed statistics for the voyage"
+        laden: Speed statistics for the ballast part of the voyage
+        ballast: Speed statistics for the laden part of the voyage
+
+    """
     voyage: SeagoingSpeedStatistics
     laden: SeagoingSpeedStatistics
     ballast: SeagoingSpeedStatistics
@@ -174,6 +221,15 @@ class SeagoingSpeedStatisticsBreakdown:
 
 @dataclass(frozen=True)
 class EmissionsEssentialStatistics:
+    """Contains Emissions essential statistics.
+
+    Attributes:
+        emissions: Voyage emissions info
+        consumptions: Voyage consumptions info
+        distances: Voyage distances info
+        duration: Voyage duration info
+
+    """
     emissions: Optional[EmissionsBreakdown]
     consumptions: Optional[ConsumptionsBreakdown]
     distances: Optional[DistancesBreakdown]
@@ -181,7 +237,34 @@ class EmissionsEssentialStatistics:
 
 
 @dataclass(frozen=True)
-class EmissionsEstimationModel:
+class EmissionsEstimation:
+    """Contains info about the emissions estimation.
+
+    Attributes:
+        id: Voyage ID
+        imo: Vessel IMO
+        vessel_name: Vessel Name
+        voyage_number: Voyage Number
+        vessel_type_id: Vessel type id
+        vessel_type: Vessel type
+        vessel_class_id: Vessel class id
+        vessel_class: Vessel class
+        start_date: Start date of the Voyage
+        end_date: End date of the Voyage
+        quantity: Cargo quantity of the voyage
+        deadweight: Vessel's deadweight
+        transport_work_in_million_tonne_miles: Transport work measured in millions tonnes of cargo carried times the travelled distance in miles of the current voyage
+        transport_work_in_million_dwt_miles: Transport work measured in millions tonnes when the cargo curried equals the DWT times the travelled distance in miles of the current voyage
+        contains_eu_emissions: Declares whether voyage has European Union Related Emissions
+        emissions: Emissions breakdown for the voyage
+        consumptions: Consumptions breakdown for the voyage
+        seagoing_speed_statistics: Seagoing Speed Statistics breakdown for the voyage
+        duration: Duration breakdown for the voyage
+        distances: Distance travelled breakdown for the voyage
+        efficiency_metrics: Emissions Efficiency metrics for the voyage
+        european_union_regulated: European Union Related Emissions
+
+    """
     id: Optional[str] = None
     imo: Optional[int] = None
     vessel_name: Optional[str] = None
@@ -208,6 +291,14 @@ class EmissionsEstimationModel:
 
 @dataclass(frozen=True)
 class Eexi:
+    """Contains EEXI info.
+
+    Attributes:
+        value: Acquired EEXI value
+        unit: EEXI unit
+        required: EEXI required value based on IMO guidelines
+
+    """
     value: Optional[float] = None
     unit: Optional[str] = None
     required: Optional[float] = None
@@ -215,12 +306,29 @@ class Eexi:
 
 @dataclass(frozen=True)
 class Eiv:
+    """Contains EIV info.
+
+    Attributes:
+        value: Acquired EIV value
+        unit: EIV unit
+
+    """
     value: Optional[float] = None
     unit: Optional[str] = None
 
 
 @dataclass(frozen=True)
 class Aer:
+    """Contains AER info.
+
+    Attributes:
+        value: Annual metric value
+        unit: Annual metric unit
+        poseidon_principles_class: Poseidon Principles defined class based on the vessel's size
+        poseidon_principles_alignment_in_percentage: The alignment delta in percentage, based on the acquired AER and the given alignment target from Poseidon Principles. Negative is aligned, positive is misaligned.
+        poseidon_principles_year_target: The alignment target for the AER efficiency metric based on the Poseidon Principles guidelines for the year of the voyage
+
+    """
     value: Optional[float] = None
     unit: Optional[str] = None
     poseidon_principles_class: Optional[str] = None
@@ -230,6 +338,16 @@ class Aer:
 
 @dataclass(frozen=True)
 class Cii:
+    """Contains CII info.
+
+    Attributes:
+        value: Acquired CII value
+        unit: CII unit
+        rating: CII rating based on IMO guidelines
+        target: CII target based on IMO guidelines
+        target_year: The year of the CII target based on IMO guidelines
+
+    """
     value: Optional[float] = None
     unit: Optional[str] = None
     rating: Optional[str] = None
@@ -239,6 +357,21 @@ class Cii:
 
 @dataclass(frozen=True)
 class VesselMetrics:
+    """Contains Vessel emissions Metrics.
+
+    Attributes:
+        imo: Vessel IMO
+        year: The year referenced for the calculated annual metrics
+        vessel_type: The vessel type characterization of the vessel
+        vessel_type_id: Vessel type ID
+        vessel_class: The vessel class characterization of the vessel
+        vessel_class_id: Vessel class ID
+        eexi: EEXI Metrics
+        eiv: EIV Metrics
+        aer: AER Metrics
+        cii: CII Metrics
+
+    """
     imo: int
     year: Optional[int] = None
     vessel_type: Optional[str] = None
@@ -253,11 +386,25 @@ class VesselMetrics:
 
 @dataclass(frozen=True)
 class VesselClassEmissions:
+    """Contains Vessel Class Emissions.
+
+    Attributes:
+        next_page_token: String. The key that should be used as a parameter of the token to retrieve the next page
+        data: List of Vessel Emissions for available vessels of this class
+
+    """
     next_page_token: str
-    data: List[EmissionsEstimationModel]
+    data: List[EmissionsEstimation]
 
 
 @dataclass(frozen=True)
 class VesselClassMetrics:
+    """Contains Vessel Class Metrics.
+
+    Attributes:
+        next_page_token: String. The key that should be used as a parameter of the token to retrieve the next page
+        data: List of Vessel Metrics for available vessels of this class
+
+    """
     next_page_token: str
     data: List[VesselMetrics]

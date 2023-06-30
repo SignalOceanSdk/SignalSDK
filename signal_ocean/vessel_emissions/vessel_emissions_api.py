@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 from datetime import date
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_multiple, get_single
-from signal_ocean.vessel_emissions.models import EmissionsEstimationModel, VesselMetrics, VesselClassEmissions, \
+from signal_ocean.vessel_emissions.models import EmissionsEstimation, VesselMetrics, VesselClassEmissions, \
     VesselClassMetrics
 
 
@@ -23,39 +23,38 @@ class VesselEmissionsAPI:
         """
         self.__connection = connection or Connection()
 
-    def construct_emissions_url(self,
-                                year: int = None,
-                                quantity: int = None,
-                                token: str = None,
-                                include_consumptions: bool = False,
-                                include_efficiency_metrics: bool = False,
-                                include_distances: bool = False,
-                                include_durations: bool = False,
-                                include_speed_statistics: bool = False,
-                                include_eu_emissions: bool = False,
-                                sulphur_content_hfo: float = None,
-                                sulphur_content_lfo: float = None,
-                                sulphur_content_mgo: float = None,
-                                sulphur_content_lng: float = None):
-        """
+    def construct_emissions_url_parameters(self,
+                                           quantity: Union[int, None] = None,
+                                           token: Union[str, None] = None,
+                                           include_consumptions: bool = False,
+                                           include_efficiency_metrics: bool = False,
+                                           include_distances: bool = False,
+                                           include_durations: bool = False,
+                                           include_speed_statistics: bool = False,
+                                           include_eu_emissions: bool = False,
+                                           sulphur_content_hfo: Union[float, None] = 0.025,
+                                           sulphur_content_lfo: Union[float, None] = 0.001,
+                                           sulphur_content_mgo: Union[float, None] = 0.001,
+                                           sulphur_content_lng: Union[float, None] = 0.00004
+                                           ) -> str:
+        """Construct the request URL based on the input parameters.
 
         Args:
-            year:
-            quantity:
-            token:
-            include_consumptions:
-            include_efficiency_metrics:
-            include_distances:
-            include_durations:
-            include_speed_statistics:
-            include_eu_emissions:
-            sulphur_content_hfo:
-            sulphur_content_lfo:
-            sulphur_content_mgo:
-            sulphur_content_lng:
+            quantity: Cargo quantity of the voyage
+            token: Next page token
+            include_consumptions: Include consumption data in the response
+            include_efficiency_metrics: Include efficiency metrics data in the response
+            include_distances: Include distances data in the response
+            include_durations: Include duration data in the response
+            include_speed_statistics: Include speed statistics data in the response
+            include_eu_emissions: Include European Union related emissions data in the response
+            sulphur_content_hfo: Sulphur Content of HFO fuel type
+            sulphur_content_lfo: Sulphur Content of LFO fuel type
+            sulphur_content_mgo: Sulphur Content of MGO fuel type
+            sulphur_content_lng: Sulphur Content of LNG fuel type
 
         Returns:
-
+            The last part of Request URL
         """
         url = "?"
         if quantity:
@@ -78,18 +77,18 @@ class VesselEmissionsAPI:
     def get_emissions_by_imo_and_voyage_number(self,
                                                imo: int,
                                                voyage_number: int,
-                                               quantity: int = None,
+                                               quantity: Union[int, None] = None,
                                                include_consumptions: bool = False,
                                                include_efficiency_metrics: bool = False,
                                                include_distances: bool = False,
                                                include_durations: bool = False,
                                                include_speed_statistics: bool = False,
                                                include_eu_emissions: bool = False,
-                                               sulphur_content_hfo: float = None,
-                                               sulphur_content_lfo: float = None,
-                                               sulphur_content_mgo: float = None,
-                                               sulphur_content_lng: float = None
-                                               ) -> Optional[EmissionsEstimationModel]:
+                                               sulphur_content_hfo: Union[float, None] = 0.025,
+                                               sulphur_content_lfo: Union[float, None] = 0.001,
+                                               sulphur_content_mgo: Union[float, None] = 0.001,
+                                               sulphur_content_lng: Union[float, None] = 0.00004
+                                               ) -> Optional[EmissionsEstimation]:
         """Retrieves voyage emissions for a vessel by its IMO and Voyage Number.
 
         Args:
@@ -108,23 +107,23 @@ class VesselEmissionsAPI:
             sulphur_content_lng: Sulphur Content of LNG fuel type.
 
         Returns:
-            EmissionsEstimationModel if no vessel with the specified IMO or Voyage Number has
+            EmissionsEstimation if no vessel with the specified IMO or Voyage Number has
                 been found.
         """
-        query_url = self.construct_emissions_url(quantity=quantity,
-                                                 include_consumptions=include_consumptions,
-                                                 include_efficiency_metrics=include_efficiency_metrics,
-                                                 include_distances=include_distances,
-                                                 include_durations=include_durations,
-                                                 include_speed_statistics=include_speed_statistics,
-                                                 include_eu_emissions=include_eu_emissions,
-                                                 sulphur_content_hfo=sulphur_content_hfo,
-                                                 sulphur_content_lfo=sulphur_content_lfo,
-                                                 sulphur_content_mgo=sulphur_content_mgo,
-                                                 sulphur_content_lng=sulphur_content_lng)
+        query_url = self.construct_emissions_url_parameters(quantity=quantity,
+                                                            include_consumptions=include_consumptions,
+                                                            include_efficiency_metrics=include_efficiency_metrics,
+                                                            include_distances=include_distances,
+                                                            include_durations=include_durations,
+                                                            include_speed_statistics=include_speed_statistics,
+                                                            include_eu_emissions=include_eu_emissions,
+                                                            sulphur_content_hfo=sulphur_content_hfo,
+                                                            sulphur_content_lfo=sulphur_content_lfo,
+                                                            sulphur_content_mgo=sulphur_content_mgo,
+                                                            sulphur_content_lng=sulphur_content_lng)
         query_url = urljoin(f"emissions/imo/{imo}/voyage_number/{voyage_number}", query_url)
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
-        return get_single(self.__connection, url, EmissionsEstimationModel)
+        return get_single(self.__connection, url, EmissionsEstimation)
 
     def get_emissions_by_imo(self, imo: int,
                              include_consumptions: bool = False,
@@ -133,11 +132,11 @@ class VesselEmissionsAPI:
                              include_durations: bool = False,
                              include_speed_statistics: bool = False,
                              include_eu_emissions: bool = False,
-                             sulphur_content_hfo: float = 0.1,
-                             sulphur_content_lfo: float = 0.1,
-                             sulphur_content_mgo: float = 0.1,
-                             sulphur_content_lng: float = 0.1
-                             ) -> List[EmissionsEstimationModel]:
+                             sulphur_content_hfo: Union[float, None] = 0.025,
+                             sulphur_content_lfo: Union[float, None] = 0.001,
+                             sulphur_content_mgo: Union[float, None] = 0.001,
+                             sulphur_content_lng: Union[float, None] = 0.00004
+                             ) -> List[EmissionsEstimation]:
         """Retrieves a list of vessel emissions by its IMO.
 
         Args:
@@ -152,59 +151,104 @@ class VesselEmissionsAPI:
             sulphur_content_lfo: Sulphur Content of LFO fuel type.
             sulphur_content_mgo: Sulphur Content of MGO fuel type.
             sulphur_content_lng: Sulphur Content of LNG fuel type.
+
         Returns:
             A list of vessel emissions or None if no vessel with the specified IMO has
                 been found.
         """
-        query_url = self.construct_emissions_url(include_consumptions=include_consumptions,
-                                                 include_efficiency_metrics=include_efficiency_metrics,
-                                                 include_distances=include_distances,
-                                                 include_durations=include_durations,
-                                                 include_speed_statistics=include_speed_statistics,
-                                                 include_eu_emissions=include_eu_emissions,
-                                                 sulphur_content_hfo=sulphur_content_hfo,
-                                                 sulphur_content_lfo=sulphur_content_lfo,
-                                                 sulphur_content_mgo=sulphur_content_mgo,
-                                                 sulphur_content_lng=sulphur_content_lng)
+        query_url = self.construct_emissions_url_parameters(include_consumptions=include_consumptions,
+                                                            include_efficiency_metrics=include_efficiency_metrics,
+                                                            include_distances=include_distances,
+                                                            include_durations=include_durations,
+                                                            include_speed_statistics=include_speed_statistics,
+                                                            include_eu_emissions=include_eu_emissions,
+                                                            sulphur_content_hfo=sulphur_content_hfo,
+                                                            sulphur_content_lfo=sulphur_content_lfo,
+                                                            sulphur_content_mgo=sulphur_content_mgo,
+                                                            sulphur_content_lng=sulphur_content_lng)
         query_url = urljoin(f"emissions/imo/{imo}", query_url)
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
-        return [i for i in get_multiple(self.__connection, url, EmissionsEstimationModel)]
+        return [i for i in get_multiple(self.__connection, url, EmissionsEstimation)]
 
-    def get_metrics_by_imo(self, imo: int, year: int) -> List[VesselMetrics]:
+    def get_metrics_by_imo(self, imo: int, year: Union[int, None] = None) -> List[VesselMetrics]:
+        """Get vessel metrics.
+
+        Args:
+            imo: Vessel IMO to retrieve
+            year: The year for the annual metrics
+
+        Returns:
+            VesselMetrics for the requested IMO
+
+        """
         url = urljoin(VesselEmissionsAPI.relative_url, f"emissions/metrics/imo/{imo}")
+        if year is not None:
+            url = urljoin(url, f"?year={year}")
         return [i for i in get_multiple(self.__connection, url, VesselMetrics)]
 
     def get_emissions_by_vessel_class_id(self,
                                          vessel_class_id: int,
-                                         token: str = None,
+                                         token: Union[str, None] = None,
                                          include_consumptions: bool = False,
                                          include_efficiency_metrics: bool = False,
                                          include_distances: bool = False,
                                          include_durations: bool = False,
                                          include_speed_statistics: bool = False,
                                          include_eu_emissions: bool = False) -> Optional[VesselClassEmissions]:
-        query_url = self.construct_emissions_url(token=token,
-                                                 include_consumptions=include_consumptions,
-                                                 include_efficiency_metrics=include_efficiency_metrics,
-                                                 include_distances=include_distances,
-                                                 include_durations=include_durations,
-                                                 include_speed_statistics=include_speed_statistics,
-                                                 include_eu_emissions=include_eu_emissions)
+        """Get emissions estimations for a vessel class (supports incremental updates).
 
+        Args:
+            vessel_class_id: The vessel class to retrieve
+            token: Next page token
+            include_consumptions: Include consumption data in the response.
+            include_efficiency_metrics: Include efficiency metrics data in the response.
+            include_distances: Include distances data in the response.
+            include_durations: Include duration data in the response.
+            include_speed_statistics: Include speed statistics data in the response.
+            include_eu_emissions: Include European Union related emissions data in the response.
+
+        Returns:
+            List of emissions estimation for all available voyages of a vessel class.
+
+        """
+        query_url = self.construct_emissions_url_parameters(token=token,
+                                                            include_consumptions=include_consumptions,
+                                                            include_efficiency_metrics=include_efficiency_metrics,
+                                                            include_distances=include_distances,
+                                                            include_durations=include_durations,
+                                                            include_speed_statistics=include_speed_statistics,
+                                                            include_eu_emissions=include_eu_emissions)
         query_url = urljoin(f"emissions/class/{vessel_class_id}", query_url)
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
         return get_single(self.__connection, url, VesselClassEmissions)
 
     def get_metrics_by_vessel_class_id(self,
                                        vessel_class_id: int,
-                                       year: int = None,
-                                       token: str = None
+                                       year: Union[int, None] = None,
+                                       token: Union[str, None] = None
                                        ) -> Optional[VesselClassMetrics]:
-        query_url = "?"
-        if year:
-            query_url += f"year={year}"
-        if token:
-            query_url += f"&token={token}"
+        """Get vessel class metrics.
+
+        Args:
+            vessel_class_id: The vessel class to retrieve
+            year: The year for the annual metrics
+            token: Next page token
+
+        Returns:
+            VesselClassMetrics for the requested Class
+
+        """
+        if year is None and token is None:
+            query_url = ""
+        else:
+            query_url = "?"
+            if year is not None:
+                query_url += f"year={year}"
+                if token is not None:
+                    query_url += f"&token={token}"
+            else:
+                if token is not None:
+                    query_url += f"token={token}"
         query_url = urljoin(f"emissions/metrics/class/{vessel_class_id}", query_url)
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
         return get_single(self.__connection, url, VesselClassMetrics)

@@ -1,4 +1,4 @@
-from signal_ocean.vessel_emissions.models import EmissionsEstimationModel, EmissionsBreakdown, Emissions
+from signal_ocean.vessel_emissions.models import EmissionsEstimation, EmissionsBreakdown, Emissions
 
 __mock_emissions_estimation = {
     "ID": "I9783B354VED9AA1300",
@@ -73,7 +73,7 @@ __mock_emissions_estimation = {
 
 __mock_emissions_response_2 = [__mock_emissions_estimation] * 3
 
-__mock_emissions_model = EmissionsEstimationModel(
+__mock_emissions_model = EmissionsEstimation(
         id='I9783B354VED9AA1300',
         imo=9929651,
         vessel_name='C. Earnest',

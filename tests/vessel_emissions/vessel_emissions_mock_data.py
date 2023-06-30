@@ -1,7 +1,150 @@
-from signal_ocean.vessel_emissions.models import EmissionsEstimationModel, EmissionsBreakdown, Emissions, Metrics, \
-    VesselMetrics, Eexi, Eiv, Aer, Cii, Consumptions, ConsumptionsBreakdown
+from signal_ocean.vessel_emissions.models import EmissionsEstimation, EmissionsBreakdown, Emissions, Metrics, \
+    VesselMetrics, Eexi, Eiv, Aer, Cii, Consumptions, ConsumptionsBreakdown, Duration, DurationBreakdown, \
+    DistancesBreakdown, Distance, SeagoingSpeedStatistics, SeagoingSpeedStatisticsBreakdown, \
+    EmissionsEssentialStatistics
 
-__mock_emissions_response_1 = {
+__mock_emissions_response_imo_voyage_no_args = {
+    "ID": "I8F9DC4VED7805D00",
+    "IMO": 9412036,
+    "VesselName": "Sea Hymn",
+    "VoyageNumber": 143,
+    "VesselTypeID": 1,
+    "VesselType": "Tanker",
+    "VesselClassID": 86,
+    "VesselClass": "Aframax",
+    "StartDate": "2021-01-24T11:59:59",
+    "EndDate": "2021-02-05T14:31:12.812000",
+    "Quantity": 71000,
+    "Deadweight": 116337,
+    "ContainsEuEmissions": True,
+    "TransportWorkInMillionTonneMiles": 102.85628000000001,
+    "TransportWorkInMillionDwtMiles": 168.53508516000002,
+    "Emissions": {
+        "Voyage": {
+            "CO2InTons": 837.5087196481956,
+            "COInTons": 0.7359510048818543,
+            "CH4InTons": 0.015941177001051,
+            "N2OInTons": 0.04245146957224711,
+            "NMVOCInTons": 0.8183137527206179,
+            "NOxInTons": 23.13202057801321,
+            "SOxInTons": 51.94326251279127,
+            "PMInTons": 5.1238549844792445
+        },
+        "Ballast": {
+            "CO2InTons": 409.19323058978165,
+            "COInTons": 0.3597114758091598,
+            "CH4InTons": 0.00779158431355581,
+            "N2OInTons": 0.02077755816948216,
+            "NMVOCInTons": 0.3999679947625315,
+            "NOxInTons": 11.32117200759659,
+            "SOxInTons": 25.38835804676737,
+            "PMInTons": 2.5091619607601823
+        },
+        "Laden": {
+            "CO2InTons": 74.9966521789844,
+            "COInTons": 0.06592767039954643,
+            "CH4InTons": 0.001428036181939634,
+            "N2OInTons": 0.003808096485172358,
+            "NMVOCInTons": 0.07330585733956788,
+            "NOxInTons": 2.074936572358288,
+            "SOxInTons": 4.653160696438169,
+            "PMInTons": 0.45987746806232016
+        },
+        "PortCall": {
+            "CO2InTons": 252.0832,
+            "COInTons": 0.2216,
+            "CH4InTons": 0.0048000000000000004,
+            "N2OInTons": 0.012800000000000002,
+            "NMVOCInTons": 0.24639999999999998,
+            "NOxInTons": 6.974399999999999,
+            "SOxInTons": 15.64048,
+            "PMInTons": 1.545767449464
+        },
+        "Stop": {
+            "CO2InTons": 101.23563687942965,
+            "COInTons": 0.08871185867314817,
+            "CH4InTons": 0.0019215565055555556,
+            "N2OInTons": 0.005065814917592594,
+            "NMVOCInTons": 0.09863990061851852,
+            "NOxInTons": 2.7615119980583334,
+            "SOxInTons": 6.261263769585741,
+            "PMInTons": 0.6090481061927422
+        }
+    }
+}
+
+__mock_emissions_imo_voyage_no_args = EmissionsEstimation(
+    id="I8F9DC4VED7805D00",
+    imo=9412036,
+    vessel_name="Sea Hymn",
+    voyage_number=143,
+    vessel_type_id=1,
+    vessel_type="Tanker",
+    vessel_class_id=86,
+    vessel_class="Aframax",
+    start_date="2021-01-24T11:59:59",
+    end_date="2021-02-05T14:31:12.812000",
+    quantity=71000,
+    deadweight=116337,
+    contains_eu_emissions=True,
+    transport_work_in_million_tonne_miles=102.85628000000001,
+    transport_work_in_million_dwt_miles=168.53508516000002,
+    emissions=EmissionsBreakdown(
+        voyage=Emissions(
+            co2_in_tons=837.5087196481956,
+            coin_tons=0.7359510048818543,
+            ch4_in_tons=0.015941177001051,
+            n2_oin_tons=0.04245146957224711,
+            nmvocin_tons=0.8183137527206179,
+            nox_in_tons=23.13202057801321,
+            sox_in_tons=51.94326251279127,
+            pmin_tons=5.1238549844792445
+        ),
+        ballast=Emissions(
+            co2_in_tons=409.19323058978165,
+            coin_tons=0.3597114758091598,
+            ch4_in_tons=0.00779158431355581,
+            n2_oin_tons=0.02077755816948216,
+            nmvocin_tons=0.3999679947625315,
+            nox_in_tons=11.32117200759659,
+            sox_in_tons=25.38835804676737,
+            pmin_tons=2.5091619607601823
+        ),
+
+        laden=Emissions(
+            co2_in_tons=74.9966521789844,
+            coin_tons=0.06592767039954643,
+            ch4_in_tons=0.001428036181939634,
+            n2_oin_tons=0.003808096485172358,
+            nmvocin_tons=0.07330585733956788,
+            nox_in_tons=2.074936572358288,
+            sox_in_tons=4.653160696438169,
+            pmin_tons=0.45987746806232016
+        ),
+        port_call=Emissions(
+            co2_in_tons=252.0832,
+            coin_tons=0.2216,
+            ch4_in_tons=0.0048000000000000004,
+            n2_oin_tons=0.012800000000000002,
+            nmvocin_tons=0.24639999999999998,
+            nox_in_tons=6.974399999999999,
+            sox_in_tons=15.64048,
+            pmin_tons=1.545767449464
+        ),
+        stop=Emissions(
+            co2_in_tons=101.23563687942965,
+            coin_tons=0.08871185867314817,
+            ch4_in_tons=0.0019215565055555556,
+            n2_oin_tons=0.005065814917592594,
+            nmvocin_tons=0.09863990061851852,
+            nox_in_tons=2.7615119980583334,
+            sox_in_tons=6.261263769585741,
+            pmin_tons=0.6090481061927422
+        )
+    )
+)
+
+__mock_emissions_response_imo_voyage_one_arg = {
     "ID": "I8F9DC4VED7805D00",
     "IMO": 9412036,
     "VesselName": "Sea Hymn",
@@ -90,7 +233,7 @@ __mock_emissions_response_1 = {
     }
 }
 
-__mock_emissions_1 = EmissionsEstimationModel(
+__mock_emissions_imo_voyage_one_arg = EmissionsEstimation(
     id="I8F9DC4VED7805D00",
     imo=9412036,
     vessel_name="Sea Hymn",
@@ -159,7 +302,6 @@ __mock_emissions_1 = EmissionsEstimationModel(
             pmin_tons=0.6090481061927422
         )
     ),
-
     efficiency_metrics=Metrics(
         voyage_cii=4.969343438804451,
         voyage_cii_unit="g-CO2/capacity mile",
@@ -181,7 +323,487 @@ __mock_emissions_1 = EmissionsEstimationModel(
     )
 )
 
-__mock_emissions_response_2 = [{
+__mock_emissions_response_imo_voyage_all_args = {
+    "ID": "I8F9DC4VED7805D00",
+    "IMO": 9412036,
+    "VesselName": "Sea Hymn",
+    "VoyageNumber": 143,
+    "VesselTypeID": 1,
+    "VesselType": "Tanker",
+    "VesselClassID": 86,
+    "VesselClass": "Aframax",
+    "StartDate": "2021-01-24T11:59:59",
+    "EndDate": "2021-02-05T14:31:12.812000",
+    "Quantity": 71000.0,
+    "Deadweight": 116337,
+    "ContainsEuEmissions": True,
+    "TransportWorkInMillionTonneMiles": 102.85628000000001,
+    "TransportWorkInMillionDwtMiles": 168.53508516000002,
+    "Emissions": {
+        "Voyage": {
+            "CO2InTons": 837.5087196481956,
+            "COInTons": 0.7359510048818543,
+            "CH4InTons": 0.015941177001051,
+            "N2OInTons": 0.04245146957224711,
+            "NMVOCInTons": 0.8183137527206179,
+            "NOxInTons": 23.13202057801321,
+            "SOxInTons": 0.5194326251279129,
+            "PMInTons": 0.7876209259839941
+        },
+        "Ballast": {
+            "CO2InTons": 409.19323058978165,
+            "COInTons": 0.3597114758091598,
+            "CH4InTons": 0.00779158431355581,
+            "N2OInTons": 0.02077755816948216,
+            "NMVOCInTons": 0.3999679947625315,
+            "NOxInTons": 11.32117200759659,
+            "SOxInTons": 0.25388358046767373,
+            "PMInTons": 0.3908711003278056
+        },
+        "Laden": {
+            "CO2InTons": 74.9966521789844,
+            "COInTons": 0.06592767039954643,
+            "CH4InTons": 0.001428036181939634,
+            "N2OInTons": 0.003808096485172358,
+            "NMVOCInTons": 0.07330585733956788,
+            "NOxInTons": 2.074936572358288,
+            "SOxInTons": 0.04653160696438169,
+            "PMInTons": 0.07163858482177292
+        },
+        "PortCall": {
+            "CO2InTons": 252.0832,
+            "COInTons": 0.2216,
+            "CH4InTons": 0.0048000000000000004,
+            "N2OInTons": 0.012800000000000002,
+            "NMVOCInTons": 0.24639999999999998,
+            "NOxInTons": 6.974399999999999,
+            "SOxInTons": 0.1564048,
+            "PMInTons": 0.24079586462400004
+        },
+        "Stop": {
+            "CO2InTons": 101.23563687942965,
+            "COInTons": 0.08871185867314817,
+            "CH4InTons": 0.0019215565055555556,
+            "N2OInTons": 0.005065814917592594,
+            "NMVOCInTons": 0.09863990061851852,
+            "NOxInTons": 2.7615119980583334,
+            "SOxInTons": 0.06261263769585741,
+            "PMInTons": 0.08431537621041556
+        }
+    },
+    "Consumptions": {
+        "Voyage": {
+            "LFOInTons": 259.85270696196113,
+            "MGOInTons": 5.833576388888889,
+            "TotalInTons": 265.68628335085003
+        },
+        "Ballast": {
+            "LFOInTons": 129.8597385592635,
+            "TotalInTons": 129.8597385592635
+        },
+        "Laden": {
+            "LFOInTons": 23.800603032327235,
+            "TotalInTons": 23.800603032327235
+        },
+        "PortCall": {
+            "LFOInTons": 80.0,
+            "TotalInTons": 80.0
+        },
+        "Stop": {
+            "LFOInTons": 26.19236537037037,
+            "MGOInTons": 5.833576388888889,
+            "TotalInTons": 32.02594175925926
+        }
+    },
+    "SeagoingSpeedStatistics": {
+        "Voyage": {
+            "AverageSpeedInKnots": 12.338028169014084,
+            "StdSpeedInKnots": 0.38073845435382875,
+            "MinSpeedInKnots": 11.7,
+            "MaxSpeedInKnots": 13.6
+        },
+        "Ballast": {
+            "AverageSpeedInKnots": 12.341935483870968,
+            "StdSpeedInKnots": 0.3919469632475068,
+            "MinSpeedInKnots": 11.7,
+            "MaxSpeedInKnots": 13.6
+        },
+        "Laden": {
+            "AverageSpeedInKnots": 12.311111111111112,
+            "StdSpeedInKnots": 0.3100179206289712,
+            "MinSpeedInKnots": 11.8,
+            "MaxSpeedInKnots": 12.8
+        }
+    },
+    "Duration": {
+        "Voyage": {
+            "InHours": 290.52050333333335,
+            "InDays": 12.105020972222224
+        },
+        "Ballast": {
+            "InHours": 107.35055555555554,
+            "InDays": 4.472939814814815
+        },
+        "Laden": {
+            "InHours": 14.755052222222222,
+            "InDays": 0.6147938425925926
+        },
+        "PortCall": {
+            "InHours": 58.611666666666665,
+            "InDays": 2.442152777777778
+        },
+        "Stop": {
+            "InHours": 109.8032288888889,
+            "InDays": 4.575134537037037
+        }
+    },
+    "Distances": {
+        "Voyage": {
+            "DistanceTravelled": 1448.6800000000003
+        },
+        "Ballast": {
+            "DistanceTravelled": 1267.5300000000002
+        },
+        "Laden": {
+            "DistanceTravelled": 181.14999999999998
+        }
+    },
+    "EfficiencyMetrics": {
+        "VoyageCii": 4.969343438804451,
+        "VoyageCiiUnit": "g-CO2/capacity mile",
+        "VoyageCiiRating": "D",
+        "VoyageCiiTarget": 4.178777475053739,
+        "VoyageCiiTargetYear": 2021,
+        "CapacityEeoi": 39.74048276526212,
+        "CapacityEeoiUnit": "g-CO2/capacity mile",
+        "CapacityEeoiSeaCargoCharterYearTarget": 11.02,
+        "CapacityEeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
+        "CapacityEeoiSeaCargoCharterAlignmentInPercentage": 260.6214407011082,
+        "Eeoi": 65.11674004876478,
+        "EeoiUnit": "g-CO2/ton mile",
+        "EeoiSeaCargoCharterYearTarget": 11.02,
+        "EeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
+        "EeoiSeaCargoCharterAlignmentInPercentage": 490.8960077020398,
+        "kgCO2PerTonneCargo": 11.795897459833741,
+        "kgCO2PerTonneDwt": 7.198988452927233
+    },
+    "EuropeanUnionRegulated": {
+        "Emissions": {
+            "Voyage": {
+                "CO2InTons": 427.8956764925594,
+                "COInTons": 0.37587048240638204,
+                "CH4InTons": 0.008141598896889143,
+                "N2OInTons": 0.02165259462781549,
+                "NMVOCInTons": 0.41793541004030926,
+                "NOxInTons": 11.799233592666035,
+                "SOxInTons": 0.26528857232253483,
+                "PMInTons": 0.39634881071439554
+            },
+            "Ballast": {
+                "CO2InTons": 409.19323058978165,
+                "COInTons": 0.3597114758091598,
+                "CH4InTons": 0.00779158431355581,
+                "N2OInTons": 0.02077755816948216,
+                "NMVOCInTons": 0.3999679947625315,
+                "NOxInTons": 11.32117200759659,
+                "SOxInTons": 0.25388358046767373,
+                "PMInTons": 0.3908711003278056
+            },
+            "Stop": {
+                "CO2InTons": 18.70244590277778,
+                "COInTons": 0.016159006597222223,
+                "CH4InTons": 0.00035001458333333335,
+                "N2OInTons": 0.0008750364583333332,
+                "NMVOCInTons": 0.017967415277777777,
+                "NOxInTons": 0.4780615850694444,
+                "SOxInTons": 0.011404991854861112,
+                "PMInTons": 0.005477710386589924
+            }
+        },
+        "Consumptions": {
+            "Voyage": {
+                "LFOInTons": 129.8597385592635,
+                "MGOInTons": 5.833576388888889,
+                "TotalInTons": 135.6933149481524
+            },
+            "Ballast": {
+                "LFOInTons": 129.8597385592635,
+                "TotalInTons": 129.8597385592635
+            },
+            "Stop": {
+                "MGOInTons": 5.833576388888889,
+                "TotalInTons": 5.833576388888889
+            }
+        },
+        "Distances": {
+            "Voyage": {
+                "DistanceTravelled": 1267.5300000000002
+            },
+            "Ballast": {
+                "DistanceTravelled": 1267.5300000000002
+            },
+            "Laden": {
+                "DistanceTravelled": 0.0
+            }
+        },
+        "Duration": {
+            "Voyage": {
+                "InHours": 127.35138888888888,
+                "InDays": 5.306307870370371
+            },
+            "Ballast": {
+                "InHours": 107.35055555555554,
+                "InDays": 4.472939814814815
+            },
+            "Stop": {
+                "InHours": 20.000833333333333,
+                "InDays": 0.8333680555555556
+            }
+        }
+    }
+}
+
+__mock_emissions_imo_voyage_all_args = EmissionsEstimation(
+    id='I8F9DC4VED7805D00',
+    imo=9412036,
+    vessel_name='Sea Hymn',
+    voyage_number=143,
+    vessel_type_id=1,
+    vessel_type='Tanker',
+    vessel_class_id=86,
+    vessel_class='Aframax',
+    start_date='2021-01-24T11:59:59',
+    end_date='2021-02-05T14:31:12.812000',
+    quantity=71000.0,
+    deadweight=116337,
+    contains_eu_emissions=True,
+    transport_work_in_million_tonne_miles=102.85628000000001,
+    transport_work_in_million_dwt_miles=168.53508516000002,
+    emissions=EmissionsBreakdown(
+        voyage=Emissions(
+            co2_in_tons=837.5087196481956,
+            coin_tons=0.7359510048818543,
+            ch4_in_tons=0.015941177001051,
+            n2_oin_tons=0.04245146957224711,
+            nmvocin_tons=0.8183137527206179,
+            nox_in_tons=23.13202057801321,
+            sox_in_tons=0.5194326251279129,
+            pmin_tons=0.7876209259839941,
+        ),
+        ballast=Emissions(
+            co2_in_tons=409.19323058978165,
+            coin_tons=0.3597114758091598,
+            ch4_in_tons=0.00779158431355581,
+            n2_oin_tons=0.02077755816948216,
+            nmvocin_tons=0.3999679947625315,
+            nox_in_tons=11.32117200759659,
+            sox_in_tons=0.25388358046767373,
+            pmin_tons=0.3908711003278056,
+        ),
+        laden=Emissions(
+            co2_in_tons=74.9966521789844,
+            coin_tons=0.06592767039954643,
+            ch4_in_tons=0.001428036181939634,
+            n2_oin_tons=0.003808096485172358,
+            nmvocin_tons=0.07330585733956788,
+            nox_in_tons=2.074936572358288,
+            sox_in_tons=0.04653160696438169,
+            pmin_tons=0.07163858482177292,
+        ),
+        port_call=Emissions(
+            co2_in_tons=252.0832,
+            coin_tons=0.2216,
+            ch4_in_tons=0.0048000000000000004,
+            n2_oin_tons=0.012800000000000002,
+            nmvocin_tons=0.24639999999999998,
+            nox_in_tons=6.974399999999999,
+            sox_in_tons=0.1564048,
+            pmin_tons=0.24079586462400004,
+        ),
+        stop=Emissions(
+            co2_in_tons=101.23563687942965,
+            coin_tons=0.08871185867314817,
+            ch4_in_tons=0.0019215565055555556,
+            n2_oin_tons=0.005065814917592594,
+            nmvocin_tons=0.09863990061851852,
+            nox_in_tons=2.7615119980583334,
+            sox_in_tons=0.06261263769585741,
+            pmin_tons=0.08431537621041556,
+        )
+    ),
+    consumptions=ConsumptionsBreakdown(
+        voyage=Consumptions(
+            lfoin_tons=259.85270696196113,
+            mgoin_tons=5.833576388888889,
+            total_in_tons=265.68628335085003,
+        ),
+        ballast=Consumptions(
+            lfoin_tons=129.8597385592635,
+            total_in_tons=129.8597385592635,
+        ),
+        laden=Consumptions(
+            lfoin_tons=23.800603032327235,
+            total_in_tons=23.800603032327235,
+        ),
+        port_call=Consumptions(
+            lfoin_tons=80.0,
+            total_in_tons=80.0,
+        ),
+        stop=Consumptions(
+            lfoin_tons=26.19236537037037,
+            mgoin_tons=5.833576388888889,
+            total_in_tons=32.02594175925926,
+        )
+    ),
+    seagoing_speed_statistics=SeagoingSpeedStatisticsBreakdown(
+        voyage=SeagoingSpeedStatistics(
+            average_speed_in_knots=12.338028169014084,
+            std_speed_in_knots=0.38073845435382875,
+            min_speed_in_knots=11.7,
+            max_speed_in_knots=13.6
+        ),
+        ballast=SeagoingSpeedStatistics(
+            average_speed_in_knots=12.341935483870968,
+            std_speed_in_knots=0.3919469632475068,
+            min_speed_in_knots=11.7,
+            max_speed_in_knots=13.6
+        ),
+        laden=SeagoingSpeedStatistics(
+            average_speed_in_knots=12.311111111111112,
+            std_speed_in_knots=0.3100179206289712,
+            min_speed_in_knots=11.8,
+            max_speed_in_knots=12.8
+        )
+    ),
+    duration=DurationBreakdown(
+        voyage=Duration(
+            in_hours=290.52050333333335,
+            in_days=12.105020972222224,
+        ),
+        ballast=Duration(
+            in_hours=107.35055555555554,
+            in_days=4.472939814814815,
+        ),
+        laden=Duration(
+            in_hours=14.755052222222222,
+            in_days=0.6147938425925926,
+        ),
+        port_call=Duration(
+            in_hours=58.611666666666665,
+            in_days=2.442152777777778,
+        ),
+        stop=Duration(
+            in_hours=109.8032288888889,
+            in_days=4.575134537037037,
+        )
+    ),
+    distances=DistancesBreakdown(
+        voyage=Distance(
+            distance_travelled=1448.6800000000003,
+        ),
+        ballast=Distance(
+            distance_travelled=1267.5300000000002,
+        ),
+        laden=Distance(
+            distance_travelled=181.14999999999998,
+        )
+    ),
+    efficiency_metrics=Metrics(
+        voyage_cii=4.969343438804451,
+        voyage_cii_unit="g-CO2/capacity mile",
+        voyage_cii_rating="D",
+        voyage_cii_target=4.178777475053739,
+        voyage_cii_target_year=2021,
+        capacity_eeoi=39.74048276526212,
+        capacity_eeoi_unit="g-CO2/capacity mile",
+        capacity_eeoi_sea_cargo_charter_year_target=11.02,
+        capacity_eeoi_sea_cargo_charter_class="Oil Tanker 80000-119999 DWT",
+        capacity_eeoi_sea_cargo_charter_alignment_in_percentage=260.6214407011082,
+        eeoi=65.11674004876478,
+        eeoi_unit="g-CO2/ton mile",
+        eeoi_sea_cargo_charter_year_target=11.02,
+        eeoi_sea_cargo_charter_class="Oil Tanker 80000-119999 DWT",
+        eeoi_sea_cargo_charter_alignment_in_percentage=490.8960077020398,
+        kg_co2_per_tonne_cargo=11.795897459833741,
+        kg_co2_per_tonne_dwt=7.198988452927233
+    ),
+    european_union_regulated=EmissionsEssentialStatistics(
+        emissions=EmissionsBreakdown(
+            voyage=Emissions(
+                co2_in_tons=427.8956764925594,
+                coin_tons=0.37587048240638204,
+                ch4_in_tons=0.008141598896889143,
+                n2_oin_tons=0.02165259462781549,
+                nmvocin_tons=0.41793541004030926,
+                nox_in_tons=11.799233592666035,
+                sox_in_tons=0.26528857232253483,
+                pmin_tons=0.39634881071439554,
+            ),
+            ballast=Emissions(
+                co2_in_tons=409.19323058978165,
+                coin_tons=0.3597114758091598,
+                ch4_in_tons=0.00779158431355581,
+                n2_oin_tons=0.02077755816948216,
+                nmvocin_tons=0.3999679947625315,
+                nox_in_tons=11.32117200759659,
+                sox_in_tons=0.25388358046767373,
+                pmin_tons=0.3908711003278056,
+            ),
+            stop=Emissions(
+                co2_in_tons=18.70244590277778,
+                coin_tons=0.016159006597222223,
+                ch4_in_tons=0.00035001458333333335,
+                n2_oin_tons=0.0008750364583333332,
+                nmvocin_tons=0.017967415277777777,
+                nox_in_tons=0.4780615850694444,
+                sox_in_tons=0.011404991854861112,
+                pmin_tons=0.005477710386589924,
+            )
+        ),
+        consumptions=ConsumptionsBreakdown(
+            voyage=Consumptions(
+                lfoin_tons=129.8597385592635,
+                mgoin_tons=5.833576388888889,
+                total_in_tons=135.6933149481524,
+            ),
+            ballast=Consumptions(
+                lfoin_tons=129.8597385592635,
+                total_in_tons=129.8597385592635,
+            ),
+            stop=Consumptions(
+                mgoin_tons=5.833576388888889,
+                total_in_tons=5.833576388888889,
+            )
+        ),
+        distances=DistancesBreakdown(
+            voyage=Distance(
+                distance_travelled=1267.5300000000002,
+            ),
+            ballast=Distance(
+                distance_travelled=1267.5300000000002,
+            ),
+            laden=Distance(
+                distance_travelled=0.0,
+            )
+        ),
+        duration=DurationBreakdown(
+            voyage=Duration(
+                in_hours=127.35138888888888,
+                in_days=5.306307870370371,
+            ),
+            ballast=Duration(
+                in_hours=107.35055555555554,
+                in_days=4.472939814814815,
+            ),
+            stop=Duration(
+                in_hours=20.000833333333333,
+                in_days=0.8333680555555556,
+            ),
+        )
+    )
+)
+
+__mock_emissions_response_imo_no_args = [{
     "ID": "I9783B354VED9AA1300",
     "IMO": 9929651,
     "VesselName": "C. Earnest",
@@ -727,8 +1349,8 @@ __mock_emissions_response_2 = [{
     }
 }]
 
-__mock_emissions_2 = [
-    EmissionsEstimationModel(
+__mock_emissions_imo_no_args = [
+    EmissionsEstimation(
         id='I9783B354VED9AA1300',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -798,7 +1420,7 @@ __mock_emissions_2 = [
         )
         )
     ),
-    EmissionsEstimationModel(
+    EmissionsEstimation(
         id='I9783B354VEDA484700',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -869,7 +1491,7 @@ __mock_emissions_2 = [
         )
     )
     ,
-    EmissionsEstimationModel(
+    EmissionsEstimation(
         id='I9783B354VEDA6FD400',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -939,7 +1561,7 @@ __mock_emissions_2 = [
         )
         )
     ),
-    EmissionsEstimationModel(
+    EmissionsEstimation(
         id='I9783B354VEDABEEE00',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -1009,7 +1631,7 @@ __mock_emissions_2 = [
         )
         )
     ),
-    EmissionsEstimationModel(
+    EmissionsEstimation(
         id='I9783B354VEDB0E0800',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -1079,7 +1701,7 @@ __mock_emissions_2 = [
         )
         )
     ),
-    EmissionsEstimationModel(
+    EmissionsEstimation(
         id='I9783B354VEDB84AF00',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -1149,7 +1771,7 @@ __mock_emissions_2 = [
         )
         )
     ),
-    EmissionsEstimationModel(
+    EmissionsEstimation(
         id='I9783B354VEDBD3C900',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -1219,7 +1841,7 @@ __mock_emissions_2 = [
         )
         )
     ),
-    EmissionsEstimationModel(
+    EmissionsEstimation(
         id='I9783B354VEDBFB5600',
         imo=9929651,
         vessel_name='C. Earnest',
@@ -1291,342 +1913,370 @@ __mock_emissions_2 = [
     )
 ]
 
-__mock_emissions_response_3 = {
-    "ID": "I8F9DC4VED7805D00",
-    "IMO": 9412036,
-    "VesselName": "Sea Hymn",
-    "VoyageNumber": 143,
-    "VesselTypeID": 1,
-    "VesselType": "Tanker",
-    "VesselClassID": 86,
-    "VesselClass": "Aframax",
-    "StartDate": "2021-01-24T11:59:59",
-    "EndDate": "2021-02-05T14:31:12.812000",
-    "Quantity": 71000.0,
-    "Deadweight": 116337,
-    "ContainsEuEmissions": true,
-    "TransportWorkInMillionTonneMiles": 102.85628000000001,
-    "TransportWorkInMillionDwtMiles": 168.53508516000002,
-    "Emissions": {
-        "Voyage": {
-            "CO2InTons": 837.5087196481956,
-            "COInTons": 0.7359510048818543,
-            "CH4InTons": 0.015941177001051,
-            "N2OInTons": 0.04245146957224711,
-            "NMVOCInTons": 0.8183137527206179,
-            "NOxInTons": 23.13202057801321,
-            "SOxInTons": 0.5194326251279129,
-            "PMInTons": 0.7876209259839941
-        },
-        "Ballast": {
-            "CO2InTons": 409.19323058978165,
-            "COInTons": 0.3597114758091598,
-            "CH4InTons": 0.00779158431355581,
-            "N2OInTons": 0.02077755816948216,
-            "NMVOCInTons": 0.3999679947625315,
-            "NOxInTons": 11.32117200759659,
-            "SOxInTons": 0.25388358046767373,
-            "PMInTons": 0.3908711003278056
-        },
-        "Laden": {
-            "CO2InTons": 74.9966521789844,
-            "COInTons": 0.06592767039954643,
-            "CH4InTons": 0.001428036181939634,
-            "N2OInTons": 0.003808096485172358,
-            "NMVOCInTons": 0.07330585733956788,
-            "NOxInTons": 2.074936572358288,
-            "SOxInTons": 0.04653160696438169,
-            "PMInTons": 0.07163858482177292
-        },
-        "PortCall": {
-            "CO2InTons": 252.0832,
-            "COInTons": 0.2216,
-            "CH4InTons": 0.0048000000000000004,
-            "N2OInTons": 0.012800000000000002,
-            "NMVOCInTons": 0.24639999999999998,
-            "NOxInTons": 6.974399999999999,
-            "SOxInTons": 0.1564048,
-            "PMInTons": 0.24079586462400004
-        },
-        "Stop": {
-            "CO2InTons": 101.23563687942965,
-            "COInTons": 0.08871185867314817,
-            "CH4InTons": 0.0019215565055555556,
-            "N2OInTons": 0.005065814917592594,
-            "NMVOCInTons": 0.09863990061851852,
-            "NOxInTons": 2.7615119980583334,
-            "SOxInTons": 0.06261263769585741,
-            "PMInTons": 0.08431537621041556
-        }
-    },
-    "Consumptions": {
-        "Voyage": {
-            "LFOInTons": 259.85270696196113,
-            "MGOInTons": 5.833576388888889,
-            "TotalInTons": 265.68628335085003
-        },
-        "Ballast": {
-            "LFOInTons": 129.8597385592635,
-            "TotalInTons": 129.8597385592635
-        },
-        "Laden": {
-            "LFOInTons": 23.800603032327235,
-            "TotalInTons": 23.800603032327235
-        },
-        "PortCall": {
-            "LFOInTons": 80.0,
-            "TotalInTons": 80.0
-        },
-        "Stop": {
-            "LFOInTons": 26.19236537037037,
-            "MGOInTons": 5.833576388888889,
-            "TotalInTons": 32.02594175925926
-        }
-    },
-    "SeagoingSpeedStatistics": {
-        "Voyage": {
-            "AverageSpeedInKnots": 12.338028169014084,
-            "StdSpeedInKnots": 0.38073845435382875,
-            "MinSpeedInKnots": 11.7,
-            "MaxSpeedInKnots": 13.6
-        },
-        "Ballast": {
-            "AverageSpeedInKnots": 12.341935483870968,
-            "StdSpeedInKnots": 0.3919469632475068,
-            "MinSpeedInKnots": 11.7,
-            "MaxSpeedInKnots": 13.6
-        },
-        "Laden": {
-            "AverageSpeedInKnots": 12.311111111111112,
-            "StdSpeedInKnots": 0.3100179206289712,
-            "MinSpeedInKnots": 11.8,
-            "MaxSpeedInKnots": 12.8
-        }
-    },
-    "Duration": {
-        "Voyage": {
-            "InHours": 290.52050333333335,
-            "InDays": 12.105020972222224
-        },
-        "Ballast": {
-            "InHours": 107.35055555555554,
-            "InDays": 4.472939814814815
-        },
-        "Laden": {
-            "InHours": 14.755052222222222,
-            "InDays": 0.6147938425925926
-        },
-        "PortCall": {
-            "InHours": 58.611666666666665,
-            "InDays": 2.442152777777778
-        },
-        "Stop": {
-            "InHours": 109.8032288888889,
-            "InDays": 4.575134537037037
-        }
-    },
-    "Distances": {
-        "Voyage": {
-            "DistanceTravelled": 1448.6800000000003
-        },
-        "Ballast": {
-            "DistanceTravelled": 1267.5300000000002
-        },
-        "Laden": {
-            "DistanceTravelled": 181.14999999999998
-        }
-    },
-    "EfficiencyMetrics": {
-        "VoyageCii": 4.969343438804451,
-        "VoyageCiiUnit": "g-CO2/capacity mile",
-        "VoyageCiiRating": "D",
-        "VoyageCiiTarget": 4.178777475053739,
-        "VoyageCiiTargetYear": 2021,
-        "CapacityEeoi": 39.74048276526212,
-        "CapacityEeoiUnit": "g-CO2/capacity mile",
-        "CapacityEeoiSeaCargoCharterYearTarget": 11.02,
-        "CapacityEeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
-        "CapacityEeoiSeaCargoCharterAlignmentInPercentage": 260.6214407011082,
-        "Eeoi": 65.11674004876478,
-        "EeoiUnit": "g-CO2/ton mile",
-        "EeoiSeaCargoCharterYearTarget": 11.02,
-        "EeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
-        "EeoiSeaCargoCharterAlignmentInPercentage": 490.8960077020398,
-        "kgCO2PerTonneCargo": 11.795897459833741,
-        "kgCO2PerTonneDwt": 7.198988452927233
-    },
-    "EuropeanUnionRegulated": {
+__mock_emissions_response_imo_one_arg = [
+    {"ID": "I9783B354VED9AA1300",
+     "IMO": 9929651,
+     "VesselName": "C. Earnest",
+     "VoyageNumber": 1,
+     "VesselTypeID": 1,
+     "VesselType": "Tanker",
+     "VesselClassID": 84,
+     "VesselClass": "VLCC",
+     "StartDate": "2022-03-25T07:50:07",
+     "EndDate": "2022-07-01T03:56:40",
+     "Quantity": 255000.0,
+     "Deadweight": 300000,
+     "ContainsEuEmissions": False,
+     "TransportWorkInMillionTonneMiles": 3363.3888,
+     "TransportWorkInMillionDwtMiles": 3956.928,
+     "Emissions": {
+         "Voyage": {
+             "CO2InTons": 8267.12013499702,
+             "COInTons": 7.323807207272146,
+             "CH4InTons": 0.15863842326221247,
+             "N2OInTons": 0.420546309157253,
+             "NMVOCInTons": 8.143439060793579,
+             "NOxInTons": 206.27363014828046,
+             "SOxInTons": 3.65880649262461,
+             "PMInTons": 7.577564487857228
+         },
+         "Ballast": {
+             "CO2InTons": 2702.096551708236,
+             "COInTons": 2.4029646462846994,
+             "CH4InTons": 0.05204977573179855,
+             "N2OInTons": 0.13879940195146281,
+             "NMVOCInTons": 2.6718884875656586,
+             "NOxInTons": 68.06375673194857,
+             "SOxInTons": 1.276890316773894,
+             "PMInTons": 2.717479274728012
+         },
+         "Laden": {
+             "CO2InTons": 3596.957553346655,
+             "COInTons": 3.194539447561519,
+             "CH4InTons": 0.06919580030819175,
+             "N2OInTons": 0.18395071362940119,
+             "NMVOCInTons": 3.552051082487176,
+             "NOxInTons": 90.21590246870453,
+             "SOxInTons": 1.6105886451366533,
+             "PMInTons": 3.459371259486874
+         },
+         "PortCall": {
+             "CO2InTons": 636.62,
+             "COInTons": 0.5539999999999999,
+             "CH4InTons": 0.012,
+             "N2OInTons": 0.0305,
+             "NMVOCInTons": 0.616,
+             "NOxInTons": 14.9855,
+             "SOxInTons": 0.08211252000000008,
+             "PMInTons": 0.22008146580000001
+         },
+         "Stop": {
+             "CO2InTons": 1331.4460299421296,
+             "COInTons": 1.172303113425926,
+             "CH4InTons": 0.025392847222222226,
+             "N2OInTons": 0.06729619357638887,
+             "NMVOCInTons": 1.3034994907407407,
+             "NOxInTons": 33.00847094762731,
+             "SOxInTons": 0.6892150107140629,
+             "PMInTons": 1.1806324878423418
+         }
+     },
+     "EfficiencyMetrics": {
+         "VoyageCii": 4.969343438804451,
+         "VoyageCiiUnit": "g-CO2/capacity mile",
+         "VoyageCiiRating": "D",
+         "VoyageCiiTarget": 4.178777475053739,
+         "VoyageCiiTargetYear": 2021,
+         "CapacityEeoi": 39.74048276526212,
+         "CapacityEeoiUnit": "g-CO2/capacity mile",
+         "CapacityEeoiSeaCargoCharterYearTarget": 11.02,
+         "CapacityEeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
+         "CapacityEeoiSeaCargoCharterAlignmentInPercentage": 260.6214407011082,
+         "Eeoi": 57.79110679327875,
+         "EeoiUnit": "g-CO2/ton mile",
+         "EeoiSeaCargoCharterYearTarget": 11.02,
+         "EeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
+         "EeoiSeaCargoCharterAlignmentInPercentage": 424.42020683556035,
+         "kgCO2PerTonneCargo": 10.468858995602444,
+         "kgCO2PerTonneDwt": 7.198988452927233
+     }
+     }, {
+        "ID": "I9783B354VEDA484700",
+        "IMO": 9929651,
+        "VesselName": "C. Earnest",
+        "VoyageNumber": 2,
+        "VesselTypeID": 1,
+        "VesselType": "Tanker",
+        "VesselClassID": 84,
+        "VesselClass": "VLCC",
+        "StartDate": "2022-07-01T03:56:40",
+        "EndDate": "2022-08-19T11:56:58",
+        "Quantity": 243000.0,
+        "Deadweight": 300000,
+        "ContainsEuEmissions": True,
+        "TransportWorkInMillionTonneMiles": 2663.0199899999993,
+        "TransportWorkInMillionDwtMiles": 3287.6789999999996,
         "Emissions": {
             "Voyage": {
-                "CO2InTons": 427.8956764925594,
-                "COInTons": 0.37587048240638204,
-                "CH4InTons": 0.008141598896889143,
-                "N2OInTons": 0.02165259462781549,
-                "NMVOCInTons": 0.41793541004030926,
-                "NOxInTons": 11.799233592666035,
-                "SOxInTons": 0.26528857232253483,
-                "PMInTons": 0.39634881071439554
+                "CO2InTons": 6790.670700343808,
+                "COInTons": 6.00075557855251,
+                "CH4InTons": 0.12998026523940456,
+                "N2OInTons": 0.3418292808876354,
+                "NMVOCInTons": 6.672320282289433,
+                "NOxInTons": 167.71723833544547,
+                "SOxInTons": 2.5029667643054117,
+                "PMInTons": 5.491910237454452
             },
             "Ballast": {
-                "CO2InTons": 409.19323058978165,
-                "COInTons": 0.3597114758091598,
-                "CH4InTons": 0.00779158431355581,
-                "N2OInTons": 0.02077755816948216,
-                "NMVOCInTons": 0.3999679947625315,
-                "NOxInTons": 11.32117200759659,
-                "SOxInTons": 0.25388358046767373,
-                "PMInTons": 0.3908711003278056
-            },
-            "Stop": {
-                "CO2InTons": 18.70244590277778,
-                "COInTons": 0.016159006597222223,
-                "CH4InTons": 0.00035001458333333335,
-                "N2OInTons": 0.0008750364583333332,
-                "NMVOCInTons": 0.017967415277777777,
-                "NOxInTons": 0.4780615850694444,
-                "SOxInTons": 0.011404991854861112,
-                "PMInTons": 0.005477710386589924
-            }
-        },
-        "Consumptions": {
-            "Voyage": {
-                "LFOInTons": 129.8597385592635,
-                "MGOInTons": 5.833576388888889,
-                "TotalInTons": 135.6933149481524
-            },
-            "Ballast": {
-                "LFOInTons": 129.8597385592635,
-                "TotalInTons": 129.8597385592635
-            },
-            "Stop": {
-                "MGOInTons": 5.833576388888889,
-                "TotalInTons": 5.833576388888889
-            }
-        },
-        "Distances": {
-            "Voyage": {
-                "DistanceTravelled": 1267.5300000000002
-            },
-            "Ballast": {
-                "DistanceTravelled": 1267.5300000000002
+                "CO2InTons": 2294.4994261479897,
+                "COInTons": 2.033922574628233,
+                "CH4InTons": 0.044056084648987,
+                "N2OInTons": 0.11664283501361183,
+                "NMVOCInTons": 2.261545678647999,
+                "NOxInTons": 57.21500633160883,
+                "SOxInTons": 0.958403504297451,
+                "PMInTons": 2.0734079148878473
             },
             "Laden": {
-                "DistanceTravelled": 0.0
-            }
-        },
-        "Duration": {
-            "Voyage": {
-                "InHours": 127.35138888888888,
-                "InDays": 5.306307870370371
+                "CO2InTons": 3602.247828362485,
+                "COInTons": 3.1873829764358512,
+                "CH4InTons": 0.06904078649319534,
+                "N2OInTons": 0.18208139089717165,
+                "NMVOCInTons": 3.5440937066506937,
+                "NOxInTons": 89.32744241471627,
+                "SOxInTons": 1.401854206865687,
+                "PMInTons": 3.056502367323505
             },
-            "Ballast": {
-                "InHours": 107.35055555555554,
-                "InDays": 4.472939814814815
+            "PortCall": {
+                "CO2InTons": 558.76,
+                "COInTons": 0.48474999999999996,
+                "CH4InTons": 0.0105,
+                "N2OInTons": 0.0265,
+                "NMVOCInTons": 0.5389999999999999,
+                "NOxInTons": 13.024000000000001,
+                "SOxInTons": 0.045455145000000044,
+                "PMInTons": 0.14173187967225
             },
             "Stop": {
-                "InHours": 20.000833333333333,
-                "InDays": 0.8333680555555556
+                "CO2InTons": 335.1634458333333,
+                "COInTons": 0.29470002748842594,
+                "CH4InTons": 0.006383394097222222,
+                "N2OInTons": 0.016605054976851854,
+                "NMVOCInTons": 0.3276808969907407,
+                "NOxInTons": 8.15078958912037,
+                "SOxInTons": 0.09725390814227439,
+                "PMInTons": 0.2202680755708518
             }
+        },
+        "EfficiencyMetrics": {
+            "VoyageCii": 4.969343438804451,
+            "VoyageCiiUnit": "g-CO2/capacity mile",
+            "VoyageCiiRating": "D",
+            "VoyageCiiTarget": 4.178777475053739,
+            "VoyageCiiTargetYear": 2021,
+            "CapacityEeoi": 39.74048276526212,
+            "CapacityEeoiUnit": "g-CO2/capacity mile",
+            "CapacityEeoiSeaCargoCharterYearTarget": 11.02,
+            "CapacityEeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
+            "CapacityEeoiSeaCargoCharterAlignmentInPercentage": 260.6214407011082,
+            "Eeoi": 57.79110679327875,
+            "EeoiUnit": "g-CO2/ton mile",
+            "EeoiSeaCargoCharterYearTarget": 11.02,
+            "EeoiSeaCargoCharterClass": "Oil Tanker 80000-119999 DWT",
+            "EeoiSeaCargoCharterAlignmentInPercentage": 424.42020683556035,
+            "kgCO2PerTonneCargo": 10.468858995602444,
+            "kgCO2PerTonneDwt": 7.198988452927233
         }
-    }
-}
+    }]
 
-__mock_emissions_3 = EmissionsEstimationModel(
-    id='I8F9DC4VED7805D00',
-    imo=9412036,
-    vessel_name='Sea Hymn',
-    voyage_number=143,
+__mock_emissions_imo_one_arg = [EmissionsEstimation(
+    id='I9783B354VED9AA1300',
+    imo=9929651,
+    vessel_name='C. Earnest',
+    voyage_number=1,
     vessel_type_id=1,
     vessel_type='Tanker',
-    vessel_class_id=86,
-    vessel_class='Aframax',
-    start_date='2021-01-24T11:59:59',
-    end_date='2021-02-05T14:31:12.812000',
-    quantity=71000.0,
-    deadweight=116337,
-    contains_eu_emissions=True,
-    transport_work_in_million_tonne_miles=102.85628000000001,
-    transport_work_in_million_dwt_miles=168.53508516000002,
-    emissions=(EmissionsBreakdown(
+    vessel_class_id=84,
+    vessel_class='VLCC',
+    start_date='2022-03-25T07:50:07',
+    end_date='2022-07-01T03:56:40',
+    quantity=255000.0,
+    deadweight=300000,
+    contains_eu_emissions=False,
+    transport_work_in_million_tonne_miles=3363.3888,
+    transport_work_in_million_dwt_miles=3956.928,
+    emissions=EmissionsBreakdown(
         voyage=Emissions(
-            co2_in_tons=837.5087196481956,
-            coin_tons=0.7359510048818543,
-            ch4_in_tons=0.015941177001051,
-            n2_oin_tons=0.04245146957224711,
-            nmvocin_tons=0.8183137527206179,
-            nox_in_tons=23.13202057801321,
-            sox_in_tons=0.5194326251279129,
-            pmin_tons=0.7876209259839941,
+            co2_in_tons=8267.12013499702,
+            coin_tons=7.323807207272146,
+            ch4_in_tons=0.15863842326221247,
+            n2_oin_tons=0.420546309157253,
+            nmvocin_tons=8.143439060793579,
+            nox_in_tons=206.27363014828046,
+            sox_in_tons=3.65880649262461,
+            pmin_tons=7.577564487857228,
         ),
         ballast=Emissions(
-            co2_in_tons=409.19323058978165,
-            coin_tons=0.3597114758091598,
-            ch4_in_tons=0.00779158431355581,
-            n2_oin_tons=0.02077755816948216,
-            nmvocin_tons=0.3999679947625315,
-            nox_in_tons=11.32117200759659,
-            sox_in_tons=0.25388358046767373,
-            pmin_tons=0.3908711003278056,
+            co2_in_tons=2702.096551708236,
+            coin_tons=2.4029646462846994,
+            ch4_in_tons=0.05204977573179855,
+            n2_oin_tons=0.13879940195146281,
+            nmvocin_tons=2.6718884875656586,
+            nox_in_tons=68.06375673194857,
+            sox_in_tons=1.276890316773894,
+            pmin_tons=2.717479274728012,
         ),
         laden=Emissions(
-            co2_in_tons=74.9966521789844,
-            coin_tons=0.06592767039954643,
-            ch4_in_tons=0.001428036181939634,
-            n2_oin_tons=0.003808096485172358,
-            nmvocin_tons=0.07330585733956788,
-            nox_in_tons=2.074936572358288,
-            sox_in_tons=0.04653160696438169,
-            pmin_tons=0.07163858482177292,
+            co2_in_tons=3596.957553346655,
+            coin_tons=3.194539447561519,
+            ch4_in_tons=0.06919580030819175,
+            n2_oin_tons=0.18395071362940119,
+            nmvocin_tons=3.552051082487176,
+            nox_in_tons=90.21590246870453,
+            sox_in_tons=1.6105886451366533,
+            pmin_tons=3.459371259486874,
         ),
         port_call=Emissions(
-            co2_in_tons=252.0832,
-            coin_tons=0.2216,
-            ch4_in_tons=0.0048000000000000004,
-            n2_oin_tons=0.012800000000000002,
-            nmvocin_tons=0.24639999999999998,
-            nox_in_tons=6.974399999999999,
-            sox_in_tons=0.1564048,
-            pmin_tons=0.24079586462400004,
+            co2_in_tons=636.62,
+            coin_tons=0.5539999999999999,
+            ch4_in_tons=0.012,
+            n2_oin_tons=0.0305,
+            nmvocin_tons=0.616,
+            nox_in_tons=14.9855,
+            sox_in_tons=0.08211252000000008,
+            pmin_tons=0.22008146580000001,
         ),
         stop=Emissions(
-            co2_in_tons=101.23563687942965,
-            coin_tons=0.08871185867314817,
-            ch4_in_tons=0.0019215565055555556,
-            n2_oin_tons=0.005065814917592594,
-            nmvocin_tons=0.09863990061851852,
-            nox_in_tons=2.7615119980583334,
-            sox_in_tons=0.06261263769585741,
-            pmin_tons=0.08431537621041556,
+            co2_in_tons=1331.4460299421296,
+            coin_tons=1.172303113425926,
+            ch4_in_tons=0.025392847222222226,
+            n2_oin_tons=0.06729619357638887,
+            nmvocin_tons=1.3034994907407407,
+            nox_in_tons=33.00847094762731,
+            sox_in_tons=0.6892150107140629,
+            pmin_tons=1.1806324878423418,
         )
+    ),
+    efficiency_metrics=Metrics(
+        voyage_cii=4.969343438804451,
+        voyage_cii_unit="g-CO2/capacity mile",
+        voyage_cii_rating="D",
+        voyage_cii_target=4.178777475053739,
+        voyage_cii_target_year=2021,
+        capacity_eeoi=39.74048276526212,
+        capacity_eeoi_unit="g-CO2/capacity mile",
+        capacity_eeoi_sea_cargo_charter_year_target=11.02,
+        capacity_eeoi_sea_cargo_charter_class="Oil Tanker 80000-119999 DWT",
+        capacity_eeoi_sea_cargo_charter_alignment_in_percentage=260.6214407011082,
+        eeoi=57.79110679327875,
+        eeoi_unit="g-CO2/ton mile",
+        eeoi_sea_cargo_charter_year_target=11.02,
+        eeoi_sea_cargo_charter_class="Oil Tanker 80000-119999 DWT",
+        eeoi_sea_cargo_charter_alignment_in_percentage=424.42020683556035,
+        kg_co2_per_tonne_cargo=10.468858995602444,
+        kg_co2_per_tonne_dwt=7.198988452927233
     )
-    )
-    ,
-    consumptions=(ConsumptionsBreakdown(
-        voyage=Consumptions(
-            lfoin_tons=259.85270696196113,
-            mgoin_tons=5.833576388888889,
-            total_in_tons=265.68628335085003,
+),
+    EmissionsEstimation(
+        id='I9783B354VEDA484700',
+        imo=9929651,
+        vessel_name='C. Earnest',
+        voyage_number=2,
+        vessel_type_id=1,
+        vessel_type='Tanker',
+        vessel_class_id=84,
+        vessel_class='VLCC',
+        start_date='2022-07-01T03:56:40',
+        end_date='2022-08-19T11:56:58',
+        quantity=243000.0,
+        deadweight=300000,
+        contains_eu_emissions=True,
+        transport_work_in_million_tonne_miles=2663.0199899999993,
+        transport_work_in_million_dwt_miles=3287.6789999999996,
+        emissions=EmissionsBreakdown(
+            voyage=Emissions(
+                co2_in_tons=6790.670700343808,
+                coin_tons=6.00075557855251,
+                ch4_in_tons=0.12998026523940456,
+                n2_oin_tons=0.3418292808876354,
+                nmvocin_tons=6.672320282289433,
+                nox_in_tons=167.71723833544547,
+                sox_in_tons=2.5029667643054117,
+                pmin_tons=5.491910237454452,
+            ),
+            ballast=Emissions(
+                co2_in_tons=2294.4994261479897,
+                coin_tons=2.033922574628233,
+                ch4_in_tons=0.044056084648987,
+                n2_oin_tons=0.11664283501361183,
+                nmvocin_tons=2.261545678647999,
+                nox_in_tons=57.21500633160883,
+                sox_in_tons=0.958403504297451,
+                pmin_tons=2.0734079148878473,
+            ),
+            laden=Emissions(
+                co2_in_tons=3602.247828362485,
+                coin_tons=3.1873829764358512,
+                ch4_in_tons=0.06904078649319534,
+                n2_oin_tons=0.18208139089717165,
+                nmvocin_tons=3.5440937066506937,
+                nox_in_tons=89.32744241471627,
+                sox_in_tons=1.401854206865687,
+                pmin_tons=3.056502367323505,
+            ),
+            port_call=Emissions(
+                co2_in_tons=558.76,
+                coin_tons=0.48474999999999996,
+                ch4_in_tons=0.0105,
+                n2_oin_tons=0.0265,
+                nmvocin_tons=0.5389999999999999,
+                nox_in_tons=13.024000000000001,
+                sox_in_tons=0.045455145000000044,
+                pmin_tons=0.14173187967225,
+            ),
+            stop=Emissions(
+                co2_in_tons=335.1634458333333,
+                coin_tons=0.29470002748842594,
+                ch4_in_tons=0.006383394097222222,
+                n2_oin_tons=0.016605054976851854,
+                nmvocin_tons=0.3276808969907407,
+                nox_in_tons=8.15078958912037,
+                sox_in_tons=0.09725390814227439,
+                pmin_tons=0.2202680755708518,
+            )
         ),
-        ballast=Consumptions(
-            lfoin_tons=129.8597385592635,
-            total_in_tons=129.8597385592635,
-        ),
-        laden=Consumptions(
-            lfoin_tons=23.800603032327235,
-            total_in_tons=23.800603032327235,
-        ),
-        port_call=Consumptions(
-            lfoin_tons=80.0,
-            total_in_tons=80.0,
-        ),
-        stop=Consumptions(
-            lfoin_tons=26.19236537037037,
-            mgoin_tons=5.833576388888889,
-            total_in_tons=32.02594175925926,
+        efficiency_metrics=Metrics(
+            voyage_cii=4.969343438804451,
+            voyage_cii_unit="g-CO2/capacity mile",
+            voyage_cii_rating="D",
+            voyage_cii_target=4.178777475053739,
+            voyage_cii_target_year=2021,
+            capacity_eeoi=39.74048276526212,
+            capacity_eeoi_unit="g-CO2/capacity mile",
+            capacity_eeoi_sea_cargo_charter_year_target=11.02,
+            capacity_eeoi_sea_cargo_charter_class="Oil Tanker 80000-119999 DWT",
+            capacity_eeoi_sea_cargo_charter_alignment_in_percentage=260.6214407011082,
+            eeoi=57.79110679327875,
+            eeoi_unit="g-CO2/ton mile",
+            eeoi_sea_cargo_charter_year_target=11.02,
+            eeoi_sea_cargo_charter_class="Oil Tanker 80000-119999 DWT",
+            eeoi_sea_cargo_charter_alignment_in_percentage=424.42020683556035,
+            kg_co2_per_tonne_cargo=10.468858995602444,
+            kg_co2_per_tonne_dwt=7.198988452927233
         )
-    )
-    )
-)
+    )]
+
+__mock_emissions_response_imo_all_args = [
+    __mock_emissions_response_imo_voyage_all_args,
+    __mock_emissions_response_imo_voyage_all_args,
+    __mock_emissions_response_imo_voyage_all_args
+]
+
+__mock_emissions_imo_all_args = [
+    __mock_emissions_imo_voyage_all_args,
+    __mock_emissions_imo_voyage_all_args,
+    __mock_emissions_imo_voyage_all_args
+]
 
 __mock_metrics_response = [
     {
