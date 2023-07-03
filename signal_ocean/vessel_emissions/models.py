@@ -41,9 +41,9 @@ class EmissionsBreakdown:
     """
     voyage: Emissions
     ballast: Optional[Emissions] = None
-    laden: Optional[Emissions]= None
-    port_call: Optional[Emissions]= None
-    stop: Optional[Emissions]= None
+    laden: Optional[Emissions] = None
+    port_call: Optional[Emissions] = None
+    stop: Optional[Emissions] = None
 
 
 @dataclass(frozen=True)
@@ -81,10 +81,10 @@ class ConsumptionsBreakdown:
         stop: Vessel Consumptions for the stops of the voyage
     """
     voyage: Consumptions
-    ballast: Optional[Consumptions]= None
-    laden: Optional[Consumptions]= None
-    port_call: Optional[Consumptions]= None
-    stop: Optional[Consumptions]= None
+    ballast: Optional[Consumptions] = None
+    laden: Optional[Consumptions] = None
+    port_call: Optional[Consumptions] = None
+    stop: Optional[Consumptions] = None
 
 
 @dataclass(frozen=True)
@@ -111,10 +111,10 @@ class DurationBreakdown:
         stop: Duration of the stops of the voyage
     """
     voyage: Duration
-    ballast: Optional[Duration]= None
-    laden: Optional[Duration]= None
-    port_call: Optional[Duration]= None
-    stop: Optional[Duration]= None
+    ballast: Optional[Duration] = None
+    laden: Optional[Duration] = None
+    port_call: Optional[Duration] = None
+    stop: Optional[Duration] = None
 
 
 @dataclass(frozen=True)
@@ -148,21 +148,47 @@ class Metrics:
     """Vessel Metrics estimation.
 
     Attributes:
-        voyage_cii: Carbon Intensity Indicator (VoyageCII) efficiency metrics for the voyage
-        voyage_cii_unit: The unit of the voyage Carbon Intensity Indicator (VoyageCII)
-        voyage_cii_rating: The rating of the vessel based on the VoyageCII
-        voyage_cii_target: The alignment target for the VoyageCII efficiency metric of the current year
-        voyage_cii_target_year: The year that has taken into account for calculating the alignment target for the VoyageCII efficiency metric
-        capacity_eeoi: The EEOI efficiency metric when the quantity equals with the capacity of the vessel (CapacityEEOI) e.g. the deadweight of the vessel
-        capacity_eeoi_unit: The unit of the Capacity EEOI efficiency metric
-        capacity_eeoi_sea_cargo_charter_year_target: The alignment target for the Capacity EEOI efficiency metric based on the Sea Cargo Charter guidelines for the year of the voyage
-        capacity_eeoi_sea_cargo_charter_class: The Sea Cargo Charter defined class that the vessel belongs to based on it's size
-        capacity_eeoi_sea_cargo_charter_alignment_in_percentage: The alignment delta in percentage, based on the acquired Capacity EEOI and the given alignment target from Sea Cargo Charter. Negative is aligned, positive is misaligned
+        voyage_cii: Carbon Intensity Indicator
+        (VoyageCII)
+        efficiency metrics for the voyage
+        voyage_cii_unit: The unit of the voyage
+        Carbon Intensity Indicator (VoyageCII)
+        voyage_cii_rating: The rating of the vessel
+        based on the VoyageCII
+        voyage_cii_target: The alignment target for the
+        Voyage CII efficiency metric of the current year
+        voyage_cii_target_year: The year that has taken
+        into account for calculating the alignment target
+        for the VoyageCII efficiency metric
+        capacity_eeoi: The EEOI efficiency metric when
+        the quantity equals with the capacity of
+        the vessel (CapacityEEOI)
+        e.g. the deadweight of the vessel
+        capacity_eeoi_unit: The unit of the Capacity
+        EEOI efficiency metric
+        capacity_eeoi_sea_cargo_charter_year_target:
+        The alignment target for the Capacity EEOI
+        efficiency metric based on the Sea Cargo
+        Charter guidelines for the year of the voyage
+        capacity_eeoi_sea_cargo_charter_class:
+        The Sea Cargo Charter defined class
+        that the vessel belongs to based on it's size
+        capacity_eeoi_sea_cargo_charter_alignment_in_percentage:
+        The alignment delta in percentage, based on the acquired
+        Capacity EEOI and the given alignment target
+        from Sea Cargo Charter. Negative is aligned,
+        positive is misaligned
         eeoi: The EEOI efficiency metrics calculated for the voyage
         eeoi_unit: The unit of the EEOI efficiency metrics
-        eeoi_sea_cargo_charter_year_target: The alignment target for the EEOI efficiency metric based on the Sea Cargo Charter guidelines for the year of the voyage
-        eeoi_sea_cargo_charter_class: The Sea Cargo Charter defined class that the vessel belongs to based on it's size
-        eeoi_sea_cargo_charter_alignment_in_percentage: The alignment delta in percentage, based on the acquired EEOI and the given alignment target from Sea Cargo Charter. Negative is aligned, positive is misaligned.
+        eeoi_sea_cargo_charter_year_target: The alignment
+        target for the EEOI efficiency metric based on the Sea Cargo
+        Charter guidelines for the year of the voyage
+        eeoi_sea_cargo_charter_class: The Sea Cargo Charter
+        defined class that the vessel belongs to based on it's size
+        eeoi_sea_cargo_charter_alignment_in_percentage:
+        The alignment delta in percentage, based on the acquired
+        EOI and the given alignment target from Sea Cargo Charter.
+        Negative is aligned, positive is misaligned.
         kg_co2_per_tonne_cargo: Kg of CO2 per tonne of cargo carried
         kg_co2_per_tonne_dwt: Kg of CO2 per tonne of the vessel's deadweight
 
@@ -253,12 +279,19 @@ class EmissionsEstimation:
         end_date: End date of the Voyage
         quantity: Cargo quantity of the voyage
         deadweight: Vessel's deadweight
-        transport_work_in_million_tonne_miles: Transport work measured in millions tonnes of cargo carried times the travelled distance in miles of the current voyage
-        transport_work_in_million_dwt_miles: Transport work measured in millions tonnes when the cargo curried equals the DWT times the travelled distance in miles of the current voyage
-        contains_eu_emissions: Declares whether voyage has European Union Related Emissions
+        transport_work_in_million_tonne_miles: Transport
+        work measured in millions tonnes of cargo carried
+        times the travelled distance in miles of the current voyage
+        transport_work_in_million_dwt_miles: Transport work
+        measured in millions tonnes when the cargo
+        curried equals the DWT times the travelled
+        distance in miles of the current voyage
+        contains_eu_emissions: Declares whether
+        voyage has European Union Related Emissions
         emissions: Emissions breakdown for the voyage
         consumptions: Consumptions breakdown for the voyage
-        seagoing_speed_statistics: Seagoing Speed Statistics breakdown for the voyage
+        seagoing_speed_statistics: Seagoing
+        Speed Statistics breakdown for the voyage
         duration: Duration breakdown for the voyage
         distances: Distance travelled breakdown for the voyage
         efficiency_metrics: Emissions Efficiency metrics for the voyage
@@ -282,7 +315,8 @@ class EmissionsEstimation:
     contains_eu_emissions: Optional[bool] = None
     emissions: Optional[EmissionsBreakdown] = None
     consumptions: Optional[ConsumptionsBreakdown] = None
-    seagoing_speed_statistics: Optional[SeagoingSpeedStatisticsBreakdown] = None
+    seagoing_speed_statistics: \
+        Optional[SeagoingSpeedStatisticsBreakdown] = None
     duration: Optional[DurationBreakdown] = None
     distances: Optional[DistancesBreakdown] = None
     efficiency_metrics: Optional[Metrics] = None
@@ -324,9 +358,15 @@ class Aer:
     Attributes:
         value: Annual metric value
         unit: Annual metric unit
-        poseidon_principles_class: Poseidon Principles defined class based on the vessel's size
-        poseidon_principles_alignment_in_percentage: The alignment delta in percentage, based on the acquired AER and the given alignment target from Poseidon Principles. Negative is aligned, positive is misaligned.
-        poseidon_principles_year_target: The alignment target for the AER efficiency metric based on the Poseidon Principles guidelines for the year of the voyage
+        poseidon_principles_class: Poseidon Principles
+        defined class based on the vessel's size
+        poseidon_principles_alignment_in_percentage: The
+        alignment delta in percentage, based on the acquired AER
+        and the given alignment target from Poseidon Principles.
+        Negative is aligned, positive is misaligned.
+        poseidon_principles_year_target: The alignment target for
+        the AER efficiency metric based on the Poseidon
+        Principles guidelines for the year of the voyage
 
     """
     value: Optional[float] = None
@@ -389,7 +429,7 @@ class VesselClassEmissions:
     """Contains Vessel Class Emissions.
 
     Attributes:
-        next_page_token: String. The key that should be used as a parameter of the token to retrieve the next page
+        next_page_token: String. The key  to retrieve the next page
         data: List of Vessel Emissions for available vessels of this class
 
     """
@@ -402,7 +442,8 @@ class VesselClassMetrics:
     """Contains Vessel Class Metrics.
 
     Attributes:
-        next_page_token: String. The key that should be used as a parameter of the token to retrieve the next page
+        next_page_token: String. The key that should be used
+        as a parameter of the token to retrieve the next page
         data: List of Vessel Metrics for available vessels of this class
 
     """
