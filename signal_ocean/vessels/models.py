@@ -244,6 +244,15 @@ class Vessel:
             with a heating coils system. Tanker vessels may be fitted with
             heating coils in order to maintain the required temperature of
             the cargo for pumping.
+        bwts: Boolean, denotes whether the vessel has any Ballast Water 
+            Treatment System. This system is designed to remove and 
+            destroy/inactive biological organisms (zooplankton, algae, 
+            bacteria) from ballast water.
+        grabs_fitted: Boolean, denotes whether the vessel is fitted with 
+            grabs. Grabs are fitted on cranes to allow the handling of cargo.
+        ghg: String, denotes the vessel’s GHG (Greenhouse Gas) Emissions Rating. 
+            Developed by RightShip, GHG compares a ship's design efficiency 
+            with peer vessels using a simple A–G scale.
     """
 
     imo: int
@@ -317,3 +326,6 @@ class Vessel:
     beneficial_owner: Optional[str] = None
     parallel_body_length: Optional[float] = None
     heating_coils_fitted: Optional[bool] = None
+    bwts: Optional[bool] = None
+    grabs_fitted: Optional[bool] = None
+    ghg: Optional[str] = None
