@@ -73,8 +73,8 @@ class VesselsAPI:
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel,
                             rename_keys={"STSTCoating": "stst_coating",
-                                        "BWTS": "bwts",
-                                        "GHG": "ghg"})
+                                         "BWTS": "bwts",
+                                         "GHG": "ghg"})
 
     def get_vessels_by_vessel_class(
         self, vesselClass: int, point_in_time: Optional[str] = default_pit
@@ -91,5 +91,5 @@ class VesselsAPI:
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel,
                             rename_keys={"STSTCoating": "stst_coating",
-                                        "BWTS": "bwts",
-                                        "GHG": "ghg"})
+                                         "BWTS": "bwts",
+                                         "GHG": "ghg"})
