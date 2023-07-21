@@ -22,7 +22,7 @@ nav:
         - 'examples/jupyter/VoyagesAPI/OilFlows.ipynb'
         - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
         - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
-	- 'examples/jupyter/VoyagesAPI/VoyagesAPI-FloatingStorages.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-FloatingStorages.ipynb'
     - Tonnage List:
       - 'tonnage_list.md'
       - Examples:
