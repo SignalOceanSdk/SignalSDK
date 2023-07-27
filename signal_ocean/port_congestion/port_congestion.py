@@ -375,9 +375,8 @@ class PortCongestion:
             "arrival_date",
         ]
 
-        vessels_congestion_data_datetimetz = vessels_congestion_data.select_dtypes(
-            "datetimetz"
-        )
+        vessels_congestion_data_datetimetz = vessels_congestion_data.\
+            select_dtypes("datetimetz")
         vessels_congestion_data[
             vessels_congestion_data_datetimetz.columns
         ] = vessels_congestion_data_datetimetz.apply(
@@ -467,9 +466,8 @@ class PortCongestion:
             .reset_index()
             .set_index("date")
         )
-        waiting_time_df.avg_waiting_time = waiting_time_df.avg_waiting_time.round(
-            1
-        )
+        waiting_time_df.avg_waiting_time = waiting_time_df.\
+            avg_waiting_time.round(1)
         waiting_time_df.index = cast(
             pd.Index, pd.to_datetime(waiting_time_df.index).tz_convert(None)
         )

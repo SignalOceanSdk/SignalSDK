@@ -119,13 +119,17 @@ class PortCongestionTimeSeriesEntry:
 
     Attributes:
         queue (int): The port queue size.
-        queue_loading (int): The number of vessels in the queue with Purpose = Loading
-        queue_discharging (int): The number of vessels in the queue with Purpose = Discharging
+        queue_loading (int): The number of vessels in the queue with
+                             Purpose = Loading
+        queue_discharging (int): The number of vessels in the queue with
+                                 Purpose = Discharging
         arrivals (int): The port arrivals amount.
         departures (int): The port departures amount.
         avg_days_since_arrival (float): Average days since arrival.
         avg_wait_estimate (float): Average waiting time estimate.
-        avg_eventual_days_by_departure (float): Average number of total port days of all vessels departing on this date
+        avg_eventual_days_by_departure (float): Average number of total
+                                                port days of all vessels
+                                                departing on this date
         observation_date (datetime): Corresponding day.
     """
 
