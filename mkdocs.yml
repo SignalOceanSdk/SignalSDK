@@ -22,6 +22,7 @@ nav:
         - 'examples/jupyter/VoyagesAPI/OilFlows.ipynb'
         - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
         - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-FloatingStorages.ipynb'
     - Tonnage List:
       - 'tonnage_list.md'
       - Examples:
@@ -95,6 +96,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 7.1.2.md'
       - 'releases/Version 7.1.1.md'
       - 'releases/Version 7.1.0.md'
       - 'releases/Version 7.0.0.md'
