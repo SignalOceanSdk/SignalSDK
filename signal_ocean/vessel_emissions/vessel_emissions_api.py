@@ -294,7 +294,7 @@ class VesselEmissionsAPI:
             self,
             imo: int,
             year: Union[int, None] = None
-    ) -> List[VesselMetrics]:
+    ) -> List[Dict[Any, Any]]:
         """Get vessel metrics.
 
         Args:
@@ -309,9 +309,19 @@ class VesselEmissionsAPI:
                       f"emissions/metrics/imo/{imo}")
         if year is not None:
             url = urljoin(url, f"?year={year}")
-        return [i for i in get_multiple(self.__connection,
-                                        url,
-                                        VesselMetrics)]
+        metrics_list = [i for i in get_multiple(self.__connection,
+                                                url,
+                                                VesselMetrics)]
+        return [
+            asdict(
+                metrics_object,
+                dict_factory=lambda x: {
+                    _to_camel_case_with_special_keywords(k): v
+                    for (k, v) in x if v is not None
+                }
+            )
+            for metrics_object in metrics_list
+        ]
 
     def get_emissions_by_vessel_class_id(
             self,
@@ -323,7 +333,7 @@ class VesselEmissionsAPI:
             include_durations: bool = False,
             include_speed_statistics: bool = False,
             include_eu_emissions: bool = False
-    ) -> Optional[VesselClassEmissions]:
+    ) -> Optional[Dict[Any, Any]]:
         """Get emissions estimations for a vessel class (supports incremental updates).
 
         Args:
@@ -358,15 +368,21 @@ class VesselEmissionsAPI:
                              **params_dict)
 
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
-        return get_single(self.__connection,
-                          url,
-                          VesselClassEmissions)
+        emissions_object = get_single(
+            self.__connection,
+            url,
+            VesselClassEmissions)
+        return asdict(emissions_object,
+                      dict_factory=lambda x: {
+                          _to_camel_case_with_special_keywords(k): v
+                          for (k, v) in x if v is not None
+                      })
 
     def get_metrics_by_vessel_class_id(self,
                                        vessel_class_id: int,
                                        year: Union[int, None] = None,
                                        token: Union[str, None] = None
-                                       ) -> Optional[VesselClassMetrics]:
+                                       ) -> Optional[Dict[Any, Any]]:
         """Get vessel class metrics.
 
         Args:
@@ -393,4 +409,9 @@ class VesselEmissionsAPI:
                             f"{vessel_class_id}",
                             query_url)
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
-        return get_single(self.__connection, url, VesselClassMetrics)
+        metrics_object = get_single(self.__connection, url, VesselClassMetrics)
+        return asdict(metrics_object,
+                      dict_factory=lambda x: {
+                          _to_camel_case_with_special_keywords(k): v
+                          for (k, v) in x if v is not None
+                      })

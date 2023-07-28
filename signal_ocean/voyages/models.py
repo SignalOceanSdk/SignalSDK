@@ -196,6 +196,8 @@ class VoyageEventDetail:
     longitude: Optional[float] = None
     other_vessel_imo: Optional[int] = None
     other_vessel_name: Optional[str] = None
+    floating_storage_start_date: Optional[datetime] = None
+    floating_storage_duration: Optional[int] = None
 
 
 @dataclass(frozen=True)

@@ -32,7 +32,7 @@ NextRequestToken = str
 class VoyagesAPI:
     """Represents Signal's Voyages API."""
 
-    relative_url = "voyages-api/v3/"
+    relative_url = "voyages-api/v3.2/"
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VoyagesAPI.
@@ -77,10 +77,10 @@ class VoyagesAPI:
         condensed: Optional[bool] = False,
         incremental: Optional[bool] = False,
     ) -> str:
-        """Constructs the VoyagesData V3 endpoint.
+        """Constructs the VoyagesData v3.2 endpoint.
 
         Args:
-            endpoint_params: VoyagesData V3 endpoint parameters dictionary.
+            endpoint_params: VoyagesData v3.2 endpoint parameters dictionary.
             Part of get_voyages method arguments.
             Part of get_voyages_incremental arguments.
 
@@ -832,7 +832,7 @@ class VoyagesAPI:
             port_ids=port_ids,
             vessel_type_id=vessel_type_id,
             voyage_date_from=start_date_from,
-            voyage_date_to=start_date_from,
+            voyage_date_to=start_date_to,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
             first_load_arrival_date_from=first_load_arrival_date_from,
@@ -1021,7 +1021,7 @@ class VoyagesAPI:
             A tuple of available vessel classes that match the filter.
         """
         response = self.__connection._make_get_request(
-            "voyages-api/v3/filters/availableVesselClasses"
+            "voyages-api/v3.2/filters/availableVesselClasses"
         )
         response.raise_for_status()
 
@@ -1043,7 +1043,7 @@ class VoyagesAPI:
             A tuple of available vessel types that match the filter.
         """
         response = self.__connection._make_get_request(
-            "voyages-api/v3/filters/availableVesselTypes"
+            "voyages-api/v3.2/filters/availableVesselTypes"
         )
         response.raise_for_status()
 
@@ -1065,7 +1065,7 @@ class VoyagesAPI:
             A tuple of available vessels that match the filter.
         """
         response = self.__connection._make_get_request(
-            "voyages-api/v3/filters/availableVessels"
+            "voyages-api/v3.2/filters/availableVessels"
         )
         response.raise_for_status()
 
