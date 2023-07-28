@@ -1,4 +1,6 @@
 """The vessel emissions api."""
+import copy
+from dataclasses import asdict
 from typing import Optional, List, Union, Dict, Any
 from urllib.parse import urljoin, urlencode
 from datetime import date
@@ -46,6 +48,28 @@ def custom_headers(connection: Connection) -> Dict[str, Optional[str]]:
     }
 
 
+def _to_camel_case_with_special_keywords(s: str) -> str:
+    special_keywords = [
+        'imo', 'id', 'co', 'co2', 'ch', 'nmvoc',
+    ]
+    _to_camelcase = s.split('_')
+    _to_camelcase = [
+        word.capitalize() if word not in special_keywords
+        else word.upper()
+        for word in _to_camelcase
+    ]
+    result = ''.join(_to_camelcase)
+    if 'Tons' in result:
+        result = (
+            result.replace('in', 'In').
+            replace('Nmvoc', 'NMVOC').
+            replace('Sox', 'SOx').
+            replace('Nox', 'NOx').
+            replace('Co', 'CO')
+        )
+    return result
+
+
 class VesselEmissionsAPI:
     """Represents Signal's Vessel Emissions API."""
 
@@ -60,13 +84,14 @@ class VesselEmissionsAPI:
                 default connection method is used.
         """
         if connection is not None:
+            em_connection = copy.deepcopy(connection)
             func_type = type(
-                connection._Connection__get_headers  # type: ignore
+                em_connection._Connection__get_headers  # type: ignore
             )
-            connection._Connection__get_headers = func_type(  # type: ignore
-                custom_headers, connection
+            em_connection._Connection__get_headers = func_type(  # type: ignore
+                custom_headers, em_connection
             )
-            self.__connection = connection
+            self.__connection = em_connection
         else:
             connection = Connection()
             func_type = type(
@@ -148,7 +173,7 @@ class VesselEmissionsAPI:
             sulphur_content_lfo: Union[float, None] = None,
             sulphur_content_mgo: Union[float, None] = None,
             sulphur_content_lng: Union[float, None] = None
-    ) -> Optional[EmissionsEstimation]:
+    ) -> Optional[Dict[Any, Any]]:
         """Retrieves voyage emissions for a vessel by its IMO and Voyage Number.
 
         Args:
@@ -188,7 +213,14 @@ class VesselEmissionsAPI:
                              'voyage_number', voyage_number,
                              **params_dict)
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
-        return get_single(self.__connection, url, EmissionsEstimation)
+        emissions_object = get_single(self.__connection,
+                                      url,
+                                      EmissionsEstimation)
+        return asdict(emissions_object,
+                      dict_factory=lambda x: {
+                          _to_camel_case_with_special_keywords(k): v
+                          for (k, v) in x if v is not None
+                      })
 
     def get_emissions_by_imo(
             self,
@@ -203,7 +235,7 @@ class VesselEmissionsAPI:
             sulphur_content_lfo: Union[float, None] = None,
             sulphur_content_mgo: Union[float, None] = None,
             sulphur_content_lng: Union[float, None] = None
-    ) -> List[EmissionsEstimation]:
+    ) -> List[Dict[Any, Any]]:
         """Retrieves a list of vessel emissions by its IMO.
 
         Args:
@@ -242,9 +274,21 @@ class VesselEmissionsAPI:
                              'imo', imo,
                              **params_dict)
         url = urljoin(VesselEmissionsAPI.relative_url, query_url)
-        return [i for i in get_multiple(self.__connection,
-                                        url,
-                                        EmissionsEstimation)]
+        emissions_list = [
+            i for i in get_multiple(self.__connection,
+                                    url,
+                                    EmissionsEstimation)
+        ]
+        return [
+            asdict(
+                emissions_object,
+                dict_factory=lambda x: {
+                    _to_camel_case_with_special_keywords(k): v
+                    for (k, v) in x if v is not None
+                }
+            )
+            for emissions_object in emissions_list
+        ]
 
     def get_metrics_by_imo(
             self,

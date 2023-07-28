@@ -13,11 +13,11 @@ class Emissions:
     co2_in_tons: CO2 emissions in tons
     coin_tons: CO emissions in tons
     ch4_in_tons: CH4 emissions in tons
-    n2_oin_tons: N20 emissions in tons
-    nmvocin_tons: NMVOC emissions in tons
+    n2oin_tons: N20 emissions in tons
+    nmvoc_in_tons: NMVOC emissions in tons
     nox_in_tons: NOX emissions in tons
     sox_in_tons: SOX emissions in tons
-    pmin_tons: PM emissions in tons
+    pm_in_tons: PM emissions in tons
 
     """
     co2_in_tons: Optional[float] = None
@@ -63,10 +63,10 @@ class Consumptions:
 
     """
     total_in_tons: float
-    hfoin_tons: Optional[float] = None
+    hfo_in_tons: Optional[float] = None
     lfoin_tons: Optional[float] = None
     mgoin_tons: Optional[float] = None
-    lngin_tons: Optional[float] = None
+    lng_in_tons: Optional[float] = None
     lpgpropane_in_tons: Optional[float] = None
     lpgbutane_in_tons: Optional[float] = None
 

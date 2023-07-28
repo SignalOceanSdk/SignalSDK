@@ -1,9 +1,12 @@
+from dataclasses import asdict
 from typing import Tuple
 from unittest.mock import MagicMock
 
 import requests
 
 from signal_ocean import Connection
+from signal_ocean.util.parsing_helpers import parse_model
+from signal_ocean.vessel_emissions.models import EmissionsEstimation
 from vessel_emissions_mock_data import __mock_emissions_response_imo_voyage_no_args, __mock_metrics_response, \
     __mock_emissions_response_imo_voyage_all_args, \
     __mock_emissions_imo_voyage_no_args, __mock_metrics_1, __mock_emissions_imo_voyage_all_args, \
@@ -16,7 +19,7 @@ from vessel_class_emissions_mock_data import __mock_emissions_vessel_class_no_ar
     __mock_emissions_response_vessel_class_one_arg, __mock_emissions_vessel_class_one_arg, \
     __mock_emissions_response_vessel_class_all_args, __mock_emissions_vessel_class_all_args
 from mock_data_test import __mock_emissions_response_2, __mock_emissions_2
-from signal_ocean.vessel_emissions.vessel_emissions_api import VesselEmissionsAPI
+from signal_ocean.vessel_emissions.vessel_emissions_api import VesselEmissionsAPI, _to_camel_case_with_special_keywords
 
 
 def create_vessel_emissions_api(response: requests.Response) -> Tuple[VesselEmissionsAPI, MagicMock]:
@@ -33,7 +36,10 @@ def test_request_vessel_emissions_by_imo_and_voyage_number_no_args():
     api, mocked_make_request = create_vessel_emissions_api(response)
     emissions = api.get_emissions_by_imo_and_voyage_number(imo=9412036,
                                                            voyage_number=141)
-    assert emissions == __mock_emissions_imo_voyage_no_args
+    mock_emissions_object = asdict(__mock_emissions_imo_voyage_no_args,
+                                   dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                                           for (k, v) in x if v is not None})
+    assert emissions == mock_emissions_object
 
 
 def test_request_vessel_emissions_by_imo_and_voyage_number_one_arg():
@@ -43,7 +49,10 @@ def test_request_vessel_emissions_by_imo_and_voyage_number_one_arg():
     emissions = api.get_emissions_by_imo_and_voyage_number(imo=9412036,
                                                            voyage_number=141,
                                                            include_efficiency_metrics=True)
-    assert emissions == __mock_emissions_imo_voyage_one_arg
+    mock_emissions_object = asdict(__mock_emissions_imo_voyage_one_arg,
+                                   dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                                           for (k, v) in x if v is not None})
+    assert emissions == mock_emissions_object
 
 
 def test_request_vessel_emissions_by_imo_and_voyage_number_all_args():
@@ -57,7 +66,10 @@ def test_request_vessel_emissions_by_imo_and_voyage_number_all_args():
                                                            include_eu_emissions=True, include_consumptions=True,
                                                            include_durations=True,
                                                            include_distances=True)
-    assert emissions == __mock_emissions_imo_voyage_all_args
+    mock_emissions_object = asdict(__mock_emissions_imo_voyage_all_args,
+                                   dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                                           for (k, v) in x if v is not None})
+    assert emissions == mock_emissions_object
 
 
 def test_request_vessel_emissions_by_imo_no_args():
@@ -65,7 +77,15 @@ def test_request_vessel_emissions_by_imo_no_args():
     response.json.return_value = __mock_emissions_response_imo_no_args
     api, mocked_make_request = create_vessel_emissions_api(response)
     emissions = api.get_emissions_by_imo(imo=9412036)
-    assert emissions == __mock_emissions_imo_no_args
+    mock_emissions = [
+            asdict(
+                emissions_object,
+                dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                        for (k, v) in x if v is not None}
+            )
+            for emissions_object in __mock_emissions_imo_no_args
+        ]
+    assert emissions == mock_emissions
 
 
 def test_request_vessel_emissions_by_imo_one_arg():
@@ -73,7 +93,15 @@ def test_request_vessel_emissions_by_imo_one_arg():
     response.json.return_value = __mock_emissions_response_imo_one_arg
     api, mocked_make_request = create_vessel_emissions_api(response)
     emissions = api.get_emissions_by_imo(imo=9412036)
-    assert emissions == __mock_emissions_imo_one_arg
+    mock_emissions = [
+            asdict(
+                emissions_object,
+                dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                        for (k, v) in x if v is not None}
+            )
+            for emissions_object in __mock_emissions_imo_one_arg
+        ]
+    assert emissions == mock_emissions
 
 
 def test_request_vessel_emissions_by_imo_all_args():
@@ -81,7 +109,15 @@ def test_request_vessel_emissions_by_imo_all_args():
     response.json.return_value = __mock_emissions_response_imo_all_args
     api, mocked_make_request = create_vessel_emissions_api(response)
     emissions = api.get_emissions_by_imo(imo=9412036)
-    assert emissions == __mock_emissions_imo_all_args
+    mock_emissions = [
+            asdict(
+                emissions_object,
+                dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                        for (k, v) in x if v is not None}
+            )
+            for emissions_object in __mock_emissions_imo_all_args
+        ]
+    assert emissions == mock_emissions
 
 
 def test_request_vessel_metrics_by_imo():
