@@ -78,13 +78,13 @@ def test_request_vessel_emissions_by_imo_no_args():
     api, mocked_make_request = create_vessel_emissions_api(response)
     emissions = api.get_emissions_by_imo(imo=9412036)
     mock_emissions = [
-            asdict(
-                emissions_object,
-                dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
-                                        for (k, v) in x if v is not None}
-            )
-            for emissions_object in __mock_emissions_imo_no_args
-        ]
+        asdict(
+            emissions_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for emissions_object in __mock_emissions_imo_no_args
+    ]
     assert emissions == mock_emissions
 
 
@@ -94,13 +94,13 @@ def test_request_vessel_emissions_by_imo_one_arg():
     api, mocked_make_request = create_vessel_emissions_api(response)
     emissions = api.get_emissions_by_imo(imo=9412036)
     mock_emissions = [
-            asdict(
-                emissions_object,
-                dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
-                                        for (k, v) in x if v is not None}
-            )
-            for emissions_object in __mock_emissions_imo_one_arg
-        ]
+        asdict(
+            emissions_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for emissions_object in __mock_emissions_imo_one_arg
+    ]
     assert emissions == mock_emissions
 
 
@@ -110,13 +110,13 @@ def test_request_vessel_emissions_by_imo_all_args():
     api, mocked_make_request = create_vessel_emissions_api(response)
     emissions = api.get_emissions_by_imo(imo=9412036)
     mock_emissions = [
-            asdict(
-                emissions_object,
-                dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
-                                        for (k, v) in x if v is not None}
-            )
-            for emissions_object in __mock_emissions_imo_all_args
-        ]
+        asdict(
+            emissions_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for emissions_object in __mock_emissions_imo_all_args
+    ]
     assert emissions == mock_emissions
 
 
@@ -125,31 +125,65 @@ def test_request_vessel_metrics_by_imo():
     response.json.return_value = __mock_metrics_response
     api, mocked_make_request = create_vessel_emissions_api(response)
     metrics = api.get_metrics_by_imo(imo=9412036, year=2022)
-    assert metrics == __mock_metrics_1
+    mock_metrics = [
+        asdict(
+            metrics_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for metrics_object in __mock_metrics_1
+    ]
+    assert metrics == mock_metrics
 
 
 def test_request_vessel_class_emissions_no_args():
     response = MagicMock()
     response.json.return_value = __mock_emissions_response_vessel_class_no_args
     api, mocked_make_request = create_vessel_emissions_api(response)
-    metrics = api.get_emissions_by_vessel_class_id(vessel_class_id=86)
-    assert metrics == __mock_emissions_vessel_class_no_args
+    emissions = api.get_emissions_by_vessel_class_id(vessel_class_id=86)
+    print('gianadw', emissions)
+    mock_emissions = {"NextPageToken": emissions["NextPageToken"], "Data": [
+        asdict(
+            emissions_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for emissions_object in __mock_emissions_vessel_class_no_args.data
+    ]}
+    print('gianadw', mock_emissions)
+    assert emissions == mock_emissions
 
 
 def test_request_vessel_class_emissions_one_arg():
     response = MagicMock()
     response.json.return_value = __mock_emissions_response_vessel_class_one_arg
     api, mocked_make_request = create_vessel_emissions_api(response)
-    metrics = api.get_emissions_by_vessel_class_id(vessel_class_id=86)
-    assert metrics == __mock_emissions_vessel_class_one_arg
+    emissions = api.get_emissions_by_vessel_class_id(vessel_class_id=86)
+    mock_emissions = {"NextPageToken": emissions["NextPageToken"], "Data": [
+        asdict(
+            emissions_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for emissions_object in __mock_emissions_vessel_class_one_arg.data
+    ]}
+    assert emissions == mock_emissions
 
 
 def test_request_vessel_class_emissions_all_args():
     response = MagicMock()
     response.json.return_value = __mock_emissions_response_vessel_class_all_args
     api, mocked_make_request = create_vessel_emissions_api(response)
-    metrics = api.get_emissions_by_vessel_class_id(vessel_class_id=86)
-    assert metrics == __mock_emissions_vessel_class_all_args
+    emissions = api.get_emissions_by_vessel_class_id(vessel_class_id=86)
+    mock_emissions = {"NextPageToken": emissions["NextPageToken"], "Data": [
+        asdict(
+            emissions_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for emissions_object in __mock_emissions_vessel_class_all_args.data
+    ]}
+    assert emissions == mock_emissions
 
 
 def test_request_vessel_class_metrics():
@@ -157,4 +191,12 @@ def test_request_vessel_class_metrics():
     response.json.return_value = __mock_vessel_class_metrics_response_1
     api, mocked_make_request = create_vessel_emissions_api(response)
     metrics = api.get_metrics_by_vessel_class_id(vessel_class_id=86)
-    assert metrics == __mock_vessel_class_metrics_1
+    mock_metrics = {"NextPageToken": metrics['NextPageToken'], 'Data': [
+        asdict(
+            metrics_object,
+            dict_factory=lambda x: {_to_camel_case_with_special_keywords(k): v
+                                    for (k, v) in x if v is not None}
+        )
+        for metrics_object in __mock_vessel_class_metrics_1.data
+    ]}
+    assert metrics == mock_metrics
