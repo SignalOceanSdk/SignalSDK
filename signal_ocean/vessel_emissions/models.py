@@ -261,10 +261,10 @@ class EmissionsEssentialStatistics:
         duration: Voyage duration info
 
     """
-    emissions: Optional[EmissionsBreakdown]
-    consumptions: Optional[ConsumptionsBreakdown]
-    distances: Optional[DistancesBreakdown]
-    duration: Optional[DurationBreakdown]
+    emissions: Optional[EmissionsBreakdown] = None
+    consumptions: Optional[ConsumptionsBreakdown] = None
+    distances: Optional[DistancesBreakdown] = None
+    duration: Optional[DurationBreakdown] = None
 
 
 @dataclass(frozen=True)

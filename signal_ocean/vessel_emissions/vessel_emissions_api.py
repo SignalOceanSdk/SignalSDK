@@ -1,4 +1,5 @@
 """The vessel emissions api."""
+import copy
 from typing import Optional, List, Union, Dict, Any
 from urllib.parse import urljoin, urlencode
 from datetime import date
@@ -59,23 +60,32 @@ class VesselEmissionsAPI:
             connection: API connection configuration. If not provided, the
                 default connection method is used.
         """
-        if connection is not None:
-            func_type = type(
-                connection._Connection__get_headers  # type: ignore
-            )
-            connection._Connection__get_headers = func_type(  # type: ignore
-                custom_headers, connection
-            )
-            self.__connection = connection
-        else:
-            connection = Connection()
-            func_type = type(
-                connection._Connection__get_headers  # type: ignore
-            )
-            connection._Connection__get_headers = func_type(  # type: ignore
-                custom_headers, connection
-            )
-            self.__connection = connection
+
+        def __init__(self, connection: Optional[Connection] = None):
+            """Initializes VesselEmissionsAPI.
+
+            Args:
+                connection: API connection configuration. If not provided, the
+                    default connection method is used.
+            """
+            if connection is not None:
+                em_connection = copy.deepcopy(connection)
+                func_type = type(
+                    em_connection._Connection__get_headers  # type: ignore
+                )
+                em_connection._Connection__get_headers = func_type(  # type: ignore
+                    custom_headers, em_connection
+                )
+                self.__connection = em_connection
+            else:
+                em_connection = Connection()
+                func_type = type(
+                    em_connection._Connection__get_headers  # type: ignore
+                )
+                em_connection._Connection__get_headers = func_type(  # type: ignore
+                    custom_headers, em_connection
+                )
+                self.__connection = em_connection
 
     def construct_url_parameters(
             self,
