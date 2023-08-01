@@ -1,8 +1,30 @@
 """The models for vessel emissions api."""
 import dataclasses
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 from operator import attrgetter
+
+
+def _to_camel_case_with_special_keywords(s: str) -> str:
+    special_keywords = [
+        'imo', 'id', 'co', 'co2', 'ch', 'nmvoc',
+    ]
+    _to_camelcase = s.split('_')
+    _to_camelcase = [
+        word.capitalize() if word not in special_keywords
+        else word.upper()
+        for word in _to_camelcase
+    ]
+    result = ''.join(_to_camelcase)
+    if 'Tons' in result:
+        result = (
+            result.replace('in', 'In').
+            replace('Nmvoc', 'NMVOC').
+            replace('Sox', 'SOx').
+            replace('Nox', 'NOx').
+            replace('Co', 'CO')
+        )
+    return result
 
 
 @dataclass(frozen=True)
@@ -345,6 +367,20 @@ class EmissionsEstimation:
                                  in nodef_f_vals)
         return f"{self.__class__.__name__}({nodef_f_repr})"
 
+    def to_dict(self) -> Dict[Any, Any]:
+        """Cast EmissionsEstimation object to dict.
+
+        Returns:
+            Dict representation of EmissionsEstimation model
+
+        """
+        return dataclasses.asdict(
+            self,
+            dict_factory=lambda x: {
+                _to_camel_case_with_special_keywords(k): v
+                for (k, v) in x if v is not None
+            })
+
 
 @dataclass(frozen=True)
 class Eexi:
@@ -446,6 +482,38 @@ class VesselMetrics:
     aer: Optional[Aer] = None
     cii: Optional[Cii] = None
 
+    def __repr__(self) -> str:
+        """Override of the default __repr__ function.
+
+        Returns:
+            Object string representation omitting None attributes
+
+        """
+        nodef_f_vals = (
+            (f.name, attrgetter(f.name)(self))
+            for f in dataclasses.fields(self)
+            if attrgetter(f.name)(self) != f.default
+        )
+
+        nodef_f_repr = ", ".join(f"{name}={value}"
+                                 for name, value
+                                 in nodef_f_vals)
+        return f"{self.__class__.__name__}({nodef_f_repr})"
+
+    def to_dict(self) -> Dict[Any, Any]:
+        """Cast VesselMetrics object to dict.
+
+        Returns:
+            Dict representation of VesselMetrics object
+
+        """
+        return dataclasses.asdict(
+            self,
+            dict_factory=lambda x: {
+                _to_camel_case_with_special_keywords(k): v
+                for (k, v) in x if v is not None
+            })
+
 
 @dataclass(frozen=True)
 class VesselClassEmissions:
@@ -458,6 +526,21 @@ class VesselClassEmissions:
     """
     next_page_token: str
     data: List[EmissionsEstimation]
+
+    def to_dict(self) -> Dict[Any, Any]:
+        """Cast VesselClassEmissions object to dict.
+
+        Returns:
+            Dict representation of VesselClassEmissions object
+
+        """
+        return {
+            "NextPageToken": self.next_page_token,
+            "Data": [
+                vessel_emissions.to_dict()
+                for vessel_emissions in self.data
+            ]
+        }
 
 
 @dataclass(frozen=True)
@@ -472,3 +555,18 @@ class VesselClassMetrics:
     """
     next_page_token: str
     data: List[VesselMetrics]
+
+    def to_dict(self) -> Dict[Any, Any]:
+        """Cast VesselClassMetrics object to dict.
+
+        Returns:
+            Dict representation of VesselClassMetrics object
+
+        """
+        return {
+            "NextPageToken": self.next_page_token,
+            "Data": [
+                vessel_metrics.to_dict()
+                for vessel_metrics in self.data
+            ]
+        }
