@@ -1,6 +1,8 @@
 """The models for vessel emissions api."""
+import dataclasses
 from dataclasses import dataclass
 from typing import Optional, List
+from operator import attrgetter
 
 
 @dataclass(frozen=True)
@@ -18,14 +20,14 @@ class Emissions:
     pmin_tons: PM emissions in tons
 
     """
-    co2_in_tons: float
-    coin_tons: float
-    ch4_in_tons: float
-    n2_oin_tons: float
-    nmvocin_tons: float
-    nox_in_tons: float
-    sox_in_tons: float
-    pmin_tons: float
+    co2_in_tons: Optional[float] = None
+    coin_tons: Optional[float] = None
+    ch4_in_tons: Optional[float] = None
+    n2_oin_tons: Optional[float] = None
+    nmvocin_tons: Optional[float] = None
+    nox_in_tons: Optional[float] = None
+    sox_in_tons: Optional[float] = None
+    pmin_tons: Optional[float] = None
 
 
 @dataclass(frozen=True)
@@ -60,13 +62,13 @@ class Consumptions:
     total_in_tons: Total vessel consumption in tons
 
     """
+    total_in_tons: float
     hfoin_tons: Optional[float] = None
     lfoin_tons: Optional[float] = None
     mgoin_tons: Optional[float] = None
     lngin_tons: Optional[float] = None
     lpgpropane_in_tons: Optional[float] = None
     lpgbutane_in_tons: Optional[float] = None
-    total_in_tons: Optional[float] = None
 
 
 @dataclass(frozen=True)
@@ -194,23 +196,26 @@ class Metrics:
 
 
     """
-    voyage_cii: float
-    voyage_cii_unit: str
-    voyage_cii_rating: str
-    voyage_cii_target: float
-    voyage_cii_target_year: int
-    capacity_eeoi: float
-    capacity_eeoi_unit: str
-    capacity_eeoi_sea_cargo_charter_year_target: float
-    capacity_eeoi_sea_cargo_charter_class: str
-    capacity_eeoi_sea_cargo_charter_alignment_in_percentage: float
-    eeoi: Optional[float]
-    eeoi_unit: Optional[str]
-    eeoi_sea_cargo_charter_year_target: Optional[float]
-    eeoi_sea_cargo_charter_class: Optional[str]
-    eeoi_sea_cargo_charter_alignment_in_percentage: Optional[float]
-    kg_co2_per_tonne_cargo: Optional[float]
-    kg_co2_per_tonne_dwt: Optional[float]
+    voyage_cii: Optional[float] = None
+    voyage_cii_unit: Optional[str] = None
+    voyage_cii_rating: Optional[str] = None
+    voyage_cii_target: Optional[float] = None
+    voyage_cii_target_year: Optional[int] = None
+    capacity_eeoi: Optional[float] = None
+    capacity_eeoi_unit: Optional[str] = None
+    capacity_eeoi_sea_cargo_charter_year_target: \
+        Optional[float] = None
+    capacity_eeoi_sea_cargo_charter_class: Optional[str] = None
+    capacity_eeoi_sea_cargo_charter_alignment_in_percentage: \
+        Optional[float] = None
+    eeoi: Optional[float] = None
+    eeoi_unit: Optional[str] = None
+    eeoi_sea_cargo_charter_year_target: Optional[float] = None
+    eeoi_sea_cargo_charter_class: Optional[str] = None
+    eeoi_sea_cargo_charter_alignment_in_percentage: \
+        Optional[float] = None
+    kg_co2_per_tonne_cargo: Optional[float] = None
+    kg_co2_per_tonne_dwt: Optional[float] = None
 
 
 @dataclass(frozen=True)
@@ -224,10 +229,10 @@ class SeagoingSpeedStatistics:
         max_speed_in_knots: Maximum seagoing speed in knots
 
     """
-    average_speed_in_knots: Optional[float]
-    std_speed_in_knots: Optional[float]
-    min_speed_in_knots: Optional[float]
-    max_speed_in_knots: Optional[float]
+    average_speed_in_knots: Optional[float] = None
+    std_speed_in_knots: Optional[float] = None
+    min_speed_in_knots: Optional[float] = None
+    max_speed_in_knots: Optional[float] = None
 
 
 @dataclass(frozen=True)
@@ -240,9 +245,9 @@ class SeagoingSpeedStatisticsBreakdown:
         ballast: Speed statistics for the laden part of the voyage
 
     """
-    voyage: SeagoingSpeedStatistics
-    laden: SeagoingSpeedStatistics
-    ballast: SeagoingSpeedStatistics
+    voyage: Optional[SeagoingSpeedStatistics] = None
+    laden: Optional[SeagoingSpeedStatistics] = None
+    ballast: Optional[SeagoingSpeedStatistics] = None
 
 
 @dataclass(frozen=True)
@@ -298,22 +303,22 @@ class EmissionsEstimation:
         european_union_regulated: European Union Related Emissions
 
     """
-    id: Optional[str] = None
-    imo: Optional[int] = None
-    vessel_name: Optional[str] = None
-    voyage_number: Optional[int] = None
-    vessel_type_id: Optional[int] = None
+    id: str
+    imo: int
+    vessel_name: str
+    voyage_number: int
+    vessel_type_id: int
+    vessel_class_id: int
+    start_date: str
+    end_date: str
+    deadweight: int
+    emissions: EmissionsBreakdown
     vessel_type: Optional[str] = None
-    vessel_class_id: Optional[int] = None
     vessel_class: Optional[str] = None
-    start_date: Optional[str] = None
-    end_date: Optional[str] = None
     quantity: Optional[float] = None
-    deadweight: Optional[int] = None
     transport_work_in_million_tonne_miles: Optional[float] = None
     transport_work_in_million_dwt_miles: Optional[float] = None
     contains_eu_emissions: Optional[bool] = None
-    emissions: Optional[EmissionsBreakdown] = None
     consumptions: Optional[ConsumptionsBreakdown] = None
     seagoing_speed_statistics: \
         Optional[SeagoingSpeedStatisticsBreakdown] = None
@@ -321,6 +326,24 @@ class EmissionsEstimation:
     distances: Optional[DistancesBreakdown] = None
     efficiency_metrics: Optional[Metrics] = None
     european_union_regulated: Optional[EmissionsEssentialStatistics] = None
+
+    def __repr__(self) -> str:
+        """Override of the default __repr__ function.
+
+        Returns:
+            Object string representation omitting None attributes
+
+        """
+        nodef_f_vals = (
+            (f.name, attrgetter(f.name)(self))
+            for f in dataclasses.fields(self)
+            if attrgetter(f.name)(self) != f.default
+        )
+
+        nodef_f_repr = ", ".join(f"{name}={value}"
+                                 for name, value
+                                 in nodef_f_vals)
+        return f"{self.__class__.__name__}({nodef_f_repr})"
 
 
 @dataclass(frozen=True)

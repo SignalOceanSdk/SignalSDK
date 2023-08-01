@@ -10,129 +10,132 @@ theme:
   features:
     - navigation.instant
 nav:
-  - "index.md"
-  - Voyages:
-      - "voyages.md"
+    - 'index.md'
+    - Voyages:
+      - 'voyages.md'
       - Examples:
-          - "examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb"
-          - "examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb"
-          - "examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb"
-          - "examples/jupyter/VoyagesAPI/TonCharts.ipynb"
-          - "examples/jupyter/VoyagesAPI/DryBulkFlows.ipynb"
-          - "examples/jupyter/VoyagesAPI/OilFlows.ipynb"
-          - "examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb"
-          - "examples/jupyter/VoyagesAPI/FixtureCount.ipynb"
-  - Tonnage List:
-      - "tonnage_list.md"
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
+        - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
+        - 'examples/jupyter/VoyagesAPI/DryBulkFlows.ipynb'
+        - 'examples/jupyter/VoyagesAPI/OilFlows.ipynb'
+        - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
+        - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI-FloatingStorages.ipynb'
+    - Tonnage List:
+      - 'tonnage_list.md'
       - Examples:
-          - "examples/jupyter/Tonnage List API/Working with the TonnageListAPI.ipynb"
-          - "examples/jupyter/Tonnage List API/Recall live Tonnage List.ipynb"
-          - "examples/jupyter/Tonnage List API/Finding vessels that were on subs around Houston.ipynb"
-          - "examples/jupyter/Tonnage List API/Finding vessels that were opening at Fos.ipynb"
-          - "examples/jupyter/Tonnage List API/Finding vessels opening east and west of Suez.ipynb"
-          - "examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb"
-          - "examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb"
-  - Scraped Cargoes:
-      - "scraped_cargoes.md"
+        - 'examples/jupyter/Tonnage List API/Working with the TonnageListAPI.ipynb'
+        - 'examples/jupyter/Tonnage List API/Recall live Tonnage List.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels that were on subs around Houston.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels that were opening at Fos.ipynb'
+        - 'examples/jupyter/Tonnage List API/Finding vessels opening east and west of Suez.ipynb'
+        - 'examples/jupyter/Tonnage List API/Historical analysis over all vessels.ipynb'
+        - 'examples/jupyter/Tonnage List API/Persisting data in SQLite.ipynb'
+    - Scraped Cargoes:
+      - 'scraped_cargoes.md'
       - Examples:
-          - "examples/jupyter/ScrapedCargoesAPI/Scraped Cargoes API Example.ipynb"
-  - Scraped Fixtures:
-      - "scraped_fixtures.md"
+        - 'examples/jupyter/ScrapedCargoesAPI/Scraped Cargoes API Example.ipynb'
+    - Scraped Fixtures:
+      - 'scraped_fixtures.md'
       - Examples:
-          - "examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb"
-  - Scraped Lineups:
-      - "scraped_lineups.md"
+        - 'examples/jupyter/ScrapedFixturesAPI/Scraped Fixtures API Example.ipynb'
+    - Scraped Lineups:
+      - 'scraped_lineups.md'
       - Examples:
-          - "examples/jupyter/ScrapedLineupsAPI/Scraped Lineups API Example.ipynb"
-  - Scraped Positions:
-      - "scraped_positions.md"
+        - 'examples/jupyter/ScrapedLineupsAPI/Scraped Lineups API Example.ipynb'
+    - Scraped Positions:
+      - 'scraped_positions.md'
       - Examples:
-          - "examples/jupyter/ScrapedPositionsAPI/Scraped Positions API Example.ipynb"
-  - Distances:
-      - "distances.md"
+        - 'examples/jupyter/ScrapedPositionsAPI/Scraped Positions API Example.ipynb'
+    - Distances:
+      - 'distances.md'
       - Examples:
-          - "examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb"
-          - "examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb"
-          - "examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb"
-  - Port Congestion API:
-      - "port_congestion_api.md"
+        - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
+        - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
+        - 'examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb'
+    - Port Congestion API:
+      - 'port_congestion_api.md'
       - Examples:
-          - "examples/jupyter/PortCongestionAPI/Port_Congestion_API_China-Capes-Afra-Rott.ipynb"
-  - Freight Rates:
-      - "freight_rates.md"
+        - 'examples/jupyter/PortCongestionAPI/Port_Congestion_API_China-Capes-Afra-Rott.ipynb'
+    - Freight Rates:
+      - 'freight_rates.md'
       - Examples:
-          - "examples/jupyter/FreightRatesAPI/FreightRatesAPI.ipynb"
-  - Market Rates:
-      - "market_rates.md"
+        - 'examples/jupyter/FreightRatesAPI/FreightRatesAPI.ipynb'
+    - Market Rates:
+      - 'market_rates.md'
       - Examples:
-          - "examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb"
-  - Port Expenses:
-      - "port_expenses.md"
+        - 'examples/jupyter/MarketRatesAPI/MarketRatesAPI.ipynb'
+    - Port Expenses:
+      - 'port_expenses.md'
       - Examples:
-          - "examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb"
-  - Companies:
-      - "companies.md"
+        - 'examples/jupyter/PortExpensesAPI/PortExpensesAPI.ipynb'
+    - Companies:
+      - 'companies.md'
       - Examples:
-          - "examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb"
-  - Geos:
-      - "geos.md"
+        - 'examples/jupyter/CompaniesAPI/CompaniesAPI.ipynb'
+    - Geos:
+      - 'geos.md'
       - Examples:
-          - "examples/jupyter/GeosAPI/GeosAPI Use Case.ipynb"
-  - VoyagesMarketData:
-      - "voyages_market_data.md"
+        - 'examples/jupyter/GeosAPI/GeosAPI Use Case.ipynb'
+    - VoyagesMarketData:
+      - 'voyages_market_data.md'
       - Examples:
-          - "examples/jupyter/VoyagesMarketDataAPI/VoyagesMarketDataAPIExample.ipynb"
-          - "examples/jupyter/VoyagesMarketDataAPI/RateTrend.ipynb"
-          - "examples/jupyter/VoyagesMarketDataAPI/FixtureStatus.ipynb"
-  - Vessels:
-      - "vessels.md"
+        - 'examples/jupyter/VoyagesMarketDataAPI/VoyagesMarketDataAPIExample.ipynb'
+        - 'examples/jupyter/VoyagesMarketDataAPI/RateTrend.ipynb'
+        - 'examples/jupyter/VoyagesMarketDataAPI/FixtureStatus.ipynb'
+    - Vessels:
+      - 'vessels.md'
       - Examples:
-          - "examples/jupyter/VesselsAPI/VesselsAPI.ipynb"
-          - "examples/jupyter/VesselsAPI/ExploreVessels.ipynb"
-  - Combined Examples:
+        - 'examples/jupyter/VesselsAPI/VesselsAPI.ipynb'
+        - 'examples/jupyter/VesselsAPI/ExploreVessels.ipynb'
+    - Combined Examples:
       - Examples:
-          - "examples/jupyter/Combined Examples/Supply trend with market rates.ipynb"
-  - Historical Tonnage List (deprecated):
-      - "historical_tonnage_list.md"
-  - Release notes:
-      - "releases/Version 7.2.0.md"
-      - "releases/Version 7.1.0.md"
-      - "releases/Version 7.0.0.md"
-      - "releases/Version 6.2.0.md"
-      - "releases/Version 6.1.0.md"
-      - "releases/Version 6.0.0.md"
-      - "releases/Version 5.1.0.md"
-      - "releases/Version 5.0.0.md"
-      - "releases/Version 4.0.0.md"
-      - "releases/Version 3.0.0.md"
-      - "releases/Version 2.1.1.md"
-      - "releases/Version 2.1.0.md"
-      - "releases/Version 2.0.1.md"
-      - "releases/Version 2.0.0.md"
-      - "releases/Version 1.2.5.md"
-      - "releases/Version 1.2.4.md"
-      - "releases/Version 1.2.3.md"
-      - "releases/Version 1.2.2.md"
-      - "releases/Version 1.2.1.md"
-      - "releases/Version 1.2.0.md"
-      - "releases/Version 1.1.9.md"
-      - "releases/Version 1.1.8.md"
-      - "releases/Version 1.1.7.md"
-      - "releases/Version 1.1.6.md"
-      - "releases/Version 1.1.5.md"
-      - "releases/Version 1.1.4.md"
-      - "releases/Version 1.1.3.md"
-      - "releases/Version 1.1.2.md"
-      - "releases/Version 1.1.1.md"
-      - "releases/Version 1.1.0.md"
-      - "releases/Version 1.0.9.md"
-      - "releases/Version 1.0.8.md"
-      - "releases/Version 1.0.6.md"
-      - "releases/Version 1.0.5.md"
-      - "releases/Version 1.0.4.md"
-      - "releases/Version 1.0.3.md"
-      - "releases/Version 1.0.2.md"
-      - "releases/Version 1.0.1.b6.md"
+        - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
+    - Historical Tonnage List (deprecated):
+      - 'historical_tonnage_list.md'
+    - Release notes:
+      - 'releases/Version 7.2.0.md'
+      - 'releases/Version 7.1.2.md'
+      - 'releases/Version 7.1.1.md'
+      - 'releases/Version 7.1.0.md'
+      - 'releases/Version 7.0.0.md'
+      - 'releases/Version 6.2.0.md'
+      - 'releases/Version 6.1.0.md'
+      - 'releases/Version 6.0.0.md'
+      - 'releases/Version 5.1.0.md'
+      - 'releases/Version 5.0.0.md'
+      - 'releases/Version 4.0.0.md'
+      - 'releases/Version 3.0.0.md'
+      - 'releases/Version 2.1.1.md'
+      - 'releases/Version 2.1.0.md'
+      - 'releases/Version 2.0.1.md'
+      - 'releases/Version 2.0.0.md'
+      - 'releases/Version 1.2.5.md'
+      - 'releases/Version 1.2.4.md'
+      - 'releases/Version 1.2.3.md'
+      - 'releases/Version 1.2.2.md'
+      - 'releases/Version 1.2.1.md'
+      - 'releases/Version 1.2.0.md'
+      - 'releases/Version 1.1.9.md'
+      - 'releases/Version 1.1.8.md'
+      - 'releases/Version 1.1.7.md'
+      - 'releases/Version 1.1.6.md'
+      - 'releases/Version 1.1.5.md'
+      - 'releases/Version 1.1.4.md'
+      - 'releases/Version 1.1.3.md'
+      - 'releases/Version 1.1.2.md'
+      - 'releases/Version 1.1.1.md'
+      - 'releases/Version 1.1.0.md'
+      - 'releases/Version 1.0.9.md'
+      - 'releases/Version 1.0.8.md'
+      - 'releases/Version 1.0.6.md'
+      - 'releases/Version 1.0.5.md'
+      - 'releases/Version 1.0.4.md'
+      - 'releases/Version 1.0.3.md'
+      - 'releases/Version 1.0.2.md'
+      - 'releases/Version 1.0.1.b6.md'
 extra_css:
   - css/site.css
 markdown_extensions:
