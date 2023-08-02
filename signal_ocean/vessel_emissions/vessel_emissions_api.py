@@ -1,4 +1,5 @@
 """The vessel emissions api."""
+import os
 import copy
 from typing import Optional, List, Union, Dict, Any
 from urllib.parse import urljoin, urlencode
@@ -41,7 +42,8 @@ def custom_headers(connection: Connection) -> Dict[str, Optional[str]]:
     """
     return {
         "Ocp-Apim-Subscription-Key":
-            connection._Connection__api_key,  # type: ignore
+            connection._Connection__api_key  # type: ignore
+            or os.environ.get("SIGNAL_OCEAN_API_KEY"),
         "Content-Type": "application/json",
         "Source": "SignalSDK",
     }
