@@ -1,3 +1,4 @@
+"""The vessel valuations api."""
 import copy
 import os
 from typing import Optional, Dict, Union, List
