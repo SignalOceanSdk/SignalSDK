@@ -95,7 +95,10 @@ nav:
       - Examples:
         - 'docs/examples/jupyter/VesselEmissionsAPI/VesselEmissionsAPI.ipynb'
         - 'docs/examples/jupyter/VesselEmissionsAPI/VesselEmissionsAPI-UseCase.ipynb'
-
+    - Vessel Valuations:
+      - 'vessel_valuations.md'
+      - Examples:
+        - 'docs/examples/jupyter/ValuationsAPI/VesselValuationsAPI-UseCases.ipynb'
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
