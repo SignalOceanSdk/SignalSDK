@@ -5,7 +5,8 @@ from typing import Optional, Dict, Union, List
 from urllib.parse import urlencode
 
 from signal_ocean.connection import Connection
-from signal_ocean.util.request_helpers import get_multiple, get_single
+from signal_ocean.util.request_helpers \
+    import get_multiple, get_single, post_multiple
 from signal_ocean.vessel_valuations.models \
     import (Valuation, HistoricalValuation, PageValuations)
 
@@ -175,8 +176,10 @@ class VesselValuationsAPI:
             A list of latest valuations
             for the requested imo numbers.
         """
-        valuations_list = [
-            self.get_latest_valuation_by_imo(imo)
-            for imo in imo_list
-        ]
-        return valuations_list
+        data = post_multiple(
+            connection=self.__connection,
+            relative_url=f"{VesselValuationsAPI.relative_url}/latest",
+            cls=Valuation,
+            query_string=imo_list  # type: ignore
+        )
+        return [i for i in data]
