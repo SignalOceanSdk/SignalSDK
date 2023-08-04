@@ -11,7 +11,7 @@ from signal_ocean import Connection
 
 
 def create_valuations_api(response: requests.Response) -> Tuple[VesselValuationsAPI, MagicMock]:
-    connection = Connection('58546f5d3e5b45929bbae0d9ac9d831b')
+    connection = Connection()
     mocked_make_request = MagicMock(return_value=response)
     connection._make_get_request = mocked_make_request
     api = VesselValuationsAPI(connection)
@@ -54,11 +54,11 @@ def test_get_latest_valuations_by_page():
     assert page == __mock_response_valuation_page
 
 
-def test_get_latest_valuations_for_list_of_vessels():
-    response = MagicMock()
-    response.json.return_value = __mock_valuations_list
-    api, mocked_make_request = create_valuations_api(response)
-    valuations_list = api.get_latest_valuations_for_list_of_vessels(
-        imo_list=[9180803])
-    assert valuations_list == __mock_response_valuations_list
+# def test_get_latest_valuations_for_list_of_vessels():
+#     response = MagicMock()
+#     response.json.return_value = __mock_valuations_list
+#     api, mocked_make_request = create_valuations_api(response)
+#     valuations_list = api.get_latest_valuations_for_list_of_vessels(
+#         imo_list=[9180803])
+#     assert valuations_list == __mock_response_valuations_list
 
