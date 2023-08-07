@@ -1,4 +1,6 @@
 """The vessel emissions api."""
+import os
+import copy
 from typing import Optional, List, Union, Dict, Any
 from urllib.parse import urljoin, urlencode
 from datetime import date
@@ -40,7 +42,8 @@ def custom_headers(connection: Connection) -> Dict[str, Optional[str]]:
     """
     return {
         "Ocp-Apim-Subscription-Key":
-            connection._Connection__api_key,  # type: ignore
+            connection._Connection__api_key  # type: ignore
+            or os.environ.get("SIGNAL_OCEAN_API_KEY"),
         "Content-Type": "application/json",
         "Source": "SignalSDK",
     }
@@ -60,13 +63,14 @@ class VesselEmissionsAPI:
                 default connection method is used.
         """
         if connection is not None:
+            em_connection = copy.deepcopy(connection)
             func_type = type(
-                connection._Connection__get_headers  # type: ignore
+                em_connection._Connection__get_headers  # type: ignore
             )
-            connection._Connection__get_headers = func_type(  # type: ignore
-                custom_headers, connection
+            em_connection._Connection__get_headers = func_type(  # type: ignore
+                custom_headers, em_connection
             )
-            self.__connection = connection
+            self.__connection = em_connection
         else:
             connection = Connection()
             func_type = type(
