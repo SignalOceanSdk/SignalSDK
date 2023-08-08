@@ -20,7 +20,7 @@ from signal_ocean.vessel_emissions.vessel_emissions_api import VesselEmissionsAP
 
 
 def create_vessel_emissions_api(response: requests.Response) -> Tuple[VesselEmissionsAPI, MagicMock]:
-    connection = Connection('58546f5d3e5b45929bbae0d9ac9d831b')
+    connection = Connection()
     mocked_make_request = MagicMock(return_value=response)
     connection._make_get_request = mocked_make_request
     api = VesselEmissionsAPI(connection)
