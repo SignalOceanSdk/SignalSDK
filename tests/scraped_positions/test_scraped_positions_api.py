@@ -7,6 +7,7 @@ def test_positions_field_names():
     api_fields = [
         "PositionID",
         "MessageID",
+        "ExternalMessageID",
         "ParsedPartID",
         "LineFrom",
         "LineTo",
@@ -54,6 +55,7 @@ def test_positions_field_names():
         "HasUncertain",
         "IsPositionList",
         "Content",
+        "Subject",
         "Sender",
         "IsPrivate",
     ]

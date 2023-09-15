@@ -7,6 +7,7 @@ def test_cargoes_field_names():
     api_fields = [
         "CargoID",
         "MessageID",
+        "ExternalMessageID",
         "ParsedPartID",
         "LineFrom",
         "LineTo",
@@ -82,6 +83,7 @@ def test_cargoes_field_names():
         "CargoStatusID",
         "CargoStatus",
         "Content",
+        "Subject",
         "Sender",
         "IsPrivate",
     ]

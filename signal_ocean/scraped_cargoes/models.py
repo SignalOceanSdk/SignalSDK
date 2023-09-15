@@ -14,6 +14,8 @@ class ScrapedCargo:
         cargo_id: Integer. A unique identifier of the cargo line.
         message_id: Integer. A unique identifier of the message containing the
             specific cargo. A message can contain more than one cargo.
+        external_message_id: String. It serves as a unique identifier for a
+            message, supplied by any company that has integrated with Signal.
         parsed_part_id: Integer. A unique identifier for each email part. The
             email body and each attachment are considered different parsed
             parts. For an example the email body and its pdf attachment have
@@ -325,6 +327,8 @@ class ScrapedCargo:
         content: String. The full content of the cargo. For a single line cargo
             it is the line content. For multi line cargoes it is the collection
             of all the relevant parts of the text.
+        subject: String. The email subject of the cargo. This field has content
+            when Source="Email".
         sender: String. Our own mapping of the shipping company sending out the
             market report through email. This string helps grouping emails sent
             by the same organization, but from different domains. It is often
@@ -341,6 +345,7 @@ class ScrapedCargo:
     # entity details
     cargo_id: int
     message_id: Optional[int] = None
+    external_message_id: Optional[str] = None
     parsed_part_id: Optional[int] = None
     line_from: Optional[int] = None
     line_to: Optional[int] = None
@@ -448,6 +453,7 @@ class ScrapedCargo:
 
     # content
     content: Optional[str] = None
+    subject: Optional[str] = None
 
     # sender
     sender: Optional[str] = None
