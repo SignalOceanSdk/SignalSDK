@@ -20,6 +20,8 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
     def get_lineups(
         self,
         vessel_type: int,
+        message_ids: Optional[List[int]] = None,
+        external_message_ids: Optional[List[str]] = None,
         received_date_from: Optional[datetime] = None,
         received_date_to: Optional[datetime] = None,
         updated_date_from: Optional[datetime] = None,
@@ -38,6 +40,9 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
         Args:
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
+            message_ids: List - Comma separated list of MessageIDs
+            external_message_ids: List - Comma separated list of
+                ExternalMessageIDs
             received_date_from: Format - date-time (as date-time in RFC3339).
                 Earliest date the lineup received.
                 Cannot be combined with 'Updated' dates
@@ -72,6 +77,8 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
         """
         return self.get_data(
             vessel_type=vessel_type,
+            message_ids=message_ids,
+            external_message_ids=external_message_ids,
             received_date_from=received_date_from,
             received_date_to=received_date_to,
             updated_date_from=updated_date_from,
