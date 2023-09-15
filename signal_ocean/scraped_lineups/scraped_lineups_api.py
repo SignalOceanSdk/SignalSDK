@@ -13,7 +13,7 @@ from signal_ocean.scraped_lineups.models import (
 class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
     """Represents Signal's Scraped Lineups API."""
 
-    relative_url = "scraped-lineups-api/v2/lineups"
+    relative_url = "scraped-lineups-api/v5.0/lineups"
     response_class = ScrapedLineupsResponse
     entity_ids_name = "lineup_ids"
 

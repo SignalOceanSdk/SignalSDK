@@ -15,7 +15,7 @@ class ScrapedPositionsAPI(
 ):
     """Represents Signal's Scraped Positions API."""
 
-    relative_url = "scraped-positions-api/v2/positions"
+    relative_url = "scraped-positions-api/v5.0/positions"
     response_class = ScrapedPositionsResponse
     entity_ids_name = "position_ids"
 

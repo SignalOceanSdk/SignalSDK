@@ -13,7 +13,7 @@ from signal_ocean.scraped_cargoes.models import (
 class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
     """Represents Signal's Scraped Cargoes API."""
 
-    relative_url = "scraped-cargoes-api/v3/cargoes"
+    relative_url = "scraped-cargoes-api/v5.0/cargoes"
     response_class = ScrapedCargoesResponse
     entity_ids_name = "cargo_ids"
 

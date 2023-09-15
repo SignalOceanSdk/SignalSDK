@@ -15,7 +15,7 @@ class ScrapedFixturesAPI(
 ):
     """Represents Signal's Scraped Fixtures API."""
 
-    relative_url = "scraped-fixtures-api/v2/fixtures"
+    relative_url = "scraped-fixtures-api/v5.0/fixtures"
     response_class = ScrapedFixturesResponse
     entity_ids_name = "fixture_ids"
 
