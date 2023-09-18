@@ -14,6 +14,8 @@ class ScrapedLineup:
         lineup_id: Integer. A unique identifier of the lineup line.
         message_id: Integer. A unique identifier of the message containing the
             specific lineup. A message can contain more than one lineup.
+        external_message_id: String. It serves as a unique identifier for a
+            message, supplied by any company that has integrated with Signal.
         parsed_part_id: Integer. A unique identifier for each email part. The
             email body and each attachment are considered different parsed
             parts. For an example the email body and its pdf attachment have
@@ -266,6 +268,7 @@ class ScrapedLineup:
     # entity details
     lineup_id: int
     message_id: Optional[int] = None
+    external_message_id: Optional[str] = None
     parsed_part_id: Optional[int] = None
     line_from: Optional[int] = None
     line_to: Optional[int] = None
