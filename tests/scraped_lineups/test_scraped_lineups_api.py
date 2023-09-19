@@ -6,6 +6,7 @@ def test_lineups_field_names():
     api_fields = [
         "LineupID",
         "MessageID",
+        "ExternalMessageID",
         "ParsedPartID",
         "LineFrom",
         "LineTo",

@@ -6,6 +6,7 @@ def test_fixtures_field_names():
     api_fields = [
         "FixtureID",
         "MessageID",
+        "ExternalMessageID",
         "ParsedPartID",
         "LineFrom",
         "LineTo",
@@ -99,6 +100,7 @@ def test_fixtures_field_names():
         "IsOwnersOption",
         "IsCOA",
         "Content",
+        "Subject",
         "Sender",
         "IsPrivate",
         "IsInvalidated",
