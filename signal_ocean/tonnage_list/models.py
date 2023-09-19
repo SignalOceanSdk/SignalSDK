@@ -685,7 +685,7 @@ class TonnageList(Sequence[Vessel]):
         data_frame = pd.DataFrame.from_dict(vessels_by_imo, orient="index", columns=list(Column))   # noqa
         data_frame.index.set_names(IndexLevel.IMO)
 
-        return data_frame.astype(Column._get_data_types())
+        return data_frame.astype(Column._get_data_types())  # type: ignore
 
 
 class HistoricalTonnageList(Sequence[TonnageList]):
@@ -742,4 +742,4 @@ class HistoricalTonnageList(Sequence[TonnageList]):
             columns=list(Column),
         )
 
-        return data_frame.astype(Column._get_data_types())
+        return data_frame.astype(Column._get_data_types())  # type: ignore

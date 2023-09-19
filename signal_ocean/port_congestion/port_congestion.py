@@ -22,7 +22,7 @@ from signal_ocean.port_congestion.models import (
     VesselsCongestionData,
 )
 
-import numpy as np  # type: ignore
+import numpy as np
 import pandas as pd
 
 
@@ -67,21 +67,21 @@ class PortCongestion:
         voyages_df = cast(
             DataSet[Voyage],
             pd.DataFrame(
-                v.__dict__
+                v.__dict__  # type: ignore
                 for v in cast(Tuple[Voyage, ...], voyages_flat.voyages)
             ),
         )
         events_df = cast(
             DataSet[VoyageEvent],
             pd.DataFrame(
-                v.__dict__
+                v.__dict__  # type: ignore
                 for v in cast(Tuple[VoyageEvent, ...], voyages_flat.events)
             ),
         )
         events_details_df = cast(
             DataSet[VoyageEventDetail],
             pd.DataFrame(
-                v.__dict__
+                v.__dict__  # type: ignore
                 for v in cast(
                     Tuple[VoyageEventDetail, ...], voyages_flat.event_details
                 )
@@ -90,7 +90,7 @@ class PortCongestion:
         geos_df = cast(
             DataSet[VoyageGeo],
             pd.DataFrame(
-                v.__dict__
+                v.__dict__  # type: ignore
                 for v in cast(Tuple[VoyageGeo, ...], voyages_flat.geos)
             ).drop_duplicates(),
         )

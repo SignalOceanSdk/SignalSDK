@@ -43,7 +43,7 @@ SecretStorage==3.1.2
 setuptools==46.4.0
 six==1.15.0
 snowballstemmer==2.0.0
-strictly-typed-pandas==0.1.4
+strictly-typed-pandas==0.1.18
 toml==0.10.1
 tqdm==4.46.0
 twine==3.1.1
