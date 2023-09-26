@@ -46,9 +46,9 @@ def test_has_multiindex_when_converted_to_data_frame():
     date_values = data_frame.index.get_level_values(IndexLevel.DATE).to_list()
     imo_values = data_frame.index.get_level_values(IndexLevel.IMO).to_list()
     assert date_values == [
-        tonnage_list1.date.date(),
-        tonnage_list1.date.date(),
-        tonnage_list2.date.date()
+        tonnage_list1.date,
+        tonnage_list1.date,
+        tonnage_list2.date
     ]
     assert imo_values == [1, 2, 3]
 
