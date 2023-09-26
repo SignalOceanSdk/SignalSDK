@@ -11,10 +11,12 @@ from signal_ocean.port_congestion import PortCongestion
 from signal_ocean.port_congestion.models import PortCongestionQueryResponse
 from signal_ocean.util.parsing_helpers import parse_model
 
-_mock_voyages = pd.read_csv("tests/port_congestion/Data/mock_voyages.csv")
+_mock_voyages = pd.read_csv("tests/port_congestion/Data/mock_voyages.csv",
+                            date_format="mixed")
 _mock_events = pd.read_csv(
     "tests/port_congestion/Data/mock_events.csv",
     parse_dates=["arrival_date", "sailing_date", "event_date"],
+    date_format="mixed"
 )
 _mock_events_details = pd.read_csv(
     "tests/port_congestion/Data/mock_events_details.csv",
@@ -24,8 +26,10 @@ _mock_events_details = pd.read_csv(
         "end_time_of_operation",
         "sailing_date",
     ],
+    date_format="mixed"
 )
-_mock_geos = pd.read_csv("tests/port_congestion/Data/mock_geos.csv")
+_mock_geos = pd.read_csv("tests/port_congestion/Data/mock_geos.csv",
+                         date_format="mixed")
 _mock_vessels_congestion_data = pd.read_csv(
     "tests/port_congestion/Data/mock_vessels_congestions_data.csv",
     parse_dates=[
@@ -36,14 +40,17 @@ _mock_vessels_congestion_data = pd.read_csv(
         "day_date",
         "arrival_date",
     ],
+    date_format="mixed"
 )
 _mock_number_of_vessels_over_time = pd.read_csv(
     "tests/port_congestion/Data/mock_number_of_vessels_over_time.csv",
     parse_dates=["date"],
+    date_format="mixed"
 )
 _mock_waiting_time_over_time = pd.read_csv(
     "tests/port_congestion/Data/mock_waiting_time_over_time.csv",
     parse_dates=["date"],
+    date_format="mixed"
 )
 _mock_live_port_congestion = pd.read_csv(
     "tests/port_congestion/Data/mock_live_port_congestion.csv",
@@ -55,6 +62,7 @@ _mock_live_port_congestion = pd.read_csv(
         "day_date",
         "arrival_date",
     ],
+    date_format="mixed"
 )
 
 with open("tests/port_congestion/Data/mock_port_congestion_api_response.json") as fp:
