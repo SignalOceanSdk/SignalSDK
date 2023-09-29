@@ -21,7 +21,7 @@ def create_dataframe(
         Dataframe populated with data from Market Rates API's response
     """
     df = pd.DataFrame([vars(x) for x in api_response])
-    for column_name, _ in df.iteritems():
+    for column_name, _ in df.items():
         df = df.rename(
             columns={column_name: snake_to_camel_case(str(column_name))})
     return df

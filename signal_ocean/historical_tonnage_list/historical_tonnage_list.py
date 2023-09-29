@@ -63,4 +63,4 @@ class HistoricalTonnageList(Sequence[TonnageList]):
             columns=list(Column),
         )
 
-        return data_frame.astype(Column._get_data_types())
+        return data_frame.astype(Column._get_data_types())  # type: ignore
