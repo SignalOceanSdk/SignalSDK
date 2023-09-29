@@ -31,7 +31,7 @@ def create_dataframe(
                                         response_dict['discharge_ports']]
     response_dict.pop('costs')
     df = pd.DataFrame([response_dict])
-    for column_name, _ in df.iteritems():
+    for column_name, _ in df.items():
         df = df.rename(
             columns={column_name: snake_to_camel_case(str(column_name))})
     return df
