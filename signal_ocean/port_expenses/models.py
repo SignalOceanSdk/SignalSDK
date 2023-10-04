@@ -1,7 +1,6 @@
 # noqa: D100
 
 from dataclasses import dataclass
-from typing import List
 
 
 @dataclass(frozen=True)
@@ -10,7 +9,6 @@ class PortExpenses:
 
     Attributes:
         port_id: Port ID
-        port_canal: Port Canal
         towage: Towage
         port_dues: Port dues
         pilotage: Pilotage
@@ -26,11 +24,9 @@ class PortExpenses:
         mooring_unmooring: Mooring-unmooring
         quay_dues: Quay dues
         anchorage_dues: Anchorage dues
-        port_agents: Port agents
     """
 
     port_id: int
-    port_canal: int
     towage: int
     port_dues: int
     pilotage: int
@@ -46,7 +42,6 @@ class PortExpenses:
     mooring_unmooring: int
     quay_dues: int
     anchorage_dues: int
-    port_agents: List[int]
 
 
 @dataclass(frozen=True)
