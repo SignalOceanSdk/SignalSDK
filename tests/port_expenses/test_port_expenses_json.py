@@ -4,19 +4,18 @@ from signal_ocean.port_expenses import PortExpenses, Port
 from signal_ocean.port_expenses import _port_expenses_json
 
 
-@pytest.mark.parametrize('port_id, port_canal, towage, port_dues, pilotage, '
+@pytest.mark.parametrize('port_id, towage, port_dues, pilotage, '
     'agency_fees, other, suez_dues, total_cost, miscellaneous_dues, '
     'is_estimated, canal_dues, berth_dues, lighthouse_dues, mooring_unmooring, '
-    'quay_dues, anchorage_dues, port_agents', [
-    (3153, 0, 0, 40196, 0, 1500, 2277, 0, 44568, 0, False, 0, 0, 0, 0, 0, 0, [])
+    'quay_dues, anchorage_dues', [
+    (3153, 0, 40196, 0, 1500, 2277, 0, 44568, 0, False, 0, 0, 0, 0, 0, 0)
 ])
-def test_parse_port_expenses(port_id, port_canal, towage, port_dues, pilotage,
+def test_parse_port_expenses(port_id, towage, port_dues, pilotage,
     agency_fees, other, suez_dues, total_cost, miscellaneous_dues, is_estimated,
     canal_dues, berth_dues, lighthouse_dues, mooring_unmooring, quay_dues,
-    anchorage_dues, port_agents):
+    anchorage_dues):
     port_expenses_json = {
         "PortId": port_id,
-        "PortCanal": port_canal,
         "Towage": towage,
         "PortDues": port_dues,
         "Pilotage": pilotage,
@@ -31,15 +30,13 @@ def test_parse_port_expenses(port_id, port_canal, towage, port_dues, pilotage,
         "LighthouseDues": lighthouse_dues,
         "MooringUnmooring": mooring_unmooring,
         "QuayDues": quay_dues,
-        "AnchorageDues": anchorage_dues,
-        "PortAgents": port_agents
+        "AnchorageDues": anchorage_dues
     }
 
     pe_object = _port_expenses_json.parse_port_expenses(port_expenses_json)
 
     assert type(pe_object) is PortExpenses
     assert pe_object.port_id == port_id
-    assert pe_object.port_canal == port_canal
     assert pe_object.towage == towage
     assert pe_object.port_dues == port_dues
     assert pe_object.pilotage == pilotage
@@ -55,7 +52,6 @@ def test_parse_port_expenses(port_id, port_canal, towage, port_dues, pilotage,
     assert pe_object.mooring_unmooring == mooring_unmooring
     assert pe_object.quay_dues == quay_dues
     assert pe_object.anchorage_dues == anchorage_dues
-    assert pe_object.port_agents == port_agents
 
 
 @pytest.mark.parametrize('ports', [

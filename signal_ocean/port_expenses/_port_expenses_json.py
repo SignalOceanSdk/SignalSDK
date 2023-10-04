@@ -6,7 +6,6 @@ from .models import PortExpenses, Port
 def parse_port_expenses(json: Mapping[str, Any]) -> PortExpenses:
     return PortExpenses(
         cast(int, json.get("PortId")),
-        cast(int, json.get("PortCanal")),
         cast(int, json.get("Towage")),
         cast(int, json.get("PortDues")),
         cast(int, json.get("Pilotage")),
@@ -22,7 +21,6 @@ def parse_port_expenses(json: Mapping[str, Any]) -> PortExpenses:
         cast(int, json.get("MooringUnmooring")),
         cast(int, json.get("QuayDues")),
         cast(int, json.get("AnchorageDues")),
-        cast(List[int], json.get("PortAgents")),
     )
 
 
