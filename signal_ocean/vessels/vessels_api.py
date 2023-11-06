@@ -4,7 +4,11 @@ from urllib.parse import urljoin
 from datetime import date
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_multiple, get_single
-from signal_ocean.vessels.models import VesselClass, VesselType, Vessel
+from signal_ocean.vessels.models import (VesselClass, VesselType,
+                                         Vessel, VesselPagedResponse,
+                                         FieldHistory,
+                                         VesselFieldResponse,
+                                         DifferenceByField)
 
 
 class VesselsAPI:
@@ -77,8 +81,8 @@ class VesselsAPI:
                                          "GHG": "ghg"})
 
     def get_vessels_by_vessel_class(
-        self, vesselClass: int, point_in_time: Optional[str] = default_pit
-    ) -> Tuple[Vessel, ...]:
+        self, vesselClass: int
+    ) -> Optional[Tuple[Vessel, ...]]:
         """Retrieves all vessels of a specific vessel class.
 
         Args:
@@ -87,9 +91,64 @@ class VesselsAPI:
         Returns:
             A tuple of all available vessels.
         """
-        endpoint = f"pointInTime/{point_in_time}/byVesselClass/{vesselClass}"
+        endpoint = f"vessels?vesselClass={vesselClass}"
         url = urljoin(VesselsAPI.relative_url, endpoint)
-        return get_multiple(self.__connection, url, Vessel,
-                            rename_keys={"STSTCoating": "stst_coating",
-                                         "BWTS": "bwts",
-                                         "GHG": "ghg"})
+        response = get_single(self.__connection, url, VesselPagedResponse,
+                              rename_keys={"STSTCoating": "stst_coating",
+                                           "BWTS": "bwts",
+                                           "GHG": "ghg"})
+        return response if response is None else response.items
+
+    def get_vessels_name_history(
+            self, imo: Optional[int] = None
+    ) -> Tuple[VesselFieldResponse, ...]:
+        """Retrieves all vessel names changes.
+
+        Args:
+                imo: IMO of the vessel to retrieve.
+
+        Returns:
+            A tuple of all vessel names changes.
+        """
+        return self.__get_history(FieldHistory.Name, imo)
+
+    def get_vessels_commOp_history(
+            self, imo: Optional[int] = None
+    ) -> Tuple[VesselFieldResponse, ...]:
+        """Retrieves all commOp changes.
+
+        Args:
+                imo: IMO of the vessel to retrieve.
+
+        Returns:
+            A tuple of all commOp changes.
+        """
+        return self.__get_history(FieldHistory.CommOp, imo)
+
+    def __get_history(
+            self,
+            field: FieldHistory,
+            imo: Optional[int] = None
+    ) -> Tuple[VesselFieldResponse, ...]:
+        endpoint = "vessels"
+        if field == FieldHistory.Name:
+            endpoint += "/nameHistory" if imo is None else f"""/{imo}/history
+            /names"""
+        elif field == FieldHistory.CommOp:
+            endpoint += "/commOpHistory" if imo is None else f"""/{imo}/history
+            /commOps"""
+
+        url = urljoin(VesselsAPI.relative_url, endpoint)
+
+        if imo is not None:
+            historyChanges = get_multiple(self.__connection,
+                                          url,
+                                          DifferenceByField)
+            fieldResponse = VesselFieldResponse(imo=imo,
+                                                history=historyChanges)
+            response = (fieldResponse, )  # type:Tuple[VesselFieldResponse,...]
+        else:
+            history = get_multiple(self.__connection, url, VesselFieldResponse)
+            response = history
+
+        return response
