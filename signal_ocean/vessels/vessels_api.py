@@ -133,12 +133,12 @@ class VesselsAPI:
         endpoint = "vessels"
         if field == FieldHistory.Name:
             if imo is None:
-                endpoint += "/nameHistory" 
-            else: 
+                endpoint += "/nameHistory"
+            else:
                 endpoint += f"/{imo}/history/names"
         elif field == FieldHistory.CommOp:
             if imo is None:
-                endpoint += "/commOpHistory" 
+                endpoint += "/commOpHistory"
             else:
                 endpoint += f"/{imo}/history/commOps"
 
