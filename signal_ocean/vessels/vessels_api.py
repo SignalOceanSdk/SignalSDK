@@ -132,11 +132,15 @@ class VesselsAPI:
     ) -> Tuple[VesselFieldResponse, ...]:
         endpoint = "vessels"
         if field == FieldHistory.Name:
-            endpoint += "/nameHistory" if imo is None else f"""/{imo}/history
-            /names"""
+            if imo is None:
+                endpoint += "/nameHistory" 
+            else: 
+                endpoint += f"/{imo}/history/names"
         elif field == FieldHistory.CommOp:
-            endpoint += "/commOpHistory" if imo is None else f"""/{imo}/history
-            /commOps"""
+            if imo is None:
+                endpoint += "/commOpHistory" 
+            else:
+                endpoint += f"/{imo}/history/commOps"
 
         url = urljoin(VesselsAPI.relative_url, endpoint)
 
