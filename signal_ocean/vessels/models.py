@@ -1,7 +1,8 @@
 """Models instantiated by the vessels api."""
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Tuple
+from enum import Enum
 
 
 @dataclass(frozen=True)
@@ -244,6 +245,50 @@ class Vessel:
             with a heating coils system. Tanker vessels may be fitted with
             heating coils in order to maintain the required temperature of
             the cargo for pumping.
+        crane_details_as_str: String, SWL (Safe Working Load) in mt for
+            each crane, collected in one single string with the format
+            commonly used across market reports. Example: "4 x 30 MT".
+        cranes_max_outreach: Numeric, in meters (m). The maximum outreach
+            range across all the cranes that the vessel has. This range
+            is measured as the distance from the boom tip to the crane hook.
+        cranes_max_lifting_capacity: Numeric in metric tons [MT]. It is
+            the computed maximum SWL (Safe Working Load) across all non
+            auxiliary cranes of the vessel.
+        hold_details_as_str: String, dimensions in meters (length x
+            breadth x depth) of each single hold, collected in one single
+            string with the format commonly used across market reports.
+            Example: "17.96 m x 17.6 m, 17.96 m x 20.24 m, 17.96 m x
+            20.24 m, 17.96 m x 20.24 m, 17.96 m x 20.24 m".
+        hatch_details_as_str: String, dimensions in meters (length x
+            breadth) of each single hatch, collected in one single string
+            with the format commonly used across market reports.
+        grab_details_as_str: String, capacity range in cbm (minimum
+            capacity - maximum capacity) and maximum lifting capacity in
+            mt of each single grab, collected in one single string with
+            the format commonly used across market reports.
+            Example: "4 x 12 CBM".
+        box_shaped_holds: Boolean, denotes whether the vessel has any hold
+            with box shape.
+        neo_panama_locks: Boolean, denotes whether the vessel is fitted to
+            cross the Panama Canal through the new locks.
+        australian_hold_ladder: Boolean, denotes whether the vessel has
+            any Australian hold ladder on board. This system is a specific
+            inclined ladder used to inspect the cargo.
+        co2_fitted: Boolean, denotes whether the vessel has any CO2 fire
+            suppression system.This system is used to fight fire in
+            the cargo hold of a vessel.
+        a60_bulkhead: Boolean, denotes whether the vessel has any
+            bulkhead of class A, insulated with approved insulation and
+            passed the standard fire test for 60 minutes. A bulkhead is
+            a vertical partition to provide compartments or subdivisions.
+        log_fitted: Boolean, denotes whether the vessel is fitted to
+            carry logs.
+        open_hatch: Boolean, denotes whether the bulk carrier vessel is
+            of the open hatch type. These vessels are designed to offer
+            direct access to the hold through cargo hatches that extend
+            the full width of the vessel. OHBC (Open Hatch Bulk Carriers)
+            are often used to carry forest products, such as pre-slung
+            timber and slugs.
         bwts: Boolean, denotes whether the vessel has any Ballast Water
             Treatment System. This system is designed to remove and
             destroy/inactive biological organisms (zooplankton, algae,
@@ -253,6 +298,26 @@ class Vessel:
         ghg: String, denotes the vessel’s GHG (Greenhouse Gas) Emissions
             Rating. Developed by RightShip, GHG compares a ship's
             design efficiency with peer vessels using a simple A–G scale.
+        order_book_status_id: Int (1-8), denotes the OrderBook Status ID
+            (1: UnconfirmedExistence, 2: ReportedOrder, 3: OnOrder,
+            4: CancelledOrder, 5: UnderConstruction, 6: Launched,
+            7: Live, 8: Dead)
+        order_book_status: String, denotes the OrderBook Status. Dead
+            (Scrapped Date in the past), CancelledOrder (Cancelled Date in
+            the past), Live (Delivery Date in the past), Launched (Launch
+            Date in the past), UnderConstruction (Construction Start Date
+            in the past), OnOrder (has a Construction Start Date),
+            ReportedOrder (has an Order Date), UnconfirmedExistence.
+        order_date: Date, format YYYY-MM-DD, the date the order of the
+            vessel was placed.
+        construction_start_date: Date, format YYYY-MM-DD, the date of
+            the start of the construction.
+        launch_date: Date, format YYYY-MM-DD, the date of the vessel
+            launch into the water.
+        scheduled_delivery_date: Date, format YYYY-MM-DD, the date
+            of the scheduled delivery of the vessel.
+        cancelled_date: Date, format YYYY-MM-DD HH:MM:SS, the date
+            of the order.
     """
 
     imo: int
@@ -326,6 +391,89 @@ class Vessel:
     beneficial_owner: Optional[str] = None
     parallel_body_length: Optional[float] = None
     heating_coils_fitted: Optional[bool] = None
+    crane_details_as_str: Optional[str] = None
+    cranes_max_outreach: Optional[float] = None
+    cranes_max_lifting_capacity: Optional[float] = None
+    hold_details_as_str: Optional[str] = None
+    hatch_details_as_str: Optional[str] = None
+    grab_details_as_str: Optional[str] = None
+    box_shaped_holds: Optional[bool] = None
+    neo_panama_locks: Optional[bool] = None
+    australian_hold_ladder: Optional[bool] = None
+    co2_fitted: Optional[bool] = None
+    a60_bulkhead: Optional[bool] = None
+    log_fitted: Optional[bool] = None
+    open_hatch: Optional[bool] = None
     bwts: Optional[bool] = None
     grabs_fitted: Optional[bool] = None
     ghg: Optional[str] = None
+    order_book_status_id: Optional[int] = None
+    order_book_status: Optional[str] = None
+    order_date: Optional[datetime] = None
+    construction_start_date: Optional[datetime] = None
+    launch_date: Optional[datetime] = None
+    scheduled_delivery_date: Optional[datetime] = None
+    cancelled_date: Optional[datetime] = None
+
+
+@dataclass(frozen=True)
+class VesselPagedResponse:
+    """Vessel paged response.
+
+    Attributes:
+        items: All data.
+    """
+    items: Tuple[Vessel, ...]
+
+
+@dataclass(frozen=True)
+class DifferenceByFieldValue:
+    """Changes happened on field data for a specific value.
+
+    Attributes:
+        value: The new value of the field.
+        begin_date: The starting date that this value
+            had takken effect
+        end_date: The ending date that this value had
+            takken effect
+        name: The corresponding name of value.
+    """
+    value: str
+    begin_date: datetime
+    end_date: datetime
+    name: Optional[str] = None
+
+
+@dataclass(frozen=True)
+class DifferenceByField:
+    """Changes happened on a specific field.
+
+    Attributes:
+        field_name: The field that these changes happened
+        values: The changes
+    """
+    field_name: str
+    values: Tuple[DifferenceByFieldValue, ...]
+
+
+class FieldHistory(Enum):
+    """Enum specifying the field that history should be returned.
+
+    Attributes:
+        Name: Vessel Name.
+        CommOp: Commercial Operator
+    """
+    Name = 1
+    CommOp = 2
+
+
+@dataclass(frozen=True)
+class VesselFieldResponse:
+    """Changes happened on a specific IMO.
+
+    Attributes:
+        imo: Vessel imo.
+        history: The complete history of changes.
+    """
+    imo: int
+    history: Tuple[DifferenceByField, ...]
