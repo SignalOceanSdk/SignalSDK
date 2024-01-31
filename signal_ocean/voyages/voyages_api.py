@@ -32,7 +32,7 @@ NextRequestToken = str
 class VoyagesAPI:
     """Represents Signal's Voyages API."""
 
-    relative_url = "voyages-api/v3.2/"
+    relative_url = "voyages-api/v4/"
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VoyagesAPI.
