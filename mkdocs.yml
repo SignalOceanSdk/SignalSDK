@@ -16,6 +16,7 @@ nav:
       - Examples:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
+        - 'examples/jupyter/VoyagesAPI/FlowsFromV4.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
         - 'examples/jupyter/VoyagesAPI/DryBulkFlows.ipynb'
