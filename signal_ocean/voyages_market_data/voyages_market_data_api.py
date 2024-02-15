@@ -79,6 +79,7 @@ class VoyagesMarketDataAPI:
                 RedeliveryToTaxonomy
             filter_by_matched_fixture: If set to true, only results with a
                 matched fixture will be included in the response.
+
         Returns:
             The endpoint to call to retrieve the requested voyage market \
             data for the provided arguments.
@@ -215,6 +216,7 @@ class VoyagesMarketDataAPI:
                 RedeliveryToTaxonomy.
             filter_by_matched_fixture: If set to true, only results with a
                 matched fixture will be included in the response.
+                
         Returns:
             A tuple containing the returned voyage market data.
         """
