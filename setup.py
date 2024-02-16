@@ -30,7 +30,7 @@ setup(
         "pandas>=2,<3",
         "numpy>=1.18.5",
         "strictly-typed-pandas==0.1.4",
-        "typeguard>=2.13.3,<3.0.0"
+        "typeguard>=2.13.3"
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
