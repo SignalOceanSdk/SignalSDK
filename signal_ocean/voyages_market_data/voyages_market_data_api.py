@@ -43,7 +43,8 @@ class VoyagesMarketDataAPI:
         include_vessel_details: Optional[bool] = None,
         include_fixtures: Optional[bool] = None,
         include_matched_fixture: Optional[bool] = None,
-        include_labels: Optional[bool] = None
+        include_labels: Optional[bool] = None,
+        filter_by_matched_fixture: Optional[bool] = None
     ) -> str:
         """Retrieves the endpoint to call to construct the request.
 
@@ -76,6 +77,9 @@ class VoyagesMarketDataAPI:
                 CargoGroupID, DeliveryName, DeliveryTaxonomy,
                 RedeliveryFromName, RedeliveryFromTaxonomy, RedeliveryToName,
                 RedeliveryToTaxonomy
+            filter_by_matched_fixture: If set to true, only results with a
+                matched fixture will be included in the response.
+
         Returns:
             The endpoint to call to retrieve the requested voyage market \
             data for the provided arguments.
@@ -84,7 +88,8 @@ class VoyagesMarketDataAPI:
 
         for key, value in locals().items():
             if key in {'include_vessel_details', 'include_fixtures',
-                       'include_matched_fixture', 'include_labels'}:
+                       'include_matched_fixture', 'include_labels',
+                       'filter_by_matched_fixture'}:
                 endpoint_params[key] = value
 
         endpoint = "marketData"
@@ -175,7 +180,8 @@ class VoyagesMarketDataAPI:
         include_vessel_details: Optional[bool] = None,
         include_fixtures: Optional[bool] = None,
         include_matched_fixture: Optional[bool] = None,
-        include_labels: Optional[bool] = None
+        include_labels: Optional[bool] = None,
+        filter_by_matched_fixture: Optional[bool] = None
     ) -> VoyagesMarketDataMultiple:
         """Retrieves market data filtered for the provided parameters.
 
@@ -207,7 +213,10 @@ class VoyagesMarketDataAPI:
                 DischargeName2, DischargeTaxonomy2, CargoType, CargoGroup,
                 CargoGroupID, DeliveryName, DeliveryTaxonomy,
                 RedeliveryFromName, RedeliveryFromTaxonomy, RedeliveryToName,
-                RedeliveryToTaxonomy
+                RedeliveryToTaxonomy.
+            filter_by_matched_fixture: If set to true, only results with a
+                matched fixture will be included in the response.
+
         Returns:
             A tuple containing the returned voyage market data.
         """
@@ -215,7 +224,7 @@ class VoyagesMarketDataAPI:
                         imo, voyage_id, voyage_number, vessel_class_id,
                         vessel_type_id, incremental, include_vessel_details,
                         include_fixtures, include_matched_fixture,
-                        include_labels
+                        include_labels, filter_by_matched_fixture
         )
 
         if imo is not None:
@@ -237,6 +246,7 @@ class VoyagesMarketDataAPI:
         include_lineups: Optional[bool] = None,
         include_positions: Optional[bool] = None,
         include_matched_fixture: Optional[bool] = None,
+        filter_by_matched_fixture: Optional[bool] = None,
         fixture_date_from: Optional[date] = None,
         fixture_date_to: Optional[date] = None,
         laycan_date_from: Optional[date] = None,
@@ -271,6 +281,8 @@ class VoyagesMarketDataAPI:
                 included in the response.
             include_matched_fixture: If True, information on the matched
                 fixture will be included in the response.
+            filter_by_matched_fixture: If set to true, only results with a
+                matched fixture will be included in the response.
             fixture_date_from: Date format 'YYYY-MM-DD', if included market
                 data with a fixture date after the given date will be
                 returned.

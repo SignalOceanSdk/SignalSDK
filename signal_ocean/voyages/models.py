@@ -303,6 +303,24 @@ class VoyageEvent:
             Coast Central America" and "West Coast South America".
         low_ais_density: Boolean, indicating whether there is no tracked AIS
             data for a duration higher that the time required for an operation.
+        quantity: Numeric, measured in kilotonnes [kt]. It is the cargo
+            quantity reported in at least one of the market reports.
+        quantity_unit_id: Numeric ID corresponding to the Quantity unit
+            1 -> MetricTonnes, 2 -> CubicMeters.
+        quantity_unit: String corresponding to the unit type of the field
+            Quantity (MetricTonnes for Tanker, LPG and Dry, CubicMeters
+            for LNG).
+        quantity_in_barrels: Numeric, the quantity measured in barrels,
+            applicable for Tanker vessels.
+        quantity_source_id: "Numeric ID corresponding to the type of
+            Quantity source 0 -> None, 1 -> Estimated, 2 -> MarketInfo,
+            3 -> Lineup, 20 -> PrivateInfo.
+        quantity_source: String, it specifies the source of Quantity. If market
+                reports are available this field takes value "MarketInfo".
+                If no market reports are available
+                for this voyage, the quantity is estimated.
+                Market info is considered more accurate and reliable,
+                whenever available.
         event_details: Specific details regarding the voyage events, e.g. a
             ship-to-ship operation or a jetty stay.
     """
@@ -332,6 +350,10 @@ class VoyageEvent:
     area_idlevel3: Optional[int] = None
     area_name_level3: Optional[str] = None
     low_ais_density: Optional[bool] = None
+    quantity: Optional[float] = None
+    quantity_unit_id: Optional[int] = None
+    quantity_unit: Optional[str] = None
+    quantity_in_barrels: Optional[int] = None
     event_details: Optional[Tuple[VoyageEventDetail, ...]] = None
 
 
@@ -434,6 +456,43 @@ class Voyage:
             vessel carries according to the specific voyage, AIS information,
             jetty the vessel may have visited or information coming from market
             reports.
+        cargo_type_source_id: Numeric ID corresponding to the type of
+            CargoSubType source. 0 -> None, 2 -> MarketInfo, 3 -> Lineup,
+            8 -> EstimatedLow, 9 -> EstimatedMedium,
+            10 -> EstimatedHigh, 20 -> PrivateInfo.
+        cargo_type_source: String, it specifies the source of CargoType and
+            CargoGroup. If market reports are available this filed takes value
+            "MarketInfo". If no market reports are available for this voyage,
+            the cargo is estimated based on AIS and visited jetties. Market
+            info are considered more accurate and reliable, whenever available.
+        cargo_sub_type_id: Numeric ID corresponding to the type of cargo the
+            vessel carries in the given voyage at taxonomy level 0, for example
+            97-> `High Sulphur Gasoil`. CargoSubTypes are a subcategory of
+            CargoTypes and the most detailed level of information for the cargo
+            that is onboard. In the case of the CargoType `Crude Oil`,
+            CargoSubTypes represent specific grades, like `Basrah Light`.
+        cargo_sub_type: String, corresponds to the taxonomy 0 cargo type the
+            vessel carries in the specific voyage. It is a product of all
+            available information, including current and historical voyage
+            information, geofencing and market data. CargoSubTypes are a
+            subcategory of CargoTypes and the most detailed level of
+            information for the cargo that is onboard. In the case of the
+            CargoType Crude Oil, CargoSubTypes represent specific grades,
+            like Basrah Light.
+        cargo_sub_type_source_id: Numeric ID corresponding to the type of
+            CargoSubType source. 0 -> None, 2 -> MarketInfo, 3 -> Lineup,
+            8 -> EstimatedLow, 9 -> EstimatedMedium, 10 -> EstimatedHigh,
+            20 -> PrivateInfo.
+        cargo_sub_type_source: String, it specifies the source of
+            CargoSubType. The source will be ""Lineup"" if the selection of
+            CargoSubType is based on Lineup info, ""MarketInfo"" if the
+            selection of CargoSubType is based on other market data like
+            fixtures or tonnage lists, ""PrivateInfo"" if it is based on your
+            private info and ""Estimated(Low/Medium/High, providing the
+            different confidence levels of our estimation)"" if it is based
+            on our proprietary sequential and hierarchical CargoTracking
+            model that also uses current/historical voyage data as input,
+            plus a specific cargo layer of our geofencing data structure.
         cargo_group_id: Numeric ID corresponding to the high-level cargo the
             vessel carries in this voyage, therefore called cargo group. For
             example 130000->Dirty, 120000-> Clean.
@@ -441,19 +500,52 @@ class Voyage:
             the vessel carries in this voyage, according to AIS information and
             jetties the vessel may have visited or information coming from
             market reports.
-        cargo_type_source: String, it specifies the source of CargoType and
-            CargoGroup. If market reports are available this filed takes value
-            "MarketInfo". If no market reports are available for this voyage,
-            the cargo is estimated based on AIS and visited jetties. Market
-            info are considered more accurate and reliable, whenever available.
+        cargo_sub_group_id: Numeric ID corresponding to the type of cargo the
+            vessel carries in the given voyage at taxonomy level 2. For example
+            132000-> Crude. CargoSubGroups are a subcategory of CargoGroups and
+            a parent category of CargoTypes, so the second-highest level
+            of information after CargoGroups.
+        cargo_sub_group: String, corresponds to the taxonomy level 2 cargo
+            type the vessel carries in the specific voyage. It is a product of
+            all available information, including current and historical voyage
+            information, geofencing and market data. CargoSubGroups are a
+            subcategory of CargoGroups and a parent category of CargoTypes,
+            so the second-highest level of information after CargoGroups.
+        cargo_sub_group_source_id: Numeric ID corresponding to the type of
+            CargoSubGroup source 0 -> None, 2 -> MarketInfo, 3 -> Lineup,
+            8 -> EstimatedLow, 9 -> EstimatedMedium, 10 -> EstimatedHigh,
+            20 -> PrivateInfo.
+        cargo_sub_group_source: String, it specifies the source of
+            CargoSubGroup. The source will be ""Lineup"" if the selection
+            of CargoSubGroup is based on Lineup info, ""MarketInfo"" if the
+            selection of CargoSubGroup is based on other market data,
+            ""PrivateInfo"" if it is based on private info and
+            ""Estimated(Low/Medium/High, providing the different confidence
+            levels of our estimation)"" if it is based on our proprietary
+            sequential and hierarchical CargoTracking model that also uses
+            current/historical voyage data as input, plus a specific cargo
+            layer of our geofencing data structure.
         quantity: Numeric, measured in kilotonnes [kt]. It is the cargo
             quantity reported in at least one of the market reports.
+        quantity_unit_id: Numeric ID corresponding to the Quantity unit
+            1 -> MetricTonnes, 2 -> CubicMeters.
+        quantity_unit: String corresponding to the unit type of the field
+            Quantity (MetricTonnes for Tanker, LPG and Dry, CubicMeters
+            for LNG).
+        quantity_in_barrels: Numeric, the quantity measured in barrels,
+            applicable for Tanker vessels.
+        quantity_source_id: "Numeric ID corresponding to the type of
+            Quantity source 0 -> None, 1 -> Estimated, 2 -> MarketInfo,
+            3 -> Lineup, 20 -> PrivateInfo.
         quantity_source: String, it specifies the source of Quantity. If market
-            reports are available this field takes value "MarketInfo".
-            If no market reports are available
-            for this voyage, the quantity is estimated.
-            Market info is considered more accurate and reliable,
-            whenever available.
+                reports are available this field takes value "MarketInfo".
+                If no market reports are available
+                for this voyage, the quantity is estimated.
+                Market info is considered more accurate and reliable,
+                whenever available.
+        cubic_source: Numeric, measured in cubic meters [cbm] denotes the
+            carrying capacity of Gas vessels (LNG, LPG). For tankers it is the
+            volume of cargo tanks.
         laycan_from: Date, format YYYY-MM-DD indicates the earliest reported
             Laycan From (latest day of cancellation) across all fixtures.
         laycan_to: Date, format YYYY-MM-DD indicates the latest reported Laycan
@@ -544,11 +636,25 @@ class Voyage:
     ballast_bonus_type: Optional[str] = None
     cargo_type_id: Optional[int] = None
     cargo_type: Optional[str] = None
+    cargo_type_source_id: Optional[int] = None
+    cargo_type_source: Optional[str] = None
+    cargo_sub_type_id: Optional[int] = None
+    cargo_sub_type: Optional[str] = None
+    cargo_sub_type_source_id: Optional[int] = None
+    cargo_sub_type_source: Optional[str] = None
     cargo_group_id: Optional[int] = None
     cargo_group: Optional[str] = None
-    cargo_type_source: Optional[str] = None
+    cargo_sub_group_id: Optional[int] = None
+    cargo_sub_group: Optional[str] = None
+    cargo_sub_group_source_id: Optional[int] = None
+    cargo_sub_group_source: Optional[str] = None
     quantity: Optional[float] = None
+    quantity_unit_id: Optional[int] = None
+    quantity_unit: Optional[str] = None
+    quantity_in_barrels: Optional[int] = None
+    quantity_source_id: Optional[int] = None
     quantity_source: Optional[str] = None
+    cubic_size: Optional[int] = None
     laycan_from: Optional[datetime] = None
     laycan_to: Optional[datetime] = None
     fixture_status_id: Optional[int] = None

@@ -380,7 +380,7 @@ _mock_get_advanced_search = {
     },
 
     'expected_output':
-    'voyages-api/v3.2/voyages/nested?'
+    'voyages-api/v4/voyages/nested?'
     'Imo=91017&Imo=90455&'
     'VoyageKeys=2&VoyageKeys=3&'
     'EventType=2&'
@@ -701,46 +701,46 @@ _mock_voyages_paged_condensed_response_data_2 = {
 @pytest.mark.parametrize("imo, vessel_class_id, vessel_type_id, date_from, "
                          "nested, incremental, expected",
                          [(None, None, None, None, True, True,
-                           'voyages-api/v3.2/voyages/nested/incremental'),
+                           'voyages-api/v4/voyages/nested/incremental'),
                           (None, None, None, None, False, True,
-                           'voyages-api/v3.2/voyages/flat/incremental'),
+                           'voyages-api/v4/voyages/flat/incremental'),
                           (9436006, None, None, None, True, None,
-                           'voyages-api/v3.2/voyages/nested?Imo=9436006'),
+                           'voyages-api/v4/voyages/nested?Imo=9436006'),
                           (9436006, None, None, None, False, None,
-                           'voyages-api/v3.2/voyages/flat?Imo=9436006'),
+                           'voyages-api/v4/voyages/flat?Imo=9436006'),
                           (9436006, None, None, None, True, True,
-                           'voyages-api/v3.2/voyages/nested/incremental'
+                           'voyages-api/v4/voyages/nested/incremental'
                            '?Imo=9436006'),
                           (9436006, None, None, None, False, True,
-                           'voyages-api/v3.2/voyages/flat/incremental?'
+                           'voyages-api/v4/voyages/flat/incremental?'
                            'Imo=9436006'),
                           (9436006, 84, None, None, True, None,
-                           'voyages-api/v3.2/voyages/nested?Imo=9436006'
+                           'voyages-api/v4/voyages/nested?Imo=9436006'
                            '&VesselClassId=84'),
                           (None, 84, None, None, True, None,
-                           'voyages-api/v3.2/voyages/nested?VesselClassId=84'),
+                           'voyages-api/v4/voyages/nested?VesselClassId=84'),
                           (None, 84, None, None, False, None,
-                           'voyages-api/v3.2/voyages/flat?VesselClassId=84'),
+                           'voyages-api/v4/voyages/flat?VesselClassId=84'),
                           (None, 84, None, None, True, True,
-                           'voyages-api/v3.2/voyages/nested/incremental'
+                           'voyages-api/v4/voyages/nested/incremental'
                            '?VesselClassId=84'),
                           (None, 84, None, None, False, True,
-                           'voyages-api/v3.2/voyages/flat/incremental?'
+                           'voyages-api/v4/voyages/flat/incremental?'
                            'VesselClassId=84'),
                           (None, 84, None, date(2020, 1, 1), True, None,
-                           'voyages-api/v3.2/voyages/nested?VesselClassId=84'
+                           'voyages-api/v4/voyages/nested?VesselClassId=84'
                            '&StartDateFrom=2020-01-01'),
                           (None, 84, None, date(2020, 1, 1), False, None,
-                           'voyages-api/v3.2/voyages/flat?VesselClassId=84'
+                           'voyages-api/v4/voyages/flat?VesselClassId=84'
                            '&StartDateFrom=2020-01-01'),
                           (None, 84, None, date(2020, 1, 1), True, True,
-                           'voyages-api/v3.2/voyages/nested/incremental'
+                           'voyages-api/v4/voyages/nested/incremental'
                            '?VesselClassId=84&StartDateFrom=2020-01-01'),
                           (None, 84, None, date(2020, 1, 1), False, True,
-                           'voyages-api/v3.2/voyages/flat/incremental'
+                           'voyages-api/v4/voyages/flat/incremental'
                            '?VesselClassId=84&StartDateFrom=2020-01-01'),
                           (None, None, 1, None, True, True,
-                           'voyages-api/v3.2/voyages/nested/incremental'
+                           'voyages-api/v4/voyages/nested/incremental'
                            '?VesselTypeId=1')])
 def test_get_endpoint(imo, vessel_class_id, vessel_type_id, date_from, nested,
                       incremental, expected):
