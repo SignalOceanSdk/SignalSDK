@@ -46,7 +46,7 @@ python3.8 -m venv release-env
 source release-env/bin/activate
 
 # Build on virtual environment
-echo "Building dist with env $(echo $VIRTUAL_ENV)..."
+echo "Building dist with env $VIRTUAL_ENV..."
 echo "Python: $(which python)"
 echo "Pip: $(which pip)"
 
