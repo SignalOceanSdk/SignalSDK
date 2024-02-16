@@ -40,9 +40,28 @@ pytest
 echo 'Analyzing docstrings...'
 pydocstyle --match='(?!_[^_]).*\.py' --convention=google signal_ocean
 
-echo 'Building dist...'
+# Isolate dev form release build env
+echo "Creating virtual environment for building release"
+python3.8 -m venv release-env
+source release-env/bin/activate
+
+# Build on virtual environment
+echo "Building dist with env $(echo $VIRTUAL_ENV)..."
+echo "Python: $(which python)"
+echo "Pip: $(which pip)"
+
+# Install version of wheel from dev requirements
+pip install $(grep -Po '^wheel.*$' ./requirements.txt)
+
 rm -rf dist/*
-python3.8 ./setup.py sdist bdist_wheel
+python ./setup.py sdist bdist_wheel
+
+echo "Deactivating virtual environment"
+deactivate
+
+# Clean up virtual environment
+echo "Removing virtual environment"
+rm -rf release-env
 
 if [[ ! $repository_url ]]
 then

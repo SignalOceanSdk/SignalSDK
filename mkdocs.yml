@@ -16,6 +16,7 @@ nav:
       - Examples:
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-UseCases.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI.ipynb'
+        - 'examples/jupyter/VoyagesAPI/FlowsFromV4.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-VoyagesDataLike.ipynb'
         - 'examples/jupyter/VoyagesAPI/TonCharts.ipynb'
         - 'examples/jupyter/VoyagesAPI/DryBulkFlows.ipynb'
@@ -105,6 +106,8 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 10.2.0.md'
+      - 'releases/Version 10.1.0.md'
       - 'releases/Version 10.0.0.md'
       - 'releases/Version 9.0.1.md'
       - 'releases/Version 9.0.0.md'

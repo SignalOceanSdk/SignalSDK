@@ -1,8 +1,8 @@
 #!/bin/bash -e
 set -euxo pipefail
 
-pip install notebook jupyter plotly matplotlib openpyxl seaborn folium sqlalchemy pandas --upgrade
-pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple signal-ocean
+pip install notebook jupyter plotly matplotlib openpyxl seaborn folium sqlalchemy pandas tqdm --upgrade
+pip install --index-url https://test.pypi.org/simple/ --pre --extra-index-url https://pypi.org/simple signal-ocean
 
 ls -LR | grep .ipynb | while read filename
 do
