@@ -33,9 +33,10 @@ declare -A package_stars
 
 for package_snippet in $(pypi_query_stable "$1"); do
   git_url="$(curl -s "https://pypi.org/project/$package_snippet/" | grep -Po '(?<=data-github-repo-stats-url-value\=\").*(?=\")')"
-
+  echo "$package $git_url"
   if [ -z "$git_url" ]; then
     echo "No git url found for $package_snippet"
+    # if no git url set count to zero
     package_stars["$package_snippet"]=0
     continue
   fi
@@ -45,6 +46,11 @@ for package_snippet in $(pypi_query_stable "$1"); do
     curl -s "$git_url" --header "Authorization: Bearer $GITHUB_API_TOKEN"| \
     jq '.stargazers_count'
   )
+
+  # if github repo was deleted set count it to zero
+  if [ ${package_stars["$package_snippet"]} == "null" ];then
+    package_stars["$package_snippet"]=0
+  fi
 done
 
 echo -e '\n*** Package Rank ***'
