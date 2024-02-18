@@ -36,7 +36,7 @@ for package_snippet in $(pypi_query_stable "$1"); do
   echo "$package $git_url"
   if [ -z "$git_url" ]; then
     echo "No git url found for $package_snippet"
-    # if no git url set count to zero
+    # no git url, set count to zero
     package_stars["$package_snippet"]=0
     continue
   fi
@@ -47,7 +47,7 @@ for package_snippet in $(pypi_query_stable "$1"); do
     jq '.stargazers_count'
   )
 
-  # if github repo was deleted set count it to zero
+  # github repo was deleted, set count to zero
   if [ ${package_stars["$package_snippet"]} == "null" ];then
     package_stars["$package_snippet"]=0
   fi
