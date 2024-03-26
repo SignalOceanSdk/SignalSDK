@@ -77,10 +77,10 @@ class VoyagesAPI:
         condensed: Optional[bool] = False,
         incremental: Optional[bool] = False,
     ) -> str:
-        """Constructs the VoyagesData v3.2 endpoint.
+        """Constructs the VoyagesData v4 endpoint.
 
         Args:
-            endpoint_params: VoyagesData v3.2 endpoint parameters dictionary.
+            endpoint_params: VoyagesData v4 endpoint parameters dictionary.
             Part of get_voyages method arguments.
             Part of get_voyages_incremental arguments.
 
@@ -1021,7 +1021,7 @@ class VoyagesAPI:
             A tuple of available vessel classes that match the filter.
         """
         response = self.__connection._make_get_request(
-            "voyages-api/v3.2/filters/availableVesselClasses"
+            "voyages-api/v4/filters/availableVesselClasses"
         )
         response.raise_for_status()
 
@@ -1043,7 +1043,7 @@ class VoyagesAPI:
             A tuple of available vessel types that match the filter.
         """
         response = self.__connection._make_get_request(
-            "voyages-api/v3.2/filters/availableVesselTypes"
+            "voyages-api/v4/filters/availableVesselTypes"
         )
         response.raise_for_status()
 
@@ -1065,7 +1065,7 @@ class VoyagesAPI:
             A tuple of available vessels that match the filter.
         """
         response = self.__connection._make_get_request(
-            "voyages-api/v3.2/filters/availableVessels"
+            "voyages-api/v4/filters/availableVessels"
         )
         response.raise_for_status()
 
