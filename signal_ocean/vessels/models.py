@@ -318,6 +318,16 @@ class Vessel:
             of the scheduled delivery of the vessel.
         cancelled_date: Date, format YYYY-MM-DD HH:MM:SS, the date
             of the order.
+        minimum_temperature: Numeric, denotes the minimum temperature
+            of cargo and tanks.
+        maximum_pressure: Numeric, measured in Bar, denotes the
+            maximum tank pressure.
+        ammonia: Boolean, denotes whether the vessel can carry
+            ammonia.
+        vcm: Boolean, denotes whether the vessel can carry vinyl
+            chloride monomer.
+        ethylene: Boolean, denotes whether the vessel can carry
+            ethylene.
     """
 
     imo: int
