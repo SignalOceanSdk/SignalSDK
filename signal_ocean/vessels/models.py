@@ -414,6 +414,11 @@ class Vessel:
     launch_date: Optional[datetime] = None
     scheduled_delivery_date: Optional[datetime] = None
     cancelled_date: Optional[datetime] = None
+    minimum_temperature: Optional[float] = None
+    maximum_pressure: Optional[float] = None
+    ammonia: Optional[bool] = None
+    vcm: Optional[bool] = None
+    ethylene: Optional[bool] = None
 
 
 @dataclass(frozen=True)
