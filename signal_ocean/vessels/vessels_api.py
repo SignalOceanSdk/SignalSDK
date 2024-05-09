@@ -58,7 +58,8 @@ class VesselsAPI:
         return get_single(self.__connection, url, Vessel,
                           rename_keys={"STSTCoating": "stst_coating",
                                        "BWTS": "bwts",
-                                       "GHG": "ghg"})
+                                       "GHG": "ghg",
+                                       "VCM": "vcm"})
 
     def get_vessels(self, name: Optional[str] = None) -> Tuple[Vessel, ...]:
         """Retrieves all available vessels.
@@ -78,7 +79,8 @@ class VesselsAPI:
         return get_multiple(self.__connection, url, Vessel,
                             rename_keys={"STSTCoating": "stst_coating",
                                          "BWTS": "bwts",
-                                         "GHG": "ghg"})
+                                         "GHG": "ghg",
+                                         "VCM": "vcm"})
 
     def get_vessels_by_vessel_class(
         self, vesselClass: int
@@ -96,7 +98,8 @@ class VesselsAPI:
         response = get_single(self.__connection, url, VesselPagedResponse,
                               rename_keys={"STSTCoating": "stst_coating",
                                            "BWTS": "bwts",
-                                           "GHG": "ghg"})
+                                           "GHG": "ghg",
+                                           "VCM": "vcm"})
         return response if response is None else response.items
 
     def get_vessels_name_history(
