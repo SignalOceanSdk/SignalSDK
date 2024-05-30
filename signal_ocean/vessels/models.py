@@ -328,6 +328,59 @@ class Vessel:
             chloride monomer.
         ethylene: Boolean, denotes whether the vessel can carry
             ethylene.
+        ballast_parallel_body_length: Numeric, denotes the length
+            of the ship's hull that is parallel to the waterline
+            when the ship is in its normal ballast condition.
+            The normal ballast condition refers to the state of
+            the vessel when it carries only ballast water (no
+            cargo) to ensure stability and seaworthiness.
+        empty_parallel_body_length: Numeric, denotes the length
+            of the ship's hull parallel to the baseline when
+            the ship is completely empty, without any cargo or
+            ballast water. This is essentially the ship's hull
+            form at its lightest draft.
+        stern_line: Boolean, denotes whether the vessel is
+            equipped with a stern line at the rear end, which
+            is used to secure the vessel to a dock, pier, or
+            another ship during mooring operations. Stern
+            lines are especially crucial during the process of
+            berthing and unberthing, as they assist in guiding
+            the stern while the ship pivots or moves sideways.
+        yard_number: String, the Yard Number refers to a
+            unique identifier assigned to a vessel by the
+            shipyard during its construction.
+        design_model: String, the Design Model refers to a
+            specific class or series of ships designed and
+            often standardized by a particular shipyard or
+            shipbuilder. The design model encapsulates
+            detailed specifications, layouts, and features
+            that are common across all ships built to that
+            particular design.
+        bow_to_center_manifold: Numeric, measured in meters
+            [m], represents the distance from the bow (the
+            front end) of the vessel to the center of the
+            manifold. The manifold is the point on the ship
+            where cargo hoses or arms are connected for the
+            loading or unloading of liquid cargoes.
+        water_line_to_manifold: Numeric, measured in meters
+            [m],  represents the vertical distance from the
+            water line of the vessel to the center of the
+            manifold. The manifold is the point on the ship
+            where cargo hoses or arms are connected for the
+            loading or unloading of liquid cargoes.
+        deck_to_center_manifold: Numeric, measured in meters
+            [m],  refers to the vertical distance from the
+            main deck of the vessel to the center of the cargo
+            manifold. The manifold is the point on the ship
+            where cargo hoses or arms are connected for the
+            loading or unloading of liquid cargoes.
+        rail_to_center_manifold: Numeric, measured in meters
+            [m],  represents the horizontal distance from the
+            ship’s rail (the protective barrier along the edge
+            of the deck) to the center of the manifold. The
+            manifold is the point on the ship where cargo hoses
+            or arms are connected for the loading or unloading
+            of liquid cargoes.
     """
 
     imo: int
@@ -429,6 +482,15 @@ class Vessel:
     ammonia: Optional[bool] = None
     vcm: Optional[bool] = None
     ethylene: Optional[bool] = None
+    ballast_parallel_body_length: Optional[float] = None
+    empty_parallel_body_length: Optional[float] = None
+    stern_line: Optional[bool] = None
+    yard_number: Optional[str] = None
+    design_model: Optional[str] = None
+    bow_to_center_manifold: Optional[float] = None
+    water_line_to_manifold: Optional[float] = None
+    deck_to_center_manifold: Optional[float] = None
+    rail_to_center_manifold: Optional[float] = None
 
 
 @dataclass(frozen=True)
