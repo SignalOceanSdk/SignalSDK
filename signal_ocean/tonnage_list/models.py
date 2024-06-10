@@ -224,7 +224,7 @@ class Vessel:
             availability_date_type=self.availability_date_type,
             fixture_type=self.fixture_type,
             current_vessel_sub_type_id=self.current_vessel_sub_type_id,
-            current_vessel_sub_type=self.availability_date_type,
+            current_vessel_sub_type=self.current_vessel_sub_type,
             willing_to_switch_current_vessel_sub_type=self
             .willing_to_switch_current_vessel_sub_type
         )
