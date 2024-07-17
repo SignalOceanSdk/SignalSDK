@@ -985,7 +985,7 @@ class VoyagesAPI:
             port_ids=port_ids,
             vessel_type_id=vessel_type_id,
             voyage_date_from=start_date_from,
-            voyage_date_to=start_date_from,
+            voyage_date_to=start_date_to,
             start_date_from=start_date_from,
             start_date_to=start_date_to,
             first_load_arrival_date_from=first_load_arrival_date_from,
