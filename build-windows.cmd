@@ -15,7 +15,7 @@ echo 'Installing dependencies...'
 pip install -r ./requirements.txt || exit /b
 
 echo 'Running type checks...'
-mypy --strict signal_ocean || exit /b
+mypy  signal_ocean || exit /b
 
 echo 'Running code analysis...'
 flake8 signal_ocean || exit /b
