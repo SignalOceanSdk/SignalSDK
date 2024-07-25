@@ -48,6 +48,11 @@ class ScrapedLineup:
             and processed.
         is_deleted: Boolean. This value is true if the lineup is marked as
             Deleted.
+        low_confidence: Boolean. This value is true when the data extraction
+            process does not return as output some fields that we believe to
+            be more important than others in business terms. These fields are
+            called critical fields. The value is true if at least one of the
+            critical fields is missing.For example missing charterer or laycan.
         scraped_vessel_name: String. The vessel name as reported in the lineup
             line, i.e. 'Signal Alpha', 'Cpt A Stellatos', 'Genco Tiberius'.
             'TBN' can also be found.
@@ -277,6 +282,7 @@ class ScrapedLineup:
     updated_date: Optional[datetime] = None
     received_date: Optional[datetime] = None
     is_deleted: Optional[bool] = False
+    low_confidence: Optional[bool] = False
 
     # vessel
     scraped_vessel_name: Optional[str] = None
@@ -395,3 +401,4 @@ class ScrapedLineupsResponse(ScrapedDataResponse[ScrapedLineup]):
 
     next_page_token: Optional[str] = None
     data: Optional[Tuple[ScrapedLineup, ...]] = None
+    next_request_token: Optional[str] = None

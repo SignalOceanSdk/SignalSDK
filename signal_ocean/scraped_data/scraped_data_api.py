@@ -16,6 +16,7 @@ class ScrapedDataResponse(Generic[TRecord]):
 
     next_page_token: Optional[str]
     data: Optional[Tuple[TRecord, ...]]
+    next_request_token: Optional[str] = None
 
 
 TResponse = TypeVar("TResponse", bound=ScrapedDataResponse[Any])
@@ -25,13 +26,12 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
     """Base class for Scraped Data API classes."""
 
     page_size: int = 10000
-    entity_ids_size: int = 500
     endpoints: Dict[str, str] = {
         "page_size": "?PageSize=" + str(page_size),
-        "by_id": "/getbyids?",
+        "incremental": "/incremental?",
+        "incremental_token": "/incremental/getincrementaltoken?",
     }
     relative_url: str
-    entity_ids_name: str
     response_class: Type[TResponse]
 
     def __init__(self, connection: Optional[Connection] = None):
@@ -48,7 +48,7 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
 
         Args:
             endpoint: Define endpoint to use. It could be either by filters or
-                by entity ids.
+                by page token.
             params: Return scraped data by provided parameters.
 
         Returns:
@@ -106,29 +106,64 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
 
         return tuple(results)
 
-    def get_data_by_entity_ids(self, **params: Any) -> Tuple[TRecord, ...]:
-        """This function collects and returns scraped data by given entity ids.
+    def get_data_incremental(self, **params: Any) -> Dict[str, Any]:
+        """This function returns scraped data and next request token by given filters.
 
         Args:
             params: Return scraped data by provided parameters.
                 Parameters are specified by outer functions.
 
         Returns:
-            A tuple containing ScrapedData objects.
-            ScrapedData object are defined by outer class.
+            A dictionary containing values such as ScrapedData objects
+            and Next Request Token.
+            They are both defined by outer class.
         """
-        entity_ids: List[int] = params[self.entity_ids_name]
-        results: List[TRecord] = []
-        while entity_ids:
-            params[self.entity_ids_name] = entity_ids[:self.entity_ids_size]
-            entity_ids = entity_ids[self.entity_ids_size:]
-            request_url: str = self._get_endpoint("by_id", params)
+        data: List[TRecord] = []
+        results: Dict[str, Any] = {}
+        while True:
+            request_url: str = self._get_endpoint("incremental", params)
 
             response: Optional[TResponse] = get_single(
                 self.__connection, request_url, self.response_class
             )
 
             if response is not None and response.data is not None:
-                results.extend(response.data)
+                data.extend(response.data)
+            params["page_token"] = (
+                response.next_page_token if response is not None else None
+            )
 
-        return tuple(results)
+            if params["page_token"] is None:
+                results["data"] = tuple(data)
+                results["next_request_token"] = (
+                    response.next_request_token
+                    if response is not None else None
+                )
+                break
+
+        return results
+
+    def get_data_incremental_token(self, updated_date_from: datetime) -> str:
+        """This function returns a token to use in the incremental data endpoints.
+
+        Args:
+            updated_date_from: Format - date-time (as date-time in RFC3339).
+                Earliest date the cargo updated.
+                Cannot be combined with 'Received' dates
+
+        Returns:
+            A string containing the corresponding page token to
+            the provided datetime input.
+        """
+        request_url: str = self._get_endpoint(
+            "incremental_token", {"updated_date_from": updated_date_from}
+        )
+
+        response = self.__connection._make_get_request(
+            request_url,
+        )
+        result = ""
+        if response is not None and response.text is not None:
+            result = response.text
+
+        return result.strip('"')

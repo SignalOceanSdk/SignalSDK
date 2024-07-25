@@ -15,6 +15,7 @@ def test_fixtures_field_names():
         "UpdatedDate",
         "ReceivedDate",
         "IsDeleted",
+        "LowConfidence",
         "ScrapedVesselName",
         "ScrapedDeadweight",
         "ScrapedYearBuilt",

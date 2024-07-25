@@ -47,6 +47,11 @@ class ScrapedCargo:
             on which the cargo has been injected into our system and processed.
         is_deleted: Boolean. This value is true if the cargo is marked as
             Deleted.
+        low_confidence: Boolean. This value is true when the data extraction
+            process does not return as output some fields that we believe to
+            be more important than others in business terms. These fields are
+            called critical fields. The value is true if at least one of the
+            critical fields is missing.For example missing charterer or laycan.
         scraped_laycan: String. The laycan (latest day of cancellation) of the
             cargo as reported in the original text. It if often reported as a
             date range, e.g. '25-jan 27-jan', '31-1 feb', '11-12 apr'. The
@@ -354,6 +359,7 @@ class ScrapedCargo:
     updated_date: Optional[datetime] = None
     received_date: Optional[datetime] = None
     is_deleted: Optional[bool] = False
+    low_confidence: Optional[bool] = False
 
     # laycan
     scraped_laycan: Optional[str] = None
@@ -474,3 +480,4 @@ class ScrapedCargoesResponse(ScrapedDataResponse[ScrapedCargo]):
 
     next_page_token: Optional[str] = None
     data: Optional[Tuple[ScrapedCargo, ...]] = None
+    next_request_token: Optional[str] = None
