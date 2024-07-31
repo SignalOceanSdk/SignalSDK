@@ -1,7 +1,8 @@
 """Base Scraped Data API class."""
 
 from datetime import datetime
-from typing import Optional, List, Dict, Tuple, Type, Any, Generic, TypeVar
+from typing import (
+    Optional, List, Dict, Tuple, Type, Any, Generic, TypeVar)
 
 from signal_ocean._internals import format_iso_datetime
 from signal_ocean.connection import Connection
@@ -15,6 +16,13 @@ class ScrapedDataResponse(Generic[TRecord]):
     """Base class for Scraped Data API response classes."""
 
     next_page_token: Optional[str]
+    data: Optional[Tuple[TRecord, ...]]
+    next_request_token: Optional[str] = None
+
+
+class IncrementalDataResponse(Generic[TRecord]):
+    """Base class for Incremental Data response classes."""
+
     data: Optional[Tuple[TRecord, ...]]
     next_request_token: Optional[str] = None
 
@@ -106,7 +114,10 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
 
         return tuple(results)
 
-    def get_data_incremental(self, **params: Any) -> Dict[str, Any]:
+    def get_data_incremental(
+            self,
+            **params: Any,
+    ) -> IncrementalDataResponse[TRecord]:
         """This function returns scraped data and next request token by given filters.
 
         Args:
@@ -114,12 +125,13 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
                 Parameters are specified by outer functions.
 
         Returns:
-            A dictionary containing values such as ScrapedData objects
-            and Next Request Token.
-            They are both defined by outer class.
+            A dictionary containing a tuple of ScrapedData objects
+            and NextRequestToken.
+            ScrapedData object and NextRequestToken are defined
+            by outer functions.
         """
         data: List[TRecord] = []
-        results: Dict[str, Any] = {}
+        results = IncrementalDataResponse[TRecord]()
         while True:
             request_url: str = self._get_endpoint("incremental", params)
 
@@ -134,8 +146,8 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
             )
 
             if params["page_token"] is None:
-                results["data"] = tuple(data)
-                results["next_request_token"] = (
+                results.data = tuple(data)
+                results.next_request_token = (
                     response.next_request_token
                     if response is not None else None
                 )
@@ -164,6 +176,7 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
         )
         result = ""
         if response is not None and response.text is not None:
-            result = response.text
+            result = response.json()
 
-        return result.strip('"')
+        return result
+

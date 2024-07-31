@@ -1,9 +1,12 @@
 """Scraped Fixtures API."""
 
 from datetime import datetime
-from typing import Optional, List, Tuple, Dict, Any
+from typing import Optional, List, Tuple
 
-from signal_ocean.scraped_data.scraped_data_api import ScrapedDataAPI
+from signal_ocean.scraped_data.scraped_data_api import (
+    ScrapedDataAPI,
+    IncrementalDataResponse
+)
 from signal_ocean.scraped_fixtures.models import (
     ScrapedFixture,
     ScrapedFixturesResponse,
@@ -42,7 +45,7 @@ class ScrapedFixturesAPI(
         Args:
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
-            fixture_ids: List - Comma separated list of fixture ids
+            fixture_ids: List - Comma separated list of FixtureIDs
             message_ids: List - Comma separated list of MessageIDs
             external_message_ids: List - Comma separated list of
                 ExternalMessageIDs
@@ -100,7 +103,7 @@ class ScrapedFixturesAPI(
     def get_fixtures_incremental(
             self,
             vessel_type: int,
-            page_token: str,
+            page_token: Optional[str] = None,
             include_details: Optional[bool] = True,
             include_scraped_fields: Optional[bool] = True,
             include_vessel_details: Optional[bool] = True,
@@ -108,8 +111,11 @@ class ScrapedFixturesAPI(
             include_content: Optional[bool] = True,
             include_sender: Optional[bool] = True,
             include_debug_info: Optional[bool] = True,
-    ) -> Dict[str, Any]:
-        """This function collects and returns the fixtures by a specific page token.
+    ) -> IncrementalDataResponse[ScrapedFixture]:
+        """This function collects and returns fixtures.
+
+           Specifically, all the fixtures updated after the given page token.
+           If page token is nullable, function will return all fixtures.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -132,8 +138,8 @@ class ScrapedFixturesAPI(
                 about the distribution of the fixture in the response.
 
         Returns:
-            A dictionary containing values such as ScrapedFixture object
-            and Next Request Token.
+            A dictionary containing a tuple of ScrapedFixture objects and
+            NextRequestToken.
             ScrapedFixture object is defined in models.py Python file.
             Next Request Token is used as page_token.
         """

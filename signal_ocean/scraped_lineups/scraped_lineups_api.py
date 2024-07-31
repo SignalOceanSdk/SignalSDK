@@ -1,9 +1,12 @@
 """Scraped Lineups API."""
 
 from datetime import datetime
-from typing import Optional, List, Tuple, Dict, Any
+from typing import Optional, List, Tuple
 
-from signal_ocean.scraped_data.scraped_data_api import ScrapedDataAPI
+from signal_ocean.scraped_data.scraped_data_api import (
+    ScrapedDataAPI,
+    IncrementalDataResponse
+)
 from signal_ocean.scraped_lineups.models import (
     ScrapedLineup,
     ScrapedLineupsResponse,
@@ -40,7 +43,7 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
         Args:
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
-            lineup_ids: List - Comma separated list of lineup ids
+            lineup_ids: List - Comma separated list of LineupIDs
             message_ids: List - Comma separated list of MessageIDs
             external_message_ids: List - Comma separated list of
                 ExternalMessageIDs
@@ -98,7 +101,7 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
     def get_lineups_incremental(
             self,
             vessel_type: int,
-            page_token: str,
+            page_token: Optional[str] = None,
             include_details: Optional[bool] = True,
             include_scraped_fields: Optional[bool] = True,
             include_vessel_details: Optional[bool] = True,
@@ -106,8 +109,11 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
             include_content: Optional[bool] = True,
             include_sender: Optional[bool] = True,
             include_debug_info: Optional[bool] = True,
-    ) -> Dict[str, Any]:
-        """This function collects and returns the lineups by a specific page token.
+    ) -> IncrementalDataResponse[ScrapedLineup]:
+        """This function collects and returns lineups.
+
+           Specifically, all the lineups updated after the given page token.
+           If page token is nullable, function will return all lineups.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -130,8 +136,8 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
                 about the distribution of the lineup in the response.
 
         Returns:
-            A dictionary containing values such as ScrapedLineup object
-            and Next Request Token.
+            A dictionary containing a tuple of ScrapedLineup objects and
+            NextRequestToken.
             ScrapedLineup object is defined in models.py Python file.
             Next Request Token is used as page_token.
         """

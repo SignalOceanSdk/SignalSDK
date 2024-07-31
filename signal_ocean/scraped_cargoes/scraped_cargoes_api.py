@@ -1,12 +1,15 @@
 """Scraped Cargoes API."""
 
 from datetime import datetime
-from typing import Optional, List, Tuple, Dict, Any
+from typing import Optional, List, Tuple
 
-from signal_ocean.scraped_data.scraped_data_api import ScrapedDataAPI
 from signal_ocean.scraped_cargoes.models import (
     ScrapedCargo,
     ScrapedCargoesResponse,
+)
+from signal_ocean.scraped_data.scraped_data_api import (
+    ScrapedDataAPI,
+    IncrementalDataResponse
 )
 
 
@@ -38,7 +41,7 @@ class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
         Args:
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
-            cargo_ids: List - Comma separated list of cargo ids
+            cargo_ids: List - Comma separated list of CargoIDs
             message_ids: List - Comma separated list of MessageIDs
             external_message_ids: List - Comma separated list of
                 ExternalMessageIDs
@@ -91,15 +94,18 @@ class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
     def get_cargoes_incremental(
             self,
             vessel_type: int,
-            page_token: str,
+            page_token: Optional[str] = None,
             include_details: Optional[bool] = True,
             include_scraped_fields: Optional[bool] = True,
             include_labels: Optional[bool] = True,
             include_content: Optional[bool] = True,
             include_sender: Optional[bool] = True,
             include_debug_info: Optional[bool] = True,
-    ) -> Dict[str, Any]:
-        """This function collects and returns the cargoes by a specific page token.
+    ) -> IncrementalDataResponse[ScrapedCargo]:
+        """This function collects and returns cargoes.
+
+           Specifically, all the cargoes updated after the given page token.
+           If page token is nullable, function will return all cargoes.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -120,8 +126,8 @@ class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
                 about the distribution of the cargo in the response.
 
         Returns:
-            A dictionary containing values such as ScrapedCargo object
-            and Next Request Token.
+            A dictionary containing a tuple of ScrapedCargo objects and
+            NextRequestToken.
             ScrapedCargo object is defined in models.py Python file.
             Next Request Token is used as page_token.
         """

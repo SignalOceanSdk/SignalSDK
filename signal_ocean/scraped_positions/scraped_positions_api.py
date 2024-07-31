@@ -1,9 +1,11 @@
 """Scraped Positions API."""
 
 from datetime import datetime
-from typing import Optional, List, Tuple, Dict, Any
+from typing import Optional, List, Tuple
 
-from signal_ocean.scraped_data.scraped_data_api import ScrapedDataAPI
+from signal_ocean.scraped_data.scraped_data_api import (
+    ScrapedDataAPI, IncrementalDataResponse
+)
 from signal_ocean.scraped_positions.models import (
     ScrapedPosition,
     ScrapedPositionsResponse,
@@ -42,7 +44,7 @@ class ScrapedPositionsAPI(
         Args:
             vessel_type: Format - int32. Available values
                 Tanker = 1, Dry = 3, Container = 4, Lng = 5, Lpg = 6
-            position_ids: List - Comma separated list of position ids
+            position_ids: List - Comma separated list of PositionIDs
             message_ids: List - Comma separated list of MessageIDs
             external_message_ids: List - Comma separated list of
                 ExternalMessageIDs
@@ -100,7 +102,7 @@ class ScrapedPositionsAPI(
     def get_positions_incremental(
             self,
             vessel_type: int,
-            page_token: str,
+            page_token: Optional[str] = None,
             include_details: Optional[bool] = True,
             include_scraped_fields: Optional[bool] = True,
             include_vessel_details: Optional[bool] = True,
@@ -108,8 +110,11 @@ class ScrapedPositionsAPI(
             include_content: Optional[bool] = True,
             include_sender: Optional[bool] = True,
             include_debug_info: Optional[bool] = True,
-    ) -> Dict[str, Any]:
-        """This function collects and returns the lineups by a specific page token.
+    ) -> IncrementalDataResponse[ScrapedPosition]:
+        """This function collects and returns positions.
+
+           Specifically, all the positions updated after the given page token.
+           If page token is nullable, function will return all positions.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -132,8 +137,8 @@ class ScrapedPositionsAPI(
                 about the distribution of the position in the response.
 
         Returns:
-            A dictionary containing values such as ScrapedPosition object
-            and Next Request Token.
+            A dictionary containing a tuple of ScrapedPosition objects and
+            NextRequestToken.
             ScrapedPosition object is defined in models.py Python file.
             Next Request Token is used as page_token.
         """

@@ -575,6 +575,8 @@ class ScrapedFixturesResponse(ScrapedDataResponse[ScrapedFixture]):
         next_page_token: String. The key that should be used as a parameter of
             the token to retrieve the next page.
         data: A tuple of ScrapedFixture objects retrieved for the current page.
+        next_request_token: String. The key that should be used as a parameter
+            of the token to retrieve the next request.
     """
 
     next_page_token: Optional[str] = None
