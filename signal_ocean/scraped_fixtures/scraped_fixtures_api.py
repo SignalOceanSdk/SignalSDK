@@ -158,7 +158,7 @@ class ScrapedFixturesAPI(
     def get_fixtures_incremental_token(
             self,
             updated_date_from: datetime,
-    ) -> str:
+    ) -> Optional[str]:
         """This function returns a token to use in the incremental fixtures endpoint.
 
         Args:

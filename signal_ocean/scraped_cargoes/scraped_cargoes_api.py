@@ -145,7 +145,7 @@ class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
     def get_cargoes_incremental_token(
             self,
             updated_date_from: datetime,
-    ) -> str:
+    ) -> Optional[str]:
         """This function returns a token to use in the incremental cargoes endpoint.
 
         Args:

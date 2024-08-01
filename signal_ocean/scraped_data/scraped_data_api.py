@@ -155,7 +155,10 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
 
         return results
 
-    def get_data_incremental_token(self, updated_date_from: datetime) -> str:
+    def get_data_incremental_token(
+            self,
+            updated_date_from: datetime
+    ) -> Optional[str]:
         """This function returns a token to use in the incremental data endpoints.
 
         Args:
@@ -171,12 +174,4 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
             "incremental_token", {"updated_date_from": updated_date_from}
         )
 
-        response = self.__connection._make_get_request(
-            request_url,
-        )
-        result = ""
-        if response is not None and response.text is not None:
-            result = response.json()
-
-        return result
-
+        return get_single(self.__connection, request_url, str)
