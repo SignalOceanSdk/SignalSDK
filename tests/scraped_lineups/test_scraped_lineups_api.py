@@ -15,6 +15,7 @@ def test_lineups_field_names():
         "UpdatedDate",
         "ReceivedDate",
         "IsDeleted",
+        "LowConfidence",
         "ScrapedVesselName",
         "ScrapedIMO",
         "ScrapedDeadweight",

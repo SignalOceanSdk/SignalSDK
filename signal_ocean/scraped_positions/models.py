@@ -42,6 +42,11 @@ class ScrapedPosition:
             processed.
         is_deleted: Boolean. This value is true if the position is marked as
             Deleted.
+        low_confidence: Boolean. This value is true when the data extraction
+            process does not return as output some fields that we believe to
+            be more important than others in business terms. These fields are
+            called critical fields. The value is true if at least one of the
+            critical fields is missing.For example missing charterer or laycan.
         scraped_vessel_name: String. The vessel name as reported in the
             position line, i.e. 'Signal Alpha', 'Cpt A Stellatos',
             'Genco Tiberius'. 'TBN' can also be found.
@@ -228,6 +233,7 @@ class ScrapedPosition:
     updated_date: Optional[datetime] = None
     received_date: Optional[datetime] = None
     is_deleted: Optional[bool] = False
+    low_confidence: Optional[bool] = False
 
     # vessel
     scraped_vessel_name: Optional[str] = None
@@ -302,7 +308,10 @@ class ScrapedPositionsResponse(ScrapedDataResponse[ScrapedPosition]):
             the token to retrieve the next page.
         data: A tuple of ScrapedPosition objects retrieved for the current
             page.
+        next_request_token: String. The key that should be used as a parameter
+            of the token to retrieve the next request.
     """
 
     next_page_token: Optional[str] = None
     data: Optional[Tuple[ScrapedPosition, ...]] = None
+    next_request_token: Optional[str] = None

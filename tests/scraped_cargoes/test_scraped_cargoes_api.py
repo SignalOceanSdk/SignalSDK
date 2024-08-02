@@ -16,6 +16,7 @@ def test_cargoes_field_names():
         "UpdatedDate",
         "ReceivedDate",
         "IsDeleted",
+        "LowConfidence",
         "ScrapedLaycan",
         "LaycanFrom",
         "LaycanTo",
