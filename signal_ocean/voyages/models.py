@@ -180,6 +180,14 @@ class VoyageEventDetail:
             case of ship-to-ship operation.
         other_vessel_name: String, Containing the name of the second vessel in
             case of ship-to-ship operation.
+        floating_storage_start_date: The start date of the time period the
+            vessel is acting as a floating storage. A floating storage is a
+            vessel that is not moving or operating while having cargo on board,
+            often for trading reasons.
+        floating_storage_duration: The duration of the time period the vessel
+            is acting as a floating storage. A floating storage is a vessel
+            that is not moving or operating while having cargo on board, often
+            for trading reasons.
     """
 
     id: Optional[str] = None
@@ -214,8 +222,12 @@ class VoyageEvent:
             representing different terminals and anchorages within this port.
         voyage_id: String. Uniquely identifies the voyage that this event
             relates to.
+        event_type_id: Numeric ID corresponding to event type. Stop (0),
+            PortCall (1), VoyageStart (2)
         event_type: String. It can take values "Stop", "Portcall" or
             "VoyageStart".
+        event_horizon_id: Numeric ID corresponding to event horizon.
+            Historical (0), Current (1), Future (2)
         event_horizon: String. It can take "Historical", "Current" or "Future"
             values, depending on whether the event is in the past with
             reference point the latest AIS point of the vessel (ArrivalDate
@@ -259,6 +271,8 @@ class VoyageEvent:
         port_name: Name of the port in which the event took place. A port may
             be associated with multiple geo assets representing different
             terminals and anchorages within this port.
+        port_unlocode: String. The official code corresponding to the port in
+            which the event took place.
         country_id: Numeric ID corresponding to the country in which the event
             took place.
         country: Name of the country in which the event took place.
@@ -303,8 +317,9 @@ class VoyageEvent:
             Coast Central America" and "West Coast South America".
         low_ais_density: Boolean, indicating whether there is no tracked AIS
             data for a duration higher that the time required for an operation.
-        quantity: Numeric, measured in kilotonnes [kt]. It is the cargo
-            quantity reported in at least one of the market reports.
+        quantity: Numeric, measured in tonnes [t] for Tanker, LPG and Dry and
+            in cubic meters for LNG. It is the cargo quantity reported in at
+            least one of the market reports or estimated by Signal models.
         quantity_unit_id: Numeric ID corresponding to the Quantity unit
             1 -> MetricTonnes, 2 -> CubicMeters.
         quantity_unit: String corresponding to the unit type of the field
@@ -312,23 +327,15 @@ class VoyageEvent:
             for LNG).
         quantity_in_barrels: Numeric, the quantity measured in barrels,
             applicable for Tanker vessels.
-        quantity_source_id: "Numeric ID corresponding to the type of
-            Quantity source 0 -> None, 1 -> Estimated, 2 -> MarketInfo,
-            3 -> Lineup, 20 -> PrivateInfo.
-        quantity_source: String, it specifies the source of Quantity. If market
-                reports are available this field takes value "MarketInfo".
-                If no market reports are available
-                for this voyage, the quantity is estimated.
-                Market info is considered more accurate and reliable,
-                whenever available.
         event_details: Specific details regarding the voyage events, e.g. a
             ship-to-ship operation or a jetty stay.
     """
 
     id: Optional[str] = None
-    port_id: Optional[int] = None
     voyage_id: Optional[str] = None
+    event_type_id: Optional[int] = None
     event_type: Optional[str] = None
+    event_horizon_id: Optional[int] = None
     event_horizon: Optional[str] = None
     purpose: Optional[str] = None
     event_date: Optional[datetime] = None
@@ -338,7 +345,9 @@ class VoyageEvent:
     longitude: Optional[float] = None
     geo_asset_id: Optional[int] = None
     geo_asset_name: Optional[str] = None
+    port_id: Optional[int] = None
     port_name: Optional[str] = None
+    port_unlocode: Optional[str] = None
     country_id: Optional[int] = None
     country: Optional[str] = None
     area_idlevel0: Optional[int] = None
@@ -500,6 +509,19 @@ class Voyage:
             the vessel carries in this voyage, according to AIS information and
             jetties the vessel may have visited or information coming from
             market reports.
+        cargo_group_source_id: Numeric ID corresponding to the type of
+            CargoGroup source. None (0), Estimated (1), MarketInfo (2),
+            Lineup (3), EstimatedLow (8), EstimatedMedium (9),
+            EstimatedHigh (10), PrivateMarketInfo (20)
+        cargo_group_source: String, it specifies the source of CargoGroup.
+            The source will be "Lineup" if the selection of CargoGroup is based
+            on Lineup info, "MarketInfo" if the selection of CargoGroup is
+            based on other market data, "PrivateInfo" if it is based on private
+            info and "Estimated(Low/Medium/High, providing the different
+            confidence levels of our estimation)" if it is based on our
+            proprietary sequential and hierarchical CargoTracking model that
+            also uses current/historical voyage data as input, plus a specific
+            cargo layer of our geofencing data structure.
         cargo_sub_group_id: Numeric ID corresponding to the type of cargo the
             vessel carries in the given voyage at taxonomy level 2. For example
             132000-> Crude. CargoSubGroups are a subcategory of CargoGroups and
@@ -590,17 +612,54 @@ class Voyage:
             vessel position and the last discharge port. For historical legs
             PredictedLadenDistance is empty.
         suez_crossing: String, indicates whether the vessel crossed the Suez
-            canal during the voyage. Depending on the leg, it can take
-            "Laden", "Ballast" or "Both" as values.
+            canal during the voyage. This field can take the following values:
+            "BallastHistorical", "LadenHistorical", "BallastPredicted",
+            "LadenPredicted" or any combination of those. Each of this value
+            indicates the leg in which the vessel crossed the Suez canal.
+            This was done in order to distinguish the historical and the
+            current/predicted passages.
         panama_crossing: String, indicates whether the vessel crossed the
-            Panama canal during the voyage. Depending on the leg, it can take
-            "Laden", "Ballast" or "Both" as values.
+            Panama canal during the voyage. This field can take the following
+            values: "BallastHistorical", "LadenHistorical", "BallastPredicted",
+            "LadenPredicted" or any combination of those. Each of this value
+            indicates the leg in which the vessel crossed the Panama canal.
+            This was done in order to distinguish the historical and the
+            current/predicted passages.
         canakkale_crossing: String, indicates whether the vessel crossed the
-            Canakkale strait during the voyage. Depending on the leg, it can
-            take "Laden", "Ballast" or "Both" as values.
+            Canakkale strait during the voyage. This field can take the
+            following values: "BallastHistorical", "LadenHistorical",
+            "BallastPredicted", "LadenPredicted" or any combination of those.
+            Each of this value indicates the leg in which the vessel crossed
+            the Canakkale strait. This was done in order to distinguish the
+            historical and the current/predicted passages.
         bosporus_crossing: String, indicates whether the vessel crossed the
-            Bosporus strait during the voyage. Depending on the leg, it can
-            take "Laden", "Ballast" or "Both" as values.
+            Bosporus strait during the voyage. This field can take the
+            following values: "BallastHistorical", "LadenHistorical",
+            "BallastPredicted", "LadenPredicted" or any combination of those.
+            Each of this value indicates the leg in which the vessel crossed
+            the Bosporus strait. This was done in order to distinguish the
+            historical and the current/predicted passages.
+        torres_strait_crossing: Indicates whether the vessel crossed the Torres
+            strait during the voyage. This field can take the following values:
+            "BallastHistorical", "LadenHistorical", "BallastPredicted",
+            "LadenPredicted" or any combination of those. Each of this value
+            indicates the leg in which the vessel crossed the Torres strait.
+            This was done in order to distinguish the historical and the
+            current/predicted passages.
+        magellan_strait_crossing: Indicates whether the vessel crossed the
+            Magellan strait during the voyage. This field can take the
+            following values: "BallastHistorical", "LadenHistorical",
+            "BallastPredicted", "LadenPredicted" or any combination of those.
+            Each of this value indicates the leg in which the vessel crossed
+            the Magellan strait. This was done in order to distinguish the
+            historical and the current/predicted passages.
+        great_belt_crossing: Indicates whether the vessel crossed the Great
+            Belt strait during the voyage. This field can take the following
+            values: "BallastHistorical", "LadenHistorical", "BallastPredicted",
+            "LadenPredicted" or any combination of those. Each of this value
+            indicates the leg in which the vessel crossed the Great Belt
+            strait. This was done in order to distinguish the historical and
+            the current/predicted passages.
     """
 
     imo: Optional[int] = None
@@ -644,6 +703,8 @@ class Voyage:
     cargo_sub_type_source: Optional[str] = None
     cargo_group_id: Optional[int] = None
     cargo_group: Optional[str] = None
+    cargo_group_source_id: Optional[int] = None
+    cargo_group_source: Optional[str] = None
     cargo_sub_group_id: Optional[int] = None
     cargo_sub_group: Optional[str] = None
     cargo_sub_group_source_id: Optional[int] = None
@@ -672,6 +733,9 @@ class Voyage:
     panama_crossing: Optional[str] = None
     canakkale_crossing: Optional[str] = None
     bosporus_crossing: Optional[str] = None
+    torres_strait_crossing: Optional[str] = None
+    magellan_strait_crossing: Optional[str] = None
+    great_belt_crossing: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -687,6 +751,8 @@ class VoyageCondensed(Voyage):
                     received AIS (for a new building). Voyages are
                     consecutive and with no breaks in between, therefore a
                     vessel is always in a voyage.
+            starting_port_unlocode: String. The official code corresponding to
+                    the port where the voyage started from.
             starting_country_id: Numeric ID corresponding to the country
                     where the voyage started from.
             starting_country_name: String, name of the country where the
@@ -705,6 +771,9 @@ class VoyageCondensed(Voyage):
             first_load_port_id: Numeric ID corresponding to the port where
                     the vessel performed the first loading port call of a
                     voyage.
+            first_load_port_unlocode: String. The official code corresponding
+                    to the port where the vessel performed the first loading
+                    port call of a voyage.
             first_load_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
                     beginning of the first loading port call, including
                     waiting time. The arrival date of a port call is
@@ -745,6 +814,9 @@ class VoyageCondensed(Voyage):
             last_discharge_port_id: Numeric ID corresponding to the port where
                     the vessel performed the last discharging port call of a
                     voyage.
+            last_discharge_port_unlocode: String. The official code
+                    corresponding to the port where the vessel performed the
+                    last discharging port call of a voyage.
             last_discharge_arrival_date: Date, format YYYY-MM-DD HH:MM:SS. The
                     beginning of the last discharging port call, including
                     waiting time. The arrival date of a port call is
@@ -794,12 +866,14 @@ class VoyageCondensed(Voyage):
 
     starting_port_name: Optional[str] = None
     starting_port_id: Optional[int] = None
+    starting_port_unlocode: Optional[str] = None
     starting_country_id: Optional[int] = None
     starting_country_name: Optional[str] = None
     starting_area_id_level0: Optional[int] = None
     starting_area_name_level0: Optional[str] = None
     first_load_port_name: Optional[str] = None
     first_load_port_id: Optional[int] = None
+    first_load_port_unlocode: Optional[str] = None
     first_load_arrival_date: Optional[datetime] = None
     first_load_start_time_of_operation: Optional[datetime] = None
     first_load_sailing_date: Optional[datetime] = None
@@ -809,6 +883,7 @@ class VoyageCondensed(Voyage):
     first_load_area_name_level0: Optional[str] = None
     last_discharge_port_name: Optional[str] = None
     last_discharge_port_id: Optional[int] = None
+    last_discharge_port_unlocode: Optional[str] = None
     last_discharge_arrival_date: Optional[datetime] = None
     last_discharge_start_time_of_operation: Optional[datetime] = None
     last_discharge_sailing_date: Optional[datetime] = None
@@ -837,6 +912,7 @@ class VoyageGeo:
         port_id: Numeric ID corresponding to the port. A port may be
             associated with multiple geo assets representing different
             terminals and anchorages within this port.
+        port_unlocode: The official code corresponding to the port.
         port_name: Name of the port. A port may be associated with multiple
             geo assets representing different terminals and anchorages within
             this port.
@@ -885,6 +961,7 @@ class VoyageGeo:
     id: Optional[int] = None
     name: Optional[str] = None
     port_id: Optional[int] = None
+    port_unlocode: Optional[str] = None
     port_name: Optional[str] = None
     country_id: Optional[int] = None
     country: Optional[str] = None
