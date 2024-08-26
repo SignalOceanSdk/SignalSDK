@@ -280,7 +280,7 @@ class Vessel:
             commonly used across market reports. Example: "4 x 30 MT".
         bow_chain_stopper_details_as_str: String, number of Bow
             Chain Stoppers with their maximum load capacity for
-            each type of bow chain stopper in a string format. 
+            each type of bow chain stopper in a string format.
             Example: `""2 x 200 MT, 1 x 100 MT""`.
         box_shaped_holds: Boolean, denotes whether the vessel has any hold
             with box shape.
@@ -516,6 +516,7 @@ class Vessel:
     deck_to_center_manifold: Optional[float] = None
     rail_to_center_manifold: Optional[float] = None
     bow_chain_stoppers_fitted: Optional[bool] = None
+
 
 @dataclass(frozen=True)
 class VesselPagedResponse:

@@ -18,12 +18,12 @@ class VesselsAPI:
     default_pit = str(date.today())
 
     rename_keys = {"STSTCoating": "stst_coating",
-                                       "BWTS": "bwts",
-                                       "GHG": "ghg",
-                                       "VCM": "vcm",
-                                       "IMOType1": "imo_type_1",
-                                       "IMOType2": "imo_type_2",
-                                       "IMOType3": "imo_type_3"}
+                   "BWTS": "bwts",
+                   "GHG": "ghg",
+                   "VCM": "vcm",
+                   "IMOType1": "imo_type_1",
+                   "IMOType2": "imo_type_2",
+                   "IMOType3": "imo_type_3"}
 
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VesselsAPI.
