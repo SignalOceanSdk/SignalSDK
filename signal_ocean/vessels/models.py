@@ -175,7 +175,7 @@ class Vessel:
         teu: Numeric, measured in TEU (Twenty-Foot Equivalent Unit), denotes a
             volumetric measure of a container's cargo carrying capacity. Used
             for Containers, that is vessels with VesselType=4.
-        te_u14: Numeric, denotes the capacity of the vessel measured in twenty-
+        teu14: Numeric, denotes the capacity of the vessel measured in twenty-
             foot equivalent units (TEU) loaded at 14 tons.
         reefers: Numeric, denotes the capacity of the vessel measured in
             refrigerated twenty-foot equivalent units (TEU), i.e., the maximum
@@ -205,6 +205,17 @@ class Vessel:
             vessel's classification certificate. Default value: Not set.
         number_of_holds: Numeric, the number of separate enclosed spaces within
             a ship designed for storing cargo.
+        number_of_hatches: Numeric, the number of cargo hatches on the vessel
+            that cover the opening to the cargo hold to protect the cargo. Most
+            cargo holds have a cargo hatch.
+        number_of_grabs: Numeric, the number of separate grabs a vessel is
+            equipped with for handling and lifting the cargo.
+        number_of_cranes: Numeric, the number of separate cranes a vessel is
+            equipped with for handling and lifting the cargo.
+        number_of_bow_chain_stoppers: Numeric denotes the
+            number of bow chain stoppers the vessel is equipped
+            with. Ships likely to trade to Single Point
+            Moorings should be equipped with bow chain stoppers.
         grain_capacity: This is the space available for a liquid-type cargo,
             like bulk grain, which can flow into every corner.
         bale_capacity: This is the space available for solid cargo. Bale space
@@ -245,9 +256,6 @@ class Vessel:
             with a heating coils system. Tanker vessels may be fitted with
             heating coils in order to maintain the required temperature of
             the cargo for pumping.
-        crane_details_as_str: String, SWL (Safe Working Load) in mt for
-            each crane, collected in one single string with the format
-            commonly used across market reports. Example: "4 x 30 MT".
         cranes_max_outreach: Numeric, in meters (m). The maximum outreach
             range across all the cranes that the vessel has. This range
             is measured as the distance from the boom tip to the crane hook.
@@ -267,6 +275,13 @@ class Vessel:
             mt of each single grab, collected in one single string with
             the format commonly used across market reports.
             Example: "4 x 12 CBM".
+        crane_details_as_str: String, SWL (Safe Working Load) in mt for
+            each crane, collected in one single string with the format
+            commonly used across market reports. Example: "4 x 30 MT".
+        bow_chain_stopper_details_as_str: String, number of Bow
+            Chain Stoppers with their maximum load capacity for
+            each type of bow chain stopper in a string format.
+            Example: `""2 x 200 MT, 1 x 100 MT""`.
         box_shaped_holds: Boolean, denotes whether the vessel has any hold
             with box shape.
         neo_panama_locks: Boolean, denotes whether the vessel is fitted to
@@ -381,6 +396,10 @@ class Vessel:
             manifold is the point on the ship where cargo hoses
             or arms are connected for the loading or unloading
             of liquid cargoes.
+        bow_chain_stoppers_fitted: Boolean, indicates whether
+            the vessel is equipped with bow chain stoppers.
+            Ships likely to trade to Single Point Moorings
+            should be equipped with bow chain stoppers.
     """
 
     imo: int
@@ -420,7 +439,7 @@ class Vessel:
     shipyard_built_name: Optional[str] = None
     ice_class: Optional[str] = None
     teu: Optional[int] = None
-    te_u14: Optional[int] = None
+    teu14: Optional[int] = None
     reefers: Optional[int] = None
     panama_canal_net_tonnage: Optional[int] = None
     cubic_size: Optional[int] = None
@@ -431,6 +450,10 @@ class Vessel:
     delivery_date: Optional[datetime] = None
     classification_register: Optional[str] = None
     number_of_holds: Optional[int] = None
+    number_of_hatches: Optional[int] = None
+    number_of_grabs: Optional[int] = None
+    number_of_cranes: Optional[int] = None
+    number_of_bow_chain_stoppers: Optional[int] = None
     grain_capacity: Optional[int] = None
     bale_capacity: Optional[int] = None
     main_engine_kw: Optional[int] = None
@@ -454,12 +477,13 @@ class Vessel:
     beneficial_owner: Optional[str] = None
     parallel_body_length: Optional[float] = None
     heating_coils_fitted: Optional[bool] = None
-    crane_details_as_str: Optional[str] = None
     cranes_max_outreach: Optional[float] = None
     cranes_max_lifting_capacity: Optional[float] = None
     hold_details_as_str: Optional[str] = None
     hatch_details_as_str: Optional[str] = None
     grab_details_as_str: Optional[str] = None
+    crane_details_as_str: Optional[str] = None
+    bow_chain_stopper_details_as_str: Optional[str] = None
     box_shaped_holds: Optional[bool] = None
     neo_panama_locks: Optional[bool] = None
     australian_hold_ladder: Optional[bool] = None
@@ -491,6 +515,7 @@ class Vessel:
     water_line_to_manifold: Optional[float] = None
     deck_to_center_manifold: Optional[float] = None
     rail_to_center_manifold: Optional[float] = None
+    bow_chain_stoppers_fitted: Optional[bool] = None
 
 
 @dataclass(frozen=True)
