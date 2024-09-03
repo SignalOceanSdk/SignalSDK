@@ -17,6 +17,14 @@ class VesselsAPI:
     relative_url = "vessels-api/v2/"
     default_pit = str(date.today())
 
+    rename_keys = {"STSTCoating": "stst_coating",
+                   "BWTS": "bwts",
+                   "GHG": "ghg",
+                   "VCM": "vcm",
+                   "IMOType1": "imo_type_1",
+                   "IMOType2": "imo_type_2",
+                   "IMOType3": "imo_type_3"}
+
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VesselsAPI.
 
@@ -56,10 +64,7 @@ class VesselsAPI:
         """
         url = urljoin(VesselsAPI.relative_url, f"vessels/{imo}")
         return get_single(self.__connection, url, Vessel,
-                          rename_keys={"STSTCoating": "stst_coating",
-                                       "BWTS": "bwts",
-                                       "GHG": "ghg",
-                                       "VCM": "vcm"})
+                          rename_keys=VesselsAPI.rename_keys)
 
     def get_vessels(self, name: Optional[str] = None) -> Tuple[Vessel, ...]:
         """Retrieves all available vessels.
@@ -77,10 +82,7 @@ class VesselsAPI:
         )
         url = urljoin(VesselsAPI.relative_url, endpoint)
         return get_multiple(self.__connection, url, Vessel,
-                            rename_keys={"STSTCoating": "stst_coating",
-                                         "BWTS": "bwts",
-                                         "GHG": "ghg",
-                                         "VCM": "vcm"})
+                            rename_keys=VesselsAPI.rename_keys)
 
     def get_vessels_by_vessel_class(
         self, vesselClass: int
@@ -96,10 +98,7 @@ class VesselsAPI:
         endpoint = f"vessels?vesselClass={vesselClass}"
         url = urljoin(VesselsAPI.relative_url, endpoint)
         response = get_single(self.__connection, url, VesselPagedResponse,
-                              rename_keys={"STSTCoating": "stst_coating",
-                                           "BWTS": "bwts",
-                                           "GHG": "ghg",
-                                           "VCM": "vcm"})
+                              rename_keys=VesselsAPI.rename_keys)
         return response if response is None else response.items
 
     def get_vessels_name_history(
