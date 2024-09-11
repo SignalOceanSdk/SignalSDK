@@ -96,6 +96,8 @@ nav:
       - Examples:
         - 'examples/jupyter/VesselEmissionsAPI/VesselEmissionsAPI.ipynb'
         - 'examples/jupyter/VesselEmissionsAPI/VesselEmissionsAPI-UseCase.ipynb'
+        - 'examples/jupyter/VesselEmissionsAPI/CarbonAnalysis.ipynb'
+        - 'examples/jupyter/VesselEmissionsAPI/EUA-Analysis.ipynb'
     - Vessel Valuations:
       - 'vessel_valuations.md'
       - Examples:
@@ -106,6 +108,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 12.1.1.md'
       - 'releases/Version 12.1.0.md'
       - 'releases/Version 12.0.0.md'
       - 'releases/Version 11.1.0.md'
