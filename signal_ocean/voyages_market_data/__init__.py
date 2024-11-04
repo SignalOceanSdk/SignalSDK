@@ -19,6 +19,5 @@ __all__ = [
     "MatchedFixture",
     "Fixture",
     "VoyagesMarketData",
-    "VoyageGeo",
     "VoyagesMarketDataAPI",
 ]
