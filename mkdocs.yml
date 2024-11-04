@@ -56,10 +56,6 @@ nav:
         - 'examples/jupyter/DistancesAPI/QuickStartDistancesAPI.ipynb'
         - 'examples/jupyter/DistancesAPI/DistancesWithRouteExample.ipynb'
         - 'examples/jupyter/DistancesAPI/AlternativeRoutes.ipynb'
-    - Port Congestion API:
-      - 'port_congestion_api.md'
-      - Examples:
-        - 'examples/jupyter/PortCongestionAPI/Port_Congestion_API_China-Capes-Afra-Rott.ipynb'
     - Freight Rates:
       - 'freight_rates.md'
       - Examples:
@@ -108,6 +104,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 13.0.0.md'
       - 'releases/Version 12.1.4.md'
       - 'releases/Version 12.1.3.md'
       - 'releases/Version 12.1.2.md'
