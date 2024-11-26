@@ -36,20 +36,21 @@ To use the SDK, you need to create an account in our [API Portal](https://signal
 
 Now you're ready to fetch some data:
 ```py
-from signal_ocean import PortAPI
+from signal_ocean.tonnage_list  import TonnageListAPI
 
-port_api = PortAPI()
-ports = port_api.get_ports()
+tonnage_list_api = TonnageListAPI()
+ports = tonnage_list_api.get_ports()
 
 print(ports)
 ```
 
 If you don't want to use environment variables, want to use different keys for different APIs, or if you want to override the environment variables, you can configure your `Connection` when creating the API class:
 ```py
-from signal_ocean import VesselClassAPI, Connection
+from signal_ocean import Connection 
+from signal_ocean.tonnage_list  import TonnageListAPI
 
-vessel_class_api = VesselClassAPI(Connection(api_key='YOUR KEY GOES HERE'))
-vessel_classes = vessel_class_api.get_vessel_classes()
+tonnage_list_api = TonnageListAPI(Connection(api_key='YOUR KEY GOES HERE'))
+vessel_classes = tonnage_list_api.get_vessel_classes()
 
 print(vessel_classes)
 ```
