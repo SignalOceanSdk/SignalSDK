@@ -35,6 +35,12 @@ class Company:
         port_agent_vessel_types: String, indicates for which market segments
             the company operates as port agent. Possible VesselTypes are
             "Tanker, Dry, Containers, LNG, LPG".
+        seller_vessel_types: String, indicates for which market segments the
+            company operates as a seller. Possible VesselTypes are "Tanker,
+            Dry, Containers, LNG, LPG".
+        buyer_vessel_types: String, indicates for which market segments the
+            company operates as a buyer. Possible VesselTypes are "Tanker,
+            Dry, Containers, LNG, LPG".
         parent_company_id: Companies can have parent-child relationships, that
             is being legally related and having common interests. This numeric
             ID corresponds to the parent company or umbrella under which the
@@ -55,5 +61,7 @@ class Company:
     geo_asset_owner_vessel_types: Optional[Tuple[str, ...]] = None
     broker_vessel_types: Optional[Tuple[str, ...]] = None
     port_agent_vessel_types: Optional[Tuple[str, ...]] = None
+    seller_vessel_types: Optional[Tuple[str, ...]] = None
+    buyer_vessel_types: Optional[Tuple[str, ...]] = None
     parent_company_id: Optional[int] = None
     children_companies_ids: Optional[Tuple[int, ...]] = None
