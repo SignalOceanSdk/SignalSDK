@@ -205,6 +205,9 @@ class VoyagesAPI:
             if next_page_token is None:
                 break
 
+        # Remove duplicate geos entries because of the multiple paging
+        geos = list({geo.id: geo for geo in geos}.values())
+
         result = VoyagesFlat(
             voyages=tuple(voyages),
             events=tuple(events),
