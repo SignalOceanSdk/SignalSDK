@@ -101,9 +101,12 @@ nav:
     - Combined Examples:
       - Examples:
         - 'examples/jupyter/Combined Examples/Supply trend with market rates.ipynb'
+        - 'examples/jupyter/Combined Examples/VLCCs_MEG_China_Supply_Trend_Versus_Market_Rates_with_Implementing_Filters.ipynb'
+        - 'examples/jupyter/Combined Examples/MR2_ARA_Supply_versus_Market_Rates.ipynb'
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 13.2.1.md'
       - 'releases/Version 13.2.0.md'
       - 'releases/Version 13.1.0.md'
       - 'releases/Version 13.0.0.md'
