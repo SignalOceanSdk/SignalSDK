@@ -106,7 +106,11 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
-      - 'releases/Version 13.1.1.md'
+<<<<<<< HEAD
+      - 'releases/Version 13.2.1.md'
+=======
+      - 'releases/Version 13.2.0.md'
+>>>>>>> 6f22f7ec89379c0533f8a41664885871bcdf90b0
       - 'releases/Version 13.1.0.md'
       - 'releases/Version 13.0.0.md'
       - 'releases/Version 12.1.4.md'
