@@ -24,6 +24,9 @@ nav:
         - 'examples/jupyter/VoyagesAPI/Get available vessel types, vessel classes, vessels.ipynb'
         - 'examples/jupyter/VoyagesAPI/FixtureCount.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI-FloatingStorages.ipynb'
+        - 'examples/jupyter/VoyagesAPI/Voyages_Metrics_Top_3_Loading_Locations_Discharge_Locations_Cargo_Types.ipynb'
+        - 'examples/jupyter/VoyagesAPI/VoyagesAPI_Dry_Last_year_Capesize_Discharges_To_China.ipynb'
+        - 'examples/jupyter/VoyagesAPI/Dry_Capes_Daily_List_Of_Vessels_In_Dry_dock.ipynb'
     - Tonnage List:
       - 'tonnage_list.md'
       - Examples:
@@ -38,6 +41,7 @@ nav:
       - 'scraped_cargoes.md'
       - Examples:
         - 'examples/jupyter/ScrapedCargoesAPI/Scraped Cargoes API Example.ipynb'
+        - 'examples/jupyter/ScrapedCargoesAPI/Scraped_Cargoes_API_Geos_API_Tanker_Historical_Cargo_Distribution_in_a_Level_1_Area.ipynb'
     - Scraped Fixtures:
       - 'scraped_fixtures.md'
       - Examples:
