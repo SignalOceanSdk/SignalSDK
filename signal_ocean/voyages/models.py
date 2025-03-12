@@ -572,6 +572,10 @@ class Voyage:
             Laycan From (latest day of cancellation) across all fixtures.
         laycan_to: Date, format YYYY-MM-DD indicates the latest reported Laycan
             To (latest day of cancellation) across all fixtures.
+        vessel_sanctioned_by: String, includes overlapping sanctions from
+            different organizations that were active during the voyage period.
+            The organizations that sanctioned the vessel are listed as comma-
+            separated values (e.g., "OFAC, OFSI, UN").
         fixture_status_id: Numeric ID corresponding to the different values of
             the FixtureStatus field.   0-> OnSubs, 1-> FullyFixed, 2 -> Failed,
             3 -> Cancelled , 4-> Available, 5-> PossFixed,
@@ -718,6 +722,7 @@ class Voyage:
     cubic_size: Optional[int] = None
     laycan_from: Optional[datetime] = None
     laycan_to: Optional[datetime] = None
+    vessel_sanctioned_by: Optional[str] = None
     fixture_status_id: Optional[int] = None
     fixture_status: Optional[str] = None
     fixture_date: Optional[datetime] = None
