@@ -59,6 +59,38 @@ class VesselType:
 
 
 @dataclass(frozen=True)
+class VesselSanction:
+    """Sanction data for a vessel.
+
+    Including details such as the sanction date, the
+    sanctioning organization, the applicable
+    sanction program, and other relevant
+    information.
+
+    Attributes:
+        sanctioned_by: The organization that sanctioned the
+            vessel (e.g., OFAC, OFSI, EU, UN, OPAC).
+        sanction_program: Name of the sanction program
+            under which the vessel was sanctioned (e.g.,
+            RUSSIA-EO14024, UKRAINE-EO13662, The Russia
+            (Sanctions) (EU Exit) Regulations 2019).
+        sanction_start: The date when the sanction was
+            first applied to the vessel.
+        sanction_end: The date when the sanction was
+            lifted.
+        sanction_description: A brief description of why
+            the vessel was sanctioned, referencing
+            relevant executive orders or specific laws
+            and regulations.
+    """
+    sanctioned_by: str
+    sanction_program: str
+    sanction_start: datetime
+    sanction_end: Optional[datetime] = None
+    sanction_description: Optional[str] = None
+
+
+@dataclass(frozen=True)
 class Vessel:
     """Contains all details of a vessel.
 
@@ -516,6 +548,17 @@ class Vessel:
     deck_to_center_manifold: Optional[float] = None
     rail_to_center_manifold: Optional[float] = None
     bow_chain_stoppers_fitted: Optional[bool] = None
+    sanctions_history: Optional[Tuple[VesselSanction, ...]] = None
+
+
+@dataclass(frozen=True)
+class SingleVesselPagedResponse:
+    """Vessel paged response.
+
+    Attributes:
+        data: All data.
+    """
+    data: Vessel
 
 
 @dataclass(frozen=True)
@@ -523,9 +566,12 @@ class VesselPagedResponse:
     """Vessel paged response.
 
     Attributes:
-        items: All data.
+        data: All data.
+        next_page_token: Token of
+            next page of data.
     """
-    items: Tuple[Vessel, ...]
+    data: Tuple[Vessel, ...]
+    next_page_token: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -579,3 +625,29 @@ class VesselFieldResponse:
     """
     imo: int
     history: Tuple[DifferenceByField, ...]
+
+
+@dataclass(frozen=True)
+class VesselHistoryPagedResponse:
+    """Vessel history paged response.
+
+    Attributes:
+        data: All data.
+        next_page_token: Token of
+            next page of data.
+    """
+    data: Tuple[VesselFieldResponse, ...]
+    next_page_token: Optional[str] = None
+
+
+@dataclass(frozen=True)
+class VesselHistoryPerIMOPagedResponse:
+    """Vessel history paged response.
+
+    Attributes:
+        data: All data.
+        next_page_token: Token of
+            next page of data.
+    """
+    data: Tuple[DifferenceByField, ...]
+    next_page_token: Optional[str] = None

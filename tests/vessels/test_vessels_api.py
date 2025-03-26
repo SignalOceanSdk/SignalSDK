@@ -60,7 +60,8 @@ __mock_vessel_response_1 = {'IMO': 1, 'VesselName': 'Signal 1',
                             'DeliveryDate': '2009-05-26T00:00:00',
                             'ClassificationRegisterID': 2,
                             'ClassificationRegister': 'Bureau of Shipping',
-                            'UpdatedDate': '2020-08-18T20:35:07.377'}
+                            'UpdatedDate': '2020-08-18T20:35:07.377',
+                            'SanctionsHistory': None}
 
 __mock_vessel_1 = Vessel(imo=1, vessel_name='Signal 1', call_sign='AAA',
                          vessel_type_id=1,
@@ -91,7 +92,8 @@ __mock_vessel_1 = Vessel(imo=1, vessel_name='Signal 1', call_sign='AAA',
                          classification_register='Bureau of Shipping',
                          updated_date=datetime.fromisoformat(
                              '2020-08-18T20:35:07.377').replace(
-                             tzinfo=timezone.utc))
+                             tzinfo=timezone.utc),
+                         sanctions_history=None)
 
 __mock_vessel_response_2 = {'IMO': 2, 'VesselName': 'Signal 2',
                             'CallSign': 'BBB', 'VesselTypeID': 1,
@@ -121,7 +123,8 @@ __mock_vessel_response_2 = {'IMO': 2, 'VesselName': 'Signal 2',
                             'DeliveryDate': '2005-02-18T00:00:00',
                             'ClassificationRegisterID': 73,
                             'ClassificationRegister': "Register",
-                            'UpdatedDate': '2020-08-18T13:10:21.930'}
+                            'UpdatedDate': '2020-08-18T13:10:21.930',
+                            'SanctionsHistory': None}
 
 __mock_vessel_2 = Vessel(imo=2, vessel_name='Signal 2', call_sign='BBB',
                          vessel_type_id=1, vessel_type='Tanker',
@@ -156,7 +159,8 @@ __mock_vessel_2 = Vessel(imo=2, vessel_name='Signal 2', call_sign='BBB',
                          classification_register="Register",
                          updated_date=datetime.fromisoformat(
                              '2020-08-18T13:10:21.930').replace(
-                             tzinfo=timezone.utc))
+                             tzinfo=timezone.utc),
+                         sanctions_history=None)
 
 __mock_vessels_response = (__mock_vessel_response_1, __mock_vessel_response_2)
 
@@ -180,17 +184,17 @@ def test_returns_none_if_vessel_does_not_exist():
 
 def test_requests_vessel_by_id():
     response = MagicMock()
-    response.json.return_value = __mock_vessel_response_1
+    response.json.return_value = {'Data':__mock_vessel_response_1}
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessel(imo=__mock_vessel_1.imo)
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, f'vessels/{__mock_vessel_1.imo}'),
+        urljoin(VesselsAPI.relative_url, f'vessels/{__mock_vessel_1.imo}?includeVesselSanctions=False'),
         query_string=None)
 
 
 def test_returns_vessel_by_id():
     response = MagicMock()
-    response.json.return_value = __mock_vessel_response_1
+    response.json.return_value = {'Data':__mock_vessel_response_1}
     api, _ = create_vessels_api(response)
     vessel = api.get_vessel(imo=__mock_vessel_1.imo)
     assert vessel == __mock_vessel_1
@@ -234,17 +238,17 @@ def test_response_vessel_types():
 
 def test_requests_vessels():
     response = MagicMock()
-    response.json.return_value = __mock_vessels_response
+    response.json.return_value = {'Data':__mock_vessels_response}
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessels()
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, 'vessels/all'),
+        urljoin(VesselsAPI.relative_url, 'vessels?includeVesselSanctions=False'),
         query_string=None)
 
 
 def test_response_vessels():
     response = MagicMock()
-    response.json.return_value = __mock_vessels_response
+    response.json.return_value = {'Data':__mock_vessels_response}
     api, _ = create_vessels_api(response)
     vessels = api.get_vessels()
     assert vessels == (__mock_vessel_1, __mock_vessel_2)
@@ -252,11 +256,11 @@ def test_response_vessels():
 
 def test_requests_search_vessels():
     response = MagicMock()
-    response.json.return_value = __mock_vessels_response
+    response.json.return_value = {'Data':__mock_vessels_response}
     api, mocked_make_request = create_vessels_api(response)
     _ = api.get_vessels('signal')
     mocked_make_request.assert_called_with(
-        urljoin(VesselsAPI.relative_url, 'vessels/searchByName/signal'),
+        urljoin(VesselsAPI.relative_url, 'vessels/searchByName/signal?includeVesselSanctions=False'),
         query_string=None)
 
 def test_vessel_field_names():
@@ -375,6 +379,7 @@ def test_vessel_field_names():
         "VCM",
         "Ethylene",
         "UpdatedDate",
+        "SanctionsHistory"
     ]
 
     for k, r, in VesselsAPI.rename_keys.items():
