@@ -5,16 +5,18 @@ from datetime import date
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_multiple, get_single
 from signal_ocean.vessels.models import (VesselClass, VesselType,
-                                         Vessel, VesselPagedResponse,
+                                         Vessel, SingleVesselPagedResponse,
+                                         VesselPagedResponse,
                                          FieldHistory,
                                          VesselFieldResponse,
-                                         DifferenceByField)
+                                         VesselHistoryPagedResponse,
+                                         VesselHistoryPerIMOPagedResponse)
 
 
 class VesselsAPI:
     """Represents Signal's Vessels API."""
 
-    relative_url = "vessels-api/v2/"
+    relative_url = "vessels-api/v3/"
     default_pit = str(date.today())
 
     rename_keys = {"STSTCoating": "stst_coating",
@@ -52,7 +54,10 @@ class VesselsAPI:
         url = urljoin(VesselsAPI.relative_url, "vesselTypes")
         return get_multiple(self.__connection, url, VesselType)
 
-    def get_vessel(self, imo: int) -> Optional[Vessel]:
+    def get_vessel(self,
+                   imo: int,
+                   includeVesselSanctions: bool = False
+                   ) -> Optional[Vessel]:
         """Retrieves a vessel by its IMO.
 
         Args:
@@ -62,11 +67,20 @@ class VesselsAPI:
             A vessel or None if no vessel with the specified IMO has
                 been found.
         """
-        url = urljoin(VesselsAPI.relative_url, f"vessels/{imo}")
-        return get_single(self.__connection, url, Vessel,
-                          rename_keys=VesselsAPI.rename_keys)
+        url = urljoin(VesselsAPI.relative_url,
+                      f"vessels/{imo}" +
+                      f"?includeVesselSanctions={includeVesselSanctions}"
+                      )
+        response = get_single(self.__connection,
+                              url,
+                              SingleVesselPagedResponse,
+                              rename_keys=VesselsAPI.rename_keys)
+        return response if response is None else response.data
 
-    def get_vessels(self, name: Optional[str] = None) -> Tuple[Vessel, ...]:
+    def get_vessels(self,
+                    name: Optional[str] = None,
+                    includeVesselSanctions: bool = False
+                    ) -> Tuple[Vessel, ...]:
         """Retrieves all available vessels.
 
         Args:
@@ -78,14 +92,32 @@ class VesselsAPI:
             A tuple of all available vessels.
         """
         endpoint = (
-            "vessels/all" if name is None else f"vessels/searchByName/{name}"
+            ("vessels"
+             if name is None else
+             f"vessels/searchByName/{name}") +
+            f"?includeVesselSanctions={includeVesselSanctions}"
         )
         url = urljoin(VesselsAPI.relative_url, endpoint)
-        return get_multiple(self.__connection, url, Vessel,
-                            rename_keys=VesselsAPI.rename_keys)
+
+        hasNextPage = True
+        nextPageToken: Optional[str] = ""
+        vessels: Tuple[Vessel, ...] = ()
+        while(hasNextPage):
+            specific_url = url + (nextPageToken
+                                  if nextPageToken == ""
+                                  else f"&token={nextPageToken}")
+            response = get_single(self.__connection,
+                                  specific_url,
+                                  VesselPagedResponse,
+                                  rename_keys=VesselsAPI.rename_keys)
+            vessels = vessels + (response.data if response else ())
+            nextPageToken = response.next_page_token if response else None
+            hasNextPage = nextPageToken is not None
+
+        return vessels
 
     def get_vessels_by_vessel_class(
-        self, vesselClass: int
+        self, vesselClass: int,  includeVesselSanctions: bool = False
     ) -> Optional[Tuple[Vessel, ...]]:
         """Retrieves all vessels of a specific vessel class.
 
@@ -96,10 +128,24 @@ class VesselsAPI:
             A tuple of all available vessels.
         """
         endpoint = f"vessels?vesselClass={vesselClass}"
+        endpoint += f"&includeVesselSanctions={includeVesselSanctions}"
         url = urljoin(VesselsAPI.relative_url, endpoint)
-        response = get_single(self.__connection, url, VesselPagedResponse,
-                              rename_keys=VesselsAPI.rename_keys)
-        return response if response is None else response.items
+        vessels: Tuple[Vessel, ...] = ()
+        hasNextPage = True
+        nextPageToken: Optional[str] = ""
+        while(hasNextPage):
+            specific_url = url + (nextPageToken
+                                  if nextPageToken == ""
+                                  else f"&token={nextPageToken}")
+            response = get_single(self.__connection,
+                                  specific_url,
+                                  VesselPagedResponse,
+                                  rename_keys=VesselsAPI.rename_keys)
+            vessels = vessels + (response.data if response else ())
+            nextPageToken = response.next_page_token if response else None
+            hasNextPage = nextPageToken is not None
+
+        return vessels if len(vessels) > 0 else None
 
     def get_vessels_name_history(
             self, imo: Optional[int] = None
@@ -147,14 +193,34 @@ class VesselsAPI:
         url = urljoin(VesselsAPI.relative_url, endpoint)
 
         if imo is not None:
-            historyChanges = get_multiple(self.__connection,
-                                          url,
-                                          DifferenceByField)
+            response = get_single(self.__connection,
+                                  url,
+                                  VesselHistoryPerIMOPagedResponse)
             fieldResponse = VesselFieldResponse(imo=imo,
-                                                history=historyChanges)
-            response = (fieldResponse, )  # type:Tuple[VesselFieldResponse,...]
+                                                history=response.data
+                                                if response
+                                                else ())
+            historyResponse: Tuple[VesselFieldResponse, ...] = (
+                fieldResponse, )
         else:
-            history = get_multiple(self.__connection, url, VesselFieldResponse)
-            response = history
-
-        return response
+            next_page_token: Optional[str] = ""
+            hasNextPage = True
+            historyResponse = ()
+            while(hasNextPage):
+                specific_url = url + (next_page_token
+                                      if next_page_token == ""
+                                      else f"?token={next_page_token}")
+                multipleHistoryResponse = get_single(
+                    self.__connection,
+                    specific_url,
+                    VesselHistoryPagedResponse)
+                historyResponse = historyResponse + (
+                    multipleHistoryResponse.data
+                    if multipleHistoryResponse
+                    else ())
+                if multipleHistoryResponse:
+                    next_page_token = multipleHistoryResponse.next_page_token
+                else:
+                    next_page_token = None
+                hasNextPage = next_page_token is not None
+        return historyResponse
