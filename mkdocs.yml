@@ -41,7 +41,7 @@ nav:
       - 'scraped_cargoes.md'
       - Examples:
         - 'examples/jupyter/ScrapedCargoesAPI/Scraped Cargoes API Example.ipynb'
-        - 'examples/jupyter/ScrapedCargoesAPI/Scraped_Cargoes_API_Geos_API_Tanker_Historical_Cargo_Distribution_in_a_Level_1_Area.ipynb'
+        - 'examples/jupyter/ScrapedCargoesAPI/01_04_2025_Scraped_Cargoes_API_Geos_API_Tanker_Historical_Cargo_Distribution_in_a_Level_1_Area[Fix].ipynb'
     - Scraped Fixtures:
       - 'scraped_fixtures.md'
       - Examples:
@@ -110,6 +110,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 13.4.1.md'
       - 'releases/Version 13.4.0.md'
       - 'releases/Version 13.3.2.md'
       - 'releases/Version 13.3.1.md'
