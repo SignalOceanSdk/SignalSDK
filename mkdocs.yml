@@ -41,7 +41,7 @@ nav:
       - 'scraped_cargoes.md'
       - Examples:
         - 'examples/jupyter/ScrapedCargoesAPI/Scraped Cargoes API Example.ipynb'
-        - 'examples/jupyter/ScrapedCargoesAPI/01_04_2025_Scraped_Cargoes_API_Geos_API_Tanker_Historical_Cargo_Distribution_in_a_Level_1_Area[Fix].ipynb'
+        - 'examples/jupyter/ScrapedCargoesAPI/01_04_2025_Scraped_Cargoes_API_Geos_API_Tanker_Historical_Cargo_Distribution_in_a_Level_1_Area_Fix.ipynb'
     - Scraped Fixtures:
       - 'scraped_fixtures.md'
       - Examples:
