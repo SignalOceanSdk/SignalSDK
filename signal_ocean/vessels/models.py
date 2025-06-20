@@ -613,6 +613,7 @@ class FieldHistory(Enum):
     """
     Name = 1
     CommOp = 2
+    Flag = 3
 
 
 @dataclass(frozen=True)
