@@ -172,7 +172,7 @@ class VesselsAPI:
             A tuple of all commOp changes.
         """
         return self.__get_history(FieldHistory.CommOp, imo)
-    
+
     def get_vessels_flag_history(
             self, imo: Optional[int] = None
     ) -> Tuple[VesselFieldResponse, ...]:
