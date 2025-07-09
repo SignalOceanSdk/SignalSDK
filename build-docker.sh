@@ -81,4 +81,4 @@ then
     exit 1
 fi
 
-twine upload --skip-existing --repository-url "$repository_url" -u "$username" -p "$password" ./dist/*
+twine upload --verbose --skip-existing --repository-url "$repository_url" -u "$username" -p "$password" ./dist/*
