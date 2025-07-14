@@ -46,4 +46,4 @@ then
 fi
 
 source ./env/bin/activate
-twine upload --repository-url "$repository_url" -u "$username" -p "$password" ./dist/*
+twine upload --verbose --repository-url "$repository_url" -u "$username" -p "$password" ./dist/*

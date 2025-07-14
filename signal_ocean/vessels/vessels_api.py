@@ -173,6 +173,19 @@ class VesselsAPI:
         """
         return self.__get_history(FieldHistory.CommOp, imo)
 
+    def get_vessels_flag_history(
+            self, imo: Optional[int] = None
+    ) -> Tuple[VesselFieldResponse, ...]:
+        """Retrieves all flag changes.
+
+        Args:
+                imo: IMO of the vessel to retrieve.
+
+        Returns:
+            A tuple of all flag changes.
+        """
+        return self.__get_history(FieldHistory.Flag, imo)
+
     def __get_history(
             self,
             field: FieldHistory,
@@ -189,6 +202,11 @@ class VesselsAPI:
                 endpoint += "/commOpHistory"
             else:
                 endpoint += f"/{imo}/history/commOps"
+        elif field == FieldHistory.Flag:
+            if imo is None:
+                endpoint += "/flagHistory"
+            else:
+                endpoint += f"/{imo}/history/flags"
 
         url = urljoin(VesselsAPI.relative_url, endpoint)
 
