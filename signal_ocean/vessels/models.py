@@ -432,6 +432,26 @@ class Vessel:
             the vessel is equipped with bow chain stoppers.
             Ships likely to trade to Single Point Moorings
             should be equipped with bow chain stoppers.
+        propulsion_type: String (e.g., "Dual Fuel",
+            "Conventional Fuel", or "Steam Turbine"),
+            describes the vessel’s main engine and how it
+            moves. It indicates the type of propulsion system
+            used, which affects fuel use, efficiency, and
+            emissions.
+        gas_containment_type: String (e.g., "Type A",
+            "GTT Mk III", or "Kvaerner-Moss"), describes how
+            liquefied gas is stored on the vessel. It
+            indicates the design of the tank system used for
+            LNG or LPG, affecting safety, efficiency, and
+            how much cargo the ship can carry.
+        number_of_bow_thrusters: Integer, indicates the
+            number of bow thrusters installed on the vessel.
+            Bow thrusters are lateral propulsion devices
+            located at the bow (front) of the ship, used to
+            assist with sideways maneuvering during docking
+            and low-speed operations. A higher number
+            generally provides greater maneuverability,
+            especially on larger vessels.
     """
 
     imo: int
@@ -549,6 +569,9 @@ class Vessel:
     rail_to_center_manifold: Optional[float] = None
     bow_chain_stoppers_fitted: Optional[bool] = None
     sanctions_history: Optional[Tuple[VesselSanction, ...]] = None
+    propulsion_type: Optional[str] = None
+    gas_containment_type: Optional[str] = None
+    number_of_bow_thrusters: Optional[int] = None
 
 
 @dataclass(frozen=True)
