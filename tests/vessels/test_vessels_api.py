@@ -379,7 +379,10 @@ def test_vessel_field_names():
         "VCM",
         "Ethylene",
         "UpdatedDate",
-        "SanctionsHistory"
+        "SanctionsHistory",
+        "PropulsionType",
+        "GasContainmentType",
+        "NumberOfBowThrusters"
     ]
 
     for k, r, in VesselsAPI.rename_keys.items():
