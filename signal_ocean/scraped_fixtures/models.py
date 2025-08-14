@@ -391,9 +391,9 @@ class ScrapedFixture:
             for on subs.
         broker_id: Integer. Numeric ID corresponding to the broker company
             provided by the user.
-        broker: "String. The company name corresponding to the BrokerID field.
+        broker: String. The company name corresponding to the BrokerID field.
             Provided to better specify the company involved in the business.
-                Source: our internal Company Database."
+                Source: our internal Company Database.
         is_owners_option: Boolean. This value is true if 'o/o' (Owner's Option)
             or 'oos' is explicitly reported in the original text of the
             fixture.
