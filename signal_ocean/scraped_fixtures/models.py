@@ -273,9 +273,10 @@ class ScrapedFixture:
         rate_type: String. The type associated to the RateValue.
             Possible values are 'LS' for 'Lump Sum' (in usd), 'WS' for World
             Scale, 'PMT' for $/pmt, 'TCE' for Time Charter Equivalent or $/day.
-        demurrage_rate_value: Numeric. The demurrage rate mapped for the fixture provided by the user,
-            expressed in USD per day.
-        demurrage_rate_type: String. The type associated to the DemurrageRateValue. Possible value: "$/day".
+        demurrage_rate_value: Numeric. The demurrage rate mapped for the
+            fixture provided by the user, expressed in USD per day.
+        demurrage_rate_type: String. The type associated to the
+            DemurrageRateValue. Possible value: "$/day".
         open_geo_id: Integer. An internal ID corresponding to the mapped open
             location. The fields starting with 'Open' (OpeGeoID, OpenGeoName,
             OpenTaxonomyID, OpenTaxonomy and OpenDate) are populated if a
@@ -388,9 +389,11 @@ class ScrapedFixture:
         fixture_status: String denoting the commercial status of a fixture if
             explicitly mentioned, like 'ffxd' for fully fixed or 'subs'/'-s-'
             for on subs.
-        broker_id: Integer. Numeric ID corresponding to the broker company provided by the user.
+        broker_id: Integer. Numeric ID corresponding to the broker company
+            provided by the user.
         broker: "String. The company name corresponding to the BrokerID field.
-            Provided to better specify the company involved in the business. Source: our internal Company Database."
+            Provided to better specify the company involved in the business.
+                Source: our internal Company Database."
         is_owners_option: Boolean. This value is true if 'o/o' (Owner's Option)
             or 'oos' is explicitly reported in the original text of the
             fixture.
