@@ -46,12 +46,14 @@ python3.8 -m venv release-env
 source release-env/bin/activate
 
 # Build on virtual environment
-echo "Building dist with env $(echo $VIRTUAL_ENV)..."
+echo "Building dist with env $VIRTUAL_ENV..."
 echo "Python: $(which python)"
 echo "Pip: $(which pip)"
 
 # Install version of wheel from dev requirements
-pip install $(grep -Po '^wheel.*$' ./requirements.txt)
+# also allow pattern to match most common version specifiers
+# see: https://pip.pypa.io/en/stable/reference/requirement-specifiers/
+pip install $(grep -P '^wheel(?=[\=~><\[\s;])|^wheel$' ./requirements.txt)
 
 rm -rf dist/*
 python ./setup.py sdist bdist_wheel
