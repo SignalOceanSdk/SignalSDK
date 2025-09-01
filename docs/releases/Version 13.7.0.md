@@ -3,4 +3,4 @@ Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-
 
 # Scraped Fixtures API
 
-- Add fields `Note, BrokerID, Broker, DemurrageRateValue, DemurrageRateType`
+- Added fields `Note, BrokerID, Broker, DemurrageRateValue, DemurrageRateType`
