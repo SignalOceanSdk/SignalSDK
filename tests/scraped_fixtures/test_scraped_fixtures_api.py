@@ -71,6 +71,8 @@ def test_fixtures_field_names():
         "ScrapedRateOptions",
         "RateValue",
         "RateType",
+        "DemurrageRateValue",
+        "DemurrageRateType",
         "OpenGeoID",
         "OpenGeoName",
         "OpenTaxonomyID",
@@ -98,6 +100,8 @@ def test_fixtures_field_names():
         "CharterType",
         "FixtureStatusID",
         "FixtureStatus",
+        "BrokerId",
+        "Broker",
         "IsOwnersOption",
         "IsCOA",
         "Content",
@@ -106,6 +110,7 @@ def test_fixtures_field_names():
         "IsPrivate",
         "IsInvalidated",
         "IsPartial",
+        "Note",
     ]
     snake_case_api_fields = list(map(_to_snake_case, api_fields))
     scraped_fixtures_model_fields = list(ScrapedFixture.__dataclass_fields__)
