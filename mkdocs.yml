@@ -198,7 +198,6 @@ markdown_extensions:
   - toc:
       permalink: true
 plugins:
-  - mkdocs
   - mkdocs-jupyter
   - search
   - mkdocstrings
