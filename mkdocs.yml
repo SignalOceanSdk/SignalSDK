@@ -97,6 +97,10 @@ nav:
         - 'examples/jupyter/VesselEmissionsAPI/VesselEmissionsAPI-UseCase.ipynb'
         - 'examples/jupyter/VesselEmissionsAPI/Carbon Analysis.ipynb'
         - 'examples/jupyter/VesselEmissionsAPI/EUA_Analysis.ipynb'
+    - Vessel Consumptions:
+      - 'vessel_consumptions.md'
+      - Examples:
+        - 'examples/jupyter/VesselConsumptionsAPI/VesselConsumptionsAPI.ipynb'
     - Vessel Valuations:
       - 'vessel_valuations.md'
       - Examples:
