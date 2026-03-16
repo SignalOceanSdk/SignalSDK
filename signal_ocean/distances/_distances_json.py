@@ -55,7 +55,9 @@ def parse_points_on_route(json: JsonObject) -> PointsOnRoute:
         is_hra=cast(bool, json.get("isHra")),
         is_seca=cast(bool, json.get("isSeca")),
         distance=cast(Decimal, as_decimal(json.get("distance"))),
-        distance_to_enter=cast(Decimal, as_decimal(json.get("distanceToEnter"))),
+        distance_to_enter=cast(
+            Decimal, as_decimal(json.get("distanceToEnter"))
+        ),
         heading=cast(int, json.get("heading")),
         editable=cast(bool, json.get("editable")),
         name=cast(str, json.get("name")),

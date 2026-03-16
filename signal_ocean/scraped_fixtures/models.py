@@ -584,7 +584,9 @@ class ScrapedFixture(SignalBaseModel):
     note: Optional[str] = None
 
 
-class ScrapedFixturesResponse(SignalBaseModel, ScrapedDataResponse[ScrapedFixture]):
+class ScrapedFixturesResponse(
+    SignalBaseModel, ScrapedDataResponse[ScrapedFixture]
+):
     """Paged response for scraped fixtures from the Scraped Fixtures API.
 
     Attributes:

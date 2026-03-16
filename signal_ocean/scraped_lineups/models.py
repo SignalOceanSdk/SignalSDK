@@ -387,7 +387,9 @@ class ScrapedLineup(SignalBaseModel):
     is_private: Optional[bool] = False
 
 
-class ScrapedLineupsResponse(SignalBaseModel, ScrapedDataResponse[ScrapedLineup]):
+class ScrapedLineupsResponse(
+    SignalBaseModel, ScrapedDataResponse[ScrapedLineup]
+):
     """Paged response for scraped lineups from the Scraped Lineups API.
 
     Attributes:

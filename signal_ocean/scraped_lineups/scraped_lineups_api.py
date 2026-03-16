@@ -157,7 +157,7 @@ class ScrapedLineupsAPI(ScrapedDataAPI[ScrapedLineupsResponse, ScrapedLineup]):
             self,
             updated_date_from: datetime,
     ) -> Optional[str]:
-        """This function returns a token to use in the incremental lineups endpoint.
+        """Returns a token for the incremental lineups endpoint.
 
         Args:
             updated_date_from: Format - date-time (as date-time in RFC3339).

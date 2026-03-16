@@ -61,7 +61,11 @@ class Valuation(SignalBaseModel):
         """
         def _convert(data):
             if isinstance(data, dict):
-                return {_to_camel_case_custom(k): _convert(v) for k, v in data.items() if v is not None}
+                return {
+                    _to_camel_case_custom(k): _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
             elif isinstance(data, list):
                 return [_convert(item) for item in data]
             return data
@@ -98,7 +102,11 @@ class HistoricalValuation(SignalBaseModel):
         """
         def _convert(data):
             if isinstance(data, dict):
-                return {_to_camel_case_custom(k): _convert(v) for k, v in data.items() if v is not None}
+                return {
+                    _to_camel_case_custom(k): _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
             elif isinstance(data, list):
                 return [_convert(item) for item in data]
             return data

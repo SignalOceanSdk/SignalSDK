@@ -29,14 +29,29 @@ def to_vessel(
         open_port=cast(str, pit_vessel_data.get("openPort")),
         open_date=parse_datetime(pit_vessel_data.get("openDate")),
         operational_status=cast(str, pit_vessel_data.get("operationalStatus")),
-        commercial_operator_id=cast(int, pit_vessel_data.get("commercialOperatorId")),
-        commercial_operator=cast(str, pit_vessel_data.get("commercialOperator")),
-        commercial_status=cast(str, pit_vessel_data.get("commercialStatus")),
+        commercial_operator_id=cast(
+            int,
+            pit_vessel_data.get("commercialOperatorId")
+        ),
+        commercial_operator=cast(
+            str,
+            pit_vessel_data.get("commercialOperator")
+        ),
+        commercial_status=cast(
+            str,
+            pit_vessel_data.get("commercialStatus")
+        ),
         eta=parse_datetime(pit_vessel_data.get("eta")),
         latest_ais=parse_datetime(pit_vessel_data.get("latestAis")),
         subclass=cast(str, data_for_imo.get("subclass")),
-        willing_to_switch_subclass=cast(bool, data_for_imo.get("willingToSwitchSubclass")),
-        open_prediction_accuracy=cast(str, pit_vessel_data.get("openPredictionAccuracy")),
+        willing_to_switch_subclass=cast(
+            bool,
+            data_for_imo.get("willingToSwitchSubclass")
+        ),
+        open_prediction_accuracy=cast(
+            str,
+            pit_vessel_data.get("openPredictionAccuracy")
+        ),
         open_areas=tuple(
             Area(
                 id=a.get("id"),
@@ -46,12 +61,29 @@ def to_vessel(
             )
             for a in pit_vessel_data.get("openAreas", [])
         ),
-        availability_port_type=cast(str, pit_vessel_data.get("availabilityPortType")),
-        availability_date_type=cast(str, pit_vessel_data.get("availabilityDateType")),
+        availability_port_type=cast(
+            str,
+            pit_vessel_data.get("availabilityPortType")
+        ),
+        availability_date_type=cast(
+            str,
+            pit_vessel_data.get("availabilityDateType")
+        ),
         fixture_type=cast(str, pit_vessel_data.get("fixtureType")),
-        current_vessel_sub_type_id=cast(int, pit_vessel_data.get("currentVesselSubTypeId")),
-        current_vessel_sub_type=cast(str, pit_vessel_data.get("currentVesselSubType")),
-        willing_to_switch_current_vessel_sub_type=cast(bool, pit_vessel_data.get("willingToSwitchCurrentVesselSubType")),
+        current_vessel_sub_type_id=cast(
+            int,
+            pit_vessel_data.get("currentVesselSubTypeId")
+        ),
+        current_vessel_sub_type=cast(
+            str,
+            pit_vessel_data.get("currentVesselSubType")
+        ),
+        willing_to_switch_current_vessel_sub_type=cast(
+            bool,
+            pit_vessel_data.get(
+                "willingToSwitchCurrentVesselSubType"
+            )
+        ),
     )
 
 

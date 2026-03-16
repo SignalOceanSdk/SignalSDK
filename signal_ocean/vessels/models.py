@@ -1,5 +1,5 @@
 """Models instantiated by the vessels api."""
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 from enum import Enum
 
 from pydantic import Field
@@ -506,23 +506,27 @@ class Vessel(SignalBaseModel):
     number_of_bow_chain_stoppers: Optional[int] = None
     grain_capacity: Optional[int] = None
     bale_capacity: Optional[int] = None
-    main_engine_kw: Optional[int] = Field(None, validation_alias="MainEngineKW")
-    main_engine_rpm: Optional[int] = Field(None, validation_alias="MainEngineRPM")
+    main_engine_kw: Optional[int] = Field(
+        None, validation_alias="MainEngineKW"
+    )
+    main_engine_rpm: Optional[int] = Field(
+        None, validation_alias="MainEngineRPM"
+    )
     air_draught: Optional[float] = None
     deck_teu: Optional[int] = None
     under_deck_teu: Optional[int] = None
     suez_canal_net_tonnage: Optional[int] = None
     class_renewal_date: Optional[UTCDatetime] = None
     mewis_duct: Optional[UTCDatetime] = None
-    inert_gas_system: Optional[str] = None
-    imo_type_1: Optional[str] = Field(None, validation_alias="IMOType1")
-    imo_type_2: Optional[str] = Field(None, validation_alias="IMOType2")
-    imo_type_3: Optional[str] = Field(None, validation_alias="IMOType3")
+    inert_gas_system: Optional[bool] = None
+    imo_type_1: Optional[bool] = Field(None, validation_alias="IMOType1")
+    imo_type_2: Optional[bool] = Field(None, validation_alias="IMOType2")
+    imo_type_3: Optional[bool] = Field(None, validation_alias="IMOType3")
     stst_coating: Optional[int] = Field(None, validation_alias="STSTCoating")
     epoxy_coating: Optional[int] = None
     zinc_coating: Optional[int] = None
     marineline_coating: Optional[int] = None
-    crude_oil_washing: Optional[str] = None
+    crude_oil_washing: Optional[bool] = None
     beneficial_owner_id: Optional[int] = None
     beneficial_owner: Optional[str] = None
     parallel_body_length: Optional[float] = None
@@ -604,7 +608,7 @@ class DifferenceByFieldValue(SignalBaseModel):
             takken effect
         name: The corresponding name of value.
     """
-    value: str
+    value: Union[str, int]
     begin_date: UTCDatetime
     end_date: UTCDatetime
     name: Optional[str] = None

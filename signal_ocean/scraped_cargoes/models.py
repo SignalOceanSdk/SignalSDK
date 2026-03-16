@@ -466,7 +466,9 @@ class ScrapedCargo(SignalBaseModel):
     is_private: Optional[bool] = False
 
 
-class ScrapedCargoesResponse(SignalBaseModel, ScrapedDataResponse[ScrapedCargo]):
+class ScrapedCargoesResponse(
+    SignalBaseModel, ScrapedDataResponse[ScrapedCargo]
+):
     """Paged response for scraped cargoes from the Scraped Cargoes API.
 
     Attributes:

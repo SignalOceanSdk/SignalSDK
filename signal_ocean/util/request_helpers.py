@@ -12,8 +12,13 @@ TModel = TypeVar("TModel")
 
 
 def _instantiate(data, cls):
-    """Instantiate cls from data, supporting Pydantic models and plain types."""
-    if isinstance(cls, type) and issubclass(cls, BaseModel):
+    """Instantiate cls from data.
+
+    Supports Pydantic models and plain types.
+    """
+    if isinstance(cls, type) and issubclass(
+        cls, BaseModel
+    ):
         return cls.model_validate(data)
     return cls(data)
 

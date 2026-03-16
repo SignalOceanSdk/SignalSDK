@@ -79,7 +79,9 @@ class VesselFilter(IdentityEqModel):
             country ids.
     """
 
-    model_config = ConfigDict(frozen=False, populate_by_name=True, extra='ignore')
+    model_config = ConfigDict(
+        frozen=False, populate_by_name=True, extra='ignore'
+    )
 
     push_types: Optional[List[str]] = cast(List[str], [])
     market_deployments: Optional[List[str]] = cast(List[str], [])

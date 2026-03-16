@@ -155,7 +155,8 @@ class Vessel(IdentityEqModel):
     current_vessel_sub_type: Optional[str] = None
     willing_to_switch_current_vessel_sub_type: Optional[bool] = None
 
-    def model_post_init(self, __context: Any) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         if self.open_areas is None:
             object.__setattr__(self, "open_areas", tuple())
 
@@ -190,7 +191,7 @@ class Vessel(IdentityEqModel):
         return self.__area_name_by_taxonomy(LocationTaxonomy.WIDE_AREA)
 
     def __area_name_by_taxonomy(self, taxonomy: str) -> Optional[str]:
-        for a in self.open_areas:
+        for a in self.open_areas or ():
             if a.location_taxonomy == taxonomy:
                 return a.name
         return None
@@ -319,7 +320,9 @@ class Port(IdentityEqModel):
 
 
 class VesselClass(IdentityEqModel):
-    """A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.
+    """A group of vessels of similar characteristics.
+
+    For example Aframax, Panamax, etc.
 
     Attributes:
         id: The vessel class ID.
@@ -467,7 +470,9 @@ class VesselFilter(IdentityEqModel):
             country ids.
     """
 
-    model_config = ConfigDict(frozen=False, populate_by_name=True, extra='ignore')
+    model_config = ConfigDict(
+        frozen=False, populate_by_name=True, extra='ignore'
+    )
 
     push_types: Optional[List[str]] = cast(List[str], [])
     market_deployments: Optional[List[str]] = cast(List[str], [])
@@ -583,7 +588,9 @@ class PortFilter(IdentityEqModel):
             returned. Matching is case-insensitive.
     """
 
-    model_config = ConfigDict(frozen=False, populate_by_name=True, extra='ignore')
+    model_config = ConfigDict(
+        frozen=False, populate_by_name=True, extra='ignore'
+    )
 
     name_like: Optional[str] = None
 
@@ -605,7 +612,9 @@ class VesselClassFilter(IdentityEqModel):
             will be returned. Matching is case-insensitive.
     """
 
-    model_config = ConfigDict(frozen=False, populate_by_name=True, extra='ignore')
+    model_config = ConfigDict(
+        frozen=False, populate_by_name=True, extra='ignore'
+    )
 
     name_like: Optional[str] = None
 

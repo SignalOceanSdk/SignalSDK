@@ -1,6 +1,8 @@
 """Shared Pydantic v2 base models for SignalSDK."""
 from datetime import datetime
-from typing import Annotated, Any
+from typing import Any
+
+from typing_extensions import Annotated
 
 from pydantic import BaseModel, BeforeValidator, ConfigDict
 

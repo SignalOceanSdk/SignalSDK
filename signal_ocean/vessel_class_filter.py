@@ -31,7 +31,8 @@ class VesselClassFilter(IdentityEqModel):
 
     name_like: Optional[str] = None
 
-    def model_post_init(self, __context: Any) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         warnings.warn(
             "signal_ocean.VesselClassFilter is deprecated and will be removed "
             "in a future version of the SDK. Please use "

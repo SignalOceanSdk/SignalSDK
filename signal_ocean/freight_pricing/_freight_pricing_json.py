@@ -14,7 +14,10 @@ def parse(json: Iterable[JsonObject]) -> Tuple[FreightPricing, ...]:
 def parse_freight_pricing_item(json: JsonObject) -> FreightPricing:
     return FreightPricing(
         vessel_class=cast(str, json.get("vesselClass")),
-        cargo_quantity=cast(Decimal, as_decimal(cast(float, json.get("cargoQuantity")))),
+        cargo_quantity=cast(
+            Decimal,
+            as_decimal(cast(float, json.get("cargoQuantity")))
+        ),
         costs=parse_costs(cast(JsonObject, json.get("costs"))),
         totals=parse_totals(cast(JsonObject, json.get("totals"))),
     )
@@ -31,5 +34,7 @@ def parse_costs(json: JsonObject) -> Costs:
 def parse_totals(json: JsonObject) -> Totals:
     return Totals(
         total_cost=cast(Decimal, as_decimal(json.get("totalCost"))),
-        total_cost_per_ton=cast(Decimal, as_decimal(json.get("totalCostPerTon"))),
+        total_cost_per_ton=cast(
+            Decimal, as_decimal(json.get("totalCostPerTon"))
+        ),
     )

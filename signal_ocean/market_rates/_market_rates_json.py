@@ -33,15 +33,34 @@ def parse_routes(json: List[Mapping[str, Any]]) -> Tuple[Route, ...]:
             vessel_class_id=cast(int, route_json.get("vessel_class_id")),
             cargo_id=cast(int, route_json.get("cargo_id")),
             load_port_id=cast(int, route_json.get("load_port_id")),
-            discharge_port_id=cast(int, route_json.get("discharge_port_id")),
-            load_area_id=cast(int, route_json.get("load_area_id")),
-            discharge_area_id=cast(int, route_json.get("discharge_area_id")),
-            load_port_2_id=cast(int, route_json.get("load_port_2_id")),
-            discharge_port_2_id=cast(int, route_json.get("discharge_port_2_id")),
-            load_area_2_id=cast(int, route_json.get("load_area_2_id")),
-            discharge_area_2_id=cast(int, route_json.get("discharge_area_2_id")),
+            discharge_port_id=cast(
+                int, route_json.get("discharge_port_id")
+            ),
+            load_area_id=cast(
+                int, route_json.get("load_area_id")
+            ),
+            discharge_area_id=cast(
+                int, route_json.get("discharge_area_id")
+            ),
+            load_port_2_id=cast(
+                int, route_json.get("load_port_2_id")
+            ),
+            discharge_port_2_id=cast(
+                int,
+                route_json.get("discharge_port_2_id")
+            ),
+            load_area_2_id=cast(
+                int, route_json.get("load_area_2_id")
+            ),
+            discharge_area_2_id=cast(
+                int,
+                route_json.get("discharge_area_2_id")
+            ),
             deprecated_to=cast(str, route_json.get("deprecated_to")),
-            deprecated_since=cast(datetime, route_json.get("deprecated_since")),
+            deprecated_since=cast(
+                datetime,
+                route_json.get("deprecated_since")
+            ),
         )
         routes.append(route)
     return tuple(routes)

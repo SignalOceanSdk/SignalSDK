@@ -51,7 +51,9 @@ class VesselFilter(IdentityEqModel):
 
 
 class VesselClass(IdentityEqModel):
-    """A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.
+    """A group of vessels of similar characteristics.
+
+    For example Aframax, Panamax, etc.
 
     Attributes:
         vessel_class_id: The vessel class ID.
@@ -225,7 +227,7 @@ class VoyageEventDetail(SignalBaseModel):
     other_vessel_imo: Optional[int] = None
     other_vessel_name: Optional[str] = None
     floating_storage_start_date: Optional[UTCDatetime] = None
-    floating_storage_duration: Optional[int] = None
+    floating_storage_duration: Optional[float] = None
 
 
 class VoyageEvent(SignalBaseModel):
@@ -746,7 +748,9 @@ class Voyage(SignalBaseModel):
     fixture_date: Optional[UTCDatetime] = None
     fixture_is_coa: Optional[bool] = None
     fixture_is_hold: Optional[bool] = None
-    is_implied_by_ais: Optional[bool] = Field(None, validation_alias='IsImpliedByAIS')
+    is_implied_by_ais: Optional[bool] = Field(
+        None, validation_alias='IsImpliedByAIS'
+    )
     has_manual_entries: Optional[bool] = None
     ballast_distance: Optional[float] = None
     predicted_ballast_distance: Optional[float] = None

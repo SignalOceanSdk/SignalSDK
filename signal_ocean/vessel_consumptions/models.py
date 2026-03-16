@@ -82,7 +82,11 @@ class VesselConsumptions(SignalBaseModel):
         """
         def _convert(data):
             if isinstance(data, dict):
-                return {_to_camel_case(k): _convert(v) for k, v in data.items() if v is not None}
+                return {
+                    _to_camel_case(k): _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
             elif isinstance(data, list):
                 return [_convert(item) for item in data]
             return data
@@ -177,7 +181,7 @@ class AdvertisedConsumptions(SignalBaseModel):
 
     """
     imo: int
-    updated_date: str
+    updated_date: Optional[str] = None
     ballast_consumptions: Optional[List[AdvertisedConsumptionAtSea]] = None
     laden_consumptions: Optional[List[AdvertisedConsumptionAtSea]] = None
     idle_consumptions: Optional[List[AdvertisedConsumptionInPort]] = None
@@ -207,7 +211,11 @@ class AdvertisedConsumptions(SignalBaseModel):
         """
         def _convert(data):
             if isinstance(data, dict):
-                return {_to_camel_case(k): _convert(v) for k, v in data.items() if v is not None}
+                return {
+                    _to_camel_case(k): _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
             elif isinstance(data, list):
                 return [_convert(item) for item in data]
             return data

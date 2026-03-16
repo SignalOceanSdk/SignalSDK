@@ -99,7 +99,8 @@ class Vessel(IdentityEqModel):
     availability_port_type: Optional[str] = None
     availability_date_type: Optional[str] = None
 
-    def model_post_init(self, __context: Any) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         if self.open_areas is None:
             object.__setattr__(self, "open_areas", tuple())
 
@@ -134,7 +135,7 @@ class Vessel(IdentityEqModel):
         return self.__area_name_by_taxonomy(LocationTaxonomy.WIDE_AREA)
 
     def __area_name_by_taxonomy(self, taxonomy: str) -> Optional[str]:
-        for a in self.open_areas:
+        for a in self.open_areas or ():
             if a.location_taxonomy == taxonomy:
                 return a.name
         return None

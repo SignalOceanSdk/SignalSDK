@@ -276,8 +276,11 @@ class Metrics(SignalBaseModel):
         Optional[float] = None
     kg_co2_per_tonne_cargo: Optional[float] = Field(
         default=None,
-        validation_alias=AliasChoices('kgCO2PerTonneCargo', 'KgCO2PerTonneCargo',
-                                      'kg_co2_per_tonne_cargo'),
+        validation_alias=AliasChoices(
+            'kgCO2PerTonneCargo',
+            'KgCO2PerTonneCargo',
+            'kg_co2_per_tonne_cargo',
+        ),
     )
     kg_co2_per_tonne_dwt: Optional[float] = Field(
         default=None,
@@ -415,7 +418,12 @@ class EmissionsEstimation(SignalBaseModel):
         """
         def _convert(data):
             if isinstance(data, dict):
-                return {_to_camel_case_with_special_keywords(k): _convert(v) for k, v in data.items() if v is not None}
+                return {
+                    _to_camel_case_with_special_keywords(k):
+                    _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
             elif isinstance(data, list):
                 return [_convert(item) for item in data]
             return data
@@ -541,7 +549,12 @@ class VesselMetrics(SignalBaseModel):
         """
         def _convert(data):
             if isinstance(data, dict):
-                return {_to_camel_case_with_special_keywords(k): _convert(v) for k, v in data.items() if v is not None}
+                return {
+                    _to_camel_case_with_special_keywords(k):
+                    _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
             elif isinstance(data, list):
                 return [_convert(item) for item in data]
             return data

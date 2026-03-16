@@ -100,7 +100,7 @@ class VesselConsumptionsAPI:
 
         response.raise_for_status()
         data = response.json()
-        return cls.model_validate(data)
+        return cls.model_validate(data)  # type: ignore[attr-defined]
 
     def get_consumptions(
             self,

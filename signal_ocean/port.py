@@ -17,7 +17,8 @@ class Port(IdentityEqModel):
     id: int
     name: str
 
-    def model_post_init(self, __context: Any) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         warnings.warn(
             "signal_ocean.Port is deprecated and will be removed in a future "
             "version of the SDK. Please use tonnage_list.Port instead.",

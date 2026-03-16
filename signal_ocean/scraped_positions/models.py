@@ -297,7 +297,9 @@ class ScrapedPosition(SignalBaseModel):
     is_private: Optional[bool] = False
 
 
-class ScrapedPositionsResponse(SignalBaseModel, ScrapedDataResponse[ScrapedPosition]):
+class ScrapedPositionsResponse(
+    SignalBaseModel, ScrapedDataResponse[ScrapedPosition]
+):
     """Paged response for scraped positions from the Scraped Positions API.
 
     Attributes:

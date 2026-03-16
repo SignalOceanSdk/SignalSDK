@@ -39,7 +39,7 @@ class ScrapedPositionsAPI(
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
     ) -> Tuple[ScrapedPosition, ...]:
-        """This function collects and returns the positions by the given filters.
+        """Collects and returns positions by the given filters.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -158,7 +158,7 @@ class ScrapedPositionsAPI(
             self,
             updated_date_from: datetime,
     ) -> Optional[str]:
-        """This function returns a token to use in the incremental lineups endpoint.
+        """Returns a token for the incremental lineups endpoint.
 
         Args:
             updated_date_from: Format - date-time (as date-time in RFC3339).
