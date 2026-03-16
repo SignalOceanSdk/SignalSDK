@@ -1,10 +1,12 @@
 """Models instantiated by the geos api."""
-from dataclasses import dataclass
 from typing import Optional, Tuple
 
+from pydantic import Field
 
-@dataclass(frozen=True)
-class Area:
+from signal_ocean.util.pydantic_base import SignalBaseModel
+
+
+class Area(SignalBaseModel):
     """Contains all details of an area.
 
     Attributes:
@@ -25,8 +27,7 @@ class Area:
     parent_area_name: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class Country:
+class Country(SignalBaseModel):
     """Contains all details of an country.
 
     Attributes:
@@ -50,8 +51,7 @@ class Country:
     country_code_iso3: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class GeoAsset:
+class GeoAsset(SignalBaseModel):
     """Contains all details of a geo asset.
 
     Attributes:
@@ -131,23 +131,23 @@ class GeoAsset:
     geo_asset_type_name: Optional[str] = None
     country_id: Optional[int] = None
     country_name: Optional[str] = None
-    area_id_level0: Optional[int] = None
+    area_id_level0: Optional[int] = Field(None, validation_alias="AreaIDLevel0")
     area_name_level0: Optional[str] = None
-    area_id_level1: Optional[int] = None
+    area_id_level1: Optional[int] = Field(None, validation_alias="AreaIDLevel1")
     area_name_level1: Optional[str] = None
-    area_id_level2: Optional[int] = None
+    area_id_level2: Optional[int] = Field(None, validation_alias="AreaIDLevel2")
     area_name_level2: Optional[str] = None
-    area_id_level3: Optional[int] = None
+    area_id_level3: Optional[int] = Field(None, validation_alias="AreaIDLevel3")
     area_name_level3: Optional[str] = None
     port_id: Optional[int] = None
     port_name: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     vessel_class_associations: Optional[Tuple[int, ...]] = None
+    country_code_iso3: Optional[str] = Field(None, validation_alias="CountryCodeISO3")
 
 
-@dataclass(frozen=True)
-class Port:
+class Port(SignalBaseModel):
     """Contains all details of a port.
 
     Attributes:
@@ -219,21 +219,20 @@ class Port:
     unlocode: Optional[str] = None
     country_id: Optional[int] = None
     country_name: Optional[str] = None
-    area_id_level0: Optional[int] = None
+    area_id_level0: Optional[int] = Field(None, validation_alias="AreaIDLevel0")
     area_name_level0: Optional[str] = None
-    area_id_level1: Optional[int] = None
+    area_id_level1: Optional[int] = Field(None, validation_alias="AreaIDLevel1")
     area_name_level1: Optional[str] = None
-    area_id_level2: Optional[int] = None
+    area_id_level2: Optional[int] = Field(None, validation_alias="AreaIDLevel2")
     area_name_level2: Optional[str] = None
-    area_id_level3: Optional[int] = None
+    area_id_level3: Optional[int] = Field(None, validation_alias="AreaIDLevel3")
     area_name_level3: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     vessel_class_associations: Optional[Tuple[int, ...]] = None
 
 
-@dataclass(frozen=True)
-class AreasPagedResponse:
+class AreasPagedResponse(SignalBaseModel):
     """Paged response for areas from the Geos API.
 
     Attributes:
@@ -243,8 +242,7 @@ class AreasPagedResponse:
     data: Optional[Tuple[Area, ...]] = None
 
 
-@dataclass(frozen=True)
-class GeoAssetsPagedResponse:
+class GeoAssetsPagedResponse(SignalBaseModel):
     """Paged response for geo Assets from the Geos API.
 
     Attributes:
@@ -254,8 +252,7 @@ class GeoAssetsPagedResponse:
     data: Optional[Tuple[GeoAsset, ...]] = None
 
 
-@dataclass(frozen=True)
-class CountriesPagedResponse:
+class CountriesPagedResponse(SignalBaseModel):
     """Paged response for countries from the Geos API.
 
     Attributes:
@@ -265,8 +262,7 @@ class CountriesPagedResponse:
     data: Optional[Tuple[Country, ...]] = None
 
 
-@dataclass(frozen=True)
-class PortsPagedResponse:
+class PortsPagedResponse(SignalBaseModel):
     """Paged response for ports from the Geos API.
 
     Attributes:

@@ -14,26 +14,29 @@ def parse_freight_pricing(json_list: List[Mapping[str, Any]]) -> \
         load_ports = json.get("loadPorts", empty_ports)
         discharge_ports = json.get("dischargePorts", empty_ports)
         pricing = FreightPricing(
-            cast(str, json.get("vesselClass")),
-            cast(float, json.get("rate")),
-            cast(str, json.get("rateType")),
-            cast(float, json.get("estimatedFlatRate")),
-            Cost(costs.get("canal"), costs.get("freightCost"),
-                 costs.get("otherPortExpenses")),
-            cast(float, json.get("totalFreightCost")),
-            cast(float, json.get("totalFreightRate")),
-            cast(str, json.get("routeType")),
-            [Port(name=load_port.get("name"),
-                  country=load_port.get("country"),
-                  area=load_port.get("area"))
-             for load_port in load_ports],
-            [Port(name=discharge_port.get("name"),
-                  country=discharge_port.get("country"),
-                  area=discharge_port.get("area"))
-             for discharge_port in discharge_ports],
-            cast(float, json.get("quantity")),
-            cast(bool, json.get("minFlatAugustaUsed")),
-            cast(List[str], json.get("routingChoices")),
+            vessel_class=cast(str, json.get("vesselClass")),
+            rate=cast(float, json.get("rate")),
+            rate_type=cast(str, json.get("rateType")),
+            estimated_flat_rate=cast(float, json.get("estimatedFlatRate")),
+            costs=Cost(
+                canal=costs.get("canal"),
+                freight_cost=costs.get("freightCost"),
+                other_port_expenses=costs.get("otherPortExpenses"),
+            ),
+            total_freight_cost=cast(float, json.get("totalFreightCost")),
+            total_freight_rate=cast(float, json.get("totalFreightRate")),
+            route_type=cast(str, json.get("routeType")),
+            load_ports=[Port(name=load_port.get("name"),
+                             country=load_port.get("country"),
+                             area=load_port.get("area"))
+                        for load_port in load_ports],
+            discharge_ports=[Port(name=discharge_port.get("name"),
+                                  country=discharge_port.get("country"),
+                                  area=discharge_port.get("area"))
+                             for discharge_port in discharge_ports],
+            quantity=cast(float, json.get("quantity")),
+            min_flat_augusta_used=cast(bool, json.get("minFlatAugustaUsed")),
+            routing_choices=cast(List[str], json.get("routingChoices")),
         )
         pricing_list.append(pricing)
     return tuple(pricing_list)

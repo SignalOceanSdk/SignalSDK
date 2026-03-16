@@ -1,11 +1,11 @@
 # noqa: D100
 
-from dataclasses import dataclass
 from decimal import Decimal
 
+from signal_ocean.util.pydantic_base import SignalBaseModel
 
-@dataclass(frozen=True)
-class Totals:
+
+class Totals(SignalBaseModel):
     """Total costs of moving freight.
 
     Attributes:
@@ -18,8 +18,7 @@ class Totals:
     total_cost_per_ton: Decimal
 
 
-@dataclass(frozen=True)
-class Costs:
+class Costs(SignalBaseModel):
     """Individual costs of moving freight.
 
     Attributes:
@@ -34,8 +33,7 @@ class Costs:
     canal: Decimal
 
 
-@dataclass(frozen=True)
-class FreightPricing:
+class FreightPricing(SignalBaseModel):
     """Freight pricing for a specific vessel class.
 
     Attributes:

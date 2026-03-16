@@ -1,10 +1,9 @@
 # noqa: D100
 
-from dataclasses import dataclass
+from ..util.pydantic_base import SignalBaseModel
 
 
-@dataclass(frozen=True)
-class Area:
+class Area(SignalBaseModel):
     """A geographical area.
 
     Attributes:

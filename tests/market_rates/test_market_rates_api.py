@@ -84,8 +84,12 @@ def test_get_vessel_classes():
     vessel_classes = api.get_vessel_classes()
 
     assert vessel_classes == tuple(
-        VesselClass(vessel_class["id"], vessel_class["vessel_type_id"],
-                    vessel_class["from_size"], vessel_class["to_size"],
-                    vessel_class["name"], vessel_class["vessel_type"],
-                    vessel_class["defining_size"], vessel_class["size"])
+        VesselClass(id=vessel_class["id"],
+                    vessel_type_id=vessel_class["vessel_type_id"],
+                    from_size=vessel_class["from_size"],
+                    to_size=vessel_class["to_size"],
+                    name=vessel_class["name"],
+                    vessel_type=vessel_class["vessel_type"],
+                    defining_size=vessel_class["defining_size"],
+                    size=vessel_class["size"])
         for vessel_class in VESSEL_CLASSES)

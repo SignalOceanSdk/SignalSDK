@@ -113,5 +113,5 @@ def test_fixtures_field_names():
         "Note",
     ]
     snake_case_api_fields = list(map(_to_snake_case, api_fields))
-    scraped_fixtures_model_fields = list(ScrapedFixture.__dataclass_fields__)
+    scraped_fixtures_model_fields = list(ScrapedFixture.model_fields)
     assert snake_case_api_fields == scraped_fixtures_model_fields

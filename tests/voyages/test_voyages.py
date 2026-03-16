@@ -304,7 +304,7 @@ _mock_voyages_paged_flat_response_data_2 = {
 }
 
 _mock_voyages_paged_flat_response_2 = VoyagesFlatPagedResponse(
-    data=VoyagesFlat((_mock_flat_voyage_2,), (), (), ())
+    data=VoyagesFlat(voyages=(_mock_flat_voyage_2,), events=(), event_details=(), geos=())
 )
 
 _mock_flat_voyages_1 = VoyagesFlat(
@@ -340,16 +340,13 @@ _mock_voyages_paged_nested_response_data_1 = {
 _mock_voyages_paged_nested_response_data_2 = \
     {'Data': [_mock_nested_voyage_data_2]}
 
-_mock_nested_event_1 = dataclasses.replace(
-    _mock_event_1,
-    event_details=(_mock_event_detail_1, _mock_event_detail_2))
-_mock_nested_event_2 = dataclasses.replace(
-    _mock_event_2,
-    event_details=())
-_mock_nested_voyage_1 = dataclasses.replace(
-    _mock_flat_voyage_1,
-    events=(_mock_nested_event_1, _mock_nested_event_2))
-_mock_nested_voyage_2 = dataclasses.replace(_mock_flat_voyage_2, events=())
+_mock_nested_event_1 = _mock_event_1.model_copy(
+    update={'event_details': (_mock_event_detail_1, _mock_event_detail_2)})
+_mock_nested_event_2 = _mock_event_2.model_copy(
+    update={'event_details': ()})
+_mock_nested_voyage_1 = _mock_flat_voyage_1.model_copy(
+    update={'events': (_mock_nested_event_1, _mock_nested_event_2)})
+_mock_nested_voyage_2 = _mock_flat_voyage_2.model_copy(update={'events': ()})
 
 _mock_voyages = (_mock_nested_voyage_1, _mock_nested_voyage_2)
 
@@ -490,8 +487,9 @@ _mock_advanced_search_voyage = Voyage(
     fixture_is_hold=False, is_implied_by_ais=True,
     has_manual_entries=None, ballast_distance=9036.45, laden_distance=None,
     predicted_ballast_distance=9032.41, predicted_laden_distance=9900.03,
-    year_built=2015, suez_crossing='Laden', panama_crossing='Ballast',
-    canakkale_crossing='Both', bosporus_crossing='Laden'
+    year_built=2015, pit_vessel_name='S Vessel', suez_crossing='Laden',
+    panama_crossing='Ballast', canakkale_crossing='Both',
+    bosporus_crossing='Laden'
 )
 
 _mock_condensed_response_data_1 = {
@@ -581,8 +579,9 @@ _mock_condensed_voyage_1 = VoyageCondensed(
     fixture_is_hold=False, is_implied_by_ais=True,
     has_manual_entries=None, ballast_distance=9036.45, laden_distance=None,
     predicted_ballast_distance=9032.41, predicted_laden_distance=9900.03,
-    year_built=2015, suez_crossing='Laden', panama_crossing='Ballast',
-    canakkale_crossing='Both', bosporus_crossing='Laden',
+    year_built=2015, pit_vessel_name='S Vessel', suez_crossing='Laden',
+    panama_crossing='Ballast', canakkale_crossing='Both',
+    bosporus_crossing='Laden',
     starting_port_name='Port name', starting_port_id=1,
     first_load_country_name='First load country name',
     first_load_country_id=10,
@@ -684,8 +683,9 @@ _mock_condensed_voyage_2 = VoyageCondensed(
     fixture_is_hold=False, is_implied_by_ais=True,
     has_manual_entries=None, ballast_distance=9036.45, laden_distance=None,
     predicted_ballast_distance=9032.41, predicted_laden_distance=9900.03,
-    year_built=2015, suez_crossing='Laden', panama_crossing='Ballast',
-    canakkale_crossing='Both', bosporus_crossing='Laden',
+    year_built=2015, pit_vessel_name='S Vessel', suez_crossing='Laden',
+    panama_crossing='Ballast', canakkale_crossing='Both',
+    bosporus_crossing='Laden',
     starting_port_name='Port name', starting_port_id=1,
     first_load_country_name='First load country name',
     first_load_country_id=10,

@@ -126,41 +126,41 @@ def test_parse_route_response():
 
     assert len(result.calculated_route) == 2
     assert result.calculated_route[0] == Point(
-        Decimal("42.500"),
-        Decimal("47.8"))
+        lat=Decimal("42.500"),
+        lon=Decimal("47.8"))
     assert result.calculated_route[1] == Point(
-        Decimal("52.500"),
-        Decimal("57.8"))
+        lat=Decimal("52.500"),
+        lon=Decimal("57.8"))
 
     assert len(result.routing_points_on_route) == 2
     assert result.routing_points_on_route[0] == PointsOnRoute(
-        True,
-        False,
-        Decimal("4500.5"),
-        Decimal("500.85"),
-        200,
-        False,
-        "Gibraltar",
-        True,
-        False,
-        Point (
-            Decimal("42.500"),
-            Decimal("47.8"),
+        is_hra=True,
+        is_seca=False,
+        distance=Decimal("4500.5"),
+        distance_to_enter=Decimal("500.85"),
+        heading=200,
+        editable=False,
+        name="Gibraltar",
+        is_shown=True,
+        delay_mins=False,
+        center_point=Point(
+            lat=Decimal("42.500"),
+            lon=Decimal("47.8"),
         ),
     )
     assert result.routing_points_on_route[1] == PointsOnRoute(
-        True,
-        False,
-        Decimal("5500.5"),
-        Decimal("600.85"),
-        100,
-        True,
-        "Gela",
-        False,
-        True,
-        Point (
-            Decimal("52.500"),
-            Decimal("57.8"),
+        is_hra=True,
+        is_seca=False,
+        distance=Decimal("5500.5"),
+        distance_to_enter=Decimal("600.85"),
+        heading=100,
+        editable=True,
+        name="Gela",
+        is_shown=False,
+        delay_mins=True,
+        center_point=Point(
+            lat=Decimal("52.500"),
+            lon=Decimal("57.8"),
         ),
     )
 
@@ -178,41 +178,41 @@ def test_parse_route_response():
     assert len(result.alternative_paths) == 1
     alternative_path = result.alternative_paths[0]
     assert alternative_path.calculated_route[0] == Point(
-        Decimal("42.500"),
-        Decimal("47.8"))
+        lat=Decimal("42.500"),
+        lon=Decimal("47.8"))
     assert alternative_path.calculated_route[1] == Point(
-        Decimal("52.500"),
-        Decimal("57.8"))
+        lat=Decimal("52.500"),
+        lon=Decimal("57.8"))
     assert alternative_path.distance == Decimal("700.34")
     assert len(alternative_path.routing_points_on_route) == 2
     assert alternative_path.routing_points_on_route[0] == PointsOnRoute(
-        True,
-        False,
-        Decimal("4500.5"),
-        Decimal("500.85"),
-        200,
-        False,
-        "Gibraltar",
-        True,
-        False,
-        Point (
-            Decimal("42.500"),
-            Decimal("47.8"),
+        is_hra=True,
+        is_seca=False,
+        distance=Decimal("4500.5"),
+        distance_to_enter=Decimal("500.85"),
+        heading=200,
+        editable=False,
+        name="Gibraltar",
+        is_shown=True,
+        delay_mins=False,
+        center_point=Point(
+            lat=Decimal("42.500"),
+            lon=Decimal("47.8"),
         ),
     )
     assert alternative_path.routing_points_on_route[1] == PointsOnRoute(
-        True,
-        False,
-        Decimal("5500.5"),
-        Decimal("600.85"),
-        100,
-        True,
-        "Gela",
-        False,
-        True,
-        Point (
-            Decimal("52.500"),
-            Decimal("57.8"),
+        is_hra=True,
+        is_seca=False,
+        distance=Decimal("5500.5"),
+        distance_to_enter=Decimal("600.85"),
+        heading=100,
+        editable=True,
+        name="Gela",
+        is_shown=False,
+        delay_mins=True,
+        center_point=Point(
+            lat=Decimal("52.500"),
+            lon=Decimal("57.8"),
         ),
     )
     assert alternative_path.piracy_distance == Decimal("1000.45")

@@ -1,10 +1,9 @@
 # noqa: D100
 
-from dataclasses import dataclass
+from signal_ocean.util.pydantic_base import IdentityEqModel
 
 
-@dataclass(frozen=True, eq=False)
-class Port:
+class Port(IdentityEqModel):
     """A maritime facility where vessels can dock.
 
     Attributes:

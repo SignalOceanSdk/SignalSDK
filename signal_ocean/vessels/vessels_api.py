@@ -19,14 +19,6 @@ class VesselsAPI:
     relative_url = "vessels-api/v3/"
     default_pit = str(date.today())
 
-    rename_keys = {"STSTCoating": "stst_coating",
-                   "BWTS": "bwts",
-                   "GHG": "ghg",
-                   "VCM": "vcm",
-                   "IMOType1": "imo_type_1",
-                   "IMOType2": "imo_type_2",
-                   "IMOType3": "imo_type_3"}
-
     def __init__(self, connection: Optional[Connection] = None):
         """Initializes VesselsAPI.
 
@@ -73,8 +65,7 @@ class VesselsAPI:
                       )
         response = get_single(self.__connection,
                               url,
-                              SingleVesselPagedResponse,
-                              rename_keys=VesselsAPI.rename_keys)
+                              SingleVesselPagedResponse)
         return response if response is None else response.data
 
     def get_vessels(self,
@@ -108,8 +99,7 @@ class VesselsAPI:
                                   else f"&token={nextPageToken}")
             response = get_single(self.__connection,
                                   specific_url,
-                                  VesselPagedResponse,
-                                  rename_keys=VesselsAPI.rename_keys)
+                                  VesselPagedResponse)
             vessels = vessels + (response.data if response else ())
             nextPageToken = response.next_page_token if response else None
             hasNextPage = nextPageToken is not None
@@ -139,8 +129,7 @@ class VesselsAPI:
                                   else f"&token={nextPageToken}")
             response = get_single(self.__connection,
                                   specific_url,
-                                  VesselPagedResponse,
-                                  rename_keys=VesselsAPI.rename_keys)
+                                  VesselPagedResponse)
             vessels = vessels + (response.data if response else ())
             nextPageToken = response.next_page_token if response else None
             hasNextPage = nextPageToken is not None

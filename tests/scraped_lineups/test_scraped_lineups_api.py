@@ -84,5 +84,5 @@ def test_lineups_field_names():
         "IsPrivate",
     ]
     snake_case_api_fields = list(map(_to_snake_case, api_fields))
-    scraped_lineups_model_fields = list(ScrapedLineup.__dataclass_fields__)
+    scraped_lineups_model_fields = list(ScrapedLineup.model_fields)
     assert snake_case_api_fields == scraped_lineups_model_fields

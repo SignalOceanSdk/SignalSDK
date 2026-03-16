@@ -178,7 +178,7 @@ class PortExpensesAPI:
         Returns:
             A tuple of all available vessel types.
         """
-        vessel_types = tuple(VesselType(vessel_type.value, vessel_type.name)
+        vessel_types = tuple(VesselType(id=vessel_type.value, name=vessel_type.name)
                              for vessel_type in VesselTypeEnum)
         return vessel_types
 

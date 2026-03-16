@@ -1,10 +1,9 @@
 # noqa: D100
 
-from dataclasses import dataclass
+from signal_ocean.util.pydantic_base import SignalBaseModel
 
 
-@dataclass(frozen=True)
-class PortExpenses:
+class PortExpenses(SignalBaseModel):
     """The fees for port's facilities and services.
 
     Attributes:
@@ -44,8 +43,7 @@ class PortExpenses:
     anchorage_dues: int
 
 
-@dataclass(frozen=True)
-class Port:
+class Port(SignalBaseModel):
     """A maritime facility where vessels can dock.
 
     Attributes:
@@ -57,8 +55,7 @@ class Port:
     name: str
 
 
-@dataclass(frozen=True)
-class VesselType:
+class VesselType(SignalBaseModel):
     """A vessel type.
 
     Attributes:

@@ -1,15 +1,13 @@
 # noqa: D100
 
-from dataclasses import dataclass
-from datetime import datetime
-from typing import Optional, Tuple
+from typing import Any, Optional, Tuple
 
 from .area import Area
 from .location_taxonomy import LocationTaxonomy
+from ..util.pydantic_base import IdentityEqModel, UTCDatetime
 
 
-@dataclass(frozen=True, eq=False)
-class Vessel:
+class Vessel(IdentityEqModel):
     """Holds information for a vessel that participates in a tonnage list.
 
     Contains both static vessel and point-in-time vessel data.
@@ -78,30 +76,30 @@ class Vessel:
     """
 
     imo: int
-    name: str
-    vessel_class: str
-    ice_class: Optional[str]
-    year_built: int
-    deadweight: int
-    length_overall: float
-    breadth_extreme: int
-    market_deployment: str
-    push_type: str
-    open_port: str
-    open_date: Optional[datetime]
-    operational_status: str
-    commercial_operator: str
-    commercial_status: str
-    eta: Optional[datetime]
-    latest_ais: Optional[datetime]
-    subclass: str
-    willing_to_switch_subclass: bool
-    open_prediction_accuracy: str
-    open_areas: Tuple[Area, ...]
-    availability_port_type: str
-    availability_date_type: str
+    name: Optional[str] = None
+    vessel_class: Optional[str] = None
+    ice_class: Optional[str] = None
+    year_built: Optional[int] = None
+    deadweight: Optional[int] = None
+    length_overall: Optional[float] = None
+    breadth_extreme: Optional[int] = None
+    market_deployment: Optional[str] = None
+    push_type: Optional[str] = None
+    open_port: Optional[str] = None
+    open_date: Optional[UTCDatetime] = None
+    operational_status: Optional[str] = None
+    commercial_operator: Optional[str] = None
+    commercial_status: Optional[str] = None
+    eta: Optional[UTCDatetime] = None
+    latest_ais: Optional[UTCDatetime] = None
+    subclass: Optional[str] = None
+    willing_to_switch_subclass: Optional[bool] = None
+    open_prediction_accuracy: Optional[str] = None
+    open_areas: Optional[Tuple[Area, ...]] = None
+    availability_port_type: Optional[str] = None
+    availability_date_type: Optional[str] = None
 
-    def __post_init__(self) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:  # noqa: D105
         if self.open_areas is None:
             object.__setattr__(self, "open_areas", tuple())
 

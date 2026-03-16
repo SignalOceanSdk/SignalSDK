@@ -42,17 +42,23 @@ def test_parses_response_correctly():
     assert first.vessel_class == "Suezmax"
     assert first.cargo_quantity == Decimal("130000")
     assert first.costs == Costs(
-        Decimal("5.330548"), Decimal("1439247.960000"), Decimal("0.0")
+        freight_rate=Decimal("5.330548"),
+        freight_cost=Decimal("1439247.960000"),
+        canal=Decimal("0.0"),
     )
     assert first.totals == Totals(
-        Decimal("1498247.960000"), Decimal("5.54906651")
+        total_cost=Decimal("1498247.960000"),
+        total_cost_per_ton=Decimal("5.54906651"),
     )
 
     assert second.vessel_class == "Aframax"
     assert second.cargo_quantity == Decimal("80000")
     assert second.costs == Costs(
-        Decimal("8.9608350"), Decimal("1209712.7250000"), Decimal("20.30")
+        freight_rate=Decimal("8.9608350"),
+        freight_cost=Decimal("1209712.7250000"),
+        canal=Decimal("20.30"),
     )
     assert second.totals == Totals(
-        Decimal("1249712.7250000"), Decimal("9.257131")
+        total_cost=Decimal("1249712.7250000"),
+        total_cost_per_ton=Decimal("9.257131"),
     )

@@ -1,12 +1,13 @@
 """Models instantiated by the vessels api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
 from enum import Enum
 
+from pydantic import Field
 
-@dataclass(frozen=True)
-class VesselClass:
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
+
+
+class VesselClass(SignalBaseModel):
     """Vessel class characteristics.
 
     Detailed characteristics of each vessel class, including its defining
@@ -32,7 +33,7 @@ class VesselClass:
             kt(kilotons), TEU-> TEU, CubicSize-> cbm(cubic meters).
     """
 
-    id: int
+    id: int = Field(validation_alias='Id')
     vessel_type_id: int
     from_size: int
     to_size: int
@@ -42,8 +43,7 @@ class VesselClass:
     size: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class VesselType:
+class VesselType(SignalBaseModel):
     """A vessel type.
 
     Attributes:
@@ -54,12 +54,11 @@ class VesselType:
             LNG (Liquified Natural gas), LPG (Liquified Petroleum Gas).
     """
 
-    id: int
+    id: int = Field(validation_alias='Id')
     name: str
 
 
-@dataclass(frozen=True)
-class VesselSanction:
+class VesselSanction(SignalBaseModel):
     """Sanction data for a vessel.
 
     Including details such as the sanction date, the
@@ -85,13 +84,12 @@ class VesselSanction:
     """
     sanctioned_by: str
     sanction_program: str
-    sanction_start: datetime
-    sanction_end: Optional[datetime] = None
+    sanction_start: UTCDatetime
+    sanction_end: Optional[UTCDatetime] = None
     sanction_description: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class Vessel:
+class Vessel(SignalBaseModel):
     """Contains all details of a vessel.
 
     Attributes:
@@ -137,7 +135,7 @@ class Vessel:
             spaces which are not used for the purpose for which the ship is
             built.
         draught: Numeric, measured in meters [m], denotes the distance between
-            the ship’s keel and the waterline of the vessel. As the
+            the ship's keel and the waterline of the vessel. As the
             instantaneous draught of a vessel is a function of the vessel's
             loading status, this vessel characteristics refers to the maximum
             draught of the vessel.
@@ -148,7 +146,7 @@ class Vessel:
             the uppermost continuous deck.
         year_built: Numeric, year format, the year the vessel was built.
         clean_dirty_willing: Boolean, indicates whether a tanker vessel is
-            ‘willing’ to compete in the market complementary to the one shown
+            'willing' to compete in the market complementary to the one shown
             in Trade. For example an LR willing dirty will have Trade=Product
             and CleanDirtyWilling=true.
         main_engine_manufacturer_id: Numeric ID corresponding to the different
@@ -265,7 +263,7 @@ class Vessel:
             measure derived by the NRT (NetRatedTonnage) and modified for Suez
             Canal purposes. Often used to compute tonnage-based fees
         class_renewal_date: This value indicates the latest date of the
-            vessel's “Class Renewal”, which is the official survey that all
+            vessel's "Class Renewal", which is the official survey that all
             seagoing vessels that travel international must do every 5 years
         mewis_duct: The date the Becker Mewis Duct equipment was installed
         inert_gas_system: Boolean, indicates whether a vessel has inert gas
@@ -342,7 +340,7 @@ class Vessel:
             bacteria) from ballast water.
         grabs_fitted: Boolean, denotes whether the vessel is fitted with
             grabs. Grabs are fitted on cranes to allow the handling of cargo.
-        ghg: String, denotes the vessel’s GHG (Greenhouse Gas) Emissions
+        ghg: String, denotes the vessel's GHG (Greenhouse Gas) Emissions
             Rating. Developed by RightShip, GHG compares a ship's
             design efficiency with peer vessels using a simple A–G scale.
         order_book_status_id: Int (1-8), denotes the OrderBook Status ID
@@ -423,7 +421,7 @@ class Vessel:
             loading or unloading of liquid cargoes.
         rail_to_center_manifold: Numeric, measured in meters
             [m],  represents the horizontal distance from the
-            ship’s rail (the protective barrier along the edge
+            ship's rail (the protective barrier along the edge
             of the deck) to the center of the manifold. The
             manifold is the point on the ship where cargo hoses
             or arms are connected for the loading or unloading
@@ -434,7 +432,7 @@ class Vessel:
             should be equipped with bow chain stoppers.
         propulsion_type: String (e.g., "Dual Fuel",
             "Conventional Fuel", or "Steam Turbine"),
-            describes the vessel’s main engine and how it
+            describes the vessel's main engine and how it
             moves. It indicates the type of propulsion system
             used, which affects fuel use, efficiency, and
             emissions.
@@ -472,7 +470,7 @@ class Vessel:
     clean_dirty_willing: bool
     main_engine_manufacturer_id: int
     classification_register_id: int
-    updated_date: datetime
+    updated_date: UTCDatetime
     geared: Optional[bool] = None
     interline_coating: Optional[int] = None
     vessel_name: Optional[str] = None
@@ -486,20 +484,20 @@ class Vessel:
     commercial_operator: Optional[str] = None
     built_country_code: Optional[str] = None
     built_country_name: Optional[str] = None
-    scrapped_date: Optional[datetime] = None
+    scrapped_date: Optional[UTCDatetime] = None
     shipyard_built_id: Optional[int] = None
     shipyard_built_name: Optional[str] = None
     ice_class: Optional[str] = None
-    teu: Optional[int] = None
-    teu14: Optional[int] = None
+    teu: Optional[int] = Field(None, validation_alias="TEU")
+    teu14: Optional[int] = Field(None, validation_alias="TEU14")
     reefers: Optional[int] = None
     panama_canal_net_tonnage: Optional[int] = None
     cubic_size: Optional[int] = None
-    scrubbers_date: Optional[datetime] = None
+    scrubbers_date: Optional[UTCDatetime] = None
     summer_tpc: Optional[float] = None
     lightship_tonnes: Optional[int] = None
     main_engine_manufacturer: Optional[str] = None
-    delivery_date: Optional[datetime] = None
+    delivery_date: Optional[UTCDatetime] = None
     classification_register: Optional[str] = None
     number_of_holds: Optional[int] = None
     number_of_hatches: Optional[int] = None
@@ -508,19 +506,19 @@ class Vessel:
     number_of_bow_chain_stoppers: Optional[int] = None
     grain_capacity: Optional[int] = None
     bale_capacity: Optional[int] = None
-    main_engine_kw: Optional[int] = None
-    main_engine_rpm: Optional[int] = None
+    main_engine_kw: Optional[int] = Field(None, validation_alias="MainEngineKW")
+    main_engine_rpm: Optional[int] = Field(None, validation_alias="MainEngineRPM")
     air_draught: Optional[float] = None
     deck_teu: Optional[int] = None
     under_deck_teu: Optional[int] = None
     suez_canal_net_tonnage: Optional[int] = None
-    class_renewal_date: Optional[datetime] = None
-    mewis_duct: Optional[datetime] = None
+    class_renewal_date: Optional[UTCDatetime] = None
+    mewis_duct: Optional[UTCDatetime] = None
     inert_gas_system: Optional[str] = None
-    imo_type_1: Optional[str] = None
-    imo_type_2: Optional[str] = None
-    imo_type_3: Optional[str] = None
-    stst_coating: Optional[int] = None
+    imo_type_1: Optional[str] = Field(None, validation_alias="IMOType1")
+    imo_type_2: Optional[str] = Field(None, validation_alias="IMOType2")
+    imo_type_3: Optional[str] = Field(None, validation_alias="IMOType3")
+    stst_coating: Optional[int] = Field(None, validation_alias="STSTCoating")
     epoxy_coating: Optional[int] = None
     zinc_coating: Optional[int] = None
     marineline_coating: Optional[int] = None
@@ -539,24 +537,24 @@ class Vessel:
     box_shaped_holds: Optional[bool] = None
     neo_panama_locks: Optional[bool] = None
     australian_hold_ladder: Optional[bool] = None
-    co2_fitted: Optional[bool] = None
+    co2_fitted: Optional[bool] = Field(None, validation_alias="CO2Fitted")
     a60_bulkhead: Optional[bool] = None
     log_fitted: Optional[bool] = None
     open_hatch: Optional[bool] = None
-    bwts: Optional[bool] = None
+    bwts: Optional[bool] = Field(None, validation_alias="BWTS")
     grabs_fitted: Optional[bool] = None
-    ghg: Optional[str] = None
+    ghg: Optional[str] = Field(None, validation_alias="GHG")
     order_book_status_id: Optional[int] = None
     order_book_status: Optional[str] = None
-    order_date: Optional[datetime] = None
-    construction_start_date: Optional[datetime] = None
-    launch_date: Optional[datetime] = None
-    scheduled_delivery_date: Optional[datetime] = None
-    cancelled_date: Optional[datetime] = None
+    order_date: Optional[UTCDatetime] = None
+    construction_start_date: Optional[UTCDatetime] = None
+    launch_date: Optional[UTCDatetime] = None
+    scheduled_delivery_date: Optional[UTCDatetime] = None
+    cancelled_date: Optional[UTCDatetime] = None
     minimum_temperature: Optional[float] = None
     maximum_pressure: Optional[float] = None
     ammonia: Optional[bool] = None
-    vcm: Optional[bool] = None
+    vcm: Optional[bool] = Field(None, validation_alias="VCM")
     ethylene: Optional[bool] = None
     ballast_parallel_body_length: Optional[float] = None
     empty_parallel_body_length: Optional[float] = None
@@ -574,8 +572,7 @@ class Vessel:
     number_of_bow_thrusters: Optional[int] = None
 
 
-@dataclass(frozen=True)
-class SingleVesselPagedResponse:
+class SingleVesselPagedResponse(SignalBaseModel):
     """Vessel paged response.
 
     Attributes:
@@ -584,8 +581,7 @@ class SingleVesselPagedResponse:
     data: Vessel
 
 
-@dataclass(frozen=True)
-class VesselPagedResponse:
+class VesselPagedResponse(SignalBaseModel):
     """Vessel paged response.
 
     Attributes:
@@ -597,8 +593,7 @@ class VesselPagedResponse:
     next_page_token: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class DifferenceByFieldValue:
+class DifferenceByFieldValue(SignalBaseModel):
     """Changes happened on field data for a specific value.
 
     Attributes:
@@ -610,13 +605,12 @@ class DifferenceByFieldValue:
         name: The corresponding name of value.
     """
     value: str
-    begin_date: datetime
-    end_date: datetime
+    begin_date: UTCDatetime
+    end_date: UTCDatetime
     name: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class DifferenceByField:
+class DifferenceByField(SignalBaseModel):
     """Changes happened on a specific field.
 
     Attributes:
@@ -639,8 +633,7 @@ class FieldHistory(Enum):
     Flag = 3
 
 
-@dataclass(frozen=True)
-class VesselFieldResponse:
+class VesselFieldResponse(SignalBaseModel):
     """Changes happened on a specific IMO.
 
     Attributes:
@@ -651,8 +644,7 @@ class VesselFieldResponse:
     history: Tuple[DifferenceByField, ...]
 
 
-@dataclass(frozen=True)
-class VesselHistoryPagedResponse:
+class VesselHistoryPagedResponse(SignalBaseModel):
     """Vessel history paged response.
 
     Attributes:
@@ -664,8 +656,7 @@ class VesselHistoryPagedResponse:
     next_page_token: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class VesselHistoryPerIMOPagedResponse:
+class VesselHistoryPerIMOPagedResponse(SignalBaseModel):
     """Vessel history paged response.
 
     Attributes:

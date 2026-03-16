@@ -1,10 +1,10 @@
-from dataclasses import dataclass
 from typing import Tuple, Dict, Union
 from unittest.mock import MagicMock
 
 import requests
 
 from signal_ocean import Connection
+from signal_ocean.util.pydantic_base import SignalBaseModel
 from signal_ocean.util.request_helpers import get_single, get_multiple
 
 __test_response_1 = {'ModelID': 1, 'ModelName': 'model1'}
@@ -12,8 +12,7 @@ __test_response_2 = {'ModelID': 2, 'ModelName': 'model2'}
 __test_responses = (__test_response_1, __test_response_2)
 
 
-@dataclass(frozen=True)
-class DummyModel:
+class DummyModel(SignalBaseModel):
     model_id: int
     model_name: str
 

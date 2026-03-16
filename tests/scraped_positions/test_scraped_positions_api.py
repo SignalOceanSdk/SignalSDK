@@ -61,5 +61,5 @@ def test_positions_field_names():
         "IsPrivate",
     ]
     snake_case_api_fields = list(map(_to_snake_case, api_fields))
-    scraped_positions_model_fields = list(ScrapedPosition.__dataclass_fields__)
+    scraped_positions_model_fields = list(ScrapedPosition.model_fields)
     assert snake_case_api_fields == scraped_positions_model_fields

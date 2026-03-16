@@ -147,7 +147,7 @@ def test_get_vessel_types():
     vessel_types = api.get_vessel_types()
 
     assert vessel_types == tuple(
-        VesselType(vessel_type.value, vessel_type.name)
+        VesselType(id=vessel_type.value, name=vessel_type.name)
                              for vessel_type in VesselTypeEnum)
 
 

@@ -1,13 +1,11 @@
 """Models instantiated by the scraped lineups api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
 
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
 
-@dataclass(frozen=True)
-class ScrapedLineup:
+class ScrapedLineup(SignalBaseModel):
     """Detailed information about a scraped lineup.
 
     Attributes:
@@ -279,8 +277,8 @@ class ScrapedLineup:
     line_to: Optional[int] = None
     in_line_order: Optional[int] = None
     source: Optional[str] = None
-    updated_date: Optional[datetime] = None
-    received_date: Optional[datetime] = None
+    updated_date: Optional[UTCDatetime] = None
+    received_date: Optional[UTCDatetime] = None
     is_deleted: Optional[bool] = False
     low_confidence: Optional[bool] = False
 
@@ -303,15 +301,15 @@ class ScrapedLineup:
 
     # eta
     scraped_eta: Optional[str] = None
-    eta: Optional[datetime] = None
+    eta: Optional[UTCDatetime] = None
 
     # etb
     scraped_etb: Optional[str] = None
-    etb: Optional[datetime] = None
+    etb: Optional[UTCDatetime] = None
 
     # etd
     scraped_etd: Optional[str] = None
-    etd: Optional[datetime] = None
+    etd: Optional[UTCDatetime] = None
 
     # location
     scraped_location: Optional[str] = None
@@ -389,8 +387,7 @@ class ScrapedLineup:
     is_private: Optional[bool] = False
 
 
-@dataclass(frozen=True)
-class ScrapedLineupsResponse(ScrapedDataResponse[ScrapedLineup]):
+class ScrapedLineupsResponse(SignalBaseModel, ScrapedDataResponse[ScrapedLineup]):
     """Paged response for scraped lineups from the Scraped Lineups API.
 
     Attributes:

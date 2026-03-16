@@ -1,14 +1,15 @@
 # noqa: D100
 
-from dataclasses import dataclass
 from typing import Iterable, Optional
+
+from pydantic import ConfigDict
 
 from .models import Port
 from .._internals import contains_caseless
+from signal_ocean.util.pydantic_base import SignalBaseModel, _to_pascal_case
 
 
-@dataclass(eq=False)
-class PortFilter:
+class PortFilter(SignalBaseModel):
     """A filter used to find specific ports.
 
     Attributes:
@@ -16,6 +17,15 @@ class PortFilter:
             names partially match (contain) the attribute's value will be
             returned. Matching is case-insensitive.
     """
+
+    model_config = ConfigDict(
+        frozen=False,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_pascal_case,
+    )
+    __eq__ = object.__eq__
+    __hash__ = object.__hash__
 
     name_like: Optional[str] = None
 

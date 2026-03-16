@@ -1,15 +1,16 @@
 # noqa: D100
 
 from datetime import date
-from dataclasses import dataclass, field
 from typing import List, Optional, cast
+
+from pydantic import ConfigDict
 
 from .vessel_subclass import VesselSubclass
 from .._internals import QueryString, format_iso_date
+from ..util.pydantic_base import IdentityEqModel
 
 
-@dataclass(eq=False)
-class VesselFilter:
+class VesselFilter(IdentityEqModel):
     """Enables vessel filtering in a Historical Tonnage List query.
 
     All attributes in this class are optional, i.e. no filtering will be
@@ -78,49 +79,31 @@ class VesselFilter:
             country ids.
     """
 
-    push_types: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
-    market_deployments: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
-    commercial_statuses: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
+    model_config = ConfigDict(frozen=False, populate_by_name=True, extra='ignore')
+
+    push_types: Optional[List[str]] = cast(List[str], [])
+    market_deployments: Optional[List[str]] = cast(List[str], [])
+    commercial_statuses: Optional[List[str]] = cast(List[str], [])
     vessel_subclass: Optional[str] = VesselSubclass.ALL
     add_willing_to_switch_subclass: Optional[bool] = False
     latest_ais_since: Optional[int] = None
-    operational_statuses: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
+    operational_statuses: Optional[List[str]] = cast(List[str], [])
     min_liquid_capacity: Optional[int] = None
     max_liquid_capacity: Optional[int] = None
-    fixture_types: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
-    past_port_visits: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
-    open_port_ids: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
+    fixture_types: Optional[List[str]] = cast(List[str], [])
+    past_port_visits: Optional[List[int]] = cast(List[int], [])
+    open_port_ids: Optional[List[int]] = cast(List[int], [])
     canakkale_cancelling: Optional[date] = None
     open_date: Optional[date] = None
-    ice_classes: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
+    ice_classes: Optional[List[str]] = cast(List[str], [])
     min_cranes_ton_capacity: Optional[int] = None
     max_cranes_ton_capacity: Optional[int] = None
     min_length_overall: Optional[int] = None
     max_length_overall: Optional[int] = None
     min_breadth_extreme: Optional[int] = None
     max_breadth_extreme: Optional[int] = None
-    open_area_ids: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
-    open_country_ids: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
+    open_area_ids: Optional[List[int]] = cast(List[int], [])
+    open_country_ids: Optional[List[int]] = cast(List[int], [])
 
     def _to_query_string(self) -> QueryString:
         return {

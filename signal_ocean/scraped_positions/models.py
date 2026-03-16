@@ -1,13 +1,11 @@
 """Models instantiated by the scraped positions api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
 
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
 
-@dataclass(frozen=True)
-class ScrapedPosition:
+class ScrapedPosition(SignalBaseModel):
     """Detailed information about a scraped position.
 
     Attributes:
@@ -230,8 +228,8 @@ class ScrapedPosition:
     line_from: Optional[int] = None
     line_to: Optional[int] = None
     source: Optional[str] = None
-    updated_date: Optional[datetime] = None
-    received_date: Optional[datetime] = None
+    updated_date: Optional[UTCDatetime] = None
+    received_date: Optional[UTCDatetime] = None
     is_deleted: Optional[bool] = False
     low_confidence: Optional[bool] = False
 
@@ -251,8 +249,8 @@ class ScrapedPosition:
 
     # open date
     scraped_open_date: Optional[str] = None
-    open_date_from: Optional[datetime] = None
-    open_date_to: Optional[datetime] = None
+    open_date_from: Optional[UTCDatetime] = None
+    open_date_to: Optional[UTCDatetime] = None
 
     # open port
     scraped_open_port: Optional[str] = None
@@ -299,8 +297,7 @@ class ScrapedPosition:
     is_private: Optional[bool] = False
 
 
-@dataclass(frozen=True)
-class ScrapedPositionsResponse(ScrapedDataResponse[ScrapedPosition]):
+class ScrapedPositionsResponse(SignalBaseModel, ScrapedDataResponse[ScrapedPosition]):
     """Paged response for scraped positions from the Scraped Positions API.
 
     Attributes:

@@ -1,12 +1,11 @@
 # noqa: D100
 
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional
 
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
-@dataclass(frozen=True)
-class MarketRate:
+
+class MarketRate(SignalBaseModel):
     """The market rate of a certain route or vessel class.
 
     Attributes:
@@ -19,15 +18,14 @@ class MarketRate:
     """
 
     route_id: str
-    rate_date: datetime
+    rate_date: UTCDatetime
     rate_value: float
     unit: str
     vessel_class_id: int
     deprecated_to: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class Route:
+class Route(SignalBaseModel):
     """A route with available market rate.
 
     Attributes:
@@ -51,22 +49,21 @@ class Route:
     id: str
     description: str
     unit: str
-    vessel_class_id: int
-    cargo_id: int
-    load_port_id: int
-    discharge_port_id: int
-    load_area_id: int
-    discharge_area_id: int
+    vessel_class_id: Optional[int] = None
+    cargo_id: Optional[int] = None
+    load_port_id: Optional[int] = None
+    discharge_port_id: Optional[int] = None
+    load_area_id: Optional[int] = None
+    discharge_area_id: Optional[int] = None
     load_port_2_id: Optional[int] = None
     discharge_port_2_id: Optional[int] = None
     load_area_2_id: Optional[int] = None
     discharge_area_2_id: Optional[int] = None
     deprecated_to: Optional[str] = None
-    deprecated_since: Optional[datetime] = None
+    deprecated_since: Optional[UTCDatetime] = None
 
 
-@dataclass(frozen=True)
-class VesselClass:
+class VesselClass(SignalBaseModel):
     """A vessel class.
 
     Attributes:

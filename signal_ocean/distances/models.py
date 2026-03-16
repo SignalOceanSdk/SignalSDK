@@ -1,12 +1,12 @@
 # noqa: D100
 
-from dataclasses import dataclass
 from decimal import Decimal
 from typing import Tuple, Optional, Dict
 
+from signal_ocean.util.pydantic_base import SignalBaseModel
 
-@dataclass(frozen=True)
-class Point:
+
+class Point(SignalBaseModel):
     """A point on the surface of Earth.
 
     Attributes:
@@ -14,12 +14,11 @@ class Point:
         lon: The longitude of the point.
     """
 
-    lat: Decimal
-    lon: Decimal
+    lat: Optional[Decimal] = None
+    lon: Optional[Decimal] = None
 
 
-@dataclass(frozen=True)
-class PointsOnRoute:
+class PointsOnRoute(SignalBaseModel):
     """A point and extra properties needed for a route.
 
     Attributes:
@@ -35,20 +34,19 @@ class PointsOnRoute:
         center_point: The center point of route.
     """
 
-    is_hra: bool
-    is_seca: bool
-    distance: Decimal
-    distance_to_enter: Decimal
-    heading: int
-    editable: bool
-    name: str
-    is_shown: bool
-    delay_mins: int
-    center_point: Point
+    is_hra: Optional[bool] = None
+    is_seca: Optional[bool] = None
+    distance: Optional[Decimal] = None
+    distance_to_enter: Optional[Decimal] = None
+    heading: Optional[int] = None
+    editable: Optional[bool] = None
+    name: Optional[str] = None
+    is_shown: Optional[bool] = None
+    delay_mins: Optional[int] = None
+    center_point: Optional[Point] = None
 
 
-@dataclass(frozen=True)
-class AlternativePath:
+class AlternativePath(SignalBaseModel):
     """An alternative path for the route.
 
     Attributes:
@@ -61,15 +59,14 @@ class AlternativePath:
             considered.
     """
 
-    calculated_route: Tuple[Point, ...]
-    distance: Decimal
-    routing_points_on_route: Tuple[PointsOnRoute, ...]
-    piracy_distance: Decimal
-    seca_distance: Decimal
+    calculated_route: Optional[Tuple[Point, ...]] = None
+    distance: Optional[Decimal] = None
+    routing_points_on_route: Optional[Tuple[PointsOnRoute, ...]] = None
+    piracy_distance: Optional[Decimal] = None
+    seca_distance: Optional[Decimal] = None
 
 
-@dataclass(frozen=True)
-class RouteResponse:
+class RouteResponse(SignalBaseModel):
     """A route between two points.
 
     Attributes:
@@ -88,21 +85,20 @@ class RouteResponse:
         bbox: The bounding box of the route.
     """
 
-    id: int
-    start_point: Point
-    end_point: Point
-    calculated_route: Tuple[Point, ...]
-    routing_points_on_route: Tuple[PointsOnRoute, ...]
-    distance: Decimal
-    piracy_distance: Decimal
-    seca_distance: Decimal
-    alternative_paths: Tuple[AlternativePath, ...]
-    is_empty: bool
-    bbox: Optional[Tuple[Decimal, ...]]
+    id: Optional[int] = None
+    start_point: Optional[Point] = None
+    end_point: Optional[Point] = None
+    calculated_route: Optional[Tuple[Point, ...]] = None
+    routing_points_on_route: Optional[Tuple[PointsOnRoute, ...]] = None
+    distance: Optional[Decimal] = None
+    piracy_distance: Optional[Decimal] = None
+    seca_distance: Optional[Decimal] = None
+    alternative_paths: Optional[Tuple[AlternativePath, ...]] = None
+    is_empty: Optional[bool] = None
+    bbox: Optional[Tuple[Decimal, ...]] = None
 
 
-@dataclass(frozen=True)
-class RouteRestrictions:
+class RouteRestrictions(SignalBaseModel):
     """Restrictions that can be placed upon a route.
 
     Attributes:

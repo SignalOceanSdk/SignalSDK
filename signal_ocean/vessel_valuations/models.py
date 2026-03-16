@@ -1,6 +1,8 @@
 # noqa: D100
-from dataclasses import dataclass, asdict
 from typing import Optional, List, Dict, Any
+
+from pydantic import ConfigDict
+from signal_ocean.util.pydantic_base import SignalBaseModel
 
 
 def _to_camel_case_custom(s: str,
@@ -29,8 +31,7 @@ def _to_camel_case_custom(s: str,
     return result
 
 
-@dataclass(frozen=True)
-class Valuation:
+class Valuation(SignalBaseModel):
     """A valuation for a specific vessel.
 
     Attributes:
@@ -39,6 +40,13 @@ class Valuation:
         scrap_price: The estimated scrapped valuation of the vessel.
         updated_date: Date and time at which the valuation was updated.
     """
+    model_config = ConfigDict(
+        frozen=True,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_camel_case_custom,
+    )
+
     imo: int
     valuation_price: float
     scrap_price: float
@@ -51,16 +59,16 @@ class Valuation:
             Dict representation of Valuation model
 
         """
-        return asdict(
-            self,
-            dict_factory=lambda x: {
-                _to_camel_case_custom(k): v
-                for (k, v) in x if v is not None
-            })
+        def _convert(data):
+            if isinstance(data, dict):
+                return {_to_camel_case_custom(k): _convert(v) for k, v in data.items() if v is not None}
+            elif isinstance(data, list):
+                return [_convert(item) for item in data]
+            return data
+        return _convert(self.model_dump())
 
 
-@dataclass(frozen=True)
-class HistoricalValuation:
+class HistoricalValuation(SignalBaseModel):
     """A historical valuation for a specific vessel.
 
     Attributes:
@@ -69,6 +77,13 @@ class HistoricalValuation:
         valuation_price: The price of the valuation.
         scrap_price: The estimated scrapped valuation of the vessel.
     """
+    model_config = ConfigDict(
+        frozen=True,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_camel_case_custom,
+    )
+
     imo: int
     value_from: str
     valuation_price: float
@@ -81,16 +96,16 @@ class HistoricalValuation:
             Dict representation of HistoricalValuation model
 
         """
-        return asdict(
-            self,
-            dict_factory=lambda x: {
-                _to_camel_case_custom(k): v
-                for (k, v) in x if v is not None
-            })
+        def _convert(data):
+            if isinstance(data, dict):
+                return {_to_camel_case_custom(k): _convert(v) for k, v in data.items() if v is not None}
+            elif isinstance(data, list):
+                return [_convert(item) for item in data]
+            return data
+        return _convert(self.model_dump())
 
 
-@dataclass(frozen=True)
-class PageValuations:
+class PageValuations(SignalBaseModel):
     """The estimated valuations by page.
 
     Attributes:
@@ -101,10 +116,16 @@ class PageValuations:
         valuations: A list/array that contains
         the results of the requested vessel valuations.
     """
+    model_config = ConfigDict(
+        frozen=True,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_camel_case_custom,
+    )
 
     page: int
     page_size: int
-    total: Optional[int]
+    total: Optional[int] = None
     valuations: List[Valuation]
 
     def to_dict(self) -> Dict[Any, Any]:

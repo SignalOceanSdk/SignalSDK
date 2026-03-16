@@ -1,13 +1,11 @@
 """Models instantiated by the scraped fixtures api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
 
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
 
-@dataclass(frozen=True)
-class ScrapedFixture:
+class ScrapedFixture(SignalBaseModel):
     """Detailed information about a scraped fixture.
 
     Attributes:
@@ -439,8 +437,8 @@ class ScrapedFixture:
     line_to: Optional[int] = None
     in_line_order: Optional[int] = None
     source: Optional[str] = None
-    updated_date: Optional[datetime] = None
-    received_date: Optional[datetime] = None
+    updated_date: Optional[UTCDatetime] = None
+    received_date: Optional[UTCDatetime] = None
     is_deleted: Optional[bool] = False
     low_confidence: Optional[bool] = False
 
@@ -462,8 +460,8 @@ class ScrapedFixture:
 
     # laycan
     scraped_laycan: Optional[str] = None
-    laycan_from: Optional[datetime] = None
-    laycan_to: Optional[datetime] = None
+    laycan_from: Optional[UTCDatetime] = None
+    laycan_to: Optional[UTCDatetime] = None
 
     # load
     scraped_load: Optional[str] = None
@@ -528,12 +526,12 @@ class ScrapedFixture:
     open_geo_name: Optional[str] = None
     open_taxonomy_id: Optional[int] = None
     open_taxonomy: Optional[str] = None
-    open_date: Optional[datetime] = None
+    open_date: Optional[UTCDatetime] = None
 
     # delivery date
     scraped_delivery_date: Optional[str] = None
-    delivery_date_from: Optional[datetime] = None
-    delivery_date_to: Optional[datetime] = None
+    delivery_date_from: Optional[UTCDatetime] = None
+    delivery_date_to: Optional[UTCDatetime] = None
 
     # delivery
     scraped_delivery: Optional[str] = None
@@ -586,8 +584,7 @@ class ScrapedFixture:
     note: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class ScrapedFixturesResponse(ScrapedDataResponse[ScrapedFixture]):
+class ScrapedFixturesResponse(SignalBaseModel, ScrapedDataResponse[ScrapedFixture]):
     """Paged response for scraped fixtures from the Scraped Fixtures API.
 
     Attributes:
