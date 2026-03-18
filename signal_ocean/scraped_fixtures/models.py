@@ -1,6 +1,8 @@
 """Models instantiated by the scraped fixtures api."""
 from typing import Optional, Tuple
 
+from pydantic import Field
+
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
 from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
@@ -472,9 +474,11 @@ class ScrapedFixture(SignalBaseModel):
 
     # load 2
     scraped_load2: Optional[str] = None
-    load_geo_id2: Optional[int] = None
+    load_geo_id2: Optional[int] = Field(None, validation_alias="LoadGeoID2")
     load_name2: Optional[str] = None
-    load_taxonomy_id2: Optional[int] = None
+    load_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="LoadTaxonomyID2"
+    )
     load_taxonomy2: Optional[str] = None
 
     # discharge
@@ -487,9 +491,13 @@ class ScrapedFixture(SignalBaseModel):
 
     # discharge 2
     scraped_discharge2: Optional[str] = None
-    discharge_geo_id2: Optional[int] = None
+    discharge_geo_id2: Optional[int] = Field(
+        None, validation_alias="DischargeGeoID2"
+    )
     discharge_name2: Optional[str] = None
-    discharge_taxonomy_id2: Optional[int] = None
+    discharge_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="DischargeTaxonomyID2"
+    )
     discharge_taxonomy2: Optional[str] = None
 
     # charterer

@@ -2,8 +2,6 @@ from datetime import datetime, timezone
 from typing import Tuple
 from unittest.mock import MagicMock
 from urllib.parse import urljoin
-from signal_ocean.util.parsing_helpers import _to_snake_case
-
 import requests
 
 from signal_ocean import Connection

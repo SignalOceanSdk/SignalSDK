@@ -48,7 +48,9 @@ class Country(SignalBaseModel):
     location_taxonomy_name: str
     country_code: Optional[str] = None
     country_code_numeric: Optional[str] = None
-    country_code_iso3: Optional[str] = None
+    country_code_iso3: Optional[str] = Field(
+        None, validation_alias="CountryCodeISO3"
+    )
 
 
 class GeoAsset(SignalBaseModel):
@@ -131,21 +133,13 @@ class GeoAsset(SignalBaseModel):
     geo_asset_type_name: Optional[str] = None
     country_id: Optional[int] = None
     country_name: Optional[str] = None
-    area_id_level0: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel0"
-    )
+    area_id_level0: Optional[int] = None
     area_name_level0: Optional[str] = None
-    area_id_level1: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel1"
-    )
+    area_id_level1: Optional[int] = None
     area_name_level1: Optional[str] = None
-    area_id_level2: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel2"
-    )
+    area_id_level2: Optional[int] = None
     area_name_level2: Optional[str] = None
-    area_id_level3: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel3"
-    )
+    area_id_level3: Optional[int] = None
     area_name_level3: Optional[str] = None
     port_id: Optional[int] = None
     port_name: Optional[str] = None
@@ -229,21 +223,13 @@ class Port(SignalBaseModel):
     unlocode: Optional[str] = None
     country_id: Optional[int] = None
     country_name: Optional[str] = None
-    area_id_level0: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel0"
-    )
+    area_id_level0: Optional[int] = None
     area_name_level0: Optional[str] = None
-    area_id_level1: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel1"
-    )
+    area_id_level1: Optional[int] = None
     area_name_level1: Optional[str] = None
-    area_id_level2: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel2"
-    )
+    area_id_level2: Optional[int] = None
     area_name_level2: Optional[str] = None
-    area_id_level3: Optional[int] = Field(
-        None, validation_alias="AreaIDLevel3"
-    )
+    area_id_level3: Optional[int] = None
     area_name_level3: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None

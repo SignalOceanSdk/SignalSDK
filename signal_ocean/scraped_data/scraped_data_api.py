@@ -6,7 +6,7 @@ from typing import (
 
 from signal_ocean._internals import format_iso_datetime
 from signal_ocean.connection import Connection
-from signal_ocean.util.parsing_helpers import _to_camel_case
+from pydantic.alias_generators import to_pascal
 from signal_ocean.util.request_helpers import get_single
 
 TRecord = TypeVar("TRecord")
@@ -78,7 +78,7 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
 
                 url += (
                     ("" if url[-1] == "?" else "&")
-                    + _to_camel_case(param)
+                    + to_pascal(param)
                     + "="
                     + value
                 )

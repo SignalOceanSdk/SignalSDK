@@ -1,5 +1,5 @@
 from signal_ocean.scraped_fixtures import ScrapedFixture
-from signal_ocean.util.parsing_helpers import _to_snake_case
+from signal_ocean.util.pydantic_base import _to_pascal_case
 
 
 def test_fixtures_field_names():
@@ -100,7 +100,7 @@ def test_fixtures_field_names():
         "CharterType",
         "FixtureStatusID",
         "FixtureStatus",
-        "BrokerId",
+        "BrokerID",
         "Broker",
         "IsOwnersOption",
         "IsCOA",
@@ -112,6 +112,18 @@ def test_fixtures_field_names():
         "IsPartial",
         "Note",
     ]
-    snake_case_api_fields = list(map(_to_snake_case, api_fields))
-    scraped_fixtures_model_fields = list(ScrapedFixture.model_fields)
-    assert snake_case_api_fields == scraped_fixtures_model_fields
+    alias_to_field = {}
+    for name, info in ScrapedFixture.model_fields.items():
+        if info.validation_alias is not None:
+            alias_to_field[str(info.validation_alias)] = name
+        else:
+            alias_to_field[_to_pascal_case(name)] = name
+
+    for api_field in api_fields:
+        assert api_field in alias_to_field, (
+            f"API field {api_field!r} not in model"
+        )
+
+    assert sorted(alias_to_field[f] for f in api_fields) == sorted(
+        ScrapedFixture.model_fields
+    )

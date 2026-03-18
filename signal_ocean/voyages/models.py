@@ -371,13 +371,13 @@ class VoyageEvent(SignalBaseModel):
     port_unlocode: Optional[str] = None
     country_id: Optional[int] = None
     country: Optional[str] = None
-    area_idlevel0: Optional[int] = Field(None, validation_alias='AreaIDLevel0')
+    area_idlevel0: Optional[int] = Field(None, validation_alias="AreaIDLevel0")
     area_name_level0: Optional[str] = None
-    area_idlevel1: Optional[int] = Field(None, validation_alias='AreaIDLevel1')
+    area_idlevel1: Optional[int] = Field(None, validation_alias="AreaIDLevel1")
     area_name_level1: Optional[str] = None
-    area_idlevel2: Optional[int] = Field(None, validation_alias='AreaIDLevel2')
+    area_idlevel2: Optional[int] = Field(None, validation_alias="AreaIDLevel2")
     area_name_level2: Optional[str] = None
-    area_idlevel3: Optional[int] = Field(None, validation_alias='AreaIDLevel3')
+    area_idlevel3: Optional[int] = Field(None, validation_alias="AreaIDLevel3")
     area_name_level3: Optional[str] = None
     low_ais_density: Optional[bool] = None
     quantity: Optional[float] = None
@@ -996,13 +996,13 @@ class VoyageGeo(SignalBaseModel):
     port_name: Optional[str] = None
     country_id: Optional[int] = None
     country: Optional[str] = None
-    area_idlevel0: Optional[int] = Field(None, validation_alias='AreaIDLevel0')
+    area_idlevel0: Optional[int] = Field(None, validation_alias="AreaIDLevel0")
     area_name_level0: Optional[str] = None
-    area_idlevel1: Optional[int] = Field(None, validation_alias='AreaIDLevel1')
+    area_idlevel1: Optional[int] = Field(None, validation_alias="AreaIDLevel1")
     area_name_level1: Optional[str] = None
-    area_idlevel2: Optional[int] = Field(None, validation_alias='AreaIDLevel2')
+    area_idlevel2: Optional[int] = Field(None, validation_alias="AreaIDLevel2")
     area_name_level2: Optional[str] = None
-    area_idlevel3: Optional[int] = Field(None, validation_alias='AreaIDLevel3')
+    area_idlevel3: Optional[int] = Field(None, validation_alias="AreaIDLevel3")
     area_name_level3: Optional[str] = None
 
 

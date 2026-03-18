@@ -5,7 +5,7 @@ from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single
-from signal_ocean.util.parsing_helpers import _to_camel_case
+from pydantic.alias_generators import to_pascal
 from signal_ocean.voyages.models import (
     Voyage,
     VoyageCondensed,
@@ -105,7 +105,7 @@ class VoyagesAPI:
         del endpoint_params["incremental"]
         params = urlencode(
             {
-                _to_camel_case(key): value
+                to_pascal(key): value
                 for key, value in endpoint_params.items()
                 if value is not None and value is not []
             }, doseq=True

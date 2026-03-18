@@ -1,4 +1,4 @@
-from signal_ocean.util.parsing_helpers import _to_snake_case
+from signal_ocean.util.pydantic_base import _to_pascal_case
 
 from signal_ocean.scraped_cargoes import ScrapedCargo
 
@@ -88,6 +88,18 @@ def test_cargoes_field_names():
         "Sender",
         "IsPrivate",
     ]
-    snake_case_api_fields = list(map(_to_snake_case, api_fields))
-    scraped_cargoes_model_fields = list(ScrapedCargo.model_fields)
-    assert snake_case_api_fields == scraped_cargoes_model_fields
+    alias_to_field = {}
+    for name, info in ScrapedCargo.model_fields.items():
+        if info.validation_alias is not None:
+            alias_to_field[str(info.validation_alias)] = name
+        else:
+            alias_to_field[_to_pascal_case(name)] = name
+
+    for api_field in api_fields:
+        assert api_field in alias_to_field, (
+            f"API field {api_field!r} not in model"
+        )
+
+    assert sorted(alias_to_field[f] for f in api_fields) == sorted(
+        ScrapedCargo.model_fields
+    )

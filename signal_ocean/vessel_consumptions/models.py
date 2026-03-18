@@ -2,15 +2,10 @@
 from typing import Optional, List, Dict, Any
 
 from pydantic import Field, AliasChoices
+from pydantic.alias_generators import to_pascal
 from pydantic_core import PydanticUndefined
 
 from signal_ocean.util.pydantic_base import SignalBaseModel
-
-
-def _to_camel_case(s: str) -> str:
-    _to_camelcase = s.split('_')
-    _to_camelcase = [word.capitalize() for word in _to_camelcase]
-    return ''.join(_to_camelcase)
 
 
 class Consumption(SignalBaseModel):
@@ -83,7 +78,7 @@ class VesselConsumptions(SignalBaseModel):
         def _convert(data):
             if isinstance(data, dict):
                 return {
-                    _to_camel_case(k): _convert(v)
+                    to_pascal(k): _convert(v)
                     for k, v in data.items()
                     if v is not None
                 }
@@ -212,7 +207,7 @@ class AdvertisedConsumptions(SignalBaseModel):
         def _convert(data):
             if isinstance(data, dict):
                 return {
-                    _to_camel_case(k): _convert(v)
+                    to_pascal(k): _convert(v)
                     for k, v in data.items()
                     if v is not None
                 }

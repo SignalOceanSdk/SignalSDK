@@ -1,6 +1,8 @@
 """Models instantiated by the voyages api."""
 from typing import Optional, Tuple
 
+from pydantic import Field
+
 from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
 
@@ -134,17 +136,23 @@ class MatchedFixture(SignalBaseModel):
     load_name: Optional[str] = None
     load_taxonomy_id: Optional[int] = None
     load_taxonomy: Optional[str] = None
-    load_geo_id2: Optional[int] = None
+    load_geo_id2: Optional[int] = Field(None, validation_alias="LoadGeoID2")
     load_name2: Optional[str] = None
-    load_taxonomy_id2: Optional[int] = None
+    load_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="LoadTaxonomyID2"
+    )
     load_taxonomy2: Optional[str] = None
     discharge_geo_id: Optional[int] = None
     discharge_name: Optional[str] = None
     discharge_taxonomy_id: Optional[int] = None
     discharge_taxonomy: Optional[str] = None
-    discharge_geo_id2: Optional[int] = None
+    discharge_geo_id2: Optional[int] = Field(
+        None, validation_alias="DischargeGeoID2"
+    )
     discharge_name2: Optional[str] = None
-    discharge_taxonomy_id2: Optional[int] = None
+    discharge_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="DischargeTaxonomyID2"
+    )
     discharge_taxonomy2: Optional[str] = None
     cargo_type_id: Optional[int] = None
     cargo_type: Optional[str] = None
