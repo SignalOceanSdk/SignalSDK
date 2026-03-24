@@ -16,9 +16,14 @@ def _to_pascal_case(field_name: str) -> str:
     """Convert snake_case field name to PascalCase alias.
 
     Matches the Signal API naming convention where known acronyms ('id',
-    'imo', 'ais', 'coa', 'sts') are uppercased entirely rather than just
+    'imo', 'coa', 'pit', 'tpc') are uppercased entirely rather than just
     title-cased (e.g. vessel_class_id -> VesselClassID,
     vessel_type_id -> VesselTypeID, imo -> IMO).
+
+    Note: 'ais' is NOT in the acronyms set because the API is inconsistent
+    — some endpoints use 'AIS' (e.g. IsImpliedByAIS) while others use 'Ais'
+    (e.g. LowAisDensity). Fields needing 'AIS' should use explicit
+    validation_alias instead.
     """
     def _capitalize(word: str) -> str:
         if word.lower() in _ACRONYMS:

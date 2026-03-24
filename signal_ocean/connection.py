@@ -52,6 +52,16 @@ class Connection:
 
         return host if host.endswith("/") else host + "/"
 
+    def close(self) -> None:
+        """Close the underlying session and release connections."""
+        self.__session.close()
+
+    def __enter__(self) -> "Connection":  # noqa: D105
+        return self
+
+    def __exit__(self, *args: object) -> None:  # noqa: D105
+        self.close()
+
     def _make_get_request(
         self, relative_url: str, query_string: Optional[QueryString] = None
     ) -> requests.Response:
