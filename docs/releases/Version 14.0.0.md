@@ -13,5 +13,9 @@ Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-
 - `Connection` now uses a persistent `requests.Session` for all API calls, eliminating per-request TLS handshake overhead.
 - Throughput on the first benchmark query improved from ~26 req/min to ~40 req/min; combined with the parsing improvements the sustained rate reaches ~155 req/min.
 
+## Breaking Changes
+
+- **Minimum Python version raised from 3.7 to 3.8.** Python 3.7 reached end-of-life in June 2023 and is no longer supported.
+
 ## Installation and Upgrade Notes
 Update your package with: `pip install signal-ocean -U`
