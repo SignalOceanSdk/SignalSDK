@@ -146,7 +146,7 @@ class ScrapedCargoesAPI(ScrapedDataAPI[ScrapedCargoesResponse, ScrapedCargo]):
             self,
             updated_date_from: datetime,
     ) -> Optional[str]:
-        """This function returns a token to use in the incremental cargoes endpoint.
+        """Returns a token for the incremental cargoes endpoint.
 
         Args:
             updated_date_from: Format - date-time (as date-time in RFC3339).

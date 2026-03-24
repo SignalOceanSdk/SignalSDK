@@ -23,18 +23,18 @@ setup(
     license="Apache 2.0",
     url="https://apis.signalocean.com/",
     packages=find_packages(exclude=["tests", "tests.*"]),
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     install_requires=[
         "requests>=2.23.0,<3",
         "python-dateutil>=2.8.1,<3",
         "pandas>=1.0.3,<3",
         "numpy>=1.18.5",
         "strictly-typed-pandas==0.1.4",
-        "typeguard>=2.13.3,<3.0.0"
+        "typeguard>=2.13.3,<3.0.0",
+        "pydantic>=2.0,<3",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "License :: OSI Approved :: Apache Software License",

@@ -1,11 +1,12 @@
 """Models instantiated by the voyages api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
 
+from pydantic import Field
 
-@dataclass(frozen=True)
-class MatchedFixture:
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
+
+
+class MatchedFixture(SignalBaseModel):
     """Contains information about a single fixture.
 
     Attributes:
@@ -126,26 +127,32 @@ class MatchedFixture:
     fixture_status: Optional[str] = None
     charter_type_id: Optional[int] = None
     charter_type: Optional[str] = None
-    fixture_date: Optional[datetime] = None
+    fixture_date: Optional[UTCDatetime] = None
     charterer_id: Optional[int] = None
     charterer: Optional[str] = None
-    laycan_from: Optional[datetime] = None
-    laycan_to: Optional[datetime] = None
+    laycan_from: Optional[UTCDatetime] = None
+    laycan_to: Optional[UTCDatetime] = None
     load_geo_id: Optional[int] = None
     load_name: Optional[str] = None
     load_taxonomy_id: Optional[int] = None
     load_taxonomy: Optional[str] = None
-    load_geo_id2: Optional[int] = None
+    load_geo_id2: Optional[int] = Field(None, validation_alias="LoadGeoID2")
     load_name2: Optional[str] = None
-    load_taxonomy_id2: Optional[int] = None
+    load_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="LoadTaxonomyID2"
+    )
     load_taxonomy2: Optional[str] = None
     discharge_geo_id: Optional[int] = None
     discharge_name: Optional[str] = None
     discharge_taxonomy_id: Optional[int] = None
     discharge_taxonomy: Optional[str] = None
-    discharge_geo_id2: Optional[int] = None
+    discharge_geo_id2: Optional[int] = Field(
+        None, validation_alias="DischargeGeoID2"
+    )
     discharge_name2: Optional[str] = None
-    discharge_taxonomy_id2: Optional[int] = None
+    discharge_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="DischargeTaxonomyID2"
+    )
     discharge_taxonomy2: Optional[str] = None
     cargo_type_id: Optional[int] = None
     cargo_type: Optional[str] = None
@@ -153,7 +160,7 @@ class MatchedFixture:
     cargo_group: Optional[str] = None
     quantity: Optional[int] = None
     quantity_buffer: Optional[int] = None
-    rate: Optional[int] = None
+    rate: Optional[float] = None
     rate_type: Optional[str] = None
     ballast_bonus_value: Optional[int] = None
     ballast_bonus_type: Optional[str] = None
@@ -161,8 +168,8 @@ class MatchedFixture:
     delivery_name: Optional[str] = None
     delivery_taxonomy_id: Optional[int] = None
     delivery_taxonomy: Optional[str] = None
-    delivery_date_from: Optional[datetime] = None
-    delivery_date_to: Optional[datetime] = None
+    delivery_date_from: Optional[UTCDatetime] = None
+    delivery_date_to: Optional[UTCDatetime] = None
     redelivery_from_geo_id: Optional[int] = None
     redelivery_from_name: Optional[str] = None
     redelivery_from_taxonomy_id: Optional[int] = None
@@ -181,8 +188,7 @@ class MatchedFixture:
     sources: Optional[Tuple[str, ...]] = None
 
 
-@dataclass(frozen=True)
-class Fixture:
+class Fixture(SignalBaseModel):
     """Fixture information.
 
     Attributes:
@@ -209,8 +215,7 @@ class Fixture:
     fixture_status: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class VoyagesMarketData:
+class VoyagesMarketData(SignalBaseModel):
     """Contains information about a single fixture.
 
     Attributes:
@@ -284,8 +289,7 @@ class VoyagesMarketData:
     fixtures: Optional[Tuple[Fixture, ...]] = None
 
 
-@dataclass(frozen=True)
-class VoyagesMarketDataPagedResponse:
+class VoyagesMarketDataPagedResponse(SignalBaseModel):
     """Paged response in nested format from the VoyagesMarketData API.
 
     Attributes:

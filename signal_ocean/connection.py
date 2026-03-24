@@ -32,6 +32,7 @@ class Connection:
         """
         self.__api_key = api_key
         self.__api_host = api_host
+        self.__session = requests.Session()
 
     def __get_headers(self) -> Dict[str, Optional[str]]:
         api_key = self.__api_key or os.environ.get("SIGNAL_OCEAN_API_KEY")
@@ -51,6 +52,16 @@ class Connection:
 
         return host if host.endswith("/") else host + "/"
 
+    def close(self) -> None:
+        """Close the underlying session and release connections."""
+        self.__session.close()
+
+    def __enter__(self) -> "Connection":  # noqa: D105
+        return self
+
+    def __exit__(self, *args: object) -> None:  # noqa: D105
+        self.close()
+
     def _make_get_request(
         self, relative_url: str, query_string: Optional[QueryString] = None
     ) -> requests.Response:
@@ -59,7 +70,7 @@ class Connection:
         # Ignoring "params" type because None is acceptable according to
         # https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls
         # but the stub file does not include it
-        return requests.get(
+        return self.__session.get(
             url,
             params=query_string,  # type: ignore
             headers=self.__get_headers(),
@@ -70,7 +81,7 @@ class Connection:
     ) -> requests.Response:
         url = urljoin(self.__get_api_host(), relative_url)
 
-        return requests.post(
+        return self.__session.post(
             url,
             data=json.dumps(query_string),
             headers=self.__get_headers(),

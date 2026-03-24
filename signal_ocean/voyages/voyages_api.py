@@ -5,7 +5,7 @@ from urllib.parse import urljoin, urlencode
 
 from signal_ocean import Connection
 from signal_ocean.util.request_helpers import get_single
-from signal_ocean.util.parsing_helpers import _to_camel_case, parse_model
+from pydantic.alias_generators import to_pascal
 from signal_ocean.voyages.models import (
     Voyage,
     VoyageCondensed,
@@ -105,7 +105,7 @@ class VoyagesAPI:
         del endpoint_params["incremental"]
         params = urlencode(
             {
-                _to_camel_case(key): value
+                to_pascal(key): value
                 for key, value in endpoint_params.items()
                 if value is not None and value is not []
             }, doseq=True
@@ -1028,7 +1028,7 @@ class VoyagesAPI:
         )
         response.raise_for_status()
 
-        classes = (parse_model(c, VesselClass) for c in response.json())
+        classes = (VesselClass.model_validate(c) for c in response.json())
         class_filter = class_filter or VesselClassFilter()
 
         return tuple(class_filter._apply(classes))
@@ -1050,7 +1050,7 @@ class VoyagesAPI:
         )
         response.raise_for_status()
 
-        types = (parse_model(c, VesselType) for c in response.json())
+        types = (VesselType.model_validate(c) for c in response.json())
         type_filter = type_filter or VesselTypeFilter()
 
         return tuple(type_filter._apply(types))
@@ -1072,7 +1072,7 @@ class VoyagesAPI:
         )
         response.raise_for_status()
 
-        vessels = (parse_model(c, Vessel) for c in response.json())
+        vessels = (Vessel.model_validate(c) for c in response.json())
         vessel_filter = vessel_filter or VesselFilter()
 
         return tuple(vessel_filter._apply(vessels))

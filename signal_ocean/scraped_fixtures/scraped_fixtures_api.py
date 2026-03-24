@@ -40,7 +40,7 @@ class ScrapedFixturesAPI(
         include_sender: Optional[bool] = True,
         include_debug_info: Optional[bool] = True,
     ) -> Tuple[ScrapedFixture, ...]:
-        """This function collects and returns the fixtures by the given filters.
+        """Collects and returns fixtures by the given filters.
 
         Args:
             vessel_type: Format - int32. Available values
@@ -159,7 +159,7 @@ class ScrapedFixturesAPI(
             self,
             updated_date_from: datetime,
     ) -> Optional[str]:
-        """This function returns a token to use in the incremental fixtures endpoint.
+        """Returns a token for the incremental fixtures endpoint.
 
         Args:
             updated_date_from: Format - date-time (as date-time in RFC3339).

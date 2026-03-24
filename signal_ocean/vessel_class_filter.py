@@ -1,15 +1,16 @@
 # noqa: D100
 
-from dataclasses import dataclass
-from typing import Iterable, Optional
+from typing import Any, Iterable, Optional
 import warnings
+
+from pydantic import ConfigDict
 
 from .vessel_class import VesselClass
 from ._internals import contains_caseless
+from signal_ocean.util.pydantic_base import IdentityEqModel, _to_pascal_case
 
 
-@dataclass(eq=False)
-class VesselClassFilter:
+class VesselClassFilter(IdentityEqModel):
     """A filter used to find specific vessel classes.
 
     Attributes:
@@ -18,9 +19,20 @@ class VesselClassFilter:
             will be returned. Matching is case-insensitive.
     """
 
+    model_config = ConfigDict(
+        frozen=False,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_pascal_case,
+    )
+
+    __eq__ = object.__eq__
+    __hash__ = object.__hash__
+
     name_like: Optional[str] = None
 
-    def __post_init__(self) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         warnings.warn(
             "signal_ocean.VesselClassFilter is deprecated and will be removed "
             "in a future version of the SDK. Please use "

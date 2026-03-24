@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime, timezone
 
 from signal_ocean.market_rates import MarketRate, Route, \
     _market_rates_json
@@ -18,7 +19,7 @@ def test_parse_market_rates(rates):
     for mr, rate in zip(mr_object, rates):
         assert isinstance(mr, MarketRate)
         assert mr.route_id == rate["RouteId"]
-        assert mr.rate_date == rate["RateDate"]
+        assert mr.rate_date == datetime.fromisoformat(rate["RateDate"]).replace(tzinfo=timezone.utc)
         assert mr.rate_value == rate["RateValue"]
         assert mr.unit == rate["Unit"]
         assert mr.vessel_class_id == rate["VesselClassId"]

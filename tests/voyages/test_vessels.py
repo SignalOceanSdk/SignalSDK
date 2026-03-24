@@ -23,6 +23,6 @@ def test_get_vessels():
     connection._make_get_request = mocked_make_request
     api = VoyagesAPI(connection)
 
-    vessels = api.get_imos(VesselFilter("Mit"))
+    vessels = api.get_imos(VesselFilter(name_like="Mit"))
 
     assert [v.imo for v in vessels] == [vessel.imo for vessel in __mock_vessels_response_model]

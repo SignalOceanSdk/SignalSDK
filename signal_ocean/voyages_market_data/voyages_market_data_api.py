@@ -7,7 +7,7 @@ from signal_ocean import Connection
 from signal_ocean.util.request_helpers import (
     get_single, get_multiple, post_single
 )
-from signal_ocean.util.parsing_helpers import _to_camel_case
+from pydantic.alias_generators import to_pascal
 from signal_ocean.voyages_market_data.models import (
     VoyagesMarketData,
     VoyagesMarketDataPagedResponse,
@@ -117,7 +117,7 @@ class VoyagesMarketDataAPI:
 
         params = urlencode(
             {
-                _to_camel_case(key): value
+                to_pascal(key): value
                 for key, value in endpoint_params.items()
                 if value is not None
             }
@@ -329,7 +329,7 @@ class VoyagesMarketDataAPI:
         for key, value in locals().items():
             if key != 'self':
                 if value:
-                    cc_key = _to_camel_case(key, rename_keys=rename_keys)
+                    cc_key = rename_keys.get(key, to_pascal(key))
                     data_body[cc_key] = value
 
         del data_body['DataBody']

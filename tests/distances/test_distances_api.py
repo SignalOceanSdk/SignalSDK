@@ -17,11 +17,11 @@ from signal_ocean.distances import (
 
 
 def create_port(port_id=1, name="port name") -> Port:
-    return Port(port_id, name)
+    return Port(id=port_id, name=name)
 
 
 def create_vessel_class(vessel_id=1, name="vessel class name") -> VesselClass:
-    return VesselClass(vessel_id, name)
+    return VesselClass(id=vessel_id, name=name)
 
 
 def create_distances_api(
@@ -42,8 +42,8 @@ def test_requests_point_to_point_with_params():
     api.get_point_to_point_distance(
         vessel_class=vessel_class,
         loading_condition_id=LoadingCondition.LADEN,
-        start_point=Point(Decimal("42.5"), Decimal("55.6")),
-        end_point=Point(Decimal("32.5"), Decimal("78.8")),
+        start_point=Point(lat=Decimal("42.5"), lon=Decimal("55.6")),
+        end_point=Point(lat=Decimal("32.5"), lon=Decimal("78.8")),
     )
 
     connection._make_get_request.assert_called_with(
@@ -67,8 +67,8 @@ def test_requests_point_to_point_route_with_params():
     api.get_point_to_point_route(
         vessel_class=vessel_class,
         loading_condition_id=LoadingCondition.LADEN,
-        start_point=Point(Decimal("42.5"), Decimal("55.6")),
-        end_point=Point(Decimal("32.5"), Decimal("78.8")),
+        start_point=Point(lat=Decimal("42.5"), lon=Decimal("55.6")),
+        end_point=Point(lat=Decimal("32.5"), lon=Decimal("78.8")),
     )
 
     connection._make_get_request.assert_called_with(
@@ -93,7 +93,7 @@ def test_requests_point_to_port_with_params():
     api.get_point_to_port_distance(
         vessel_class=vessel_class,
         loading_condition_id=LoadingCondition.LADEN,
-        point=Point(Decimal("42.5"), Decimal("32.5")),
+        point=Point(lat=Decimal("42.5"), lon=Decimal("32.5")),
         port=port_to,
     )
 
@@ -118,7 +118,7 @@ def test_requests_point_to_port_route_with_params():
     api.get_point_to_port_route(
         vessel_class=vessel_class,
         loading_condition_id=LoadingCondition.LADEN,
-        point=Point(Decimal("42.5"), Decimal("32.5")),
+        point=Point(lat=Decimal("42.5"), lon=Decimal("32.5")),
         port=port_to,
     )
 
@@ -189,7 +189,7 @@ def test_requests_generic_point_to_point_route_with_defaults():
     api, connection = create_distances_api(response)
 
     api.get_generic_point_to_point_route(
-        Point(Decimal("1"), Decimal("2")), Point(Decimal("3"), Decimal("4"))
+        Point(lat=Decimal("1"), lon=Decimal("2")), Point(lat=Decimal("3"), lon=Decimal("4"))
     )
 
     connection._make_get_request.assert_called_with(
@@ -217,8 +217,8 @@ def test_requests_generic_point_to_point_route_with_restrictions():
     api, connection = create_distances_api(response)
 
     api.get_generic_point_to_point_route(
-        Point(Decimal("1"), Decimal("2")),
-        Point(Decimal("3"), Decimal("4")),
+        Point(lat=Decimal("1"), lon=Decimal("2")),
+        Point(lat=Decimal("3"), lon=Decimal("4")),
         RouteRestrictions(
             is_suez_open=True,
             is_panama_open=True,
@@ -255,8 +255,8 @@ def test_requests_generic_point_to_point_route_with_delays_valid_at_date():
     api, connection = create_distances_api(response)
 
     api.get_generic_point_to_point_route(
-        Point(Decimal("1"), Decimal("2")),
-        Point(Decimal("3"), Decimal("4")),
+        Point(lat=Decimal("1"), lon=Decimal("2")),
+        Point(lat=Decimal("3"), lon=Decimal("4")),
         delays_valid_at=date(2020, 6, 15),
     )
 
@@ -285,8 +285,8 @@ def test_requests_generic_point_to_point_route_with_alternatives():
     api, connection = create_distances_api(response)
 
     api.get_generic_point_to_point_route(
-        Point(Decimal("1"), Decimal("2")),
-        Point(Decimal("3"), Decimal("4")),
+        Point(lat=Decimal("1"), lon=Decimal("2")),
+        Point(lat=Decimal("3"), lon=Decimal("4")),
         get_alternatives=True,
     )
 

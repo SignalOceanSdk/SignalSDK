@@ -1,18 +1,14 @@
 """The models for vessel consumptions api."""
-import dataclasses
-from dataclasses import dataclass
 from typing import Optional, List, Dict, Any
-from operator import attrgetter
+
+from pydantic import Field, AliasChoices
+from pydantic.alias_generators import to_pascal
+from pydantic_core import PydanticUndefined
+
+from signal_ocean.util.pydantic_base import SignalBaseModel
 
 
-def _to_camel_case(s: str) -> str:
-    _to_camelcase = s.split('_')
-    _to_camelcase = [word.capitalize() for word in _to_camelcase]
-    return ''.join(_to_camelcase)
-
-
-@dataclass(frozen=True)
-class Consumption:
+class Consumption(SignalBaseModel):
     """Contains consumption data for a specific speed.
 
     Attributes:
@@ -23,13 +19,16 @@ class Consumption:
 
     """
     speed: float
-    speed_profile_id: Optional[int] = None
+    speed_profile_id: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices('SpeedProfileId', 'SpeedProfileID',
+                                      'speed_profile_id'),
+    )
     speed_profile: Optional[str] = None
     consumption: Optional[float] = None
 
 
-@dataclass(frozen=True)
-class VesselConsumptions:
+class VesselConsumptions(SignalBaseModel):
     """Contains vessel consumptions data.
 
     Attributes:
@@ -61,16 +60,13 @@ class VesselConsumptions:
             Object string representation omitting None attributes
 
         """
-        nodef_f_vals = (
-            (f.name, attrgetter(f.name)(self))
-            for f in dataclasses.fields(self)
-            if attrgetter(f.name)(self) != f.default
-        )
-
-        nodef_f_repr = ", ".join(f"{name}={value}"
-                                 for name, value
-                                 in nodef_f_vals)
-        return f"{self.__class__.__name__}({nodef_f_repr})"
+        nodef_f_vals = []
+        for name, field_info in self.__class__.model_fields.items():
+            value = getattr(self, name)
+            default = field_info.default
+            if default is PydanticUndefined or value != default:
+                nodef_f_vals.append(f"{name}={value}")
+        return f"{self.__class__.__name__}({', '.join(nodef_f_vals)})"
 
     def to_dict(self) -> Dict[Any, Any]:
         """Cast VesselConsumptions object to dict.
@@ -79,16 +75,20 @@ class VesselConsumptions:
             Dict representation of VesselConsumptions model
 
         """
-        return dataclasses.asdict(
-            self,
-            dict_factory=lambda x: {
-                _to_camel_case(k): v
-                for (k, v) in x if v is not None
-            })
+        def _convert(data):
+            if isinstance(data, dict):
+                return {
+                    to_pascal(k): _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
+            elif isinstance(data, list):
+                return [_convert(item) for item in data]
+            return data
+        return _convert(self.model_dump())
 
 
-@dataclass(frozen=True)
-class AdvertisedConsumptionAtSea:
+class AdvertisedConsumptionAtSea(SignalBaseModel):
     """Contains advertised consumption at sea data.
 
     Attributes:
@@ -103,19 +103,30 @@ class AdvertisedConsumptionAtSea:
         speed_profile: Speed profile name
 
     """
-    main_fuel_type_id: Optional[int] = None
+    main_fuel_type_id: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices('MainFuelTypeId', 'MainFuelTypeID',
+                                      'main_fuel_type_id'),
+    )
     main_fuel_type: Optional[str] = None
     main_fuel_consumption: float = 0.0
-    aux_fuel_type_id: Optional[int] = None
+    aux_fuel_type_id: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices('AuxFuelTypeId', 'AuxFuelTypeID',
+                                      'aux_fuel_type_id'),
+    )
     aux_fuel_type: Optional[str] = None
     aux_fuel_consumption: Optional[float] = None
     speed: float = 0.0
-    speed_profile_id: Optional[int] = None
+    speed_profile_id: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices('SpeedProfileId', 'SpeedProfileID',
+                                      'speed_profile_id'),
+    )
     speed_profile: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class AdvertisedConsumptionInPort:
+class AdvertisedConsumptionInPort(SignalBaseModel):
     """Contains advertised consumption in port data.
 
     Attributes:
@@ -129,18 +140,30 @@ class AdvertisedConsumptionInPort:
         operational_context: Operational context name
 
     """
-    main_fuel_type_id: Optional[int] = None
+    main_fuel_type_id: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices('MainFuelTypeId', 'MainFuelTypeID',
+                                      'main_fuel_type_id'),
+    )
     main_fuel_type: Optional[str] = None
     main_fuel_consumption: float = 0.0
-    aux_fuel_type_id: Optional[int] = None
+    aux_fuel_type_id: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices('AuxFuelTypeId', 'AuxFuelTypeID',
+                                      'aux_fuel_type_id'),
+    )
     aux_fuel_type: Optional[str] = None
     aux_fuel_consumption: Optional[float] = None
-    operational_context_id: Optional[int] = None
+    operational_context_id: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices('OperationalContextId',
+                                      'OperationalContextID',
+                                      'operational_context_id'),
+    )
     operational_context: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class AdvertisedConsumptions:
+class AdvertisedConsumptions(SignalBaseModel):
     """Contains advertised consumptions data for a vessel.
 
     Attributes:
@@ -153,7 +176,7 @@ class AdvertisedConsumptions:
 
     """
     imo: int
-    updated_date: str
+    updated_date: Optional[str] = None
     ballast_consumptions: Optional[List[AdvertisedConsumptionAtSea]] = None
     laden_consumptions: Optional[List[AdvertisedConsumptionAtSea]] = None
     idle_consumptions: Optional[List[AdvertisedConsumptionInPort]] = None
@@ -166,16 +189,13 @@ class AdvertisedConsumptions:
             Object string representation omitting None attributes
 
         """
-        nodef_f_vals = (
-            (f.name, attrgetter(f.name)(self))
-            for f in dataclasses.fields(self)
-            if attrgetter(f.name)(self) != f.default
-        )
-
-        nodef_f_repr = ", ".join(f"{name}={value}"
-                                 for name, value
-                                 in nodef_f_vals)
-        return f"{self.__class__.__name__}({nodef_f_repr})"
+        nodef_f_vals = []
+        for name, field_info in self.__class__.model_fields.items():
+            value = getattr(self, name)
+            default = field_info.default
+            if default is PydanticUndefined or value != default:
+                nodef_f_vals.append(f"{name}={value}")
+        return f"{self.__class__.__name__}({', '.join(nodef_f_vals)})"
 
     def to_dict(self) -> Dict[Any, Any]:
         """Cast AdvertisedConsumptions object to dict.
@@ -184,16 +204,20 @@ class AdvertisedConsumptions:
             Dict representation of AdvertisedConsumptions model
 
         """
-        return dataclasses.asdict(
-            self,
-            dict_factory=lambda x: {
-                _to_camel_case(k): v
-                for (k, v) in x if v is not None
-            })
+        def _convert(data):
+            if isinstance(data, dict):
+                return {
+                    to_pascal(k): _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
+            elif isinstance(data, list):
+                return [_convert(item) for item in data]
+            return data
+        return _convert(self.model_dump())
 
 
-@dataclass(frozen=True)
-class AdvertisedConsumptionsPage:
+class AdvertisedConsumptionsPage(SignalBaseModel):
     """Contains a page of advertised consumptions.
 
     Attributes:
@@ -202,9 +226,7 @@ class AdvertisedConsumptionsPage:
 
     """
     next_page_token: Optional[str] = None
-    data: List[AdvertisedConsumptions] = dataclasses.field(
-        default_factory=list
-    )
+    data: List[AdvertisedConsumptions] = Field(default_factory=list)
 
     def to_dict(self) -> Dict[Any, Any]:
         """Cast AdvertisedConsumptionsPage object to dict.

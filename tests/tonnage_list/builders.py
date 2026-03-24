@@ -15,13 +15,13 @@ from signal_ocean.tonnage_list import (
 
 
 def create_port(port_id: int = 1, name: str = "port name") -> Port:
-    return Port(port_id, name)
+    return Port(id=port_id, name=name)
 
 
 def create_vessel_class(
     vessel_id: int = 1, name: str = "vessel class name"
 ) -> VesselClass:
-    return VesselClass(vessel_id, name)
+    return VesselClass(id=vessel_id, name=name)
 
 
 def create_vessel(
@@ -51,9 +51,9 @@ def create_vessel(
     willing_to_switch_subclass: bool = True,
     open_prediction_accuracy: str = LocationTaxonomy.PORT,
     open_areas: Tuple[Area, ...] = (
-        Area(123, "country", LocationTaxonomy.COUNTRY, 0),
-        Area(456, "narrow", LocationTaxonomy.NARROW_AREA, 1),
-        Area(789, "wide", LocationTaxonomy.WIDE_AREA, 2),
+        Area(id=123, name="country", location_taxonomy=LocationTaxonomy.COUNTRY, taxonomy_id=0),
+        Area(id=456, name="narrow", location_taxonomy=LocationTaxonomy.NARROW_AREA, taxonomy_id=1),
+        Area(id=789, name="wide", location_taxonomy=LocationTaxonomy.WIDE_AREA, taxonomy_id=2),
     ),
     availability_port_type: str = "Prediction",
     availability_date_type: str = "Prediction",
@@ -63,33 +63,33 @@ def create_vessel(
     willing_to_switch_current_vessel_sub_type: bool = True,
 ) -> Vessel:
     return Vessel(
-        imo,
-        name,
-        vessel_class,
-        ice_class,
-        year_built,
-        deadweight,
-        length_overall,
-        breadth_extreme,
-        market_deployment,
-        push_type,
-        open_port,
-        open_port_id,
-        open_date,
-        operational_status,
-        commercial_operator_id,
-        commercial_operator,
-        commercial_status,
-        eta,
-        latest_ais,
-        subclass,
-        willing_to_switch_subclass,
-        open_prediction_accuracy,
-        open_areas,
-        availability_port_type,
-        availability_date_type,
-        fixture_type,
-        current_vessel_sub_type_id,
-        current_vessel_sub_type,
-        willing_to_switch_current_vessel_sub_type
+        imo=imo,
+        name=name,
+        vessel_class=vessel_class,
+        ice_class=ice_class,
+        year_built=year_built,
+        deadweight=deadweight,
+        length_overall=length_overall,
+        breadth_extreme=breadth_extreme,
+        market_deployment=market_deployment,
+        push_type=push_type,
+        open_port_id=open_port_id,
+        open_port=open_port,
+        open_date=open_date,
+        operational_status=operational_status,
+        commercial_operator_id=commercial_operator_id,
+        commercial_operator=commercial_operator,
+        commercial_status=commercial_status,
+        eta=eta,
+        latest_ais=latest_ais,
+        subclass=subclass,
+        willing_to_switch_subclass=willing_to_switch_subclass,
+        open_prediction_accuracy=open_prediction_accuracy,
+        open_areas=open_areas,
+        availability_port_type=availability_port_type,
+        availability_date_type=availability_date_type,
+        fixture_type=fixture_type,
+        current_vessel_sub_type_id=current_vessel_sub_type_id,
+        current_vessel_sub_type=current_vessel_sub_type,
+        willing_to_switch_current_vessel_sub_type=willing_to_switch_current_vessel_sub_type,
     )

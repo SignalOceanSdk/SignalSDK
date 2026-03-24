@@ -7,7 +7,6 @@ from urllib.parse import urljoin, urlencode
 import requests
 
 from signal_ocean import Connection
-from signal_ocean.util.parsing_helpers import parse_model
 from signal_ocean.vessel_consumptions.models import (
     VesselConsumptions,
     AdvertisedConsumptions,
@@ -101,7 +100,7 @@ class VesselConsumptionsAPI:
 
         response.raise_for_status()
         data = response.json()
-        return parse_model(data, cls)
+        return cls.model_validate(data)  # type: ignore[attr-defined]
 
     def get_consumptions(
             self,

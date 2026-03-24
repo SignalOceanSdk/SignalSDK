@@ -1,14 +1,26 @@
 """Helper functions to retrieve data from APIs."""
-from typing import TypeVar, Tuple, Type, Optional, Dict
+from typing import TypeVar, Tuple, Type, Optional
 
 import requests
+from pydantic import BaseModel
 
 from signal_ocean import Connection
 from signal_ocean._internals import QueryString
-from signal_ocean.util.parsing_helpers import parse_model
 
 
 TModel = TypeVar("TModel")
+
+
+def _instantiate(data, cls):
+    """Instantiate cls from data.
+
+    Supports Pydantic models and plain types.
+    """
+    if isinstance(cls, type) and issubclass(
+        cls, BaseModel
+    ):
+        return cls.model_validate(data)
+    return cls(data)
 
 
 def get_single(
@@ -16,7 +28,6 @@ def get_single(
     relative_url: str,
     cls: Type[TModel],
     query_string: Optional[QueryString] = None,
-    rename_keys: Optional[Dict[str, str]] = None,
 ) -> Optional[TModel]:
     """Get a single object from the API.
 
@@ -30,10 +41,6 @@ def get_single(
         relative_url: The relative URL to make the request to.
         cls: The class to instantiate the object for the retrieved data.
         query_string: Query parameters for the request.
-        rename_keys: Key names to rename to match model attribute names,
-            used when an automated translation of the name from CapsWords
-            to snake_case is to sufficient. Renaming must provide the name
-            in CapsWords.
 
     Returns:
         An object of the provided class instantiated with the data retrieved
@@ -49,7 +56,7 @@ def get_single(
 
     response.raise_for_status()
     data = response.json()
-    return parse_model(data, cls, rename_keys=rename_keys)
+    return _instantiate(data, cls)
 
 
 def get_multiple(
@@ -57,7 +64,6 @@ def get_multiple(
     relative_url: str,
     cls: Type[TModel],
     query_string: Optional[QueryString] = None,
-    rename_keys: Optional[Dict[str, str]] = None,
     data_key_label: Optional[str] = None,
 ) -> Tuple[TModel, ...]:
     """Get a multiple objects from the API.
@@ -73,10 +79,6 @@ def get_multiple(
         relative_url: The relative URL to make the request to.
         cls: The class to instantiate the object for the retrieved data.
         query_string: Query parameters for the request.
-        rename_keys: Key names to rename to match model attribute names,
-            used when an automated translation of the name from CapsWords
-            to snake_case is to sufficient. Renaming must provide the name
-            in CapsWords.
         data_key_label: String, to use in case the data is returned as a
             value inside a key in the response dictionary.
     """
@@ -87,7 +89,7 @@ def get_multiple(
     data = response.json()
     if data_key_label is not None:
         data = data[data_key_label]
-    return tuple(parse_model(d, cls, rename_keys=rename_keys) for d in data)
+    return tuple(_instantiate(d, cls) for d in data)
 
 
 def post_single(
@@ -95,7 +97,6 @@ def post_single(
     relative_url: str,
     cls: Type[TModel],
     query_string: Optional[QueryString] = None,
-    rename_keys: Optional[Dict[str, str]] = None,
 ) -> Optional[TModel]:
     """Use a post request to retrieve a single object from the API.
 
@@ -109,10 +110,6 @@ def post_single(
         relative_url: The relative URL to make the request to.
         cls: The class to instantiate the object for the retrieved data.
         query_string: Query parameters for the request.
-        rename_keys: Key names to rename to match model attribute names,
-            used when an automated translation of the name from CapsWords
-            to snake_case is to sufficient. Renaming must provide the name
-            in CapsWords.
 
     Returns:
         An object of the provided class instantiated with the data retrieved
@@ -127,7 +124,7 @@ def post_single(
 
     response.raise_for_status()
     data = response.json()
-    return parse_model(data, cls, rename_keys=rename_keys)
+    return _instantiate(data, cls)
 
 
 def post_multiple(
@@ -135,7 +132,6 @@ def post_multiple(
     relative_url: str,
     cls: Type[TModel],
     query_string: Optional[QueryString] = None,
-    rename_keys: Optional[Dict[str, str]] = None,
     data_key_label: Optional[str] = None,
 ) -> Tuple[TModel, ...]:
     """Use a post request to retrieve multiple objects from the API.
@@ -151,10 +147,6 @@ def post_multiple(
         relative_url: The relative URL to make the request to.
         cls: The class to instantiate the object for the retrieved data.
         query_string: Query parameters for the post request body.
-        rename_keys: Key names to rename to match model attribute names,
-            used when an automated translation of the name from CapsWords
-            to snake_case is to sufficient. Renaming must provide the name
-            in CapsWords.
         data_key_label: String, to use in case the data is returned as a
             value inside a key in the response dictionary.
     """
@@ -165,4 +157,4 @@ def post_multiple(
     data = response.json()
     if data_key_label is not None:
         data = data[data_key_label]
-    return tuple(parse_model(d, cls, rename_keys=rename_keys) for d in data)
+    return tuple(_instantiate(d, cls) for d in data)
