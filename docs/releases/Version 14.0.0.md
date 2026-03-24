@@ -12,6 +12,18 @@ Download here: [![PyPI version shields.io](https://img.shields.io/pypi/v/signal-
 
 - `Connection` now uses a persistent `requests.Session` for all API calls, eliminating per-request TLS handshake overhead.
 - Throughput on the first benchmark query improved from ~26 req/min to ~40 req/min; combined with the parsing improvements the sustained rate reaches ~155 req/min.
+- `Connection` now supports `close()` and can be used as a context manager. Call `connection.close()` when you are done, or use `with Connection(...) as connection:` to ensure the underlying session is released.
+
+```python
+# Option A — explicit close
+connection = Connection()
+# ... use APIs ...
+connection.close()
+
+# Option B — context manager
+with Connection() as connection:
+    # ... use APIs ...
+```
 
 ## Breaking Changes
 
