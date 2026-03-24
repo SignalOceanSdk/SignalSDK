@@ -518,15 +518,15 @@ class Vessel(SignalBaseModel):
     suez_canal_net_tonnage: Optional[int] = None
     class_renewal_date: Optional[UTCDatetime] = None
     mewis_duct: Optional[UTCDatetime] = None
-    inert_gas_system: Optional[bool] = None
-    imo_type_1: Optional[bool] = Field(None, validation_alias="IMOType1")
-    imo_type_2: Optional[bool] = Field(None, validation_alias="IMOType2")
-    imo_type_3: Optional[bool] = Field(None, validation_alias="IMOType3")
+    inert_gas_system: Optional[str] = None
+    imo_type_1: Optional[str] = Field(None, validation_alias="IMOType1")
+    imo_type_2: Optional[str] = Field(None, validation_alias="IMOType2")
+    imo_type_3: Optional[str] = Field(None, validation_alias="IMOType3")
     stst_coating: Optional[int] = Field(None, validation_alias="STSTCoating")
     epoxy_coating: Optional[int] = None
     zinc_coating: Optional[int] = None
     marineline_coating: Optional[int] = None
-    crude_oil_washing: Optional[bool] = None
+    crude_oil_washing: Optional[str] = None
     beneficial_owner_id: Optional[int] = None
     beneficial_owner: Optional[str] = None
     parallel_body_length: Optional[float] = None
