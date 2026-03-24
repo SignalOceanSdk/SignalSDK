@@ -47,7 +47,7 @@ def test_get_market_rates(start_date, route_id, vessel_class_id, end_date,
         query_dict["end_date"] = end_date.isoformat()
 
     if cargo_id:
-        query_dict["cargo_id"] = cargo_id.value
+        query_dict["cargo_id"] = str(cargo_id.value)
 
     connection._make_get_request.assert_called_with(
         "market-rates/api/v2/market_rates",
@@ -84,8 +84,12 @@ def test_get_vessel_classes():
     vessel_classes = api.get_vessel_classes()
 
     assert vessel_classes == tuple(
-        VesselClass(vessel_class["id"], vessel_class["vessel_type_id"],
-                    vessel_class["from_size"], vessel_class["to_size"],
-                    vessel_class["name"], vessel_class["vessel_type"],
-                    vessel_class["defining_size"], vessel_class["size"])
+        VesselClass(id=vessel_class["id"],
+                    vessel_type_id=vessel_class["vessel_type_id"],
+                    from_size=vessel_class["from_size"],
+                    to_size=vessel_class["to_size"],
+                    name=vessel_class["name"],
+                    vessel_type=vessel_class["vessel_type"],
+                    defining_size=vessel_class["defining_size"],
+                    size=vessel_class["size"])
         for vessel_class in VESSEL_CLASSES)

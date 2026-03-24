@@ -1,12 +1,15 @@
 # noqa: D100
 
-from dataclasses import dataclass
 import warnings
+from typing import Any
+
+from signal_ocean.util.pydantic_base import IdentityEqModel
 
 
-@dataclass(frozen=True, eq=False)
-class VesselClass:
-    """A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.
+class VesselClass(IdentityEqModel):
+    """A group of vessels of similar characteristics.
+
+    For example Aframax, Panamax, etc.
 
     Attributes:
         id: The vessel class ID.
@@ -16,7 +19,8 @@ class VesselClass:
     id: int
     name: str
 
-    def __post_init__(self) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         warnings.warn(
             "signal_ocean.VesselClass is deprecated and will be removed in "
             "a future version of the SDK. Please use tonnage_list.VesselClass "

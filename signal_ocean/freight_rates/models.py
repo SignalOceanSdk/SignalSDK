@@ -1,11 +1,11 @@
 # noqa: D100
 
-from dataclasses import dataclass
 from typing import Optional, List
 
+from signal_ocean.util.pydantic_base import SignalBaseModel
 
-@dataclass(frozen=True)
-class Cost:
+
+class Cost(SignalBaseModel):
     """The freight costs breakdown.
 
     Attributes:
@@ -14,13 +14,12 @@ class Cost:
         other_port_expenses: Other port expenses.
     """
 
-    canal: float
-    freight_cost: float
-    other_port_expenses: float
+    canal: Optional[float] = None
+    freight_cost: Optional[float] = None
+    other_port_expenses: Optional[float] = None
 
 
-@dataclass(frozen=True)
-class Port:
+class Port(SignalBaseModel):
     """A maritime facility where vessels can dock.
 
     Attributes:
@@ -36,8 +35,7 @@ class Port:
     area: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class FreightPricing:
+class FreightPricing(SignalBaseModel):
     """The freight pricing given a load and discharge port.
 
     Attributes:

@@ -2,8 +2,6 @@ from datetime import datetime, timezone
 from typing import Tuple
 from unittest.mock import MagicMock
 from urllib.parse import urljoin
-from signal_ocean.util.parsing_helpers import _to_snake_case
-
 import requests
 
 from signal_ocean import Connection
@@ -385,11 +383,24 @@ def test_vessel_field_names():
         "NumberOfBowThrusters"
     ]
 
-    for k, r, in VesselsAPI.rename_keys.items():
-        api_fields[api_fields.index(k)] = r
-    
-    snake_case_api_fields = list(map(_to_snake_case, api_fields))
-    vessels_model_fields = list(Vessel.__dataclass_fields__)
-    snake_case_api_fields.sort()
-    vessels_model_fields.sort()
-    assert snake_case_api_fields == vessels_model_fields
+    from pydantic.fields import FieldInfo
+    from signal_ocean.util.pydantic_base import _to_pascal_case
+
+    # Build a mapping from API alias -> model field name using the Pydantic model
+    alias_to_field = {}
+    for field_name, field_info in Vessel.model_fields.items():
+        # validation_alias takes priority over alias_generator
+        if field_info.validation_alias is not None:
+            alias_to_field[str(field_info.validation_alias)] = field_name
+        else:
+            alias_to_field[_to_pascal_case(field_name)] = field_name
+
+    # Each API field name should map to a known model field
+    for api_field in api_fields:
+        assert api_field in alias_to_field, (
+            f"API field '{api_field}' has no corresponding field in Vessel model"
+        )
+
+    vessels_model_fields = sorted(Vessel.model_fields.keys())
+    resolved_model_fields = sorted(alias_to_field[k] for k in api_fields)
+    assert resolved_model_fields == vessels_model_fields

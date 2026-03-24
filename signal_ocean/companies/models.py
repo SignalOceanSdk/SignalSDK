@@ -1,11 +1,10 @@
 """Models instantiated by the companies api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
 
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
-@dataclass(frozen=True)
-class Company:
+
+class Company(SignalBaseModel):
     """Contains all details of a company.
 
     Attributes:
@@ -51,7 +50,7 @@ class Company:
     """
 
     id: int
-    updated_date: datetime
+    updated_date: UTCDatetime
     company_name: Optional[str] = None
     website: Optional[str] = None
     fleet_list: Optional[str] = None

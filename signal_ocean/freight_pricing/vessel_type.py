@@ -1,10 +1,9 @@
 # noqa: D100
 
-from dataclasses import dataclass
+from signal_ocean.util.pydantic_base import IdentityEqModel
 
 
-@dataclass(frozen=True, eq=False)
-class VesselType:
+class VesselType(IdentityEqModel):
     """Type of vessel used for transport.
 
     Attributes:

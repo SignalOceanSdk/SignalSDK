@@ -1,13 +1,13 @@
 """Models instantiated by the scraped cargoes api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple
 
+from pydantic import Field
+
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
+from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
 
-@dataclass(frozen=True)
-class ScrapedCargo:
+class ScrapedCargo(SignalBaseModel):
     """Detailed information about a scraped cargo.
 
     Attributes:
@@ -356,15 +356,15 @@ class ScrapedCargo:
     line_to: Optional[int] = None
     in_line_order: Optional[int] = None
     source: Optional[str] = None
-    updated_date: Optional[datetime] = None
-    received_date: Optional[datetime] = None
+    updated_date: Optional[UTCDatetime] = None
+    received_date: Optional[UTCDatetime] = None
     is_deleted: Optional[bool] = False
     low_confidence: Optional[bool] = False
 
     # laycan
     scraped_laycan: Optional[str] = None
-    laycan_from: Optional[datetime] = None
-    laycan_to: Optional[datetime] = None
+    laycan_from: Optional[UTCDatetime] = None
+    laycan_to: Optional[UTCDatetime] = None
 
     # load
     scraped_load: Optional[str] = None
@@ -375,9 +375,11 @@ class ScrapedCargo:
 
     # load 2
     scraped_load2: Optional[str] = None
-    load_geo_id2: Optional[int] = None
+    load_geo_id2: Optional[int] = Field(None, validation_alias="LoadGeoID2")
     load_name2: Optional[str] = None
-    load_taxonomy_id2: Optional[int] = None
+    load_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="LoadTaxonomyID2"
+    )
     load_taxonomy2: Optional[str] = None
 
     # discharge
@@ -390,9 +392,13 @@ class ScrapedCargo:
 
     # discharge 2
     scraped_discharge2: Optional[str] = None
-    discharge_geo_id2: Optional[int] = None
+    discharge_geo_id2: Optional[int] = Field(
+        None, validation_alias="DischargeGeoID2"
+    )
     discharge_name2: Optional[str] = None
-    discharge_taxonomy_id2: Optional[int] = None
+    discharge_taxonomy_id2: Optional[int] = Field(
+        None, validation_alias="DischargeTaxonomyID2"
+    )
     discharge_taxonomy2: Optional[str] = None
 
     # charterer
@@ -418,8 +424,8 @@ class ScrapedCargo:
 
     # delivery date
     scraped_delivery_date: Optional[str] = None
-    delivery_date_from: Optional[datetime] = None
-    delivery_date_to: Optional[datetime] = None
+    delivery_date_from: Optional[UTCDatetime] = None
+    delivery_date_to: Optional[UTCDatetime] = None
 
     # delivery from
     scraped_delivery_from: Optional[str] = None
@@ -468,8 +474,9 @@ class ScrapedCargo:
     is_private: Optional[bool] = False
 
 
-@dataclass(frozen=True)
-class ScrapedCargoesResponse(ScrapedDataResponse[ScrapedCargo]):
+class ScrapedCargoesResponse(
+    SignalBaseModel, ScrapedDataResponse[ScrapedCargo]
+):
     """Paged response for scraped cargoes from the Scraped Cargoes API.
 
     Attributes:

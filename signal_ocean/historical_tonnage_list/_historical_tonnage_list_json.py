@@ -26,32 +26,52 @@ def to_vessel(
     )
 
     return Vessel(
-        imo,
-        cast(str, data_for_imo.get("vesselName")),
-        cast(str, data_for_imo.get("vesselClass")),
-        data_for_imo.get("iceClass"),
-        cast(int, data_for_imo.get("yearBuilt")),
-        cast(int, data_for_imo.get("deadWeight")),
-        cast(float, data_for_imo.get("lengthOverall")),
-        cast(int, data_for_imo.get("breadthExtreme")),
-        cast(str, pit_vessel_data.get("marketDeployment")),
-        cast(str, pit_vessel_data.get("pushType")),
-        cast(str, pit_vessel_data.get("openPort")),
-        parse_datetime(pit_vessel_data.get("openDate")),
-        cast(str, pit_vessel_data.get("operationalStatus")),
-        cast(str, pit_vessel_data.get("commercialOperator")),
-        cast(str, pit_vessel_data.get("commercialStatus")),
-        parse_datetime(pit_vessel_data.get("eta")),
-        parse_datetime(pit_vessel_data.get("latestAis")),
-        cast(str, data_for_imo.get("subclass")),
-        cast(bool, data_for_imo.get("willingToSwitchSubclass")),
-        cast(str, pit_vessel_data.get("openPredictionAccuracy")),
-        tuple(
-            Area(a.get("name"), a.get("locationTaxonomy"))
+        imo=imo,
+        name=cast(str, data_for_imo.get("vesselName")),
+        vessel_class=cast(str, data_for_imo.get("vesselClass")),
+        ice_class=data_for_imo.get("iceClass"),
+        year_built=cast(int, data_for_imo.get("yearBuilt")),
+        deadweight=cast(int, data_for_imo.get("deadWeight")),
+        length_overall=cast(float, data_for_imo.get("lengthOverall")),
+        breadth_extreme=cast(int, data_for_imo.get("breadthExtreme")),
+        market_deployment=cast(str, pit_vessel_data.get("marketDeployment")),
+        push_type=cast(str, pit_vessel_data.get("pushType")),
+        open_port=cast(str, pit_vessel_data.get("openPort")),
+        open_date=parse_datetime(pit_vessel_data.get("openDate")),
+        operational_status=cast(
+            str, pit_vessel_data.get("operationalStatus")
+        ),
+        commercial_operator=cast(
+            str, pit_vessel_data.get("commercialOperator")
+        ),
+        commercial_status=cast(
+            str, pit_vessel_data.get("commercialStatus")
+        ),
+        eta=parse_datetime(pit_vessel_data.get("eta")),
+        latest_ais=parse_datetime(pit_vessel_data.get("latestAis")),
+        subclass=cast(str, data_for_imo.get("subclass")),
+        willing_to_switch_subclass=cast(
+            bool, data_for_imo.get("willingToSwitchSubclass")
+        ),
+        open_prediction_accuracy=cast(
+            str,
+            pit_vessel_data.get("openPredictionAccuracy")
+        ),
+        open_areas=tuple(
+            Area(
+                name=a.get("name"),
+                location_taxonomy=a.get("locationTaxonomy")
+            )
             for a in pit_vessel_data.get("openAreas", [])
         ),
-        cast(str, pit_vessel_data.get("availabilityPortType")),
-        cast(str, pit_vessel_data.get("availabilityDateType")),
+        availability_port_type=cast(
+            str,
+            pit_vessel_data.get("availabilityPortType")
+        ),
+        availability_date_type=cast(
+            str,
+            pit_vessel_data.get("availabilityDateType")
+        ),
     )
 
 

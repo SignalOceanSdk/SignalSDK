@@ -1,10 +1,12 @@
 """Models instantiated by the geos api."""
-from dataclasses import dataclass
 from typing import Optional, Tuple
 
+from pydantic import Field
 
-@dataclass(frozen=True)
-class Area:
+from signal_ocean.util.pydantic_base import SignalBaseModel
+
+
+class Area(SignalBaseModel):
     """Contains all details of an area.
 
     Attributes:
@@ -25,8 +27,7 @@ class Area:
     parent_area_name: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class Country:
+class Country(SignalBaseModel):
     """Contains all details of an country.
 
     Attributes:
@@ -47,11 +48,12 @@ class Country:
     location_taxonomy_name: str
     country_code: Optional[str] = None
     country_code_numeric: Optional[str] = None
-    country_code_iso3: Optional[str] = None
+    country_code_iso3: Optional[str] = Field(
+        None, validation_alias="CountryCodeISO3"
+    )
 
 
-@dataclass(frozen=True)
-class GeoAsset:
+class GeoAsset(SignalBaseModel):
     """Contains all details of a geo asset.
 
     Attributes:
@@ -144,10 +146,12 @@ class GeoAsset:
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     vessel_class_associations: Optional[Tuple[int, ...]] = None
+    country_code_iso3: Optional[str] = Field(
+        None, validation_alias="CountryCodeISO3"
+    )
 
 
-@dataclass(frozen=True)
-class Port:
+class Port(SignalBaseModel):
     """Contains all details of a port.
 
     Attributes:
@@ -232,8 +236,7 @@ class Port:
     vessel_class_associations: Optional[Tuple[int, ...]] = None
 
 
-@dataclass(frozen=True)
-class AreasPagedResponse:
+class AreasPagedResponse(SignalBaseModel):
     """Paged response for areas from the Geos API.
 
     Attributes:
@@ -243,8 +246,7 @@ class AreasPagedResponse:
     data: Optional[Tuple[Area, ...]] = None
 
 
-@dataclass(frozen=True)
-class GeoAssetsPagedResponse:
+class GeoAssetsPagedResponse(SignalBaseModel):
     """Paged response for geo Assets from the Geos API.
 
     Attributes:
@@ -254,8 +256,7 @@ class GeoAssetsPagedResponse:
     data: Optional[Tuple[GeoAsset, ...]] = None
 
 
-@dataclass(frozen=True)
-class CountriesPagedResponse:
+class CountriesPagedResponse(SignalBaseModel):
     """Paged response for countries from the Geos API.
 
     Attributes:
@@ -265,8 +266,7 @@ class CountriesPagedResponse:
     data: Optional[Tuple[Country, ...]] = None
 
 
-@dataclass(frozen=True)
-class PortsPagedResponse:
+class PortsPagedResponse(SignalBaseModel):
     """Paged response for ports from the Geos API.
 
     Attributes:

@@ -1,8 +1,8 @@
 """Tonnage List API models."""
 
-from dataclasses import dataclass, field
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 from typing import (
+    Any,
     Iterable,
     List,
     Optional,
@@ -14,6 +14,7 @@ from typing import (
 )
 
 import pandas as pd
+from pydantic import ConfigDict
 
 from .data_frame import Column, DataFrameRow, IndexLevel
 from .._internals import (
@@ -22,6 +23,7 @@ from .._internals import (
     format_iso_date,
     contains_caseless,
 )
+from ..util.pydantic_base import SignalBaseModel, IdentityEqModel, UTCDatetime
 
 
 class LocationTaxonomy(metaclass=IterableConstants):
@@ -40,8 +42,7 @@ class LocationTaxonomy(metaclass=IterableConstants):
     """A wide geographical area."""
 
 
-@dataclass(frozen=True)
-class Area:
+class Area(SignalBaseModel):
     """A geographical area.
 
     Attributes:
@@ -58,8 +59,7 @@ class Area:
     taxonomy_id: int
 
 
-@dataclass(frozen=True, eq=False)
-class Vessel:
+class Vessel(IdentityEqModel):
     """Holds information for a vessel that's present in a `TonnageList`.
 
     Contains both static and point-in-time vessel data. When converted to a
@@ -126,36 +126,37 @@ class Vessel:
     """
 
     imo: int
-    name: str
-    vessel_class: str
-    ice_class: Optional[str]
-    year_built: int
-    deadweight: int
-    length_overall: float
-    breadth_extreme: int
-    market_deployment: str
-    push_type: str
-    open_port_id: int
-    open_port: str
-    open_date: Optional[datetime]
-    operational_status: str
-    commercial_operator_id: int
-    commercial_operator: str
-    commercial_status: str
-    eta: Optional[datetime]
-    latest_ais: Optional[datetime]
-    subclass: str
-    willing_to_switch_subclass: bool
-    open_prediction_accuracy: str
-    open_areas: Tuple[Area, ...]
-    availability_port_type: str
-    availability_date_type: str
-    fixture_type: str
-    current_vessel_sub_type_id: int
-    current_vessel_sub_type: str
-    willing_to_switch_current_vessel_sub_type: bool
+    name: Optional[str] = None
+    vessel_class: Optional[str] = None
+    ice_class: Optional[str] = None
+    year_built: Optional[int] = None
+    deadweight: Optional[int] = None
+    length_overall: Optional[float] = None
+    breadth_extreme: Optional[int] = None
+    market_deployment: Optional[str] = None
+    push_type: Optional[str] = None
+    open_port_id: Optional[int] = None
+    open_port: Optional[str] = None
+    open_date: Optional[UTCDatetime] = None
+    operational_status: Optional[str] = None
+    commercial_operator_id: Optional[int] = None
+    commercial_operator: Optional[str] = None
+    commercial_status: Optional[str] = None
+    eta: Optional[UTCDatetime] = None
+    latest_ais: Optional[UTCDatetime] = None
+    subclass: Optional[str] = None
+    willing_to_switch_subclass: Optional[bool] = None
+    open_prediction_accuracy: Optional[str] = None
+    open_areas: Optional[Tuple[Area, ...]] = None
+    availability_port_type: Optional[str] = None
+    availability_date_type: Optional[str] = None
+    fixture_type: Optional[str] = None
+    current_vessel_sub_type_id: Optional[int] = None
+    current_vessel_sub_type: Optional[str] = None
+    willing_to_switch_current_vessel_sub_type: Optional[bool] = None
 
-    def __post_init__(self) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         if self.open_areas is None:
             object.__setattr__(self, "open_areas", tuple())
 
@@ -190,7 +191,7 @@ class Vessel:
         return self.__area_name_by_taxonomy(LocationTaxonomy.WIDE_AREA)
 
     def __area_name_by_taxonomy(self, taxonomy: str) -> Optional[str]:
-        for a in self.open_areas:
+        for a in self.open_areas or ():
             if a.location_taxonomy == taxonomy:
                 return a.name
         return None
@@ -306,8 +307,7 @@ class SourceType(metaclass=IterableConstants):
     """The prediction was made based on an algorithm."""
 
 
-@dataclass(frozen=True, eq=False)
-class Port:
+class Port(IdentityEqModel):
     """A maritime facility where vessels can dock.
 
     Attributes:
@@ -319,9 +319,10 @@ class Port:
     name: str
 
 
-@dataclass(frozen=True, eq=False)
-class VesselClass:
-    """A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.
+class VesselClass(IdentityEqModel):
+    """A group of vessels of similar characteristics.
+
+    For example Aframax, Panamax, etc.
 
     Attributes:
         id: The vessel class ID.
@@ -401,8 +402,7 @@ class MarketDeployment(metaclass=IterableConstants):
     """
 
 
-@dataclass(eq=False)
-class VesselFilter:
+class VesselFilter(IdentityEqModel):
     """Used to filter vessels when retrieving tonnage lists.
 
     All attributes in this class are optional, i.e. no filtering will be
@@ -470,49 +470,33 @@ class VesselFilter:
             country ids.
     """
 
-    push_types: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
+    model_config = ConfigDict(
+        frozen=False, populate_by_name=True, extra='ignore'
     )
-    market_deployments: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
-    commercial_statuses: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
+
+    push_types: Optional[List[str]] = cast(List[str], [])
+    market_deployments: Optional[List[str]] = cast(List[str], [])
+    commercial_statuses: Optional[List[str]] = cast(List[str], [])
     vessel_subclass: Optional[str] = VesselSubclass.ALL
     add_willing_to_switch_subclass: Optional[bool] = False
     latest_ais_since: Optional[int] = None
-    operational_statuses: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
+    operational_statuses: Optional[List[str]] = cast(List[str], [])
     min_liquid_capacity: Optional[int] = None
     max_liquid_capacity: Optional[int] = None
-    fixture_types: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
-    past_port_visits: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
-    open_port_ids: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
+    fixture_types: Optional[List[str]] = cast(List[str], [])
+    past_port_visits: Optional[List[int]] = cast(List[int], [])
+    open_port_ids: Optional[List[int]] = cast(List[int], [])
     canakkale_cancelling: Optional[date] = None
     open_date: Optional[date] = None
-    ice_classes: Optional[List[str]] = cast(
-        List[str], field(default_factory=list)
-    )
+    ice_classes: Optional[List[str]] = cast(List[str], [])
     min_cranes_ton_capacity: Optional[int] = None
     max_cranes_ton_capacity: Optional[int] = None
     min_length_overall: Optional[int] = None
     max_length_overall: Optional[int] = None
     min_breadth_extreme: Optional[int] = None
     max_breadth_extreme: Optional[int] = None
-    open_area_ids: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
-    open_country_ids: Optional[List[int]] = cast(
-        List[int], field(default_factory=list)
-    )
+    open_area_ids: Optional[List[int]] = cast(List[int], [])
+    open_country_ids: Optional[List[int]] = cast(List[int], [])
 
     def _to_query_string(self) -> QueryString:
         return {
@@ -595,8 +579,7 @@ class DateRange:
         }
 
 
-@dataclass(eq=False)
-class PortFilter:
+class PortFilter(IdentityEqModel):
     """A filter used to find specific ports.
 
     Attributes:
@@ -604,6 +587,10 @@ class PortFilter:
             names partially match (contain) the attribute's value will be
             returned. Matching is case-insensitive.
     """
+
+    model_config = ConfigDict(
+        frozen=False, populate_by_name=True, extra='ignore'
+    )
 
     name_like: Optional[str] = None
 
@@ -616,8 +603,7 @@ class PortFilter:
         )
 
 
-@dataclass(eq=False)
-class VesselClassFilter:
+class VesselClassFilter(IdentityEqModel):
     """A filter used to find specific vessel classes.
 
     Attributes:
@@ -625,6 +611,10 @@ class VesselClassFilter:
             classes whose names partially match (contain) the attribute's value
             will be returned. Matching is case-insensitive.
     """
+
+    model_config = ConfigDict(
+        frozen=False, populate_by_name=True, extra='ignore'
+    )
 
     name_like: Optional[str] = None
 
@@ -648,7 +638,7 @@ class TonnageList(Sequence[Vessel]):
         date: The date and time at which the tonnage list was captured.
     """
 
-    def __init__(self, vessels: Iterable[Vessel], date: datetime):
+    def __init__(self, vessels: Iterable[Vessel], date: UTCDatetime):
         """Initializes the tonnage list.
 
         Args:

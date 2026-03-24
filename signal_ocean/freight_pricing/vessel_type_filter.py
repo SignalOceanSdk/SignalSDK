@@ -1,14 +1,15 @@
 # noqa: D100
 
-from dataclasses import dataclass
 from typing import Iterable, Optional
+
+from pydantic import ConfigDict
 
 from .vessel_type import VesselType
 from .._internals import contains_caseless
+from signal_ocean.util.pydantic_base import IdentityEqModel, _to_pascal_case
 
 
-@dataclass(eq=False)
-class VesselTypeFilter:
+class VesselTypeFilter(IdentityEqModel):
     """A filter used to find specific vessel types.
 
     Attributes:
@@ -16,6 +17,15 @@ class VesselTypeFilter:
             types whose names partially match (contain) the attribute's value
             will be returned. Matching is case-insensitive.
     """
+
+    model_config = ConfigDict(
+        frozen=False,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_pascal_case,
+    )
+    __eq__ = object.__eq__
+    __hash__ = object.__hash__
 
     name_like: Optional[str] = None
 

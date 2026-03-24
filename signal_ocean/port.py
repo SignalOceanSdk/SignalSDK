@@ -1,11 +1,12 @@
 # noqa: D100
 
-from dataclasses import dataclass
 import warnings
+from typing import Any
+
+from signal_ocean.util.pydantic_base import IdentityEqModel
 
 
-@dataclass(frozen=True, eq=False)
-class Port:
+class Port(IdentityEqModel):
     """A maritime facility where vessels can dock.
 
     Attributes:
@@ -16,7 +17,8 @@ class Port:
     id: int
     name: str
 
-    def __post_init__(self) -> None:  # noqa: D105
+    def model_post_init(self, __context: Any) -> None:
+        """Initialize model."""
         warnings.warn(
             "signal_ocean.Port is deprecated and will be removed in a future "
             "version of the SDK. Please use tonnage_list.Port instead.",

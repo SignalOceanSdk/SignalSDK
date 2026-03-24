@@ -1,11 +1,12 @@
 # noqa: D100
 
-from dataclasses import dataclass
+from signal_ocean.util.pydantic_base import IdentityEqModel
 
 
-@dataclass(frozen=True, eq=False)
-class VesselClass:
-    """A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.
+class VesselClass(IdentityEqModel):
+    """A group of vessels of similar characteristics.
+
+    For example Aframax, Panamax, etc.
 
     Attributes:
         id: The vessel class ID.

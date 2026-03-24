@@ -1,8 +1,10 @@
 """The models for vessel emissions api."""
-import dataclasses
-from dataclasses import dataclass
 from typing import Optional, List, Dict, Any
-from operator import attrgetter
+
+from pydantic import Field, AliasChoices, ConfigDict
+from pydantic_core import PydanticUndefined
+
+from signal_ocean.util.pydantic_base import SignalBaseModel
 
 
 def _to_camel_case_with_special_keywords(s: str) -> str:
@@ -27,8 +29,7 @@ def _to_camel_case_with_special_keywords(s: str) -> str:
     return result
 
 
-@dataclass(frozen=True)
-class Emissions:
+class Emissions(SignalBaseModel):
     """Contains the reported emissions per gas type.
 
     Attributes:
@@ -42,18 +43,31 @@ class Emissions:
     pmin_tons: PM emissions in tons
 
     """
+    model_config = ConfigDict(
+        frozen=True,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_camel_case_with_special_keywords,
+    )
+
     co2_in_tons: Optional[float] = None
     coin_tons: Optional[float] = None
-    ch4_in_tons: Optional[float] = None
+    ch4_in_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('CH4InTons', 'Ch4InTons',
+                                      'ch4_in_tons'),
+    )
     n2_oin_tons: Optional[float] = None
     nmvocin_tons: Optional[float] = None
     nox_in_tons: Optional[float] = None
     sox_in_tons: Optional[float] = None
-    pmin_tons: Optional[float] = None
+    pmin_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('PMInTons', 'PmInTons', 'pmin_tons'),
+    )
 
 
-@dataclass(frozen=True)
-class EmissionsBreakdown:
+class EmissionsBreakdown(SignalBaseModel):
     """Contains emissions breakdown for different parts of the Voyage.
 
     Attributes:
@@ -70,8 +84,7 @@ class EmissionsBreakdown:
     stop: Optional[Emissions] = None
 
 
-@dataclass(frozen=True)
-class Consumptions:
+class Consumptions(SignalBaseModel):
     """Contains the reported consumptions per gas type.
 
     Attributes:
@@ -84,17 +97,47 @@ class Consumptions:
     total_in_tons: Total vessel consumption in tons
 
     """
+    model_config = ConfigDict(
+        frozen=True,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_camel_case_with_special_keywords,
+    )
+
     total_in_tons: float
-    hfoin_tons: Optional[float] = None
-    lfoin_tons: Optional[float] = None
-    mgoin_tons: Optional[float] = None
-    lngin_tons: Optional[float] = None
-    lpgpropane_in_tons: Optional[float] = None
-    lpgbutane_in_tons: Optional[float] = None
+    hfoin_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('HFOInTons', 'HfoInTons',
+                                      'hfoin_tons'),
+    )
+    lfoin_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('LFOInTons', 'LfoInTons',
+                                      'lfoin_tons'),
+    )
+    mgoin_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('MGOInTons', 'MgoInTons',
+                                      'mgoin_tons'),
+    )
+    lngin_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('LNGInTons', 'LngInTons',
+                                      'lngin_tons'),
+    )
+    lpgpropane_in_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('LPGPropaneInTons', 'LpgpropaneInTons',
+                                      'lpgpropane_in_tons'),
+    )
+    lpgbutane_in_tons: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('LPGButaneInTons', 'LpgbutaneInTons',
+                                      'lpgbutane_in_tons'),
+    )
 
 
-@dataclass(frozen=True)
-class ConsumptionsBreakdown:
+class ConsumptionsBreakdown(SignalBaseModel):
     """Contains consumptions breakdown for different parts of the Voyage.
 
     Attributes:
@@ -111,8 +154,7 @@ class ConsumptionsBreakdown:
     stop: Optional[Consumptions] = None
 
 
-@dataclass(frozen=True)
-class Duration:
+class Duration(SignalBaseModel):
     """Contains voyage duration information.
 
     Attributes:
@@ -123,8 +165,7 @@ class Duration:
     in_days: float
 
 
-@dataclass(frozen=True)
-class DurationBreakdown:
+class DurationBreakdown(SignalBaseModel):
     """Contains duration breakdown for the different parts of the voyage.
 
     Attributes:
@@ -141,8 +182,7 @@ class DurationBreakdown:
     stop: Optional[Duration] = None
 
 
-@dataclass(frozen=True)
-class Distance:
+class Distance(SignalBaseModel):
     """Contains Distance Info.
 
     Attributes:
@@ -152,8 +192,7 @@ class Distance:
     distance_travelled: float
 
 
-@dataclass(frozen=True)
-class DistancesBreakdown:
+class DistancesBreakdown(SignalBaseModel):
     """Contains Distance Info for different parts of the Voyage.
 
     Attributes:
@@ -167,8 +206,7 @@ class DistancesBreakdown:
     laden: Distance
 
 
-@dataclass(frozen=True)
-class Metrics:
+class Metrics(SignalBaseModel):
     """Vessel Metrics estimation.
 
     Attributes:
@@ -236,12 +274,22 @@ class Metrics:
     eeoi_sea_cargo_charter_class: Optional[str] = None
     eeoi_sea_cargo_charter_alignment_in_percentage: \
         Optional[float] = None
-    kg_co2_per_tonne_cargo: Optional[float] = None
-    kg_co2_per_tonne_dwt: Optional[float] = None
+    kg_co2_per_tonne_cargo: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            'kgCO2PerTonneCargo',
+            'KgCO2PerTonneCargo',
+            'kg_co2_per_tonne_cargo',
+        ),
+    )
+    kg_co2_per_tonne_dwt: Optional[float] = Field(
+        default=None,
+        validation_alias=AliasChoices('kgCO2PerTonneDwt', 'KgCO2PerTonneDwt',
+                                      'kg_co2_per_tonne_dwt'),
+    )
 
 
-@dataclass(frozen=True)
-class SeagoingSpeedStatistics:
+class SeagoingSpeedStatistics(SignalBaseModel):
     """Contains speed statistics.
 
     Attributes:
@@ -257,8 +305,7 @@ class SeagoingSpeedStatistics:
     max_speed_in_knots: Optional[float] = None
 
 
-@dataclass(frozen=True)
-class SeagoingSpeedStatisticsBreakdown:
+class SeagoingSpeedStatisticsBreakdown(SignalBaseModel):
     """Contains speed statistics for different parts of the Voyage.
 
     Attributes:
@@ -272,8 +319,7 @@ class SeagoingSpeedStatisticsBreakdown:
     ballast: Optional[SeagoingSpeedStatistics] = None
 
 
-@dataclass(frozen=True)
-class EmissionsEssentialStatistics:
+class EmissionsEssentialStatistics(SignalBaseModel):
     """Contains Emissions essential statistics.
 
     Attributes:
@@ -289,8 +335,7 @@ class EmissionsEssentialStatistics:
     duration: Optional[DurationBreakdown] = None
 
 
-@dataclass(frozen=True)
-class EmissionsEstimation:
+class EmissionsEstimation(SignalBaseModel):
     """Contains info about the emissions estimation.
 
     Attributes:
@@ -356,16 +401,13 @@ class EmissionsEstimation:
             Object string representation omitting None attributes
 
         """
-        nodef_f_vals = (
-            (f.name, attrgetter(f.name)(self))
-            for f in dataclasses.fields(self)
-            if attrgetter(f.name)(self) != f.default
-        )
-
-        nodef_f_repr = ", ".join(f"{name}={value}"
-                                 for name, value
-                                 in nodef_f_vals)
-        return f"{self.__class__.__name__}({nodef_f_repr})"
+        nodef_f_vals = []
+        for name, field_info in self.__class__.model_fields.items():
+            value = getattr(self, name)
+            default = field_info.default
+            if default is PydanticUndefined or value != default:
+                nodef_f_vals.append(f"{name}={value}")
+        return f"{self.__class__.__name__}({', '.join(nodef_f_vals)})"
 
     def to_dict(self) -> Dict[Any, Any]:
         """Cast EmissionsEstimation object to dict.
@@ -374,16 +416,21 @@ class EmissionsEstimation:
             Dict representation of EmissionsEstimation model
 
         """
-        return dataclasses.asdict(
-            self,
-            dict_factory=lambda x: {
-                _to_camel_case_with_special_keywords(k): v
-                for (k, v) in x if v is not None
-            })
+        def _convert(data):
+            if isinstance(data, dict):
+                return {
+                    _to_camel_case_with_special_keywords(k):
+                    _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
+            elif isinstance(data, list):
+                return [_convert(item) for item in data]
+            return data
+        return _convert(self.model_dump())
 
 
-@dataclass(frozen=True)
-class Eexi:
+class Eexi(SignalBaseModel):
     """Contains EEXI info.
 
     Attributes:
@@ -397,8 +444,7 @@ class Eexi:
     required: Optional[float] = None
 
 
-@dataclass(frozen=True)
-class Eiv:
+class Eiv(SignalBaseModel):
     """Contains EIV info.
 
     Attributes:
@@ -410,8 +456,7 @@ class Eiv:
     unit: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class Aer:
+class Aer(SignalBaseModel):
     """Contains AER info.
 
     Attributes:
@@ -435,8 +480,7 @@ class Aer:
     poseidon_principles_year_target: Optional[float] = None
 
 
-@dataclass(frozen=True)
-class Cii:
+class Cii(SignalBaseModel):
     """Contains CII info.
 
     Attributes:
@@ -454,8 +498,7 @@ class Cii:
     target_year: Optional[int] = None
 
 
-@dataclass(frozen=True)
-class VesselMetrics:
+class VesselMetrics(SignalBaseModel):
     """Contains Vessel emissions Metrics.
 
     Attributes:
@@ -489,16 +532,13 @@ class VesselMetrics:
             Object string representation omitting None attributes
 
         """
-        nodef_f_vals = (
-            (f.name, attrgetter(f.name)(self))
-            for f in dataclasses.fields(self)
-            if attrgetter(f.name)(self) != f.default
-        )
-
-        nodef_f_repr = ", ".join(f"{name}={value}"
-                                 for name, value
-                                 in nodef_f_vals)
-        return f"{self.__class__.__name__}({nodef_f_repr})"
+        nodef_f_vals = []
+        for name, field_info in self.__class__.model_fields.items():
+            value = getattr(self, name)
+            default = field_info.default
+            if default is PydanticUndefined or value != default:
+                nodef_f_vals.append(f"{name}={value}")
+        return f"{self.__class__.__name__}({', '.join(nodef_f_vals)})"
 
     def to_dict(self) -> Dict[Any, Any]:
         """Cast VesselMetrics object to dict.
@@ -507,16 +547,21 @@ class VesselMetrics:
             Dict representation of VesselMetrics object
 
         """
-        return dataclasses.asdict(
-            self,
-            dict_factory=lambda x: {
-                _to_camel_case_with_special_keywords(k): v
-                for (k, v) in x if v is not None
-            })
+        def _convert(data):
+            if isinstance(data, dict):
+                return {
+                    _to_camel_case_with_special_keywords(k):
+                    _convert(v)
+                    for k, v in data.items()
+                    if v is not None
+                }
+            elif isinstance(data, list):
+                return [_convert(item) for item in data]
+            return data
+        return _convert(self.model_dump())
 
 
-@dataclass(frozen=True)
-class VesselClassEmissions:
+class VesselClassEmissions(SignalBaseModel):
     """Contains Vessel Class Emissions.
 
     Attributes:
@@ -543,8 +588,7 @@ class VesselClassEmissions:
         }
 
 
-@dataclass(frozen=True)
-class VesselClassMetrics:
+class VesselClassMetrics(SignalBaseModel):
     """Contains Vessel Class Metrics.
 
     Attributes:

@@ -153,7 +153,7 @@ class VesselEmissionsAPI:
             sulphur_content_mgo: Union[float, None] = None,
             sulphur_content_lng: Union[float, None] = None
     ) -> Optional[EmissionsEstimation]:
-        """Retrieves voyage emissions for a vessel by its IMO and Voyage Number.
+        """Retrieves voyage emissions by IMO and Voyage Number.
 
         Args:
             imo: Vessel IMO to retrieve.
@@ -284,7 +284,9 @@ class VesselEmissionsAPI:
             include_speed_statistics: bool = False,
             include_eu_emissions: bool = False
     ) -> Optional[VesselClassEmissions]:
-        """Get emissions estimations for a vessel class (supports incremental updates).
+        """Get emissions estimations for a vessel class.
+
+        Supports incremental updates.
 
         Args:
             vessel_class_id: The vessel class to retrieve

@@ -64,18 +64,11 @@ class GeosAPI:
             "geoAssets/all" if geoAssetId is None
             else f"geoAssets/{geoAssetId}"
         )
-        rename_keys = {
-            "AreaIDLevel0": "area_id_level0",
-            "AreaIDLevel1": "area_id_level1",
-            "AreaIDLevel2": "area_id_level2",
-            "AreaIDLevel3": "area_id_level3",
-            "CountryCodeISO3": "country_code_iso3"}
         url = urljoin(GeosAPI.relative_url, endpoint)
         response = get_single(
             self.__connection,
             url,
-            GeoAssetsPagedResponse,
-            rename_keys=rename_keys)
+            GeoAssetsPagedResponse)
         if response is not None and response.data is not None:
             return response.data
         else:
@@ -117,17 +110,11 @@ class GeosAPI:
         endpoint = (
             "ports/all" if portId is None else f"ports/{portId}"
         )
-        rename_keys = {
-            "AreaIDLevel0": "area_id_level0",
-            "AreaIDLevel1": "area_id_level1",
-            "AreaIDLevel2": "area_id_level2",
-            "AreaIDLevel3": "area_id_level3"}
         url = urljoin(GeosAPI.relative_url, endpoint)
         response = get_single(
             self.__connection,
             url,
-            PortsPagedResponse,
-            rename_keys=rename_keys)
+            PortsPagedResponse)
         if response is not None and response.data is not None:
             return response.data
         else:

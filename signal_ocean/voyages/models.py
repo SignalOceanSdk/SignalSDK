@@ -1,12 +1,17 @@
 """Models instantiated by the voyages api."""
-from dataclasses import dataclass
-from datetime import datetime
 from typing import Optional, Tuple, Iterable
+from pydantic import ConfigDict, Field
+
+from signal_ocean.util.pydantic_base import (
+    SignalBaseModel,
+    IdentityEqModel,
+    UTCDatetime,
+    _to_pascal_case,
+)
 from .._internals import contains_caseless
 
 
-@dataclass(frozen=True, eq=False)
-class Vessel:
+class Vessel(IdentityEqModel):
     """Vessels.
 
     Attributes:
@@ -18,8 +23,7 @@ class Vessel:
     vessel_name: str
 
 
-@dataclass(eq=False)
-class VesselFilter:
+class VesselFilter(IdentityEqModel):
     """A filter used to find specific vessels.
 
     Attributes:
@@ -27,6 +31,13 @@ class VesselFilter:
             name whose names partially match (contain) the attribute's value
             will be returned. Matching is case-insensitive.
     """
+
+    model_config = ConfigDict(
+        frozen=False,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_pascal_case,
+    )
 
     name_like: Optional[str] = None
 
@@ -39,9 +50,10 @@ class VesselFilter:
         )
 
 
-@dataclass(frozen=True, eq=False)
-class VesselClass:
-    """A group of vessels of similar characteristics, i.e. Aframax, Panamax, etc.
+class VesselClass(IdentityEqModel):
+    """A group of vessels of similar characteristics.
+
+    For example Aframax, Panamax, etc.
 
     Attributes:
         vessel_class_id: The vessel class ID.
@@ -56,8 +68,7 @@ class VesselClass:
     vessel_type: str
 
 
-@dataclass(eq=False)
-class VesselClassFilter:
+class VesselClassFilter(IdentityEqModel):
     """A filter used to find specific vessel classes.
 
     Attributes:
@@ -65,6 +76,13 @@ class VesselClassFilter:
             classes whose names partially match (contain) the attribute's value
             will be returned. Matching is case-insensitive.
     """
+
+    model_config = ConfigDict(
+        frozen=False,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_pascal_case,
+    )
 
     name_like: Optional[str] = None
 
@@ -79,8 +97,7 @@ class VesselClassFilter:
         )
 
 
-@dataclass(frozen=True, eq=False)
-class VesselType:
+class VesselType(IdentityEqModel):
     """Type of vessel used for transport.
 
     Attributes:
@@ -92,8 +109,7 @@ class VesselType:
     vessel_type: str
 
 
-@dataclass(eq=False)
-class VesselTypeFilter:
+class VesselTypeFilter(IdentityEqModel):
     """A filter used to find specific vessel types.
 
     Attributes:
@@ -101,6 +117,13 @@ class VesselTypeFilter:
             types whose names partially match (contain) the attribute's value
             will be returned. Matching is case-insensitive.
     """
+
+    model_config = ConfigDict(
+        frozen=False,
+        populate_by_name=True,
+        extra='ignore',
+        alias_generator=_to_pascal_case,
+    )
 
     name_like: Optional[str] = None
 
@@ -115,8 +138,7 @@ class VesselTypeFilter:
         )
 
 
-@dataclass(frozen=True)
-class VoyageEventDetail:
+class VoyageEventDetail(SignalBaseModel):
     """Detailed information about a voyage events.
 
     Voyage event details provides information a such as a jetty stay
@@ -193,10 +215,10 @@ class VoyageEventDetail:
     id: Optional[str] = None
     event_id: Optional[str] = None
     event_detail_type: Optional[str] = None
-    arrival_date: Optional[datetime] = None
-    sailing_date: Optional[datetime] = None
-    start_time_of_operation: Optional[datetime] = None
-    end_time_of_operation: Optional[datetime] = None
+    arrival_date: Optional[UTCDatetime] = None
+    sailing_date: Optional[UTCDatetime] = None
+    start_time_of_operation: Optional[UTCDatetime] = None
+    end_time_of_operation: Optional[UTCDatetime] = None
     sts_id: Optional[str] = None
     geo_asset_id: Optional[int] = None
     geo_asset_name: Optional[str] = None
@@ -204,12 +226,11 @@ class VoyageEventDetail:
     longitude: Optional[float] = None
     other_vessel_imo: Optional[int] = None
     other_vessel_name: Optional[str] = None
-    floating_storage_start_date: Optional[datetime] = None
-    floating_storage_duration: Optional[int] = None
+    floating_storage_start_date: Optional[UTCDatetime] = None
+    floating_storage_duration: Optional[float] = None
 
 
-@dataclass(frozen=True)
-class VoyageEvent:
+class VoyageEvent(SignalBaseModel):
     """An event associated with a voyage of a vessel.
 
     Voyage events describe the start of the voyage, a stop or a port call that
@@ -338,9 +359,9 @@ class VoyageEvent:
     event_horizon_id: Optional[int] = None
     event_horizon: Optional[str] = None
     purpose: Optional[str] = None
-    event_date: Optional[datetime] = None
-    arrival_date: Optional[datetime] = None
-    sailing_date: Optional[datetime] = None
+    event_date: Optional[UTCDatetime] = None
+    arrival_date: Optional[UTCDatetime] = None
+    sailing_date: Optional[UTCDatetime] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     geo_asset_id: Optional[int] = None
@@ -350,24 +371,23 @@ class VoyageEvent:
     port_unlocode: Optional[str] = None
     country_id: Optional[int] = None
     country: Optional[str] = None
-    area_idlevel0: Optional[int] = None
+    area_idlevel0: Optional[int] = Field(None, validation_alias="AreaIDLevel0")
     area_name_level0: Optional[str] = None
-    area_idlevel1: Optional[int] = None
+    area_idlevel1: Optional[int] = Field(None, validation_alias="AreaIDLevel1")
     area_name_level1: Optional[str] = None
-    area_idlevel2: Optional[int] = None
+    area_idlevel2: Optional[int] = Field(None, validation_alias="AreaIDLevel2")
     area_name_level2: Optional[str] = None
-    area_idlevel3: Optional[int] = None
+    area_idlevel3: Optional[int] = Field(None, validation_alias="AreaIDLevel3")
     area_name_level3: Optional[str] = None
     low_ais_density: Optional[bool] = None
     quantity: Optional[float] = None
     quantity_unit_id: Optional[int] = None
     quantity_unit: Optional[str] = None
     quantity_in_barrels: Optional[int] = None
-    event_details: Optional[Tuple[VoyageEventDetail, ...]] = None
+    event_details: Optional[Tuple['VoyageEventDetail', ...]] = None
 
 
-@dataclass(frozen=True)
-class Voyage:
+class Voyage(SignalBaseModel):
     """Contains information about a single voyage of a vessel.
 
     Attributes:
@@ -677,7 +697,7 @@ class Voyage:
     id: Optional[str] = None
     horizon_id: Optional[int] = None
     horizon: Optional[str] = None
-    latest_received_ais: Optional[datetime] = None
+    latest_received_ais: Optional[UTCDatetime] = None
     vessel_name: Optional[str] = None
     pit_vessel_name: Optional[str] = None
     vessel_type: Optional[str] = None
@@ -688,9 +708,9 @@ class Voyage:
     deadweight: Optional[int] = None
     year_built: Optional[int] = None
     commercial_operator: Optional[str] = None
-    start_date: Optional[datetime] = None
-    first_load_arrival_date: Optional[datetime] = None
-    end_date: Optional[datetime] = None
+    start_date: Optional[UTCDatetime] = None
+    first_load_arrival_date: Optional[UTCDatetime] = None
+    end_date: Optional[UTCDatetime] = None
     charterer_id: Optional[int] = None
     charterer: Optional[str] = None
     rate: Optional[float] = None
@@ -720,15 +740,17 @@ class Voyage:
     quantity_source_id: Optional[int] = None
     quantity_source: Optional[str] = None
     cubic_size: Optional[int] = None
-    laycan_from: Optional[datetime] = None
-    laycan_to: Optional[datetime] = None
+    laycan_from: Optional[UTCDatetime] = None
+    laycan_to: Optional[UTCDatetime] = None
     vessel_sanctioned_by: Optional[str] = None
     fixture_status_id: Optional[int] = None
     fixture_status: Optional[str] = None
-    fixture_date: Optional[datetime] = None
+    fixture_date: Optional[UTCDatetime] = None
     fixture_is_coa: Optional[bool] = None
     fixture_is_hold: Optional[bool] = None
-    is_implied_by_ais: Optional[bool] = None
+    is_implied_by_ais: Optional[bool] = Field(
+        None, validation_alias='IsImpliedByAIS'
+    )
     has_manual_entries: Optional[bool] = None
     ballast_distance: Optional[float] = None
     predicted_ballast_distance: Optional[float] = None
@@ -743,7 +765,6 @@ class Voyage:
     great_belt_crossing: Optional[str] = None
 
 
-@dataclass(frozen=True)
 class VoyageCondensed(Voyage):
     """Contains information about a single voyage of a vessel.
 
@@ -867,6 +888,10 @@ class VoyageCondensed(Voyage):
                     another vessel through a ship-to-ship operation.
             local_trade_ind: Boolean. True if the vessel has loaded and
                     discharged in the same country.
+            first_load_is_sensitive: Boolean. True if the first load location
+                    is sensitive (e.g., sanctioned countries).
+            last_discharge_is_sensitive: Boolean. True if the last discharge
+                    location is sensitive (e.g., sanctioned countries).
     """
 
     starting_port_name: Optional[str] = None
@@ -879,23 +904,25 @@ class VoyageCondensed(Voyage):
     first_load_port_name: Optional[str] = None
     first_load_port_id: Optional[int] = None
     first_load_port_unlocode: Optional[str] = None
-    first_load_arrival_date: Optional[datetime] = None
-    first_load_start_time_of_operation: Optional[datetime] = None
-    first_load_sailing_date: Optional[datetime] = None
+    first_load_arrival_date: Optional[UTCDatetime] = None
+    first_load_start_time_of_operation: Optional[UTCDatetime] = None
+    first_load_sailing_date: Optional[UTCDatetime] = None
     first_load_country_id: Optional[int] = None
     first_load_country_name: Optional[str] = None
     first_load_area_id_level0: Optional[int] = None
     first_load_area_name_level0: Optional[str] = None
+    first_load_is_sensitive: Optional[bool] = None
     last_discharge_port_name: Optional[str] = None
     last_discharge_port_id: Optional[int] = None
     last_discharge_port_unlocode: Optional[str] = None
-    last_discharge_arrival_date: Optional[datetime] = None
-    last_discharge_start_time_of_operation: Optional[datetime] = None
-    last_discharge_sailing_date: Optional[datetime] = None
+    last_discharge_arrival_date: Optional[UTCDatetime] = None
+    last_discharge_start_time_of_operation: Optional[UTCDatetime] = None
+    last_discharge_sailing_date: Optional[UTCDatetime] = None
     last_discharge_country_id: Optional[int] = None
     last_discharge_country_name: Optional[str] = None
     last_discharge_area_id_level0: Optional[int] = None
     last_discharge_area_name_level0: Optional[str] = None
+    last_discharge_is_sensitive: Optional[bool] = None
     repairs_ind: Optional[bool] = None
     storage_ind: Optional[bool] = None
     sts_load_ind: Optional[bool] = None
@@ -903,8 +930,7 @@ class VoyageCondensed(Voyage):
     local_trade_ind: Optional[bool] = None
 
 
-@dataclass(frozen=True)
-class VoyageGeo:
+class VoyageGeo(SignalBaseModel):
     """Information about a geo asset object associated with a voyage.
 
     Attributes:
@@ -970,18 +996,17 @@ class VoyageGeo:
     port_name: Optional[str] = None
     country_id: Optional[int] = None
     country: Optional[str] = None
-    area_idlevel0: Optional[int] = None
+    area_idlevel0: Optional[int] = Field(None, validation_alias="AreaIDLevel0")
     area_name_level0: Optional[str] = None
-    area_idlevel1: Optional[int] = None
+    area_idlevel1: Optional[int] = Field(None, validation_alias="AreaIDLevel1")
     area_name_level1: Optional[str] = None
-    area_idlevel2: Optional[int] = None
+    area_idlevel2: Optional[int] = Field(None, validation_alias="AreaIDLevel2")
     area_name_level2: Optional[str] = None
-    area_idlevel3: Optional[int] = None
+    area_idlevel3: Optional[int] = Field(None, validation_alias="AreaIDLevel3")
     area_name_level3: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class VoyagesFlat:
+class VoyagesFlat(SignalBaseModel):
     """Voyages with additional information in flat format.
 
     Attributes:
@@ -997,8 +1022,7 @@ class VoyagesFlat:
     geos: Optional[Tuple[VoyageGeo, ...]] = None
 
 
-@dataclass(frozen=True)
-class VoyagesPagedResponse:
+class VoyagesPagedResponse(SignalBaseModel):
     """Paged response for voyages in nested format from the Voyages API.
 
     Attributes:
@@ -1015,8 +1039,7 @@ class VoyagesPagedResponse:
     data: Optional[Tuple[Voyage, ...]] = None
 
 
-@dataclass(frozen=True)
-class VoyagesFlatPagedResponse:
+class VoyagesFlatPagedResponse(SignalBaseModel):
     """Paged response for voyages in flat format from the Voyages API.
 
     Attributes:
@@ -1033,8 +1056,7 @@ class VoyagesFlatPagedResponse:
     data: Optional[VoyagesFlat] = None
 
 
-@dataclass(frozen=True)
-class VoyagesCondensedPagedResponse:
+class VoyagesCondensedPagedResponse(SignalBaseModel):
     """Paged response for voyages in condensed format from the Voyages API.
 
     Attributes:
