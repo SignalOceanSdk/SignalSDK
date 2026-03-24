@@ -56,10 +56,10 @@ class Connection:
         """Close the underlying session and release connections."""
         self.__session.close()
 
-    def __enter__(self) -> "Connection":
+    def __enter__(self) -> "Connection":  # noqa: D105
         return self
 
-    def __exit__(self, *args: object) -> None:
+    def __exit__(self, *args: object) -> None:  # noqa: D105
         self.close()
 
     def _make_get_request(
