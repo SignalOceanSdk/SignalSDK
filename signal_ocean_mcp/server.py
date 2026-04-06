@@ -76,6 +76,18 @@ def _serialize(obj: Any) -> str:
 def _to_dict(obj: Any) -> Any:
     if hasattr(obj, "model_dump"):
         return obj.model_dump(mode="json", by_alias=True)
+    # Handle Sequence-like objects (e.g. HistoricalTonnageList)
+    # that support len/iteration but store data in mangled attrs.
+    if hasattr(obj, "__len__") and hasattr(obj, "__iter__") and not isinstance(obj, (str, bytes, dict)):
+        items = list(obj)
+        if items:
+            return [_to_dict(item) for item in items]
+        # For wrapper objects, also check for public attributes
+        public = {k: v for k, v in obj.__dict__.items()
+                  if not k.startswith("_")}
+        if public:
+            return public
+        return []
     if hasattr(obj, "__dict__"):
         return {k: v for k, v in obj.__dict__.items()
                 if not k.startswith("_")}
@@ -538,6 +550,8 @@ def get_voyage_market_data_advanced(
     cargo types, fixture dates, and laycan dates. Dates as YYYY-MM-DD.
     """
     api = VoyagesMarketDataAPI(_connection())
+    # Pass date strings directly — the SDK POST body serializes via
+    # json.dumps which cannot handle date objects.
     return _serialize(
         api.get_voyage_market_data_advanced(
             imos=imos,
@@ -549,10 +563,10 @@ def get_voyage_market_data_advanced(
             include_positions=include_positions,
             include_matched_fixture=include_matched_fixture,
             filter_by_matched_fixture=filter_by_matched_fixture,
-            fixture_date_from=_parse_date(fixture_date_from),
-            fixture_date_to=_parse_date(fixture_date_to),
-            laycan_date_from=_parse_date(laycan_date_from),
-            laycan_date_to=_parse_date(laycan_date_to),
+            fixture_date_from=fixture_date_from,
+            fixture_date_to=fixture_date_to,
+            laycan_date_from=laycan_date_from,
+            laycan_date_to=laycan_date_to,
             include_labels=include_labels,
             charterer_ids_include=charterer_ids_include,
             charterer_ids_exclude=charterer_ids_exclude,
