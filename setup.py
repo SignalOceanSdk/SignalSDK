@@ -33,6 +33,9 @@ setup(
         "typeguard>=2.13.3,<3.0.0",
         "pydantic>=2.0,<3",
     ],
+    extras_require={
+        "mcp": ["mcp>=1.0.0"],
+    },
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3.8",
