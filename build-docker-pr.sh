@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 echo 'Upgrading pip...'
-python3.11 -m pip install --upgrade pip
+python3 -m pip install --upgrade pip
 
 echo 'Installing dependencies...'
 pip install -r ./requirements.txt
@@ -21,7 +21,7 @@ pydocstyle --match='(?!_[^_]).*\.py' --convention=google signal_ocean
 
 echo 'Building dist...'
 rm -rf dist/*
-python3.11 ./setup.py sdist bdist_wheel
+python3 ./setup.py sdist bdist_wheel
 
 echo 'Installing SDK...'
 pip install -e .
