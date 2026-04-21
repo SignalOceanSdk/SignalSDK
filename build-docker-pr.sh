@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 echo 'Upgrading pip...'
-python3.8 -m pip install --upgrade pip
+python3.11 -m pip install --upgrade pip
 
 echo 'Installing dependencies...'
 pip install -r ./requirements.txt
@@ -21,13 +21,13 @@ pydocstyle --match='(?!_[^_]).*\.py' --convention=google signal_ocean
 
 echo 'Building dist...'
 rm -rf dist/*
-python3.8 ./setup.py sdist bdist_wheel
+python3.11 ./setup.py sdist bdist_wheel
 
 echo 'Installing SDK...'
 pip install -e .
 
 echo 'Installing dependencies...'
-pip install notebook jupyter matplotlib openpyxl seaborn folium sqlalchemy pandas strictly_typed_pandas --upgrade
+pip install notebook jupyter matplotlib openpyxl seaborn folium sqlalchemy pandas --upgrade
 
 echo 'Running notebooks...'
 ls -LR | grep .ipynb | while read filename
