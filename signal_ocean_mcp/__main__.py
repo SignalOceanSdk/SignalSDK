@@ -40,6 +40,10 @@ async def _filtered_stdio_server(stdin=None, stdout=None):
 
 _mcp_stdio.stdio_server = _filtered_stdio_server
 
+# FastMCP imports stdio_server by name, so patch that namespace too
+import mcp.server.fastmcp.server as _fastmcp_server
+_fastmcp_server.stdio_server = _filtered_stdio_server
+
 from .server import main
 
 main()
