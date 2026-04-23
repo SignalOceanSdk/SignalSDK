@@ -1025,7 +1025,11 @@ async def get_distance_ports(name: Optional[str] = None) -> str:
 
 @mcp.tool()
 async def get_ports_geo(port_id: Optional[int] = None) -> str:
-    """Get port geographical data. Pass port_id for a specific port."""
+    """Get port geographical data. Pass port_id for a specific port.
+
+    Requires Geos API subscription. Returns 401 Unauthorized if the
+    configured API key does not have access to this endpoint.
+    """
     return _serialize(
         await anyio.to_thread.run_sync(lambda: _geos_api.get_ports(portId=port_id))
     )
@@ -1033,7 +1037,11 @@ async def get_ports_geo(port_id: Optional[int] = None) -> str:
 
 @mcp.tool()
 async def get_countries(country_id: Optional[int] = None) -> str:
-    """Get country data. Pass country_id for a specific country."""
+    """Get country data. Pass country_id for a specific country.
+
+    Requires Geos API subscription. Returns 401 Unauthorized if the
+    configured API key does not have access to this endpoint.
+    """
     return _serialize(
         await anyio.to_thread.run_sync(lambda: _countries_sync(country_id))
     )
@@ -1041,7 +1049,11 @@ async def get_countries(country_id: Optional[int] = None) -> str:
 
 @mcp.tool()
 async def get_areas(area_id: Optional[int] = None) -> str:
-    """Get maritime area data. Pass area_id for a specific area."""
+    """Get maritime area data. Pass area_id for a specific area.
+
+    Requires Geos API subscription. Returns 401 Unauthorized if the
+    configured API key does not have access to this endpoint.
+    """
     return _serialize(
         await anyio.to_thread.run_sync(lambda: _geos_api.get_areas(areaId=area_id))
     )
@@ -1049,7 +1061,11 @@ async def get_areas(area_id: Optional[int] = None) -> str:
 
 @mcp.tool()
 async def get_geo_assets(geo_asset_id: Optional[int] = None) -> str:
-    """Get geo asset data (terminals, refineries, storage facilities, etc.)."""
+    """Get geo asset data (terminals, refineries, storage facilities, etc.).
+
+    Requires Geos API subscription. Returns 401 Unauthorized if the
+    configured API key does not have access to this endpoint.
+    """
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _geos_api.get_geoAssets(geoAssetId=geo_asset_id)
