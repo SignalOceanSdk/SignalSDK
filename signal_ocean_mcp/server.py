@@ -5,9 +5,12 @@ Claude and other MCP-compatible AI clients.
 """
 
 import json
+from contextlib import asynccontextmanager
 from datetime import date, datetime
+from functools import lru_cache
 from typing import Any, List, Optional
 
+import anyio
 from mcp.server.fastmcp import FastMCP
 
 from signal_ocean.connection import Connection
@@ -45,8 +48,67 @@ from signal_ocean.vessel_consumptions.vessel_consumptions_api import (
     VesselConsumptionsAPI,
 )
 
+# --- Singleton API instances (one HTTP session for the server lifetime) ---
+_conn: Connection
+_companies_api: CompaniesAPI
+_distances_api: DistancesAPI
+_freight_pricing_api: FreightPricingAPI
+_freight_rates_api: FreightRatesAPI
+_geos_api: GeosAPI
+_htl_api: HistoricalTonnageListAPI
+_market_rates_api: MarketRatesAPI
+_port_expenses_api: PortExpensesAPI
+_tonnage_list_api: TonnageListAPI
+_vessel_emissions_api: VesselEmissionsAPI
+_vessel_valuations_api: VesselValuationsAPI
+_vessels_api: VesselsAPI
+_voyages_api: VoyagesAPI
+_voyages_market_data_api: VoyagesMarketDataAPI
+_scraped_cargoes_api: ScrapedCargoesAPI
+_scraped_fixtures_api: ScrapedFixturesAPI
+_scraped_lineups_api: ScrapedLineupsAPI
+_scraped_positions_api: ScrapedPositionsAPI
+_vessel_consumptions_api: VesselConsumptionsAPI
+
+
+@asynccontextmanager
+async def _lifespan(server: FastMCP):
+    global _conn, _companies_api, _distances_api, _freight_pricing_api
+    global _freight_rates_api, _geos_api, _htl_api, _market_rates_api
+    global _port_expenses_api, _tonnage_list_api, _vessel_emissions_api
+    global _vessel_valuations_api, _vessels_api, _voyages_api
+    global _voyages_market_data_api, _scraped_cargoes_api, _scraped_fixtures_api
+    global _scraped_lineups_api, _scraped_positions_api, _vessel_consumptions_api
+
+    _conn = Connection()
+    _companies_api = CompaniesAPI(_conn)
+    _distances_api = DistancesAPI(_conn)
+    _freight_pricing_api = FreightPricingAPI(_conn)
+    _freight_rates_api = FreightRatesAPI(_conn)
+    _geos_api = GeosAPI(_conn)
+    _htl_api = HistoricalTonnageListAPI(_conn)
+    _market_rates_api = MarketRatesAPI(_conn)
+    _port_expenses_api = PortExpensesAPI(_conn)
+    _tonnage_list_api = TonnageListAPI(_conn)
+    _vessel_emissions_api = VesselEmissionsAPI(_conn)
+    _vessel_valuations_api = VesselValuationsAPI(_conn)
+    _vessels_api = VesselsAPI(_conn)
+    _voyages_api = VoyagesAPI(_conn)
+    _voyages_market_data_api = VoyagesMarketDataAPI(_conn)
+    _scraped_cargoes_api = ScrapedCargoesAPI(_conn)
+    _scraped_fixtures_api = ScrapedFixturesAPI(_conn)
+    _scraped_lineups_api = ScrapedLineupsAPI(_conn)
+    _scraped_positions_api = ScrapedPositionsAPI(_conn)
+    _vessel_consumptions_api = VesselConsumptionsAPI(_conn)
+    try:
+        yield
+    finally:
+        _conn.close()
+
+
 mcp = FastMCP(
     "Signal Ocean",
+    lifespan=_lifespan,
     instructions=(
         "Signal Ocean provides maritime shipping data APIs. "
         "Use these tools to query vessel information, voyages, "
@@ -58,39 +120,30 @@ mcp = FastMCP(
 )
 
 
-def _connection() -> Connection:
-    return Connection()
-
+# --- Helpers ---
 
 def _serialize(obj: Any) -> str:
     """Serialize SDK response objects to JSON strings."""
     if obj is None:
         return json.dumps(None)
     if isinstance(obj, (list, tuple)):
-        return json.dumps(
-            [_to_dict(item) for item in obj], default=str
-        )
+        return json.dumps([_to_dict(item) for item in obj], default=str)
     return json.dumps(_to_dict(obj), default=str)
 
 
 def _to_dict(obj: Any) -> Any:
     if hasattr(obj, "model_dump"):
         return obj.model_dump(mode="json", by_alias=True)
-    # Handle Sequence-like objects (e.g. HistoricalTonnageList)
-    # that support len/iteration but store data in mangled attrs.
     if hasattr(obj, "__len__") and hasattr(obj, "__iter__") and not isinstance(obj, (str, bytes, dict)):
         items = list(obj)
         if items:
             return [_to_dict(item) for item in items]
-        # For wrapper objects, also check for public attributes
-        public = {k: v for k, v in obj.__dict__.items()
-                  if not k.startswith("_")}
+        public = {k: v for k, v in obj.__dict__.items() if not k.startswith("_")}
         if public:
             return public
         return []
     if hasattr(obj, "__dict__"):
-        return {k: v for k, v in obj.__dict__.items()
-                if not k.startswith("_")}
+        return {k: v for k, v in obj.__dict__.items() if not k.startswith("_")}
     return obj
 
 
@@ -106,93 +159,140 @@ def _parse_datetime(value: Optional[str]) -> Optional[datetime]:
     return datetime.fromisoformat(value)
 
 
-# --- Vessel Lookup (via Voyages API) ---
+# --- Cached reference data (static lookups, fetched once per process) ---
+
+@lru_cache(maxsize=None)
+def _vessel_classes_sync():
+    return _vessels_api.get_vessel_classes()
+
+
+@lru_cache(maxsize=None)
+def _vessel_types_sync():
+    return _vessels_api.get_vessel_types()
+
+
+@lru_cache(maxsize=None)
+def _market_rate_routes_sync(vessel_class_id: Optional[int]):
+    return _market_rates_api.get_routes(vessel_class_id=vessel_class_id)
+
+
+@lru_cache(maxsize=None)
+def _freight_rate_vessel_classes_sync():
+    return list(_freight_rates_api.get_vessel_classes())
+
+
+@lru_cache(maxsize=None)
+def _freight_pricing_vessel_types_sync():
+    return _freight_pricing_api.get_vessel_types()
+
+
+@lru_cache(maxsize=None)
+def _port_expenses_vessel_types_sync():
+    return _port_expenses_api.get_vessel_types()
+
+
+@lru_cache(maxsize=None)
+def _countries_sync(country_id: Optional[int]):
+    return _geos_api.get_countries(countryId=country_id)
+
+
+# --- Vessel Lookup ---
 
 
 @mcp.tool()
-def search_vessel_imos(name: Optional[str] = None) -> str:
+async def search_vessel_imos(name: Optional[str] = None) -> str:
     """Search for vessel IMO numbers by name.
 
     Returns vessels with their IMO and name. Use this to find
     a vessel's IMO before querying voyages or other APIs.
     """
-    from signal_ocean.voyages.voyages_api import VoyagesAPI as VoyAPI
     from signal_ocean.voyages.models import VesselFilter
 
-    api = VoyAPI(_connection())
     vf = VesselFilter(name_like=name) if name else None
-    return _serialize(api.get_imos(vf))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _voyages_api.get_imos(vf))
+    )
 
 
 # --- Vessels ---
 
 
 @mcp.tool()
-def get_vessel(imo: int) -> str:
+async def get_vessel(imo: int) -> str:
     """Get detailed information about a specific vessel by its IMO number."""
-    api = VesselsAPI(_connection())
-    return _serialize(api.get_vessel(imo))
-
-
-@mcp.tool()
-def search_vessels(name: Optional[str] = None) -> str:
-    """Search for vessels by name. Returns all vessels if no name given."""
-    api = VesselsAPI(_connection())
-    return _serialize(api.get_vessels(name=name))
-
-
-@mcp.tool()
-def get_vessels_by_vessel_class(vessel_class_id: int) -> str:
-    """Get all vessels belonging to a specific vessel class.
-
-    Use get_vessel_classes to find available vessel class IDs.
-    """
-    api = VesselsAPI(_connection())
     return _serialize(
-        api.get_vessels_by_vessel_class(vesselClass=vessel_class_id)
+        await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessel(imo))
     )
 
 
 @mcp.tool()
-def get_vessel_classes() -> str:
+async def search_vessels(name: Optional[str] = None) -> str:
+    """Search for vessels by name. Returns all vessels if no name given."""
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessels(name=name))
+    )
+
+
+@mcp.tool()
+async def get_vessels_by_vessel_class(vessel_class_id: int) -> str:
+    """Get all vessels belonging to a specific vessel class.
+
+    Use get_vessel_classes to find available vessel class IDs.
+    """
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessels_api.get_vessels_by_vessel_class(vesselClass=vessel_class_id)
+        )
+    )
+
+
+@mcp.tool()
+async def get_vessel_classes() -> str:
     """Get all available vessel classes (e.g., Capesize, VLCC, etc.)."""
-    api = VesselsAPI(_connection())
-    return _serialize(api.get_vessel_classes())
+    return _serialize(await anyio.to_thread.run_sync(_vessel_classes_sync))
 
 
 @mcp.tool()
-def get_vessel_types() -> str:
+async def get_vessel_types() -> str:
     """Get all available vessel types (e.g., Tanker, Dry Bulk, etc.)."""
-    api = VesselsAPI(_connection())
-    return _serialize(api.get_vessel_types())
+    return _serialize(await anyio.to_thread.run_sync(_vessel_types_sync))
 
 
 @mcp.tool()
-def get_vessel_name_history(imo: int) -> str:
+async def get_vessel_name_history(imo: int) -> str:
     """Get the name history for a vessel by IMO number."""
-    api = VesselsAPI(_connection())
-    return _serialize(api.get_vessels_name_history(imo=imo))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessels_api.get_vessels_name_history(imo=imo)
+        )
+    )
 
 
 @mcp.tool()
-def get_vessel_commercial_operator_history(imo: int) -> str:
+async def get_vessel_commercial_operator_history(imo: int) -> str:
     """Get the commercial operator history for a vessel by IMO number."""
-    api = VesselsAPI(_connection())
-    return _serialize(api.get_vessels_commOp_history(imo=imo))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessels_api.get_vessels_commOp_history(imo=imo)
+        )
+    )
 
 
 @mcp.tool()
-def get_vessel_flag_history(imo: int) -> str:
+async def get_vessel_flag_history(imo: int) -> str:
     """Get the flag (country of registration) history for a vessel by IMO."""
-    api = VesselsAPI(_connection())
-    return _serialize(api.get_vessels_flag_history(imo=imo))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessels_api.get_vessels_flag_history(imo=imo)
+        )
+    )
 
 
 # --- Vessel Emissions ---
 
 
 @mcp.tool()
-def get_vessel_emissions(
+async def get_vessel_emissions(
     imo: int,
     include_consumptions: bool = False,
     include_efficiency_metrics: bool = False,
@@ -204,21 +304,22 @@ def get_vessel_emissions(
 
     Returns emission estimations for all voyages of the vessel.
     """
-    api = VesselEmissionsAPI(_connection())
     return _serialize(
-        api.get_emissions_by_imo(
-            imo,
-            include_consumptions=include_consumptions,
-            include_efficiency_metrics=include_efficiency_metrics,
-            include_distances=include_distances,
-            include_durations=include_durations,
-            include_eu_emissions=include_eu_emissions,
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_emissions_api.get_emissions_by_imo(
+                imo,
+                include_consumptions=include_consumptions,
+                include_efficiency_metrics=include_efficiency_metrics,
+                include_distances=include_distances,
+                include_durations=include_durations,
+                include_eu_emissions=include_eu_emissions,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_voyage_emissions(
+async def get_voyage_emissions(
     imo: int,
     voyage_number: int,
     include_consumptions: bool = False,
@@ -229,23 +330,24 @@ def get_voyage_emissions(
     include_eu_emissions: bool = False,
 ) -> str:
     """Get emissions data for a specific voyage of a vessel."""
-    api = VesselEmissionsAPI(_connection())
     return _serialize(
-        api.get_emissions_by_imo_and_voyage_number(
-            imo=imo,
-            voyage_number=voyage_number,
-            include_consumptions=include_consumptions,
-            include_efficiency_metrics=include_efficiency_metrics,
-            include_distances=include_distances,
-            include_durations=include_durations,
-            include_speed_statistics=include_speed_statistics,
-            include_eu_emissions=include_eu_emissions,
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_emissions_api.get_emissions_by_imo_and_voyage_number(
+                imo=imo,
+                voyage_number=voyage_number,
+                include_consumptions=include_consumptions,
+                include_efficiency_metrics=include_efficiency_metrics,
+                include_distances=include_distances,
+                include_durations=include_durations,
+                include_speed_statistics=include_speed_statistics,
+                include_eu_emissions=include_eu_emissions,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_vessel_class_emissions(
+async def get_vessel_class_emissions(
     vessel_class_id: int,
     include_consumptions: bool = False,
     include_efficiency_metrics: bool = False,
@@ -255,38 +357,43 @@ def get_vessel_class_emissions(
     include_eu_emissions: bool = False,
 ) -> str:
     """Get emissions data for all vessels in a vessel class."""
-    api = VesselEmissionsAPI(_connection())
     return _serialize(
-        api.get_emissions_by_vessel_class_id(
-            vessel_class_id=vessel_class_id,
-            include_consumptions=include_consumptions,
-            include_efficiency_metrics=include_efficiency_metrics,
-            include_distances=include_distances,
-            include_durations=include_durations,
-            include_speed_statistics=include_speed_statistics,
-            include_eu_emissions=include_eu_emissions,
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_emissions_api.get_emissions_by_vessel_class_id(
+                vessel_class_id=vessel_class_id,
+                include_consumptions=include_consumptions,
+                include_efficiency_metrics=include_efficiency_metrics,
+                include_distances=include_distances,
+                include_durations=include_durations,
+                include_speed_statistics=include_speed_statistics,
+                include_eu_emissions=include_eu_emissions,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_vessel_emission_metrics(
+async def get_vessel_emission_metrics(
     imo: int, year: Optional[int] = None
 ) -> str:
     """Get emission metrics (CII, AER, EEOI) for a vessel by IMO."""
-    api = VesselEmissionsAPI(_connection())
-    return _serialize(api.get_metrics_by_imo(imo, year=year))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_emissions_api.get_metrics_by_imo(imo, year=year)
+        )
+    )
 
 
 @mcp.tool()
-def get_vessel_class_emission_metrics(
+async def get_vessel_class_emission_metrics(
     vessel_class_id: int, year: Optional[int] = None
 ) -> str:
     """Get emission metrics (CII, AER, EEOI) for all vessels in a class."""
-    api = VesselEmissionsAPI(_connection())
     return _serialize(
-        api.get_metrics_by_vessel_class_id(
-            vessel_class_id=vessel_class_id, year=year
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_emissions_api.get_metrics_by_vessel_class_id(
+                vessel_class_id=vessel_class_id, year=year
+            )
         )
     )
 
@@ -295,58 +402,71 @@ def get_vessel_class_emission_metrics(
 
 
 @mcp.tool()
-def get_vessel_consumptions(imo: int) -> str:
+async def get_vessel_consumptions(imo: int) -> str:
     """Get fuel consumption data for a vessel by IMO number."""
-    api = VesselConsumptionsAPI(_connection())
-    return _serialize(api.get_consumptions(imo))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_consumptions_api.get_consumptions(imo)
+        )
+    )
 
 
 @mcp.tool()
-def get_vessel_advertised_consumptions(imo: int) -> str:
+async def get_vessel_advertised_consumptions(imo: int) -> str:
     """Get advertised (reported) fuel consumption data for a vessel."""
-    api = VesselConsumptionsAPI(_connection())
-    return _serialize(api.get_advertised_consumptions(imo))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_consumptions_api.get_advertised_consumptions(imo)
+        )
+    )
 
 
 # --- Vessel Valuations ---
 
 
 @mcp.tool()
-def get_vessel_valuation(imo: int) -> str:
+async def get_vessel_valuation(imo: int) -> str:
     """Get the latest valuation for a vessel by IMO number."""
-    api = VesselValuationsAPI(_connection())
-    return _serialize(api.get_latest_valuation_by_imo(imo))
-
-
-@mcp.tool()
-def get_vessel_historical_valuations(
-    imo: int,
-    from_date: Optional[str] = None,
-    to_date: Optional[str] = None,
-) -> str:
-    """Get historical valuations for a vessel. Dates as YYYY-MM-DD."""
-    api = VesselValuationsAPI(_connection())
     return _serialize(
-        api.get_all_historical_valuations_by_imo(
-            imo, from_date=from_date, to_date=to_date
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_valuations_api.get_latest_valuation_by_imo(imo)
         )
     )
 
 
 @mcp.tool()
-def get_vessel_valuations_for_list(imo_list: list[int]) -> str:
-    """Get latest valuations for multiple vessels at once.
-
-    Pass a list of IMO numbers.
-    """
-    api = VesselValuationsAPI(_connection())
+async def get_vessel_historical_valuations(
+    imo: int,
+    from_date: Optional[str] = None,
+    to_date: Optional[str] = None,
+) -> str:
+    """Get historical valuations for a vessel. Dates as YYYY-MM-DD."""
     return _serialize(
-        api.get_latest_valuations_for_list_of_vessels(imo_list)
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_valuations_api.get_all_historical_valuations_by_imo(
+                imo, from_date=from_date, to_date=to_date
+            )
+        )
     )
 
 
 @mcp.tool()
-def get_vessel_valuations_paged(
+async def get_vessel_valuations_for_list(imo_list: list[int]) -> str:
+    """Get latest valuations for multiple vessels at once.
+
+    Pass a list of IMO numbers.
+    """
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_valuations_api.get_latest_valuations_for_list_of_vessels(
+                imo_list
+            )
+        )
+    )
+
+
+@mcp.tool()
+async def get_vessel_valuations_paged(
     page: Optional[int] = None,
     page_size: Optional[int] = None,
     changed_since: Optional[str] = None,
@@ -355,10 +475,11 @@ def get_vessel_valuations_paged(
 
     changed_since as YYYY-MM-DD to get only recently updated valuations.
     """
-    api = VesselValuationsAPI(_connection())
     return _serialize(
-        api.get_latest_valuations_by_page(
-            page=page, page_size=page_size, changed_since=changed_since
+        await anyio.to_thread.run_sync(
+            lambda: _vessel_valuations_api.get_latest_valuations_by_page(
+                page=page, page_size=page_size, changed_since=changed_since
+            )
         )
     )
 
@@ -367,7 +488,7 @@ def get_vessel_valuations_paged(
 
 
 @mcp.tool()
-def get_voyages(
+async def get_voyages(
     imo: Optional[int] = None,
     vessel_class_id: Optional[int] = None,
     vessel_type_id: Optional[int] = None,
@@ -378,38 +499,42 @@ def get_voyages(
     Filter by IMO, vessel class ID, vessel type ID, or start date
     (YYYY-MM-DD). At least one filter is recommended to limit results.
     """
-    api = VoyagesAPI(_connection())
+    d = _parse_date(date_from)
     return _serialize(
-        api.get_voyages(
-            imo=imo,
-            vessel_class_id=vessel_class_id,
-            vessel_type_id=vessel_type_id,
-            date_from=_parse_date(date_from),
+        await anyio.to_thread.run_sync(
+            lambda: _voyages_api.get_voyages(
+                imo=imo,
+                vessel_class_id=vessel_class_id,
+                vessel_type_id=vessel_type_id,
+                date_from=d,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_voyages_condensed(
+async def get_voyages_condensed(
     imo: Optional[int] = None,
     vessel_class_id: Optional[int] = None,
     vessel_type_id: Optional[int] = None,
     date_from: Optional[str] = None,
 ) -> str:
     """Get condensed voyage data (lighter payload than full voyages)."""
-    api = VoyagesAPI(_connection())
+    d = _parse_date(date_from)
     return _serialize(
-        api.get_voyages_condensed(
-            imo=imo,
-            vessel_class_id=vessel_class_id,
-            vessel_type_id=vessel_type_id,
-            date_from=_parse_date(date_from),
+        await anyio.to_thread.run_sync(
+            lambda: _voyages_api.get_voyages_condensed(
+                imo=imo,
+                vessel_class_id=vessel_class_id,
+                vessel_type_id=vessel_type_id,
+                date_from=d,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_voyages_flat(
+async def get_voyages_flat(
     imo: Optional[int] = None,
     vessel_class_id: Optional[int] = None,
     vessel_type_id: Optional[int] = None,
@@ -419,19 +544,21 @@ def get_voyages_flat(
 
     Useful for large datasets as it avoids deeply nested structures.
     """
-    api = VoyagesAPI(_connection())
+    d = _parse_date(date_from)
     return _serialize(
-        api.get_voyages_flat(
-            imo=imo,
-            vessel_class_id=vessel_class_id,
-            vessel_type_id=vessel_type_id,
-            date_from=_parse_date(date_from),
+        await anyio.to_thread.run_sync(
+            lambda: _voyages_api.get_voyages_flat(
+                imo=imo,
+                vessel_class_id=vessel_class_id,
+                vessel_type_id=vessel_type_id,
+                date_from=d,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_voyages_advanced_search(
+async def get_voyages_advanced_search(
     imos: Optional[list[int]] = None,
     vessel_class_id: Optional[int] = None,
     vessel_class_ids: Optional[list[int]] = None,
@@ -460,34 +587,37 @@ def get_voyages_advanced_search(
     charterers, operators, date ranges, event types, and more.
     Dates as YYYY-MM-DD.
     """
-    api = VoyagesAPI(_connection())
+    sdf = _parse_date(start_date_from)
+    sdt = _parse_date(start_date_to)
+    fldf = _parse_date(first_load_arrival_date_from)
+    fldt = _parse_date(first_load_arrival_date_to)
+    edf = _parse_date(end_date_from)
+    edt = _parse_date(end_date_to)
     return _serialize(
-        api.get_voyages_by_advanced_search(
-            imos=imos,
-            vessel_class_id=vessel_class_id,
-            vessel_class_ids=vessel_class_ids,
-            vessel_type_id=vessel_type_id,
-            port_id=port_id,
-            port_ids=port_ids,
-            commercial_operator_id=commercial_operator_id,
-            charterer_id=charterer_id,
-            start_date_from=_parse_date(start_date_from),
-            start_date_to=_parse_date(start_date_to),
-            first_load_arrival_date_from=_parse_date(
-                first_load_arrival_date_from
-            ),
-            first_load_arrival_date_to=_parse_date(
-                first_load_arrival_date_to
-            ),
-            end_date_from=_parse_date(end_date_from),
-            end_date_to=_parse_date(end_date_to),
-            event_type=event_type,
-            event_purpose=event_purpose,
-            event_horizon=event_horizon,
-            voyage_horizon=voyage_horizon,
-            hide_event_details=hide_event_details,
-            hide_events=hide_events,
-            hide_market_info=hide_market_info,
+        await anyio.to_thread.run_sync(
+            lambda: _voyages_api.get_voyages_by_advanced_search(
+                imos=imos,
+                vessel_class_id=vessel_class_id,
+                vessel_class_ids=vessel_class_ids,
+                vessel_type_id=vessel_type_id,
+                port_id=port_id,
+                port_ids=port_ids,
+                commercial_operator_id=commercial_operator_id,
+                charterer_id=charterer_id,
+                start_date_from=sdf,
+                start_date_to=sdt,
+                first_load_arrival_date_from=fldf,
+                first_load_arrival_date_to=fldt,
+                end_date_from=edf,
+                end_date_to=edt,
+                event_type=event_type,
+                event_purpose=event_purpose,
+                event_horizon=event_horizon,
+                voyage_horizon=voyage_horizon,
+                hide_event_details=hide_event_details,
+                hide_events=hide_events,
+                hide_market_info=hide_market_info,
+            )
         )
     )
 
@@ -496,7 +626,7 @@ def get_voyages_advanced_search(
 
 
 @mcp.tool()
-def get_voyage_market_data(
+async def get_voyage_market_data(
     imo: Optional[int] = None,
     vessel_class_id: Optional[int] = None,
     vessel_type_id: Optional[int] = None,
@@ -509,22 +639,23 @@ def get_voyage_market_data(
 
     Includes fixture information, freight rates, and market context.
     """
-    api = VoyagesMarketDataAPI(_connection())
     return _serialize(
-        api.get_voyage_market_data(
-            imo=imo,
-            vessel_class_id=vessel_class_id,
-            vessel_type_id=vessel_type_id,
-            include_vessel_details=include_vessel_details,
-            include_fixtures=include_fixtures,
-            include_matched_fixture=include_matched_fixture,
-            include_labels=include_labels,
+        await anyio.to_thread.run_sync(
+            lambda: _voyages_market_data_api.get_voyage_market_data(
+                imo=imo,
+                vessel_class_id=vessel_class_id,
+                vessel_type_id=vessel_type_id,
+                include_vessel_details=include_vessel_details,
+                include_fixtures=include_fixtures,
+                include_matched_fixture=include_matched_fixture,
+                include_labels=include_labels,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_voyage_market_data_advanced(
+async def get_voyage_market_data_advanced(
     imos: Optional[list[int]] = None,
     vessel_class_ids: Optional[list[int]] = None,
     trade_id: Optional[int] = None,
@@ -549,29 +680,28 @@ def get_voyage_market_data_advanced(
     Filter by multiple IMOs, vessel classes, trades, charterers,
     cargo types, fixture dates, and laycan dates. Dates as YYYY-MM-DD.
     """
-    api = VoyagesMarketDataAPI(_connection())
-    # Pass date strings directly — the SDK POST body serializes via
-    # json.dumps which cannot handle date objects.
     return _serialize(
-        api.get_voyage_market_data_advanced(
-            imos=imos,
-            vessel_class_ids=vessel_class_ids,
-            trade_id=trade_id,
-            include_vessel_details=include_vessel_details,
-            include_fixtures=include_fixtures,
-            include_lineups=include_lineups,
-            include_positions=include_positions,
-            include_matched_fixture=include_matched_fixture,
-            filter_by_matched_fixture=filter_by_matched_fixture,
-            fixture_date_from=fixture_date_from,
-            fixture_date_to=fixture_date_to,
-            laycan_date_from=laycan_date_from,
-            laycan_date_to=laycan_date_to,
-            include_labels=include_labels,
-            charterer_ids_include=charterer_ids_include,
-            charterer_ids_exclude=charterer_ids_exclude,
-            cargo_type_ids_include=cargo_type_ids_include,
-            cargo_type_ids_exclude=cargo_type_ids_exclude,
+        await anyio.to_thread.run_sync(
+            lambda: _voyages_market_data_api.get_voyage_market_data_advanced(
+                imos=imos,
+                vessel_class_ids=vessel_class_ids,
+                trade_id=trade_id,
+                include_vessel_details=include_vessel_details,
+                include_fixtures=include_fixtures,
+                include_lineups=include_lineups,
+                include_positions=include_positions,
+                include_matched_fixture=include_matched_fixture,
+                filter_by_matched_fixture=filter_by_matched_fixture,
+                fixture_date_from=fixture_date_from,
+                fixture_date_to=fixture_date_to,
+                laycan_date_from=laycan_date_from,
+                laycan_date_to=laycan_date_to,
+                include_labels=include_labels,
+                charterer_ids_include=charterer_ids_include,
+                charterer_ids_exclude=charterer_ids_exclude,
+                cargo_type_ids_include=cargo_type_ids_include,
+                cargo_type_ids_exclude=cargo_type_ids_exclude,
+            )
         )
     )
 
@@ -580,7 +710,7 @@ def get_voyage_market_data_advanced(
 
 
 @mcp.tool()
-def get_market_rates(
+async def get_market_rates(
     start_date: str,
     route_id: Optional[str] = None,
     vessel_class_id: Optional[int] = None,
@@ -594,33 +724,39 @@ def get_market_rates(
     """
     from signal_ocean.market_rates.enums import CargoId
 
-    api = MarketRatesAPI(_connection())
+    sd = date.fromisoformat(start_date)
+    ed = _parse_date(end_date)
     cid = CargoId(cargo_id) if cargo_id is not None else None
     return _serialize(
-        api.get_market_rates(
-            start_date=date.fromisoformat(start_date),
-            route_id=route_id,
-            vessel_class_id=vessel_class_id,
-            end_date=_parse_date(end_date),
-            cargo_id=cid,
+        await anyio.to_thread.run_sync(
+            lambda: _market_rates_api.get_market_rates(
+                start_date=sd,
+                route_id=route_id,
+                vessel_class_id=vessel_class_id,
+                end_date=ed,
+                cargo_id=cid,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_market_rate_routes(
+async def get_market_rate_routes(
     vessel_class_id: Optional[int] = None,
 ) -> str:
     """Get available market rate routes, optionally filtered by vessel class."""
-    api = MarketRatesAPI(_connection())
-    return _serialize(api.get_routes(vessel_class_id=vessel_class_id))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _market_rate_routes_sync(vessel_class_id)
+        )
+    )
 
 
 # --- Freight Rates ---
 
 
 @mcp.tool()
-def get_freight_rates(
+async def get_freight_rates(
     load_ports: list[int],
     discharge_ports: list[int],
     vessel_classes: list[str],
@@ -636,41 +772,43 @@ def get_freight_rates(
     pricing_date: Date as YYYY-MM-DD (defaults to today).
     Use get_freight_rate_ports and get_freight_rate_vessel_classes for IDs.
     """
-    api = FreightRatesAPI(_connection())
     d = date.fromisoformat(pricing_date) if pricing_date else date.today()
     return _serialize(
-        api.get_freight_pricing(
-            load_ports=load_ports,
-            discharge_ports=discharge_ports,
-            vessel_classes=vessel_classes,
-            is_clean=is_clean,
-            date=d,
+        await anyio.to_thread.run_sync(
+            lambda: _freight_rates_api.get_freight_pricing(
+                load_ports=load_ports,
+                discharge_ports=discharge_ports,
+                vessel_classes=vessel_classes,
+                is_clean=is_clean,
+                date=d,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_freight_rate_vessel_classes() -> str:
+async def get_freight_rate_vessel_classes() -> str:
     """Get available vessel class names for freight rate queries."""
-    api = FreightRatesAPI(_connection())
-    return json.dumps(list(api.get_vessel_classes()))
+    result = await anyio.to_thread.run_sync(_freight_rate_vessel_classes_sync)
+    return json.dumps(result)
 
 
 @mcp.tool()
-def get_freight_rate_ports(name: Optional[str] = None) -> str:
+async def get_freight_rate_ports(name: Optional[str] = None) -> str:
     """Get available ports for freight rate queries."""
     from signal_ocean.freight_rates.port_filter import PortFilter
 
-    api = FreightRatesAPI(_connection())
     pf = PortFilter(name_like=name) if name else None
-    return _serialize(api.get_ports(port_filter=pf))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _freight_rates_api.get_ports(port_filter=pf))
+    )
 
 
 # --- Freight Pricing ---
 
 
 @mcp.tool()
-def get_freight_pricing(
+async def get_freight_pricing(
     load_port_id: int,
     discharge_port_id: int,
     vessel_type_id: int,
@@ -684,42 +822,48 @@ def get_freight_pricing(
     from signal_ocean.freight_pricing.port import Port
     from signal_ocean.freight_pricing.vessel_type import VesselType
 
-    api = FreightPricingAPI(_connection())
     port_load = Port(id=load_port_id, name="")
     port_discharge = Port(id=discharge_port_id, name="")
     vtype = VesselType(id=vessel_type_id, name="")
+    d = date.fromisoformat(pricing_date)
     return _serialize(
-        api.get_freight_pricing(
-            vessel_type=vtype,
-            load_port=port_load,
-            discharge_port=port_discharge,
-            date=date.fromisoformat(pricing_date),
+        await anyio.to_thread.run_sync(
+            lambda: _freight_pricing_api.get_freight_pricing(
+                vessel_type=vtype,
+                load_port=port_load,
+                discharge_port=port_discharge,
+                date=d,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_freight_pricing_ports(name: Optional[str] = None) -> str:
+async def get_freight_pricing_ports(name: Optional[str] = None) -> str:
     """Get available ports for freight pricing, optionally filtered by name."""
     from signal_ocean.freight_pricing.port_filter import PortFilter
 
-    api = FreightPricingAPI(_connection())
     pf = PortFilter(name_like=name) if name else None
-    return _serialize(api.get_ports(port_filter=pf))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _freight_pricing_api.get_ports(port_filter=pf)
+        )
+    )
 
 
 @mcp.tool()
-def get_freight_pricing_vessel_types() -> str:
+async def get_freight_pricing_vessel_types() -> str:
     """Get available vessel types for freight pricing."""
-    api = FreightPricingAPI(_connection())
-    return _serialize(api.get_vessel_types())
+    return _serialize(
+        await anyio.to_thread.run_sync(_freight_pricing_vessel_types_sync)
+    )
 
 
 # --- Distances ---
 
 
 @mcp.tool()
-def get_port_to_port_distance(
+async def get_port_to_port_distance(
     vessel_class_id: int,
     loading_condition_id: int,
     port_from_id: int,
@@ -733,21 +877,22 @@ def get_port_to_port_distance(
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
 
-    api = DistancesAPI(_connection())
     vc = VesselClass(id=vessel_class_id, name="")
     pf = Port(id=port_from_id, name="")
     pt = Port(id=port_to_id, name="")
-    result = api.get_port_to_port_distance(
-        vessel_class=vc,
-        loading_condition_id=loading_condition_id,
-        port_from=pf,
-        port_to=pt,
+    result = await anyio.to_thread.run_sync(
+        lambda: _distances_api.get_port_to_port_distance(
+            vessel_class=vc,
+            loading_condition_id=loading_condition_id,
+            port_from=pf,
+            port_to=pt,
+        )
     )
     return json.dumps({"distance_nm": float(result) if result else None})
 
 
 @mcp.tool()
-def get_port_to_port_route(
+async def get_port_to_port_route(
     vessel_class_id: int,
     loading_condition_id: int,
     port_from_id: int,
@@ -761,22 +906,23 @@ def get_port_to_port_route(
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
 
-    api = DistancesAPI(_connection())
     vc = VesselClass(id=vessel_class_id, name="")
     pf = Port(id=port_from_id, name="")
     pt = Port(id=port_to_id, name="")
     return _serialize(
-        api.get_port_to_port_route(
-            vessel_class=vc,
-            loading_condition_id=loading_condition_id,
-            port_from=pf,
-            port_to=pt,
+        await anyio.to_thread.run_sync(
+            lambda: _distances_api.get_port_to_port_route(
+                vessel_class=vc,
+                loading_condition_id=loading_condition_id,
+                port_from=pf,
+                port_to=pt,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_point_to_point_distance(
+async def get_point_to_point_distance(
     vessel_class_id: int,
     loading_condition_id: int,
     start_lon: float,
@@ -792,21 +938,22 @@ def get_point_to_point_distance(
     from signal_ocean.distances.vessel_class import VesselClass
     from signal_ocean.distances.models import Point
 
-    api = DistancesAPI(_connection())
     vc = VesselClass(id=vessel_class_id, name="")
     sp = Point(lon=start_lon, lat=start_lat)
     ep = Point(lon=end_lon, lat=end_lat)
-    result = api.get_point_to_point_distance(
-        vessel_class=vc,
-        loading_condition_id=loading_condition_id,
-        start_point=sp,
-        end_point=ep,
+    result = await anyio.to_thread.run_sync(
+        lambda: _distances_api.get_point_to_point_distance(
+            vessel_class=vc,
+            loading_condition_id=loading_condition_id,
+            start_point=sp,
+            end_point=ep,
+        )
     )
     return json.dumps({"distance_nm": float(result) if result else None})
 
 
 @mcp.tool()
-def get_point_to_port_distance(
+async def get_point_to_port_distance(
     vessel_class_id: int,
     loading_condition_id: int,
     point_lon: float,
@@ -821,21 +968,22 @@ def get_point_to_port_distance(
     from signal_ocean.distances.vessel_class import VesselClass
     from signal_ocean.distances.models import Point
 
-    api = DistancesAPI(_connection())
     vc = VesselClass(id=vessel_class_id, name="")
     pt = Point(lon=point_lon, lat=point_lat)
     port = Port(id=port_id, name="")
-    result = api.get_point_to_port_distance(
-        vessel_class=vc,
-        loading_condition_id=loading_condition_id,
-        point=pt,
-        port=port,
+    result = await anyio.to_thread.run_sync(
+        lambda: _distances_api.get_point_to_port_distance(
+            vessel_class=vc,
+            loading_condition_id=loading_condition_id,
+            point=pt,
+            port=port,
+        )
     )
     return json.dumps({"distance_nm": float(result) if result else None})
 
 
 @mcp.tool()
-def get_generic_route(
+async def get_generic_route(
     start_lon: float,
     start_lat: float,
     end_lon: float,
@@ -848,96 +996,107 @@ def get_generic_route(
     """
     from signal_ocean.distances.models import Point
 
-    api = DistancesAPI(_connection())
     sp = Point(lon=start_lon, lat=start_lat)
     ep = Point(lon=end_lon, lat=end_lat)
     return _serialize(
-        api.get_generic_point_to_point_route(
-            start_point=sp,
-            end_point=ep,
-            get_alternatives=get_alternatives,
+        await anyio.to_thread.run_sync(
+            lambda: _distances_api.get_generic_point_to_point_route(
+                start_point=sp,
+                end_point=ep,
+                get_alternatives=get_alternatives,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_distance_ports(name: Optional[str] = None) -> str:
+async def get_distance_ports(name: Optional[str] = None) -> str:
     """Get available ports for distance calculations."""
     from signal_ocean.distances.port_filter import PortFilter
 
-    api = DistancesAPI(_connection())
     pf = PortFilter(name_like=name) if name else None
-    return _serialize(api.get_ports(port_filter=pf))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _distances_api.get_ports(port_filter=pf))
+    )
 
 
 # --- Geos ---
 
 
 @mcp.tool()
-def get_ports_geo(port_id: Optional[int] = None) -> str:
+async def get_ports_geo(port_id: Optional[int] = None) -> str:
     """Get port geographical data. Pass port_id for a specific port."""
-    api = GeosAPI(_connection())
-    return _serialize(api.get_ports(portId=port_id))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _geos_api.get_ports(portId=port_id))
+    )
 
 
 @mcp.tool()
-def get_countries(country_id: Optional[int] = None) -> str:
+async def get_countries(country_id: Optional[int] = None) -> str:
     """Get country data. Pass country_id for a specific country."""
-    api = GeosAPI(_connection())
-    return _serialize(api.get_countries(countryId=country_id))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _countries_sync(country_id))
+    )
 
 
 @mcp.tool()
-def get_areas(area_id: Optional[int] = None) -> str:
+async def get_areas(area_id: Optional[int] = None) -> str:
     """Get maritime area data. Pass area_id for a specific area."""
-    api = GeosAPI(_connection())
-    return _serialize(api.get_areas(areaId=area_id))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _geos_api.get_areas(areaId=area_id))
+    )
 
 
 @mcp.tool()
-def get_geo_assets(geo_asset_id: Optional[int] = None) -> str:
+async def get_geo_assets(geo_asset_id: Optional[int] = None) -> str:
     """Get geo asset data (terminals, refineries, storage facilities, etc.)."""
-    api = GeosAPI(_connection())
-    return _serialize(api.get_geoAssets(geoAssetId=geo_asset_id))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _geos_api.get_geoAssets(geoAssetId=geo_asset_id)
+        )
+    )
 
 
 # --- Companies ---
 
 
 @mcp.tool()
-def get_company(company_id: int) -> str:
+async def get_company(company_id: int) -> str:
     """Get company details by ID."""
-    api = CompaniesAPI(_connection())
-    return _serialize(api.get_company(company_id))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _companies_api.get_company(company_id))
+    )
 
 
 @mcp.tool()
-def search_companies(name: Optional[str] = None) -> str:
+async def search_companies(name: Optional[str] = None) -> str:
     """Search for companies by name."""
-    api = CompaniesAPI(_connection())
-    return _serialize(api.get_companies(name=name))
+    return _serialize(
+        await anyio.to_thread.run_sync(lambda: _companies_api.get_companies(name=name))
+    )
 
 
 # --- Port Expenses ---
 
 
 @mcp.tool()
-def get_port_expenses(
+async def get_port_expenses(
     imo: int,
     port_id: int,
     vessel_type_id: Optional[int] = None,
 ) -> str:
     """Get estimated port expenses for a vessel at a specific port."""
-    api = PortExpensesAPI(_connection())
     return _serialize(
-        api.get_port_expenses(
-            imo=imo, port_id=port_id, vessel_type_id=vessel_type_id
+        await anyio.to_thread.run_sync(
+            lambda: _port_expenses_api.get_port_expenses(
+                imo=imo, port_id=port_id, vessel_type_id=vessel_type_id
+            )
         )
     )
 
 
 @mcp.tool()
-def get_port_model_vessel_expenses(
+async def get_port_model_vessel_expenses(
     port_id: int,
     vessel_type_id: int,
     formula_calculation_date: str,
@@ -948,56 +1107,60 @@ def get_port_model_vessel_expenses(
 
     formula_calculation_date as ISO datetime (YYYY-MM-DDTHH:MM:SS).
     """
-    api = PortExpensesAPI(_connection())
+    dt = datetime.fromisoformat(formula_calculation_date)
     return _serialize(
-        api.get_port_model_vessel_expenses(
-            port_id=port_id,
-            vessel_type_id=vessel_type_id,
-            formula_calculation_date=datetime.fromisoformat(
-                formula_calculation_date
-            ),
-            vessel_class_id=vessel_class_id,
-            historical_tce=historical_tce,
+        await anyio.to_thread.run_sync(
+            lambda: _port_expenses_api.get_port_model_vessel_expenses(
+                port_id=port_id,
+                vessel_type_id=vessel_type_id,
+                formula_calculation_date=dt,
+                vessel_class_id=vessel_class_id,
+                historical_tce=historical_tce,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_port_expenses_required_params(
+async def get_port_expenses_required_params(
     port_id: int,
     vessel_type_id: int,
 ) -> str:
     """Get the required formula parameters for port expense calculation."""
-    api = PortExpensesAPI(_connection())
-    return json.dumps(
-        api.get_required_formula_parameters(
+    result = await anyio.to_thread.run_sync(
+        lambda: _port_expenses_api.get_required_formula_parameters(
             port_id=port_id, vessel_type_id=vessel_type_id
+        )
+    )
+    return json.dumps(result)
+
+
+@mcp.tool()
+async def get_port_expenses_ports(name: Optional[str] = None) -> str:
+    """Get available ports for port expense queries."""
+    from signal_ocean.port_expenses.port_filter import PortFilter
+
+    pf = PortFilter(name_like=name) if name else None
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _port_expenses_api.get_ports(port_filter=pf)
         )
     )
 
 
 @mcp.tool()
-def get_port_expenses_ports(name: Optional[str] = None) -> str:
-    """Get available ports for port expense queries."""
-    from signal_ocean.port_expenses.port_filter import PortFilter
-
-    api = PortExpensesAPI(_connection())
-    pf = PortFilter(name_like=name) if name else None
-    return _serialize(api.get_ports(port_filter=pf))
-
-
-@mcp.tool()
-def get_port_expenses_vessel_types() -> str:
+async def get_port_expenses_vessel_types() -> str:
     """Get available vessel types for port expense queries."""
-    api = PortExpensesAPI(_connection())
-    return _serialize(api.get_vessel_types())
+    return _serialize(
+        await anyio.to_thread.run_sync(_port_expenses_vessel_types_sync)
+    )
 
 
 # --- Tonnage List ---
 
 
 @mcp.tool()
-def get_tonnage_list(
+async def get_tonnage_list(
     loading_port_id: int,
     vessel_class_id: int,
     laycan_end_in_days: Optional[int] = None,
@@ -1009,20 +1172,21 @@ def get_tonnage_list(
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
 
-    api = TonnageListAPI(_connection())
     port = Port(id=loading_port_id, name="")
     vc = VesselClass(id=vessel_class_id, name="")
     return _serialize(
-        api.get_tonnage_list(
-            loading_port=port,
-            vessel_class=vc,
-            laycan_end_in_days=laycan_end_in_days,
+        await anyio.to_thread.run_sync(
+            lambda: _tonnage_list_api.get_tonnage_list(
+                loading_port=port,
+                vessel_class=vc,
+                laycan_end_in_days=laycan_end_in_days,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_historical_tonnage_list(
+async def get_historical_tonnage_list(
     loading_port_id: int,
     vessel_class_id: int,
     laycan_end_in_days: Optional[int] = None,
@@ -1035,35 +1199,41 @@ def get_historical_tonnage_list(
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
 
-    api = HistoricalTonnageListAPI(_connection())
     port = Port(id=loading_port_id, name="")
     vc = VesselClass(id=vessel_class_id, name="")
+    sd = _parse_date(start_date)
+    ed = _parse_date(end_date)
     return _serialize(
-        api.get_historical_tonnage_list(
-            loading_port=port,
-            vessel_class=vc,
-            laycan_end_in_days=laycan_end_in_days,
-            start_date=_parse_date(start_date),
-            end_date=_parse_date(end_date),
+        await anyio.to_thread.run_sync(
+            lambda: _htl_api.get_historical_tonnage_list(
+                loading_port=port,
+                vessel_class=vc,
+                laycan_end_in_days=laycan_end_in_days,
+                start_date=sd,
+                end_date=ed,
+            )
         )
     )
 
 
 @mcp.tool()
-def get_tonnage_list_ports(name: Optional[str] = None) -> str:
+async def get_tonnage_list_ports(name: Optional[str] = None) -> str:
     """Get available ports for tonnage list queries."""
     from signal_ocean.tonnage_list.models import PortFilter
 
-    api = TonnageListAPI(_connection())
     pf = PortFilter(name_like=name) if name else None
-    return _serialize(api.get_ports(port_filter=pf))
+    return _serialize(
+        await anyio.to_thread.run_sync(
+            lambda: _tonnage_list_api.get_ports(port_filter=pf)
+        )
+    )
 
 
 # --- Scraped Cargoes ---
 
 
 @mcp.tool()
-def get_scraped_cargoes(
+async def get_scraped_cargoes(
     vessel_type: int,
     received_date_from: Optional[str] = None,
     received_date_to: Optional[str] = None,
@@ -1073,12 +1243,15 @@ def get_scraped_cargoes(
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Dates as ISO format (YYYY-MM-DDTHH:MM:SS).
     """
-    api = ScrapedCargoesAPI(_connection())
+    df = _parse_datetime(received_date_from)
+    dt = _parse_datetime(received_date_to)
     return _serialize(
-        api.get_cargoes(
-            vessel_type=vessel_type,
-            received_date_from=_parse_datetime(received_date_from),
-            received_date_to=_parse_datetime(received_date_to),
+        await anyio.to_thread.run_sync(
+            lambda: _scraped_cargoes_api.get_cargoes(
+                vessel_type=vessel_type,
+                received_date_from=df,
+                received_date_to=dt,
+            )
         )
     )
 
@@ -1087,7 +1260,7 @@ def get_scraped_cargoes(
 
 
 @mcp.tool()
-def get_scraped_fixtures(
+async def get_scraped_fixtures(
     vessel_type: int,
     received_date_from: Optional[str] = None,
     received_date_to: Optional[str] = None,
@@ -1098,13 +1271,16 @@ def get_scraped_fixtures(
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Dates as ISO format. Optionally filter by vessel IMO numbers.
     """
-    api = ScrapedFixturesAPI(_connection())
+    df = _parse_datetime(received_date_from)
+    dt = _parse_datetime(received_date_to)
     return _serialize(
-        api.get_fixtures(
-            vessel_type=vessel_type,
-            received_date_from=_parse_datetime(received_date_from),
-            received_date_to=_parse_datetime(received_date_to),
-            imos=imos,
+        await anyio.to_thread.run_sync(
+            lambda: _scraped_fixtures_api.get_fixtures(
+                vessel_type=vessel_type,
+                received_date_from=df,
+                received_date_to=dt,
+                imos=imos,
+            )
         )
     )
 
@@ -1113,7 +1289,7 @@ def get_scraped_fixtures(
 
 
 @mcp.tool()
-def get_scraped_lineups(
+async def get_scraped_lineups(
     vessel_type: int,
     received_date_from: Optional[str] = None,
     received_date_to: Optional[str] = None,
@@ -1123,13 +1299,16 @@ def get_scraped_lineups(
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     """
-    api = ScrapedLineupsAPI(_connection())
+    df = _parse_datetime(received_date_from)
+    dt = _parse_datetime(received_date_to)
     return _serialize(
-        api.get_lineups(
-            vessel_type=vessel_type,
-            received_date_from=_parse_datetime(received_date_from),
-            received_date_to=_parse_datetime(received_date_to),
-            imos=imos,
+        await anyio.to_thread.run_sync(
+            lambda: _scraped_lineups_api.get_lineups(
+                vessel_type=vessel_type,
+                received_date_from=df,
+                received_date_to=dt,
+                imos=imos,
+            )
         )
     )
 
@@ -1138,7 +1317,7 @@ def get_scraped_lineups(
 
 
 @mcp.tool()
-def get_scraped_positions(
+async def get_scraped_positions(
     vessel_type: int,
     received_date_from: Optional[str] = None,
     received_date_to: Optional[str] = None,
@@ -1148,13 +1327,16 @@ def get_scraped_positions(
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     """
-    api = ScrapedPositionsAPI(_connection())
+    df = _parse_datetime(received_date_from)
+    dt = _parse_datetime(received_date_to)
     return _serialize(
-        api.get_positions(
-            vessel_type=vessel_type,
-            received_date_from=_parse_datetime(received_date_from),
-            received_date_to=_parse_datetime(received_date_to),
-            imos=imos,
+        await anyio.to_thread.run_sync(
+            lambda: _scraped_positions_api.get_positions(
+                vessel_type=vessel_type,
+                received_date_from=df,
+                received_date_to=dt,
+                imos=imos,
+            )
         )
     )
 
