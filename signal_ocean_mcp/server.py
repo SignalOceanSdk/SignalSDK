@@ -1338,7 +1338,11 @@ async def get_company(company_id: int) -> str:
 
 @mcp.tool()
 async def search_companies(name: Optional[str] = None) -> str:
-    """Search for companies by name."""
+    """Search for shipping companies by name — operators, charterers, owners, managers.
+
+    Use this to find a company ID before filtering voyages or vessels by operator.
+    Returns company_id, name, and type. Partial name matching is supported.
+    """
     return _serialize(
         await anyio.to_thread.run_sync(lambda: _companies_api.get_companies(name=name))
     )
@@ -2325,6 +2329,89 @@ async def get_tonnage_list_and_market_rates(
         },
         default=str,
     )
+
+
+@mcp.tool()
+async def get_vessels_by_operator(
+    company_name: Optional[str] = None,
+    company_id: Optional[int] = None,
+    lookback_days: int = 90,
+) -> str:
+    """Get all vessels currently operated by a shipping company in one call.
+
+    Use this to answer: "what vessels does [company] operate?", "show me the
+    fleet of [operator]", "which ships are managed by [company]?",
+    "list all EPS / Thenamaris / Tsakos vessels."
+
+    The VesselsAPI has no operator filter, so this works by querying recent
+    voyages (last lookback_days days) for the operator and extracting unique
+    vessels. Resolves company name automatically via search_companies.
+
+    company_name: partial name match (e.g. 'EPS', 'Thenamaris', 'Tsakos').
+    company_id: use directly if already known.
+    lookback_days: how far back to look for voyages (default 90). Increase
+        if the fleet appears incomplete for less active operators.
+
+    Returns unique vessels (imo, name, class, type, dwt) seen under that
+    operator in the lookback window.
+    """
+    # Resolve company name → ID
+    if company_id is None:
+        if not company_name:
+            return json.dumps({"error": "Provide company_name or company_id"})
+        companies = await anyio.to_thread.run_sync(
+            lambda: _companies_api.get_companies(name=company_name)
+        )
+        companies = list(companies or [])
+        if not companies:
+            return json.dumps({"error": f"No company found matching '{company_name}'"})
+        first = companies[0]
+        cd = _to_dict(first)
+        company_id = cd.get("ID") or cd.get("Id") or cd.get("id") or cd.get("CompanyId") or cd.get("company_id")
+        resolved_name = cd.get("Name") or cd.get("name") or company_name
+        if company_id is None:
+            return json.dumps({"error": f"Could not extract company ID for '{company_name}'"})
+    else:
+        resolved_name = company_name or str(company_id)
+
+    # Get recent voyages for this operator to extract unique vessels
+    from_date = (datetime.utcnow() - timedelta(days=lookback_days)).date()
+    voyages = await anyio.to_thread.run_sync(
+        lambda: _voyages_api.get_voyages_by_advanced_search(
+            commercial_operator_id=company_id,
+            start_date_from=from_date,
+            hide_events=True,
+            hide_event_details=True,
+            hide_market_info=True,
+        )
+    )
+
+    # Extract unique vessels directly from voyage records — no per-vessel API calls needed
+    seen: dict[int, dict] = {}
+    for v in (voyages or []):
+        vd = _to_dict(v)
+        imo = vd.get("IMO") or vd.get("Imo") or vd.get("imo")
+        if not imo or imo in seen:
+            continue
+        seen[imo] = {
+            "imo": imo,
+            "name": vd.get("VesselName") or vd.get("vessel_name"),
+            "vessel_class_id": vd.get("VesselClassID") or vd.get("vessel_class_id"),
+            "vessel_type_id": vd.get("VesselTypeID") or vd.get("vessel_type_id"),
+            "vessel_type": vd.get("VesselType") or vd.get("vessel_type"),
+            "dwt": vd.get("Deadweight") or vd.get("deadweight"),
+        }
+
+    vessels = sorted(seen.values(), key=lambda x: x.get("name") or "")
+
+    return json.dumps({
+        "company_id": company_id,
+        "company_name": resolved_name,
+        "lookback_days": lookback_days,
+        "vessel_count": len(vessels),
+        "vessels": vessels,
+        **({"note": f"No voyages found for this operator in the last {lookback_days} days"} if not vessels else {}),
+    }, default=str)
 
 
 def main() -> None:
