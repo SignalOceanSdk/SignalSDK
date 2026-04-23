@@ -1753,19 +1753,22 @@ async def get_market_rates_by_route_name(
     if not routes:
         return json.dumps({"error": "No routes found for the given vessel class"})
 
+    # Route model serializes with PascalCase aliases: ID, Description
     name_lower = route_name.lower()
     matched_route = None
     for route in routes:
         rd = _to_dict(route)
-        rname = str(rd.get("name") or "").lower()
-        rid = str(rd.get("route_id") or rd.get("id") or "").lower()
-        if name_lower in rname or rname in name_lower or name_lower in rid or rid in name_lower:
+        rdesc = str(rd.get("Description") or rd.get("description") or rd.get("name") or "").lower()
+        rid = str(rd.get("ID") or rd.get("id") or rd.get("route_id") or "").lower()
+        desc_match = rdesc and (name_lower in rdesc or rdesc in name_lower)
+        id_match = rid and (name_lower in rid or rid in name_lower)
+        if desc_match or id_match:
             matched_route = rd
             break
 
     if matched_route is None:
         available = [
-            f"{_to_dict(r).get('route_id') or _to_dict(r).get('id')} — {_to_dict(r).get('name')}"
+            f"{_to_dict(r).get('ID') or _to_dict(r).get('id')} — {_to_dict(r).get('Description') or _to_dict(r).get('description')}"
             for r in routes
         ]
         return json.dumps(
@@ -1773,7 +1776,9 @@ async def get_market_rates_by_route_name(
         )
 
     route_id = str(
-        matched_route.get("route_id") or matched_route.get("id") or matched_route.get("name")
+        matched_route.get("ID") or matched_route.get("id") or
+        matched_route.get("route_id") or matched_route.get("Description") or
+        matched_route.get("description")
     )
     sd = date.fromisoformat(start_date)
     ed = _parse_date(end_date)
