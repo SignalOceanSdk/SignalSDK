@@ -1563,7 +1563,10 @@ async def get_scraped_cargoes(
     received_date_from: Optional[str] = None,
     received_date_to: Optional[str] = None,
 ) -> str:
-    """Get scraped cargo data from broker reports.
+    """Get scraped cargo data from broker reports — cargo orders, cargo enquiries, requirements.
+
+    Use this to answer: "what cargoes are being offered?", "what cargo orders were
+    reported by brokers?", "what are the cargo requirements for tankers / dry bulk?"
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Dates as ISO format (YYYY-MM-DDTHH:MM:SS).
@@ -1596,7 +1599,10 @@ async def get_scraped_fixtures(
     received_date_to: Optional[str] = None,
     imos: Optional[list[int]] = None,
 ) -> str:
-    """Get scraped fixture data from broker reports.
+    """Get scraped fixture data from broker reports — charters fixed, vessel fixtures, chartering activity.
+
+    Use this to answer: "what vessels were fixed recently?", "what charters were
+    reported?", "what fixtures were done for tankers / dry bulk in the last few hours?"
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Dates as ISO format. Optionally filter by vessel IMO numbers.
@@ -1631,9 +1637,14 @@ async def get_scraped_lineups(
     received_date_to: Optional[str] = None,
     imos: Optional[list[int]] = None,
 ) -> str:
-    """Get scraped port lineup data.
+    """Get scraped port lineup data — vessels at port, loading queue, port congestion reports.
+
+    Use this to answer: "which vessels are in the lineup at [port]?", "what tankers
+    are waiting to load at Ras Tanura / Basrah / Novorossiysk?", "how many vessels
+    are in the loading queue at [terminal]?", "what is the port congestion at X?"
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
+    Optionally filter by vessel IMO numbers.
 
     WARNING: Responses can be very large. Always use narrow date windows (1-6 hours max).
     """
@@ -1661,9 +1672,14 @@ async def get_scraped_positions(
     received_date_to: Optional[str] = None,
     imos: Optional[list[int]] = None,
 ) -> str:
-    """Get scraped vessel position data.
+    """Get scraped vessel position data — vessel locations, open positions, position lists.
+
+    Use this to answer: "where is vessel X?", "what vessels are open in the
+    North Sea?", "which tankers are reporting open positions near Singapore?",
+    "what position list was reported for Aframax vessels?"
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
+    Optionally filter by vessel IMO numbers.
 
     WARNING: Responses can be very large. Always use narrow date windows (1-6 hours max).
     """
