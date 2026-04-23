@@ -1535,11 +1535,15 @@ async def get_scraped_positions(
 # --- Composite Tools (collapse common multi-call patterns into single tool calls) ---
 
 
-def _aggregate_class_metrics(metrics_iterable) -> dict:
+def _aggregate_class_metrics(metrics_result) -> dict:
     """Compute summary stats over per-vessel class emission metrics."""
-    if metrics_iterable is None:
+    if metrics_result is None:
         return {}
-    items = list(metrics_iterable)
+    # VesselClassMetrics is a paginated wrapper with a .data List[VesselMetrics]
+    if hasattr(metrics_result, "data"):
+        items = list(metrics_result.data or [])
+    else:
+        items = list(metrics_result)
     if not items:
         return {"vessel_count": 0}
 
@@ -1549,16 +1553,19 @@ def _aggregate_class_metrics(metrics_iterable) -> dict:
         d = _to_dict(m)
         if not isinstance(d, dict):
             continue
-        score = d.get("cii_score") or d.get("ciiScore")
-        if score is not None:
-            try:
-                cii_scores.append(float(score))
-            except (ValueError, TypeError):
-                pass
-        rating = d.get("cii_rating") or d.get("ciiRating")
-        if rating:
-            key = str(rating)
-            rating_dist[key] = rating_dist.get(key, 0) + 1
+        # Cii is a nested object; aliases are PascalCase (Value, Rating)
+        cii = d.get("Cii") or d.get("cii") or {}
+        if isinstance(cii, dict):
+            score = cii.get("Value") or cii.get("value")
+            if score is not None:
+                try:
+                    cii_scores.append(float(score))
+                except (ValueError, TypeError):
+                    pass
+            rating = cii.get("Rating") or cii.get("rating")
+            if rating:
+                key = str(rating)
+                rating_dist[key] = rating_dist.get(key, 0) + 1
 
     summary: dict = {"vessel_count": len(items), "cii_rating_distribution": rating_dist}
     if cii_scores:
@@ -1580,16 +1587,15 @@ def _pick_latest_completed(voyages_iterable) -> Any:
     items = list(voyages_iterable)
     if not items:
         return None
+    # VoyageCondensed uses 'horizon' (not 'voyage_horizon'); values: "Historic", "Historical"
+    _hist = {"Historic", "Historical", "historic", "historical"}
     completed = [
         v for v in items
         if getattr(v, "end_date", None) is not None
-        and getattr(v, "voyage_horizon", None) in ("Historical", "historical", None)
+        and getattr(v, "horizon", None) in _hist
     ]
     if not completed:
-        completed = [
-            v for v in items
-            if getattr(v, "voyage_horizon", None) in ("Historical", "historical")
-        ]
+        completed = [v for v in items if getattr(v, "horizon", None) in _hist]
     if not completed:
         completed = items
     return max(completed, key=lambda v: str(getattr(v, "start_date", "") or ""), default=None)
@@ -1694,8 +1700,9 @@ async def get_vessel_emission_benchmark(imo: int, year: Optional[int] = None) ->
         return json.dumps({"error": f"Vessel with IMO {imo} not found"})
 
     vd = _to_dict(vessel)
-    vessel_class_id = vd.get("vessel_class_id") or vd.get("vesselClassId")
-    vessel_class_name = vd.get("vessel_class") or vd.get("vesselClass")
+    # Vessel serializes with PascalCase aliases (VesselClassID, VesselClass, etc.)
+    vessel_class_id = vd.get("VesselClassID") or vd.get("vessel_class_id")
+    vessel_class_name = vd.get("VesselClass") or vd.get("vessel_class")
 
     vessel_metrics = await anyio.to_thread.run_sync(
         lambda: _vessel_emissions_api.get_metrics_by_imo(imo, year=year)
@@ -1713,10 +1720,10 @@ async def get_vessel_emission_benchmark(imo: int, year: Optional[int] = None) ->
     return json.dumps(
         {
             "imo": imo,
-            "vessel_name": vd.get("name") or vd.get("vessel_name"),
+            "vessel_name": vd.get("VesselName") or vd.get("vessel_name"),
             "vessel_class_id": vessel_class_id,
             "vessel_class": vessel_class_name,
-            "vessel_type": vd.get("vessel_type") or vd.get("vesselType"),
+            "vessel_type": vd.get("VesselType") or vd.get("vessel_type"),
             "year": year,
             "vessel_metrics": _to_dict(vessel_metrics),
             "peer_class_summary": class_summary,
