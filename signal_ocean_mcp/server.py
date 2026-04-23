@@ -2054,6 +2054,7 @@ async def get_vessel_valuations_for_class(
     vessel_class_id: Optional[int] = None,
     vessel_class_name: Optional[str] = None,
     max_vessels: int = 200,
+    max_staleness_days: Optional[int] = 30,
 ) -> str:
     """Get latest valuations for all vessels in a vessel class in one call.
 
@@ -2063,9 +2064,13 @@ async def get_vessel_valuations_for_class(
 
     vessel_class_name: e.g. 'Suezmax', 'VLCC', 'Capesize'.
     max_vessels: cap on how many vessels to include (default 200). Set lower
-    for faster responses; the first N vessels alphabetically by class are used.
+    for faster responses; the first N vessels in the class are used.
+    max_staleness_days: drop valuations whose updated_date is older than this
+        many days (default 30). Pass None to return all valuations regardless
+        of age. Stale entries (e.g. valuations last updated years ago) are
+        excluded from the response but counted in stale_count for transparency.
 
-    Returns a list of valuations with imo, date, and value for each vessel.
+    Returns current valuations plus stale_count for excluded entries.
     Use this instead of calling get_vessel_classes + get_vessels_by_vessel_class
     + get_vessel_valuations_for_list separately.
     """
@@ -2086,8 +2091,30 @@ async def get_vessel_valuations_for_class(
     valuations = await anyio.to_thread.run_sync(
         lambda: _vessel_valuations_api.get_latest_valuations_for_list_of_vessels(imo_list)
     )
+
+    all_vals = list(valuations) if valuations else []
+    if max_staleness_days is not None:
+        cutoff = datetime.utcnow() - __import__("datetime").timedelta(days=max_staleness_days)
+        current, stale = [], []
+        for v in all_vals:
+            ud = getattr(v, "updated_date", None)
+            try:
+                updated = datetime.fromisoformat(str(ud).replace("Z", "+00:00").replace("+00:00", ""))
+                (current if updated >= cutoff else stale).append(v)
+            except (ValueError, TypeError):
+                current.append(v)
+    else:
+        current, stale = all_vals, []
+
     return json.dumps(
-        {"vessel_class_id": vessel_class_id, "vessel_count": len(imo_list), "valuations": _to_dict(valuations)},
+        {
+            "vessel_class_id": vessel_class_id,
+            "vessel_count": len(imo_list),
+            "current_count": len(current),
+            "stale_count": len(stale),
+            "max_staleness_days": max_staleness_days,
+            "valuations": [_to_dict(v) for v in current],
+        },
         default=str,
     )
 
