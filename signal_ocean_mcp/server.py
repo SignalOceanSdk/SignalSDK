@@ -1684,7 +1684,9 @@ async def get_vessel_emission_benchmark(imo: int, year: Optional[int] = None) ->
     into one call. Returns the vessel's CII/AER/EEOI alongside class-level
     summary stats (mean, median, p25/p75, rating distribution) instead of
     the raw 500-record class payload. Eliminates the 5-call chain required
-    to answer a benchmark question. year defaults to the most recent full year.
+    to answer a benchmark question.
+    year should be a completed calendar year (e.g. 2024, 2025); passing the
+    current year returns partial data. Omit to get the SDK default.
     """
     vessel = await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessel(imo))
     if vessel is None:
