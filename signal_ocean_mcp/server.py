@@ -325,19 +325,26 @@ async def search_vessels(name: Optional[str] = None) -> str:
 async def get_vessels_by_vessel_class(
     vessel_class_id: Optional[int] = None,
     vessel_class_name: Optional[str] = None,
+    limit: int = 50,
 ) -> str:
-    """Get all vessels belonging to a specific vessel class.
+    """Get vessels belonging to a specific vessel class.
 
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'VLCC').
+
+    WARNING: A major class (e.g. Suezmax, VLCC) contains hundreds of vessels and
+    will return a very large response. Set limit to control the number returned
+    (default 50). If you only need an IMO to pass to another tool, use
+    search_vessel_imos instead — it returns just IMO numbers with much smaller payload.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
     if err:
         return json.dumps({"error": err})
-    return _serialize(
-        await anyio.to_thread.run_sync(
-            lambda: _vessels_api.get_vessels_by_vessel_class(vesselClass=vessel_class_id)
-        )
+    vessels = await anyio.to_thread.run_sync(
+        lambda: _vessels_api.get_vessels_by_vessel_class(vesselClass=vessel_class_id)
     )
+    if vessels and limit:
+        vessels = list(vessels)[:limit]
+    return _serialize(vessels)
 
 
 @mcp.tool()
@@ -1901,58 +1908,112 @@ async def compare_port_expenses(
     vessel_class_id: Optional[int] = None,
     vessel_class_name: Optional[str] = None,
     imo: Optional[int] = None,
+    formula_calculation_date: Optional[str] = None,
 ) -> str:
     """Compare port expenses across multiple ports for a vessel class in one call.
 
-    Eliminates the 5-7 call chain (required_params → port resolution → model vessel
-    or class → expenses per port) down to 2-3 calls.
+    Eliminates the 5-7 call chain (port resolution → vessel lookup → per-port
+    expenses) down to 1 data call per port.
 
-    Provide 2+ port names (e.g. ["Rotterdam", "Fujairah"]) and either:
-    - vessel_class_name (e.g. "Suezmax", "VLCC") — auto-resolves to a real vessel IMO
-    - vessel_class_id — same auto-resolution
-    - imo — uses this vessel directly (skips class lookup)
+    Provide 2+ port names (e.g. ["Rotterdam", "Fujairah"]) and one of:
+    - vessel_class_name (e.g. "Suezmax", "VLCC", "Aframax") — resolves vessel_type_id
+      from the class definition; no vessel fetch required
+    - vessel_class_id — same resolution
+    - imo — uses get_port_expenses with a real vessel (most specific, but requires a
+      known IMO; do NOT call get_vessels_by_vessel_class to find one — it returns
+      hundreds of records)
+
+    formula_calculation_date: ISO datetime for expense calculation (default: now).
 
     Returns a ranked comparison of estimated port expenses across all requested ports.
     Use this instead of calling get_port_expenses_required_params + get_port_expenses_ports
-    + get_port_expenses for each port.
+    + get_port_model_vessel_expenses for each port.
     """
-    # Resolve vessel IMO
-    if imo is None:
+    from signal_ocean.port_expenses.models import OperationStatus, EstimationStatus
+
+    calc_date = (
+        datetime.fromisoformat(formula_calculation_date)
+        if formula_calculation_date
+        else datetime.utcnow()
+    )
+
+    vessel_type_id: Optional[int] = None
+    resolved_class_name: Optional[str] = None
+
+    if imo is not None:
+        # Real-vessel path: use get_port_expenses per port
+        results: list[dict] = []
+        for port_name in port_names:
+            port_id, err = await _resolve_port_expenses_port(None, port_name)
+            if err:
+                results.append({"port": port_name, "error": err})
+                continue
+            try:
+                expenses = await anyio.to_thread.run_sync(
+                    lambda pid=port_id: _port_expenses_api.get_port_expenses(imo=imo, port_id=pid)
+                )
+                ed = _to_dict(expenses)
+                total = (ed.get("Total") or ed.get("total")) if isinstance(ed, dict) else None
+                results.append({"port": port_name, "port_id": port_id, "total_usd": total, "details": ed})
+            except Exception as exc:
+                results.append({"port": port_name, "port_id": port_id, "error": str(exc)})
+    else:
+        # Model-vessel path: resolve vessel_type_id from the class definition
         vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
         if err:
             return json.dumps({"error": err})
-        # Get a representative vessel for that class
-        vessels = await anyio.to_thread.run_sync(
-            lambda: _vessels_api.get_vessels_by_vessel_class(vessel_class_id=vessel_class_id)
-        )
-        if not vessels:
-            return json.dumps({"error": f"No vessels found for vessel class {vessel_class_id}"})
-        imo = vessels[0].imo
 
-    # Resolve ports and fetch expenses concurrently
-    results: list[dict] = []
-    for port_name in port_names:
-        port_id, err = await _resolve_port_expenses_port(None, port_name)
-        if err:
-            results.append({"port": port_name, "error": err})
-            continue
-        try:
-            expenses = await anyio.to_thread.run_sync(
-                lambda pid=port_id: _port_expenses_api.get_port_expenses(imo=imo, port_id=pid)
-            )
-            ed = _to_dict(expenses)
-            total = (ed.get("Total") or ed.get("total")) if isinstance(ed, dict) else None
-            results.append({"port": port_name, "port_id": port_id, "total_usd": total, "details": ed})
-        except Exception as exc:
-            results.append({"port": port_name, "port_id": port_id, "error": str(exc)})
+        # Extract vessel_type_id from cached class list — no extra API call
+        classes = await anyio.to_thread.run_sync(_vessel_classes_sync)
+        vessel_type_id: Optional[int] = None
+        resolved_class_name: Optional[str] = None
+        for vc in (classes or []):
+            d = _to_dict(vc)
+            cid = d.get("ID") or d.get("id")
+            if cid == vessel_class_id:
+                vessel_type_id = d.get("VesselTypeId") or d.get("vessel_type_id")
+                resolved_class_name = d.get("Name") or d.get("name")
+                break
 
-    # Sort by total (None / error last)
+        if vessel_type_id is None:
+            return json.dumps({"error": f"Could not determine vessel_type_id for class {vessel_class_id}"})
+
+        results = []
+        for port_name in port_names:
+            port_id, err = await _resolve_port_expenses_port(None, port_name)
+            if err:
+                results.append({"port": port_name, "error": err})
+                continue
+            try:
+                # vessel_class_id intentionally omitted (0 default) — non-zero values
+                # return 500 from the upstream API for most class/port combinations
+                expenses = await anyio.to_thread.run_sync(
+                    lambda pid=port_id: _port_expenses_api.get_port_model_vessel_expenses(
+                        port_id=pid,
+                        vessel_type_id=vessel_type_id,
+                        formula_calculation_date=calc_date,
+                    )
+                )
+                ed = _to_dict(expenses)
+                total = (ed.get("Total") or ed.get("total")) if isinstance(ed, dict) else None
+                results.append({"port": port_name, "port_id": port_id, "total_usd": total, "details": ed})
+            except Exception as exc:
+                results.append({"port": port_name, "port_id": port_id, "error": str(exc)})
+
     def _sort_key(r: dict):
         t = r.get("total_usd")
         return (0, float(t)) if t is not None else (1, 0)
 
     results.sort(key=_sort_key)
-    return json.dumps({"imo_used": imo, "comparison": results}, default=str)
+    return json.dumps(
+        {
+            "vessel_class": resolved_class_name if imo is None else None,
+            "vessel_type_id": vessel_type_id if imo is None else None,
+            "imo_used": imo,
+            "comparison": results,
+        },
+        default=str,
+    )
 
 
 def main() -> None:
