@@ -722,6 +722,7 @@ async def get_voyages_advanced_search(
     vessel_type_id: Optional[int] = None,
     port_id: Optional[int] = None,
     port_ids: Optional[list[int]] = None,
+    port_name: Optional[str] = None,
     commercial_operator_id: Optional[int] = None,
     charterer_id: Optional[int] = None,
     start_date_from: Optional[str] = None,
@@ -743,11 +744,20 @@ async def get_voyages_advanced_search(
     Supports filtering by multiple IMOs, vessel classes, ports,
     charterers, operators, date ranges, event types, and more.
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
+    Provide port_id or port_name (e.g. 'Ras Tanura', 'Rotterdam') — resolved automatically.
     Dates as YYYY-MM-DD.
+
+    WARNING: Querying by vessel class alone over a wide date range returns
+    thousands of voyages and will exceed the 1MB response cap. Always combine
+    with port filters or narrow date ranges.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
     if err and vessel_class_name:
         return json.dumps({"error": err})
+    if port_name and port_id is None:
+        port_id, err = await _resolve_tonnage_list_port(None, port_name)
+        if err:
+            return json.dumps({"error": err})
     sdf = _parse_date(start_date_from)
     sdt = _parse_date(start_date_to)
     fldf = _parse_date(first_load_arrival_date_from)
