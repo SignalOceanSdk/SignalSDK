@@ -2004,7 +2004,7 @@ async def compare_port_expenses(
             d = _to_dict(vc)
             cid = d.get("ID") or d.get("id")
             if cid == vessel_class_id:
-                vessel_type_id = d.get("VesselTypeId") or d.get("vessel_type_id")
+                vessel_type_id = d.get("VesselTypeID") or d.get("vessel_type_id")
                 resolved_class_name = d.get("Name") or d.get("name")
                 break
 
