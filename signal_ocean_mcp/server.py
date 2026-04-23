@@ -219,6 +219,22 @@ async def _resolve_port_expenses_port(port_id: Optional[int], port_name: Optiona
     )
 
 
+async def _resolve_vessel_class(vessel_class_id: Optional[int], vessel_class_name: Optional[str]):
+    if vessel_class_id is not None:
+        return vessel_class_id, None
+    if not vessel_class_name:
+        return None, "Provide vessel_class_id or vessel_class_name"
+    classes = await anyio.to_thread.run_sync(_vessel_classes_sync)
+    name_lower = vessel_class_name.lower()
+    for vc in (classes or []):
+        d = _to_dict(vc)
+        cname = str(d.get("Name") or d.get("name") or "").lower()
+        cid = d.get("ID") or d.get("id")
+        if cname and (name_lower in cname or cname in name_lower):
+            return cid, None
+    return None, f"No vessel class found matching '{vessel_class_name}'"
+
+
 async def _resolve_tonnage_list_port(port_id: Optional[int], port_name: Optional[str]):
     if port_id is not None:
         return port_id, None
@@ -306,11 +322,17 @@ async def search_vessels(name: Optional[str] = None) -> str:
 
 
 @mcp.tool()
-async def get_vessels_by_vessel_class(vessel_class_id: int) -> str:
+async def get_vessels_by_vessel_class(
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
+) -> str:
     """Get all vessels belonging to a specific vessel class.
 
-    Use get_vessel_classes to find available vessel class IDs.
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'VLCC').
     """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _vessels_api.get_vessels_by_vessel_class(vesselClass=vessel_class_id)
@@ -431,7 +453,8 @@ async def get_voyage_emissions(
 
 @mcp.tool()
 async def get_vessel_class_emissions(
-    vessel_class_id: int,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     include_consumptions: bool = False,
     include_efficiency_metrics: bool = False,
     include_distances: bool = False,
@@ -439,7 +462,13 @@ async def get_vessel_class_emissions(
     include_speed_statistics: bool = False,
     include_eu_emissions: bool = False,
 ) -> str:
-    """Get emissions data for all vessels in a vessel class."""
+    """Get emissions data for all vessels in a vessel class.
+
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'VLCC').
+    """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _vessel_emissions_api.get_emissions_by_vessel_class_id(
@@ -469,9 +498,17 @@ async def get_vessel_emission_metrics(
 
 @mcp.tool()
 async def get_vessel_class_emission_metrics(
-    vessel_class_id: int, year: Optional[int] = None
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
+    year: Optional[int] = None,
 ) -> str:
-    """Get emission metrics (CII, AER, EEOI) for all vessels in a class."""
+    """Get emission metrics (CII, AER, EEOI) for all vessels in a class.
+
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'VLCC').
+    """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _vessel_emissions_api.get_metrics_by_vessel_class_id(
@@ -826,15 +863,18 @@ async def get_market_rates(
 @mcp.tool()
 async def get_market_rate_routes(
     vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
 ) -> str:
     """Get available market rate routes, optionally filtered by vessel class.
 
     Route names follow Signal Ocean conventions (e.g. 'MR2 - Cont/USAC',
     'VLCC - MEG/China') rather than standard industry codes (TC2, TD3C).
-    Call this first to discover exact route names and IDs, then pass them
-    to get_market_rates_by_route_name or get_market_rates.
-    Use get_vessel_classes to find vessel_class_id values.
+    Provide vessel_class_id or vessel_class_name (e.g. 'MR2', 'VLCC') to filter.
     """
+    if vessel_class_name and vessel_class_id is None:
+        vessel_class_id, err = await _resolve_vessel_class(None, vessel_class_name)
+        if err:
+            return json.dumps({"error": err})
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _market_rate_routes_sync(vessel_class_id)
@@ -983,8 +1023,9 @@ async def get_freight_pricing_vessel_types() -> str:
 
 @mcp.tool()
 async def get_port_to_port_distance(
-    vessel_class_id: int,
     loading_condition_id: int,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     port_from_id: Optional[int] = None,
     port_to_id: Optional[int] = None,
     port_from_name: Optional[str] = None,
@@ -993,11 +1034,14 @@ async def get_port_to_port_distance(
     """Get the sailing distance between two ports for a given vessel class.
 
     loading_condition_id: 0 = Laden, 1 = Ballast.
-    Provide port IDs or port names — names are resolved automatically.
+    Provide vessel class and ports by ID or name — all resolved automatically.
     """
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
 
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     port_from_id, err = await _resolve_distances_port(port_from_id, port_from_name)
     if err:
         return json.dumps({"error": err})
@@ -1021,8 +1065,9 @@ async def get_port_to_port_distance(
 
 @mcp.tool()
 async def get_port_to_port_route(
-    vessel_class_id: int,
     loading_condition_id: int,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     port_from_id: Optional[int] = None,
     port_to_id: Optional[int] = None,
     port_from_name: Optional[str] = None,
@@ -1032,11 +1077,14 @@ async def get_port_to_port_route(
 
     Returns waypoints, distance, and route details.
     loading_condition_id: 0 = Laden, 1 = Ballast.
-    Provide port IDs or port names — names are resolved automatically.
+    Provide vessel class and ports by ID or name — all resolved automatically.
     """
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
 
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     port_from_id, err = await _resolve_distances_port(port_from_id, port_from_name)
     if err:
         return json.dumps({"error": err})
@@ -1061,21 +1109,26 @@ async def get_port_to_port_route(
 
 @mcp.tool()
 async def get_point_to_point_distance(
-    vessel_class_id: int,
     loading_condition_id: int,
     start_lon: float,
     start_lat: float,
     end_lon: float,
     end_lat: float,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
 ) -> str:
     """Get the sailing distance between two coordinates.
 
     loading_condition_id: 0 = Laden, 1 = Ballast.
     Coordinates as decimal degrees (lon, lat).
+    Provide vessel_class_id or vessel_class_name.
     """
     from signal_ocean.distances.vessel_class import VesselClass
     from signal_ocean.distances.models import Point
 
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     vc = VesselClass(id=vessel_class_id, name="")
     sp = Point(lon=start_lon, lat=start_lat)
     ep = Point(lon=end_lon, lat=end_lat)
@@ -1092,22 +1145,26 @@ async def get_point_to_point_distance(
 
 @mcp.tool()
 async def get_point_to_port_distance(
-    vessel_class_id: int,
     loading_condition_id: int,
     point_lon: float,
     point_lat: float,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     port_id: Optional[int] = None,
     port_name: Optional[str] = None,
 ) -> str:
     """Get the sailing distance from a coordinate to a port.
 
     loading_condition_id: 0 = Laden, 1 = Ballast.
-    Provide port_id or port_name — name is resolved automatically.
+    Provide vessel class and port by ID or name — all resolved automatically.
     """
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
     from signal_ocean.distances.models import Point
 
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     port_id, err = await _resolve_distances_port(port_id, port_name)
     if err:
         return json.dumps({"error": err})
@@ -1340,7 +1397,8 @@ async def get_port_expenses_vessel_types() -> str:
 
 @mcp.tool()
 async def get_tonnage_list(
-    vessel_class_id: int,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     loading_port_id: Optional[int] = None,
     loading_port_name: Optional[str] = None,
     laycan_end_in_days: Optional[int] = None,
@@ -1348,11 +1406,14 @@ async def get_tonnage_list(
     """Get the current tonnage list for a loading port and vessel class.
 
     Shows available vessels near a port.
-    Provide loading_port_id or loading_port_name — name is resolved automatically.
-    Use get_vessel_classes to find vessel_class_id.
+    Provide vessel class and port by ID or name — all resolved automatically.
+    Example: vessel_class_name='Suezmax', loading_port_name='Ras Tanura'.
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
 
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     loading_port_id, err = await _resolve_tonnage_list_port(loading_port_id, loading_port_name)
     if err:
         return json.dumps({"error": err})
@@ -1372,7 +1433,8 @@ async def get_tonnage_list(
 
 @mcp.tool()
 async def get_historical_tonnage_list(
-    vessel_class_id: int,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     loading_port_id: Optional[int] = None,
     loading_port_name: Optional[str] = None,
     laycan_end_in_days: Optional[int] = None,
@@ -1382,10 +1444,13 @@ async def get_historical_tonnage_list(
     """Get historical tonnage list for a port and vessel class over a date range.
 
     Dates as YYYY-MM-DD.
-    Provide loading_port_id or loading_port_name — name is resolved automatically.
+    Provide vessel class and port by ID or name — all resolved automatically.
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
 
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
     loading_port_id, err = await _resolve_tonnage_list_port(loading_port_id, loading_port_name)
     if err:
         return json.dumps({"error": err})
