@@ -626,7 +626,11 @@ async def get_voyages(
 
     Filter by IMO, vessel class, vessel type ID, or start date (YYYY-MM-DD).
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
-    At least one filter is recommended to limit results.
+
+    WARNING: Querying by vessel_class alone over a multi-week window returns
+    thousands of voyages and will exceed the 1MB response cap. Always combine
+    with a narrow date_from or filter by IMO. For class-level analysis, use
+    get_voyages_advanced_search with additional port or date filters.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
     if err and vessel_class_name:
@@ -655,6 +659,10 @@ async def get_voyages_condensed(
     """Get condensed voyage data (lighter payload than full voyages).
 
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
+
+    WARNING: Querying by vessel_class alone over a multi-week window returns
+    thousands of records and will exceed the 1MB response cap. Always combine
+    with a narrow date_from or filter by IMO.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
     if err and vessel_class_name:
@@ -684,6 +692,10 @@ async def get_voyages_flat(
 
     Useful for large datasets as it avoids deeply nested structures.
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
+
+    WARNING: Querying by vessel_class alone over a multi-week window returns
+    thousands of records and will exceed the 1MB response cap. Always combine
+    with a narrow date_from or filter by IMO.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
     if err and vessel_class_name:
