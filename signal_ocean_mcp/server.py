@@ -6,7 +6,7 @@ Claude and other MCP-compatible AI clients.
 
 import json
 from contextlib import asynccontextmanager
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from functools import lru_cache
 from typing import Any, List, Optional
 
@@ -2094,7 +2094,7 @@ async def get_vessel_valuations_for_class(
 
     all_vals = list(valuations) if valuations else []
     if max_staleness_days is not None:
-        cutoff = datetime.utcnow() - __import__("datetime").timedelta(days=max_staleness_days)
+        cutoff = datetime.utcnow() - timedelta(days=max_staleness_days)
         current, stale = [], []
         for v in all_vals:
             ud = getattr(v, "updated_date", None)
