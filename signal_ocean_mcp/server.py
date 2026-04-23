@@ -1062,7 +1062,7 @@ async def get_port_to_port_distance(
 ) -> str:
     """Get the sailing distance between two ports for a given vessel class.
 
-    loading_condition_id: 0 = Laden, 1 = Ballast.
+    loading_condition_id: 1 = Laden, 2 = Ballast.
     Provide vessel class and ports by ID or name — all resolved automatically.
     """
     from signal_ocean.distances.port import Port
@@ -1105,7 +1105,7 @@ async def get_port_to_port_route(
     """Get the sailing route between two ports for a given vessel class.
 
     Returns waypoints, distance, and route details.
-    loading_condition_id: 0 = Laden, 1 = Ballast.
+    loading_condition_id: 1 = Laden, 2 = Ballast.
     Provide vessel class and ports by ID or name — all resolved automatically.
     """
     from signal_ocean.distances.port import Port
@@ -1148,7 +1148,7 @@ async def get_point_to_point_distance(
 ) -> str:
     """Get the sailing distance between two coordinates.
 
-    loading_condition_id: 0 = Laden, 1 = Ballast.
+    loading_condition_id: 1 = Laden, 2 = Ballast.
     Coordinates as decimal degrees (lon, lat).
     Provide vessel_class_id or vessel_class_name.
     """
@@ -1184,7 +1184,7 @@ async def get_point_to_port_distance(
 ) -> str:
     """Get the sailing distance from a coordinate to a port.
 
-    loading_condition_id: 0 = Laden, 1 = Ballast.
+    loading_condition_id: 1 = Laden, 2 = Ballast.
     Provide vessel class and port by ID or name — all resolved automatically.
     """
     from signal_ocean.distances.port import Port
@@ -2090,7 +2090,7 @@ async def get_distance_matrix_from_port(
     """Get sailing distances from one origin port to multiple destination ports in one call.
 
     Collapses the per-port loop (N × get_port_to_port_distance) into a single tool call.
-    loading_condition_id: 0 = Laden, 1 = Ballast.
+    loading_condition_id: 1 = Laden, 2 = Ballast.
     Provide vessel class by name (e.g. 'Suezmax', 'VLCC') or ID.
 
     Returns a table of distances sorted by nautical miles, useful for comparing
@@ -2135,7 +2135,7 @@ async def get_distance_matrix_from_port(
             "origin": origin_port_name,
             "origin_port_id": origin_port_id,
             "vessel_class_id": vessel_class_id,
-            "loading_condition": "Laden" if loading_condition_id == 0 else "Ballast",
+            "loading_condition": "Laden" if loading_condition_id == 1 else "Ballast",
             "distances": rows,
         },
         default=str,
