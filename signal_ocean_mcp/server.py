@@ -159,6 +159,78 @@ def _parse_datetime(value: Optional[str]) -> Optional[datetime]:
     return datetime.fromisoformat(value)
 
 
+async def _resolve_port_by_name(get_ports_fn, port_name: str, registry: str):
+    ports = list(await anyio.to_thread.run_sync(get_ports_fn) or [])
+    if not ports:
+        return None, f"No port found matching '{port_name}' in the {registry} registry"
+    first = ports[0]
+    pid = getattr(first, "id", None)
+    if pid is None:
+        d = _to_dict(first)
+        pid = d.get("id") if isinstance(d, dict) else None
+    return (pid, None) if pid else (None, f"Could not extract port ID for '{port_name}'")
+
+
+async def _resolve_distances_port(port_id: Optional[int], port_name: Optional[str]):
+    if port_id is not None:
+        return port_id, None
+    if not port_name:
+        return None, "Provide port_id or port_name"
+    from signal_ocean.distances.port_filter import PortFilter
+    return await _resolve_port_by_name(
+        lambda: _distances_api.get_ports(port_filter=PortFilter(name_like=port_name)),
+        port_name, "distances",
+    )
+
+
+async def _resolve_freight_rate_port(port_id: Optional[int], port_name: Optional[str]):
+    if port_id is not None:
+        return port_id, None
+    if not port_name:
+        return None, "Provide port_id or port_name"
+    from signal_ocean.freight_rates.port_filter import PortFilter
+    return await _resolve_port_by_name(
+        lambda: _freight_rates_api.get_ports(port_filter=PortFilter(name_like=port_name)),
+        port_name, "freight_rates",
+    )
+
+
+async def _resolve_freight_pricing_port(port_id: Optional[int], port_name: Optional[str]):
+    if port_id is not None:
+        return port_id, None
+    if not port_name:
+        return None, "Provide port_id or port_name"
+    from signal_ocean.freight_pricing.port_filter import PortFilter
+    return await _resolve_port_by_name(
+        lambda: _freight_pricing_api.get_ports(port_filter=PortFilter(name_like=port_name)),
+        port_name, "freight_pricing",
+    )
+
+
+async def _resolve_port_expenses_port(port_id: Optional[int], port_name: Optional[str]):
+    if port_id is not None:
+        return port_id, None
+    if not port_name:
+        return None, "Provide port_id or port_name"
+    from signal_ocean.port_expenses.port_filter import PortFilter
+    return await _resolve_port_by_name(
+        lambda: _port_expenses_api.get_ports(port_filter=PortFilter(name_like=port_name)),
+        port_name, "port_expenses",
+    )
+
+
+async def _resolve_tonnage_list_port(port_id: Optional[int], port_name: Optional[str]):
+    if port_id is not None:
+        return port_id, None
+    if not port_name:
+        return None, "Provide loading_port_id or loading_port_name"
+    from signal_ocean.tonnage_list.models import PortFilter
+    return await _resolve_port_by_name(
+        lambda: _tonnage_list_api.get_ports(port_filter=PortFilter(name_like=port_name)),
+        port_name, "tonnage_list",
+    )
+
+
 # --- Cached reference data (static lookups, fetched once per process) ---
 
 @lru_cache(maxsize=None)
@@ -774,27 +846,46 @@ async def get_market_rate_routes(
 
 @mcp.tool()
 async def get_freight_rates(
-    load_ports: list[int],
-    discharge_ports: list[int],
     vessel_classes: list[str],
     is_clean: bool,
+    load_ports: Optional[list[int]] = None,
+    discharge_ports: Optional[list[int]] = None,
+    load_port_name: Optional[str] = None,
+    discharge_port_name: Optional[str] = None,
     pricing_date: Optional[str] = None,
 ) -> str:
     """Get freight rates between ports for vessel classes.
 
-    load_ports: List of load port IDs.
-    discharge_ports: List of discharge port IDs.
     vessel_classes: List of vessel class names (e.g. ["VLCC", "Suezmax"]).
     is_clean: True for clean products, False for dirty.
-    pricing_date: Date as YYYY-MM-DD (defaults to today).
-    Use get_freight_rate_ports and get_freight_rate_vessel_classes for IDs.
+    Provide port IDs (load_ports/discharge_ports) or port names
+    (load_port_name/discharge_port_name) — names are resolved automatically.
+    pricing_date: YYYY-MM-DD (defaults to today).
     """
+    resolved_load = list(load_ports or [])
+    if load_port_name:
+        pid, err = await _resolve_freight_rate_port(None, load_port_name)
+        if err:
+            return json.dumps({"error": err})
+        resolved_load.append(pid)
+    if not resolved_load:
+        return json.dumps({"error": "Provide load_ports or load_port_name"})
+
+    resolved_discharge = list(discharge_ports or [])
+    if discharge_port_name:
+        pid, err = await _resolve_freight_rate_port(None, discharge_port_name)
+        if err:
+            return json.dumps({"error": err})
+        resolved_discharge.append(pid)
+    if not resolved_discharge:
+        return json.dumps({"error": "Provide discharge_ports or discharge_port_name"})
+
     d = date.fromisoformat(pricing_date) if pricing_date else date.today()
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _freight_rates_api.get_freight_pricing(
-                load_ports=load_ports,
-                discharge_ports=discharge_ports,
+                load_ports=resolved_load,
+                discharge_ports=resolved_discharge,
                 vessel_classes=vessel_classes,
                 is_clean=is_clean,
                 date=d,
@@ -826,18 +917,28 @@ async def get_freight_rate_ports(name: Optional[str] = None) -> str:
 
 @mcp.tool()
 async def get_freight_pricing(
-    load_port_id: int,
-    discharge_port_id: int,
     vessel_type_id: int,
     pricing_date: str,
+    load_port_id: Optional[int] = None,
+    discharge_port_id: Optional[int] = None,
+    load_port_name: Optional[str] = None,
+    discharge_port_name: Optional[str] = None,
 ) -> str:
     """Get freight pricing between ports for a vessel type.
 
-    Use get_freight_pricing_ports and get_freight_pricing_vessel_types
-    to find valid IDs. pricing_date as YYYY-MM-DD.
+    Use get_freight_pricing_vessel_types to find vessel_type_id.
+    Provide port IDs or port names — names are resolved automatically.
+    pricing_date as YYYY-MM-DD.
     """
     from signal_ocean.freight_pricing.port import Port
     from signal_ocean.freight_pricing.vessel_type import VesselType
+
+    load_port_id, err = await _resolve_freight_pricing_port(load_port_id, load_port_name)
+    if err:
+        return json.dumps({"error": err})
+    discharge_port_id, err = await _resolve_freight_pricing_port(discharge_port_id, discharge_port_name)
+    if err:
+        return json.dumps({"error": err})
 
     port_load = Port(id=load_port_id, name="")
     port_discharge = Port(id=discharge_port_id, name="")
@@ -883,16 +984,25 @@ async def get_freight_pricing_vessel_types() -> str:
 async def get_port_to_port_distance(
     vessel_class_id: int,
     loading_condition_id: int,
-    port_from_id: int,
-    port_to_id: int,
+    port_from_id: Optional[int] = None,
+    port_to_id: Optional[int] = None,
+    port_from_name: Optional[str] = None,
+    port_to_name: Optional[str] = None,
 ) -> str:
     """Get the sailing distance between two ports for a given vessel class.
 
     loading_condition_id: 0 = Laden, 1 = Ballast.
-    Use get_distance_ports to find port IDs.
+    Provide port IDs or port names — names are resolved automatically.
     """
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
+
+    port_from_id, err = await _resolve_distances_port(port_from_id, port_from_name)
+    if err:
+        return json.dumps({"error": err})
+    port_to_id, err = await _resolve_distances_port(port_to_id, port_to_name)
+    if err:
+        return json.dumps({"error": err})
 
     vc = VesselClass(id=vessel_class_id, name="")
     pf = Port(id=port_from_id, name="")
@@ -912,16 +1022,26 @@ async def get_port_to_port_distance(
 async def get_port_to_port_route(
     vessel_class_id: int,
     loading_condition_id: int,
-    port_from_id: int,
-    port_to_id: int,
+    port_from_id: Optional[int] = None,
+    port_to_id: Optional[int] = None,
+    port_from_name: Optional[str] = None,
+    port_to_name: Optional[str] = None,
 ) -> str:
     """Get the sailing route between two ports for a given vessel class.
 
     Returns waypoints, distance, and route details.
     loading_condition_id: 0 = Laden, 1 = Ballast.
+    Provide port IDs or port names — names are resolved automatically.
     """
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
+
+    port_from_id, err = await _resolve_distances_port(port_from_id, port_from_name)
+    if err:
+        return json.dumps({"error": err})
+    port_to_id, err = await _resolve_distances_port(port_to_id, port_to_name)
+    if err:
+        return json.dumps({"error": err})
 
     vc = VesselClass(id=vessel_class_id, name="")
     pf = Port(id=port_from_id, name="")
@@ -975,15 +1095,21 @@ async def get_point_to_port_distance(
     loading_condition_id: int,
     point_lon: float,
     point_lat: float,
-    port_id: int,
+    port_id: Optional[int] = None,
+    port_name: Optional[str] = None,
 ) -> str:
     """Get the sailing distance from a coordinate to a port.
 
     loading_condition_id: 0 = Laden, 1 = Ballast.
+    Provide port_id or port_name — name is resolved automatically.
     """
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
     from signal_ocean.distances.models import Point
+
+    port_id, err = await _resolve_distances_port(port_id, port_name)
+    if err:
+        return json.dumps({"error": err})
 
     vc = VesselClass(id=vessel_class_id, name="")
     pt = Point(lon=point_lon, lat=point_lat)
@@ -1115,10 +1241,17 @@ async def search_companies(name: Optional[str] = None) -> str:
 @mcp.tool()
 async def get_port_expenses(
     imo: int,
-    port_id: int,
+    port_id: Optional[int] = None,
     vessel_type_id: Optional[int] = None,
+    port_name: Optional[str] = None,
 ) -> str:
-    """Get estimated port expenses for a vessel at a specific port."""
+    """Get estimated port expenses for a vessel at a specific port.
+
+    Provide port_id or port_name — name is resolved automatically.
+    """
+    port_id, err = await _resolve_port_expenses_port(port_id, port_name)
+    if err:
+        return json.dumps({"error": err})
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _port_expenses_api.get_port_expenses(
@@ -1130,16 +1263,21 @@ async def get_port_expenses(
 
 @mcp.tool()
 async def get_port_model_vessel_expenses(
-    port_id: int,
     vessel_type_id: int,
     formula_calculation_date: str,
+    port_id: Optional[int] = None,
+    port_name: Optional[str] = None,
     vessel_class_id: int = 0,
     historical_tce: bool = False,
 ) -> str:
     """Get port expenses for a model vessel (not a specific IMO).
 
     formula_calculation_date as ISO datetime (YYYY-MM-DDTHH:MM:SS).
+    Provide port_id or port_name — name is resolved automatically.
     """
+    port_id, err = await _resolve_port_expenses_port(port_id, port_name)
+    if err:
+        return json.dumps({"error": err})
     dt = datetime.fromisoformat(formula_calculation_date)
     return _serialize(
         await anyio.to_thread.run_sync(
@@ -1156,10 +1294,17 @@ async def get_port_model_vessel_expenses(
 
 @mcp.tool()
 async def get_port_expenses_required_params(
-    port_id: int,
     vessel_type_id: int,
+    port_id: Optional[int] = None,
+    port_name: Optional[str] = None,
 ) -> str:
-    """Get the required formula parameters for port expense calculation."""
+    """Get the required formula parameters for port expense calculation.
+
+    Provide port_id or port_name — name is resolved automatically.
+    """
+    port_id, err = await _resolve_port_expenses_port(port_id, port_name)
+    if err:
+        return json.dumps({"error": err})
     result = await anyio.to_thread.run_sync(
         lambda: _port_expenses_api.get_required_formula_parameters(
             port_id=port_id, vessel_type_id=vessel_type_id
@@ -1194,16 +1339,22 @@ async def get_port_expenses_vessel_types() -> str:
 
 @mcp.tool()
 async def get_tonnage_list(
-    loading_port_id: int,
     vessel_class_id: int,
+    loading_port_id: Optional[int] = None,
+    loading_port_name: Optional[str] = None,
     laycan_end_in_days: Optional[int] = None,
 ) -> str:
     """Get the current tonnage list for a loading port and vessel class.
 
     Shows available vessels near a port.
-    Use get_tonnage_list_ports and get_vessel_classes to find IDs.
+    Provide loading_port_id or loading_port_name — name is resolved automatically.
+    Use get_vessel_classes to find vessel_class_id.
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
+
+    loading_port_id, err = await _resolve_tonnage_list_port(loading_port_id, loading_port_name)
+    if err:
+        return json.dumps({"error": err})
 
     port = Port(id=loading_port_id, name="")
     vc = VesselClass(id=vessel_class_id, name="")
@@ -1220,8 +1371,9 @@ async def get_tonnage_list(
 
 @mcp.tool()
 async def get_historical_tonnage_list(
-    loading_port_id: int,
     vessel_class_id: int,
+    loading_port_id: Optional[int] = None,
+    loading_port_name: Optional[str] = None,
     laycan_end_in_days: Optional[int] = None,
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
@@ -1229,8 +1381,13 @@ async def get_historical_tonnage_list(
     """Get historical tonnage list for a port and vessel class over a date range.
 
     Dates as YYYY-MM-DD.
+    Provide loading_port_id or loading_port_name — name is resolved automatically.
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
+
+    loading_port_id, err = await _resolve_tonnage_list_port(loading_port_id, loading_port_name)
+    if err:
+        return json.dumps({"error": err})
 
     port = Port(id=loading_port_id, name="")
     vc = VesselClass(id=vessel_class_id, name="")
