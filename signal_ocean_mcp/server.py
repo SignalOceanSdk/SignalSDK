@@ -1951,8 +1951,6 @@ async def compare_port_expenses(
     Use this instead of calling get_port_expenses_required_params + get_port_expenses_ports
     + get_port_model_vessel_expenses for each port.
     """
-    from signal_ocean.port_expenses.models import OperationStatus, EstimationStatus
-
     calc_date = (
         datetime.fromisoformat(formula_calculation_date)
         if formula_calculation_date
