@@ -1498,6 +1498,11 @@ async def get_scraped_cargoes(
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Dates as ISO format (YYYY-MM-DDTHH:MM:SS).
+
+    WARNING: Responses can be very large (hundreds of records, each with ~100 fields).
+    Always use narrow date windows (1-6 hours max). Tanker data is especially dense.
+    For large-volume or class-filtered cargo queries, prefer get_voyage_market_data_advanced
+    with cargo_date_from/cargo_date_to parameters.
     """
     df = _parse_datetime(received_date_from)
     dt = _parse_datetime(received_date_to)
@@ -1526,6 +1531,12 @@ async def get_scraped_fixtures(
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Dates as ISO format. Optionally filter by vessel IMO numbers.
+
+    WARNING: Responses can be very large — tanker fixtures run 100-150 records/hour,
+    each with ~100 fields. Always use narrow date windows (1-3 hours max) and filter
+    by imos when possible. There is NO server-side vessel class filter on this endpoint.
+    For class-filtered fixture queries, use get_voyage_market_data_advanced with
+    vessel_class_ids and fixture_date_from/fixture_date_to parameters instead.
     """
     df = _parse_datetime(received_date_from)
     dt = _parse_datetime(received_date_to)
@@ -1554,6 +1565,8 @@ async def get_scraped_lineups(
     """Get scraped port lineup data.
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
+
+    WARNING: Responses can be very large. Always use narrow date windows (1-6 hours max).
     """
     df = _parse_datetime(received_date_from)
     dt = _parse_datetime(received_date_to)
@@ -1582,6 +1595,8 @@ async def get_scraped_positions(
     """Get scraped vessel position data.
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
+
+    WARNING: Responses can be very large. Always use narrow date windows (1-6 hours max).
     """
     df = _parse_datetime(received_date_from)
     dt = _parse_datetime(received_date_to)
