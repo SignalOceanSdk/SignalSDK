@@ -1474,11 +1474,18 @@ async def get_historical_tonnage_list(
     laycan_end_in_days: Optional[int] = None,
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
+    count_only: bool = False,
 ) -> str:
     """Get historical tonnage list for a port and vessel class over a date range.
 
     Dates as YYYY-MM-DD.
     Provide vessel class and port by ID or name — all resolved automatically.
+
+    WARNING: Full vessel detail over multi-day windows can exceed the 1MB response
+    cap even with a short laycan_end_in_days. Use count_only=True for supply-trend
+    analysis — it returns {date: vessel_count} instead of full vessel records,
+    cutting response size by 20-50x. For combined supply + market rate data,
+    use get_tonnage_list_and_market_rates instead.
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
 
@@ -1493,17 +1500,23 @@ async def get_historical_tonnage_list(
     vc = VesselClass(id=vessel_class_id, name="")
     sd = _parse_date(start_date)
     ed = _parse_date(end_date)
-    return _serialize(
-        await anyio.to_thread.run_sync(
-            lambda: _htl_api.get_historical_tonnage_list(
-                loading_port=port,
-                vessel_class=vc,
-                laycan_end_in_days=laycan_end_in_days,
-                start_date=sd,
-                end_date=ed,
-            )
+    htl = await anyio.to_thread.run_sync(
+        lambda: _htl_api.get_historical_tonnage_list(
+            loading_port=port,
+            vessel_class=vc,
+            laycan_end_in_days=laycan_end_in_days,
+            start_date=sd,
+            end_date=ed,
         )
     )
+    if count_only:
+        counts = {
+            str(getattr(tl, "date", ""))[:10]: len(getattr(tl, "vessels", ()) or ())
+            for tl in (htl or [])
+            if str(getattr(tl, "date", ""))[:10]
+        }
+        return json.dumps({"count_by_date": counts})
+    return _serialize(htl)
 
 
 @mcp.tool()
@@ -2203,7 +2216,8 @@ async def get_tonnage_list_and_market_rates(
         for tl in htl:
             date_str = str(getattr(tl, "date", ""))[:10]
             if date_str:
-                supply_by_date[date_str] = len(list(tl))
+                # TonnageList.vessels is a Tuple[Vessel, ...], not the iterable itself
+                supply_by_date[date_str] = len(getattr(tl, "vessels", ()) or ())
 
     # Fetch market rates if a route name was provided
     matched_route: Optional[dict] = None
