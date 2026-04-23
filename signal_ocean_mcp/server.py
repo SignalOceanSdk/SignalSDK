@@ -618,14 +618,19 @@ async def get_vessel_valuations_paged(
 async def get_voyages(
     imo: Optional[int] = None,
     vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     vessel_type_id: Optional[int] = None,
     date_from: Optional[str] = None,
 ) -> str:
     """Get voyage data for vessels.
 
-    Filter by IMO, vessel class ID, vessel type ID, or start date
-    (YYYY-MM-DD). At least one filter is recommended to limit results.
+    Filter by IMO, vessel class, vessel type ID, or start date (YYYY-MM-DD).
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
+    At least one filter is recommended to limit results.
     """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err and vessel_class_name:
+        return json.dumps({"error": err})
     d = _parse_date(date_from)
     return _serialize(
         await anyio.to_thread.run_sync(
@@ -643,10 +648,17 @@ async def get_voyages(
 async def get_voyages_condensed(
     imo: Optional[int] = None,
     vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     vessel_type_id: Optional[int] = None,
     date_from: Optional[str] = None,
 ) -> str:
-    """Get condensed voyage data (lighter payload than full voyages)."""
+    """Get condensed voyage data (lighter payload than full voyages).
+
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
+    """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err and vessel_class_name:
+        return json.dumps({"error": err})
     d = _parse_date(date_from)
     return _serialize(
         await anyio.to_thread.run_sync(
@@ -664,13 +676,18 @@ async def get_voyages_condensed(
 async def get_voyages_flat(
     imo: Optional[int] = None,
     vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     vessel_type_id: Optional[int] = None,
     date_from: Optional[str] = None,
 ) -> str:
     """Get voyages in flat format (separate lists for voyages, events, details, geos).
 
     Useful for large datasets as it avoids deeply nested structures.
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
     """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err and vessel_class_name:
+        return json.dumps({"error": err})
     d = _parse_date(date_from)
     return _serialize(
         await anyio.to_thread.run_sync(
@@ -688,6 +705,7 @@ async def get_voyages_flat(
 async def get_voyages_advanced_search(
     imos: Optional[list[int]] = None,
     vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
     vessel_class_ids: Optional[list[int]] = None,
     vessel_type_id: Optional[int] = None,
     port_id: Optional[int] = None,
@@ -712,8 +730,12 @@ async def get_voyages_advanced_search(
 
     Supports filtering by multiple IMOs, vessel classes, ports,
     charterers, operators, date ranges, event types, and more.
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
     Dates as YYYY-MM-DD.
     """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err and vessel_class_name:
+        return json.dumps({"error": err})
     sdf = _parse_date(start_date_from)
     sdt = _parse_date(start_date_to)
     fldf = _parse_date(first_load_arrival_date_from)
@@ -2011,6 +2033,218 @@ async def compare_port_expenses(
             "vessel_type_id": vessel_type_id if imo is None else None,
             "imo_used": imo,
             "comparison": results,
+        },
+        default=str,
+    )
+
+
+@mcp.tool()
+async def get_vessel_valuations_for_class(
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
+    max_vessels: int = 200,
+) -> str:
+    """Get latest valuations for all vessels in a vessel class in one call.
+
+    Combines get_vessels_by_vessel_class + get_vessel_valuations_for_list.
+    Avoids the oversized-response problem: fetches vessels internally, extracts
+    only IMOs, then returns the (much smaller) valuation objects.
+
+    vessel_class_name: e.g. 'Suezmax', 'VLCC', 'Capesize'.
+    max_vessels: cap on how many vessels to include (default 200). Set lower
+    for faster responses; the first N vessels alphabetically by class are used.
+
+    Returns a list of valuations with imo, date, and value for each vessel.
+    Use this instead of calling get_vessel_classes + get_vessels_by_vessel_class
+    + get_vessel_valuations_for_list separately.
+    """
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
+
+    vessels = await anyio.to_thread.run_sync(
+        lambda: _vessels_api.get_vessels_by_vessel_class(vesselClass=vessel_class_id)
+    )
+    if not vessels:
+        return json.dumps({"error": f"No vessels found for vessel class {vessel_class_id}"})
+
+    imo_list = [v.imo for v in list(vessels)[:max_vessels] if v.imo]
+    if not imo_list:
+        return json.dumps({"error": "No IMOs found for vessels in this class"})
+
+    valuations = await anyio.to_thread.run_sync(
+        lambda: _vessel_valuations_api.get_latest_valuations_for_list_of_vessels(imo_list)
+    )
+    return json.dumps(
+        {"vessel_class_id": vessel_class_id, "vessel_count": len(imo_list), "valuations": _to_dict(valuations)},
+        default=str,
+    )
+
+
+@mcp.tool()
+async def get_distance_matrix_from_port(
+    origin_port_name: str,
+    destination_port_names: list[str],
+    loading_condition_id: int,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
+) -> str:
+    """Get sailing distances from one origin port to multiple destination ports in one call.
+
+    Collapses the per-port loop (N × get_port_to_port_distance) into a single tool call.
+    loading_condition_id: 0 = Laden, 1 = Ballast.
+    Provide vessel class by name (e.g. 'Suezmax', 'VLCC') or ID.
+
+    Returns a table of distances sorted by nautical miles, useful for comparing
+    route options or building distance matrices for freight analysis.
+    """
+    from signal_ocean.distances.port import Port
+    from signal_ocean.distances.vessel_class import VesselClass
+
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
+    origin_port_id, err = await _resolve_distances_port(None, origin_port_name)
+    if err:
+        return json.dumps({"error": err})
+
+    vc = VesselClass(id=vessel_class_id, name="")
+    pf = Port(id=origin_port_id, name="")
+
+    rows: list[dict] = []
+    for dest_name in destination_port_names:
+        dest_port_id, err = await _resolve_distances_port(None, dest_name)
+        if err:
+            rows.append({"destination": dest_name, "error": err})
+            continue
+        pt = Port(id=dest_port_id, name="")
+        try:
+            dist = await anyio.to_thread.run_sync(
+                lambda pt=pt: _distances_api.get_port_to_port_distance(
+                    vessel_class=vc,
+                    loading_condition_id=loading_condition_id,
+                    port_from=pf,
+                    port_to=pt,
+                )
+            )
+            rows.append({"destination": dest_name, "port_id": dest_port_id, "distance_nm": float(dist) if dist else None})
+        except Exception as exc:
+            rows.append({"destination": dest_name, "port_id": dest_port_id, "error": str(exc)})
+
+    rows.sort(key=lambda r: (r.get("distance_nm") is None, r.get("distance_nm") or 0))
+    return json.dumps(
+        {
+            "origin": origin_port_name,
+            "origin_port_id": origin_port_id,
+            "vessel_class_id": vessel_class_id,
+            "loading_condition": "Laden" if loading_condition_id == 0 else "Ballast",
+            "distances": rows,
+        },
+        default=str,
+    )
+
+
+@mcp.tool()
+async def get_tonnage_list_and_market_rates(
+    start_date: str,
+    end_date: str,
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
+    loading_port_id: Optional[int] = None,
+    loading_port_name: Optional[str] = None,
+    laycan_end_in_days: int = 30,
+    route_name: Optional[str] = None,
+    cargo_id: Optional[int] = None,
+) -> str:
+    """Get historical supply trend and market rates together in one call.
+
+    Replicates the "Combined Examples" notebook pattern: vessel count per day
+    (supply) alongside market rates for the same period, ready for correlation
+    analysis without any post-processing.
+
+    vessel_class_name: e.g. 'MR2', 'VLCC', 'Suezmax' — resolves automatically.
+    loading_port_name: e.g. 'ARA', 'Ras Tanura' — resolves automatically.
+    laycan_end_in_days: how far ahead to count open vessels (default 30).
+    route_name: partial match against route description or exact route ID
+      (e.g. 'MR2 - Cont/USAC', 'R27'). If omitted, returns supply trend only.
+    cargo_id: 0=Dirty, 1=Clean, 2=IMO (used for market rates only).
+    Dates as YYYY-MM-DD.
+
+    Returns:
+      supply_by_date: {date: vessel_count} aggregated from historical tonnage list.
+      market_rates: list of rate records for the matched route (empty if no route_name).
+      matched_route: the route record used for market rates.
+    """
+    from signal_ocean.tonnage_list.models import Port, VesselClass
+    from signal_ocean.market_rates.enums import CargoId
+
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
+    loading_port_id, err = await _resolve_tonnage_list_port(loading_port_id, loading_port_name)
+    if err:
+        return json.dumps({"error": err})
+
+    port = Port(id=loading_port_id, name="")
+    vc = VesselClass(id=vessel_class_id, name="")
+    sd = _parse_date(start_date)
+    ed = _parse_date(end_date)
+
+    # Fetch historical tonnage list and aggregate vessel counts by date
+    htl = await anyio.to_thread.run_sync(
+        lambda: _htl_api.get_historical_tonnage_list(
+            loading_port=port,
+            vessel_class=vc,
+            laycan_end_in_days=laycan_end_in_days,
+            start_date=sd,
+            end_date=ed,
+        )
+    )
+    supply_by_date: dict[str, int] = {}
+    if htl:
+        for tl in htl:
+            date_str = str(getattr(tl, "date", ""))[:10]
+            if date_str:
+                supply_by_date[date_str] = len(list(tl))
+
+    # Fetch market rates if a route name was provided
+    matched_route: Optional[dict] = None
+    rate_records: list = []
+    if route_name:
+        routes = await anyio.to_thread.run_sync(
+            lambda: _market_rate_routes_sync(vessel_class_id)
+        )
+        name_lower = route_name.lower()
+        for route in (routes or []):
+            rd = _to_dict(route)
+            rdesc = str(rd.get("Description") or rd.get("description") or "").lower()
+            rid = str(rd.get("ID") or rd.get("id") or "").lower()
+            if (rdesc and (name_lower in rdesc or rdesc in name_lower)) or (rid and name_lower == rid):
+                matched_route = rd
+                break
+
+        if matched_route:
+            route_id = str(matched_route.get("ID") or matched_route.get("id") or matched_route.get("Description"))
+            cid = CargoId(cargo_id) if cargo_id is not None else None
+            rates = await anyio.to_thread.run_sync(
+                lambda: _market_rates_api.get_market_rates(
+                    start_date=sd,
+                    route_id=route_id,
+                    vessel_class_id=vessel_class_id,
+                    end_date=ed,
+                    cargo_id=cid,
+                )
+            )
+            rate_records = rates if isinstance(rates, (list, tuple)) else ([rates] if rates else [])
+
+    return json.dumps(
+        {
+            "vessel_class_id": vessel_class_id,
+            "loading_port_id": loading_port_id,
+            "date_range": {"start": start_date, "end": end_date},
+            "supply_by_date": supply_by_date,
+            "matched_route": matched_route,
+            "market_rates": [_to_dict(r) for r in rate_records],
         },
         default=str,
     )
