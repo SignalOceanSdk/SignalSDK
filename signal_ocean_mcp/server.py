@@ -248,13 +248,24 @@ async def get_vessels_by_vessel_class(vessel_class_id: int) -> str:
 
 @mcp.tool()
 async def get_vessel_classes() -> str:
-    """Get all available vessel classes (e.g., Capesize, VLCC, etc.)."""
+    """Get all available vessel classes with their IDs.
+
+    Common tanker classes: VLCC, Suezmax, Aframax, LR2, LR1, MR2, MR1, SR, GP.
+    Common dry bulk classes: Capesize, Kamsarmax, Panamax, Ultramax, Supramax,
+    Handymax, Handysize, VLOC.
+    Other: LPG, LNG, Container.
+    Call this once to resolve a class name to an ID for use in other tools.
+    """
     return _serialize(await anyio.to_thread.run_sync(_vessel_classes_sync))
 
 
 @mcp.tool()
 async def get_vessel_types() -> str:
-    """Get all available vessel types (e.g., Tanker, Dry Bulk, etc.)."""
+    """Get all available vessel types with their IDs.
+
+    Known types: Tanker (1), Dry Bulk (3), LPG (6), LNG (4), Container (5).
+    Type IDs are used in scraped data tools (vessel_type param) and voyage filters.
+    """
     return _serialize(await anyio.to_thread.run_sync(_vessel_types_sync))
 
 
@@ -744,7 +755,13 @@ async def get_market_rates(
 async def get_market_rate_routes(
     vessel_class_id: Optional[int] = None,
 ) -> str:
-    """Get available market rate routes, optionally filtered by vessel class."""
+    """Get available market rate routes, optionally filtered by vessel class.
+
+    Routes are identified by codes such as: TD3C (MEG→China), TD20 (WAF→Cont),
+    TD6 (Black Sea→Med), TC2 (Rotterdam→NY), TC14 (US Gulf→Cont), etc.
+    Use get_vessel_classes to find vessel_class_id values.
+    Prefer get_market_rates_by_route_name to avoid a separate lookup step.
+    """
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _market_rate_routes_sync(vessel_class_id)
@@ -1354,6 +1371,265 @@ async def get_scraped_positions(
                 imos=imos,
             )
         )
+    )
+
+
+# --- Composite Tools (collapse common multi-call patterns into single tool calls) ---
+
+
+def _aggregate_class_metrics(metrics_iterable) -> dict:
+    """Compute summary stats over per-vessel class emission metrics."""
+    if metrics_iterable is None:
+        return {}
+    items = list(metrics_iterable)
+    if not items:
+        return {"vessel_count": 0}
+
+    cii_scores: list[float] = []
+    rating_dist: dict[str, int] = {}
+    for m in items:
+        d = _to_dict(m)
+        if not isinstance(d, dict):
+            continue
+        score = d.get("cii_score") or d.get("ciiScore")
+        if score is not None:
+            try:
+                cii_scores.append(float(score))
+            except (ValueError, TypeError):
+                pass
+        rating = d.get("cii_rating") or d.get("ciiRating")
+        if rating:
+            key = str(rating)
+            rating_dist[key] = rating_dist.get(key, 0) + 1
+
+    summary: dict = {"vessel_count": len(items), "cii_rating_distribution": rating_dist}
+    if cii_scores:
+        cii_scores.sort()
+        n = len(cii_scores)
+        summary["cii_score_stats"] = {
+            "mean": round(sum(cii_scores) / n, 4),
+            "median": cii_scores[n // 2],
+            "p25": cii_scores[n // 4],
+            "p75": cii_scores[3 * n // 4],
+            "min": cii_scores[0],
+            "max": cii_scores[-1],
+        }
+    return summary
+
+
+def _pick_latest_completed(voyages_iterable) -> Any:
+    """Return the most recent completed voyage from an iterable."""
+    items = list(voyages_iterable)
+    if not items:
+        return None
+    completed = [
+        v for v in items
+        if getattr(v, "end_date", None) is not None
+        and getattr(v, "voyage_horizon", None) in ("Historical", "historical", None)
+    ]
+    if not completed:
+        completed = [
+            v for v in items
+            if getattr(v, "voyage_horizon", None) in ("Historical", "historical")
+        ]
+    if not completed:
+        completed = items
+    return max(completed, key=lambda v: str(getattr(v, "start_date", "") or ""), default=None)
+
+
+@mcp.tool()
+async def get_vessel_by_name(name: str) -> str:
+    """Find a vessel by name and return its full details in one call.
+
+    Combines search_vessels + get_vessel. Returns the closest name match
+    including vessel class, type, DWT, and build year.
+    Use this instead of calling search_vessels followed by get_vessel.
+    """
+    vessels = await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessels(name=name))
+    if not vessels:
+        return json.dumps({"error": f"No vessel found matching '{name}'"})
+    imo = vessels[0].imo
+    vessel = await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessel(imo))
+    return _serialize(vessel)
+
+
+@mcp.tool()
+async def get_latest_completed_voyage(imo: int) -> str:
+    """Get the most recently completed voyage for a vessel in one call.
+
+    Combines get_voyages_condensed + filtering. Returns a single voyage
+    with start/end dates, load/discharge ports, and cargo info.
+    Use this instead of fetching all voyages and filtering client-side.
+    """
+    voyages = await anyio.to_thread.run_sync(
+        lambda: _voyages_api.get_voyages_condensed(imo=imo)
+    )
+    if not voyages:
+        return json.dumps({"error": f"No voyages found for IMO {imo}"})
+    latest = _pick_latest_completed(voyages)
+    return _serialize(latest)
+
+
+@mcp.tool()
+async def get_latest_voyage_emissions(
+    imo: int,
+    include_consumptions: bool = False,
+    include_efficiency_metrics: bool = True,
+    include_distances: bool = False,
+    include_durations: bool = False,
+    include_speed_statistics: bool = False,
+    include_eu_emissions: bool = False,
+) -> str:
+    """Get emissions for a vessel's most recently completed voyage in one call.
+
+    Combines get_voyages_condensed + get_voyage_emissions. Eliminates the
+    two-step lookup (list voyages → extract voyage_number → fetch emissions).
+    Returns voyage metadata alongside emission data.
+    include_efficiency_metrics defaults to True (CII, AER, EEOI included).
+    """
+    voyages = await anyio.to_thread.run_sync(
+        lambda: _voyages_api.get_voyages_condensed(imo=imo)
+    )
+    if not voyages:
+        return json.dumps({"error": f"No voyages found for IMO {imo}"})
+
+    latest = _pick_latest_completed(voyages)
+    if latest is None:
+        return json.dumps({"error": "No completed voyage found"})
+
+    voyage_number = getattr(latest, "voyage_number", None)
+    if voyage_number is None:
+        return json.dumps({"error": "Could not determine voyage_number from voyage data"})
+
+    emissions = await anyio.to_thread.run_sync(
+        lambda: _vessel_emissions_api.get_emissions_by_imo_and_voyage_number(
+            imo=imo,
+            voyage_number=voyage_number,
+            include_consumptions=include_consumptions,
+            include_efficiency_metrics=include_efficiency_metrics,
+            include_distances=include_distances,
+            include_durations=include_durations,
+            include_speed_statistics=include_speed_statistics,
+            include_eu_emissions=include_eu_emissions,
+        )
+    )
+    return json.dumps(
+        {"voyage": _to_dict(latest), "emissions": _to_dict(emissions)},
+        default=str,
+    )
+
+
+@mcp.tool()
+async def get_vessel_emission_benchmark(imo: int, year: Optional[int] = None) -> str:
+    """Compare a vessel's emission metrics against its peer class distribution.
+
+    Combines get_vessel + get_vessel_emission_metrics + get_vessel_class_emission_metrics
+    into one call. Returns the vessel's CII/AER/EEOI alongside class-level
+    summary stats (mean, median, p25/p75, rating distribution) instead of
+    the raw 500-record class payload. Eliminates the 5-call chain required
+    to answer a benchmark question. year defaults to the most recent full year.
+    """
+    vessel = await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessel(imo))
+    if vessel is None:
+        return json.dumps({"error": f"Vessel with IMO {imo} not found"})
+
+    vd = _to_dict(vessel)
+    vessel_class_id = vd.get("vessel_class_id") or vd.get("vesselClassId")
+    vessel_class_name = vd.get("vessel_class") or vd.get("vesselClass")
+
+    vessel_metrics = await anyio.to_thread.run_sync(
+        lambda: _vessel_emissions_api.get_metrics_by_imo(imo, year=year)
+    )
+
+    class_summary: dict = {}
+    if vessel_class_id is not None:
+        class_metrics = await anyio.to_thread.run_sync(
+            lambda: _vessel_emissions_api.get_metrics_by_vessel_class_id(
+                vessel_class_id=vessel_class_id, year=year
+            )
+        )
+        class_summary = _aggregate_class_metrics(class_metrics)
+
+    return json.dumps(
+        {
+            "imo": imo,
+            "vessel_name": vd.get("name") or vd.get("vessel_name"),
+            "vessel_class_id": vessel_class_id,
+            "vessel_class": vessel_class_name,
+            "vessel_type": vd.get("vessel_type") or vd.get("vesselType"),
+            "year": year,
+            "vessel_metrics": _to_dict(vessel_metrics),
+            "peer_class_summary": class_summary,
+        },
+        default=str,
+    )
+
+
+@mcp.tool()
+async def get_market_rates_by_route_name(
+    route_name: str,
+    start_date: str,
+    vessel_class_id: Optional[int] = None,
+    end_date: Optional[str] = None,
+    cargo_id: Optional[int] = None,
+) -> str:
+    """Get market rates by route name instead of route ID in one call.
+
+    Combines get_market_rate_routes + get_market_rates. Searches routes
+    for a case-insensitive partial match on route_name (e.g. 'TD3C',
+    'West Africa', 'AG-Japan'). If no match is found, returns the list
+    of available route names so you can correct the search term.
+    start_date as YYYY-MM-DD (required). cargo_id: 0=Dirty, 1=Clean, 2=IMO.
+    """
+    from signal_ocean.market_rates.enums import CargoId
+
+    routes = await anyio.to_thread.run_sync(
+        lambda: _market_rate_routes_sync(vessel_class_id)
+    )
+    if not routes:
+        return json.dumps({"error": "No routes found for the given vessel class"})
+
+    name_lower = route_name.lower()
+    matched_route = None
+    for route in routes:
+        rd = _to_dict(route)
+        rname = str(rd.get("name") or rd.get("route_id") or rd.get("id") or "").lower()
+        if name_lower in rname or rname in name_lower:
+            matched_route = rd
+            break
+
+    if matched_route is None:
+        available = [
+            str(_to_dict(r).get("name") or _to_dict(r).get("route_id") or _to_dict(r).get("id"))
+            for r in routes
+        ]
+        return json.dumps(
+            {"error": f"No route matching '{route_name}'", "available_routes": available}
+        )
+
+    route_id = str(
+        matched_route.get("route_id") or matched_route.get("id") or matched_route.get("name")
+    )
+    sd = date.fromisoformat(start_date)
+    ed = _parse_date(end_date)
+    cid = CargoId(cargo_id) if cargo_id is not None else None
+
+    rates = await anyio.to_thread.run_sync(
+        lambda: _market_rates_api.get_market_rates(
+            start_date=sd,
+            route_id=route_id,
+            vessel_class_id=vessel_class_id,
+            end_date=ed,
+            cargo_id=cid,
+        )
+    )
+    result_rates = rates if isinstance(rates, (list, tuple)) else [rates]
+    return json.dumps(
+        {
+            "matched_route": matched_route,
+            "rates": [_to_dict(r) for r in result_rates],
+        },
+        default=str,
     )
 
 
