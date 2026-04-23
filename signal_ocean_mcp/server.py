@@ -829,10 +829,11 @@ async def get_market_rate_routes(
 ) -> str:
     """Get available market rate routes, optionally filtered by vessel class.
 
-    Routes are identified by codes such as: TD3C (MEG→China), TD20 (WAF→Cont),
-    TD6 (Black Sea→Med), TC2 (Rotterdam→NY), TC14 (US Gulf→Cont), etc.
+    Route names follow Signal Ocean conventions (e.g. 'MR2 - Cont/USAC',
+    'VLCC - MEG/China') rather than standard industry codes (TC2, TD3C).
+    Call this first to discover exact route names and IDs, then pass them
+    to get_market_rates_by_route_name or get_market_rates.
     Use get_vessel_classes to find vessel_class_id values.
-    Prefer get_market_rates_by_route_name to avoid a separate lookup step.
     """
     return _serialize(
         await anyio.to_thread.run_sync(
@@ -1732,13 +1733,17 @@ async def get_market_rates_by_route_name(
     end_date: Optional[str] = None,
     cargo_id: Optional[int] = None,
 ) -> str:
-    """Get market rates by route name instead of route ID in one call.
+    """Get market rates by route name or route ID in one call.
 
     Combines get_market_rate_routes + get_market_rates. Searches routes
-    for a case-insensitive partial match on route_name (e.g. 'TD3C',
-    'West Africa', 'AG-Japan'). If no match is found, returns the list
-    of available route names so you can correct the search term.
-    start_date as YYYY-MM-DD (required). cargo_id: 0=Dirty, 1=Clean, 2=IMO.
+    for a case-insensitive partial match on route_name against both the
+    route name (e.g. 'MR2 - Cont/USAC', 'VLCC - MEG/China') and the
+    route ID (e.g. 'R27'). Industry codes like 'TC2' or 'TD3C' are NOT
+    Signal Ocean route names — call get_market_rate_routes first to
+    discover the exact name, then use it here.
+    If no match is found, returns the full route list (id + name) so you
+    can pick the correct term. start_date as YYYY-MM-DD (required).
+    cargo_id: 0=Dirty, 1=Clean, 2=IMO.
     """
     from signal_ocean.market_rates.enums import CargoId
 
@@ -1752,14 +1757,15 @@ async def get_market_rates_by_route_name(
     matched_route = None
     for route in routes:
         rd = _to_dict(route)
-        rname = str(rd.get("name") or rd.get("route_id") or rd.get("id") or "").lower()
-        if name_lower in rname or rname in name_lower:
+        rname = str(rd.get("name") or "").lower()
+        rid = str(rd.get("route_id") or rd.get("id") or "").lower()
+        if name_lower in rname or rname in name_lower or name_lower in rid or rid in name_lower:
             matched_route = rd
             break
 
     if matched_route is None:
         available = [
-            str(_to_dict(r).get("name") or _to_dict(r).get("route_id") or _to_dict(r).get("id"))
+            f"{_to_dict(r).get('route_id') or _to_dict(r).get('id')} — {_to_dict(r).get('name')}"
             for r in routes
         ]
         return json.dumps(
