@@ -1768,7 +1768,7 @@ async def get_market_rates_by_route_name(
         rdesc = str(rd.get("Description") or rd.get("description") or rd.get("name") or "").lower()
         rid = str(rd.get("ID") or rd.get("id") or rd.get("route_id") or "").lower()
         desc_match = rdesc and (name_lower in rdesc or rdesc in name_lower)
-        id_match = rid and (name_lower in rid or rid in name_lower)
+        id_match = rid and name_lower == rid  # exact match only — "r2" must not match "mr2"
         if desc_match or id_match:
             matched_route = rd
             break
