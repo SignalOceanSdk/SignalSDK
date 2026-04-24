@@ -1588,6 +1588,7 @@ async def get_scraped_cargoes(
                 vessel_type=vessel_type,
                 received_date_from=df,
                 received_date_to=dt,
+                include_debug_info=False,
             )
         )
     )
@@ -1626,6 +1627,7 @@ async def get_scraped_fixtures(
                 received_date_from=df,
                 received_date_to=dt,
                 imos=imos,
+                include_debug_info=False,
             )
         )
     )
@@ -1661,6 +1663,7 @@ async def get_scraped_lineups(
                 received_date_from=df,
                 received_date_to=dt,
                 imos=imos,
+                include_debug_info=False,
             )
         )
     )
@@ -1696,6 +1699,7 @@ async def get_scraped_positions(
                 received_date_from=df,
                 received_date_to=dt,
                 imos=imos,
+                include_debug_info=False,
             )
         )
     )
@@ -2335,7 +2339,7 @@ async def get_tonnage_list_and_market_rates(
 async def get_vessels_by_operator(
     company_name: Optional[str] = None,
     company_id: Optional[int] = None,
-    lookback_days: int = 90,
+    lookback_days: int = 30,
 ) -> str:
     """Get all vessels currently operated by a shipping company in one call.
 
@@ -2349,7 +2353,7 @@ async def get_vessels_by_operator(
 
     company_name: partial name match (e.g. 'EPS', 'Thenamaris', 'Tsakos').
     company_id: use directly if already known.
-    lookback_days: how far back to look for voyages (default 90). Increase
+    lookback_days: how far back to look for voyages (default 30). Increase
         if the fleet appears incomplete for less active operators.
 
     Returns unique vessels (imo, name, class, type, dwt) seen under that
