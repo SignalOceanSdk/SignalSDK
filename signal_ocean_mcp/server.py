@@ -2457,15 +2457,17 @@ async def get_vessel_supply(
 
     port = Port(id=loading_port_id, name=area_name)
     vc = VesselClass(id=vessel_class_id, name=vessel_class_name)
-    today = date.today()
-    end = today + timedelta(days=days_ahead)
+    # Start from yesterday — today's snapshot is not published until later in the day
+    # and the HTL API returns 400 if the range starts on a missing snapshot date.
+    start = date.today() - timedelta(days=1)
+    end = date.today() + timedelta(days=days_ahead)
 
     htl = await anyio.to_thread.run_sync(
         lambda: _htl_api.get_historical_tonnage_list(
             loading_port=port,
             vessel_class=vc,
             laycan_end_in_days=days_ahead,
-            start_date=today,
+            start_date=start,
             end_date=end,
         )
     )
