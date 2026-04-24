@@ -69,8 +69,6 @@ class ScrapedDataAPI(Generic[TResponse, TRecord]):
             if value:
                 if isinstance(value, str):
                     pass
-                elif isinstance(value, bool):
-                    value = "true"
                 elif isinstance(value, List):
                     value = ",".join(map(str, value))
                 elif isinstance(value, datetime):
