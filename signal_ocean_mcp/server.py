@@ -1504,6 +1504,9 @@ async def get_historical_tonnage_list(
 ) -> str:
     """Get historical tonnage list for a port and vessel class over a date range.
 
+    For CURRENT supply / ballasting questions use get_vessel_supply instead —
+    it resolves class and port names and returns a pre-summarised count.
+
     Dates as YYYY-MM-DD.
     Provide vessel class and port by ID or name — all resolved automatically.
 
@@ -2415,6 +2418,95 @@ async def get_vessels_by_operator(
         "vessel_count": len(vessels),
         "vessels": vessels,
         **({"note": f"No voyages found for this operator in the last {lookback_days} days"} if not vessels else {}),
+    }, default=str)
+
+
+@mcp.tool()
+async def get_vessel_supply(
+    vessel_class_name: str,
+    area_name: str,
+    days_ahead: int = 14,
+) -> str:
+    """Get vessel supply (availability) for a vessel class at a loading area — covers ballasting questions.
+
+    Use this to answer:
+    - "How many [class] are ballasting toward [area/route]?"
+    - "What is the supply of [class] at [area] over the next N days?"
+    - "How many VLCCs are available at MEG?"
+    - "What is the Capesize supply at Tubarao?" (C3 route)
+    - "How many MR2s are open in ARA / Rotterdam?"
+    - "What is the current tonnage supply for Aframax at Sidi Kerir?"
+
+    A vessel appearing in the tonnage list for a future date is currently
+    ballasting toward that port — this is standard supply/demand methodology.
+
+    vessel_class_name: e.g. "VLCC", "Suezmax", "Aframax", "MR2", "Capesize",
+        "Panamax", "LR2", "LR1". Resolved automatically.
+    area_name: loading port or area, e.g. "Ras Tanura", "Rotterdam",
+        "Tubarao", "Bonny", "Sidi Kerir", "Ain Sukhna". Resolved automatically.
+    days_ahead: window to look forward (default 14 days).
+    """
+    from signal_ocean.tonnage_list.models import Port, VesselClass
+
+    vessel_class_id, err = await _resolve_vessel_class(None, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
+    loading_port_id, err = await _resolve_tonnage_list_port(None, area_name)
+    if err:
+        return json.dumps({"error": err})
+
+    port = Port(id=loading_port_id, name=area_name)
+    vc = VesselClass(id=vessel_class_id, name=vessel_class_name)
+    today = date.today()
+    end = today + timedelta(days=days_ahead)
+
+    htl = await anyio.to_thread.run_sync(
+        lambda: _htl_api.get_historical_tonnage_list(
+            loading_port=port,
+            vessel_class=vc,
+            laycan_end_in_days=days_ahead,
+            start_date=today,
+            end_date=end,
+        )
+    )
+
+    if not htl:
+        return json.dumps({
+            "vessel_class": vessel_class_name,
+            "area": area_name,
+            "days_ahead": days_ahead,
+            "total_unique_vessels": 0,
+            "by_date": {},
+            "vessels": [],
+        })
+
+    by_date: dict = {}
+    seen_imos: set = set()
+    vessels: list = []
+
+    for tl in htl:
+        tl_date = str(getattr(tl, "date", ""))[:10]
+        tl_vessels = getattr(tl, "vessels", ()) or ()
+        by_date[tl_date] = len(tl_vessels)
+        for v in tl_vessels:
+            vd = _to_dict(v)
+            imo = vd.get("IMO") or vd.get("Imo") or vd.get("imo")
+            if imo and imo not in seen_imos:
+                seen_imos.add(imo)
+                vessels.append({
+                    "imo": imo,
+                    "name": vd.get("VesselName") or vd.get("Name") or vd.get("name"),
+                    "open_date": vd.get("OpenDate") or vd.get("open_date"),
+                    "open_port": vd.get("OpenPort") or vd.get("open_port"),
+                })
+
+    return json.dumps({
+        "vessel_class": vessel_class_name,
+        "area": area_name,
+        "days_ahead": days_ahead,
+        "total_unique_vessels": len(seen_imos),
+        "by_date": by_date,
+        "vessels": vessels[:50],
     }, default=str)
 
 
