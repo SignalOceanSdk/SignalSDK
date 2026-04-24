@@ -33,8 +33,9 @@ TResponse = TypeVar("TResponse", bound=ScrapedDataResponse[Any])
 class ScrapedDataAPI(Generic[TResponse, TRecord]):
     """Base class for Scraped Data API classes."""
 
+    page_size: int = 10000
     endpoints: Dict[str, str] = {
-        "page_size": "?",
+        "page_size": "?PageSize=" + str(page_size),
         "incremental": "/incremental?",
         "incremental_token": "/incremental/getincrementaltoken?",
     }
