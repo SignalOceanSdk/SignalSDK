@@ -23,7 +23,7 @@ setup(
     license="Apache 2.0",
     url="https://apis.signalocean.com/",
     packages=find_packages(exclude=["tests", "tests.*"]),
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     install_requires=[
         "requests>=2.23.0,<3",
         "python-dateutil>=2.8.1,<3",
