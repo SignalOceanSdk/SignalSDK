@@ -654,7 +654,7 @@ async def get_voyages(
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
 
     WARNING: Querying by vessel_class alone over a multi-week window returns
-    thousands of voyages and may return very large responses. Always combine
+    thousands of voyages and may return very large responses. Prefer combining
     with a narrow date_from or filter by IMO. For class-level analysis, use
     get_voyages_advanced_search with additional port or date filters.
     """
@@ -687,7 +687,7 @@ async def get_voyages_condensed(
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
 
     WARNING: Querying by vessel_class alone over a multi-week window returns
-    thousands of records and may return very large responses. Always combine
+    thousands of records and may return very large responses. Prefer combining
     with a narrow date_from or filter by IMO.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
@@ -720,7 +720,7 @@ async def get_voyages_flat(
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
 
     WARNING: Querying by vessel_class alone over a multi-week window returns
-    thousands of records and may return very large responses. Always combine
+    thousands of records and may return very large responses. Prefer combining
     with a narrow date_from or filter by IMO.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
@@ -774,7 +774,7 @@ async def get_voyages_advanced_search(
     Dates as YYYY-MM-DD.
 
     WARNING: Querying by vessel class alone over a wide date range returns
-    thousands of voyages and may return very large responses. Always combine
+    thousands of voyages and may return very large responses. Prefer combining
     with port filters or narrow date ranges.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
