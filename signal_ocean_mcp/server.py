@@ -549,7 +549,13 @@ async def get_vessel_class_emissions(
 async def get_vessel_emission_metrics(
     imo: int, year: Optional[int] = None
 ) -> str:
-    """Get emission metrics (CII, AER, EEOI) for a vessel by IMO."""
+    """Get CII rating, AER, and EEXI for a vessel — use this before fixing a vessel.
+
+    Returns the annual CII letter rating (A–E), CII value vs target, AER, and EEXI
+    compliance for each year. If year is omitted, returns the full multi-year history
+    so you can see the trend. Use this to answer: "what is the CII of vessel X?",
+    "is this vessel EEXI compliant?", "what's the emissions trend before I fix it?"
+    """
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _vessel_emissions_api.get_metrics_by_imo(imo, year=year)
@@ -1854,6 +1860,8 @@ async def get_vessel_by_name(name: str) -> str:
     Combines search_vessels + get_vessel. Returns the closest name match
     including vessel class, type, DWT, and build year.
     Use this instead of calling search_vessels followed by get_vessel.
+    For chartering vetting, follow up with get_vessel_emission_metrics(imo)
+    to get the CII rating and EEXI compliance.
     """
     vessels = await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessels(name=name))
     if not vessels:
