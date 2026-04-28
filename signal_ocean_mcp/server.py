@@ -261,6 +261,22 @@ async def _resolve_vessel_class(vessel_class_id: Optional[int], vessel_class_nam
     return None, f"No vessel class found matching '{vessel_class_name}'"
 
 
+async def _resolve_charterer(charterer_id: Optional[int], charterer_name: Optional[str]):
+    if charterer_id is not None:
+        return charterer_id, None
+    if not charterer_name:
+        return None, None
+    companies = await anyio.to_thread.run_sync(
+        lambda: _companies_api.get_companies(name=charterer_name)
+    )
+    for c in (companies or []):
+        d = _to_dict(c)
+        cid = d.get("ID") or d.get("id")
+        if cid:
+            return cid, None
+    return None, f"No company found matching '{charterer_name}'"
+
+
 async def _resolve_tonnage_list_port(port_id: Optional[int], port_name: Optional[str]):
     if port_id is not None:
         return port_id, None
@@ -751,6 +767,7 @@ async def get_voyages_advanced_search(
     port_name: Optional[str] = None,
     commercial_operator_id: Optional[int] = None,
     charterer_id: Optional[int] = None,
+    charterer_name: Optional[str] = None,
     start_date_from: Optional[str] = None,
     start_date_to: Optional[str] = None,
     first_load_arrival_date_from: Optional[str] = None,
@@ -769,8 +786,9 @@ async def get_voyages_advanced_search(
 
     Supports filtering by multiple IMOs, vessel classes, ports,
     charterers, operators, date ranges, event types, and more.
-    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
-    Provide port_id or port_name (e.g. 'Ras Tanura', 'Rotterdam') — resolved automatically.
+    Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize', 'Kamsarmax').
+    Provide port_id or port_name (e.g. 'Santos', 'Tubarao', 'Rotterdam') — resolved automatically.
+    Provide charterer_id or charterer_name (e.g. 'Cargill', 'Trafigura') — resolved automatically.
     Dates as YYYY-MM-DD.
 
     WARNING: Querying by vessel class alone over a wide date range returns
@@ -782,6 +800,10 @@ async def get_voyages_advanced_search(
         return json.dumps({"error": err})
     if port_name and port_id is None:
         port_id, err = await _resolve_tonnage_list_port(None, port_name)
+        if err:
+            return json.dumps({"error": err})
+    if charterer_name and charterer_id is None:
+        charterer_id, err = await _resolve_charterer(None, charterer_name)
         if err:
             return json.dumps({"error": err})
     sdf = _parse_date(start_date_from)
@@ -869,6 +891,7 @@ async def get_voyage_market_data_advanced(
     include_labels: Optional[bool] = None,
     charterer_ids_include: Optional[list[int]] = None,
     charterer_ids_exclude: Optional[list[int]] = None,
+    charterer_name: Optional[str] = None,
     cargo_type_ids_include: Optional[list[int]] = None,
     cargo_type_ids_exclude: Optional[list[int]] = None,
 ) -> str:
@@ -876,7 +899,15 @@ async def get_voyage_market_data_advanced(
 
     Filter by multiple IMOs, vessel classes, trades, charterers,
     cargo types, fixture dates, and laycan dates. Dates as YYYY-MM-DD.
+    Provide charterer_name (e.g. 'Cargill', 'Trafigura', 'Glencore') instead of
+    charterer_ids_include — resolved automatically via company search.
     """
+    if charterer_name and not charterer_ids_include:
+        cid, err = await _resolve_charterer(None, charterer_name)
+        if err:
+            return json.dumps({"error": err})
+        if cid:
+            charterer_ids_include = [cid]
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _voyages_market_data_api.get_voyage_market_data_advanced(
@@ -1635,8 +1666,9 @@ async def get_scraped_fixtures(
 ) -> str:
     """Get scraped fixture data from broker reports — charters fixed, vessel fixtures, chartering activity.
 
-    Use this to answer: "what vessels were fixed recently?", "what charters were
-    reported?", "what fixtures were done for tankers / dry bulk in the last few hours?"
+    Use this to answer: "what vessels were fixed recently?", "what Kamsarmax were
+    fixed out of Santos this week?", "what dry bulk fixtures were reported today?",
+    "what charters were done for Capesize in the last 24 hours?"
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Dates as ISO format. Optionally filter by vessel IMO numbers.
@@ -1674,9 +1706,9 @@ async def get_scraped_lineups(
 ) -> str:
     """Get scraped port lineup data — vessels at port, loading queue, port congestion reports.
 
-    Use this to answer: "which vessels are in the lineup at [port]?", "what tankers
-    are waiting to load at Ras Tanura / Basrah / Novorossiysk?", "how many vessels
-    are in the loading queue at [terminal]?", "what is the port congestion at X?"
+    Use this to answer: "which vessels are in the lineup at [port]?", "how many vessels
+    are waiting to load at Tubarao / Port Hedland / Newcastle / Richards Bay?",
+    "what is the port congestion at Santos?", "what tankers are queued at Ras Tanura?"
 
     vessel_type: 1=Tanker, 3=Dry, 6=LPG, 4=LNG, 5=Container.
     Optionally filter by vessel IMO numbers.
@@ -1946,10 +1978,11 @@ async def get_market_rates_by_route_name(
 
     Combines get_market_rate_routes + get_market_rates. Searches routes
     for a case-insensitive partial match on route_name against both the
-    route name (e.g. 'MR2 - Cont/USAC', 'VLCC - MEG/China') and the
-    route ID (e.g. 'R27'). Industry codes like 'TC2' or 'TD3C' are NOT
-    Signal Ocean route names — call get_market_rate_routes first to
-    discover the exact name, then use it here.
+    route name (e.g. 'MR2 - Cont/USAC', 'VLCC - MEG/China', 'Kamsarmax - ECSA/China',
+    'Capesize - Brazil/China') and the route ID (e.g. 'R27').
+    Industry codes like 'C5', 'P2', 'TC2' or 'TD3C' are NOT Signal Ocean route names —
+    search by vessel class and region instead (e.g. 'Capesize Pacific', 'Panamax Atlantic').
+    Call get_market_rate_routes first to discover the exact name, then use it here.
     If no match is found, returns the full route list (id + name) so you
     can pick the correct term. start_date as YYYY-MM-DD (required).
     cargo_id: 0=Dirty, 1=Clean, 2=IMO.
