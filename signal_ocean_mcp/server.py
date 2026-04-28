@@ -252,12 +252,17 @@ async def _resolve_vessel_class(vessel_class_id: Optional[int], vessel_class_nam
         return None, "Provide vessel_class_id or vessel_class_name"
     classes = await anyio.to_thread.run_sync(_vessel_classes_sync)
     name_lower = vessel_class_name.lower()
+    partial = None
     for vc in (classes or []):
         d = _to_dict(vc)
         cname = str(d.get("Name") or d.get("name") or "").lower()
         cid = d.get("ID") or d.get("id")
-        if cname and (name_lower in cname or cname in name_lower):
+        if cname == name_lower:
             return cid, None
+        if cname and partial is None and (name_lower in cname or cname in name_lower):
+            partial = cid
+    if partial is not None:
+        return partial, None
     return None, f"No vessel class found matching '{vessel_class_name}'"
 
 
@@ -269,11 +274,18 @@ async def _resolve_charterer(charterer_id: Optional[int], charterer_name: Option
     companies = await anyio.to_thread.run_sync(
         lambda: _companies_api.get_companies(name=charterer_name)
     )
+    name_lower = charterer_name.lower()
+    partial = None
     for c in (companies or []):
         d = _to_dict(c)
         cid = d.get("ID") or d.get("id")
-        if cid:
+        cname = str(d.get("CompanyName") or d.get("company_name") or "").lower()
+        if cid and cname == name_lower:
             return cid, None
+        if cid and partial is None:
+            partial = cid
+    if partial is not None:
+        return partial, None
     return None, f"No company found matching '{charterer_name}'"
 
 
