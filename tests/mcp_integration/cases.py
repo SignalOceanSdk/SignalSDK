@@ -215,4 +215,55 @@ CASES: list[TestCase] = [
             "values during Q1 2024, and comments on any observed relationship."
         ),
     ),
+
+    # --- Vessel information ---
+    TestCase(
+        id="vessel_particulars",
+        question="When was DHT Leopard built and where?",
+        max_calls=3,
+        description="vessel information lookup by name (build year + shipyard)",
+        required_tools=[],  # search_vessels or get_vessel_by_name are both valid
+        expected_answer=(
+            "States DHT Leopard's build year and the country or shipyard where she was built."
+        ),
+    ),
+
+    # --- Voyage analytics ---
+    TestCase(
+        id="voyage_analytics_ag_crude",
+        question="Which vessels loaded crude oil from the Arabian Gulf in the last 30 days?",
+        max_calls=4,
+        description="voyage analytics — cargo type + region filter",
+        required_tools=["get_voyages_advanced_search"],
+        expected_answer=(
+            "Lists vessel names or IMOs that loaded crude oil from the Arabian Gulf "
+            "in the past 30 days, or states none were found."
+        ),
+    ),
+
+    # --- Fixtures & chartering ---
+    TestCase(
+        id="lng_fixtures",
+        question="What LNG carrier fixtures were reported in January 2026?",
+        max_calls=3,
+        description="scraped fixtures for LNG vessel type",
+        required_tools=["get_scraped_fixtures"],
+        expected_answer=(
+            "Lists one or more LNG carrier fixture records from January 2026 with "
+            "vessel name, charterer, or load/discharge port, or states none were found."
+        ),
+    ),
+
+    # --- Port insights ---
+    TestCase(
+        id="port_aframax_calls",
+        question="How many Aframax tankers loaded at Rotterdam in the last 30 days?",
+        max_calls=4,
+        description="port insights — port call count via voyage search",
+        required_tools=["get_voyages_advanced_search"],
+        expected_answer=(
+            "Provides a count or list of Aframax tanker loading events at Rotterdam "
+            "in the past 30 days."
+        ),
+    ),
 ]
