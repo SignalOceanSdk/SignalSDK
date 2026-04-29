@@ -6,10 +6,14 @@ Usage:
     python -m tests.mcp_integration --improve        # suggest fixes for failures
     python -m tests.mcp_integration --verbose        # show each tool call as it happens
     python -m tests.mcp_integration --list           # list available test case IDs
+    python -m tests.mcp_integration --cli            # force claude CLI mode
 
-Requires:
-    ANTHROPIC_API_KEY in environment
-    SIGNAL_OCEAN_API_KEY read from .mcp.json (same key Claude Desktop uses)
+Modes:
+    API mode  (default): requires ANTHROPIC_API_KEY in environment.
+    CLI mode  (auto when ANTHROPIC_API_KEY absent, or via --cli flag): uses the
+              local `claude` CLI installation; no API key needed.
+
+Both modes read SIGNAL_OCEAN_API_KEY from .mcp.json (same key Claude Desktop uses).
 """
 import argparse
 import asyncio
@@ -32,6 +36,8 @@ def main() -> None:
                         help="Print each tool call as it happens")
     parser.add_argument("--list", action="store_true",
                         help="List available test case IDs and exit")
+    parser.add_argument("--cli", action="store_true",
+                        help="Use local claude CLI instead of Anthropic API")
     args = parser.parse_args()
 
     if args.list:
@@ -39,9 +45,9 @@ def main() -> None:
             print(f"  {case.id:<30} {case.description}")
         return
 
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("ERROR: ANTHROPIC_API_KEY is not set.", file=sys.stderr)
-        sys.exit(1)
+    use_cli = args.cli or not os.environ.get("ANTHROPIC_API_KEY")
+    if use_cli and not args.cli:
+        print("ANTHROPIC_API_KEY not set — running in claude CLI mode", file=sys.stderr)
 
     if args.case:
         cases = [c for c in CASES if c.id == args.case]
@@ -52,7 +58,7 @@ def main() -> None:
     else:
         cases = CASES
 
-    results = asyncio.run(run_cases(cases, verbose=args.verbose))
+    results = asyncio.run(run_cases(cases, verbose=args.verbose, use_cli=use_cli))
 
     passed = sum(1 for r in results if r.passed)
     total = len(results)

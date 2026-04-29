@@ -4,7 +4,10 @@ composite tools, or bug fixes). Does NOT auto-apply — prints diffs for review.
 import re
 from pathlib import Path
 
-import anthropic
+try:
+    import anthropic as _anthropic_mod
+except ImportError:
+    _anthropic_mod = None  # type: ignore[assignment]
 
 from .runner import TestResult
 
@@ -58,7 +61,9 @@ def suggest_improvements(failures: list[TestResult]) -> str:
     server_source = SERVER_PY.read_text()
     prompt = _build_prompt(failures, server_source)
 
-    client = anthropic.Anthropic()
+    if _anthropic_mod is None:
+        return "anthropic package not installed — cannot generate suggestions in CLI mode."
+    client = _anthropic_mod.Anthropic()
     response = client.messages.create(
         model=MODEL,
         max_tokens=4096,

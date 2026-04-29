@@ -1,6 +1,14 @@
-"""MCP test runner: spins up the signal-ocean MCP server, feeds questions to
-Claude via the Anthropic API, captures the tool call trail, and evaluates
-results against the test case expectations."""
+"""MCP test runner: feeds questions to Claude (via Anthropic API or local CLI),
+captures the tool call trail, and evaluates results against test case
+expectations.
+
+Two modes:
+- API mode  (default when ANTHROPIC_API_KEY is set): spins up the MCP server
+  via stdio_client and drives an agentic loop via the Anthropic SDK.
+- CLI mode  (when ANTHROPIC_API_KEY is absent): runs `claude -p … --output-format
+  stream-json` as a subprocess and parses the NDJSON event stream to extract
+  tool calls.  No API key required; uses the Claude Desktop/CLI installation.
+"""
 import asyncio
 import json
 import os
@@ -8,9 +16,13 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-import anthropic
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
+try:
+    import anthropic as _anthropic_mod
+    from mcp import ClientSession, StdioServerParameters
+    from mcp.client.stdio import stdio_client
+    _HAS_ANTHROPIC = True
+except ImportError:
+    _HAS_ANTHROPIC = False
 
 from .cases import TestCase
 
@@ -29,7 +41,7 @@ def _load_signal_ocean_env() -> dict[str, str]:
         return {}
 
 
-def _server_params() -> StdioServerParameters:
+def _server_params():
     env = {**os.environ, **_load_signal_ocean_env()}
     return StdioServerParameters(
         command=sys.executable,
@@ -61,6 +73,14 @@ class TestResult:
     @property
     def tool_names(self) -> list[str]:
         return [tc.name for tc in self.tool_calls]
+
+
+def _strip_mcp_prefix(name: str) -> str:
+    """Strip 'mcp__<server>__' prefix that the claude CLI adds to tool names."""
+    parts = name.split("__", 2)
+    if len(parts) == 3 and parts[0] == "mcp":
+        return parts[2]
+    return name
 
 
 def _convert_tool(mcp_tool) -> dict:
@@ -107,7 +127,7 @@ async def run_case(case: TestCase, verbose: bool = False) -> TestResult:
             tools_resp = await session.list_tools()
             tools = [_convert_tool(t) for t in tools_resp.tools]
 
-            client = anthropic.Anthropic()
+            client = _anthropic_mod.Anthropic()
             messages: list[dict] = [{"role": "user", "content": case.question}]
 
             for _turn in range(MAX_TURNS):
@@ -169,9 +189,99 @@ async def run_case(case: TestCase, verbose: bool = False) -> TestResult:
     return result
 
 
+async def run_case_cli(case: TestCase, verbose: bool = False) -> TestResult:
+    """Run a test case using the local `claude` CLI (no ANTHROPIC_API_KEY needed).
+
+    Parses the stream-json event stream to extract tool_use / tool_result pairs
+    and populates TestResult identically to run_case().
+    """
+    result = TestResult(case=case)
+
+    cmd = [
+        "claude",
+        "-p", case.question,
+        "--output-format", "stream-json",
+        "--mcp-config", str(MCP_JSON),
+        "--dangerously-skip-permissions",
+    ]
+
+    env = {**os.environ, **_load_signal_ocean_env()}
+
+    proc = await asyncio.create_subprocess_exec(
+        *cmd,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+        env=env,
+    )
+
+    # tool_id -> (name, inputs) for tool_use blocks awaiting their result
+    pending: dict[str, tuple[str, dict]] = {}
+
+    assert proc.stdout is not None
+    async for raw_line in proc.stdout:
+        line = raw_line.decode().strip()
+        if not line:
+            continue
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+
+        event_type = event.get("type")
+
+        if event_type == "assistant":
+            for block in event.get("message", {}).get("content", []):
+                if block.get("type") == "tool_use":
+                    tool_id = block.get("id", "")
+                    tool_name = _strip_mcp_prefix(block.get("name", ""))
+                    tool_input = block.get("input", {})
+                    pending[tool_id] = (tool_name, tool_input)
+                    if verbose:
+                        print(f"  → {tool_name}({json.dumps(tool_input)[:120]})")
+
+        elif event_type == "user":
+            for block in event.get("message", {}).get("content", []):
+                if block.get("type") == "tool_result":
+                    tool_id = block.get("tool_use_id", "")
+                    raw_content = block.get("content", "")
+                    if isinstance(raw_content, list):
+                        content_str = " ".join(
+                            c.get("text", "")
+                            for c in raw_content
+                            if isinstance(c, dict)
+                        )
+                    else:
+                        content_str = str(raw_content)
+
+                    if tool_id in pending:
+                        name, inputs = pending.pop(tool_id)
+                        result.tool_calls.append(ToolCall(
+                            name=name,
+                            inputs=inputs,
+                            result_preview=content_str[:300],
+                            errored=content_str.lstrip().startswith('{"error"'),
+                        ))
+
+        elif event_type == "result":
+            result.final_response = event.get("result", "")
+
+    await proc.wait()
+
+    # Flush any tool_use blocks that never received a matching tool_result
+    for _tid, (name, inputs) in pending.items():
+        result.tool_calls.append(ToolCall(
+            name=name, inputs=inputs, result_preview="", errored=False
+        ))
+
+    result.failures = _evaluate(case, result)
+    result.passed = not result.failures
+    return result
+
+
 async def run_cases(
     cases: list[TestCase],
     verbose: bool = False,
+    use_cli: bool = False,
 ) -> list[TestResult]:
     results = []
     for case in cases:
@@ -179,7 +289,10 @@ async def run_cases(
         print(f"[{case.id}] {case.description}")
         print(f"Q: {case.question[:100]}")
         try:
-            result = await run_case(case, verbose=verbose)
+            if use_cli:
+                result = await run_case_cli(case, verbose=verbose)
+            else:
+                result = await run_case(case, verbose=verbose)
         except Exception as exc:
             result = TestResult(case=case, failures=[f"runner error: {exc}"])
 
