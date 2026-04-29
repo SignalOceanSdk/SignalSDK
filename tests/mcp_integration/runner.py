@@ -65,6 +65,7 @@ class TestResult:
     tool_calls: list[ToolCall] = field(default_factory=list)
     final_response: str = ""
     failures: list[str] = field(default_factory=list)
+    judge_verdict: str = ""  # "PASS", "FAIL: reason", or "" when no rubric
 
     @property
     def call_count(self) -> int:
@@ -189,6 +190,58 @@ async def run_case(case: TestCase, verbose: bool = False) -> TestResult:
     return result
 
 
+async def _judge_response_cli(
+    question: str,
+    expected_answer: str,
+    final_response: str,
+) -> tuple[bool, str]:
+    """Ask the local claude CLI to judge whether final_response satisfies the rubric.
+
+    Returns (passed, reason).  On any parse failure returns (True, "inconclusive").
+    """
+    judge_prompt = (
+        "You are evaluating whether an AI assistant correctly answered a maritime data question.\n\n"
+        f"Question: {question}\n\n"
+        f"Rubric (what a correct answer must include): {expected_answer}\n\n"
+        f"Actual response:\n{final_response[:3000]}\n\n"
+        "Does the actual response satisfy the rubric?\n"
+        'Reply with ONLY valid JSON — no markdown, no explanation: {"pass": true, "reason": "one sentence"}'
+    )
+
+    cmd = [
+        "claude",
+        "-p", judge_prompt,
+        "--output-format", "json",
+        "--max-turns", "1",
+    ]
+
+    proc = await asyncio.create_subprocess_exec(
+        *cmd,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout, _ = await proc.communicate()
+    raw = stdout.decode().strip()
+
+    # --output-format json wraps the response; extract the "result" field
+    try:
+        outer = json.loads(raw)
+        text = outer.get("result", raw)
+    except json.JSONDecodeError:
+        text = raw
+
+    # Strip accidental markdown fences
+    text = text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+
+    try:
+        verdict = json.loads(text)
+        passed = bool(verdict.get("pass", True))
+        reason = str(verdict.get("reason", ""))
+        return passed, reason
+    except (json.JSONDecodeError, AttributeError):
+        return True, "inconclusive"
+
+
 async def run_case_cli(case: TestCase, verbose: bool = False) -> TestResult:
     """Run a test case using the local `claude` CLI (no ANTHROPIC_API_KEY needed).
 
@@ -274,6 +327,15 @@ async def run_case_cli(case: TestCase, verbose: bool = False) -> TestResult:
         ))
 
     result.failures = _evaluate(case, result)
+
+    if case.expected_answer and result.final_response:
+        judge_passed, judge_reason = await _judge_response_cli(
+            case.question, case.expected_answer, result.final_response
+        )
+        result.judge_verdict = "PASS" if judge_passed else f"FAIL: {judge_reason}"
+        if not judge_passed:
+            result.failures.append(f"judge: {judge_reason}")
+
     result.passed = not result.failures
     return result
 
@@ -297,7 +359,8 @@ async def run_cases(
             result = TestResult(case=case, failures=[f"runner error: {exc}"])
 
         status = "✅ PASS" if result.passed else "❌ FAIL"
-        print(f"{status}  {result.call_count} calls: {result.tool_names}")
+        judge_tag = f"  [judge: {result.judge_verdict}]" if result.judge_verdict else ""
+        print(f"{status}  {result.call_count} calls: {result.tool_names}{judge_tag}")
         for f in result.failures:
             print(f"   ✗ {f}")
 
