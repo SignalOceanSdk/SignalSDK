@@ -357,9 +357,9 @@ async def run_cases(
 ) -> list[TestResult]:
     results = []
     for case in cases:
-        print(f"\n{'─' * 60}")
-        print(f"[{case.id}] {case.description}")
-        print(f"Q: {case.question[:100]}")
+        print(f"\n{'─' * 60}", flush=True)
+        print(f"[{case.id}] {case.description}", flush=True)
+        print(f"Q: {case.question[:100]}", flush=True)
         try:
             if use_cli:
                 result = await run_case_cli(case, verbose=verbose)
@@ -370,9 +370,9 @@ async def run_cases(
 
         status = "✅ PASS" if result.passed else "❌ FAIL"
         judge_tag = f"  [judge: {result.judge_verdict}]" if result.judge_verdict else ""
-        print(f"{status}  {result.call_count} calls: {result.tool_names}{judge_tag}")
+        print(f"{status}  {result.call_count} calls: {result.tool_names}{judge_tag}", flush=True)
         for f in result.failures:
-            print(f"   ✗ {f}")
+            print(f"   ✗ {f}", flush=True)
 
         results.append(result)
     return results

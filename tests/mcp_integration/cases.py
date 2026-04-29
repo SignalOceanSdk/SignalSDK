@@ -138,7 +138,7 @@ CASES: list[TestCase] = [
         question="What voyages has the vessel Berge Bulk completed since the start of 2024?",
         max_calls=8,
         description="vessel name resolution + voyage history",
-        required_tools=["get_vessel_by_name"],
+        required_tools=[],  # get_vessel_by_name or search_vessels are both valid for IMO lookup
         expected_answer=(
             "Lists multiple completed voyages for Berge Bulk since January 2024, "
             "each with load and/or discharge port names or dates."

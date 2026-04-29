@@ -130,9 +130,13 @@ mcp = FastMCP(
         "get_freight_rate_ports, get_freight_pricing, get_freight_pricing_ports, "
         "get_freight_pricing_vessel_types\n\n"
         "VOYAGE MARKET DATA: get_voyage_market_data, get_voyage_market_data_advanced\n\n"
-        "DISTANCES & ROUTING: get_port_to_port_distance, get_port_to_port_route, "
+        "DISTANCES & ROUTING: get_distance_matrix_from_port (use when ≥2 destinations), "
+        "get_port_to_port_distance (exactly one pair only), get_port_to_port_route, "
         "get_point_to_point_distance, get_point_to_port_distance, get_generic_route, "
-        "get_distance_ports, get_distance_matrix_from_port\n\n"
+        "get_distance_ports\n\n"
+        "CRITICAL ROUTING RULE: when the user asks for distances from one port to "
+        "two or more destinations, you MUST call get_distance_matrix_from_port exactly "
+        "once — never loop get_port_to_port_distance.\n\n"
         "PORT EXPENSES: get_port_expenses, get_port_model_vessel_expenses, "
         "get_port_expenses_required_params, get_port_expenses_ports, "
         "get_port_expenses_vessel_types, compare_port_expenses\n\n"
@@ -1151,6 +1155,80 @@ async def get_freight_pricing_vessel_types() -> str:
 
 
 @mcp.tool()
+async def get_distance_matrix_from_port(
+    origin_port_name: str,
+    destination_port_names: list[str],
+    vessel_class_id: Optional[int] = None,
+    vessel_class_name: Optional[str] = None,
+    loading_condition_id: int = 1,
+    loading_condition_name: Optional[str] = None,
+) -> str:
+    """Use this for distances from one port to two or more destinations — one call covers all.
+
+    NEVER loop get_port_to_port_distance for multiple destinations. Pass all destinations
+    as a list in destination_port_names and this tool returns all distances in one call.
+
+    Example: "sailing distances from Rotterdam to Ras Tanura, Singapore, Houston, Fujairah"
+      origin_port_name="Rotterdam"
+      destination_port_names=["Ras Tanura", "Singapore", "Houston", "Fujairah"]
+      vessel_class_name="VLCC"
+      loading_condition_name="laden"   # or loading_condition_id=1 (1=Laden, 2=Ballast)
+
+    loading_condition_id defaults to 1 (Laden). Use loading_condition_name="laden"/"ballast"
+    as a readable alternative.
+    vessel_class_name: e.g. 'VLCC', 'Suezmax' — resolved automatically.
+    Returns distances sorted by nautical miles.
+    """
+    if loading_condition_name and not loading_condition_id:
+        loading_condition_id = 1 if loading_condition_name.lower().startswith("lad") else 2
+
+    from signal_ocean.distances.port import Port
+    from signal_ocean.distances.vessel_class import VesselClass
+
+    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
+    if err:
+        return json.dumps({"error": err})
+    origin_port_id, err = await _resolve_distances_port(None, origin_port_name)
+    if err:
+        return json.dumps({"error": err})
+
+    vc = VesselClass(id=vessel_class_id, name="")
+    pf = Port(id=origin_port_id, name="")
+
+    rows: list[dict] = []
+    for dest_name in destination_port_names:
+        dest_port_id, err = await _resolve_distances_port(None, dest_name)
+        if err:
+            rows.append({"destination": dest_name, "error": err})
+            continue
+        pt = Port(id=dest_port_id, name="")
+        try:
+            dist = await anyio.to_thread.run_sync(
+                lambda pt=pt: _distances_api.get_port_to_port_distance(
+                    vessel_class=vc,
+                    loading_condition_id=loading_condition_id,
+                    port_from=pf,
+                    port_to=pt,
+                )
+            )
+            rows.append({"destination": dest_name, "port_id": dest_port_id, "distance_nm": float(dist) if dist else None})
+        except Exception as exc:
+            rows.append({"destination": dest_name, "port_id": dest_port_id, "error": str(exc)})
+
+    rows.sort(key=lambda r: (r.get("distance_nm") is None, r.get("distance_nm") or 0))
+    return json.dumps(
+        {
+            "origin": origin_port_name,
+            "origin_port_id": origin_port_id,
+            "vessel_class_id": vessel_class_id,
+            "loading_condition": "Laden" if loading_condition_id == 1 else "Ballast",
+            "distances": rows,
+        },
+        default=str,
+    )
+
+
+@mcp.tool()
 async def get_port_to_port_distance(
     loading_condition_id: int,
     vessel_class_id: Optional[int] = None,
@@ -1160,10 +1238,11 @@ async def get_port_to_port_distance(
     port_from_name: Optional[str] = None,
     port_to_name: Optional[str] = None,
 ) -> str:
-    """Get the sailing distance between exactly two ports.
+    """Get the sailing distance between EXACTLY TWO ports — one origin, one destination.
 
-    For distances from one origin to multiple destinations use
-    get_distance_matrix_from_port instead — it's a single call.
+    DO NOT use this tool if there are two or more destinations. For multiple
+    destinations call get_distance_matrix_from_port once instead.
+
     loading_condition_id: 1 = Laden, 2 = Ballast.
     Provide vessel class and ports by ID or name — all resolved automatically.
     """
@@ -1584,8 +1663,12 @@ async def get_historical_tonnage_list(
 ) -> str:
     """Get historical tonnage list for a port and vessel class over a date range.
 
-    Prefer get_tonnage_list_and_market_rates when the question also involves market rates
-    or supply-vs-rate correlation — it handles both in one call without pre-lookups.
+    STOP — if the question mentions BOTH supply AND market rates (e.g. "supply of X
+    tankers at Y and the corresponding rate on Z route"), use get_tonnage_list_and_market_rates
+    instead. That tool covers both in one call. Do NOT use this tool in that case.
+
+    Use this tool only when the question is exclusively about vessel supply/availability
+    with NO market rate component.
     For CURRENT supply use get_vessel_supply instead.
 
     Dates as YYYY-MM-DD. Vessel class and port resolved automatically from names.
@@ -2248,69 +2331,6 @@ async def get_vessel_valuations_for_class(
 
 
 @mcp.tool()
-async def get_distance_matrix_from_port(
-    origin_port_name: str,
-    destination_port_names: list[str],
-    loading_condition_id: int,
-    vessel_class_id: Optional[int] = None,
-    vessel_class_name: Optional[str] = None,
-) -> str:
-    """Get sailing distances from one origin to multiple destinations in a single call.
-
-    Use this whenever a question asks for distances from one port to two or more
-    destinations — it replaces multiple get_port_to_port_distance calls with one.
-    loading_condition_id: 1 = Laden, 2 = Ballast.
-    Provide vessel class by name (e.g. 'Suezmax', 'VLCC') or ID.
-
-    Returns a table of distances sorted by nautical miles.
-    """
-    from signal_ocean.distances.port import Port
-    from signal_ocean.distances.vessel_class import VesselClass
-
-    vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
-    if err:
-        return json.dumps({"error": err})
-    origin_port_id, err = await _resolve_distances_port(None, origin_port_name)
-    if err:
-        return json.dumps({"error": err})
-
-    vc = VesselClass(id=vessel_class_id, name="")
-    pf = Port(id=origin_port_id, name="")
-
-    rows: list[dict] = []
-    for dest_name in destination_port_names:
-        dest_port_id, err = await _resolve_distances_port(None, dest_name)
-        if err:
-            rows.append({"destination": dest_name, "error": err})
-            continue
-        pt = Port(id=dest_port_id, name="")
-        try:
-            dist = await anyio.to_thread.run_sync(
-                lambda pt=pt: _distances_api.get_port_to_port_distance(
-                    vessel_class=vc,
-                    loading_condition_id=loading_condition_id,
-                    port_from=pf,
-                    port_to=pt,
-                )
-            )
-            rows.append({"destination": dest_name, "port_id": dest_port_id, "distance_nm": float(dist) if dist else None})
-        except Exception as exc:
-            rows.append({"destination": dest_name, "port_id": dest_port_id, "error": str(exc)})
-
-    rows.sort(key=lambda r: (r.get("distance_nm") is None, r.get("distance_nm") or 0))
-    return json.dumps(
-        {
-            "origin": origin_port_name,
-            "origin_port_id": origin_port_id,
-            "vessel_class_id": vessel_class_id,
-            "loading_condition": "Laden" if loading_condition_id == 1 else "Ballast",
-            "distances": rows,
-        },
-        default=str,
-    )
-
-
-@mcp.tool()
 async def get_tonnage_list_and_market_rates(
     start_date: str,
     end_date: str,
@@ -2328,8 +2348,9 @@ async def get_tonnage_list_and_market_rates(
     Do NOT call get_market_rate_routes or get_vessel_classes first — pass natural language
     names directly and this tool resolves them automatically.
 
-    Triggers: "correlate supply with rates", "how did tonnage at X compare to the Y rate",
-    "supply trend alongside TD3C", "how many VLCCs opened at Ras Tanura vs the MEG rate".
+    Triggers: "correlate supply with rates", "supply of X tankers at Y and the corresponding rate",
+    "how did tonnage at X compare to the Y rate", "supply trend alongside TD3C",
+    "how many VLCCs opened at Ras Tanura vs the MEG rate".
 
     vessel_class_name: e.g. 'VLCC', 'Suezmax', 'MR2' — resolves automatically, no ID needed.
     loading_port_name: e.g. 'Ras Tanura', 'ARA' — resolves automatically, no ID needed.
