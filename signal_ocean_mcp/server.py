@@ -963,9 +963,12 @@ async def get_market_rates(
     end_date: Optional[str] = None,
     cargo_id: Optional[int] = None,
 ) -> str:
-    """Get market freight rates. start_date as YYYY-MM-DD (required).
+    """Get market freight rates by route ID. start_date as YYYY-MM-DD (required).
 
-    Use get_market_rate_routes to find available route IDs.
+    Prefer get_market_rates_by_route_name when you have a natural language route name
+    (e.g. 'TD3C', 'MEG China', 'MR2 Cont/USAC') — it resolves the route automatically.
+    Prefer get_tonnage_list_and_market_rates when also fetching supply data for the same period.
+    Use get_market_rate_routes to list available routes if you need to browse route IDs.
     cargo_id: 0=Dirty, 1=Clean, 2=IMO.
     """
     from signal_ocean.market_rates.enums import CargoId
@@ -1157,8 +1160,10 @@ async def get_port_to_port_distance(
     port_from_name: Optional[str] = None,
     port_to_name: Optional[str] = None,
 ) -> str:
-    """Get the sailing distance between two ports for a given vessel class.
+    """Get the sailing distance between exactly two ports.
 
+    For distances from one origin to multiple destinations use
+    get_distance_matrix_from_port instead — it's a single call.
     loading_condition_id: 1 = Laden, 2 = Ballast.
     Provide vessel class and ports by ID or name — all resolved automatically.
     """
@@ -1579,17 +1584,13 @@ async def get_historical_tonnage_list(
 ) -> str:
     """Get historical tonnage list for a port and vessel class over a date range.
 
-    For CURRENT supply / ballasting questions use get_vessel_supply instead —
-    it resolves class and port names and returns a pre-summarised count.
+    Prefer get_tonnage_list_and_market_rates when the question also involves market rates
+    or supply-vs-rate correlation — it handles both in one call without pre-lookups.
+    For CURRENT supply use get_vessel_supply instead.
 
-    Dates as YYYY-MM-DD.
-    Provide vessel class and port by ID or name — all resolved automatically.
-
-    WARNING: Full vessel detail over multi-day windows can return very large responses
-    even with a short laycan_end_in_days. Use count_only=True for supply-trend
-    analysis — it returns {date: vessel_count} instead of full vessel records,
-    cutting response size by 20-50x. For combined supply + market rate data,
-    use get_tonnage_list_and_market_rates instead.
+    Dates as YYYY-MM-DD. Vessel class and port resolved automatically from names.
+    WARNING: use count_only=True for trend analysis — returns {date: count} instead of
+    full vessel records, cutting response size by 20-50x.
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
 
@@ -1939,15 +1940,14 @@ async def get_latest_voyage_emissions(
 
 @mcp.tool()
 async def get_vessel_emission_benchmark(imo: int, year: Optional[int] = None) -> str:
-    """Compare a vessel's emission metrics against its peer class distribution.
+    """Compare a vessel's CII/AER against its peer class — use this for any benchmarking question.
 
-    Combines get_vessel + get_vessel_emission_metrics + get_vessel_class_emission_metrics
-    into one call. Returns the vessel's CII/AER/EEOI alongside class-level
-    summary stats (mean, median, p25/p75, rating distribution) instead of
-    the raw 500-record class payload. Eliminates the 5-call chain required
-    to answer a benchmark question.
-    year should be a completed calendar year (e.g. 2024, 2025); passing the
-    current year returns partial data. Omit to get the SDK default.
+    Use this instead of calling get_vessel_emission_metrics + get_vessel_class_emission_metrics
+    separately. It combines both into one call and returns the vessel's rating alongside
+    class-level stats (mean, median, percentile distribution) in a compact format.
+    Typical trigger: "how does vessel X compare to other [class] vessels?",
+    "is vessel X above/below average?", "benchmark X against fleet".
+    year should be a completed calendar year (e.g. 2024, 2025). Omit for SDK default.
     """
     vessel = await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessel(imo))
     if vessel is None:
@@ -2255,14 +2255,14 @@ async def get_distance_matrix_from_port(
     vessel_class_id: Optional[int] = None,
     vessel_class_name: Optional[str] = None,
 ) -> str:
-    """Get sailing distances from one origin port to multiple destination ports in one call.
+    """Get sailing distances from one origin to multiple destinations in a single call.
 
-    Collapses the per-port loop (N × get_port_to_port_distance) into a single tool call.
+    Use this whenever a question asks for distances from one port to two or more
+    destinations — it replaces multiple get_port_to_port_distance calls with one.
     loading_condition_id: 1 = Laden, 2 = Ballast.
     Provide vessel class by name (e.g. 'Suezmax', 'VLCC') or ID.
 
-    Returns a table of distances sorted by nautical miles, useful for comparing
-    route options or building distance matrices for freight analysis.
+    Returns a table of distances sorted by nautical miles.
     """
     from signal_ocean.distances.port import Port
     from signal_ocean.distances.vessel_class import VesselClass
@@ -2322,17 +2322,20 @@ async def get_tonnage_list_and_market_rates(
     route_name: Optional[str] = None,
     cargo_id: Optional[int] = None,
 ) -> str:
-    """Get historical supply trend and market rates together in one call.
+    """Get vessel supply at a port plus market rates in one call — use for supply/rate correlation.
 
-    Replicates the "Combined Examples" notebook pattern: vessel count per day
-    (supply) alongside market rates for the same period, ready for correlation
-    analysis without any post-processing.
+    Use this instead of calling get_historical_tonnage_list + get_market_rates separately.
+    Do NOT call get_market_rate_routes or get_vessel_classes first — pass natural language
+    names directly and this tool resolves them automatically.
 
-    vessel_class_name: e.g. 'MR2', 'VLCC', 'Suezmax' — resolves automatically.
-    loading_port_name: e.g. 'ARA', 'Ras Tanura' — resolves automatically.
+    Triggers: "correlate supply with rates", "how did tonnage at X compare to the Y rate",
+    "supply trend alongside TD3C", "how many VLCCs opened at Ras Tanura vs the MEG rate".
+
+    vessel_class_name: e.g. 'VLCC', 'Suezmax', 'MR2' — resolves automatically, no ID needed.
+    loading_port_name: e.g. 'Ras Tanura', 'ARA' — resolves automatically, no ID needed.
     laycan_end_in_days: how far ahead to count open vessels (default 30).
-    route_name: partial match against route description or exact route ID
-      (e.g. 'MR2 - Cont/USAC', 'R27'). If omitted, returns supply trend only.
+    route_name: natural language partial match, e.g. 'TD3C', 'MEG China', 'MR2 Cont/USAC'.
+      If omitted, returns supply trend only without rates.
     cargo_id: 0=Dirty, 1=Clean, 2=IMO (used for market rates only).
     Dates as YYYY-MM-DD.
 

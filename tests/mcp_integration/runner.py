@@ -76,6 +76,13 @@ class TestResult:
         return [tc.name for tc in self.tool_calls]
 
 
+_CLI_INTERNAL_TOOLS = {
+    "ToolSearch", "Agent", "Task",
+    "Bash", "Read", "Write", "Edit", "Glob", "Grep",
+    "WebFetch", "WebSearch", "TodoWrite", "NotebookEdit",
+}
+
+
 def _strip_mcp_prefix(name: str) -> str:
     """Strip 'mcp__<server>__' prefix that the claude CLI adds to tool names."""
     parts = name.split("__", 2)
@@ -212,6 +219,7 @@ async def _judge_response_cli(
         "claude",
         "-p", judge_prompt,
         "--output-format", "json",
+        "--verbose",
         "--max-turns", "1",
     ]
 
@@ -226,7 +234,7 @@ async def _judge_response_cli(
     # --output-format json wraps the response; extract the "result" field
     try:
         outer = json.loads(raw)
-        text = outer.get("result", raw)
+        text = outer.get("result", raw) if isinstance(outer, dict) else raw
     except json.JSONDecodeError:
         text = raw
 
@@ -254,8 +262,9 @@ async def run_case_cli(case: TestCase, verbose: bool = False) -> TestResult:
         "claude",
         "-p", case.question,
         "--output-format", "stream-json",
+        "--verbose",
         "--mcp-config", str(MCP_JSON),
-        "--dangerously-skip-permissions",
+        "--allowedTools", "mcp__signal-ocean__*",
     ]
 
     env = {**os.environ, **_load_signal_ocean_env()}
@@ -267,12 +276,13 @@ async def run_case_cli(case: TestCase, verbose: bool = False) -> TestResult:
         env=env,
     )
 
+    stdout_bytes, _ = await proc.communicate()
+
     # tool_id -> (name, inputs) for tool_use blocks awaiting their result
     pending: dict[str, tuple[str, dict]] = {}
 
-    assert proc.stdout is not None
-    async for raw_line in proc.stdout:
-        line = raw_line.decode().strip()
+    for raw_line in stdout_bytes.decode(errors="replace").splitlines():
+        line = raw_line.strip()
         if not line:
             continue
         try:
@@ -288,6 +298,8 @@ async def run_case_cli(case: TestCase, verbose: bool = False) -> TestResult:
                     tool_id = block.get("id", "")
                     tool_name = _strip_mcp_prefix(block.get("name", ""))
                     tool_input = block.get("input", {})
+                    if tool_name in _CLI_INTERNAL_TOOLS:
+                        continue
                     pending[tool_id] = (tool_name, tool_input)
                     if verbose:
                         print(f"  → {tool_name}({json.dumps(tool_input)[:120]})")
@@ -317,8 +329,6 @@ async def run_case_cli(case: TestCase, verbose: bool = False) -> TestResult:
 
         elif event_type == "result":
             result.final_response = event.get("result", "")
-
-    await proc.wait()
 
     # Flush any tool_use blocks that never received a matching tool_result
     for _tid, (name, inputs) in pending.items():
