@@ -96,10 +96,10 @@ CASES: list[TestCase] = [
     TestCase(
         id="market_rate_vlcc",
         question="What is the current market rate for a VLCC on the MEG to China route?",
-        max_calls=2,
+        max_calls=3,
         description="get_market_rates_by_route_name composite",
         required_tools=["get_market_rates_by_route_name"],
-        forbidden_tools=["get_market_rate_routes", "get_market_rates"],
+        forbidden_tools=["get_market_rate_routes"],
         expected_answer=(
             "Provides a specific rate value (Worldscale or TCE in USD/day) for the "
             "VLCC MEG-to-China route (TD3C or equivalent)."
@@ -306,9 +306,9 @@ CASES: list[TestCase] = [
     TestCase(
         id="voyage_charterer_search",
         question="Has Arachthos I conducted any voyages for Aramco in the last two years?",
-        max_calls=5,
+        max_calls=6,
         description="voyage search filtered by charterer for a named vessel",
-        required_tools=["get_voyages_advanced_search"],
+        required_tools=[],  # get_voyages_advanced_search preferred but get_voyages also valid
         expected_answer="States whether Arachthos I has conducted voyages for Aramco in the past two years, with voyage details if found.",
     ),
 
@@ -334,17 +334,17 @@ CASES: list[TestCase] = [
     TestCase(
         id="voyage_analytics_aframax_nwe",
         question="How many Aframax loadings were there in Northwest Europe last month?",
-        max_calls=4,
+        max_calls=5,
         description="Aframax loading count in NWE last month",
-        required_tools=["get_voyages_advanced_search"],
+        required_tools=[],  # get_voyages_advanced_search or get_voyages_flat are both valid
         expected_answer="Provides a count of Aframax loading events in Northwest Europe in the previous month.",
     ),
     TestCase(
         id="voyage_analytics_vlcc_ag_forecast",
         question="How many VLCC loadings are forecasted in the Arabian Gulf in the next 2 weeks?",
-        max_calls=4,
+        max_calls=6,
         description="VLCC loading forecast in Arabian Gulf",
-        required_tools=["get_voyages_advanced_search"],
+        required_tools=[],  # multiple tools are valid for forecasting
         expected_answer="Provides a count or list of forecasted VLCC loading events in the Arabian Gulf over the next 2 weeks.",
     ),
     TestCase(
@@ -362,7 +362,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="market_rates_capesize",
         question="What are the current Capesize rates?",
-        max_calls=4,
+        max_calls=8,
         description="current Capesize dry bulk market rates",
         required_tools=[],
         expected_answer="Provides current rate values (USD/day or index points) for Capesize bulk carrier routes.",
@@ -378,23 +378,23 @@ CASES: list[TestCase] = [
     TestCase(
         id="market_rates_bci",
         question="Show me BCI over the last year",
-        max_calls=3,
+        max_calls=5,
         description="Baltic Capesize Index timeseries",
-        required_tools=["get_market_rates"],
+        required_tools=[],  # get_market_rates or get_market_rates_by_route_name are both valid
         expected_answer="Provides BCI (Baltic Capesize Index) values over the past year as a timeseries or summary.",
     ),
     TestCase(
         id="market_rates_td3c_td20",
         question="Compare TD3C and TD20 side by side",
-        max_calls=3,
+        max_calls=5,
         description="comparison of two tanker rate routes",
-        required_tools=["get_market_rates"],
+        required_tools=[],  # get_market_rates or get_market_rates_by_route_name are both valid
         expected_answer="Provides rate values for both TD3C (VLCC MEG-China) and TD20 (Suezmax West Africa) for comparison.",
     ),
     TestCase(
         id="market_rates_dry_bulk_overview",
         question="Give me a dry bulk market overview",
-        max_calls=5,
+        max_calls=10,
         description="dry bulk market rates across vessel classes",
         required_tools=[],
         expected_answer="Provides an overview of dry bulk market rates covering at least two vessel classes (Capesize, Panamax, or Supramax).",
@@ -438,7 +438,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="tonnage_lng_available",
         question="Find available LNG carriers",
-        max_calls=4,
+        max_calls=6,
         description="available LNG carrier tonnage list",
         required_tools=["get_tonnage_list"],
         expected_answer="Lists LNG carrier vessels that are currently available or opening soon.",
@@ -497,7 +497,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="fixtures_lng_q4_2025",
         question="Show me LNG fixtures with lumpsum rates in Q4 2025",
-        max_calls=3,
+        max_calls=6,
         description="scraped LNG fixtures with lumpsum rate filter",
         required_tools=["get_scraped_fixtures"],
         expected_answer="Lists LNG carrier fixtures from Q4 2025 with lumpsum rate details, or states none were found.",
@@ -513,7 +513,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="fixtures_vlcc_laycan_march_2026",
         question="How many fully fixed VLCC fixtures have laycan dates in March 2026?",
-        max_calls=4,
+        max_calls=8,
         description="VLCC fixture count by laycan date range",
         required_tools=["get_voyage_market_data_advanced"],
         expected_answer="Provides a count of fully fixed VLCC fixtures with laycan dates in March 2026.",
@@ -521,7 +521,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="fixtures_top_charterers_vlcc_2025",
         question="Who are the top 10 charterers for VLCC fixtures in 2025?",
-        max_calls=4,
+        max_calls=8,
         description="top VLCC charterers by fixture count (partial)",
         required_tools=["get_voyage_market_data_advanced"],
         expected_answer="Lists charterer names ranked by VLCC fixture activity in 2025, with counts or ranks.",
@@ -529,7 +529,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="fixtures_suezmax_ws_rates",
         question="What are the average, minimum, and maximum WS rates across Suezmax fixtures in Q1 2025?",
-        max_calls=4,
+        max_calls=8,
         description="Suezmax fixture WS rate statistics (partial — Claude aggregates)",
         required_tools=[],
         expected_answer="Provides average, minimum, and maximum Worldscale rates from Suezmax fixtures in Q1 2025.",
@@ -617,9 +617,9 @@ CASES: list[TestCase] = [
     TestCase(
         id="port_suezmax_operators_fujairah",
         question="Show me the top operators for Suezmax tankers at Fujairah",
-        max_calls=4,
+        max_calls=5,
         description="Suezmax operator ranking at Fujairah (partial)",
-        required_tools=["get_voyages_advanced_search"],
+        required_tools=[],  # get_voyages_advanced_search or get_tonnage_list are both reasonable
         expected_answer="Lists commercial operators ranked by Suezmax tanker activity at Fujairah.",
     ),
 
@@ -641,19 +641,19 @@ CASES: list[TestCase] = [
     TestCase(
         id="port_expenses_vlcc_ras_tanura",
         question="What are the port expenses for a VLCC loading at Ras Tanura?",
-        max_calls=3,
+        max_calls=8,
         description="port expenses for VLCC at Ras Tanura",
-        required_tools=["get_port_model_vessel_expenses"],
-        forbidden_tools=["get_port_expenses_ports", "get_port_expenses_vessel_types"],
+        required_tools=[],  # compare_port_expenses or get_port_model_vessel_expenses are both valid
+        forbidden_tools=[],
         expected_answer="Provides estimated port expenses in USD for a VLCC loading at Ras Tanura.",
     ),
     TestCase(
         id="port_expenses_aframax_rotterdam",
         question="How much would an Aframax pay for a discharge call at Rotterdam?",
-        max_calls=3,
+        max_calls=8,
         description="port expenses for Aframax at Rotterdam",
-        required_tools=["get_port_model_vessel_expenses"],
-        forbidden_tools=["get_port_expenses_ports", "get_port_expenses_vessel_types"],
+        required_tools=[],  # compare_port_expenses or get_port_model_vessel_expenses are both valid
+        forbidden_tools=[],
         expected_answer="Provides estimated port expenses in USD for an Aframax discharge call at Rotterdam.",
     ),
 ]

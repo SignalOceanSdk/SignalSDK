@@ -757,6 +757,11 @@ async def get_voyages_flat(
     Useful for large datasets as it avoids deeply nested structures.
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize').
 
+    NOTE: This tool only filters by vessel class, type, and date — it has NO port,
+    cargo, charterer, or area filter. For any query that involves filtering by
+    port, loading area, cargo type, charterer, or event type, use
+    get_voyages_advanced_search instead.
+
     WARNING: Querying by vessel_class alone over a multi-week window returns
     thousands of records and may return very large responses. Prefer combining
     with a narrow date_from or filter by IMO.
@@ -804,13 +809,18 @@ async def get_voyages_advanced_search(
     hide_events: Optional[bool] = None,
     hide_market_info: Optional[bool] = None,
 ) -> str:
-    """Advanced voyage search with many filter options.
+    """Advanced voyage search with many filter options — use for port calls, cargo flows, and charterer queries.
 
     Supports filtering by multiple IMOs, vessel classes, ports,
     charterers, operators, date ranges, event types, and more.
     Provide vessel_class_id or vessel_class_name (e.g. 'Suezmax', 'Capesize', 'Kamsarmax').
     Provide port_id or port_name (e.g. 'Santos', 'Tubarao', 'Rotterdam') — resolved automatically.
-    Provide charterer_id or charterer_name (e.g. 'Cargill', 'Trafigura') — resolved automatically.
+    Provide charterer_name (e.g. 'Aramco', 'Shell', 'Cargill') to filter by charterer — use this
+    when asked "has vessel X done voyages for charterer Y?" or "voyages chartered by Z".
+
+    Use this (not get_voyages or get_voyages_flat) when filtering by port, cargo type,
+    charterer, area, or event type — it's the only tool with those filter parameters.
+
     Dates as YYYY-MM-DD.
 
     WARNING: Querying by vessel class alone over a wide date range returns
@@ -974,6 +984,11 @@ async def get_market_rates(
     Prefer get_tonnage_list_and_market_rates when also fetching supply data for the same period.
     Use get_market_rate_routes to list available routes if you need to browse route IDs.
     cargo_id: 0=Dirty, 1=Clean, 2=IMO.
+
+    WARNING: Call at most 4 times per request. Do NOT loop through every route returned
+    by get_market_rate_routes — select only the 2-4 most relevant routes and call this
+    for those only. For a broad overview, pick the key benchmark routes (BCI, C5TC, TD3C,
+    etc.) rather than fetching all routes individually.
     """
     from signal_ocean.market_rates.enums import CargoId
 
@@ -1003,6 +1018,10 @@ async def get_market_rate_routes(
     Route names follow Signal Ocean conventions (e.g. 'MR2 - Cont/USAC',
     'VLCC - MEG/China') rather than standard industry codes (TC2, TD3C).
     Provide vessel_class_id or vessel_class_name (e.g. 'MR2', 'VLCC') to filter.
+
+    After calling this, select ONLY the 2-4 most relevant route IDs for the
+    user's question and call get_market_rates for those only. Do NOT call
+    get_market_rates for every route in this list.
     """
     if vessel_class_name and vessel_class_id is None:
         vessel_class_id, err = await _resolve_vessel_class(None, vessel_class_name)
@@ -1544,6 +1563,10 @@ async def get_port_model_vessel_expenses(
 ) -> str:
     """Get port expenses for a model vessel (not a specific IMO).
 
+    For port expense questions where you have a vessel class name and port name
+    (e.g. "port expenses for a VLCC at Ras Tanura"), prefer compare_port_expenses —
+    it accepts names directly and does not need vessel_type_id or port_id lookups.
+
     formula_calculation_date as ISO datetime (YYYY-MM-DDTHH:MM:SS).
     Provide port_id or port_name — name is resolved automatically.
 
@@ -1780,6 +1803,11 @@ async def get_scraped_fixtures(
     by imos when possible. There is NO server-side vessel class filter on this endpoint.
     For class-filtered fixture queries, use get_voyage_market_data_advanced with
     vessel_class_ids and fixture_date_from/fixture_date_to parameters instead.
+
+    STOP AFTER 2 CALLS: If relevant fixtures are not found after 2 attempts with
+    different date windows, report that no data was found. Do NOT keep retrying
+    with different windows — the data is simply not available.
+
     """
     df = _parse_datetime(received_date_from)
     dt = _parse_datetime(received_date_to)

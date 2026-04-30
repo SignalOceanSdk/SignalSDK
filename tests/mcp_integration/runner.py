@@ -77,7 +77,7 @@ class TestResult:
 
 
 _CLI_INTERNAL_TOOLS = {
-    "ToolSearch", "Agent", "Task",
+    "ToolSearch", "Agent", "Task", "Skill",
     "Bash", "Read", "Write", "Edit", "Glob", "Grep",
     "WebFetch", "WebSearch", "TodoWrite", "NotebookEdit",
 }
