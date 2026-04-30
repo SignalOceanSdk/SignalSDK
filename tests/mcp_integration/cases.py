@@ -583,6 +583,14 @@ CASES: list[TestCase] = [
         expected_answer="Lists charterer names ranked by VLCC fixture activity in 2025, with counts or ranks.",
     ),
     TestCase(
+        id="fixtures_cargill_last_2_weeks",
+        question="What did Cargill fix in the last 2 weeks?",
+        max_calls=6,
+        description="Cargill fixtures in the last 2 weeks via charterer name filter",
+        required_tools=["get_voyage_market_data_advanced"],
+        expected_answer="Lists fixtures where Cargill is the charterer in the past 2 weeks, including vessel names, load/discharge ports, cargo, and rates where available.",
+    ),
+    TestCase(
         id="fixtures_suezmax_ws_rates",
         question="What are the average, minimum, and maximum WS rates across Suezmax fixtures in Q1 2025?",
         max_calls=8,
