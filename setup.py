@@ -23,7 +23,7 @@ setup(
     license="Apache 2.0",
     url="https://apis.signalocean.com/",
     packages=find_packages(exclude=["tests", "tests.*"]),
-    python_requires=">=3.10",
+    python_requires=">=3.8",
     install_requires=[
         "requests>=2.23.0,<3",
         "python-dateutil>=2.8.1,<3",
@@ -40,6 +40,9 @@ setup(
         "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "License :: OSI Approved :: Apache Software License",
     ],
     project_urls={

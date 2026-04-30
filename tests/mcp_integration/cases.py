@@ -220,6 +220,14 @@ CASES: list[TestCase] = [
     # Vessel Information (from SUPPORTED_QUESTIONS.md)
     # =========================================================
     TestCase(
+        id="vessel_beneficial_owner",
+        question="Who is the beneficial owner of DHT Leopard?",
+        max_calls=3,
+        description="vessel beneficial owner lookup by name",
+        required_tools=[],
+        expected_answer="Names the beneficial owner of DHT Leopard.",
+    ),
+    TestCase(
         id="vessel_particulars",
         question="When was DHT Leopard built and where?",
         max_calls=3,
@@ -272,6 +280,14 @@ CASES: list[TestCase] = [
     # Voyage History & Canal Crossings (from SUPPORTED_QUESTIONS.md)
     # =========================================================
     TestCase(
+        id="voyage_canal_crossings_panama",
+        question="Did Philotimos transit the Panama Canal on the last 10 voyages? Did it cross in the ballast or laden leg?",
+        max_calls=5,
+        description="Panama Canal transit detection across voyage history",
+        required_tools=[],
+        expected_answer="States whether Philotimos transited the Panama Canal in its last 10 voyages and, if so, whether crossings occurred on ballast or laden legs.",
+    ),
+    TestCase(
         id="voyage_load_discharge_ports",
         question="Where did Seaking load and discharge cargo in its last 3 voyages?",
         max_calls=5,
@@ -315,6 +331,14 @@ CASES: list[TestCase] = [
     # =========================================================
     # Voyage Analytics (from SUPPORTED_QUESTIONS.md)
     # =========================================================
+    TestCase(
+        id="voyage_analytics_suezmax_usgulf_operators",
+        question="Which operators had the most Suezmax loading events in the US Gulf in Q4 2025?",
+        max_calls=5,
+        description="Suezmax operator ranking by loading events in US Gulf Q4 2025 (partial)",
+        required_tools=["get_voyages_advanced_search"],
+        expected_answer="Lists commercial operators ranked by Suezmax loading events in the US Gulf during Q4 2025, with counts or ranks.",
+    ),
     TestCase(
         id="voyage_analytics_ag_crude",
         question="Give me all the vessels that loaded crude oil from the AG in the last week",
@@ -360,6 +384,14 @@ CASES: list[TestCase] = [
     # Market Rates (from SUPPORTED_QUESTIONS.md)
     # =========================================================
     TestCase(
+        id="market_rates_dry_bulk_routes",
+        question="What dry bulk market rate routes can I track?",
+        max_calls=3,
+        description="dry bulk route discovery via get_market_rate_routes",
+        required_tools=["get_market_rate_routes"],
+        expected_answer="Lists available dry bulk market rate routes (e.g. C5TC, C3, BCI, P5TC) that can be tracked.",
+    ),
+    TestCase(
         id="market_rates_capesize",
         question="What are the current Capesize rates?",
         max_calls=8,
@@ -404,6 +436,14 @@ CASES: list[TestCase] = [
     # Live Availability & Tonnage (from SUPPORTED_QUESTIONS.md)
     # =========================================================
     TestCase(
+        id="tonnage_capesize_open_position",
+        question="Where does Capesize vessel Cape Amal open?",
+        max_calls=5,
+        description="single Capesize vessel open position and port",
+        required_tools=[],
+        expected_answer="States where Cape Amal is next open (port or area) and an open date, or explains it cannot be determined.",
+    ),
+    TestCase(
         id="tonnage_vlcc_ag",
         question="VLCCs opening in AG next 30 days",
         max_calls=4,
@@ -447,6 +487,14 @@ CASES: list[TestCase] = [
     # =========================================================
     # Distances & Routing (from SUPPORTED_QUESTIONS.md)
     # =========================================================
+    TestCase(
+        id="eta_imo_fujairah_sea_margin",
+        question="Calculate ETA for vessel IMO 9745902 to Fujairah with 3% sea margin",
+        max_calls=5,
+        description="ETA calculation by IMO with sea margin",
+        required_tools=[],
+        expected_answer="Provides an ETA (date or date-time) for vessel IMO 9745902 to reach Fujairah, incorporating a 3% sea margin.",
+    ),
     TestCase(
         id="distance_rotterdam_singapore",
         question="What is the distance from Rotterdam to Singapore?",
@@ -495,6 +543,14 @@ CASES: list[TestCase] = [
     # Fixtures & Chartering (from SUPPORTED_QUESTIONS.md)
     # =========================================================
     TestCase(
+        id="fixtures_tanker_discharge_china_q4_2025",
+        question="How many tanker fixtures discharged in China in Q4 2025?",
+        max_calls=6,
+        description="tanker fixture count by discharge area Q4 2025 (partial)",
+        required_tools=["get_voyage_market_data_advanced"],
+        expected_answer="Provides a count of tanker fixtures with discharge in China during Q4 2025.",
+    ),
+    TestCase(
         id="fixtures_lng_q4_2025",
         question="Show me LNG fixtures with lumpsum rates in Q4 2025",
         max_calls=6,
@@ -538,6 +594,14 @@ CASES: list[TestCase] = [
     # =========================================================
     # Fleet Analytics (from SUPPORTED_QUESTIONS.md)
     # =========================================================
+    TestCase(
+        id="fleet_suezmax_age_brackets",
+        question="Break down the Suezmax fleet by age brackets: 0-5, 5-10, 10-15, 15-20, and 20+ years.",
+        max_calls=4,
+        description="Suezmax fleet age bracket breakdown (partial — Claude aggregates)",
+        required_tools=["get_vessels_by_vessel_class"],
+        expected_answer="Provides vessel counts for the Suezmax fleet grouped by age brackets (0-5, 5-10, 10-15, 15-20, 20+ years).",
+    ),
     TestCase(
         id="fleet_scorpio_tankers",
         question="List all tankers operated by Scorpio Tankers",
@@ -583,6 +647,14 @@ CASES: list[TestCase] = [
     # Port Insights (from SUPPORTED_QUESTIONS.md)
     # =========================================================
     TestCase(
+        id="port_aframax_scrubbers_rotterdam",
+        question="How many Aframax tankers with scrubbers called at Rotterdam last month?",
+        max_calls=5,
+        description="Aframax calls at Rotterdam filtered by scrubber equipment (partial)",
+        required_tools=["get_voyages_advanced_search"],
+        expected_answer="Provides a count of Aframax tankers with scrubbers that called at Rotterdam in the previous month.",
+    ),
+    TestCase(
         id="port_aframax_calls",
         question="How many Aframax tankers loaded at Rotterdam in the last 30 days?",
         max_calls=4,
@@ -626,6 +698,14 @@ CASES: list[TestCase] = [
     # =========================================================
     # Emissions & CII (from SUPPORTED_QUESTIONS.md)
     # =========================================================
+    TestCase(
+        id="vlcc_valuations_q4_2025",
+        question="What were the average VLCC valuations in Q4 2025?",
+        max_calls=3,
+        description="VLCC fleet valuation statistics Q4 2025 (partial)",
+        required_tools=["get_vessel_valuations_for_class"],
+        expected_answer="Provides average VLCC vessel valuation figures (in USD) for Q4 2025.",
+    ),
     TestCase(
         id="cii_rating_dht_leopard",
         question="What is the CII rating for DHT Leopard?",
