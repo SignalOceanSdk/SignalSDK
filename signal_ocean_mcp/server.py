@@ -365,7 +365,13 @@ async def search_vessel_imos(name: Optional[str] = None) -> str:
 
 @mcp.tool()
 async def get_vessel(imo: int) -> str:
-    """Get detailed information about a specific vessel by its IMO number."""
+    """Get detailed information about a specific vessel by its IMO number.
+
+    Use only when you need details for a specific individual vessel.
+    Do NOT call this in a loop for each result from get_voyages_advanced_search
+    or get_vessels_by_vessel_class — those results already contain vessel
+    attributes (vessel_class, has_scrubber, flag, built_year, etc.).
+    """
     return _serialize(
         await anyio.to_thread.run_sync(lambda: _vessels_api.get_vessel(imo))
     )
@@ -631,7 +637,14 @@ async def get_vessel_historical_valuations(
     from_date: Optional[str] = None,
     to_date: Optional[str] = None,
 ) -> str:
-    """Get historical valuations for a vessel. Dates as YYYY-MM-DD."""
+    """Get historical valuations for a specific vessel by IMO. Dates as YYYY-MM-DD.
+
+    For fleet-level valuation statistics (e.g. 'average VLCC valuations',
+    'compare Suezmax values') use get_vessel_valuations_for_class — it handles
+    the fleet lookup internally and returns aggregated results in 1-2 calls.
+    Only use this tool when you need the historical valuation record for one
+    specific named vessel.
+    """
     return _serialize(
         await anyio.to_thread.run_sync(
             lambda: _vessel_valuations_api.get_all_historical_valuations_by_imo(
@@ -821,11 +834,22 @@ async def get_voyages_advanced_search(
     Use this (not get_voyages or get_voyages_flat) when filtering by port, cargo type,
     charterer, area, or event type — it's the only tool with those filter parameters.
 
+    Key event_purpose values: "Loading", "Discharging", "STS" (ship-to-ship transfer), "Bunkering".
+    Use event_purpose="STS" for ship-to-ship transfer queries.
+
+    Key event_horizon values: 0=Historical, 1=Predicted, 2=Forecasted.
+    Use event_horizon=2 for forecasted/future loading events (e.g. "loadings in the next 2 weeks").
+
     Dates as YYYY-MM-DD.
+
+    Results include vessel details (vessel_class, has_scrubber, flag,
+    built_year, etc.) — do NOT call get_vessel for individual voyage results
+    to look up these fields. All vessel attributes are already in the response.
 
     WARNING: Querying by vessel class alone over a wide date range returns
     thousands of voyages and may return very large responses. Prefer combining
-    with port filters or narrow date ranges.
+    with port filters or narrow date ranges. Call this tool ONCE with the best
+    available filters — do not retry with progressively wider parameters.
     """
     vessel_class_id, err = await _resolve_vessel_class(vessel_class_id, vessel_class_name)
     if err and vessel_class_name:
@@ -1650,6 +1674,11 @@ async def get_tonnage_list(
     Shows available vessels near a port.
     Provide vessel class and port by ID or name — all resolved automatically.
     Example: vessel_class_name='Suezmax', loading_port_name='Ras Tanura'.
+
+    loading_port_name accepts common regional abbreviations:
+    'AG' (Arabian Gulf), 'WAF' (West Africa), 'USG' (US Gulf),
+    'CONT' (European Continent), 'FEAST' (Far East).
+    For regional queries, pass the abbreviation rather than listing individual ports.
     """
     from signal_ocean.tonnage_list.models import Port, VesselClass
 
@@ -2296,6 +2325,11 @@ async def get_vessel_valuations_for_class(
     max_staleness_days: Optional[int] = 30,
 ) -> str:
     """Get latest valuations for all vessels in a vessel class in one call.
+
+    This is the PREFERRED tool for any fleet-level valuation question:
+    'What is the average VLCC valuation?', 'Compare Suezmax values across
+    the class', 'What are typical Capesize asset prices?'
+    Do NOT call get_vessel_historical_valuations in a loop instead.
 
     Combines get_vessels_by_vessel_class + get_vessel_valuations_for_list.
     Avoids the oversized-response problem: fetches vessels internally, extracts

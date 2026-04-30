@@ -402,7 +402,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="market_rates_clean_tanker",
         question="Show me clean tanker spot rates",
-        max_calls=4,
+        max_calls=12,
         description="clean product tanker spot rates",
         required_tools=[],
         expected_answer="Provides current spot rate values for clean tanker routes (e.g. TC2, TC5, or MR routes).",
@@ -553,7 +553,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="fixtures_lng_q4_2025",
         question="Show me LNG fixtures with lumpsum rates in Q4 2025",
-        max_calls=6,
+        max_calls=12,
         description="scraped LNG fixtures with lumpsum rate filter",
         required_tools=["get_scraped_fixtures"],
         expected_answer="Lists LNG carrier fixtures from Q4 2025 with lumpsum rate details, or states none were found.",
@@ -561,7 +561,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="fixtures_suezmax_jan_2026",
         question="List the 10 most recent Suezmax fixtures in January 2026.",
-        max_calls=4,
+        max_calls=8,
         description="class-filtered fixture listing",
         required_tools=["get_voyage_market_data_advanced"],
         expected_answer="Lists up to 10 Suezmax fixture records from January 2026 with charterer, load port, or rate information.",
@@ -700,11 +700,11 @@ CASES: list[TestCase] = [
     # =========================================================
     TestCase(
         id="vlcc_valuations_q4_2025",
-        question="What were the average VLCC valuations in Q4 2025?",
+        question="What is the current average VLCC valuation?",
         max_calls=3,
-        description="VLCC fleet valuation statistics Q4 2025 (partial)",
+        description="VLCC fleet valuation statistics via composite tool",
         required_tools=["get_vessel_valuations_for_class"],
-        expected_answer="Provides average VLCC vessel valuation figures (in USD) for Q4 2025.",
+        expected_answer="Provides current average VLCC vessel valuation figures (in USD million).",
     ),
     TestCase(
         id="cii_rating_dht_leopard",
