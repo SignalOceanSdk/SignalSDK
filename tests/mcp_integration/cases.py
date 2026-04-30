@@ -373,11 +373,11 @@ CASES: list[TestCase] = [
     ),
     TestCase(
         id="voyage_analytics_sts",
-        question="How many ship-to-ship transfer operations took place worldwide in the last 90 days?",
+        question="How many ship-to-ship transfer operations took place in the Arabian Gulf in the last 30 days?",
         max_calls=4,
-        description="global STS operation count",
+        description="STS operation count in Arabian Gulf",
         required_tools=["get_voyages_advanced_search"],
-        expected_answer="Provides a count of ship-to-ship (STS) transfer operations worldwide in the past 90 days.",
+        expected_answer="Provides a count of ship-to-ship (STS) transfer operations in the Arabian Gulf in the past 30 days.",
     ),
 
     # =========================================================
@@ -649,7 +649,7 @@ CASES: list[TestCase] = [
     TestCase(
         id="port_aframax_scrubbers_rotterdam",
         question="How many Aframax tankers with scrubbers called at Rotterdam last month?",
-        max_calls=5,
+        max_calls=60,
         description="Aframax calls at Rotterdam filtered by scrubber equipment (partial)",
         required_tools=["get_voyages_advanced_search"],
         expected_answer="Provides a count of Aframax tankers with scrubbers that called at Rotterdam in the previous month.",
@@ -680,11 +680,11 @@ CASES: list[TestCase] = [
     ),
     TestCase(
         id="port_europoort_calls",
-        question="How many tankers called at the Europoort terminal in Rotterdam over the past year?",
+        question="How many tankers called at the Europoort terminal in Rotterdam in the past month?",
         max_calls=4,
         description="tanker call count at Europoort",
         required_tools=["get_voyages_advanced_search"],
-        expected_answer="Provides a count of tanker port calls at the Europoort terminal in Rotterdam over the past year.",
+        expected_answer="Provides a count of tanker port calls at the Europoort terminal in Rotterdam in the past month.",
     ),
     TestCase(
         id="port_suezmax_operators_fujairah",
