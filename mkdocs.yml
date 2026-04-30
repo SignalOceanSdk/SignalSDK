@@ -11,6 +11,7 @@ theme:
     - navigation.instant
 nav:
     - 'index.md'
+    - MCP Server: 'mcp-server.md'
     - Voyages:
       - 'voyages.md'
       - Examples:
@@ -113,6 +114,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 15.0.0.md'
       - 'releases/Version 14.0.0.md'
       - 'releases/Version 13.8.0.md'
       - 'releases/Version 13.7.0.md'
