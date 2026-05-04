@@ -11,6 +11,7 @@ theme:
     - navigation.instant
 nav:
     - 'index.md'
+    - MCP Server: 'mcp-server.md'
     - Voyages:
       - 'voyages.md'
       - Examples:
