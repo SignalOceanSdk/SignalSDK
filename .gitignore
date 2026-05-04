@@ -107,3 +107,6 @@ venv.bak/
 .idea/
 
 *.db
+
+# MCP config (contains API keys)
+.mcp.json
