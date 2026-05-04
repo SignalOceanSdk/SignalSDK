@@ -49,15 +49,6 @@ All tools that previously required numeric IDs now also accept human-readable na
 - Fixed `get_vessel_supply` date range to avoid HTTP 400 on unpublished snapshots.
 - Resolved ScrapedData API boolean query parameter encoding.
 
-## Pandas 3 Support
-
-- The SDK is now compatible with pandas 3.x (requires Python 3.11+).
-- `strictly-typed-pandas` has been removed as a dependency (it was not used by the SDK).
-
-## Breaking Changes
-
-- **Minimum pandas version remains `>=1.0.3`**, but pandas 3.x is now supported (upper bound raised from `<3` to `<4`).
-
 ## Notes
 
 - The `signal-ocean[mcp]` extra requires **Python 3.10 or later** (imposed by the `mcp` dependency). The core `signal-ocean` package continues to support Python 3.8+.
