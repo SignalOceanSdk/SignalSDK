@@ -14,13 +14,40 @@ Add the server to your AI client's MCP configuration with your Signal Ocean API 
 
 ### Claude Code
 
-Create a `.mcp.json` file in your project root:
+**Global configuration (recommended)** — makes the MCP server available in all Claude Code sessions.
+
+Edit the Claude Code global config file and add the server under the `mcpServers` key:
+
+- **Linux / macOS:** `~/.claude.json` (e.g. `/home/<username>/.claude.json`)
+- **Windows:** `%USERPROFILE%\.claude.json` (e.g. `C:\Users\<username>\.claude.json`)
 
 ```json
 {
   "mcpServers": {
     "signal-ocean": {
-      "command": "python",
+      "type": "stdio",
+      "command": "python3",
+      "args": ["-m", "signal_ocean_mcp"],
+      "env": {
+        "SIGNAL_OCEAN_API_KEY": "<your-api-key>"
+      }
+    }
+  }
+}
+```
+
+> **Note:** Use the Python executable that has `signal-ocean` installed. If `python3` is not found, use the full path (e.g. `python3.11` on Linux or `py` on Windows). Run `which python3` (Linux/macOS) or `where python` (Windows) to confirm.
+
+Restart Claude Code after editing the file. The Signal Ocean tools will appear as `mcp__signal-ocean__*` in your session.
+
+**Per-project configuration** — create a `.mcp.json` file in your project root to limit the server to a specific project:
+
+```json
+{
+  "mcpServers": {
+    "signal-ocean": {
+      "type": "stdio",
+      "command": "python3",
       "args": ["-m", "signal_ocean_mcp"],
       "env": {
         "SIGNAL_OCEAN_API_KEY": "<your-api-key>"
