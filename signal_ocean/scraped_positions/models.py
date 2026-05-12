@@ -1,6 +1,8 @@
 """Models instantiated by the scraped positions api."""
 from typing import Optional, Tuple
 
+from pydantic import Field
+
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
 from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
@@ -273,7 +275,7 @@ class ScrapedPosition(SignalBaseModel):
 
     # last cargoes
     scraped_last_cargo_types: Optional[str] = None
-    last_cargo_types_ids: Optional[str] = None
+    last_cargo_types_ids: Optional[str] = Field(None, validation_alias="LastCargoTypesIDs")
     last_cargo_types: Optional[str] = None
 
     # position indicators

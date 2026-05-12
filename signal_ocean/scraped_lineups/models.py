@@ -1,6 +1,8 @@
 """Models instantiated by the scraped lineups api."""
 from typing import Optional, Tuple
 
+from pydantic import Field
+
 from signal_ocean.scraped_data.scraped_data_api import ScrapedDataResponse
 from signal_ocean.util.pydantic_base import SignalBaseModel, UTCDatetime
 
@@ -300,16 +302,16 @@ class ScrapedLineup(SignalBaseModel):
     commercial_operator: Optional[str] = None
 
     # eta
-    scraped_eta: Optional[str] = None
-    eta: Optional[UTCDatetime] = None
+    scraped_eta: Optional[str] = Field(None, validation_alias="ScrapedETA")
+    eta: Optional[UTCDatetime] = Field(None, validation_alias="ETA")
 
     # etb
-    scraped_etb: Optional[str] = None
-    etb: Optional[UTCDatetime] = None
+    scraped_etb: Optional[str] = Field(None, validation_alias="ScrapedETB")
+    etb: Optional[UTCDatetime] = Field(None, validation_alias="ETB")
 
     # etd
-    scraped_etd: Optional[str] = None
-    etd: Optional[UTCDatetime] = None
+    scraped_etd: Optional[str] = Field(None, validation_alias="ScrapedETD")
+    etd: Optional[UTCDatetime] = Field(None, validation_alias="ETD")
 
     # location
     scraped_location: Optional[str] = None
