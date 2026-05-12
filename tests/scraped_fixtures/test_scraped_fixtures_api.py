@@ -100,7 +100,7 @@ def test_fixtures_field_names():
         "CharterType",
         "FixtureStatusID",
         "FixtureStatus",
-        "BrokerID",
+        "BrokerId",
         "Broker",
         "IsOwnersOption",
         "IsCOA",
