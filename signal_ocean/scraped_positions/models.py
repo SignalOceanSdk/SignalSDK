@@ -275,7 +275,9 @@ class ScrapedPosition(SignalBaseModel):
 
     # last cargoes
     scraped_last_cargo_types: Optional[str] = None
-    last_cargo_types_ids: Optional[str] = Field(None, validation_alias="LastCargoTypesIDs")
+    last_cargo_types_ids: Optional[str] = Field(
+        None,
+        validation_alias="LastCargoTypesIDs")
     last_cargo_types: Optional[str] = None
 
     # position indicators
