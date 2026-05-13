@@ -571,7 +571,7 @@ class ScrapedFixture(SignalBaseModel):
     fixture_status: Optional[str] = None
 
     # broker
-    broker_id: Optional[int] = None
+    broker_id: Optional[int] = Field(None, validation_alias="BrokerId")
     broker: Optional[str] = None
 
     # fixture indicators

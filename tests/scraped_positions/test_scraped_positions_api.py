@@ -45,7 +45,7 @@ def test_positions_field_names():
         "CargoTypeGroupID",
         "CargoTypeGroup",
         "ScrapedLastCargoTypes",
-        "LastCargoTypesIds",
+        "LastCargoTypesIDs",
         "LastCargoTypes",
         "HasBallast",
         "HasDryDock",
