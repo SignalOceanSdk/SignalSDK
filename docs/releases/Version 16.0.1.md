@@ -13,7 +13,7 @@ Fixed incorrect field name casing during deserialization. Affected modules and f
   - ETB
   - ScrapedETD
   - ETD
-- Scraped Tonnages API
+- Scraped Positions API
   - LastCargoTypesIDs
 
 ## Installation and Upgrade Notes
