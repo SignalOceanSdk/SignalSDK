@@ -1,8 +1,9 @@
-from setuptools import setup, find_packages
-from os import path
+# pylint: disable=C0114
 import re
+from os import path
+from setuptools import setup, find_packages
 
-
+# pylint: disable=C0116
 def read_file(file_name: str) -> str:
     here = path.abspath(path.dirname(__file__))
     with open(path.join(here, file_name), encoding="utf-8") as f:
@@ -10,7 +11,7 @@ def read_file(file_name: str) -> str:
 
 
 long_description = read_file("README.md")
-version = re.sub("\s+", "", read_file("version.txt"))
+version = re.sub(r"\s+", "", read_file("version.txt"))
 
 setup(
     name="signal-ocean",
