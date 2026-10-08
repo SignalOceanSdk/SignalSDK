@@ -261,6 +261,17 @@ class ScrapedPosition(SignalBaseModel):
     open_taxonomy_id: Optional[int] = None
     open_taxonomy: Optional[str] = None
 
+    # eta
+    scraped_eta: Optional[str] = None
+    eta: Optional[UTCDatetime] = None
+
+    # basis port
+    scraped_basis: Optional[str] = None
+    basis_geo_id: Optional[int] = None
+    basis_name: Optional[str] = None
+    basis_taxonomy_id: Optional[int] = None
+    basis_taxonomy: Optional[str] = None
+
     # commercial operator
     scraped_commercial_operator: Optional[str] = None
     commercial_operator_id: Optional[int] = None
