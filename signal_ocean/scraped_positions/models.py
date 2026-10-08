@@ -281,8 +281,8 @@ class ScrapedPosition(SignalBaseModel):
     open_taxonomy: Optional[str] = None
 
     # eta
-    scraped_eta: Optional[str] = None
-    eta: Optional[UTCDatetime] = None
+    scraped_eta: Optional[str] = Field(None, validation_alias="ScrapedETA")
+    eta: Optional[UTCDatetime] = Field(None, validation_alias="ETA")
 
     # basis port
     scraped_basis: Optional[str] = None
