@@ -133,7 +133,7 @@ class ScrapedPosition(SignalBaseModel):
         open_taxonomy: String. The extended name identifying the TaxonomyID.
             Possible values are: GeoAsset-> 1, Port -> 2, Country-> 3,
             Level0->4, Level1->5, Level2->6, Level3->7.
-                scraped_eta: String. The estimated time of arrival of the vessel as
+        scraped_eta: String. The estimated time of arrival of the vessel as
             reported in the original text, e.g. '15 April'.
         eta: Date, format YYYY-MM-DD HH:MM:SS, UTC timezone. The mapped date
             corresponding to the reported estimated time of arrival.
