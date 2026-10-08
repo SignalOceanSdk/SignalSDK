@@ -133,6 +133,25 @@ class ScrapedPosition(SignalBaseModel):
         open_taxonomy: String. The extended name identifying the TaxonomyID.
             Possible values are: GeoAsset-> 1, Port -> 2, Country-> 3,
             Level0->4, Level1->5, Level2->6, Level3->7.
+        scraped_eta: String. The estimated time of arrival of the vessel as
+            reported in the original text, e.g. '15 April'.
+        eta: Date, format YYYY-MM-DD HH:MM:SS, UTC timezone. The mapped date
+            corresponding to the reported estimated time of arrival.
+        scraped_basis: String. The basis location reported in the original
+            text of the position. Like the open location, it is often
+            shortened and can refer to terminals, ports, countries or wider
+            areas.
+        basis_geo_id: Integer. It is the internal ID of the mapped basis
+            location reported in the position. Same geo mapping logic as
+            OpenGeoID applies.
+        basis_name: String. The name of the Signal geo entity related to the
+            reported basis location of the position.
+        basis_taxonomy_id: Integer. An internal ID corresponding to the
+            taxonomy of the basis location, from 1 to 7. Same values as
+            OpenTaxonomyID apply.
+        basis_taxonomy: String. The extended name identifying the
+            BasisTaxonomyID. Possible values are: GeoAsset-> 1, Port -> 2,
+            Country-> 3, Level0->4, Level1->5, Level2->6, Level3->7.
         scraped_commercial_operator: String. The position commercial operator
             as reported in the original text. Examples: 'aet', 'thenamaris',
             'bpcl'
@@ -260,6 +279,17 @@ class ScrapedPosition(SignalBaseModel):
     open_name: Optional[str] = None
     open_taxonomy_id: Optional[int] = None
     open_taxonomy: Optional[str] = None
+
+    # eta
+    scraped_eta: Optional[str] = Field(None, validation_alias="ScrapedETA")
+    eta: Optional[UTCDatetime] = Field(None, validation_alias="ETA")
+
+    # basis port
+    scraped_basis: Optional[str] = None
+    basis_geo_id: Optional[int] = None
+    basis_name: Optional[str] = None
+    basis_taxonomy_id: Optional[int] = None
+    basis_taxonomy: Optional[str] = None
 
     # commercial operator
     scraped_commercial_operator: Optional[str] = None
