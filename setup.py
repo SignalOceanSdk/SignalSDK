@@ -13,7 +13,7 @@ long_description = read_file("README.md")
 version = re.sub("\s+", "", read_file("version.txt"))
 
 setup(
-    name="signal-ocean",
+    name="signal_ocean",
     version=version,
     description="Access Signal Ocean Platform data using Python.",
     long_description=long_description,
