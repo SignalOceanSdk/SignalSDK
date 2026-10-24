@@ -158,11 +158,11 @@ class MatchedFixture(SignalBaseModel):
     cargo_type: Optional[str] = None
     cargo_group_id: Optional[int] = None
     cargo_group: Optional[str] = None
-    quantity: Optional[int] = None
-    quantity_buffer: Optional[int] = None
+    quantity: Optional[float] = None
+    quantity_buffer: Optional[float] = None
     rate: Optional[float] = None
     rate_type: Optional[str] = None
-    ballast_bonus_value: Optional[int] = None
+    ballast_bonus_value: Optional[float] = None
     ballast_bonus_type: Optional[str] = None
     delivery_geo_id: Optional[int] = None
     delivery_name: Optional[str] = None
