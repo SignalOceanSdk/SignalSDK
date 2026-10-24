@@ -131,3 +131,19 @@ def test_get_voyages_market_data_request_imo_voyage_number_return():
     api, _ = create_voyages_market_data_api(mock_response)
     voyage_market_data = api.get_voyage_market_data(imo=imo, voyage_number=voyage_number)
     assert voyage_market_data[0] == _mock_voyage_market_data_object
+
+
+def test_matched_fixture_parses_fractional_quantities():
+    matched_fixture = MatchedFixture.model_validate(
+        {"Quantity": 130.5, "QuantityBuffer": 0.1, "BallastBonusValue": 12.5})
+    assert matched_fixture.quantity == 130.5
+    assert matched_fixture.quantity_buffer == 0.1
+    assert matched_fixture.ballast_bonus_value == 12.5
+
+
+def test_matched_fixture_parses_whole_number_quantities():
+    matched_fixture = MatchedFixture.model_validate(
+        {"Quantity": 130, "QuantityBuffer": 0, "BallastBonusValue": 100000})
+    assert matched_fixture.quantity == 130
+    assert matched_fixture.quantity_buffer == 0
+    assert matched_fixture.ballast_bonus_value == 100000
