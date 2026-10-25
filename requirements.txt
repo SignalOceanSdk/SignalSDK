@@ -53,4 +53,4 @@ typing-extensions==4.7.1
 urllib3==1.25.9
 wcwidth==0.1.9
 webencodings==0.5.1
-wheel==0.34.2
+wheel==0.38.1
