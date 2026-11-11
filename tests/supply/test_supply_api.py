@@ -175,10 +175,10 @@ def test_error_includes_tracking_id():
 
 
 def test_error_includes_quota_message():
-    message = _error_message(make_response(429, {
-        "statusCode": 429,
+    message = _error_message(make_response(403, {
+        "statusCode": 403,
         "message": "Out of call volume quota. Quota will be replenished in "
-                   "23:59:59.",
+                   "09:52:20.",
     }))
 
     assert "Out of call volume quota" in message
