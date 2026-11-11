@@ -77,12 +77,15 @@ class Connection:
         )
 
     def _make_post_request(
-        self, relative_url: str, query_string: Optional[QueryString] = None
+        self,
+        relative_url: str,
+        query_string: Optional[QueryString] = None,
+        headers: Optional[Dict[str, str]] = None,
     ) -> requests.Response:
         url = urljoin(self.__get_api_host(), relative_url)
 
         return self.__session.post(
             url,
             data=json.dumps(query_string),
-            headers=self.__get_headers(),
+            headers={**self.__get_headers(), **(headers or {})},
         )
