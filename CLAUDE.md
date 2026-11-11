@@ -42,6 +42,7 @@
 | `scraped_fixtures` | `ScrapedFixturesAPI` | `get_scraped_fixtures` |
 | `scraped_lineups` | `ScrapedLineupsAPI` | `get_scraped_lineups` |
 | `scraped_positions` | `ScrapedPositionsAPI` | `get_scraped_positions` |
+| `supply` | `SupplyAPI` | `get_supply_trend`, `get_historical_supply`, `get_live_supply`, `get_supply_templates` |
 
 **Not yet covered** (exist in `signal_ocean/` but have no MCP tools):
 - `port_api.py` / `vessel_class_api.py` — older top-level APIs; evaluate whether they overlap with newer modules before adding.
