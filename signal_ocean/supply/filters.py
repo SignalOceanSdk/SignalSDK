@@ -19,7 +19,10 @@ class FromToRange(SupplyRequestModel):
         to: Upper bound. A number, a date or a datetime.
     """
 
-    from_: Any = Field(None, alias="from")
+    # Not `alias`: type checkers would then expect the keyword `from`.
+    from_: Any = Field(
+        None, validation_alias="from", serialization_alias="from"
+    )
     to: Any = None
 
 
