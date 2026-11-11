@@ -16,6 +16,12 @@ with more than 150 filters, daily history since 2014 and a live view.
 Added the MCP tools `get_supply_trend`, `get_historical_supply`,
 `get_live_supply` and `get_supply_templates`.
 
+## Bug Fixes
+
+The `mcp` extra now requires `mcp` below version 2. With mcp 2.x,
+`pip install signal-ocean[mcp]` installed an MCP server that could not start,
+because mcp 2.x renamed `FastMCP`.
+
 ## Documentation
 
 Added a Supply page with six example notebooks. The three Combined Examples
