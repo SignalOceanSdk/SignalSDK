@@ -27,6 +27,15 @@ nav:
         - 'examples/jupyter/VoyagesAPI/Voyages_Metrics_Top_3_Loading_Locations_Discharge_Locations_Cargo_Types.ipynb'
         - 'examples/jupyter/VoyagesAPI/VoyagesAPI_Dry_Last_year_Capesize_Discharges_To_China.ipynb'
         - 'examples/jupyter/VoyagesAPI/Dry_Capes_Daily_List_Of_Vessels_In_Dry_dock.ipynb'
+    - Supply:
+      - 'supply.md'
+      - Examples:
+        - 'examples/jupyter/SupplyAPI/QuickStartSupplyAPI.ipynb'
+        - 'examples/jupyter/SupplyAPI/OpenBasedSupply.ipynb'
+        - 'examples/jupyter/SupplyAPI/EtaBasedSupply.ipynb'
+        - 'examples/jupyter/SupplyAPI/AisBasedSupply.ipynb'
+        - 'examples/jupyter/SupplyAPI/FleetBasedSupply.ipynb'
+        - 'examples/jupyter/SupplyAPI/BalticRouteTemplates.ipynb'
     - Tonnage List:
       - 'tonnage_list.md'
       - Examples:
@@ -114,6 +123,7 @@ nav:
     - Historical Tonnage List (deprecated):
       - 'historical_tonnage_list.md'
     - Release notes:
+      - 'releases/Version 16.2.0.md'
       - 'releases/Version 16.1.1.md'
       - 'releases/Version 16.1.0.md'
       - 'releases/Version 16.0.2.md'
