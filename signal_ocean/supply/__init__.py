@@ -10,6 +10,7 @@ Classes:
 """
 
 from .api import SupplyAPI
+from .data_frame import Column
 from .constants import (
     AvailabilityState,
     Coating,
@@ -80,6 +81,7 @@ __all__ = [
     "SupplyEta",
     "VesselDetails",
     "SupplyTemplate",
+    "Column",
     "AvailabilityState",
     "Coating",
     "DefiningSize",

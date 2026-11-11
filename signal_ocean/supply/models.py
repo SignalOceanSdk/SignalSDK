@@ -5,10 +5,12 @@ Attribute names are the API response names in snake_case.
 from datetime import datetime
 from typing import Any, Optional, Tuple, Union
 
+import pandas as pd
 from pydantic import BeforeValidator, Field
 from typing_extensions import Annotated
 
 from ._base import SupplyResponseModel
+from .data_frame import snapshot_to_data_frame, trend_to_data_frame
 
 
 def _none_to_empty(value: Any) -> Any:
@@ -43,6 +45,14 @@ class SupplyTrend(SupplyResponseModel):
         Tuple[DailySupply, ...], _EMPTY_IF_NULL
     ] = ()
     notes: Annotated[Tuple[str, ...], _EMPTY_IF_NULL] = ()
+
+    def to_data_frame(self) -> pd.DataFrame:
+        """Return the counts as a data frame.
+
+        Returns:
+            A data frame indexed by `date`, with one column `supply`.
+        """
+        return trend_to_data_frame(self)
 
 
 class CommercialAvailability(SupplyResponseModel):
@@ -178,3 +188,11 @@ class SupplySnapshot(SupplyResponseModel):
 
     data: Annotated[Tuple[SupplyRecord, ...], _EMPTY_IF_NULL] = ()
     include_details: bool = Field(False, exclude=True)
+
+    def to_data_frame(self) -> pd.DataFrame:
+        """Return the records as a data frame with one row per vessel.
+
+        Returns:
+            A data frame. See `Column` for the column names.
+        """
+        return snapshot_to_data_frame(self)
