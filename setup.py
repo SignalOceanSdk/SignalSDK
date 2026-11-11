@@ -33,7 +33,8 @@ setup(
         "pydantic>=2.0,<3",
     ],
     extras_require={
-        "mcp": ["mcp>=1.0.0"],
+        # mcp 2.x renamed FastMCP, which signal_ocean_mcp/server.py imports.
+        "mcp": ["mcp>=1.0.0,<2"],
     },
     classifiers=[
         "Development Status :: 4 - Beta",

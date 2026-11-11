@@ -108,3 +108,35 @@ def test_makes_get_requests_with_specified_parameters():
             "Source": "SignalSDK",
         },
     )
+
+
+SESSION_POST = "requests.Session.post"
+
+
+def test_post_request_adds_extra_headers():
+    connection = Connection("key")
+
+    with patch(SESSION_POST) as post:
+        connection._make_post_request(
+            "x", {"a": 1}, headers={"UseOnlyHubPorts": "true"}
+        )
+
+    assert post.call_args.kwargs["headers"] == {
+        "Api-Key": "key",
+        "Content-Type": "application/json",
+        "Source": "SignalSDK",
+        "UseOnlyHubPorts": "true",
+    }
+
+
+def test_post_request_without_extra_headers_keeps_defaults():
+    connection = Connection("key")
+
+    with patch(SESSION_POST) as post:
+        connection._make_post_request("x", {"a": 1})
+
+    assert post.call_args.kwargs["headers"] == {
+        "Api-Key": "key",
+        "Content-Type": "application/json",
+        "Source": "SignalSDK",
+    }
