@@ -232,12 +232,13 @@ def snapshot_to_data_frame(snapshot: "SupplySnapshot") -> pd.DataFrame:
 
 
 def trend_to_data_frame(trend: "SupplyTrend") -> pd.DataFrame:
-    """Return the daily counts indexed by date."""
+    """Return the daily counts indexed by date, oldest day first."""
     index = pd.DatetimeIndex(
         [day.date for day in trend.supply_per_day], name="date"
     )
     supply = [day.supply for day in trend.supply_per_day]
-    return pd.DataFrame({"supply": supply}, index=index)
+    # The API returns the newest day first.
+    return pd.DataFrame({"supply": supply}, index=index).sort_index()
 
 
 def _values(category: BaseModel) -> Dict[str, Any]:

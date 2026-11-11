@@ -107,3 +107,16 @@ def test_trend_frame():
     assert len(empty) == 0
     assert empty.index.name == "date"
     assert list(empty.columns) == ["supply"]
+
+
+def test_trend_frame_is_sorted_by_date():
+    newest_first = SupplyTrend(supply_per_day=tuple(
+        DailySupply(date=datetime(2026, 10, day, tzinfo=timezone.utc),
+                    supply=day)
+        for day in (3, 2, 1)
+    ))
+
+    frame = newest_first.to_data_frame()
+
+    assert frame["supply"].tolist() == [1, 2, 3]
+    assert frame.index.is_monotonic_increasing

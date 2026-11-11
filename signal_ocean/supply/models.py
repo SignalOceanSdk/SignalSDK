@@ -50,7 +50,8 @@ class SupplyTrend(SupplyResponseModel):
         """Return the counts as a data frame.
 
         Returns:
-            A data frame indexed by `date`, with one column `supply`.
+            A data frame indexed by `date`, oldest day first, with one
+            column `supply`.
         """
         return trend_to_data_frame(self)
 
