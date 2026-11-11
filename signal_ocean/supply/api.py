@@ -177,4 +177,4 @@ def _error_detail(response: requests.Response) -> str:
             parts.append(f"{field}: {messages}")
     parts += [f"{key}: {body[key]}" for key in ("TrackingId", "traceId")
               if body.get(key)]
-    return " | ".join(parts)
+    return " | ".join(parts) if parts else response.text.strip()[:500]

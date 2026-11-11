@@ -1,8 +1,8 @@
 """Baltic route templates for the Supply API.
 
 A template is a set of filters that matches one Baltic Exchange route. Pass
-its route code as `template` to any `SupplyAPI` method. Filters that you
-pass too replace the template's value for the same field only.
+its route code as `template` to any `SupplyAPI` method. A filter field that
+you pass too replaces the template's value for that field as a whole.
 
 Date windows are stored as offsets in days, so a template gives the same
 window relative to each snapshot day on the historical endpoints and
@@ -1213,6 +1213,13 @@ _BY_CODE = {template.code.casefold(): template for template in _TEMPLATES}
 
 _SIZE_BAND = ("vesselType", "size", "definingSize")
 
+_CATEGORIES = (
+    "commercialAvailability",
+    "voyageDetails",
+    "aisTracking",
+    "vesselParticulars",
+)
+
 _DATE_PAIRS = (
     ("openDate", "openDateRelativeOffset"),
     ("lastMarketedDate", "lastMarketedDateRelativeOffset"),
@@ -1256,10 +1263,12 @@ def build_filter_body(
 ) -> Dict[str, Any]:
     """Merge a template and user filters into the filter part of a request.
 
-    A user field replaces the template value of that field only, and a
-    user field set to None removes it. The API refuses a vessel class
-    together with a size band, and an absolute date together with its
-    relative offset, so the user's choice removes the template's other one.
+    A user field replaces the template value of that field as a whole, for
+    example a whole range, and a user field set to None removes it. Inside
+    the filter categories the other template fields stay. The API refuses a
+    vessel class together with a size band, and an absolute date together
+    with its relative offset, so a user value removes the template's other
+    one.
 
     Args:
         template: The template, or None.
@@ -1271,19 +1280,19 @@ def build_filter_body(
     base = _dump(template.filters) if template else {}
     user = _dump(filters) if filters else {}
 
-    if "vesselClass" in user:
+    if _has_value(user, "vesselClass"):
         for key in _SIZE_BAND:
             base.pop(key, None)
-    if any(key in user for key in _SIZE_BAND):
+    if any(_has_value(user, key) for key in _SIZE_BAND):
         base.pop("vesselClass", None)
 
     user_commercial = user.get("commercialAvailability")
     base_commercial = base.get("commercialAvailability")
     if isinstance(user_commercial, dict) and isinstance(base_commercial, dict):
         for absolute, relative in _DATE_PAIRS:
-            if absolute in user_commercial:
+            if _has_value(user_commercial, absolute):
                 base_commercial.pop(relative, None)
-            if relative in user_commercial:
+            if _has_value(user_commercial, relative):
                 base_commercial.pop(absolute, None)
 
     return _without_none(_merge(base, user))
@@ -1293,13 +1302,21 @@ def _dump(filters: Union[SupplyFilter, LiveSupplyFilter]) -> Dict[str, Any]:
     return filters.model_dump(mode="json", by_alias=True, exclude_unset=True)
 
 
-def _merge(base: Dict[str, Any], user: Dict[str, Any]) -> Dict[str, Any]:
+def _has_value(fields: Dict[str, Any], key: str) -> bool:
+    return fields.get(key) is not None
+
+
+def _merge(
+    base: Dict[str, Any],
+    user: Dict[str, Any],
+    categories: Tuple[str, ...] = _CATEGORIES,
+) -> Dict[str, Any]:
     merged = dict(base)
     for key, value in user.items():
         if value is None:
             merged.pop(key, None)
-        elif isinstance(value, dict) and isinstance(merged.get(key), dict):
-            merged[key] = _merge(merged[key], value)
+        elif key in categories and isinstance(merged.get(key), dict):
+            merged[key] = _merge(merged[key], value, categories=())
         else:
             merged[key] = value
     return merged

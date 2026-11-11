@@ -92,9 +92,14 @@ columns named after its `id`, for example `eta_TD25` and
 ## How filters and templates combine
 
 - A filter field that you set replaces the template's value for that field
-  only. All other template filters stay.
+  as a whole. All other template filters stay. For example,
+  `vessel_age=MinMaxRange(min=5)` replaces the template's age range, so the
+  template's maximum age no longer applies. In the same way,
+  `open_location=IncludeExcludeFilter(values=[...])` also removes the
+  template's excluded locations.
 - A list that you set replaces the template's list. It is not added to it.
-- Set a field to `None` to remove that template filter.
+- Set a field to `None` to remove that template filter. `None` changes no
+  other field.
 - `vessel_class` replaces the template's size band (`vessel_type`,
   `defining_size` and `size`), and a size band replaces the template's
   `vessel_class`.

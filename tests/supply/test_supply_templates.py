@@ -10,6 +10,8 @@ from signal_ocean.supply.filters import (
     CommercialAvailabilityFilter,
     EtaConfiguration,
     FromToRange,
+    GeoLocation,
+    IncludeExcludeFilter,
     MinMaxRange,
     SupplyFilter,
     VesselParticularsFilter,
@@ -275,12 +277,54 @@ def test_no_template_sends_only_user_fields():
     assert body == {"vesselClass": "Aframax"}
 
 
-def test_merge_does_not_change_stored_template():
-    before = copy.deepcopy(_template_body("TD3C"))
+def test_merge_does_not_change_its_template_argument():
+    template = find_template("TD3C")
+    before = copy.deepcopy(template.filters.model_dump())
 
-    _template_body("TD3C", SupplyFilter(vessel_class="VLCC"))
-    _template_body("TD3C", SupplyFilter(
-        vessel_particulars=VesselParticularsFilter(vessel_age=None)
+    build_filter_body(template, SupplyFilter(vessel_class="VLCC"))
+    build_filter_body(template, SupplyFilter(
+        commercial_availability=CommercialAvailabilityFilter(
+            open_date=FromToRange(from_=date(2026, 11, 1), to=None)
+        ),
+        vessel_particulars=VesselParticularsFilter(vessel_age=None),
     ))
 
-    assert _template_body("TD3C") == before == TD3C_BODY
+    assert template.filters.model_dump() == before
+
+
+def test_user_range_replaces_whole_template_range():
+    body = _template_body("TD3C", SupplyFilter(
+        vessel_particulars=VesselParticularsFilter(
+            vessel_age=MinMaxRange(min=5)
+        )
+    ))
+
+    assert body["vesselParticulars"]["vesselAge"] == {"min": 5}
+
+
+def test_user_include_list_replaces_whole_template_location_filter():
+    houston = GeoLocation(geo_id=3853, location_taxonomy=2)
+
+    body = _template_body("TD3C", SupplyFilter(
+        commercial_availability=CommercialAvailabilityFilter(
+            open_location=IncludeExcludeFilter(values=[houston])
+        )
+    ))
+
+    assert body["commercialAvailability"]["openLocation"] == {
+        "values": ports(3853)
+    }
+
+
+def test_explicit_none_date_keeps_template_offset():
+    body = _template_body("HS4", SupplyFilter(
+        commercial_availability=CommercialAvailabilityFilter(open_date=None)
+    ))
+
+    assert body["commercialAvailability"] == HS4_BODY["commercialAvailability"]
+
+
+def test_explicit_none_vessel_class_keeps_template_size_band():
+    body = _template_body("TD3C", SupplyFilter(vessel_class=None))
+
+    assert body == TD3C_BODY

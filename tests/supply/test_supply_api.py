@@ -186,11 +186,19 @@ def test_error_includes_quota_message():
 
 def test_error_with_html_body():
     message = _error_message(
-        make_response(502, "<html><body>Bad Gateway</body></html>")
+        make_response(502, "<html><body>Upstream timed out</body></html>")
     )
 
     assert "502" in message
-    assert "Bad Gateway" in message
+    assert "Upstream timed out" in message
+
+
+def test_error_with_unknown_json_body_shows_body_text():
+    message = _error_message(make_response(400, {
+        "error": {"code": "InvalidInput", "detail": "Unknown vessel class"}
+    }))
+
+    assert "Unknown vessel class" in message
 
 
 def test_public_exports():
