@@ -1,0 +1,85 @@
+{
+  "data": [
+    {
+      "day": "2024-01-27T12:00:00Z",
+      "imo": 9793997,
+      "vesselClassId": 86,
+      "vesselClass": "Aframax",
+      "commercialAvailability": {
+        "openLocation": "Houston",
+        "openLocationTaxonomy": "Port",
+        "openLocationGeoId": 3853,
+        "openLocationTaxonomyId": 2,
+        "openDateFrom": "2024-02-01T00:00:00Z",
+        "openDateTo": "2024-02-05T00:00:00Z",
+        "availabilityState": "Available",
+        "availabilityStateId": 4,
+        "marketStatus": "Pushed",
+        "marketStatusId": 2,
+        "marketDeployment": "Spot",
+        "marketDeploymentId": 0,
+        "positionSourceOrigin": "Manual",
+        "positionSourceOriginId": 1,
+        "positionSourceType": "Email",
+        "positionSourceTypeId": 2,
+        "lastMarketedDate": "2024-01-26T14:00:00Z",
+        "latestUpdatedDate": "2024-01-27T10:30:00Z",
+        "forecastedDestinationPort": "Rotterdam",
+        "forecastedDestinationPortId": 3689
+      },
+      "voyageDetails": {
+        "voyageState": "Laden",
+        "voyageStateId": 5,
+        "cargoType": "Crude Oil",
+        "cargoTypeId": 19,
+        "cargoQuantity": 75000,
+        "charterer": "BP Trading",
+        "chartererId": 1234,
+        "startPort": "Houston",
+        "startPortId": 3853,
+        "lastVoyageCargoTypes": [
+          "Crude Oil",
+          "Fuel Oil",
+          "Gasoline"
+        ],
+        "lastVoyageCargoTypeIds": [
+          19,
+          16,
+          7
+        ],
+        "lastCargoTypes": [
+          "Crude Oil",
+          "Fuel Oil",
+          "Gasoline"
+        ],
+        "lastCargoTypeIds": [
+          19,
+          16,
+          7
+        ]
+      },
+      "aisTracking": {
+        "lastMovementDateTimeUTC": "2024-01-27T09:00:00Z",
+        "daysSinceLatestAis": 0.1,
+        "aisLatitudeAverage": 29.76,
+        "aisLongitudeAverage": -95.37,
+        "aisDraughtAverage": 12.6,
+        "aisHeadingAverage": 48.0,
+        "aisSpeedAverage": 0.8,
+        "aisSeagoingSpeedAverage": 13.5,
+        "aisCurrentArea": "US Gulf",
+        "aisCurrentAreaId": 24676,
+        "aisClosestLocation": "Houston",
+        "aisClosestLocationId": 3853,
+        "aisDestination": "Houston",
+        "aisDestinationTaxonomy": "Port",
+        "aisDestinationGeoId": 3853,
+        "aisDestinationTaxonomyId": 2,
+        "etaToAisDestination": "2024-01-27T15:00:00Z",
+        "milesToAisDestination": 25.4,
+        "delaysToAisDestination": 0.0
+      },
+      "etaDetails": null
+    }
+  ]
+}
