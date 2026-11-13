@@ -57,7 +57,49 @@ class SupplyTrend(SupplyResponseModel):
 
 
 class CommercialAvailability(SupplyResponseModel):
-    """Open location, open dates and commercial status of a vessel."""
+    """Open location, open dates and commercial status of a vessel.
+
+    Attributes:
+        open_location: Name of the location where the vessel becomes
+            available.
+        open_location_taxonomy: Precision level of the open location, for
+            example `Port`.
+        open_location_geo_id: Geo id of the open location.
+        open_location_taxonomy_id: Precision level id of the open location.
+            See `LocationTaxonomy`.
+        open_date_from: Start of the open period: the first day of the lay
+            range.
+        open_date_to: End of the open period: the last day of the lay range.
+        availability_state: Charter market status: open for new business,
+            under negotiation, or committed. Shows if the vessel is in the
+            live tonnage pool. See `AvailabilityState`.
+        availability_state_id: Id of the availability state.
+        market_status: Whether the commercial operator markets the vessel:
+            pushed (listed), possibly pushed, or not pushed (no evidence).
+            See `MarketStatus`.
+        market_status_id: Id of the market status.
+        market_deployment: How the vessel is deployed: spot (voyage by
+            voyage), program (semi-contractual), contract (long term) or
+            relet (sub-chartered). See `MarketDeployment`.
+        market_deployment_id: Id of the market deployment.
+        position_source_origin: How the position was found: entered by a
+            user, from AIS, or calculated by the system. See
+            `PositionSourceOrigin`.
+        position_source_origin_id: Id of the position source origin.
+        position_source_type: The channel that reported the position, for
+            example email, a chat application (Slack, Teams, WhatsApp) or a
+            model prediction. See `PositionSourceType`.
+        position_source_type_id: Id of the position source type.
+        last_marketed_date: When the operator last marketed the vessel. The
+            number of days since this date helps to estimate if the vessel
+            is committed or under negotiation.
+        latest_updated_date: When the commercial data of the vessel was last
+            updated. Shows how recent the data is.
+        forecasted_destination_port: Name of the destination port that the
+            system predicts.
+        forecasted_destination_port_id: Id of the next port that the system
+            predicts from the patterns of the vessel.
+    """
 
     open_location: Optional[str] = None
     open_location_taxonomy: Optional[str] = None
@@ -82,7 +124,27 @@ class CommercialAvailability(SupplyResponseModel):
 
 
 class VoyageDetails(SupplyResponseModel):
-    """Voyage state, cargo and recent cargo history of a vessel."""
+    """Voyage state, cargo and recent cargo history of a vessel.
+
+    Attributes:
+        voyage_state: The phase of the current voyage, for example ballast
+            (empty), laden (with cargo), loading or discharging. See
+            `VoyageState`.
+        voyage_state_id: Id of the voyage state.
+        cargo_type: Name of the current or last cargo type.
+        cargo_type_id: Id of the current or last cargo type.
+        cargo_quantity: Cargo quantity in metric tonnes.
+        charterer: Charterer company name.
+        charterer_id: Charterer company id.
+        start_port: Name of the start (load) port of the voyage leg.
+        start_port_id: Id of the start (load) port of the voyage leg.
+        last_voyage_cargo_types: Cargo type names of the previous voyage.
+        last_voyage_cargo_type_ids: Cargo type ids of the previous voyage.
+        last_cargo_types: Names of the last cargo types, up to 3. The recent
+            cargo history of the vessel.
+        last_cargo_type_ids: Ids of the last cargo types, up to 3. The recent
+            cargo history of the vessel.
+    """
 
     voyage_state: Optional[str] = None
     voyage_state_id: Optional[int] = None
@@ -100,7 +162,45 @@ class VoyageDetails(SupplyResponseModel):
 
 
 class AisTracking(SupplyResponseModel):
-    """AIS position, movement and destination of a vessel."""
+    """AIS position, movement and destination of a vessel.
+
+    Attributes:
+        last_movement_date_time_utc: Last time the system detected a
+            movement of the vessel, in UTC. Shows if the vessel is
+            stationary or underway.
+        days_since_latest_ais: Days since the last AIS message of the
+            vessel. More than 7 days can mean that the AIS is off or out of
+            coverage.
+        ais_latitude_average: Average latitude of the day.
+        ais_longitude_average: Average longitude of the day.
+        ais_draught_average: Average draught of the day, in metres.
+        ais_heading_average: Average heading of the day, in degrees.
+        ais_speed_average: Average speed of the day in knots. Includes the
+            time steaming and the time stationary.
+        ais_seagoing_speed_average: Average steaming speed of the day in
+            knots. Speeds below 5 knots are not included.
+        ais_current_area: Name of the standard area of the AIS position, for
+            example US Gulf.
+        ais_current_area_id: Id of the standard area of the AIS position.
+        ais_closest_location: Name of the location nearest to the AIS
+            position.
+        ais_closest_location_id: Id of the location nearest to the AIS
+            position.
+        ais_destination: Name of the destination that the vessel reports on
+            AIS.
+        ais_destination_taxonomy: Precision level of the AIS destination,
+            for example `Port`.
+        ais_destination_geo_id: Geo id of the AIS destination. The crew
+            enters this destination.
+        ais_destination_taxonomy_id: Precision level id of the AIS
+            destination. See `LocationTaxonomy`.
+        eta_to_ais_destination: ETA to the AIS destination, calculated by
+            the system. It is not the ETA that the crew reports.
+        miles_to_ais_destination: Distance to the AIS destination in
+            nautical miles.
+        delays_to_ais_destination: Estimated delays to the AIS destination,
+            in hours.
+    """
 
     last_movement_date_time_utc: Optional[datetime] = Field(
         None, alias="lastMovementDateTimeUTC"

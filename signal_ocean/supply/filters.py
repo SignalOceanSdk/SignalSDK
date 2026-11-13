@@ -80,6 +80,34 @@ class CommercialAvailabilityFilter(SupplyRequestModel):
     Location filters take `GeoLocation` values. A `*_relative_offset`
     range counts days from each snapshot day, or from today on live supply.
     An absolute date and its relative offset cannot be combined.
+
+    Attributes:
+        open_location: Where the vessel becomes available, from AIS and
+            commercial data. Takes `GeoLocation` values: a port, an area
+            (for example US Gulf) or a country.
+        open_date: When the vessel becomes available for its next charter.
+        open_date_relative_offset: Open date in days from the snapshot day.
+            A negative value is in the past.
+        availability_state: Charter market status: open for new business,
+            under negotiation, or committed. See `AvailabilityState`.
+        market_status: Whether the commercial operator markets the vessel:
+            pushed, possibly pushed or not pushed. See `MarketStatus`.
+        market_deployment: How the vessel is deployed: spot, program,
+            contract or relet. See `MarketDeployment`.
+        position_source_origin: How the position was found: entered by a
+            user, from AIS, or calculated by the system. See
+            `PositionSourceOrigin`.
+        position_source_type: The channel that reported the position, for
+            example email or a model prediction. See `PositionSourceType`.
+        last_marketed_date: When the operator last marketed the vessel.
+        last_marketed_date_relative_offset: Last marketed date in days from
+            the snapshot day.
+        latest_updated_date: When the commercial data of the vessel was last
+            updated. Shows how recent the position is.
+        latest_updated_date_relative_offset: Latest update in days from the
+            snapshot day.
+        forecasted_destination: The destination that the system predicts.
+            Takes `GeoLocation` values. It is not the AIS destination.
     """
 
     open_location: Optional[IncludeExcludeFilter] = None
@@ -101,6 +129,17 @@ class VoyageDetailsFilter(SupplyRequestModel):
     """Filters on voyage state, cargo, start port and charterer.
 
     `start_port` takes `GeoLocation` values; the id filters take integers.
+
+    Attributes:
+        voyage_state: The phase of the current voyage, for example ballast,
+            laden, loading or discharging. See `VoyageState`.
+        reported_last_cargo_type_id: Cargo type ids of the last reported
+            cargoes, up to 3.
+        cargo_type_id: Cargo type id on the current voyage.
+        last_voyage_cargo_type_id: Cargo type ids of the previous voyage.
+        start_port: The load port of the voyage leg.
+        cargo_quantity: Cargo quantity in metric tonnes.
+        charterer: Charterer company ids.
     """
 
     voyage_state: Optional[List[str]] = None
@@ -117,6 +156,21 @@ class AisTrackingFilter(SupplyRequestModel):
 
     `ais_current_area` takes area ids as integers. `ais_closest_location`
     and `ais_destination` take `GeoLocation` values.
+
+    Attributes:
+        days_since_latest_ais: Maximum number of days since the last AIS
+            message of the vessel. More than 7 days can mean that the AIS
+            is off or out of coverage.
+        ais_draught: Current AIS draught in metres. A deep draught usually
+            means laden, a shallow draught usually means ballast.
+        ais_heading: Compass headings in degrees, 0 to 360.
+        ais_speed: Current AIS speed over ground in knots.
+        ais_current_area: Area ids of the current AIS position.
+        ais_closest_location: The named location nearest to the AIS
+            position.
+        ais_destination: The destination that the vessel reports on AIS.
+        eta_to_ais_destination: ETA to the AIS destination, calculated by
+            the system.
     """
 
     days_since_latest_ais: Optional[int] = None
@@ -130,7 +184,92 @@ class AisTrackingFilter(SupplyRequestModel):
 
 
 class VesselParticularsFilter(SupplyRequestModel):
-    """Filters on vessel characteristics, ownership and sanctions."""
+    """Filters on vessel characteristics, ownership and sanctions.
+
+    Attributes:
+        commercial_operator: Company ids of the commercial operator, the
+            company that decides the employment of the vessel.
+        liquid_capacity: Liquid capacity in cubic metres.
+        ice_class: Ice class names.
+        cranes_ton_capacity: Crane capacity in tonnes.
+        length_overall: Length overall (LOA) in metres.
+        breadth_extreme: Breadth in metres.
+        air_draught: Air draught in metres.
+        ballast_parallel_body_length: Parallel body length in ballast, in
+            metres.
+        bow_to_center_manifold: Bow to center manifold, in metres.
+        class_renewal_date: Class renewal date.
+        built_country_code: ISO codes of the build country.
+        built_country_name: Names of the build country.
+        crude_oil_washing: Crude oil washing system.
+        delivery_date: Delivery date.
+        flag_code: ISO codes of the flag state.
+        heating_coils_fitted: Heating coils fitted.
+        inert_gas_system: Inert gas system.
+        lightship_tonnes: Lightship weight in tonnes.
+        main_engine_manufacturer_id: Main engine manufacturer ids.
+        main_engine_manufacturer: Main engine manufacturer names.
+        main_engine_kw: Main engine power in kW.
+        main_engine_rpm: Main engine RPM.
+        moulded_depth: Moulded depth in metres.
+        parallel_body_length: Parallel body length in metres.
+        reduced_gross_tonnage: Reduced gross tonnage.
+        shipyard_built_id: Ids of the shipyard that built the vessel.
+        stern_line: Stern line fitted.
+        water_line_to_manifold: Waterline to manifold, in metres.
+        built_for_trade_ids: Ids of the trades that the vessel was built
+            for.
+        bale_capacity: Bale capacity in cubic metres.
+        co2_fitted: CO2 system fitted.
+        grain_capacity: Grain capacity in cubic metres.
+        neo_panama_locks: Fits the Neo-Panamax locks.
+        number_of_holds: Number of holds.
+        australian_ladder: Australian ladder fitted.
+        log_fitted: Log fitted.
+        open_hatch: Open hatch design.
+        a60_bulkhead: A60 bulkhead.
+        gross_registered_tonnage: Gross registered tonnage (GRT).
+        net_registered_tonnage: Net registered tonnage (NRT).
+        head_owner_id: Company ids of the head owner, the owner at the top
+            of the ownership structure.
+        ballast_water_treatment: Ballast water treatment system.
+        draught: Draught in metres.
+        geared: Has cranes or other cargo gear. A geared vessel can load and
+            discharge without port cranes.
+        classification_register_id: Classification society ids.
+        vessel_age: Vessel age in years. An alternative to `year_built`.
+        coating: Tank coating. See `Coating`.
+        imo_type: IMO ship type. See `ImoType`.
+        crane_max_out_reach: Maximum crane outreach in metres.
+        crane_lifting_capacity: Crane lifting capacity in tonnes.
+        number_of_cranes: Number of cranes.
+        box_shaped_holds: Box-shaped holds.
+        hold_length: Hold length in metres.
+        hold_height: Hold height in metres.
+        hold_breadth: Hold breadth in metres.
+        number_of_hatches: Number of hatches.
+        has_hatches: Has hatches.
+        hatch_length: Hatch length in metres.
+        hatch_breadth: Hatch breadth in metres.
+        number_of_grabs: Number of grabs.
+        has_grabs: Has grabs.
+        grab_lifting_capacity: Grab lifting capacity in tonnes.
+        grab_max_lifting_weight: Maximum grab lifting weight in tonnes.
+        scrubbers: Exhaust gas scrubbers fitted. A vessel with scrubbers can
+            burn high-sulphur fuel oil.
+        year_built: Year built.
+        number_of_bow_thrusters: Number of bow thrusters.
+        number_of_bow_chain_stoppers: Number of bow chain stoppers.
+        propulsion_type: Propulsion type ids.
+        gas_containment_type: Gas containment type ids, for LNG and LPG
+            vessels.
+        summer_tpc: Summer tonnes per centimetre immersion (TPC).
+        design_model: Names of the vessel design model.
+        sanction_status: Sanction status ids. Use it to find or remove
+            sanctioned vessels.
+        trade: The sub-segment of the vessel within its class. Includes
+            the manual changes of your company.
+    """
 
     commercial_operator: Optional[IncludeExcludeFilter] = None
     liquid_capacity: Optional[MinMaxRange] = None
