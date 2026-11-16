@@ -47,6 +47,8 @@ from signal_ocean.scraped_positions.scraped_positions_api import (
 from signal_ocean.vessel_consumptions.vessel_consumptions_api import (
     VesselConsumptionsAPI,
 )
+from signal_ocean.supply.api import SupplyAPI
+from signal_ocean.supply.filters import LiveSupplyFilter, SupplyFilter
 
 # --- Singleton API instances (one HTTP session for the server lifetime) ---
 _conn: Connection
@@ -69,6 +71,7 @@ _scraped_fixtures_api: ScrapedFixturesAPI
 _scraped_lineups_api: ScrapedLineupsAPI
 _scraped_positions_api: ScrapedPositionsAPI
 _vessel_consumptions_api: VesselConsumptionsAPI
+_supply_api: SupplyAPI
 
 
 @asynccontextmanager
@@ -79,6 +82,7 @@ async def _lifespan(server: FastMCP):
     global _vessel_valuations_api, _vessels_api, _voyages_api
     global _voyages_market_data_api, _scraped_cargoes_api, _scraped_fixtures_api
     global _scraped_lineups_api, _scraped_positions_api, _vessel_consumptions_api
+    global _supply_api
 
     _conn = Connection()
     _companies_api = CompaniesAPI(_conn)
@@ -100,6 +104,7 @@ async def _lifespan(server: FastMCP):
     _scraped_lineups_api = ScrapedLineupsAPI(_conn)
     _scraped_positions_api = ScrapedPositionsAPI(_conn)
     _vessel_consumptions_api = VesselConsumptionsAPI(_conn)
+    _supply_api = SupplyAPI(_conn)
     try:
         yield
     finally:
@@ -110,7 +115,7 @@ mcp = FastMCP(
     "Signal Ocean",
     lifespan=_lifespan,
     instructions=(
-        "Signal Ocean provides maritime shipping data APIs via 69 tools grouped below.\n"
+        "Signal Ocean provides maritime shipping data APIs via 73 tools grouped below.\n"
         "All tools require SIGNAL_OCEAN_API_KEY set as an environment variable.\n\n"
         "VESSELS: search_vessel_imos, search_vessels, get_vessel, get_vessel_by_name, "
         "get_vessels_by_vessel_class, get_vessels_by_operator, get_vessel_classes, "
@@ -142,6 +147,9 @@ mcp = FastMCP(
         "get_port_expenses_vessel_types, compare_port_expenses\n\n"
         "TONNAGE LISTS & SUPPLY: get_tonnage_list, get_historical_tonnage_list, "
         "get_tonnage_list_ports, get_tonnage_list_and_market_rates, get_vessel_supply\n\n"
+        "SUPPLY API (150+ filters, Baltic route templates): get_supply_trend, "
+        "get_historical_supply (5 calls per key per day), get_live_supply, "
+        "get_supply_templates\n\n"
         "SCRAPED MARKET DATA: get_scraped_cargoes, get_scraped_fixtures, "
         "get_scraped_lineups, get_scraped_positions\n\n"
         "GEOGRAPHY & COMPANIES: get_ports_geo, get_countries, get_areas, "
@@ -340,6 +348,11 @@ def _port_expenses_vessel_types_sync():
 @lru_cache(maxsize=None)
 def _countries_sync(country_id: Optional[int]):
     return _geos_api.get_countries(countryId=country_id)
+
+
+@lru_cache(maxsize=None)
+def _supply_templates_sync():
+    return _supply_api.get_supply_templates()
 
 
 # --- Vessel Lookup ---
@@ -2674,6 +2687,153 @@ async def get_vessel_supply(
         "by_date": by_date,
         "vessels": vessels[:50],
     }, default=str)
+
+
+# --- Supply API ---
+
+def _supply_snapshot_result(snapshot, max_records: int) -> str:
+    records = snapshot.data
+    return json.dumps({
+        "count": len(records),
+        "truncated": len(records) > max_records,
+        "data": [_to_dict(record) for record in records[:max_records]],
+    }, default=str)
+
+
+@mcp.tool()
+async def get_supply_trend(
+    start_date: str,
+    end_date: str,
+    template: Optional[str] = None,
+    filters: Optional[dict] = None,
+) -> str:
+    """Count the vessels that match Supply API filters on each day of a range.
+
+    Use for supply over time, e.g. "how did Aframax supply in the Med
+    change since March?" or "TD3C supply over the last month". Prefer the
+    Supply API tools to get_historical_tonnage_list and get_vessel_supply:
+    they have 150+ filters and Baltic route templates.
+
+    start_date, end_date: YYYY-MM-DD.
+    template: Baltic route code, e.g. "TD3C", "TC2", "C5", "P6"; see
+        get_supply_templates. Optional.
+    filters: Supply API request fields as a JSON object, with the API's
+        camelCase names or snake_case, e.g.
+        {"vesselClass": "Aframax",
+         "commercialAvailability": {"availabilityState": ["Available"]}}.
+        A field given here replaces the template's value for that field.
+        Give either vesselClass, or vesselType + definingSize + size.
+    Returns {"supplyPerDay": [{"date", "supply"}], "notes": [...]}.
+    """
+    supply_filter = (
+        SupplyFilter.model_validate(filters) if filters is not None else None
+    )
+    trend = await anyio.to_thread.run_sync(
+        lambda: _supply_api.get_supply_trend(
+            date.fromisoformat(start_date),
+            date.fromisoformat(end_date),
+            template=template,
+            filters=supply_filter,
+        )
+    )
+    return _serialize(trend)
+
+
+@mcp.tool()
+async def get_historical_supply(
+    day: str,
+    template: Optional[str] = None,
+    filters: Optional[dict] = None,
+    use_only_hub_ports: Optional[bool] = None,
+    max_records: int = 100,
+) -> str:
+    """List the vessels that matched Supply API filters on one past day.
+
+    Each API key may call this only 5 times per day. For counts over time
+    use get_supply_trend; call this only when the vessel list of one past
+    day is needed.
+
+    day: YYYY-MM-DD.
+    template: Baltic route code, e.g. "TD3C", "TC2", "C5", "P6"; see
+        get_supply_templates. Optional.
+    filters: Supply API request fields as a JSON object, with the API's
+        camelCase names or snake_case, e.g.
+        {"vesselClass": "Aframax",
+         "commercialAvailability": {"availabilityState": ["Available"]}}.
+        A field given here replaces the template's value for that field.
+        Give either vesselClass, or vesselType + definingSize + size.
+    use_only_hub_ports: true remaps ETA basis ports to hub ports.
+    max_records: the most records returned; "count" gives the full number.
+    Returns {"count", "truncated", "data": [vessel records]}.
+    """
+    supply_filter = (
+        SupplyFilter.model_validate(filters) if filters is not None else None
+    )
+    snapshot = await anyio.to_thread.run_sync(
+        lambda: _supply_api.get_historical_supply(
+            date.fromisoformat(day),
+            template=template,
+            filters=supply_filter,
+            use_only_hub_ports=use_only_hub_ports,
+        )
+    )
+    return _supply_snapshot_result(snapshot, max_records)
+
+
+@mcp.tool()
+async def get_live_supply(
+    template: Optional[str] = None,
+    filters: Optional[dict] = None,
+    max_records: int = 100,
+) -> str:
+    """List the vessels that match Supply API filters now.
+
+    Use for current availability, e.g. "which Aframaxes are open in the US
+    Gulf now?" or "show the TD25 list". ETA configurations here may also
+    set "restrictions" (e.g. "Suez").
+
+    template: Baltic route code, e.g. "TD3C", "TC2", "C5", "P6"; see
+        get_supply_templates. Optional.
+    filters: Supply API request fields as a JSON object, with the API's
+        camelCase names or snake_case, e.g.
+        {"vesselClass": "Aframax",
+         "commercialAvailability": {"availabilityState": ["Available"]}}.
+        A field given here replaces the template's value for that field.
+        Give either vesselClass, or vesselType + definingSize + size.
+    max_records: the most records returned; "count" gives the full number.
+    Returns {"count", "truncated", "data": [vessel records]}.
+    """
+    supply_filter = (
+        LiveSupplyFilter.model_validate(filters)
+        if filters is not None
+        else None
+    )
+    snapshot = await anyio.to_thread.run_sync(
+        lambda: _supply_api.get_live_supply(
+            template=template, filters=supply_filter
+        )
+    )
+    return _supply_snapshot_result(snapshot, max_records)
+
+
+@mcp.tool()
+async def get_supply_templates() -> str:
+    """List the Baltic route templates of the Supply API.
+
+    Pass a template's code as `template` to get_supply_trend,
+    get_historical_supply or get_live_supply.
+    Returns [{"code", "name", "description", "segment"}].
+    """
+    templates = await anyio.to_thread.run_sync(_supply_templates_sync)
+    return json.dumps([
+        {
+            "code": t.code,
+            "name": t.name,
+            "description": t.description,
+            "segment": t.segment,
+        }
+        for t in templates
+    ])
 
 
 def main() -> None:
